@@ -1,0 +1,122 @@
+{
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/DONOR_SOURCE_MANIFEST.json": {
+    "bytes": 4227,
+    "sha256": "3baf0f9970482dcafb2b3a2a61bd4d0df921b89634d7951138b27c8a05a4de81"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/README.md": {
+    "bytes": 6624,
+    "sha256": "468bbc881b5beca806bc34845254c2b9f33192d01baed2e6670b32c66bb8e1a7"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/BASE_PROFILE_READ.json": {
+    "bytes": 18590,
+    "sha256": "d343a3906575573e0db28c320d170b56b66029b4c556daa09dd16f2705e33a2e"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/BINDING_FIELDS_PRESERVED.json": {
+    "bytes": 1330,
+    "sha256": "b7c2d0a4d842a8092c0f6ea10999ca56064d2a9c48281773f670b5d807b73edb"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/CI_OWNERSHIP.json": {
+    "bytes": 1856,
+    "sha256": "22525f58f42358c908be331e4fc33400495372d0f277d3522549c676b115dc81"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/CONTRACT_PROPOSAL.md.gz": {
+    "bytes": 6109,
+    "sha256": "c4785c5dab02909a46326ba9e0fc47e3cfe2429ba78f035865bd007a1d7d8495"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/CURRENT_ROOT_PROOF.json": {
+    "bytes": 4932,
+    "sha256": "dcda58af3fb3a129b5e3390adfcd6f0fa9efc2207e26341f5db3b923b31d8f47"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/DECLARED_CONTROLS.json": {
+    "bytes": 1791,
+    "sha256": "cf58592d2112079f7141f10618d09dabce4f7cd1d7e24490a1da8722309bbe84"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/EARLIER_ATTEMPTS_READBACK.json": {
+    "bytes": 39319,
+    "sha256": "d3d5884e00a86714ddb8d43386ff8b74effda844f1d9fa8fed5be3fca7aa967b"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/EXACT_CHANGED_FUNCTIONS.json": {
+    "bytes": 2047,
+    "sha256": "866cc900f9d027bf6b3de0579a4135e22ae5f7c9e3b395a90db2fb00e4f8ccdf"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/IMPLEMENTATION_AND_FREEZE.md": {
+    "bytes": 9388,
+    "sha256": "7784ad73858e38551011d6e0aabb528f56df6cc5741c574b1e93d52205d3b462"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/ORIGINAL_ASSERTIONS_PRESERVED.json": {
+    "bytes": 8979,
+    "sha256": "9ff8fdf433ea8943786ec72f0972b01ab8eb5eed8eaa59545f0fb523b08891e0"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/PEER_REVIEW.json": {
+    "bytes": 1578,
+    "sha256": "d34d83ae5efaa4a02e45220dfee21c00a4dc264e6c510f3516c847971436879f"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/PROPOSAL_INPUTS.json": {
+    "bytes": 30852,
+    "sha256": "dae6de1a365faa1d86a038f0844a2c5a672a766c8b11d5262a57cb3cc61cdad3"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/READ_SOURCE_INPUTS.json": {
+    "bytes": 1762,
+    "sha256": "772f9ed3bf57a490da2f20db6e8eb1e94b039388716251507ca98dc017b8d404"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/UPLOAD_INDEX.json": {
+    "bytes": 2215,
+    "sha256": "9b00af4f419c5fd177d660c3eb0d8629b3f9a1d4baf1dfec7d8b3a6bbcbe71fa"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/generate-closed-contract.py": {
+    "bytes": 5906,
+    "sha256": "373c49cfec0502d943cf88745207a54ee1939e855cc10efd861ec9875b7fd41f"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/run-current-controls.py": {
+    "bytes": 2054,
+    "sha256": "268f104c13dd6128d64eb70cda825ba2534aa4bfb85c0657f9ce424375f3ff19"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/run-original-and-current-controls.py": {
+    "bytes": 2202,
+    "sha256": "2c03929fe679502f242aaa22a8428d42f78779e82bd9661801ffa23074db79cb"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/review/seal-actual-control-evidence.py": {
+    "bytes": 4005,
+    "sha256": "517225229f34ac15532d854549930293dbbe9af3b3252fddf49b4b4a16f5eedf"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/ARCHIVE_INDEX.json": {
+    "bytes": 66958,
+    "sha256": "5f6e7dac9d7e815af037912523a72c3c2861bdff32972ab40669aa93e60832d2"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/CONTROL_SUMMARY.json": {
+    "bytes": 5916,
+    "sha256": "b153461d10357c749a925fa1acb0bacd3dd7eb9c7bfe32bcdda02c1db4e9f259"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/PACKAGING_RECOVERY.json": {
+    "bytes": 663,
+    "sha256": "5a2bc1ef07366077e85c7f5e79a83f4647a5615d8f59bdf88048f54026443a8b"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/PRIVATE_CANDIDATE_STAGE.json": {
+    "bytes": 1805,
+    "sha256": "158bc497447a004d3e2922f9cef81e677d6366e69ada54dc3232bc2174115736"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/PRIVATE_CHECKOUT_RECEIPT.json": {
+    "bytes": 6037,
+    "sha256": "e502471e229251848c127e1df25b0be29de49b99ecf11c47df2d26dfe8810a61"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/PRIVATE_FETCH.log.gz": {
+    "bytes": 151,
+    "sha256": "cb311937c299031a980d444a479a102ef3a92efefc0f84c10e1155b5ed284778"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/PUBLICATION_PRECONDITION.json": {
+    "bytes": 5619,
+    "sha256": "abbebcf4d504044cfc090583abd9aa70a025c68ac66f45ae17e3b313d8289cf2"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/RAW_CAPTURES.json": {
+    "bytes": 287,
+    "sha256": "61467ffde8ac0f92b8e6f7e6c693649ca9a2881fe042a919925837fd4e50c8ab"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/actual-source-controls.tar.gz": {
+    "bytes": 2522657,
+    "sha256": "4ec985ad2a4a0b50590547de21f8286226ee98fc9bb7aa0cb0d6294fc62ecd63"
+  },
+  "docs/hq-integration/wave3-vendor-source-admission-20261127/validation/source-change.patch.gz": {
+    "bytes": 20644,
+    "sha256": "198e8e76501381b4f83e0bace8489546a97573f6eeee9e9a17a46d4b549978ee"
+  }
+}

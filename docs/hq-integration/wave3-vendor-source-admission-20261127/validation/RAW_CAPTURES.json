@@ -1,0 +1,10 @@
+{
+  "PRIVATE_FETCH.log.gz": {
+    "raw_bytes": 156,
+    "raw_sha256": "48878daf33a835c751c896568747c7267d3915f6db2e4d7b79d4bd5d4fe792db"
+  },
+  "source-change.patch.gz": {
+    "raw_bytes": 85931,
+    "raw_sha256": "400b184a1b6a8ba461e6f4c2947f5e6ddacb78f0c42842754f5b23aba5a2be9b"
+  }
+}

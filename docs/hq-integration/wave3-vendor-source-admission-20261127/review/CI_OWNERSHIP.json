@@ -1,0 +1,55 @@
+{
+  "read_only": true,
+  "source": "ec5385e863a478e368c7de47264474a440fd0734",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "paths": {
+    "Scripts/CI/final_integration_source.py": {
+      "bytes": 11675,
+      "sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198",
+      "actual_upstream_tree": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "addition_history": [
+        "04b59e07d05b4073d9f879453a7f421bf03a1864|Bind integrated product source without relabelling historical acceptance"
+      ]
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 69168,
+      "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca",
+      "actual_upstream_tree": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "addition_history": [
+        "7f0ca571ab768f14d09f15c32343c29a3323785f|Add manual-only unsigned integrated app validation with pinned inputs [skip ci]"
+      ]
+    },
+    "Scripts/CI/prepare-normal-ios-workspace.py": {
+      "bytes": 10766,
+      "sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52",
+      "actual_upstream_tree": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "addition_history": [
+        "14d0e9397cd93abcede268f4bc977d79b3d3507f|ci(ios): prepare original React workspace and preserve host macro SDK"
+      ]
+    },
+    "Scripts/CI/test-normal-ios-workspace.py": {
+      "bytes": 21853,
+      "sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44",
+      "actual_upstream_tree": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      "addition_history": [
+        "14d0e9397cd93abcede268f4bc977d79b3d3507f|ci(ios): prepare original React workspace and preserve host macro SDK"
+      ]
+    }
+  }
+}

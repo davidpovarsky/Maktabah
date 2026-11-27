@@ -66,6 +66,9 @@ def ensure_resource_producer(driver, config, report):
 
 def embedded_source_plan(driver, config):
     """Same Sefaria source/overlay contract as the original focused preflight."""
+    reviewed_vendor = driver.reviewed_vendor_source_plan(config)
+    if reviewed_vendor is not None:
+        return reviewed_vendor["embedded_bundle_build"]
     driver.require(driver.capture("git", "rev-parse", "HEAD:" + UPSTREAM) == config["sefaria_gitlink"],
                    "Sefaria pin drift")
     tree = driver.capture("git", "rev-parse", "HEAD:" + RESOURCE_ROOT)

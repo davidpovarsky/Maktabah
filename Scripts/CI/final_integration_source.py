@@ -18,6 +18,17 @@ PROJECT = "Maktabah.xcodeproj/project.pbxproj"
 LOCK = "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
 BINDING_FIELDS = {"application_source_sha", "application_trees", "hanlin_gitlink",
                   "otzaria_test_additions_sha256", "final_product_source"}
+VENDOR_REVIEW_SOURCE = "24cd9291dbc87d799c22a41f0bc73a82c6415bfa"
+VENDOR_REVIEW_PATH = "Scripts/CI/reviewed-vendor-source.inputs.json"
+VENDOR_REVIEW_SHA256 = "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+VENDOR_REVIEW_TREE = "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6"
+VENDOR_JS_PATHS = ["Vendor/SefariaMobile/Integration/JS/" + name for name in
+                   ("ChavrusaRoot.js", "ChavrusaVisibleSurface.js",
+                    "ChavrusaVisibleSurfaceRegistry.js", "chavrusaRPCFacade.js")]
+VENDOR_NATIVE_PATH = "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift"
+VENDOR_SWIFT_PATH = "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift"
+VENDOR_REVIEW_PATHS = sorted(["Vendor/HanlinSDK", *VENDOR_JS_PATHS,
+                              VENDOR_NATIVE_PATH, VENDOR_SWIFT_PATH])
 
 
 def require(value, message):
@@ -73,6 +84,240 @@ def source_object(root, revision, path):
     return result
 
 
+def strict_json(raw):
+    def unique(pairs):
+        result = {}
+        for name, value in pairs:
+            require(name not in result, "Duplicate source contract key: " + name)
+            result[name] = value
+        return result
+    return json.loads(raw, object_pairs_hook=unique)
+
+
+def source_is_ancestor(root, before, after):
+    require(all(isinstance(value, str) and re.fullmatch(r"[a-f0-9]{40}", value)
+                for value in (before, after)), "Unfrozen source ancestry")
+    result = subprocess.run(["git", "merge-base", "--is-ancestor", before, after],
+                            cwd=root, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=90)
+    require(result.returncode in (0, 1), "Required source ancestry is unavailable")
+    return result.returncode == 0
+
+
+def requires_reviewed_vendor(root, source):
+    # A new checkout cannot downgrade its declaration to a historical source
+    # and thereby select the legacy one-facade path.
+    return (source_is_ancestor(root, VENDOR_REVIEW_SOURCE, source)
+            or source_is_ancestor(root, VENDOR_REVIEW_SOURCE, text(root, "rev-parse", "HEAD")))
+
+
+def vendor_entries(root, revision, path="Vendor"):
+    result = {}
+    for row in git(root, "ls-tree", "-r", "-z", revision, "--", path).split(b"\0"):
+        if not row:
+            continue
+        metadata, name = row.decode().split("\t", 1)
+        mode, kind, identity = metadata.split()
+        require(name == Path(name).as_posix() and "\\" not in name
+                and ".." not in Path(name).parts and name.startswith(path + "/")
+                and name not in result, "Invalid or duplicate Vendor source path")
+        require(mode in ("100644", "100755", "120000", "160000")
+                and kind in ("blob", "commit") and re.fullmatch(r"[a-f0-9]{40}", identity),
+                "Invalid Vendor source identity")
+        result[name] = {"mode": mode, "kind": kind, "object": identity}
+    return result
+
+
+def vendor_patch(root, before, after, path):
+    raw = git(root, "diff", "--binary", "--full-index", "--no-ext-diff", before, after, "--", path)
+    return {"bytes": len(raw), "sha256": sha(raw)}
+
+
+def regular_source_bytes(root, name):
+    path = relative_file(root, name)
+    require(all(not parent.is_symlink() for parent in path.parents if parent != root and root in parent.parents),
+            "Aliased source parent: " + name)
+    before = path.stat()
+    raw = path.read_bytes()
+    after = path.stat()
+    require((before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns, before.st_ctime_ns)
+            == (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns),
+            "Source changed while being read: " + name)
+    return raw
+
+
+def load_vendor_review(root, reference):
+    require(reference == {"manifest": VENDOR_REVIEW_PATH, "sha256": VENDOR_REVIEW_SHA256},
+            "Missing or unreviewed Wave3 Vendor contract")
+    raw = regular_source_bytes(root, VENDOR_REVIEW_PATH)
+    require(sha(raw) == VENDOR_REVIEW_SHA256 and raw == git(root, "show", "HEAD:" + VENDOR_REVIEW_PATH),
+            "Reviewed Vendor contract bytes changed or are uncommitted")
+    value = strict_json(raw)
+    require(set(value) == {"schema", "scope", "native_qualified", "reviewed_product_source",
+                          "historical_source", "integration_base", "vendor_tree", "entries",
+                          "preserved_inventory", "producer_scopes", "build_inputs",
+                          "legacy_input_fixture", "evidence"}, "Unexpected Vendor review fields")
+    require(value["schema"] == "otzaria.reviewed-vendor-source/1"
+            and value["scope"] == "EXACT_DOWNSTREAM_SOURCE_IDENTITY_AND_PRODUCER_ATTRIBUTION_ONLY"
+            and value["native_qualified"] is False
+            and value["reviewed_product_source"] == VENDOR_REVIEW_SOURCE
+            and value["historical_source"] == HISTORICAL_SOURCE
+            and value["integration_base"] == INTEGRATION_BASE
+            and value["vendor_tree"] == VENDOR_REVIEW_TREE,
+            "Unexpected reviewed Vendor source contract")
+    require([row["path"] for row in value["entries"]] == VENDOR_REVIEW_PATHS,
+            "Vendor review is not the exact seven-path contract")
+    require(value["build_inputs"]["single_reviewed_field"] == "embedded_js_overlay_paths"
+            and value["build_inputs"]["before"] == [VENDOR_JS_PATHS[-1]]
+            and value["build_inputs"]["after"] == VENDOR_JS_PATHS,
+            "Unreviewed JS input declaration")
+    return value
+
+
+def verify_vendor_scope(root, source, scope):
+    before = vendor_entries(root, scope["producer"], scope["root"])
+    after = vendor_entries(root, source, scope["root"])
+    paths = [row["path"] for row in scope["changes"]]
+    changed = sorted(path for path in before.keys() | after.keys() if before.get(path) != after.get(path))
+    require(changed == paths, "Unreviewed producer source delta: " + scope["root"])
+    require(text(root, "rev-parse", scope["producer"] + ":" + scope["root"]) == scope["producer_tree"]
+            and text(root, "rev-parse", source + ":" + scope["root"]) == scope["accepted_tree"],
+            "Producer or accepted source tree changed: " + scope["root"])
+    preserved = {path: entry for path, entry in before.items() if path not in paths}
+    require(len(before) == scope["producer_entries"] and len(after) == scope["accepted_entries"]
+            and len(preserved) == scope["preserved_entries"]
+            and all(after.get(path) == entry for path, entry in preserved.items())
+            and canonical(preserved) == scope["preserved_entries_sha256"],
+            "Original producer inputs were changed or removed: " + scope["root"])
+    for row in scope["changes"]:
+        require(source_object(root, scope["producer"], row["path"]) == row["before"]
+                and source_object(root, source, row["path"]) == row["after"]
+                and vendor_patch(root, scope["producer"], source, row["path"]) == row["patch"],
+                "Exact producer source patch changed: " + row["path"])
+    return {"producer_sha": scope["producer"], "producer_tree": scope["producer_tree"],
+            "current_tree": scope["accepted_tree"], "preserved_producer_entries": len(preserved),
+            "reviewed_changed_paths": paths}
+
+
+def verify_reviewed_vendor(root, source, reference):
+    root = Path(root).resolve(strict=True)
+    head = text(root, "rev-parse", "HEAD")
+    review = load_vendor_review(root, reference)
+    require(source_is_ancestor(root, VENDOR_REVIEW_SOURCE, source)
+            and source_is_ancestor(root, source, head), "Reviewed Vendor source ancestry differs")
+    require(text(root, "rev-parse", source + ":Vendor") == VENDOR_REVIEW_TREE
+            and text(root, "rev-parse", head + ":Vendor") == VENDOR_REVIEW_TREE,
+            "Current Vendor tree differs from the exact reviewed source")
+    before, after = vendor_entries(root, HISTORICAL_SOURCE), vendor_entries(root, source)
+    changed = sorted(path for path in before.keys() | after.keys() if before.get(path) != after.get(path))
+    require(changed == VENDOR_REVIEW_PATHS, "Unexpected or missing reviewed Vendor path")
+    preserved = {path: entry for path, entry in before.items() if path not in VENDOR_REVIEW_PATHS}
+    require(review["preserved_inventory"] == {"historical_entries": len(before),
+                "accepted_entries": len(after), "unchanged_entries": len(preserved), "sha256": canonical(preserved)}
+            and len(preserved) == 195 and all(after.get(path) == entry for path, entry in preserved.items()),
+            "An imported Vendor input changed outside the exact reviewed hooks")
+    physical = {}
+    for row in review["entries"]:
+        path = row["path"]
+        require(source_object(root, HISTORICAL_SOURCE, path) == row["historical"]
+                and source_object(root, source, path) == row["accepted"]
+                and source_object(root, head, path) == row["accepted"]
+                and source_object(root, row["component"], path) == row["accepted"]
+                and source_is_ancestor(root, row["component"], source),
+                "Exact reviewed Vendor component changed: " + path)
+        require(vendor_patch(root, HISTORICAL_SOURCE, source, path) == row["historical_patch"],
+                "Reviewed Vendor historical patch changed: " + path)
+        for step in row["component_steps"]:
+            require(text(root, "rev-parse", step["source"] + "^") == step["parent"]
+                    and source_is_ancestor(root, step["source"], source)
+                    and source_object(root, step["parent"], path) == step["before"]
+                    and source_object(root, step["source"], path) == step["after"]
+                    and vendor_patch(root, step["parent"], step["source"], path) == step["patch"],
+                    "Actual Vendor intake lineage changed: " + path)
+        if path != "Vendor/HanlinSDK":
+            require(row["accepted"]["mode"] == "100644" and row["accepted"]["kind"] == "blob",
+                    "Reviewed integration is not a regular source file")
+            raw = regular_source_bytes(root, path)
+            require(len(raw) == row["accepted"]["bytes"] and sha(raw) == row["accepted"]["sha256"]
+                    and raw == git(root, "show", head + ":" + path),
+                    "Working Vendor source differs: " + path)
+            physical[path] = sha(raw)
+    require(not text(root, "diff", "--name-only", "HEAD", "--", *physical),
+            "Reviewed working source content or executable mode changed")
+    scopes = {name: verify_vendor_scope(root, source, scope)
+              for name, scope in review["producer_scopes"].items()}
+    require(set(scopes) == {"zayit", "sefaria"}
+            and scopes["zayit"]["reviewed_changed_paths"] == [VENDOR_SWIFT_PATH]
+            and scopes["sefaria"]["reviewed_changed_paths"] == sorted([*VENDOR_JS_PATHS, VENDOR_NATIVE_PATH]),
+            "Wrong native/JS/Swift consumer source separation")
+    for item in review["evidence"]:
+        require(source_object(root, item["source"], item["path"]) == item["object"]
+                and source_is_ancestor(root, item["source"], source),
+                "Historical Vendor provenance was changed or relabelled")
+    require(text(root, "rev-parse", "HEAD") == head, "Checkout changed during Vendor admission")
+    return {"scope": review["scope"], "manifest": VENDOR_REVIEW_PATH, "manifest_sha256": VENDOR_REVIEW_SHA256,
+            "reviewed_product_source": VENDOR_REVIEW_SOURCE, "application_source_sha": source,
+            "vendor_tree": VENDOR_REVIEW_TREE, "reviewed_vendor_changes": len(changed),
+            "preserved_historical_vendor_entries": len(preserved), "physical_source_sha256": physical,
+            "producer_scopes": scopes, "build_inputs": review["build_inputs"],
+            "native_qualified": False, "new_app_build_required": True, "new_metro_bundle_required": True}
+
+
+def verify_reviewed_build_inputs(before, after, review):
+    common = lambda value: {key: item for key, item in value.items() if key not in BINDING_FIELDS}
+    binding = review["build_inputs"]
+    baseline = common(before)
+    expected = dict(baseline)
+    expected["embedded_js_overlay_paths"] = VENDOR_JS_PATHS
+    require(baseline == binding["baseline_common"]
+            and canonical(baseline) == binding["baseline_canonical_sha256"]
+            and baseline["embedded_js_overlay_paths"] == binding["before"]
+            and binding["after"] == VENDOR_JS_PATHS
+            and common(after) == expected
+            and canonical(common(after)) == binding["accepted_canonical_sha256"],
+            "Unreviewed engine, resource, artifact or build input transition")
+    return {"field": "embedded_js_overlay_paths", "before": binding["before"], "after": VENDOR_JS_PATHS,
+            "historical_common_sha256": binding["baseline_canonical_sha256"],
+            "current_common_sha256": binding["accepted_canonical_sha256"]}
+
+
+def reviewed_vendor_source_plan(root, config):
+    """One strict source plan used by both original preparation routes."""
+    root = Path(root).resolve(strict=True)
+    source = config.get("application_source_sha")
+    if not requires_reviewed_vendor(root, source):
+        return None
+    require(config == strict_json(committed_bytes(root, INPUTS)), "Preparation inputs differ from committed source")
+    reference = config.get("final_product_source")
+    require(isinstance(reference, dict) and set(reference) == {"manifest", "sha256"}
+            and reference["manifest"] == "Scripts/CI/final-integration-source.inputs.json"
+            and re.fullmatch(r"[a-f0-9]{64}", reference["sha256"]), "Missing exact final source profile")
+    raw = committed_bytes(root, reference["manifest"])
+    require(sha(raw) == reference["sha256"], "Final source profile digest differs")
+    value = strict_json(raw)
+    verify_shape(value)
+    require(value["application_source_sha"] == source
+            and config["application_trees"] == {path: text(root, "rev-parse", source + ":" + path)
+                                                for path in ROOTS if path != "Maktabah-iOSUITests"}
+            and all(text(root, "rev-parse", "HEAD:" + path) == identity
+                    for path, identity in config["application_trees"].items()),
+            "Preparation is not bound to the actual application source trees")
+    review = verify_reviewed_vendor(root, source, value.get("reviewed_vendor_source"))
+    before = strict_json(git(root, "show", INTEGRATION_BASE + ":" + INPUTS))
+    transition = verify_build_binding(before, config, value, reference["manifest"], reference["sha256"],
+                                      sha(committed_bytes(root, ADDITIONS)), review)
+    review["input_transition"] = transition
+    review["embedded_bundle_build"] = {
+        "mode": "REBUILD_EXACT_REVIEWED_JS", "overlay_paths": VENDOR_JS_PATHS,
+        "native_source_paths": [VENDOR_NATIVE_PATH],
+        "source_tree": review["producer_scopes"]["sefaria"]["current_tree"],
+        "review_contract_sha256": VENDOR_REVIEW_SHA256,
+        "historical_bundle_role": "VERIFIED_BASELINE_ONLY_REBUILD_REQUIRED",
+        "native_bridge_build_required": True,
+        "source_sha256": {path: review["physical_source_sha256"][path]
+                          for path in [*VENDOR_JS_PATHS, VENDOR_NATIVE_PATH]}}
+    return review
+
+
 def verify_shape(value):
     require(value.get("schema") == "otzaria.integrated-product-source/1"
             and value.get("scope") == "SOURCE_IDENTITY_ONLY_REQUIRES_NEW_NATIVE_ACCEPTANCE"
@@ -123,11 +368,19 @@ def verify_rows(root, value):
             raise RuntimeError("Unrecognized integrated source adoption")
 
 
-def verify_build_binding(before, after, value, manifest_path, expected_sha256, additions_sha256):
+def verify_build_binding(before, after, value, manifest_path, expected_sha256, additions_sha256,
+                         vendor_review=None):
     common = lambda data: {key: item for key, item in data.items() if key not in BINDING_FIELDS}
-    require(common(before) == common(after)
-            and canonical(common(after)) == value["preserved_build_inputs_canonical_sha256"],
-            "Retained engine, resource, artifact or build input changed")
+    transition = None
+    if vendor_review is None:
+        require(common(before) == common(after)
+                and canonical(common(after)) == value["preserved_build_inputs_canonical_sha256"],
+                "Retained engine, resource, artifact or build input changed")
+    else:
+        transition = verify_reviewed_build_inputs(before, after, vendor_review)
+        require(value.get("reviewed_build_input_transition") == transition
+                and value["preserved_build_inputs_canonical_sha256"] == canonical(common(before)),
+                "Reviewed source-input transition or historical input identity changed")
     require(set(after) == set(before) | {"final_product_source"}, "Undeclared build input field")
     require(after["application_source_sha"] == value["application_source_sha"]
             and after["application_trees"] == {key: value["application_trees"][key]
@@ -136,6 +389,7 @@ def verify_build_binding(before, after, value, manifest_path, expected_sha256, a
             and after["otzaria_test_additions_sha256"] == additions_sha256
             and after["final_product_source"] == {"manifest": manifest_path, "sha256": expected_sha256},
             "Integrated build is not bound to the exact reviewed source")
+    return transition
 
 
 def verify_additions(before, after, project_blob):
@@ -180,8 +434,12 @@ def verify(root, manifest, expected_sha256):
     lock = json.loads(git(root, "show", source + ":" + LOCK))
     pins = {row["identity"]: row["state"]["revision"] for row in lock["pins"]}
     require(pins.get("swift-ai-sdk") == value["swift_ai_sdk_source"], "Shared Swift AI SDK source differs")
-    vendor_delta = text(root, "diff", "--name-only", HISTORICAL_SOURCE, source, "--", "Vendor").splitlines()
-    require(vendor_delta == ["Vendor/HanlinSDK"], "An original engine or shared vendor changed without review")
+    vendor_review = None
+    if requires_reviewed_vendor(root, source) or "reviewed_vendor_source" in value:
+        vendor_review = verify_reviewed_vendor(root, source, value.get("reviewed_vendor_source"))
+    else:
+        vendor_delta = text(root, "diff", "--name-only", HISTORICAL_SOURCE, source, "--", "Vendor").splitlines()
+        require(vendor_delta == ["Vendor/HanlinSDK"], "An original engine or shared vendor changed without review")
     for path, expected in value["preserved_historical_receipts"].items():
         current = committed_bytes(root, path)
         require(sha(current) == expected and current == git(root, "show", INTEGRATION_BASE + ":" + path),
@@ -195,8 +453,9 @@ def verify(root, manifest, expected_sha256):
             "Standalone original engine tests entered the application project")
     before = json.loads(git(root, "show", INTEGRATION_BASE + ":" + INPUTS))
     after_raw = committed_bytes(root, INPUTS)
-    verify_build_binding(before, json.loads(after_raw), value, name, expected_sha256, sha(additions_raw))
-    return {"manifest_sha256": expected_sha256, "historical_control_source": value["historical_control_source"],
+    transition = verify_build_binding(before, json.loads(after_raw), value, name, expected_sha256,
+                                      sha(additions_raw), vendor_review)
+    result = {"manifest_sha256": expected_sha256, "historical_control_source": value["historical_control_source"],
             "previous_application_source": HISTORICAL_SOURCE, "application_source_sha": source,
             "application_trees": trees, "hanlin_source": value["hanlin_source"],
             "swift_ai_sdk_source": value["swift_ai_sdk_source"],
@@ -206,3 +465,6 @@ def verify(root, manifest, expected_sha256):
             "preserved_build_inputs_sha256": value["preserved_build_inputs_canonical_sha256"],
             "new_native_build_required": True, "new_runtime_acceptance_required": True,
             "native_stageb_qualified": False}
+    if vendor_review is not None:
+        result.update(reviewed_vendor_source=vendor_review, reviewed_build_input_transition=transition)
+    return result

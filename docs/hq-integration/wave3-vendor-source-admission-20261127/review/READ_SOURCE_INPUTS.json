@@ -1,0 +1,41 @@
+{
+  "source": "ec5385e863a478e368c7de47264474a440fd0734",
+  "files": {
+    "Scripts/CI/prepare-normal-ios-workspace.py": {
+      "bytes": 10766,
+      "sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52"
+    },
+    "Scripts/CI/test-normal-ios-workspace.py": {
+      "bytes": 21853,
+      "sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44"
+    },
+    "docs/ui-routing/wave3-sefaria-native-surface-20261127/README.md": {
+      "bytes": 13954,
+      "sha256": "23155afb134a512dfda7d6829e7819d6e5f7a19e33806fcdc22dc1ada4a284e1"
+    },
+    "docs/ui-routing/wave3-sefaria-native-surface-20261127/SOURCE_PROVENANCE.json": {
+      "bytes": 10583,
+      "sha256": "3179de968bcfcfaf7ee8ee82a527c537481da8f40d31ef2c8728b9e7adfd4f9e"
+    },
+    "docs/hq-integration/wave2-20261127/library/search-page-ledger/README.md": {
+      "bytes": 10001,
+      "sha256": "c9e7f11ca026c6509446e7cf344a5af70db08e8fe963fd7f108967b8a99e8083"
+    },
+    "docs/hq-integration/wave2-20261127/library/search-page-ledger/PRODUCT_SOURCES.json": {
+      "bytes": 2324,
+      "sha256": "454162a985277bb08315c7da1adf1cdce3732c3f4a3feb716f9d002889a6b60e"
+    },
+    "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PATH_PROVENANCE.json": {
+      "bytes": 5949,
+      "sha256": "910edf5863da753dea32dfc19c727dcc91908455ba0550d8dbbfed7b59e863a6"
+    },
+    "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PRE_EDIT_PATH_MATRIX.md": {
+      "bytes": 3383,
+      "sha256": "c77c5aceba7a2bb942d0a08c2c746e91cfde4aae8d99d73df407ba0d2179a98a"
+    },
+    "HISTORICAL_VENDOR_DELTA.patch": {
+      "bytes": 25130,
+      "sha256": "69cc051515cfef190059d9432c86ac20647f169c6b085881bc51873b0831d050"
+    }
+  }
+}

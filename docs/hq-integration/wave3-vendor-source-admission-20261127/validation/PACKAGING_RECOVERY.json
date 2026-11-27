@@ -1,0 +1,15 @@
+{
+  "initial_diff_check_exit": 2,
+  "initial_diff_check_output": "docs/hq-integration/wave3-vendor-source-admission-20261127/review/CONTRACT_PROPOSAL.md:102: new blank line at EOF.\n",
+  "preservation": {
+    "exact_decompressed_equality": true,
+    "gzip_bytes": 6109,
+    "gzip_sha256": "c4785c5dab02909a46326ba9e0fc47e3cfe2429ba78f035865bd007a1d7d8495",
+    "original_path": "review/CONTRACT_PROPOSAL.md",
+    "raw_bytes": 14856,
+    "raw_sha256": "23b982c37093ade66492171ee040bbec72c2cc4915700cd318b95cb27152d395",
+    "retained_path": "review/CONTRACT_PROPOSAL.md.gz"
+  },
+  "scope": "LOSSLESS_EVIDENCE_PACKAGING_ONLY",
+  "source_and_tests_changed": false
+}

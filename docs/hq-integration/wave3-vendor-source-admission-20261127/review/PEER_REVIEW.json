@@ -1,0 +1,15 @@
+{
+  "scope": "INDEPENDENT_SOURCE_REVIEW_ONLY",
+  "reviewer_agent": "/root/navigation_fix",
+  "native_qualified": false,
+  "controls_independently_rerun": false,
+  "source_sha256": {
+    "Scripts/CI/final_integration_source.py": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72",
+    "Scripts/CI/hq-stage2-focused-apple.py": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4",
+    "Scripts/CI/prepare-normal-ios-workspace.py": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4",
+    "Scripts/CI/reviewed-vendor-source.inputs.json": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+  },
+  "finding_closed": "The normal route consumes the shared plan without the focused test-additions preflight. The original common-input projection excludes source-binding fields. Reusing the existing verify_build_binding with the actual committed additions digest closes that seam without relaxing the original binding rules.",
+  "review_conclusion": "No remaining demonstrated blocker in the requested exact seven-path and one-field source-admission transition. No legacy downgrade after the reviewed descendant; changed source bytes are rechecked before and after Metro; full build binding is called from the shared plan; original engine, artifact and lock guards remain.",
+  "retained_scope_limit": "The later original verify_actual_sources still checks the complete tracked Source/Vendor blobs. This peer review does not confirm the running Git controls or establish a new Metro, framework, app or native qualification."
+}

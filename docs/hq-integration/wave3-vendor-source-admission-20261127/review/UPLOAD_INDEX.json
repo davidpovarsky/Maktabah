@@ -1,0 +1,66 @@
+{
+  "BASE_PROFILE_READ.json": {
+    "bytes": 18590,
+    "sha256": "d343a3906575573e0db28c320d170b56b66029b4c556daa09dd16f2705e33a2e"
+  },
+  "CI_OWNERSHIP.json": {
+    "bytes": 1856,
+    "sha256": "22525f58f42358c908be331e4fc33400495372d0f277d3522549c676b115dc81"
+  },
+  "CONTRACT_PROPOSAL.md": {
+    "bytes": 14856,
+    "sha256": "23b982c37093ade66492171ee040bbec72c2cc4915700cd318b95cb27152d395"
+  },
+  "CURRENT_ROOT_PROOF.json": {
+    "bytes": 4932,
+    "sha256": "dcda58af3fb3a129b5e3390adfcd6f0fa9efc2207e26341f5db3b923b31d8f47"
+  },
+  "DECLARED_CONTROLS.json": {
+    "bytes": 1791,
+    "sha256": "cf58592d2112079f7141f10618d09dabce4f7cd1d7e24490a1da8722309bbe84"
+  },
+  "EARLIER_ATTEMPTS_READBACK.json": {
+    "bytes": 39319,
+    "sha256": "d3d5884e00a86714ddb8d43386ff8b74effda844f1d9fa8fed5be3fca7aa967b"
+  },
+  "EXACT_CHANGED_FUNCTIONS.json": {
+    "bytes": 2047,
+    "sha256": "866cc900f9d027bf6b3de0579a4135e22ae5f7c9e3b395a90db2fb00e4f8ccdf"
+  },
+  "IMPLEMENTATION_AND_FREEZE.md": {
+    "bytes": 9388,
+    "sha256": "7784ad73858e38551011d6e0aabb528f56df6cc5741c574b1e93d52205d3b462"
+  },
+  "ORIGINAL_ASSERTIONS_PRESERVED.json": {
+    "bytes": 8979,
+    "sha256": "9ff8fdf433ea8943786ec72f0972b01ab8eb5eed8eaa59545f0fb523b08891e0"
+  },
+  "PEER_REVIEW.json": {
+    "bytes": 1578,
+    "sha256": "d34d83ae5efaa4a02e45220dfee21c00a4dc264e6c510f3516c847971436879f"
+  },
+  "PROPOSAL_INPUTS.json": {
+    "bytes": 30852,
+    "sha256": "dae6de1a365faa1d86a038f0844a2c5a672a766c8b11d5262a57cb3cc61cdad3"
+  },
+  "READ_SOURCE_INPUTS.json": {
+    "bytes": 1762,
+    "sha256": "772f9ed3bf57a490da2f20db6e8eb1e94b039388716251507ca98dc017b8d404"
+  },
+  "generate-closed-contract.py": {
+    "bytes": 5906,
+    "sha256": "373c49cfec0502d943cf88745207a54ee1939e855cc10efd861ec9875b7fd41f"
+  },
+  "run-current-controls.py": {
+    "bytes": 2054,
+    "sha256": "268f104c13dd6128d64eb70cda825ba2534aa4bfb85c0657f9ce424375f3ff19"
+  },
+  "run-original-and-current-controls.py": {
+    "bytes": 2202,
+    "sha256": "2c03929fe679502f242aaa22a8428d42f78779e82bd9661801ffa23074db79cb"
+  },
+  "seal-actual-control-evidence.py": {
+    "bytes": 4005,
+    "sha256": "517225229f34ac15532d854549930293dbbe9af3b3252fddf49b4b4a16f5eedf"
+  }
+}

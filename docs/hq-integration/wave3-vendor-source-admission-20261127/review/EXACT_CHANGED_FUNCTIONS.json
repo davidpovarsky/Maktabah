@@ -1,0 +1,62 @@
+{
+  "scope": "STATIC_SOURCE_DIFF_NOT_EXECUTION",
+  "files": [
+    {
+      "path": "Scripts/CI/final_integration_source.py",
+      "before_sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198",
+      "after_sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72",
+      "new_functions": [
+        "load_vendor_review",
+        "regular_source_bytes",
+        "requires_reviewed_vendor",
+        "reviewed_vendor_source_plan",
+        "source_is_ancestor",
+        "strict_json",
+        "unique",
+        "vendor_entries",
+        "vendor_patch",
+        "verify_reviewed_build_inputs",
+        "verify_reviewed_vendor",
+        "verify_vendor_scope"
+      ],
+      "changed_functions": [
+        "verify",
+        "verify_build_binding"
+      ],
+      "removed_functions": []
+    },
+    {
+      "path": "Scripts/CI/hq-stage2-focused-apple.py",
+      "before_sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca",
+      "after_sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4",
+      "new_functions": [
+        "reviewed_vendor_source_plan"
+      ],
+      "changed_functions": [
+        "preflight",
+        "prepare_matching_embedded_bundle"
+      ],
+      "removed_functions": []
+    },
+    {
+      "path": "Scripts/CI/prepare-normal-ios-workspace.py",
+      "before_sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52",
+      "after_sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4",
+      "new_functions": [],
+      "changed_functions": [
+        "embedded_source_plan"
+      ],
+      "removed_functions": []
+    },
+    {
+      "path": "Scripts/CI/test-normal-ios-workspace.py",
+      "before_sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44",
+      "after_sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77",
+      "new_functions": [
+        "reviewed_vendor_source_plan"
+      ],
+      "changed_functions": [],
+      "removed_functions": []
+    }
+  ]
+}

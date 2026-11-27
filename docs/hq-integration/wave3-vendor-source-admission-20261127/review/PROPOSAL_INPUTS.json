@@ -1,0 +1,416 @@
+{
+  "reviewed_product_source": "ec5385e863a478e368c7de47264474a440fd0734",
+  "source_identity_only": true,
+  "final_candidate_frozen": false,
+  "historical_source": "d3da55417a30e9a06b0255e2d0b561955034b260",
+  "integration_base": "08f50a5646b7669d15f8c53cb13c84ac504a02bd",
+  "accepted_vendor_tree": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "preservation_bases": {
+    "historical": {
+      "revision": "d3da55417a30e9a06b0255e2d0b561955034b260",
+      "Vendor": "040000 tree 957773bdbf127855cbe8c16d1be50fe436564157\tVendor",
+      "Vendor/OtzariaSearchEngine": "040000 tree 424e157913f36db2b5cc4c6204056f56c3194dd9\tVendor/OtzariaSearchEngine",
+      "Vendor/ZayitSearchPort": "040000 tree a121537e72fb10ce7c710ad55f7d084a0427cf2d\tVendor/ZayitSearchPort",
+      "Vendor/ZayitSearchPort/Rust": "040000 tree 13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8\tVendor/ZayitSearchPort/Rust",
+      "Vendor/ZayitSearchPort/Upstream": "040000 tree db6dc60006a51db83ec2c6feed1158e4da1a617b\tVendor/ZayitSearchPort/Upstream",
+      "Vendor/SefariaMobile": "040000 tree 1a0e21666586f417186b6218049e03fc1cc232fd\tVendor/SefariaMobile",
+      "Vendor/SefariaMobile/Upstream": "160000 commit 2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\tVendor/SefariaMobile/Upstream"
+    },
+    "engine": {
+      "revision": "99f7927e4da72f2463417f5c2de2c4d20c6aa168",
+      "Vendor": "040000 tree 28f8b83e3d543305434f47ed2408ab15961b1655\tVendor",
+      "Vendor/OtzariaSearchEngine": "040000 tree 5a6c6501c021ffadcde31254239617f10cd1a362\tVendor/OtzariaSearchEngine",
+      "Vendor/ZayitSearchPort": "040000 tree a121537e72fb10ce7c710ad55f7d084a0427cf2d\tVendor/ZayitSearchPort",
+      "Vendor/ZayitSearchPort/Rust": "040000 tree 13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8\tVendor/ZayitSearchPort/Rust",
+      "Vendor/ZayitSearchPort/Upstream": "040000 tree db6dc60006a51db83ec2c6feed1158e4da1a617b\tVendor/ZayitSearchPort/Upstream",
+      "Vendor/SefariaMobile": "040000 tree 1a0e21666586f417186b6218049e03fc1cc232fd\tVendor/SefariaMobile",
+      "Vendor/SefariaMobile/Upstream": "160000 commit 2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\tVendor/SefariaMobile/Upstream"
+    },
+    "resource": {
+      "revision": "70810eec46ad1fec6f30d983bf31e5f922dacb61",
+      "Vendor": "040000 tree 56607fb71cd05c7442df539e58537bc59dfd3305\tVendor",
+      "Vendor/OtzariaSearchEngine": "040000 tree 5cb2efb3d2e0ecf5c4e2e296196e2d3282b3b81c\tVendor/OtzariaSearchEngine",
+      "Vendor/ZayitSearchPort": "040000 tree e28b51b09ce5000909bc12113344001381fea5eb\tVendor/ZayitSearchPort",
+      "Vendor/ZayitSearchPort/Rust": "040000 tree ba665920d2a5b13ba58310b808ddf0a9c7ae0dad\tVendor/ZayitSearchPort/Rust",
+      "Vendor/ZayitSearchPort/Upstream": "040000 tree db6dc60006a51db83ec2c6feed1158e4da1a617b\tVendor/ZayitSearchPort/Upstream",
+      "Vendor/SefariaMobile": "040000 tree d1f16ed47a5809e9cfc9a0e33c7fb5e7533a0f51\tVendor/SefariaMobile",
+      "Vendor/SefariaMobile/Upstream": "160000 commit 2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\tVendor/SefariaMobile/Upstream"
+    },
+    "source": {
+      "revision": "ec5385e863a478e368c7de47264474a440fd0734",
+      "Vendor": "040000 tree 9e4f188c5bedeef55ce95d97943f5e5046b6f3d6\tVendor",
+      "Vendor/OtzariaSearchEngine": "040000 tree 424e157913f36db2b5cc4c6204056f56c3194dd9\tVendor/OtzariaSearchEngine",
+      "Vendor/ZayitSearchPort": "040000 tree 716ee730970cebd1a8826b11a695c731430aabe2\tVendor/ZayitSearchPort",
+      "Vendor/ZayitSearchPort/Rust": "040000 tree 13cb3a06c609b05ad6e48c630d8d2cbb18bdfde8\tVendor/ZayitSearchPort/Rust",
+      "Vendor/ZayitSearchPort/Upstream": "040000 tree db6dc60006a51db83ec2c6feed1158e4da1a617b\tVendor/ZayitSearchPort/Upstream",
+      "Vendor/SefariaMobile": "040000 tree 12abbbdafe53cd44cf822198821956ed225c8f0c\tVendor/SefariaMobile",
+      "Vendor/SefariaMobile/Upstream": "160000 commit 2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c\tVendor/SefariaMobile/Upstream"
+    }
+  },
+  "proposed_contract_rows": [
+    {
+      "path": "Vendor/HanlinSDK",
+      "historical": {
+        "mode": "160000",
+        "kind": "commit",
+        "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+      },
+      "integration_base": {
+        "mode": "160000",
+        "kind": "commit",
+        "object": "f8cf6ca543c5ceed05a60141644664c93e4565b4"
+      },
+      "retained29a": {
+        "mode": "160000",
+        "kind": "commit",
+        "object": "9565a9e4775901a4cee6f0402d7fd2978fab6612"
+      },
+      "accepted": {
+        "mode": "160000",
+        "kind": "commit",
+        "object": "9565a9e4775901a4cee6f0402d7fd2978fab6612"
+      },
+      "canonical_historical_patch": {
+        "bytes": 323,
+        "sha256": "b48b70587205f16d757825280a60f3e4d1c42832ea1bf568ac944dbb7270eb00"
+      },
+      "root_lineage": [
+        "cb8c22d0c0d151b2ff6352efb2177e1849853517|10995b52ea72c81ae1a68e181c09a65c69c5bd1c|Adopt original Hanlin notification input correction from the shared SDK",
+        "6a458d67ff51a8146ca5fc0a0925beb60416ad1f|2fad7521c34072521f7b022b8a912d1fa8aac4a8|Align original Otzaria with the final MiniApps producer source",
+        "47a13c38c803378d1d222bc50f1539caf66dcbae|2945bb0eef8dcbc77b4b156ae71dc56e737fbeb6|Align original Otzaria with the final MiniApps producer source",
+        "3df5772dcdc87f10e55c01c830c65322428bde35|1b63cf8f307089ea83fb9981f5e11eae1e1ebdd9|Align original consumer with restored standalone catalog localization"
+      ]
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "historical": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "3d736ec0312cf622694e079f45ac31ee9de00941",
+        "bytes": 5774,
+        "sha256": "cf839401d7b4a576094a19efe0407d9c10098e907ecdbe8a1c37b6f87284ad8a"
+      },
+      "integration_base": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "3d736ec0312cf622694e079f45ac31ee9de00941",
+        "bytes": 5774,
+        "sha256": "cf839401d7b4a576094a19efe0407d9c10098e907ecdbe8a1c37b6f87284ad8a"
+      },
+      "retained29a": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "3d736ec0312cf622694e079f45ac31ee9de00941",
+        "bytes": 5774,
+        "sha256": "cf839401d7b4a576094a19efe0407d9c10098e907ecdbe8a1c37b6f87284ad8a"
+      },
+      "accepted": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "cac6a68cfbcf7c652f60a25889e2f8625b4e8f82",
+        "bytes": 5809,
+        "sha256": "7576c28d5a967944b4b4d2af340cb566ea0403f4c67f2ed85b831640abe95cad"
+      },
+      "canonical_historical_patch": {
+        "bytes": 727,
+        "sha256": "a8572cef7c7ab2ea7e3ab40ba2ca7031024e647654b3db7c2438e62b0c3ec222"
+      },
+      "root_lineage": [
+        "791f88f2d2ba643ec39718a5f8b06106ef4af08b|dd17c23a3679b23b0bf54dadcfffe9517d1437c6|Present original Sefaria RN surface through retained native ownership",
+        "7be24ab648de8539afdb161c0551d605ce3c1e18|50bf9e66aba8dfaf80f7ee33f54f0812ded0868d|fix(sefaria-embedded): truthful text provenance, strict epoch validation, safe delegate KVC, and 15-stage diagnostic runner",
+        "88e09630c7ae6ac4254ab40dd657be38ca3f8355|386451a74dd02465a178e0784cd53c88a1d5982b|fix(sefaria-embedded): fix RCT_EXTERN_MODULE registration in ObjC and add resilient JS bridge retry",
+        "cf90dbdcfad9afe8b65847c51080a26d08af84ad|b5d0087ed682bcd4123915c94e1ee32a30f86ef4|fix(sefaria-embedded): initialize RPC bridge in index.embedded.js after upstream load and restore stable headless window"
+      ]
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+      "historical": null,
+      "integration_base": null,
+      "retained29a": null,
+      "accepted": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "d37aca66489afb5b1268fe183b5adc17aa120535",
+        "bytes": 3557,
+        "sha256": "ecb377c72871fe4bc0ab3512518c4f448e465e4c4a0e7368dc19c2bacfb0e1c1"
+      },
+      "canonical_historical_patch": {
+        "bytes": 3981,
+        "sha256": "d6934c2a5deec187549ff672b2ecd12e311e2bc2e241455f02329089a6d40237"
+      },
+      "root_lineage": [
+        "791f88f2d2ba643ec39718a5f8b06106ef4af08b|dd17c23a3679b23b0bf54dadcfffe9517d1437c6|Present original Sefaria RN surface through retained native ownership"
+      ]
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+      "historical": null,
+      "integration_base": null,
+      "retained29a": null,
+      "accepted": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "e06994f58e3e68376fe785fdcd875d5c4508b6ad",
+        "bytes": 6556,
+        "sha256": "0b788a284edce9d3d86ad163f5341e1cfe27baedf0ad7c584bcdc1cc99963bdb"
+      },
+      "canonical_historical_patch": {
+        "bytes": 7070,
+        "sha256": "d8cd44422372c95cc3871d17f74f8e87a64847ffccae6e4eedd8b2f246c17303"
+      },
+      "root_lineage": [
+        "791f88f2d2ba643ec39718a5f8b06106ef4af08b|dd17c23a3679b23b0bf54dadcfffe9517d1437c6|Present original Sefaria RN surface through retained native ownership"
+      ]
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "historical": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5faa35d1e28431c40937b26840cb97127ba82dc4",
+        "bytes": 20711,
+        "sha256": "a79d71a3ccd96831818e35625eb28479d8b876b08c67d951cf46f836a47c7a6e"
+      },
+      "integration_base": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5faa35d1e28431c40937b26840cb97127ba82dc4",
+        "bytes": 20711,
+        "sha256": "a79d71a3ccd96831818e35625eb28479d8b876b08c67d951cf46f836a47c7a6e"
+      },
+      "retained29a": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5faa35d1e28431c40937b26840cb97127ba82dc4",
+        "bytes": 20711,
+        "sha256": "a79d71a3ccd96831818e35625eb28479d8b876b08c67d951cf46f836a47c7a6e"
+      },
+      "accepted": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "db369aaf2b896b759660705524a5c0d9fcf1dc3e",
+        "bytes": 23528,
+        "sha256": "81f9cd076419d17651bb0d53f8d1b1fe4f67642fbbe0762ba2d170bc1001f924"
+      },
+      "canonical_historical_patch": {
+        "bytes": 4510,
+        "sha256": "d10bdb519c53ffd7975c7388bfb789ba4a82aa8bf206f60d5db7bc8e265cf928"
+      },
+      "root_lineage": [
+        "c19b672d0b33d1f52ea459e303bb1fa5b83dd323|95a8e41c69da9add6e260d6b5afb20fe316fcfe4|Require real delayed Sefaria RPC disposal across original runtime reset",
+        "791f88f2d2ba643ec39718a5f8b06106ef4af08b|dd17c23a3679b23b0bf54dadcfffe9517d1437c6|Present original Sefaria RN surface through retained native ownership",
+        "d3c697c9b7ecdbd0bcda54114ddeae7b7efbc0cf|4c929848f0063a8916b411643063f1343ee14c7a|fix(bridge): bind runtime readiness and related source identity to live RPC evidence [skip ci]",
+        "4c929848f0063a8916b411643063f1343ee14c7a|3d6f90c90403a18e780ca37504da1c71285b219e|feat(actions): add faithful backend semantics and real coordinator bridge [skip ci]"
+      ]
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+      "historical": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5abb64ffc21de52daab497185c897e0b925441b7",
+        "bytes": 6205,
+        "sha256": "2508c9835d1c2177ca1c10e4bfe1b749bb8b1ed5cabd0e685a81768ecce2b852"
+      },
+      "integration_base": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5abb64ffc21de52daab497185c897e0b925441b7",
+        "bytes": 6205,
+        "sha256": "2508c9835d1c2177ca1c10e4bfe1b749bb8b1ed5cabd0e685a81768ecce2b852"
+      },
+      "retained29a": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "5abb64ffc21de52daab497185c897e0b925441b7",
+        "bytes": 6205,
+        "sha256": "2508c9835d1c2177ca1c10e4bfe1b749bb8b1ed5cabd0e685a81768ecce2b852"
+      },
+      "accepted": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "62a8d564a24352037d2ef26e22385cd74bc6a8e1",
+        "bytes": 8050,
+        "sha256": "92e3b25bdbceb0a70f136cda94313c9d601cc6c294970b6f44bbd1f0eb811840"
+      },
+      "canonical_historical_patch": {
+        "bytes": 4826,
+        "sha256": "dfc68278d43815537007a6ad5b626994c0dc57a09654d7cdabe2a232831a4a7b"
+      },
+      "root_lineage": [
+        "791f88f2d2ba643ec39718a5f8b06106ef4af08b|dd17c23a3679b23b0bf54dadcfffe9517d1437c6|Present original Sefaria RN surface through retained native ownership",
+        "7be24ab648de8539afdb161c0551d605ce3c1e18|50bf9e66aba8dfaf80f7ee33f54f0812ded0868d|fix(sefaria-embedded): truthful text provenance, strict epoch validation, safe delegate KVC, and 15-stage diagnostic runner",
+        "572bbeec8703684fa6640eda790932a8f05b8388|0a61544106e9fded12472f973b680ed67b16f9a1|fix(sefaria-embedded): register bridge module via extraModules and eliminate secondary window surface crash",
+        "88e09630c7ae6ac4254ab40dd657be38ca3f8355|386451a74dd02465a178e0784cd53c88a1d5982b|fix(sefaria-embedded): fix RCT_EXTERN_MODULE registration in ObjC and add resilient JS bridge retry"
+      ]
+    },
+    {
+      "path": "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+      "historical": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "67a23bb47ac6c6012e55a3837355e00da661752d",
+        "bytes": 4777,
+        "sha256": "2f6d4853d229583d24fce304b783b009de694b824dc2f9581091b38571bb47c8"
+      },
+      "integration_base": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "67a23bb47ac6c6012e55a3837355e00da661752d",
+        "bytes": 4777,
+        "sha256": "2f6d4853d229583d24fce304b783b009de694b824dc2f9581091b38571bb47c8"
+      },
+      "retained29a": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "67a23bb47ac6c6012e55a3837355e00da661752d",
+        "bytes": 4777,
+        "sha256": "2f6d4853d229583d24fce304b783b009de694b824dc2f9581091b38571bb47c8"
+      },
+      "accepted": {
+        "mode": "100644",
+        "kind": "blob",
+        "object": "3c09ba0da39ac8e32f59b24c20133d12bf80efea",
+        "bytes": 5942,
+        "sha256": "cee94b30c92030d17077325245ddf4a0ca85b01b076e54496882ad4c020568df"
+      },
+      "canonical_historical_patch": {
+        "bytes": 3693,
+        "sha256": "aec6e79cce5190a22bb01f0e6fde7876384930f3b95a074246ec79015db4e996"
+      },
+      "root_lineage": [
+        "49a28bcc8d900169a81289f88a0491b02db597c9|e1daed119ca904d0f43808901552c2857b94f7a3|feat(search): record original page attempts and accepted effects [skip ci]",
+        "87b37a1309aee69350868cb37846037dd6b52479|c0599822410b95509cf92d2fe5cf202a0a263e2c|test(search): verify original page metadata and later-result native reading",
+        "2c3fd9868ca54ff9cfbe8e923c9462575befac73|df2a21941afa46da716387fce9de620865d2a151|fix(search): restore retry, stable hit navigation and paging [skip ci]",
+        "640ebe4ccd53bff2625fc93a583b6d013d40c37b|37e6fd2dc17d2f1b6aea377983d2659e793c0cdf|Fix TorahLinkedSource argument order, Otzaria commentator author identity, search preview version switching, and reader selection scope"
+      ]
+    }
+  ],
+  "accepted_intakes": {
+    "791f88f2d2ba643ec39718a5f8b06106ef4af08b": {
+      "metadata": "791f88f2d2ba643ec39718a5f8b06106ef4af08b\ndd17c23a3679b23b0bf54dadcfffe9517d1437c6\n2026-11-27T07:04:02+00:00\nPresent original Sefaria RN surface through retained native ownership\n\n(cherry picked from commit b712b3c1245f4b44fdeb232243cc305f99441a62)\n\n",
+      "paths": [
+        "Maktabah-iOSUITests/NativeSefariaSurfaceAcceptanceTests.swift",
+        "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift",
+        "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfacePresentation.swift",
+        "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+        "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+        "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+        "Source/SefariaEmbedded/Runtime/SefariaRuntimeManager.swift",
+        "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+        "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+        "Source/SefariaEmbedded/UI/SefariaEmbeddedSurfaceContract.swift",
+        "Source/UI/iOS/Views/iOSMainView.swift",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js",
+        "Vendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js",
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+        "Vendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift",
+        "docs/ui-routing/wave3-sefaria-native-surface-20261127/README.md",
+        "docs/ui-routing/wave3-sefaria-native-surface-20261127/SOURCE_PROVENANCE.json",
+        "tools/run_sefaria_visible_surface_source_controls.py",
+        "tools/test_sefaria_visible_surface_membership.swift",
+        "tools/test_sefaria_visible_surface_native_lifecycle.swift",
+        "tools/test_sefaria_visible_surface_registry.mjs",
+        "tools/test_sefaria_visible_surface_runtime.swift",
+        "tools/test_sefaria_visible_surface_workspace_revision.swift"
+      ]
+    },
+    "c19b672d0b33d1f52ea459e303bb1fa5b83dd323": {
+      "metadata": "c19b672d0b33d1f52ea459e303bb1fa5b83dd323\n95a8e41c69da9add6e260d6b5afb20fe316fcfe4\n2026-11-27T08:56:52+00:00\nRequire real delayed Sefaria RPC disposal across original runtime reset\n\n(cherry picked from commit f03802af54b36bed1a326c6c0b197f60a6a04d34)\n\n",
+      "paths": [
+        "Source/SefariaEmbedded/Bridge/SefariaJSRPCBridge.swift",
+        "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift",
+        "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+        "tools/test_chavrusa_text_components.swift",
+        "tools/test_sefaria_late_reply_diagnostic.swift",
+        "tools/test_sefaria_late_reply_diagnostic_js.mjs"
+      ]
+    },
+    "49a28bcc8d900169a81289f88a0491b02db597c9": {
+      "metadata": "49a28bcc8d900169a81289f88a0491b02db597c9\ne1daed119ca904d0f43808901552c2857b94f7a3\n2026-11-27T11:12:14+00:00\nfeat(search): record original page attempts and accepted effects [skip ci]\n\n",
+      "paths": [
+        "Source/ChavrusaText/SearchContinuation/OriginalSearchPageLedger.swift",
+        "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+        "Source/Features/Search/ViewModel/SearchViewModel.swift",
+        "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift",
+        "Vendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/ARCHIVE_INDEX.json",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/DOCS_MANIFEST.json",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/PRODUCT_SOURCES.json",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/README.md",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/actual-linux-inputs-and-logs.tar.gz",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PATH_PROVENANCE.json",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PRE_EDIT_PATH_MATRIX.md",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/PRE_REVIEW_LEDGER_c05e98ff.swift.txt",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/UPSTREAM_BOARD_DISCOVERY.json",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/UPSTREAM_SOURCE_READ.json",
+        "docs/hq-integration/wave2-20261127/library/search-page-ledger/provenance/WORKTREE_CREATION.json"
+      ]
+    }
+  },
+  "source_predicates": {
+    "Scripts/CI/final_integration_source.py": {
+      "bytes": 11675,
+      "sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198",
+      "selected_references": [
+        {
+          "line": 20,
+          "context": "INTEGRATION_BASE = \"08f50a5646b7669d15f8c53cb13c84ac504a02bd\"\nINPUTS = \"Scripts/CI/hq-stage2-focused-apple.inputs.json\"\nADDITIONS = \"Scripts/CI/hq-stage2-otzaria-test-additions.json\"\nPROJECT = \"Maktabah.xcodeproj/project.pbxproj\"\nLOCK = \"Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved\"\nBINDING_FIELDS = {\"application_source_sha\", \"application_trees\", \"hanlin_gitlink\",\n                  \"otzaria_test_additions_sha256\", \"final_product_source\"}\n\n\ndef require(value, message):\n    if not value:\n        raise RuntimeError(message)\n\n\ndef sha(raw):\n    return hashlib.sha256(raw).hexdigest()\n"
+        },
+        {
+          "line": 131,
+          "context": "\ndef verify_build_binding(before, after, value, manifest_path, expected_sha256, additions_sha256):\n    common = lambda data: {key: item for key, item in data.items() if key not in BINDING_FIELDS}\n    require(common(before) == common(after)\n            and canonical(common(after)) == value[\"preserved_build_inputs_canonical_sha256\"],\n            \"Retained engine, resource, artifact or build input changed\")\n    require(set(after) == set(before) | {\"final_product_source\"}, \"Undeclared build input field\")\n    require(after[\"application_source_sha\"] == value[\"application_source_sha\"]\n            and after[\"application_trees\"] == {key: value[\"application_trees\"][key]\n                                               for key in ROOTS if key != \"Maktabah-iOSUITests\"}\n            and after[\"hanlin_gitlink\"] == value[\"hanlin_source\"]\n            and after[\"otzaria_test_additions_sha256\"] == additions_sha256\n            and after[\"final_product_source\"] == {\"manifest\": manifest_path, \"sha256\": expected_sha256},\n            \"Integrated build is not bound to the exact reviewed source\")\n\n\ndef verify_additions(before, after, project_blob):"
+        },
+        {
+          "line": 137,
+          "context": "    require(set(after) == set(before) | {\"final_product_source\"}, \"Undeclared build input field\")\n    require(after[\"application_source_sha\"] == value[\"application_source_sha\"]\n            and after[\"application_trees\"] == {key: value[\"application_trees\"][key]\n                                               for key in ROOTS if key != \"Maktabah-iOSUITests\"}\n            and after[\"hanlin_gitlink\"] == value[\"hanlin_source\"]\n            and after[\"otzaria_test_additions_sha256\"] == additions_sha256\n            and after[\"final_product_source\"] == {\"manifest\": manifest_path, \"sha256\": expected_sha256},\n            \"Integrated build is not bound to the exact reviewed source\")\n\n\ndef verify_additions(before, after, project_blob):\n    original = {key: item for key, item in before.items() if key != \"excluded_build_inputs\"}\n    require(all(after.get(key) == item for key, item in original.items()),\n            \"Original engine test additions or historical review changed\")\n    require(set(after) == set(before) | {\"miniapps_project_review\", \"miniapps_integrated_project_review\",\n                                        \"final_integrated_project_review\"},\n            \"Undeclared engine test-exclusion metadata\")"
+        }
+      ]
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "bytes": 69168,
+      "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca",
+      "selected_references": [
+        {
+          "line": 268,
+          "context": "                    \"Unreviewed prebuilt engine source drift: \" + path)\n    result[\"zayit_framework\"] = zayit_build_plan(config)\n    require(capture(\"git\", \"rev-parse\", \"HEAD:Vendor/HanlinSDK\") == config[\"hanlin_gitlink\"], \"Hanlin SDK pin drift\")\n    result[\"hanlin_gitlink\"] = config[\"hanlin_gitlink\"]\n    require(capture(\"git\", \"rev-parse\", \"HEAD:Vendor/SefariaMobile/Upstream\") == config[\"sefaria_gitlink\"], \"Sefaria pin drift\")\n    resource_tree = capture(\"git\", \"rev-parse\", \"HEAD:Vendor/SefariaMobile\")\n    overlays = config.get(\"embedded_js_overlay_paths\", [])\n    if overlays:\n        # The old immutable resource artifact remains a verified baseline, not\n        # a matching bundle for new JS. Rebuild only this reviewed downstream\n        # facade overlay using the unchanged pinned upstream and npm lock.\n        require(overlays == [\"Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js\"], \"Unreviewed Embedded resource overlay\")\n        changed = capture(\"git\", \"diff\", \"--name-only\", config[\"resource_producer_sha\"], \"HEAD\", \"--\", \"Vendor/SefariaMobile\").splitlines()\n        require(changed == overlays, \"Embedded overlay changed unrelated resource sources\")\n        result[\"embedded_bundle_build\"] = {\"mode\": \"REBUILD_EXACT_REVIEWED_JS\", \"overlay_paths\": overlays, \"source_tree\": resource_tree}\n    else:\n        require(capture(\"git\", \"rev-parse\", config[\"resource_producer_sha\"] + \":Vendor/SefariaMobile\") =="
+        },
+        {
+          "line": 651,
+          "context": "    shutil.copyfile(committed_lock, workspace_lock)\n    report[\"native_context\"][\"staged_workspace_package_lock_sha256\"] = digest(workspace_lock)\n    require(pins(workspace_lock) == report[\"package_pins\"], \"Generated workspace pin drift\")\n\n\ndef prepare_matching_embedded_bundle(config, report):\n    if not config.get(\"embedded_js_overlay_paths\"):\n        return\n    vendor = ROOT / \"Vendor/SefariaMobile/Upstream\"\n    bundle = ROOT / \"build/jsbundle/main.jsbundle\"\n    historical = digest(bundle)\n    logged([\"npx\", \"--no-install\", \"react-native\", \"bundle\",\n            \"--config\", \"../Integration/metro.config.embedded.js\", \"--platform\", \"ios\", \"--dev\", \"false\",\n            \"--entry-file\", \"../Integration/index.embedded.js\", \"--bundle-output\", str(bundle),\n            \"--assets-dest\", str(bundle.parent)], \"matching-embedded-bundle.log\", report, cwd=vendor)\n    require(bundle.is_file() and bundle.stat().st_size > 0, \"Matching Metro bundle is missing or empty\")\n    require(capture(\"git\", \"rev-parse\", \"HEAD:Vendor/SefariaMobile\") == report[\"embedded_bundle_build\"][\"source_tree\"], \"Embedded source changed during bundling\")"
+        },
+        {
+          "line": 663,
+          "context": "            \"--config\", \"../Integration/metro.config.embedded.js\", \"--platform\", \"ios\", \"--dev\", \"false\",\n            \"--entry-file\", \"../Integration/index.embedded.js\", \"--bundle-output\", str(bundle),\n            \"--assets-dest\", str(bundle.parent)], \"matching-embedded-bundle.log\", report, cwd=vendor)\n    require(bundle.is_file() and bundle.stat().st_size > 0, \"Matching Metro bundle is missing or empty\")\n    require(capture(\"git\", \"rev-parse\", \"HEAD:Vendor/SefariaMobile\") == report[\"embedded_bundle_build\"][\"source_tree\"], \"Embedded source changed during bundling\")\n    report[\"embedded_bundle_build\"].update(historical_bundle_sha256=historical, bundle_sha256=digest(bundle),\n        overlay_source_sha256={path: digest(ROOT / path) for path in config[\"embedded_js_overlay_paths\"]})\n    report[\"resource_inputs\"][\"jsbundle_sha256\"] = digest(bundle)\n\n\ndef relocate_verified_package_alternates(report):\n    \"\"\"Relocate same-artifact Git object references after pinned resolution.\"\"\"\n    artifacts = [a for a in report[\"artifact_inputs\"] if a.get(\"tar\") == \"SourcePackages.tar\"]\n    require(len(artifacts) == 1 and artifacts[0][\"verified_sha256\"] == artifacts[0][\"sha256\"],\n            \"Package archive was not verified before relocation\")\n    packages = ROOT / \"build/SourcePackages\"\n    require(packages.is_dir() and not packages.is_symlink(), \"Missing regular package input root\")"
+        }
+      ]
+    },
+    "Scripts/CI/hq-original-editor-distribution.py": {
+      "bytes": 72109,
+      "sha256": "3aacab5fc36a523929a3646b4a6ffc9e7c4d13638a999c302dde89a6babeafa5",
+      "selected_references": []
+    },
+    "Scripts/CI/original-editor-build-routes.py": {
+      "bytes": 5235,
+      "sha256": "b1b87f01af2eb02128a38a2459e59a9f5b63514ea1bee39405bbe9881fa8b3dc",
+      "selected_references": []
+    }
+  },
+  "original_call_sites": {
+    "embedded_js_overlay_paths": {
+      "exit": 0,
+      "text": "ec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/hq-stage2-focused-apple.inputs.json:63:  \"embedded_js_overlay_paths\": [\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/hq-stage2-focused-apple.py:268:    overlays = config.get(\"embedded_js_overlay_paths\", [])\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/hq-stage2-focused-apple.py:651:    if not config.get(\"embedded_js_overlay_paths\"):\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/hq-stage2-focused-apple.py:663:        overlay_source_sha256={path: digest(ROOT / path) for path in config[\"embedded_js_overlay_paths\"]})\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/prepare-normal-ios-workspace.py:72:    overlays = config.get(\"embedded_js_overlay_paths\", [])\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/test-normal-ios-workspace.py:189:        self.config[\"embedded_js_overlay_paths\"] = [adapter.RESOURCE_ROOT + \"/Integration/iOS/Unreviewed.m\"]\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/test-normal-ios-workspace.py:203:        self.config[\"embedded_js_overlay_paths\"] = []\n",
+      "stderr": ""
+    },
+    "final_integration_source": {
+      "exit": 0,
+      "text": "ec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/library-v40-focused-native.py:71:    for name in (\"Scripts/CI/final_integration_source.py\", \"Scripts/CI/final-integration-source.inputs.json\"):\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/library-v40-focused-native.py:135:    source = runpy.run_path(str(ROOT / \"Scripts/CI/final_integration_source.py\"))[\"verify\"](\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/runtime27-original-editor-native.py:199:            mac_source = runpy.run_path(str(ROOT / \"Scripts/CI/final_integration_source.py\"))[\"verify\"](\nec5385e863a478e368c7de47264474a440fd0734:Scripts/CI/runtime27-original-editor-native.py:254:        pending.append(ci / \"final_integration_source.py\")\n",
+      "stderr": ""
+    }
+  },
+  "producer_deltas": {
+    "sefaria": "M\tVendor/SefariaMobile/Integration/JS/ChavrusaRoot.js\nA\tVendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurface.js\nA\tVendor/SefariaMobile/Integration/JS/ChavrusaVisibleSurfaceRegistry.js\nM\tVendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js\nM\tVendor/SefariaMobile/Integration/iOS/ChavrusaSefariaBridgeModule.swift\n",
+    "zayit": "M\tVendor/ZayitSearchPort/Swift/ZayitSearchViewModel.swift\n"
+  }
+}

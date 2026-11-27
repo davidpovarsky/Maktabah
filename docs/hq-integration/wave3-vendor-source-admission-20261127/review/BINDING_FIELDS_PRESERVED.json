@@ -1,0 +1,19 @@
+{
+  "scope": "STATIC_NON_CHANGE_PROOF",
+  "binding_fields": [
+    "application_source_sha",
+    "application_trees",
+    "final_product_source",
+    "hanlin_gitlink",
+    "otzaria_test_additions_sha256"
+  ],
+  "binding_field_initializer_unchanged": true,
+  "original_allowed_input_keyset_and_exact_source_binding_requirements_unchanged": true,
+  "original_require_calls": [
+    "require(set(after) == set(before) | {\"final_product_source\"}, \"Undeclared build input field\")",
+    "require(after[\"application_source_sha\"] == value[\"application_source_sha\"]\n            and after[\"application_trees\"] == {key: value[\"application_trees\"][key]\n                                               for key in ROOTS if key != \"Maktabah-iOSUITests\"}\n            and after[\"hanlin_gitlink\"] == value[\"hanlin_source\"]\n            and after[\"otzaria_test_additions_sha256\"] == additions_sha256\n            and after[\"final_product_source\"] == {\"manifest\": manifest_path, \"sha256\": expected_sha256},\n            \"Integrated build is not bound to the exact reviewed source\")"
+  ],
+  "before_sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198",
+  "after_sha256": "35e15ef68d8498e907aab1c3e5cde9ed52c54530f9d6c8ebf9351ba5896d4f72",
+  "owner_pr_runtime_sdk_qualification_files_edited": false
+}

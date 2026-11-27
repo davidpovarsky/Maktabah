@@ -1,0 +1,42 @@
+{
+  "status": "STAGED_EXACT_ISOLATED_CANDIDATE",
+  "source": "24cd9291dbc87d799c22a41f0bc73a82c6415bfa",
+  "packet_sha256": "36d412a68e5ee5d0bd12f64e00186c9b7a29c19d321037a7c64d36a5183331fb",
+  "files": {
+    "Scripts/CI/final_integration_source.py": {
+      "before_sha256": "dab4de411c708ddd5fc5bd37624f83a220b5f024478e6bc98c5cab72838b5198",
+      "bytes": 27849,
+      "sha256": "a761af99e9e7c24c8f44cc24e6f78209bdf981e139ba6614f14e49b6aaabcd8c"
+    },
+    "Scripts/CI/fixtures/reviewed-vendor-legacy-inputs.json": {
+      "bytes": 4889,
+      "sha256": "5a5179f8c819734afd2dafa80d552266c1efb4efb8bbcc6194cab99a4ce0ebb0"
+    },
+    "Scripts/CI/hq-stage2-focused-apple.py": {
+      "before_sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca",
+      "bytes": 70942,
+      "sha256": "7b9bdd32b37ec78bf269f43d919bef58702a0af3c73d3618f948203e5ab206b4"
+    },
+    "Scripts/CI/prepare-normal-ios-workspace.py": {
+      "before_sha256": "0352a277567dcfa562e6e4cab02b0c2fdb614fe3df0af75971e2e532b1b18f52",
+      "bytes": 10923,
+      "sha256": "9e1dccb457808dc90d693940b5c34ecc2820da0f9dec126868a6132dfda862a4"
+    },
+    "Scripts/CI/reviewed-vendor-source.inputs.json": {
+      "bytes": 25409,
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+    },
+    "Scripts/CI/test-normal-ios-workspace.py": {
+      "before_sha256": "7db8686277573bbc9224b4a9f6a56cb78f686ac63d6d137f0f0293568d0c9f44",
+      "bytes": 22434,
+      "sha256": "aa05a08a9c9057652f572ffa840d57cc8e1cbfffb588a37a322430643464dd77"
+    },
+    "Scripts/CI/test-reviewed-vendor-source.py": {
+      "bytes": 24024,
+      "sha256": "52541943bf5a0a4b69829f2342dcec1ad2a614d3c4e06e5f9a4e6efd12e6f134"
+    }
+  },
+  "free_before": 24495177728,
+  "free_after": 24495091712,
+  "native": "NOT_RUN"
+}
