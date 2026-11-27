@@ -1,0 +1,29 @@
+{
+  "sourceDirectory": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-6",
+  "files": [
+    {
+      "originalName": "RESULT.json",
+      "originalBytes": 2040,
+      "originalSHA256": "92e05043ebac84d09b0bf2c5199655fd4b4ed86edf23d1f25e1f290157fba206",
+      "storedName": "RESULT.json",
+      "storedBytes": 2040,
+      "storedSHA256": "92e05043ebac84d09b0bf2c5199655fd4b4ed86edf23d1f25e1f290157fba206"
+    },
+    {
+      "originalName": "compiler.stdout.log",
+      "originalBytes": 0,
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedName": "compiler.stdout.log.gz",
+      "storedBytes": 20,
+      "storedSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "originalName": "compiler.stderr.log",
+      "originalBytes": 110884,
+      "originalSHA256": "eaccc2786bf60f3c1c5485c5eca4cfb0403a87084894081e9069db7ef237c7c6",
+      "storedName": "compiler.stderr.log.gz",
+      "storedBytes": 9525,
+      "storedSHA256": "3a7600e758635254f35f385e8c59f760732faa1226481cebd1cc4e10016cde3f"
+    }
+  ]
+}

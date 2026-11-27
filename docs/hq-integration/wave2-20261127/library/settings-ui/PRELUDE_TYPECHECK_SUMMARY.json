@@ -1,0 +1,13 @@
+{
+  "scope": "Apple SDK typecheck only; UI_NOT_RUN",
+  "sourceParentCommit": "bd802b80104d22bcb36075dcf6fed8b2150d35e0",
+  "priorSourceSHA256": "17ef068ee5e9d21897a085e9fc7bf6a8b9d4598937698e66638e52ab7fc3338c",
+  "finalSourceSHA256": "122fdb0babaf9ceec8c34ba1695b9392ac62e53733f84587afe86231480c0108",
+  "receiptSHA256": "92e05043ebac84d09b0bf2c5199655fd4b4ed86edf23d1f25e1f290157fba206",
+  "exitCode": 0,
+  "warningDiagnosticCount": 74,
+  "newClassWarnings": [],
+  "legacyClassesByteIdentical": true,
+  "savedObjectAndTransactionAssertionTailByteIdentical": true,
+  "prelude": "Original Library tab and palette; no namespace or row seeding"
+}
