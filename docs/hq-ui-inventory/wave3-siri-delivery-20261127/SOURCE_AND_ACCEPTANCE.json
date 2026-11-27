@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-11-27T03:19:24.947982+00:00",
+  "base": "df935d28906ab9ac86f796e77296545b5e5a3bc0",
+  "scope": "Append-only native test helper and two separate focused Siri selectors; no product source or historical manifests changed.",
+  "source_hashes": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "394f39cb485f61162351cdedf310ab75f566aefb56e96b3e5c664524151e228f",
+    "Maktabah-iOSUITests/NativeSiriAcceptanceTests.swift": "abc3d1e80f7a0268fdb7097233ab62bac867ac30f2fbd59fb48b17cb1bed06ed"
+  },
+  "original_prefix": {
+    "created_at": "2026-11-27T03:13:41.300141+00:00",
+    "base": "df935d28906ab9ac86f796e77296545b5e5a3bc0",
+    "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "prefix_bytes": 180406,
+    "prefix_sha256": "2bbceea0f5a1656fa30231ea8d4d868f33f3d657c719e94e29061cdd0a2599a5",
+    "app_shortcut_source": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+    "app_name_source": "Source/iOS-Info.plist",
+    "reading_state_source": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+    "native_executed": 0
+  },
+  "unchanged_original_product_sources": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": "827f1160986abd9b80def9f7fed84e9737f07330beba4f37fffb4eeae351281b",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift": "dd101e73718de3bfeb245d33799fb189bcd3a23b242f542dfdcdfb29cd833514",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift": "294414f30018f48478fc19f2bfba9fe5bffedf742da2744870a57ff9a6e30f75",
+    "Source/iOS-Info.plist": "b7c960f94454e99ba9ff43eaec8e84c2fd4b4c8c4c44050d5e82332e95c078e3",
+    "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+  },
+  "source_review": {
+    "sole_delivery": "One exact public Siri activation call; no direct Intent execution or URL/app activation fallback",
+    "receipt": "Existing strict validator unchanged, plus exact original scene correlation",
+    "state": "Original profile/group/tab/order/backend/book identities and persisted document reading semantics"
+  },
+  "validation": {
+    "test_source_syntax": "PASS; sealed helper and unchanged new selector file",
+    "public_api_only_sdk_typecheck": "PASS; exact installed iPhoneSimulator27 SDK, not complete UI target",
+    "actual_siri_native_cases_executed": 0,
+    "physical_microphone_tests_executed": 0
+  },
+  "pending": [
+    "Complete original UI target compilation on integrated candidate",
+    "Run both focused selectors on their exact device form factors and retain actual Siri failures/receipts/screens"
+  ],
+  "artifacts": {
+    "FINAL_HELPER_SYNTAX.json": "db746b84c36f5c547dfdb54bcb9db5578ed6b4d33c65e682b1130c4a553c5c6f",
+    "FOCUSED_CASES.json": "afb41ae83681ff5808b6ff9827062f90981ab37a9887096aca3e1a0a7b645d37",
+    "NativeRoutingAcceptanceTests.swift.parse-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "NativeRoutingAcceptanceTests.swift.parse-sealed.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "NativeRoutingAcceptanceTests.swift.parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "NativeSiriAcceptanceTests.swift.parse.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "PUBLIC_API_SDK_RESULT.json": "caf062fe57c33a64113c621d2c2bb668f635701be665201952f1e7992ce98d90",
+    "README.md": "3a42da44a9182b49137c5bda52f1ed0c1fb03e50406f4be35e9d269c28e36cad",
+    "SDK_TRANSPORT.txt": "22f721af32b3ae7115c9a16ab6afe275732f09f70b5c87fc56c62712f7953e34",
+    "SDK_TYPECHECK.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "SEALED_HELPER_SYNTAX.json": "065534a99d63f2b337ce32afc7012936e2a0aeb640bc7d65b28b1e05db6c770f",
+    "SOURCE_BEFORE.json": "c90c3a36a5db769e9521d86cce01b26d056620c39ee1af3636a39d25c72bd9d3",
+    "SYNTAX_ATTEMPT_1.json": "8e270fa8cee5f14429222bda11417aa667b16cdf3f40b4e6aa9aac9bf142d20b",
+    "SiriPublicAPI.swift": "0bbe06803a6958195c454b478e22cd2f2a449dce5b5c7723123e9432ad22a7dc"
+  },
+  "independent_review": {
+    "reviewer": "/root/release_preflight",
+    "source_sha256": "394f39cb485f61162351cdedf310ab75f566aefb56e96b3e5c664524151e228f",
+    "result": "No blocking source defect or hidden navigation fallback found",
+    "verified": [
+      "original 180406-byte prefix",
+      "existing phrase and iOS app display name",
+      "sole Siri delivery",
+      "one strict real receipt and exact original scene",
+      "original workspace identities and declared persisted semantic fields"
+    ],
+    "limits": [
+      "recognized text, not physical microphone",
+      "selectedRange, TOC expansion/layout and full viewport restoration are outside this projection",
+      "normal sidecar checkpoint settling is a runtime assumption to diagnose if execution fails",
+      "complete original UI target compile and both native Siri executions remain pending"
+    ]
+  }
+}

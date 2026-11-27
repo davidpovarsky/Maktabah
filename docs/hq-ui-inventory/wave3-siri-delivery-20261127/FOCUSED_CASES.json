@@ -1,0 +1,20 @@
+{
+  "historical_manifests_changed": false,
+  "cases": [
+    {
+      "device": "iPad",
+      "case_id": "NativeRoutingAcceptanceTests/testSiriHistoryFromOriginalIPadReaderPreservesWorkspace",
+      "entry": "foreground",
+      "status": "NOT_RUN"
+    },
+    {
+      "device": "iPhone",
+      "case_id": "NativeRoutingPhoneAcceptanceTests/testPhoneSiriHistoryFromBackgroundPreservesOriginalReader",
+      "entry": "background",
+      "status": "NOT_RUN"
+    }
+  ],
+  "transport": "Real public XCUISiriService recognized-text activation",
+  "phrase": "Open History in ChavrusaText",
+  "physical_microphone_coverage": false
+}

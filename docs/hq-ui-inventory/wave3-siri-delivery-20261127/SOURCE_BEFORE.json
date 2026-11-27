@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-27T03:13:41.300141+00:00",
+  "base": "df935d28906ab9ac86f796e77296545b5e5a3bc0",
+  "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+  "prefix_bytes": 180406,
+  "prefix_sha256": "2bbceea0f5a1656fa30231ea8d4d868f33f3d657c719e94e29061cdd0a2599a5",
+  "app_shortcut_source": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+  "app_name_source": "Source/iOS-Info.plist",
+  "reading_state_source": "Source/ChavrusaText/Navigation/BackendSessionIntegrityRepair.swift",
+  "native_executed": 0
+}

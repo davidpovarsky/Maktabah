@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-27T03:18:07.451002+00:00",
+  "file": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+  "sha256": "394f39cb485f61162351cdedf310ab75f566aefb56e96b3e5c664524151e228f",
+  "exit": 0,
+  "scope": "syntax only",
+  "log": "NativeRoutingAcceptanceTests.swift.parse-sealed.log",
+  "change": "Bind fresh Siri receipt to the exact original scene ID, in addition to existing workspace/tab and reading-state proof"
+}
