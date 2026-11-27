@@ -1,0 +1,78 @@
+{
+  "schema": "otzaria.wave3.original-fresh-sdk-proposal/1",
+  "status": "PROPOSED_NOT_EXECUTED",
+  "sourceSHA": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "root": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+  "originalSourceEdits": 0,
+  "buildsRun": 0,
+  "nativeTestsRun": 0,
+  "originalCommandsUnchangedExceptFreshNamespace": true,
+  "historicalContractBytesUnchanged": true,
+  "originalHeavyRunstepBytesUnchanged": true,
+  "originalHeavyRunstepSHA256": "d729445dd7d48277ddef23c4d37f7382c347102a9ee6ef395cccebcf886e87f0",
+  "minimumReserveBytes": 2147483648,
+  "earlyStopMarginBytes": 268435456,
+  "stopThresholdBytes": 2415919104,
+  "samplingSeconds": 2,
+  "addedPreflightGuard": {
+    "path": "Tools/PinkhaSimulatorGate/preflight.py",
+    "bytes": 4319,
+    "sha256": "0e1c6491e8bb30d9e97cf65cf3b820a8860d0a32237676f2c3a7613668ddee66",
+    "git_blob": "2628b345d5743bbe1ddc0d1afaeef9fb410f3daf",
+    "matches_committed_head": true
+  },
+  "freshPaths": {
+    "evidence": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterFiveScopes-20261127-Evidence",
+    "work": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-Debug-FreshAfterFiveScopes-20261127-Work",
+    "abi": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-FreshAfterFiveScopes-20261127",
+    "macro": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-ReviewedMacro-FreshAfterFiveScopes-20261127"
+  },
+  "controllerOutputPrefix": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-sdk-fresh-after-five-scopes-20261127.",
+  "observedAt": "2026-11-27T10:19:42.622816+00:00",
+  "observedFreeBytes": 20413648896,
+  "freshPathsAbsentAtObservation": true,
+  "sourceCleanAtObservation": true,
+  "historicalStartupObservedSharedDeltaBytes": 890204160,
+  "historicalStartupExclusiveAllocationKnown": false,
+  "freshFullProducerConsumerPeakKnown": false,
+  "cleanupDifference": "Original macro --restore executes in a separately bounded nonbuilding runner, with exact source/trust ownership checks; heavy reserve is not reapplied to required restoration. No original gates or macro tool edits.",
+  "launchRequirement": "Root review and exclusive SDK slot; verify proposal SHA and all runtime source/path/capacity checks. Use the pinned Python3.12 with -B and --execute-reviewed-proposal. Run under a durable owned process so connector timeout does not kill finally; all original step deadlines and exact owned process groups are retained.",
+  "notAcceptance": [
+    "preservation is not SDK acceptance",
+    "historical partial work is not a qualified cache seed",
+    "new genuine local execution UUID and ABI digest must be runtime outputs",
+    "final production copy26GB+concurrent-reserve gate is separate and unchanged"
+  ],
+  "historicalSupervisorSHA256": "d8a6e3a9dba85e76b27fc0bf6359b4a5a344a2e435df85b1d424ae6277020844",
+  "historicalRecipeSHA256": "d03b3a9d3856fd7a6ced388f67781e9376df8922297af6ba6d5aee4f615467f2",
+  "historicalContractSHA256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2",
+  "fiveScopePreservationSHA256": "ef4ab6539a882c68df77ce8d0d349c2eeb83a2167bbb8b260cb6e2777ebc48a0",
+  "fiveScopeRetirementSHA256": "31de3721288dddaee455e8d88dd50f3a7cb5918540b19d57dc5223c4901b3f8d",
+  "artifacts": [
+    {
+      "path": "supervisor.py",
+      "bytes": 26573,
+      "sha256": "30cb3a7d41201271c53b08494d2bf2dbd027e8dba61f86538f1c75e969dc2416"
+    },
+    {
+      "path": "FRESH_RUN_COMMANDS.json",
+      "bytes": 7356,
+      "sha256": "b9a1cd379f4572e4d142a47a31a51bfceb509f687ede5856226cb01d11ce048d"
+    },
+    {
+      "path": "HISTORICAL_OBSERVED_CONTRACT.json",
+      "bytes": 6235,
+      "sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2"
+    },
+    {
+      "path": "SUPERVISOR_DIFF.patch",
+      "bytes": 41157,
+      "sha256": "70ca6e576673ffdffc42cd2182771b5cf748fabde264d542f23b848f8061bf13"
+    },
+    {
+      "path": "SUPERVISOR_REVIEW_DIFF.patch",
+      "bytes": 9493,
+      "sha256": "7b0bf67469206dda79621465ae2fac55d488ecd317f6b0c8bcc75ca02e578602"
+    }
+  ]
+}
