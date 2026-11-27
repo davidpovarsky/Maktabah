@@ -1,0 +1,749 @@
+{
+  "schema": 1,
+  "scope": "Independent source/receipt intake review plus reserved test-oracle correction; not native/UI/physical acceptance",
+  "reviewer": "ChatGPT /root/release_preflight",
+  "reviewedIntegrationSnapshot": "068fb6b9c8f1f49f1eaf78e3fcec74c46efb84cd",
+  "candidateNativeExecutions": 0,
+  "candidateAppBuilds": 0,
+  "commits": [
+    {
+      "original": "e60a54127f8201e2bd980774b8c73b7345066b9e",
+      "equivalentRepublication": "661e37935ee3740c717f0459f4e4271446821026",
+      "changedBlobsEqual": 6,
+      "recommendation": "Select exactly one, then the reserved loading-stability follow-up in this packet."
+    },
+    {
+      "original": "422c21b0eebbe45a1d3b1c8beea0113ecb0c53c4",
+      "equivalentRepublication": "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+      "changedBlobsEqual": 17,
+      "recommendation": "Select exactly one. Its append combines cleanly with existing ebd10f Reader assertions."
+    }
+  ],
+  "duplicateBlobVerification": [
+    {
+      "pair": [
+        "e60a54127f8201e2bd980774b8c73b7345066b9e",
+        "661e37935ee3740c717f0459f4e4271446821026"
+      ],
+      "files": [
+        {
+          "path": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+          "equal": true,
+          "sha256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9",
+          "bytes": 184397
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/post-update-ui/APPLE_TYPECHECK_RESULT.json",
+          "equal": true,
+          "sha256": "e10db59136e9d2e1ea51ecfc03d33799dfccc03f4473102d61d77faefaa2cd85",
+          "bytes": 2997
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/post-update-ui/README.md",
+          "equal": true,
+          "sha256": "7c688486deb38aa093ba58dc38af7768456449cd1b2220d749e26c1619771c1c",
+          "bytes": 1718
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/post-update-ui/TEST_CONTRACT.md",
+          "equal": true,
+          "sha256": "31314411c5b5679dc36e9a2190229d1e5c275749bbb039398725df374614c1cd",
+          "bytes": 12631
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/post-update-ui/apple-xctest-typecheck.tar.gz",
+          "equal": true,
+          "sha256": "a06c3fa7590f5220667ee750bebd11bc4be4c78d36b33a926ad4305132be5526",
+          "bytes": 136460
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/search/post-update-ui/native-test-manifest.json",
+          "equal": true,
+          "sha256": "6d47219bbb0d792102ac776591959e6311e6ff86f8738c9d2bae5c92bd39aa46",
+          "bytes": 1068
+        }
+      ]
+    },
+    {
+      "pair": [
+        "422c21b0eebbe45a1d3b1c8beea0113ecb0c53c4",
+        "991526228533d6689c4ad9da8dbd3e9f82a7bea1"
+      ],
+      "files": [
+        {
+          "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+          "equal": true,
+          "sha256": "e29f52485297f22a313d263ae3bb390f5dd5a2a5bf7a751a6cb6b0b2b048c0de",
+          "bytes": 102026
+        },
+        {
+          "path": "Scripts/CI/reader-continuous-pull-host.py",
+          "equal": true,
+          "sha256": "e36664701bbb370133d889fb6c370648be240d47330c13edcda021918fac87ca",
+          "bytes": 33013
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/README.md",
+          "equal": true,
+          "sha256": "4691ab2350f07c2fd6727e2524c17b90f97be2aa11d710cd2b7c33f7f4e2f0c2",
+          "bytes": 4862
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/TEST_CONTRACT.md",
+          "equal": true,
+          "sha256": "1338243211da7c121cd4de84dd46a9e1e22e4c4dfb6519ca50ee78c57a915053",
+          "bytes": 5776
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/PINNED_TOOLS.json",
+          "equal": true,
+          "sha256": "c864c5b935ce01b94c4e99cbd0c148e3e6923d05209198be6546ced5b7d38e41",
+          "bytes": 12726
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/RESULT.json",
+          "equal": true,
+          "sha256": "b10f8d0b168062b4ba23b346f2447dec8d9f3d817374398478391c8d06a1077d",
+          "bytes": 3688
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/host-source-controls.stderr",
+          "equal": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/host-source-controls.stdout",
+          "equal": true,
+          "sha256": "05a4f0eb1515c04b1d1d161069df670b47865a22633ce3267c38d0b84d11405c",
+          "bytes": 3135
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/source-check-summary.json",
+          "equal": true,
+          "sha256": "e0776efd3b233d2ac75813cc44aaa537bd13a1903587ac801cebb2be8e480131",
+          "bytes": 7373
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/whole-native-tests-parse.stderr",
+          "equal": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/whole-native-tests-parse.stdout",
+          "equal": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/whole-native-tests-xctest-typecheck.stderr",
+          "equal": true,
+          "sha256": "1369dc3ba030241a91314045685b1c94e8ebf1abbf4a41cb700af67f6cf82402",
+          "bytes": 232969
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/apple-source-controls/whole-native-tests-xctest-typecheck.stdout",
+          "equal": true,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/host-source-controls.py",
+          "equal": true,
+          "sha256": "7430799d4c78fdc214f9b39401087bdf84bede3b99154eeb06c851bf2b4b0f94",
+          "bytes": 8486
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/pinned-idb-inspection.json",
+          "equal": true,
+          "sha256": "0cee98e6715d461f806d649c4a08f198111c15fc3743b7d1147bf6494dcf9624",
+          "bytes": 31132
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/run-mac-source-checks.py",
+          "equal": true,
+          "sha256": "c0fe28616e147073f57cef7e82c5c9163808be556f83d0939c293e7d4f4a6c4e",
+          "bytes": 3768
+        },
+        {
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/source-preservation.json",
+          "equal": true,
+          "sha256": "d9343e9c6427e1f35c4abc600bc6db8354186cca52c5ab527a4173c1f8fd8329",
+          "bytes": 407
+        }
+      ]
+    }
+  ],
+  "preservation": {
+    "applicationSourceChanges": 0,
+    "originalV32OrSharedPerformanceDriverChanges": 0,
+    "search": {
+      "originalBytes": 153728,
+      "originalSHA256": "5a7cd2ff1da78e5507e22757038c2aa8b77f6a8be7c0bedcb3a4e2c7f3063131",
+      "originalFilePreservedAfterRemovingOnlyAddedDarwinImport": true,
+      "newSelectors": [
+        "testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries"
+      ],
+      "donorSHA256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9",
+      "followupSHA256": "2efbdc09aed91c9c2ed2dea67a9ed85f7a4070cb7eb501ee2537375a87680d17",
+      "followupScope": "Only add loading to inverted stability predicate and add final loading absence assertion; inverse replacements restore the entire donor file."
+    },
+    "reader": {
+      "base_sha256": "aa7077b3ba994c3d35aa25c71e8f9986057b140f748774c866af426074da3bf2",
+      "base_bytes": 90630,
+      "donor_prefix_preserved": true,
+      "donor_sha256": "e29f52485297f22a313d263ae3bb390f5dd5a2a5bf7a751a6cb6b0b2b048c0de",
+      "root_sha256": "74d27daf2acf14b3a8fac14eb80f41bb93833b4beaf17eadad4b0a43da043392",
+      "root_is_exact_ebd": true,
+      "merge_exit": 0,
+      "merge_stderr": "",
+      "combined_exact_ebd_plus_new_tail": true,
+      "combined_bytes": 102598,
+      "combined_sha256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c",
+      "selection_unwrap_count": 2,
+      "viewport_unwrap_count": 2,
+      "concrete_comparison_count": 2,
+      "old_selectors_preserved": true,
+      "old_selectors_count": 10,
+      "new_selectors": [
+        "testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+      ]
+    },
+    "rootSearchBase": {
+      "root_is_exact_donor_base": true,
+      "root_sha256": "5a7cd2ff1da78e5507e22757038c2aa8b77f6a8be7c0bedcb3a4e2c7f3063131",
+      "root_bytes": 153728
+    }
+  },
+  "postUpdateReview": {
+    "status": "Cleared for selective source intake with the exact loading-reentry follow-up in this packet; native acceptance pending",
+    "selector": "Maktabah-iOSUITests/PublishedProductionSearchAfterBooksUpdateTests/testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries",
+    "prerequisite": "Maktabah-iOSUITests/ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState",
+    "retainedRequirements": [
+      "Original passed Settings update and no-skip evidence; official Otzaria/SeforimLibrary v40-to-v41 identity and actual Settings database-hash/manifest attachments.",
+      "Both actual v40 packages, their artifact identities, exact manifest bytes and whole retained regular-file inventories remain unchanged; no symlink substitution.",
+      "Exact owned Simulator/container/MCM storage mapping and current installed manifest/size, without an external database or storage override.",
+      "Normal cold original Search UI, exact incompatible-source readiness/query errors, actionable Retry, unchanged entered query and no old result/count/page-error.",
+      "Existing nonempty successful v40 trace prefix is bound to its exact passed original case attachment, namespace/PID/inode/timestamps/bytes/SHA and remains unchanged; a missing trace cannot pass.",
+      "Separate active fresh-process log capture must prove exact two submissions/scopes/revisions, PID/executable/interval identity and absence of observation-write errors. XCTest UI alone cannot satisfy this host gate."
+    ],
+    "finding": {
+      "id": "R08_LOADING_REENTRY",
+      "location": "GlobalSearchNativeAcceptanceTests.swift donor lines3135-3148, new rejectQuery",
+      "problem": "The initial settling check required no loading, but the subsequent inverted predicate and final assertions omitted loading. A loading indicator could reappear while the expected error remained present and the gate could pass.",
+      "reservedCorrection": "Add global-search-loading.exists to the original inverted predicate and add a final XCTAssertFalse for that same original control. No existing assertion removed or relaxed.",
+      "proofScope": "Actual XCTest/Corelibs source-extracted predicate with explicit UI-state doubles; baseline and candidate verbatim 3-second waiter/assertion blocks. Details and first unsuccessful fixture attempt are retained in validation.",
+      "resolution": {
+        "candidateSHA256": "2efbdc09aed91c9c2ed2dea67a9ed85f7a4070cb7eb501ee2537375a87680d17",
+        "actualQualification": "Swift6.4.3 aarch64 Linux XCTest/Corelibs source boundary only",
+        "completedResultSHA256": "565493bbbff2b13edc957b2246c0dea66f02bc5d486e49acec22f1bd3fc79e1b",
+        "summary": {
+          "baselineLoadingReentriesIncorrectlyAccepted": 2,
+          "candidateLoadingReentriesRejected": 2,
+          "stableRejectionAcceptedBoth": true,
+          "originalResultRowReentryRejectedBoth": true,
+          "allExpectedOutcomesObserved": true
+        },
+        "originalWaiterSeconds": 3,
+        "rawBindings": "Each attempt's20 stdout/stderr streams and both generated Swift harness hashes independently rechecked against the immutable RESULT.",
+        "firstAttempt": {
+          "status": "UNEXPECTED_BOUNDARY_CONTROL_OUTCOME",
+          "resultSHA256": "5e1475a11e2a4980c3cc888abacc70f8865db22e79d395e371b5459baa198d7f",
+          "reason": "Both one-shot control Timers fired on the first run-loop tick, so the intended transient fixture lasted about19 microseconds. Persistent loading negative already worked. Attempt2 sets explicit absolute fireDate and preserves all attempt1 source/raw output."
+        },
+        "newNativeUIExecutions": 0,
+        "newAppleSDKBuilds": 0
+      }
+    },
+    "limits": [
+      "Cold post-Settings update only; warm same-process invalidation is not established.",
+      "No actual Settings update, package/corpus operation, current process-log interval, native UI or physical result was executed for this review.",
+      "XCTest predicate evaluation is sampled; no claim of detecting every arbitrarily brief between-sample UI transition."
+    ]
+  },
+  "continuousReview": {
+    "status": "No blocking source defect found; original native execution still required",
+    "selector": "Maktabah-iOSUITests/FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader",
+    "requirements": [
+      "Original full-v40 installed database/source oracle and actual published Search hit; unchanged original paragraph/chapter controls, native Reader source and document/TOC checks.",
+      "One private direct original idb HID RPC, held DOWN positions out240points and back20points, then exactly one final UP per mode.",
+      "Actual original before/held-armed/held-retreated/released samples bind distinct UUIDs, advancing uptime, exact PID/UITextView/locator/render generation/source length; independent source bytes are compared in XCTest.",
+      "Fresh owner installation admission, actual app executable/PID checks and exact portrait point-space dimensions; no simultaneous UI input or another viewport writer.",
+      "Retained tools, before/after executable/dimensions and per-UDID ownership. A native criterion failure releases inside the same stream and fails; transport cleanup uses a separately recorded disqualifying second RPC.",
+      "Both host operations and the exact original zero-skip XCTest must pass with final source/build/SDK/corpus/image qualification. Host RESULT explicitly retains uiAcceptance=false."
+    ],
+    "limits": [
+      "19 historical controls exercise the actual pinned codec/protobuf using explicit synthetic client/probe doubles; zero simulator connections or touches.",
+      "Overscroll >=80 then <80 is the original observable threshold contract; the original probe does not expose the private state-machine enum. Keep the existing positive commit/two-way canonical navigation case and its assertions.",
+      "Portrait only. No new PERF, Groups100, Native116, Release114 or physical acceptance is claimed.",
+      "The owner must integrate the documented host start/stop API with the original qualified run; this helper by itself does not dispatch or qualify the native selector."
+    ],
+    "originalThresholdSource": "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift default80; actual Source/UI/iOS/Wrappers/iOSIbarotTextView.swift uses80.",
+    "originalSourceComparison": "Existing checkRecordedReaderSource compares the actual bounded UTF16-selected slice as exact UTF8 bytes against the independently compiled complete v40 source; unchanged.",
+    "sourceAndLogBinding": {
+      "source_checks": [
+        {
+          "name": "Build8401SevenDefectsAcceptanceTests.swift",
+          "path": "Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift",
+          "matches": true
+        },
+        {
+          "name": "reader-continuous-pull-host.py",
+          "path": "Scripts/CI/reader-continuous-pull-host.py",
+          "matches": true
+        },
+        {
+          "name": "host-source-controls.py",
+          "path": "docs/hq-integration/wave2-20261127/reader/continuous-pull/host-source-controls.py",
+          "matches": true
+        },
+        {
+          "name": "OriginalMaktabahUITestBase.swift",
+          "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+          "matches": true
+        }
+      ],
+      "log_checks": [
+        {
+          "file": "host-source-controls.stdout",
+          "sha256": "05a4f0eb1515c04b1d1d161069df670b47865a22633ce3267c38d0b84d11405c",
+          "matches": true
+        },
+        {
+          "file": "host-source-controls.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true
+        },
+        {
+          "file": "whole-native-tests-parse.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true
+        },
+        {
+          "file": "whole-native-tests-parse.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true
+        },
+        {
+          "file": "whole-native-tests-xctest-typecheck.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matches": true
+        },
+        {
+          "file": "whole-native-tests-xctest-typecheck.stderr",
+          "sha256": "1369dc3ba030241a91314045685b1c94e8ebf1abbf4a41cb700af67f6cf82402",
+          "matches": true
+        }
+      ],
+      "summary_result_matches": true,
+      "summary_controls_match": true,
+      "control_count": 19,
+      "unique_names": 19,
+      "all_pass": true
+    },
+    "sharedHelperProvenance": [
+      {
+        "declaration": "private enum SearchDataNativeFixtureError:",
+        "bytes": 74,
+        "sha256": "cbe42e063c2ef096fd0090b50049e10ade05b0167024746fa7c9faae71b82c7b",
+        "exact_block_in_root": true,
+        "root_line": 1017
+      },
+      {
+        "declaration": "private func requireSearchDataFixture(",
+        "bytes": 202,
+        "sha256": "ef3c63dfa7b22ed1d47ab5185faa74a77ec86680d5f055ab367075af9d5e6f69",
+        "exact_block_in_root": true,
+        "root_line": 1019
+      },
+      {
+        "declaration": "struct SearchContextExpectedSegment:",
+        "bytes": 202,
+        "sha256": "6d6602f2d74114eb17e8b9e5043f2260c3c95b405e4d9ca2f7c8effc5af6ed9e",
+        "exact_block_in_root": true,
+        "root_line": 2078
+      },
+      {
+        "declaration": "struct OriginalSearchContextUI {",
+        "bytes": 13102,
+        "sha256": "227afc13ae443d286aef973789d02916594b205c0a4870f28f6fe78f483b99b1",
+        "exact_block_in_root": true,
+        "root_line": 2132
+      }
+    ]
+  },
+  "appleEvidence": {
+    "search": {
+      "receiptSHA256": "e10db59136e9d2e1ea51ecfc03d33799dfccc03f4473102d61d77faefaa2cd85",
+      "archiveSHA256": "a06c3fa7590f5220667ee750bebd11bc4be4c78d36b33a926ad4305132be5526",
+      "directory": "/Users/m1/builds/otzaria-wave2-search-20261127/post-update-ui-typecheck/attempt1",
+      "scope": "Whole registered file parse; original production/context/R08 classes and helpers typecheck with original MaktabahUITestBase against actual iPhoneSimulator27 SDK. Earlier FaithfulReaderUIBase-dependent classes excluded.",
+      "exactExtraction": [
+        {
+          "kind": "delete",
+          "original_lines": [
+            5,
+            1017
+          ],
+          "extracted_lines": [
+            5,
+            4
+          ],
+          "added_text": ""
+        },
+        {
+          "kind": "delete",
+          "original_lines": [
+            1039,
+            1595
+          ],
+          "extracted_lines": [
+            26,
+            25
+          ],
+          "added_text": ""
+        }
+      ],
+      "archiveAndReceiptVerification": {
+        "receipt_vs_separate_bytes": true,
+        "compile_run_matches": true,
+        "input_keys": [
+          "files",
+          "hashes",
+          "baselineCommit",
+          "originalTestSHA256",
+          "scope"
+        ],
+        "input_hashes_match": true,
+        "input_files": [
+          {
+            "name": "GlobalSearchNativeAcceptanceTests.swift",
+            "sha_matches": true
+          },
+          {
+            "name": "ExtractedPublishedContextTests.swift",
+            "sha_matches": true
+          },
+          {
+            "name": "MaktabahUITestBase.swift",
+            "sha_matches": true
+          }
+        ],
+        "full_source_matches_git": true,
+        "base_matches_git": true,
+        "original_sha256": "5a7cd2ff1da78e5507e22757038c2aa8b77f6a8be7c0bedcb3a4e2c7f3063131",
+        "original_bytes": 153728,
+        "preserved_original_after_removing_Darwin_import": true,
+        "new_selectors": [
+          "testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries"
+        ],
+        "extraction_changes": [
+          {
+            "kind": "delete",
+            "original_lines": [
+              5,
+              1017
+            ],
+            "extracted_lines": [
+              5,
+              4
+            ],
+            "added_text": ""
+          },
+          {
+            "kind": "delete",
+            "original_lines": [
+              1039,
+              1595
+            ],
+            "extracted_lines": [
+              26,
+              25
+            ],
+            "added_text": ""
+          }
+        ],
+        "logs": [
+          {
+            "record": "whole-file-parse",
+            "stream": "stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "receipt_match": true,
+            "bytes": 0
+          },
+          {
+            "record": "whole-file-parse",
+            "stream": "stderr",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "receipt_match": true,
+            "bytes": 0
+          },
+          {
+            "record": "actual-xctest-typecheck",
+            "stream": "stdout",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "receipt_match": true,
+            "bytes": 0
+          },
+          {
+            "record": "actual-xctest-typecheck",
+            "stream": "stderr",
+            "sha256": "6751b3a9c7749e1cdd7dab15092a26bcb04679f55785dafb20c3d5ff894f5f7a",
+            "receipt_match": true,
+            "bytes": 82428
+          }
+        ],
+        "warnings": {
+          "count": 58,
+          "by_file": {
+            "ExtractedPublishedContextTests.swift": 2,
+            "MaktabahUITestBase.swift": 56
+          },
+          "errors": 0
+        },
+        "launch_runner_matches": true,
+        "scope": "Entire registered GlobalSearch test file parsed; exact complete PublishedProduction/context/R08 classes and shared original helpers typechecked with whole original MaktabahUITestBase. Earlier FaithfulReaderUIBase-dependent classes excluded from this focused typecheck; no app build or native execution."
+      },
+      "liveInputs": [
+        {
+          "name": "GlobalSearchNativeAcceptanceTests.swift",
+          "bytes": 184397,
+          "sha256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9",
+          "matches": true,
+          "payload_matches": true
+        },
+        {
+          "name": "ExtractedPublishedContextTests.swift",
+          "bytes": 95690,
+          "sha256": "2c6ba8f10d226963704679ee1a123eb071328bc94739411d9bd6219f47456b6d",
+          "matches": true,
+          "payload_matches": true
+        },
+        {
+          "name": "MaktabahUITestBase.swift",
+          "bytes": 9285,
+          "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+          "matches": true,
+          "payload_matches": true
+        }
+      ],
+      "liveLogs": [
+        {
+          "name": "whole-file-parse.stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "matches": true
+        },
+        {
+          "name": "whole-file-parse.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "matches": true
+        },
+        {
+          "name": "actual-xctest-typecheck.stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "matches": true
+        },
+        {
+          "name": "actual-xctest-typecheck.stderr.log",
+          "sha256": "6751b3a9c7749e1cdd7dab15092a26bcb04679f55785dafb20c3d5ff894f5f7a",
+          "bytes": 82428,
+          "matches": true
+        }
+      ],
+      "warningsCorrection": {
+        "reportedLiteralWarningOccurrences": 116,
+        "actualPrimaryWarnings": 58,
+        "originalBaseWarnings": 56,
+        "retainedContextHelperWarnings": 2,
+        "newR08PrimaryWarnings": 0,
+        "note": "README's '116 existing base-class warnings' is imprecise: 116 counts repeated warning text; two of the58 primary diagnostics are in retained context code, not the base."
+      }
+    },
+    "continuous": {
+      "receiptSHA256": "b10f8d0b168062b4ba23b346f2447dec8d9f3d817374398478391c8d06a1077d",
+      "directory": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/continuous-pull-source-20261127T033549Z",
+      "scope": "Whole donor Reader XCTest file plus original base and four exact shared Search helper declarations typechecked with actual iPhoneSimulator27 XCTest; real installed codec/protobuf component controls19/19.",
+      "liveInputs": [
+        {
+          "name": "Build8401SevenDefectsAcceptanceTests.swift",
+          "bytes": 102026,
+          "sha256": "e29f52485297f22a313d263ae3bb390f5dd5a2a5bf7a751a6cb6b0b2b048c0de",
+          "matches": true,
+          "payload_matches": true
+        },
+        {
+          "name": "reader-continuous-pull-host.py",
+          "bytes": 33013,
+          "sha256": "e36664701bbb370133d889fb6c370648be240d47330c13edcda021918fac87ca",
+          "matches": true,
+          "payload_matches": true
+        },
+        {
+          "name": "host-source-controls.py",
+          "bytes": 8486,
+          "sha256": "7430799d4c78fdc214f9b39401087bdf84bede3b99154eeb06c851bf2b4b0f94",
+          "matches": true,
+          "payload_matches": true
+        },
+        {
+          "name": "OriginalMaktabahUITestBase.swift",
+          "bytes": 9285,
+          "sha256": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+          "matches": true,
+          "payload_matches": true
+        },
+        {
+          "name": "OriginalSearchContextUI.swift",
+          "bytes": 13622,
+          "sha256": "d1f5c7f6d66033c408d57bb5d5e3b527c74a0fb20c0c5f0ce1aa4577f8258db5",
+          "matches": true,
+          "payload_matches": true
+        }
+      ],
+      "liveLogs": [
+        {
+          "name": "host-source-controls.stdout",
+          "sha256": "05a4f0eb1515c04b1d1d161069df670b47865a22633ce3267c38d0b84d11405c",
+          "bytes": 3135,
+          "matches": true
+        },
+        {
+          "name": "host-source-controls.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "matches": true
+        },
+        {
+          "name": "whole-native-tests-parse.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "matches": true
+        },
+        {
+          "name": "whole-native-tests-parse.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "matches": true
+        },
+        {
+          "name": "whole-native-tests-xctest-typecheck.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "matches": true
+        },
+        {
+          "name": "whole-native-tests-xctest-typecheck.stderr",
+          "sha256": "1369dc3ba030241a91314045685b1c94e8ebf1abbf4a41cb700af67f6cf82402",
+          "bytes": 232969,
+          "matches": true
+        }
+      ],
+      "controlNames": [
+        "original portrait points admitted",
+        "wrong token rejected before contact",
+        "wrong UDID rejected before contact",
+        "stale nonce request rejected before contact",
+        "Boolean schema rejected before contact",
+        "missing point dimensions rejected before contact",
+        "pixel/point confusion rejected before contact",
+        "landscape mismatch rejected before contact",
+        "nonfinite coordinate rejected before contact",
+        "viewport path escape rejected before contact",
+        "waypoint outside Reader rejected before contact",
+        "fresh native identity shape admitted",
+        "stale viewport rejected",
+        "wrong original PID rejected",
+        "wrong render generation rejected",
+        "unavailable native source rejected",
+        "original codec preserves one RPC down-held-out-held-back-up",
+        "failed native criterion releases once in same stream and fails",
+        "broken transport cleanup is separately logged and cannot pass"
+      ],
+      "primaryWarnings": 153,
+      "baseWarnings": 56,
+      "oldReaderWarnings": 97,
+      "newExtensionWarnings": 0,
+      "pinnedToolsLiveVerification": [
+        {
+          "kind": "source",
+          "name": "idb/common/types.py",
+          "bytes": 44957,
+          "sha256": "fae7173ee4ed096e41016967d4855bf680d9eb1697cf4fe2c18184937ff8a589",
+          "match": true
+        },
+        {
+          "kind": "source",
+          "name": "idb/grpc/client.py",
+          "bytes": 79305,
+          "sha256": "228b9f5d0b8f4e0755c96ec2caa5f4ce6b4d581ece4bdf0e581118ecec0a806e",
+          "match": true
+        },
+        {
+          "kind": "source",
+          "name": "idb/grpc/hid.py",
+          "bytes": 5577,
+          "sha256": "9d2c6759551cfc7c6614c8e5fc915960305f1b2fc40918631720be86afe77cd1",
+          "match": true
+        },
+        {
+          "kind": "source",
+          "name": "idb/grpc/idb_pb2.py",
+          "bytes": 86897,
+          "sha256": "92263962c432a55a20fc2922f765e03c91111bfc485dc5c3cd5d2ee45649f616",
+          "match": true
+        },
+        {
+          "kind": "source",
+          "name": "idb/grpc/stream.py",
+          "bytes": 2584,
+          "sha256": "11d6959a4bd527d2796a7a54176f8e8088ea601d07813315e2f1f84d90547d3d",
+          "match": true
+        },
+        {
+          "kind": "asset",
+          "name": "fb_idb-1.7.8-py3-none-any.whl",
+          "bytes": 477922,
+          "sha256": "ed8557a4c54ffee53006c1fe63f070cda567949312ab24be56faf987c5a3d04b",
+          "match": true
+        },
+        {
+          "kind": "asset",
+          "name": "idb-companion.macos-arm64.tar.gz",
+          "bytes": 30893766,
+          "sha256": "44369a2df0b62e3a1764de61bd09280999c7e9b27ea8f20bff1ea3a9db0302a2",
+          "match": true
+        },
+        {
+          "kind": "binary",
+          "name": "idb_companion",
+          "bytes": 56985744,
+          "sha256": "1178785532e66acdaa1944a1a8898796af3b449bcd7bf800e186b246d56eb1f3",
+          "match": true
+        },
+        {
+          "kind": "binary",
+          "name": "Resources/libShimulator-iOS.dylib",
+          "bytes": 1087136,
+          "sha256": "f67bb4b8377caf1930385137d48c2664ef1d021dc0b0d20f223b29ee7f96df67",
+          "match": true
+        }
+      ],
+      "helperSource": "068fb6b9c8f1f49f1eaf78e3fcec74c46efb84cd:Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift"
+    },
+    "qualificationLimit": "These Apple compiler receipts bind donor source hashes, not the new loading follow-up or the Reader file combined with ebd10f. Full final integrated Apple build/native acceptance remains pending."
+  },
+  "integrationRecommendation": {
+    "readerExpectedMergedSHA256": "ca66d554b22f340366f0a68a7d3e43a4210eb143cbe2550fcdbabbead768b53c",
+    "readerExpectedMergedBytes": 102598,
+    "readerMergeCommandScope": "git merge-file -p on three small isolated temporary files; exit0. No shared worktree/source was mutated.",
+    "postUpdateFinalSourceSHA256": "2efbdc09aed91c9c2ed2dea67a9ed85f7a4070cb7eb501ee2537375a87680d17",
+    "preserveSourceFreeze": "Regenerate final source/test and build-image bindings through the original integration procedure; historical source-only receipts do not qualify the final binary.",
+    "rawEvidence": "Preserve all raw XCTest/compiler output, including expected negative failures and the first harness scheduling failure. Do not trim diagnostic whitespace."
+  },
+  "sourceReviewDisposition": "NO_REMAINING_BLOCKING_SOURCE_FINDING_AFTER_RESERVED_FOLLOWUP",
+  "reviewWrittenAt": "2026-11-27T04:54:36.724257+00:00"
+}
