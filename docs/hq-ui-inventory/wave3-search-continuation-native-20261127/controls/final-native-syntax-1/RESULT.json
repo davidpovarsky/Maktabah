@@ -1,0 +1,36 @@
+{
+  "utc": "2026-11-27T14:02:32Z",
+  "scope": "Linux Swift frontend syntax only, not Apple SDK typecheck or native execution",
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "-D",
+    "DEBUG",
+    "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-final-native-syntax-1/NativeRoutingAcceptanceTests.swift"
+  ],
+  "exit": 0,
+  "source": {
+    "bytes": 292304,
+    "sha256": "1680e05a03200ee6309ef6278075396c2479cff5868360d9770766bdb70645a6"
+  },
+  "prefix": {
+    "bytes": 259080,
+    "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+  },
+  "suffix": {
+    "bytes": 33224,
+    "sha256": "5f4a92d79f4efe793a4311bebcc94cf04adde7f3f91a8035a7a3170787397452"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "freeAfter": 2334900224
+}

@@ -1,0 +1,27 @@
+{
+  "baseCommit": "ec5385e863a478e368c7de47264474a440fd0734",
+  "sources": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": {
+      "bytes": 294204,
+      "sha256": "bf280aa2d8df86557a853a069e94edb91c95d4b3ae02d33806f7cbcf95e1134f"
+    },
+    "Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift": {
+      "bytes": 1709,
+      "sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55"
+    },
+    "proposed Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "bytes": 224190,
+      "sha256": "134a01ada9114405437d8c1f655b13cd321ea64ddf3a0b9d3c1b5837e48bd3b4"
+    }
+  },
+  "compositionIntake": "Root applies the separately reviewed DEBUG patch; no live Composition mutation by this agent.",
+  "nativeIntake": "Append helper to root-corrected original prefix and combine Nav hidden-phone suffix explicitly; preserve source prefix evidence.",
+  "sourceScope": "DEBUG diagnostic and additive original native acceptance source only",
+  "noPBXChange": true,
+  "noLocalizationChange": true,
+  "noCoreOrSchemaChange": true,
+  "native116SelectorsUnchanged": true,
+  "release114SelectorsUnchanged": true,
+  "sdkTypecheck": "NOT_RUN",
+  "nativeExecution": "NOT_RUN"
+}

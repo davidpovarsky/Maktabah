@@ -1,0 +1,5 @@
+# Original Search native probe intake
+
+The donor packet ff4d8809 was reviewed and incorporated explicitly. The live native helper retains the full root History-corrected prefix and phone suffix, then adds only the exact Search suffix. The Composition delta is the original reversible DEBUG-only finite probe and lossless reporting helper; no production action schema or Core authority changed. All 83 artifact joins, compressed original bytes, actual original control receipt and final donor syntax receipt were independently verified.
+
+One focused parser invocation checked the actual four combined source files for composition syntax risk. This is Linux frontend syntax, not Apple SDK typechecking or native acceptance. The original failed report, failed transfer/readback/publication attempts and final source controls are retained. All eight new selectors remain NOT_RUN; original Native116/Release114+2 and production-v40 obligations remain open. Actual VoiceOver speech reachability is the intended limited oracle; unique full-context focus and a production/public hit/page entry are still open.

@@ -1,0 +1,27 @@
+{
+  "baseCommit": "ec5385e863a478e368c7de47264474a440fd0734",
+  "compositionBase": {
+    "bytes": 206640,
+    "sha256": "2d60519f70e47ec00747efa0a6cf967e8ede5129e2c1d351bcc8151d9a911a45"
+  },
+  "compositionCandidate": {
+    "bytes": 224190,
+    "sha256": "134a01ada9114405437d8c1f655b13cd321ea64ddf3a0b9d3c1b5837e48bd3b4"
+  },
+  "patch": {
+    "bytes": 19104,
+    "sha256": "c034351330ea0e2191f017414e5d82d1e6420b94461b5fb2f251c9442bfec690"
+  },
+  "inverseExact": true,
+  "nativeOriginalPrefix": {
+    "bytes": 259080,
+    "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+  },
+  "nativeCandidate": {
+    "bytes": 294204,
+    "sha256": "bf280aa2d8df86557a853a069e94edb91c95d4b3ae02d33806f7cbcf95e1134f"
+  },
+  "nativePrefixExact": true,
+  "sdkTypecheck": "NOT_RUN",
+  "nativeExecution": "NOT_RUN"
+}

@@ -1,0 +1,8 @@
+{
+  "stage": "readback of full diagnostic source capsule",
+  "receivedOutputCharacters": 123998,
+  "localDecodeExit": 1,
+  "error": "binascii.Error: Invalid base64-encoded string: number of data characters (74009) cannot be 1 more than a multiple of 4",
+  "claim": "No decoded capsule or artifact verification was accepted from this response.",
+  "recovery": "Retrieve the smaller exact control inputs, logs and manifests; keep the original immutable source baselines separately bound by hashes. The remote complete attempt remains preserved."
+}

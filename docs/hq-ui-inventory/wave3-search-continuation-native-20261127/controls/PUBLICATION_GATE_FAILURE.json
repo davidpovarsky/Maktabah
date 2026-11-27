@@ -1,0 +1,7 @@
+{
+  "exit": 2,
+  "stdout": "docs/hq-ui-inventory/wave3-search-continuation-native-20261127/SEARCH_CONTINUATION_DEBUG.patch:14: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-search-continuation-native-20261127/SEARCH_CONTINUATION_DEBUG.patch:25: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-search-continuation-native-20261127/SEARCH_CONTINUATION_DEBUG.patch:327: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-search-continuation-native-20261127/review/initial-reporting-loss.patch:14: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-search-continuation-native-20261127/review/initial-reporting-loss.patch:25: trailing whitespace.\n+ \ndocs/hq-ui-inventory/wave3-search-continuation-native-20261127/review/initial-reporting-loss.patch:256: trailing whitespace.\n+ \n",
+  "stderr": "",
+  "head": "ec5385e863a478e368c7de47264474a440fd0734",
+  "resolution": "Preserve the exact unified diff bytes in gzip artifacts, leaving the real git diff whitespace gate unchanged. No source/test/code bytes change; no commit occurred before this failure."
+}

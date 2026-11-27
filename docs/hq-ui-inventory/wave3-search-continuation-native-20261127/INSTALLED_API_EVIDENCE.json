@@ -1,0 +1,39 @@
+{
+  "scope": "One authorized read-only installed SDK header lookup; no compiler/simulator/VoiceOver action",
+  "developerDirectory": "/Applications/Xcode.app/Contents/Developer",
+  "directory": "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework/Headers",
+  "files": [
+    {
+      "name": "XCUIVoiceOverService.h",
+      "bytes": 2447,
+      "sha256": "8b095cd7f1d986fbb83f5aab289f5a1369cce81b29f3f02d68f3790f735dace4"
+    },
+    {
+      "name": "XCUIVoiceOverOutput.h",
+      "bytes": 659,
+      "sha256": "a315b447f0bacf61b620ad3cc7191cdaef0d9ad3f0ba9a6bbeb1d15197f80f59"
+    },
+    {
+      "name": "XCUIDevice.h",
+      "bytes": 4556,
+      "sha256": "2faa4a7b9b1e6ea98b3f15696983d93fa8de3b7afb93a4db9afea71bc2db08e0"
+    }
+  ],
+  "names": [
+    "voiceOverService",
+    "enable()",
+    "disable()",
+    "isEnabled",
+    "currentSpeech()",
+    "moveForward()",
+    "utterance"
+  ],
+  "declaredMinimum": "iOS27",
+  "headerBodiesPublished": false,
+  "sdkTypecheck": "NOT_RUN",
+  "nativeExecution": "NOT_RUN",
+  "officialReferences": [
+    "https://developer.apple.com/documentation/xcuiautomation/xcuivoiceoverservice",
+    "https://developer.apple.com/documentation/xcuiautomation/xcuivoiceoverservice/output"
+  ]
+}

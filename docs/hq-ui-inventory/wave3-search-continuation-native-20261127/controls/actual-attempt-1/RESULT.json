@@ -1,0 +1,381 @@
+{
+  "scope": "actual-source reporting controls; explicit serializer/storage boundary faults; no Core operation, SDK typecheck or native execution",
+  "utc": "2026-11-27T13:53:58Z",
+  "freeBefore": 2366238720,
+  "compiler": {
+    "name": "compiler",
+    "argv": [
+      "/usr/local/bin/swiftc",
+      "--version"
+    ],
+    "exit": 0,
+    "seconds": 0.13371944427490234,
+    "stdout": {
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "runs": [
+    {
+      "name": "compile-baseline",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/input/controls/BaselineControls.swift",
+        "-o",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/baseline"
+      ],
+      "exit": 0,
+      "seconds": 1.1054012775421143,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "baseline-baseline",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/baseline",
+        "baseline"
+      ],
+      "exit": 1,
+      "seconds": 0.016455650329589844,
+      "stdout": {
+        "bytes": 173,
+        "sha256": "5df047a1fd617de4e6a88dec2c5d564a96281484469d2c19fee140692eda9933"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compile-candidate",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-parse-as-library",
+        "-swift-version",
+        "6",
+        "-module-cache-path",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/input/controls/RetentionControls.swift",
+        "-o",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate"
+      ],
+      "exit": 0,
+      "seconds": 0.9971320629119873,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-success",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "success"
+      ],
+      "exit": 0,
+      "seconds": 0.010548591613769531,
+      "stdout": {
+        "bytes": 453,
+        "sha256": "33df9dd956ea69ac3b8b11224d98c153c1013e6d45e1b7444a1b1c9bd2da9ef6"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-checkpoint-budget",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "checkpoint-budget"
+      ],
+      "exit": 0,
+      "seconds": 0.010569334030151367,
+      "stdout": {
+        "bytes": 335,
+        "sha256": "2cc06e5d57726835f825cc14adc9c82cee2ee4c6b9ac35bef981365402ee969a"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-checkpoint-encoding",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "checkpoint-encoding"
+      ],
+      "exit": 0,
+      "seconds": 0.014303922653198242,
+      "stdout": {
+        "bytes": 335,
+        "sha256": "2cc06e5d57726835f825cc14adc9c82cee2ee4c6b9ac35bef981365402ee969a"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-checkpoint-io",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "checkpoint-io"
+      ],
+      "exit": 0,
+      "seconds": 0.009307146072387695,
+      "stdout": {
+        "bytes": 335,
+        "sha256": "2cc06e5d57726835f825cc14adc9c82cee2ee4c6b9ac35bef981365402ee969a"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-envelope-budget",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "envelope-budget"
+      ],
+      "exit": 0,
+      "seconds": 0.008810043334960938,
+      "stdout": {
+        "bytes": 453,
+        "sha256": "33df9dd956ea69ac3b8b11224d98c153c1013e6d45e1b7444a1b1c9bd2da9ef6"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-envelope-encoding",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "envelope-encoding"
+      ],
+      "exit": 0,
+      "seconds": 0.009252071380615234,
+      "stdout": {
+        "bytes": 453,
+        "sha256": "33df9dd956ea69ac3b8b11224d98c153c1013e6d45e1b7444a1b1c9bd2da9ef6"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-envelope-io",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "envelope-io"
+      ],
+      "exit": 0,
+      "seconds": 0.009506940841674805,
+      "stdout": {
+        "bytes": 453,
+        "sha256": "33df9dd956ea69ac3b8b11224d98c153c1013e6d45e1b7444a1b1c9bd2da9ef6"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-nested",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "nested"
+      ],
+      "exit": 0,
+      "seconds": 0.009928464889526367,
+      "stdout": {
+        "bytes": 453,
+        "sha256": "33df9dd956ea69ac3b8b11224d98c153c1013e6d45e1b7444a1b1c9bd2da9ef6"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-same-nonce",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "same-nonce"
+      ],
+      "exit": 0,
+      "seconds": 0.00785374641418457,
+      "stdout": {
+        "bytes": 542,
+        "sha256": "b0990d6be9bd0283a9f360766d3c209ff190f5dc50647be96075ec82f5709071"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-foreign-nonce",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "foreign-nonce"
+      ],
+      "exit": 0,
+      "seconds": 0.007466793060302734,
+      "stdout": {
+        "bytes": 542,
+        "sha256": "b0990d6be9bd0283a9f360766d3c209ff190f5dc50647be96075ec82f5709071"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-invalid-kind",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "invalid-kind"
+      ],
+      "exit": 0,
+      "seconds": 0.0075109004974365234,
+      "stdout": {
+        "bytes": 90,
+        "sha256": "35669f3a5992f2b17b630205bd4ce5e84cd3b3d29f570dbb09ce98686e8fc15c"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-duplicate",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "duplicate"
+      ],
+      "exit": 0,
+      "seconds": 0.007931947708129883,
+      "stdout": {
+        "bytes": 562,
+        "sha256": "d79ebda1e26f88476436a50f80930d2c32d1188b72338f75685fdf179c2ff20e"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "candidate-reentrant",
+      "argv": [
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/candidate",
+        "reentrant"
+      ],
+      "exit": 0,
+      "seconds": 0.008239269256591797,
+      "stdout": {
+        "bytes": 537,
+        "sha256": "6243c889ce26e67acb4a804d76f91b353e67e8eff679f21a46dec1d17b6373a9"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "parse-MaktabahNativeRoutingComposition",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/input/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "exit": 0,
+      "seconds": 0.09746575355529785,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "parse-NativeRoutingAcceptanceTests",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/input/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "seconds": 0.0673365592956543,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "parse-NativeSearchContinuationAcceptanceTests",
+      "argv": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/search-continuation-reporting-attempt-1/input/candidate/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "seconds": 0.04346942901611328,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "freeAfter": 2365542400,
+  "artifactBytes": 1709523
+}

@@ -1,0 +1,52 @@
+{
+  "source": "search-continuation-native-implementation/candidate/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift",
+  "selectors": [
+    {
+      "class": "NativeRoutingAcceptanceTests",
+      "method": "testOriginalSearchContinuationRevealsLoadedHitInEnglishAndHebrew",
+      "status": "NOT_RUN"
+    },
+    {
+      "class": "NativeRoutingAcceptanceTests",
+      "method": "testOriginalSearchContinuationCommitsOneActualNextPage",
+      "status": "NOT_RUN"
+    },
+    {
+      "class": "NativeRoutingAcceptanceTests",
+      "method": "testOriginalSearchContinuationLoadedHitAboveOriginalKeyboard",
+      "status": "NOT_RUN"
+    },
+    {
+      "class": "NativeRoutingAcceptanceTests",
+      "method": "testOriginalSearchContinuationActualVoiceOverTraversal",
+      "status": "NOT_RUN"
+    },
+    {
+      "class": "NativeRoutingPhoneAcceptanceTests",
+      "method": "testPhoneOriginalSearchContinuationRevealsLoadedHitInEnglishAndHebrew",
+      "status": "NOT_RUN"
+    },
+    {
+      "class": "NativeRoutingPhoneAcceptanceTests",
+      "method": "testPhoneOriginalSearchContinuationCommitsOneActualNextPage",
+      "status": "NOT_RUN"
+    },
+    {
+      "class": "NativeRoutingPhoneAcceptanceTests",
+      "method": "testPhoneOriginalSearchContinuationLoadedHitAboveOriginalKeyboard",
+      "status": "NOT_RUN"
+    },
+    {
+      "class": "NativeRoutingPhoneAcceptanceTests",
+      "method": "testPhoneOriginalSearchContinuationActualVoiceOverTraversal",
+      "status": "NOT_RUN"
+    }
+  ],
+  "languagesPerSelector": [
+    "en",
+    "he"
+  ],
+  "dataProfile": "miniTest10",
+  "nativeResult": "NOT_RUN",
+  "fullNative116OrRelease114SelectorsChanged": false
+}

@@ -1,0 +1,10 @@
+PASS finite nonce-bound owner
+PASS exact typed return retained before checkpoint callback
+PASS exact typed return retained before envelope callback
+PASS checkpoint reference retained before envelope callback
+PASS reporting failure stays failure
+PASS partial/unqualified provenance and ordered effects preserved
+PASS one checkpoint attempt
+PASS no envelope after incomplete checkpoint
+PASS honest persisted checkpoint availability
+RESULT 9 PASS / 0 FAIL

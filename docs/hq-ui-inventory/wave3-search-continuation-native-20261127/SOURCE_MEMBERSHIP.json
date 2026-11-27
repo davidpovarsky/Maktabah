@@ -1,0 +1,46 @@
+{
+  "commit": "ec5385e863a478e368c7de47264474a440fd0734",
+  "observations": [
+    {
+      "file": "Maktabah.xcodeproj/project.pbxproj",
+      "bytes": 639844,
+      "sha256": "909679eccc56d8ac8ec5be5947fd7f99fc855d62390a330836f28d9deee770bc",
+      "excerpts": [
+        {
+          "line": 2329,
+          "text": "\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n\t\t\tpath = \"Maktabah-iOSUITests\";\n\t\t\tsourceTree = \"<group>\";\n\t\t};\n\t\t4BD8A4E8307E521A00E04BCB /* MaktabahTests */ = {\n\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n\t\t\tpath = MaktabahTests;\n\t\t\tsourceTree = \"<group>\";\n\t\t};\n\t\tDB44B80150B4C113F2D62723 /* Maktabah-iOSNativeTests */ = {\n\t\t\tisa = PBXFileSystemSynchronizedRootGroup;\n\t\t\tpath = \"Maktabah-iOSNativeTests\";\n\t\t\tsourceTree = \"<group>\";\n\t\t};\n/* End PBXFileSystemSynchronizedRootGroup section */\n\n/* Begin PBXFrameworksBuildPhase section */\n\t\tF30578052FA46222005732C6 /* Frameworks */ = {\n\t\t\tisa = PBXFrameworksBuildPhase;\n\t\t\tbuildActionMask = 2147483647;\n\t\t\tfiles = (\n\t\t\t);\n\t\t\trunOnlyForDeploymentPostprocessing = 0;\n\t\t};\n\t\t45320887082E8A7770BE2DCB /* Frameworks */ = {\n\t\t\tisa = PBXFrameworksBuildPhase;\n\t\t\tfiles = (\n\t\t\t\tCC58659B2AB339934754DAF9 /* Foundation.framework in Frameworks */,\n\t\t\t);\n\t\t};\n\t\t4B3202252EDAFE85003B95D1 /* Frameworks */ = {\n\t\t\tisa = PBXFrameworksBuildPhase;\n\t\t\tfiles = (\n\t\t\t\tCEF000000000000000000003 /* ZIPFoundation in Frameworks */,"
+        },
+        {
+          "line": 4104,
+          "text": "\t\tF30578012FA46222005732C6 /* Maktabah-iOSUITests */ = {\n\t\t\tisa = PBXNativeTarget;\n\t\t\tbuildConfigurationList = F305780B2FA46222005732C6 /* Build configuration list for PBXNativeTarget \"Maktabah-iOSUITests\" */;\n\t\t\tbuildPhases = (\n\t\t\t\tF30578042FA46222005732C6 /* Sources */,\n\t\t\t\tF30578052FA46222005732C6 /* Frameworks */,\n\t\t\t\tF30578062FA46222005732C6 /* Resources */,\n\t\t\t);\n\t\t\tbuildRules = (\n\t\t\t);\n\t\t\tdependencies = (\n\t\t\t\tF30578082FA46222005732C6 /* PBXTargetDependency */,\n\t\t\t);\n\t\t\tfileSystemSynchronizedGroups = (\n\t\t\t\tF30578032FA46222005732C6 /* Maktabah-iOSUITests */,\n\t\t\t);\n\t\t\tname = \"Maktabah-iOSUITests\";\n\t\t\tproductName = \"Maktabah-iOSUITests\";\n\t\t\tproductReference = F30578022FA46222005732C6 /* Maktabah-iOSUITests.xctest */;\n\t\t\tproductType = \"com.apple.product-type.bundle.ui-testing\";\n\t\t};\n\t\t4B3202272EDAFE85003B95D1 /* Maktabah */ = {\n\t\t\tisa = PBXNativeTarget;\n\t\t\tbuildConfigurationList = 4B3202352EDAFE88003B95D1 /* Build configuration list for PBXNativeTarget \"Maktabah\" */;\n\t\t\tbuildPhases = (\n\t\t\t\t4B3202242EDAFE85003B95D1 /* Sources */,\n\t\t\t\t4B3202252EDAFE85003B95D1 /* Frameworks */,\n\t\t\t\t4B3202262EDAFE85003B95D1 /* Resources */,\n\t\t\t\t1D7FC649C80D7C946647B7BB /* Embed App Extensions */,\n\t\t\t);\n\t\t\tbuildRules = (\n\t\t\t);\n\t\t\tdependencies = (\n\t\t\t\t516E3B99384FC9869297FEBA /* PBXTargetDependency */,\n\t\t\t);"
+        }
+      ]
+    },
+    {
+      "file": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionRequest.swift",
+      "bytes": 5919,
+      "sha256": "666e87a1e3e7c9d6f7b7c6ca2a8a624b5368837f2666e9bc5b541f600e3a0014",
+      "excerpts": [
+        {
+          "line": 3,
+          "text": "public enum ActionBackendID: String, Codable, CaseIterable, Sendable { case otzaria, sefaria, sefariaEmbedded }"
+        }
+      ]
+    },
+    {
+      "file": "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift",
+      "bytes": 31533,
+      "sha256": "be4e560a8f2482bbf98f59540c40b7ff76872ec7c3adca135fcd3ef68c354d83",
+      "excerpts": [
+        {
+          "line": 564,
+          "text": "    func navigationItems(from page: OtzariaSearchPage) -> [SearchResultItem] {\n        page.results.map { result in\n            let (attrText, highlightTerms) = highlightedText(from: result.text)\n            let bkid = bookId(from: result.filePath) ?? 0\n            let locator = TextLocator(\n                backend: .otzaria,\n                workKey: \"book:\\(bkid)\",\n                position: .legacyLine(Int(result.segment))\n            )\n            return SearchResultItem(\n                archive: \"Otzaria\",\n                tableName: \"otzaria:\\(bkid)\",\n                bookId: bkid,\n                bookTitle: result.title,\n                page: Int(result.segment),\n                part: 0,\n                attributedText: attrText,\n                backendLocator: locator,\n                locationDisplayText: result.reference.isEmpty ? nil : result.reference,\n                highlightTerms: highlightTerms.isEmpty ? nil : highlightTerms,\n                backendHitID: result.stableHitID\n            )\n        }\n    }\n"
+        }
+      ]
+    },
+    {
+      "rootfsFree": 2340151296,
+      "privateWorktreesWritable": true
+    }
+  ]
+}

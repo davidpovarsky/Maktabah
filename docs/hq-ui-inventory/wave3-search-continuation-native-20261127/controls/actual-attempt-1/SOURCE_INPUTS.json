@@ -1,0 +1,34 @@
+{
+  "controls/RetentionControls.swift": {
+    "bytes": 20050,
+    "sha256": "702eb2a0fc994b5e0ee1962684d461a5802085fd88c7ebd6f1dd189a9e36c256"
+  },
+  "controls/BaselineControls.swift": {
+    "bytes": 16863,
+    "sha256": "ecf2ec899732e022e740ea8f756d26306e6f943c4bb2ce990561a5a94c99bd16"
+  },
+  "controls/EXTRACTED_INPUTS.json": {
+    "bytes": 678,
+    "sha256": "4c0773d64bbe13ca2025967c6a64e5a2e4cb1095b00c76af5a269330002751d6"
+  },
+  "DEBUG_PROBE_ADDITION.swift": {
+    "bytes": 17158,
+    "sha256": "10939a9ac1636363e094cfcc53176a8b7347e781827eed079eb6363cc0a67d80"
+  },
+  "NATIVE_HELPER_ADDITION.swift": {
+    "bytes": 32349,
+    "sha256": "aba1dcb5dec5077307a70a81a4506affd17299b833f671634576bd59dcaa659b"
+  },
+  "regenerate.py": {
+    "bytes": 2959,
+    "sha256": "f9bc879a573bc3d34d1703805206c138380259d018ff368b525cd5969913c901"
+  },
+  "PROBE_PATCH_RECEIPT.json": {
+    "bytes": 826,
+    "sha256": "278aebee0c283471d991155b7f8e5e01404427562d5c17fe9a2fc51fc135027e"
+  },
+  "candidate/Maktabah-iOSUITests/NativeSearchContinuationAcceptanceTests.swift": {
+    "bytes": 1709,
+    "sha256": "3bac10707d8a675e55d03c612472b34070f8102417ad90082c3239c409936c55"
+  }
+}
