@@ -1,0 +1,26 @@
+{
+  "scope": "ACTUAL_SOURCE_READS_ONLY_NOT_RUNTIME",
+  "sources": [
+    {
+      "path": "Scripts/CI/study-ui-offline-window.py",
+      "bytes": 78428,
+      "sha256": "7916b28178d19bad9ad10789510f0bb08cfd116e8c1e65f72c6a2f986fb627c2"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-heartbeat.py",
+      "bytes": 3946,
+      "sha256": "cf2b0ec31c9b21eb88a7ebb76a7658014ee44dfad53b2e35dc0b5c4203d574d9"
+    },
+    {
+      "path": "Scripts/CI/study-ui-offline-execution.py",
+      "bytes": 62459,
+      "sha256": "8b811fc03208001f2cc988fce526f7373ae4cd340adb6594077fd18c26a17202"
+    },
+    {
+      "path": "Scripts/CI/runtime27_interruption.py",
+      "bytes": 7650,
+      "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+      "readFrom": "git show 8858a2e60212c790ec622b02af5cd6e396bbe587:Scripts/CI/runtime27_interruption.py"
+    }
+  ]
+}
