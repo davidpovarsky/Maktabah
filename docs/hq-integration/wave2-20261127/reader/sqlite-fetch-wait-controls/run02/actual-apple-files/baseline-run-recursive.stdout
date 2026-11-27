@@ -1,0 +1,1 @@
+{"case":"recursive","checks":["recursive-original-mapping","outer-original-transaction","outer-serialization-snapshot-no-deadlock"],"processID":40255,"scope":"Original Apple SQLite fetch and bounded passive source controls. No full production corpus, Simulator or application UI.","status":"COMPONENT_CONTROL_PASS_NOT_APP_PERFORMANCE_ACCEPTANCE"}

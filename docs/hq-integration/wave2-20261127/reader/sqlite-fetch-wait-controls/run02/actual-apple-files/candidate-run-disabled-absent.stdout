@@ -1,0 +1,1 @@
+{"case":"disabled","checks":["original-sqlite-values","disabled-no-snapshot"],"processID":40353,"scope":"Original Apple SQLite fetch and bounded passive source controls. No full production corpus, Simulator or application UI.","status":"COMPONENT_CONTROL_PASS_NOT_APP_PERFORMANCE_ACCEPTANCE"}

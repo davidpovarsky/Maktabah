@@ -5,6 +5,12 @@
 
 import Foundation
 import SQLite3
+#if DEBUG
+import Dispatch
+#if canImport(Darwin)
+import Darwin
+#endif
+#endif
 
 enum SQLiteError: LocalizedError {
     case connectionFailed(String)
@@ -76,6 +82,9 @@ class SQLiteDatabase: @unchecked Sendable {
     private var statementCache: [String: OpaquePointer] = [:]
     private var cacheKeys: [String] = [] // Untuk LRU eviction
     private let maxCacheSize = 100
+    #if DEBUG
+    private let fetchWaitObservationConnection: SQLiteFetchWaitObservation.Connection?
+    #endif
 
     init(
         path: String,
@@ -94,6 +103,9 @@ class SQLiteDatabase: @unchecked Sendable {
         var db: OpaquePointer?
         if sqlite3_open_v2(path, &db, flags, nil) == SQLITE_OK {
             dbPointer = db!
+            #if DEBUG
+            fetchWaitObservationConnection = SQLiteFetchWaitObservation.openedConnection(dbPointer)
+            #endif
             if queryOnly {
                 try execute(query: "PRAGMA query_only = ON;")
             }
@@ -176,17 +188,43 @@ class SQLiteDatabase: @unchecked Sendable {
 
     @discardableResult
     func fetch<T>(query: String, parameters: [Any] = [], mapping: (SQLiteRow) throws -> T) throws -> [T] {
+        #if DEBUG
+        let observation = SQLiteFetchWaitObservation.begin(connection: fetchWaitObservationConnection)
+        var observedWaitStart: UInt64?
+        var observedAcquired: UInt64?
+        var observedReturnedNormally = false
+        // Register before the original unlock defer. This runs after this
+        // fetch's unlock, including thrown/cancelled reads. An outer recursive
+        // owner can remain; the bounded recorder never calls SQLite or Bridge.
+        defer {
+            if observation != nil {
+                SQLiteFetchWaitObservation.finish(observation, waitStart: observedWaitStart,
+                    acquired: observedAcquired, returnedNormally: observedReturnedNormally,
+                    taskCancelledAtTerminal: Task.isCancelled)
+            }
+        }
+        #endif
         // Keep statement/decoder serialization, but allow a cancelled read to
         // leave the queue while an unrelated fetch still owns this same lock.
         try Task.checkCancellation()
+        #if DEBUG
+        if observation != nil { observedWaitStart = DispatchTime.now().uptimeNanoseconds }
+        #endif
         while !lock.lock(before: Date(timeIntervalSinceNow: 0.01)) {
             try Task.checkCancellation()
         }
         defer { lock.unlock() }
+        #if DEBUG
+        if observation != nil { observedAcquired = DispatchTime.now().uptimeNanoseconds }
+        #endif
         // Cancellation can win as acquisition succeeds; establish the unlock
         // first and do not prepare or publish a statement in that case.
         try Task.checkCancellation()
-        return try _fetchNoLock(query: query, parameters: parameters, mapping: mapping)
+        let values = try _fetchNoLock(query: query, parameters: parameters, mapping: mapping)
+        #if DEBUG
+        observedReturnedNormally = true
+        #endif
+        return values
     }
 
     // MARK: - Internal no-lock variants (caller must hold lock)
@@ -318,6 +356,251 @@ class SQLiteDatabase: @unchecked Sendable {
         }
     }
 }
+
+#if DEBUG
+/// Bounded passive measurements of the existing fetch serialization lock.
+/// No SQL, parameters, text/results, error strings or callbacks are retained.
+/// This recorder's lock never calls a database/bridge. Snapshots release it
+/// before constructing dictionaries, encoding JSON or performing any file IO.
+enum SQLiteFetchWaitObservation {
+    static let enabled = ProcessInfo.processInfo.environment["CHAVRUSA_FULL_V32_SOURCE_OBSERVATION"] == "1"
+    static let completedCapacity = 1024
+    static let activeCapacity = 64
+    static let connectionCapacity = 64
+    private static let state = State()
+
+    struct FileIdentity: Sendable, Equatable {
+        let path: String
+        let device: UInt64
+        let inode: UInt64
+        let bytes: Int64
+        let modifiedNanoseconds: Int64
+
+        var json: [String: Any] {
+            ["path": path, "device": device, "inode": inode, "bytes": bytes,
+             "modifiedNanoseconds": modifiedNanoseconds]
+        }
+    }
+
+    struct Connection: Sendable {
+        let id: String
+        let capturedNanoseconds: UInt64
+        let file: FileIdentity?
+        let identityStatus: String
+
+        var json: [String: Any] {
+            var result: [String: Any] = ["connectionID": id, "capturedNanoseconds": capturedNanoseconds,
+                                       "identityStatus": identityStatus]
+            if let file { result["openedFile"] = file.json }
+            return result
+        }
+    }
+
+    struct Pending: Sendable {
+        let sequence: UInt64
+        let operationID: String
+        let connectionID: String
+        let beginNanoseconds: UInt64
+        let threadID: UInt64?
+        let mainThread: Bool
+
+        var json: [String: Any] {
+            ["sequence": sequence, "operationID": operationID, "connectionID": connectionID,
+             "beginNanoseconds": beginNanoseconds, "nativeThreadID": threadID as Any? ?? NSNull(),
+             "mainThread": mainThread]
+        }
+    }
+
+    private struct Completed: Sendable {
+        let pending: Pending
+        let waitStart: UInt64?
+        let acquired: UInt64?
+        let terminal: UInt64
+        let returnedNormally: Bool
+        let taskCancelledAtTerminal: Bool
+
+        var json: [String: Any] {
+            var result = pending.json
+            result["waitStartNanoseconds"] = waitStart as Any? ?? NSNull()
+            result["acquiredNanoseconds"] = acquired as Any? ?? NSNull()
+            result["terminalNanoseconds"] = terminal
+            result["returnedNormally"] = returnedNormally
+            // A cancellation flag is not an error classification. SQL/mapping
+            // errors can race cancellation; no exception text is recorded.
+            result["taskCancelledAtTerminal"] = taskCancelledAtTerminal
+            if let waitStart, let acquired, acquired >= waitStart {
+                result["lockAcquisitionWaitSeconds"] = Double(acquired - waitStart) / 1_000_000_000
+            } else if let waitStart, terminal >= waitStart {
+                result["unacquiredWaitObservedThroughTerminalSeconds"] = Double(terminal - waitStart) / 1_000_000_000
+            }
+            return result
+        }
+    }
+
+    private struct Copy: Sendable {
+        let connections: [String: Connection]
+        let active: [UInt64: Pending]
+        let completed: [Completed]
+        let started: UInt64
+        let finished: UInt64
+        let dropped: UInt64
+        let droppedActive: UInt64
+        let droppedConnections: UInt64
+        let unmatchedCompletions: UInt64
+        let overwritten: UInt64
+        let counterOverflowed: Bool
+        let copiedNanoseconds: UInt64
+    }
+
+    private final class State: @unchecked Sendable {
+        private let lock = NSLock()
+        private var connections: [String: Connection] = [:]
+        private var active: [UInt64: Pending] = [:]
+        private var completed: [Completed] = []
+        private var nextReplacement = 0
+        private var started: UInt64 = 0
+        private var finished: UInt64 = 0
+        private var dropped: UInt64 = 0
+        private var droppedActive: UInt64 = 0
+        private var droppedConnections: UInt64 = 0
+        private var unmatchedCompletions: UInt64 = 0
+        private var overwritten: UInt64 = 0
+        private var counterOverflowed = false
+
+        private func increment(_ value: inout UInt64) {
+            if value == UInt64.max { counterOverflowed = true }
+            else { value += 1 }
+        }
+
+        func begin(connection: Connection, timestamp: UInt64, threadID: UInt64?, main: Bool) -> Pending? {
+            lock.lock()
+            defer { lock.unlock() }
+            increment(&started)
+            guard !counterOverflowed else {
+                increment(&dropped)
+                return nil
+            }
+            guard active.count < activeCapacity else {
+                increment(&dropped); increment(&droppedActive)
+                return nil
+            }
+            guard connections[connection.id] != nil || connections.count < connectionCapacity else {
+                increment(&dropped); increment(&droppedConnections)
+                return nil
+            }
+            connections[connection.id] = connection
+            let pending = Pending(sequence: started, operationID: UUID().uuidString,
+                connectionID: connection.id, beginNanoseconds: timestamp, threadID: threadID, mainThread: main)
+            active[pending.sequence] = pending
+            return pending
+        }
+
+        func finish(_ value: Completed) {
+            lock.lock()
+            defer { lock.unlock() }
+            guard active.removeValue(forKey: value.pending.sequence) != nil else {
+                increment(&dropped); increment(&unmatchedCompletions)
+                return
+            }
+            increment(&finished)
+            if completed.count < completedCapacity { completed.append(value) }
+            else {
+                completed[nextReplacement] = value
+                nextReplacement = (nextReplacement + 1) % completedCapacity
+                increment(&overwritten)
+            }
+        }
+
+        func copy() -> Copy {
+            lock.lock()
+            defer { lock.unlock() }
+            return Copy(connections: connections, active: active, completed: completed,
+                started: started, finished: finished, dropped: dropped,
+                droppedActive: droppedActive, droppedConnections: droppedConnections,
+                unmatchedCompletions: unmatchedCompletions, overwritten: overwritten,
+                counterOverflowed: counterOverflowed, copiedNanoseconds: DispatchTime.now().uptimeNanoseconds)
+        }
+    }
+
+    /// Called once after the original successful open, only with the explicit
+    /// DEBUG opt-in. A VFS that cannot verify opened-file identity is honestly
+    /// unqualified; a pathname alone must not identify a replaced open handle.
+    static func openedConnection(_ database: OpaquePointer) -> Connection? {
+        guard enabled else { return nil }
+        let id = UUID().uuidString
+        let timestamp = DispatchTime.now().uptimeNanoseconds
+        var observed: FileIdentity?
+        var status = "UNAVAILABLE_OPENED_FILE_IDENTITY"
+        #if canImport(Darwin)
+        if let raw = sqlite3_db_filename(database, "main") {
+            let path = String(cString: raw)
+            if !path.isEmpty, path.utf8.count <= 4096, path.hasPrefix("/") {
+                func identity() -> FileIdentity? {
+                    var value = stat()
+                    guard lstat(path, &value) == 0, (value.st_mode & S_IFMT) == S_IFREG,
+                          value.st_size >= 0 else { return nil }
+                    return FileIdentity(path: path, device: UInt64(UInt32(bitPattern: value.st_dev)),
+                        inode: UInt64(value.st_ino), bytes: Int64(value.st_size),
+                        modifiedNanoseconds: Int64(value.st_mtimespec.tv_sec) * 1_000_000_000 + Int64(value.st_mtimespec.tv_nsec))
+                }
+                let before = identity()
+                var moved: Int32 = -1
+                let code = sqlite3_file_control(database, "main", SQLITE_FCNTL_HAS_MOVED, &moved)
+                let after = identity()
+                if let before, before == after, code == SQLITE_OK, moved == 0 {
+                    observed = before
+                    status = "VFS_CONFIRMED_OPENED_FILE_IDENTITY_AT_CONNECTION_OPEN"
+                }
+            } else { status = "UNAVAILABLE_NON_FILE_OR_UNBOUNDED_FILENAME" }
+        }
+        #endif
+        return Connection(id: id, capturedNanoseconds: timestamp, file: observed, identityStatus: status)
+    }
+
+    static func begin(connection: Connection?) -> Pending? {
+        guard enabled, let connection else { return nil }
+        var thread: UInt64 = 0
+        var validThread = false
+        #if canImport(Darwin)
+        validThread = pthread_threadid_np(nil, &thread) == 0 && thread > 0
+        #endif
+        return state.begin(connection: connection, timestamp: DispatchTime.now().uptimeNanoseconds,
+            threadID: validThread ? thread : nil, main: Thread.isMainThread)
+    }
+
+    static func finish(_ pending: Pending?, waitStart: UInt64?, acquired: UInt64?,
+                       returnedNormally: Bool, taskCancelledAtTerminal: Bool) {
+        guard let pending else { return }
+        let terminal = DispatchTime.now().uptimeNanoseconds
+        state.finish(Completed(pending: pending, waitStart: waitStart, acquired: acquired, terminal: terminal,
+            returnedNormally: returnedNormally, taskCancelledAtTerminal: taskCancelledAtTerminal))
+    }
+
+    static func snapshot(requestID: String) -> [String: Any]? {
+        guard enabled, UUID(uuidString: requestID) != nil else { return nil }
+        let captured = state.copy()
+        // The recorder lock has been released. No database, bridge, logger or
+        // file is consulted while this immutable bounded copy is serialized.
+        return ["schema": 1, "status": "PASSIVE_FETCH_LOCK_OBSERVATION_NOT_PERFORMANCE_ACCEPTANCE",
+                "requestID": requestID, "processID": ProcessInfo.processInfo.processIdentifier,
+                "snapshotNanoseconds": captured.copiedNanoseconds,
+                "clock": "DispatchTime.uptimeNanoseconds", "observedUptime": ProcessInfo.processInfo.systemUptime,
+                "scope": "Existing fetch lock admission; terminal sampled after this fetch unlock, an outer recursive owner may remain. Not SQLite engine busy wait, query duration or UI responsiveness.",
+                "completedCapacity": completedCapacity, "activeCapacity": activeCapacity, "connectionCapacity": connectionCapacity,
+                "lifetimeStarted": captured.started, "lifetimeFinished": captured.finished,
+                "lifetimeDropped": captured.dropped, "lifetimeOverwritten": captured.overwritten,
+                "lifetimeDroppedForActiveCapacity": captured.droppedActive,
+                "lifetimeDroppedForConnectionCapacity": captured.droppedConnections,
+                "lifetimeUnmatchedCompletions": captured.unmatchedCompletions,
+                "counterOverflowed": captured.counterOverflowed,
+                "completeLifetimeCoverage": captured.dropped == 0 && captured.overwritten == 0 && captured.active.isEmpty && !captured.counterOverflowed,
+                "activeCount": captured.active.count, "completedRetainedCount": captured.completed.count,
+                "connections": captured.connections.values.sorted { $0.id < $1.id }.map(\.json),
+                "active": captured.active.values.sorted { $0.sequence < $1.sequence }.map(\.json),
+                "completed": captured.completed.sorted { $0.pending.sequence < $1.pending.sequence }.map(\.json)]
+    }
+}
+#endif
 
 // MARK: - Safe Database Attach
 

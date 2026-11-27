@@ -1,0 +1,15 @@
+SQLiteFetchWaitControls.swift:63:47: error: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor
+ 61 |             switch name {
+ 62 |             case "basic", "disabled", "release":
+ 63 |                 let actualMainThread = Thread.isMainThread
+    |                                               `- error: class property 'isMainThread' is unavailable from asynchronous contexts; Work intended for the main actor should be marked with @MainActor
+ 64 |                 let values = try db.fetch(query: "SELECT value FROM fixture ORDER BY value") { $0.int(at: 0) }
+ 65 |                 try requireControl(values == [1, 2, 3], "Original SELECT values preserved")
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSThread.h:126:34: note: 'isMainThread' declared here
+124 | 
+125 | /// Returns a Boolean value that indicates whether the current thread is the main thread.
+126 | @property (class, readonly) BOOL isMainThread API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Work intended for the main actor should be marked with @MainActor"); // reports whether current thread is main
+    |                                  `- note: 'isMainThread' declared here
+127 | 
+128 | /// Returns the `NSThread` object representing the main thread.
