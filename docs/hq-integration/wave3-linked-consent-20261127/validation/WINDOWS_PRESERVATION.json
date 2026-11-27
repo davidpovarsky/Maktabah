@@ -1,0 +1,43 @@
+{
+  "schema": "otzaria.wave3.linked-consent-transfer/1",
+  "windows_artifact_root": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-linked-consent-20261127",
+  "existing_pinned_routes": {
+    "oracle": "torah-social",
+    "mac": "scaleway-mac"
+  },
+  "authentication_or_host_configuration_changed": false,
+  "windows_role": "Exact-byte transfer and preservation only; no test execution on Windows in this packet",
+  "baseline": {
+    "source_commit": "744686e4ad3efbb642e01ddcc9e1eed84dce3bcd",
+    "source_archive_bytes": 202207,
+    "source_archive_sha256": "451653404e0d498aac1a31167bde6f6a4ce431ec89e9d95417781aa317404b7f",
+    "raw_files": 22,
+    "raw_bytes": 1444081,
+    "raw_file_hashes_compared_back_to_mac": true,
+    "windows_zip_bytes": 80306,
+    "windows_zip_sha256": "f2f0f759a8a3935e82567265f599500d11b576f3e31fe37fc83212ea481048e6",
+    "oracle_archive_members_verified": true
+  },
+  "candidate": {
+    "source_commit": "c765dfac3d036a6d7a60fa3c1b7c14ba4eb7ab8c",
+    "source_archive_bytes": 233485,
+    "source_archive_sha256": "f703090699a9f75a4f5a4d6574bc0537c33a4333015e8cb52daf07526f731f5a",
+    "mac_raw_archive_bytes": 1661960,
+    "mac_raw_archive_sha256": "023bbbf8cb585faa35270c4aa9ea634ab09ac0ed56e6b456fa3403c1847a1b48",
+    "windows_archive_hash_verified": true,
+    "oracle_archive_hash_and_59_members_verified": true
+  },
+  "preparation_failures_retained": "Earlier direct cross-profile transfer was unavailable, and direct one-file download returned HTTP403. Neither ran controls. Existing authorized DAVID pinned SSH/SCP bridge completed the transfers without authentication changes.",
+  "mac_jobs": {
+    "baseline": "job_6bdc57e26f0b",
+    "candidate": "job_482b460ef682"
+  },
+  "scope": {
+    "actual_original_SQLite": true,
+    "actual_original_queue": true,
+    "actual_Apple_component_compilation": true,
+    "anytype_runtime": 0,
+    "native_UI": 0,
+    "full_app_SDK_typecheck": 0
+  }
+}

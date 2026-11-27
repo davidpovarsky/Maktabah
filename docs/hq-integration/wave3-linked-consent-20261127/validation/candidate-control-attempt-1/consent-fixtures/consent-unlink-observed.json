@@ -1,0 +1,19 @@
+{
+  "actualRevisionAfterSave" : 1,
+  "actualSQLite" : true,
+  "afterSHA256" : "d632cd65a69fd41f0ad7d7f88545496a2605d0e504a08fd4f75ffca8d6c4f934",
+  "allTableBytesUnchanged" : true,
+  "beforeSHA256" : "d632cd65a69fd41f0ad7d7f88545496a2605d0e504a08fd4f75ffca8d6c4f934",
+  "capturedActiveIDs" : [
+    "0321A450-A87D-41F5-B807-F91E19996A00"
+  ],
+  "capturedLinkIDs" : [
+    "0321A450-A87D-41F5-B807-F91E19996A00"
+  ],
+  "expected" : "REJECTED_STALE_REVISION",
+  "name" : "consent-unlink",
+  "nativeReceipt" : false,
+  "nativeUI" : false,
+  "observedRevisionBeforeSave" : 1,
+  "outcome" : "REJECTED_STALE_REVISION"
+}

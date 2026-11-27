@@ -1,0 +1,19 @@
+{
+  "actualRevisionAfterSave" : 1,
+  "actualSQLite" : true,
+  "afterSHA256" : "b3f8ab9e431d933fa569682079228fe22ce5c26f328811971d942e4ff3fed7c5",
+  "allTableBytesUnchanged" : true,
+  "beforeSHA256" : "b3f8ab9e431d933fa569682079228fe22ce5c26f328811971d942e4ff3fed7c5",
+  "capturedActiveIDs" : [
+
+  ],
+  "capturedLinkIDs" : [
+
+  ],
+  "expected" : "REJECTED_STALE_REVISION",
+  "name" : "consent-absence-aba",
+  "nativeReceipt" : false,
+  "nativeUI" : false,
+  "observedRevisionBeforeSave" : 1,
+  "outcome" : "REJECTED_STALE_REVISION"
+}

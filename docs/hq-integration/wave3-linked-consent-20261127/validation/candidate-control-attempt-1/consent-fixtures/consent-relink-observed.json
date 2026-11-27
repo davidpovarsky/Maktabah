@@ -1,0 +1,19 @@
+{
+  "actualRevisionAfterSave" : 2,
+  "actualSQLite" : true,
+  "afterSHA256" : "b3b37437190cfae855f80f93e6fb2544bf91eb50aea9e356ee687fbafb513e68",
+  "allTableBytesUnchanged" : true,
+  "beforeSHA256" : "b3b37437190cfae855f80f93e6fb2544bf91eb50aea9e356ee687fbafb513e68",
+  "capturedActiveIDs" : [
+    "B4A2C28B-77D8-4CBF-A1BF-09CC6890C66A"
+  ],
+  "capturedLinkIDs" : [
+    "B4A2C28B-77D8-4CBF-A1BF-09CC6890C66A"
+  ],
+  "expected" : "REJECTED_STALE_REVISION",
+  "name" : "consent-relink",
+  "nativeReceipt" : false,
+  "nativeUI" : false,
+  "observedRevisionBeforeSave" : 2,
+  "outcome" : "REJECTED_STALE_REVISION"
+}
