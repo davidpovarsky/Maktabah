@@ -1,0 +1,28 @@
+{
+  "appleCompilerExecuted": 0,
+  "argv": [
+    "python3",
+    "/mnt/development/projects/worktrees/Maktabah-wave2-reader-perf01-20261127/Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "source-check"
+  ],
+  "checkout": "29c074c2245dcb8014f77cdebabbbfc6e545a237",
+  "corpusQueries": 0,
+  "elapsedSeconds": 0.31563872564584017,
+  "exitCode": 0,
+  "files": {
+    "SOURCE_CHECK_29c074.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "SOURCE_CHECK_29c074.stdout.json": {
+      "bytes": 14044,
+      "sha256": "91e0c8bdc0ff073b3b01fbebeff3311892c08bcd0f2fd2f7f2882cc8eeaeb96b"
+    }
+  },
+  "nativeExecuted": 0,
+  "prospectiveCells": 9,
+  "reportedStatus": "SOURCE_ONLY_NOT_NATIVE_OR_PERFORMANCE_ACCEPTANCE",
+  "schema": 1,
+  "scope": "Python source closure/declared-selector admission only; no Apple compiler, native case or corpus execution",
+  "utc": "2026-11-27T08:25:07.433131+00:00"
+}
