@@ -427,6 +427,15 @@ struct AnnotationExchangeAcceptanceMain {
         acceptancePrint("ACTUAL_SQLITE \(String(cString: sqlite3_libversion()))")
         try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true)
         if mode == "self-tests" { try await Acceptance(root: root).run(); return }
+        if mode == "linked-sync-only" {
+            let acceptance = await Acceptance(root: root)
+            await acceptance.linkedSyncCases()
+            let results = await acceptance.results
+            try JSONEncoder().encode(results).write(to: root.appendingPathComponent("CASES.json"))
+            acceptancePrint("LINKED CASES \(results.count) PASS \(results.filter { $0.status == "PASS" }.count)")
+            if results.contains(where: { $0.status != "PASS" }) { throw CheckFailure("linked component case failure") }
+            return
+        }
         if mode == "crash-after-commit" || mode == "crash-before-outer-commit" {
             let phase = mode == "crash-after-commit" ? "after" : "before"
             let f = try Fixture(root: root, name: "crash-\(phase)")
@@ -582,6 +591,24 @@ extension Acceptance {
             try require(result.state == .verified && result.delivery.acknowledged && result.link.confirmedLocalRevision == 2, "exact native handoff not stored")
             try require(f.scalar("SELECT count(*) FROM sqlite_master WHERE name LIKE '%remote_ack%';") == 0, "peer ACK was invented")
         }
+        test("late_R2_native_completion_keeps_newer_R3_received_baseline") {
+            let f = try Fixture(root: root, name: "linked-late"), origin = try linkedOrigin()
+            _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
+            _ = try localLinkedCommit(f, revision: 1)
+            let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let queued = try f.ledger.linkedDeliveries(for: link)[0], attempt = UUID()
+            try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(queued, attemptID: attempt, observedRootSHA256: origin.nativeRootSHA256, now: 100) }
+            let newer = try linkedOrigin(root: String(repeating: "d", count: 64))
+            _ = try localLinkedCommit(f, origin: newer, revision: 2)
+            try f.ledger.recordLinkedNativeReadback(messageID: queued.delivery.messageID, attemptID: attempt,
+                nativeRootSHA256: String(repeating: "c", count: 64), nativeResponseSHA256: origin.nativeResponseSHA256)
+            let actual = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let historical = try f.ledger.linkedDeliveries(for: actual)[0]
+            try require(actual.confirmedLocalRevision == 3 && actual.nativeRootSHA256 == newer.nativeRootSHA256,
+                        "late historical completion rolled the live baseline back")
+            try require(historical.state == .verified && historical.delivery.acknowledged,
+                        "valid historical R2 handoff receipt was discarded")
+        }
         test("unlink_stops_new_deliveries_and_retains_copy_identity_history_and_uncertainty") {
             let f = try Fixture(root: root, name: "linked-unlink"), origin = try linkedOrigin()
             _ = try localLinkedCommit(f, origin: origin, enableLink: true, revision: 0)
@@ -609,21 +636,46 @@ extension Acceptance {
             try rejects(.idempotencyConflict) { try f.ledger.requireNativeOriginReplay(mutationID: received.mutationID, origin: a, enableLink: true) }
             try f.ledger.requireNativeOriginReplay(mutationID: received.mutationID, origin: a, enableLink: false)
         }
-        test("explicit_fresh_review_retains_prior_uncertainty_before_new_CAS_fence") {
+        test("R2_unknown_Receive_R3_reviewed_CAS_without_echo_outbox_unblocks_link") {
             let f = try Fixture(root: root, name: "linked-review"), a = try linkedOrigin()
             _ = try localLinkedCommit(f, origin: a, enableLink: true, revision: 0)
             _ = try localLinkedCommit(f, revision: 1)
             let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
             let queued = try f.ledger.linkedDeliveries(for: link)[0], firstAttempt = UUID()
             try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(queued, attemptID: firstAttempt, observedRootSHA256: a.nativeRootSHA256, now: 100) }
-            let uncertain = try f.ledger.linkedDeliveries(for: link)[0]
-            var reviewed: AnnotationExchangeLinkedDelivery?
             let fresh = try linkedOrigin(root: String(repeating: "d", count: 64))
-            try f.db.transaction { reviewed = try f.ledger.acceptLinkedReview(uncertain, origin: fresh) }
-            guard let reviewed else { throw CheckFailure("missing explicit review") }
-            try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reviews WHERE prior_state='dispatch_may_have_occurred' AND prior_attempt_id=?;", [firstAttempt.uuidString]) == 1, "review erased prior uncertainty")
-            try require(!reviewed.delivery.acknowledged, "read alone produced ACK")
-            try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(reviewed, attemptID: UUID(), observedRootSHA256: fresh.nativeRootSHA256, now: 101) }
+            let received = try localLinkedCommit(f, origin: fresh, revision: 2)
+            let current = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            try require(f.ledger.pending(for: fresh.destination).count == 1, "received R3 acquired a fabricated outbox")
+            let reconciliation = UUID()
+            try f.db.transaction { try f.ledger.markLinkedReconciliationDispatch(link: current, version: received, attemptID: reconciliation, observedRootSHA256: fresh.nativeRootSHA256) }
+            let reopened = try Fixture(root: root, name: "linked-review", create: false)
+            try require(reopened.ledger.unresolvedLinkedReconciliations(for: [current]) == Set([current.id]), "reconciliation dispatch lost on restart")
+            let confirmed = String(repeating: "e", count: 64)
+            try reopened.ledger.recordLinkedReconciliationReadback(link: current, version: received, attemptID: reconciliation, nativeRootSHA256: confirmed, nativeResponseSHA256: fresh.nativeResponseSHA256)
+            let old = try reopened.ledger.linkedDeliveries(for: current)[0]
+            try require(old.state == .superseded && !old.delivery.acknowledged, "old unknown delivery got a fabricated ACK")
+            try require(reopened.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reviews WHERE prior_state='dispatch_may_have_occurred' AND prior_attempt_id=? AND resolution_attempt_id=?;", [firstAttempt.uuidString, reconciliation.uuidString]) == 1, "prior uncertainty lost from reconciliation history")
+            try require(reopened.ledger.unresolvedLinkedReconciliations(for: [current]).isEmpty, "verified reconciliation did not release its fence")
+            _ = try localLinkedCommit(reopened, revision: 3)
+            let finalLink = try reopened.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0]
+            let pending = try reopened.ledger.linkedDeliveries(for: finalLink).last!
+            try reopened.db.transaction { try reopened.ledger.markLinkedRevisionDispatch(pending, attemptID: UUID(), observedRootSHA256: confirmed, now: 200) }
+        }
+        test("unknown_reconciliation_blocks_newer_automatic_work_until_verified_review") {
+            let f = try Fixture(root: root, name: "linked-review-fence"), a = try linkedOrigin()
+            let first = try localLinkedCommit(f, origin: a, enableLink: true, revision: 0)
+            let link = try f.ledger.nativeLinks(namespace: namespace, annotationUUID: f.uuid)[0], firstAttempt = UUID()
+            try f.db.transaction { try f.ledger.markLinkedReconciliationDispatch(link: link, version: first, attemptID: firstAttempt, observedRootSHA256: a.nativeRootSHA256) }
+            let second = try localLinkedCommit(f, revision: 1)
+            let pending = try f.ledger.linkedDeliveries(for: link)[0]
+            try rejects(.staleRevision) { try f.db.transaction { try f.ledger.markLinkedRevisionDispatch(pending, attemptID: UUID(), observedRootSHA256: a.nativeRootSHA256, now: 100) } }
+            let resolution = UUID()
+            try f.db.transaction { try f.ledger.markLinkedReconciliationDispatch(link: link, version: second, attemptID: resolution, observedRootSHA256: a.nativeRootSHA256) }
+            try f.ledger.recordLinkedReconciliationReadback(link: link, version: second, attemptID: resolution, nativeRootSHA256: String(repeating: "d", count: 64), nativeResponseSHA256: a.nativeResponseSHA256)
+            try require(f.scalar("SELECT count(*) FROM otzaria_annotation_exchange_linked_reconciliations WHERE attempt_id=? AND state='superseded' AND resolution_attempt_id=?;", [firstAttempt.uuidString, resolution.uuidString]) == 1, "older reconciliation history not bound to observed resolution")
+            let completed = try f.ledger.linkedDeliveries(for: link)[0]
+            try require(completed.state == .verified && completed.delivery.acknowledged, "exact current outgoing body was not acknowledged by its actual handoff data")
         }
     }
 }

@@ -445,7 +445,7 @@ final class LocalCases {
         }
         await run("retirement_during_publication_reports_real_commit_without_owner_delivery") {
             let f = try fixture("retire-publication"); let s = try f.session(); let intent = try f.intent(s, snapshot: await s.read())
-            let subscription = f.store.events.sink { event in if case .treeInvalidated = event { s.retire() } }
+            let subscription = f.store.events.sink { event in if case .localEditorCommitted(let sessionID) = event, sessionID == s.id { s.retire() } }
             defer { subscription.cancel() }
             guard case .completedWithoutOwnership(let receipt) = try await s.save(intent) else { throw LocalCheckFailure("retired delivery accepted") }
             try check(receipt.revision == 1 && !receipt.replayed, "actual commit lost")
