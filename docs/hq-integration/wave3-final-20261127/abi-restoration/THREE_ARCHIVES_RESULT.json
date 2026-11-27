@@ -1,0 +1,67 @@
+{
+  "bounded_metadata_concurrent_reserve_bytes": 268435456,
+  "evidence": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-original-input-restoration-20261127.elt9gekq",
+  "finished_at": "2026-11-27T03:29:41.284755+00:00",
+  "free_after_bytes": 9180786688,
+  "free_before_bytes": 9181048832,
+  "logical_missing_bytes": 807997648,
+  "original_archives_preserved": true,
+  "pins_modified": false,
+  "rows": [
+    {
+      "donor": {
+        "bytes": 271966384,
+        "git_blob": "6f2ddb60cf743eb848bcdd6446a78dcfe43d9c88",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/ios-arm64/verified-Lib-ios-arm64.a",
+        "sha256": "dae8707a64e9928841b7a354e7971fa5d1ec4625e5b22c2ab900739c92b65ac3"
+      },
+      "final": {
+        "bytes": 271966384,
+        "git_blob": "6f2ddb60cf743eb848bcdd6446a78dcfe43d9c88",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/Lib-ios-arm64.a",
+        "sha256": "dae8707a64e9928841b7a354e7971fa5d1ec4625e5b22c2ab900739c92b65ac3"
+      },
+      "status": "ORIGINAL_ADMITTED_ARCHIVE_RESTORED",
+      "target": "ios-arm64",
+      "transport": "APFS clone to unique temporary; exclusive hardlink atomic publication; temporary removed after final verification"
+    },
+    {
+      "donor": {
+        "bytes": 272083912,
+        "git_blob": "79c8147f2fbc6197761e5369ec58d56a244235f4",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/iossimulator-arm64/verified-Lib-iossimulator-arm64.a",
+        "sha256": "4d164ee3407fc111cb605c60e7b5940b95921168527a1849d9dfc9d6cd9e2010"
+      },
+      "final": {
+        "bytes": 272083912,
+        "git_blob": "79c8147f2fbc6197761e5369ec58d56a244235f4",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/Lib-iossimulator-arm64.a",
+        "sha256": "4d164ee3407fc111cb605c60e7b5940b95921168527a1849d9dfc9d6cd9e2010"
+      },
+      "status": "ORIGINAL_ADMITTED_ARCHIVE_RESTORED",
+      "target": "iossimulator-arm64",
+      "transport": "APFS clone to unique temporary; exclusive hardlink atomic publication; temporary removed after final verification"
+    },
+    {
+      "donor": {
+        "bytes": 263947352,
+        "git_blob": "bf24441e9ba62af7717c8a2c3ae85a2e8da9ddaf",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/iossimulator-amd64/verified-Lib-iossimulator-amd64.a",
+        "sha256": "583491f21fedd504b4088696b57c5437b9c840d7f65a49aae2f0f330c794c3a7"
+      },
+      "final": {
+        "bytes": 263947352,
+        "git_blob": "bf24441e9ba62af7717c8a2c3ae85a2e8da9ddaf",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/Lib-iossimulator-amd64.a",
+        "sha256": "583491f21fedd504b4088696b57c5437b9c840d7f65a49aae2f0f330c794c3a7"
+      },
+      "status": "ORIGINAL_ADMITTED_ARCHIVE_RESTORED",
+      "target": "iossimulator-amd64",
+      "transport": "APFS clone to unique temporary; exclusive hardlink atomic publication; temporary removed after final verification"
+    }
+  ],
+  "scope": "ONLY three original admitted archives, guarded restoration from exact retained bytes",
+  "source_pin": "e973cc7432419778f0342624a3b7052055fd270d",
+  "started_at": "2026-11-27T03:29:36.826280+00:00",
+  "status": "THREE_ORIGINAL_ARCHIVES_RESTORED_BYTE_EXACT"
+}

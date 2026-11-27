@@ -1,0 +1,1118 @@
+{
+  "bounded_metadata_concurrent_reserve_bytes": 67108864,
+  "finished_at": "2026-11-27T03:30:49.118941+00:00",
+  "free_after_bytes": 9047330816,
+  "free_before_bytes": 9047904256,
+  "logical_missing_bytes": 2708358,
+  "pins_modified": false,
+  "rows": [
+    {
+      "donor": {
+        "bytes": 16388,
+        "git_blob": "e308e4e4785d624c423300b094d5c22c4318579c",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/go.mod",
+        "sha256": "775988dc753bd2c95c4bdb46c3a4d2c00f0bc0c8568d11d1cbe675d39cdbecdb"
+      },
+      "final": {
+        "bytes": 16388,
+        "git_blob": "e308e4e4785d624c423300b094d5c22c4318579c",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/go.mod",
+        "sha256": "775988dc753bd2c95c4bdb46c3a4d2c00f0bc0c8568d11d1cbe675d39cdbecdb"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 132924,
+        "git_blob": "f0c61168bfca9773d88b441774e9b7a9e69b3a87",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/go.sum",
+        "sha256": "7c873be1e5b4c65e5e46d18167ae6bc29f0f5b51c459a8398d75ab22f0b2432d"
+      },
+      "final": {
+        "bytes": 132924,
+        "git_blob": "f0c61168bfca9773d88b441774e9b7a9e69b3a87",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/go.sum",
+        "sha256": "7c873be1e5b4c65e5e46d18167ae6bc29f0f5b51c459a8398d75ab22f0b2432d"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 34408,
+        "git_blob": "a5d06cfee3f50fbf1629abb9432f94babbe7ac06",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Core.objc.h",
+        "sha256": "bf82471bd0c10caf3206ee36cbb63381fd47f6c7bb307058b156ad0b9a786da6"
+      },
+      "final": {
+        "bytes": 34408,
+        "git_blob": "a5d06cfee3f50fbf1629abb9432f94babbe7ac06",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/Core.objc.h",
+        "sha256": "bf82471bd0c10caf3206ee36cbb63381fd47f6c7bb307058b156ad0b9a786da6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 35577,
+        "git_blob": "ef1e4778f978d2ff6c1cd1ce7d2a76e28a78af72",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Core_darwin.m",
+        "sha256": "cc3074f3ad47d1f423bc529fdd93749d51e95e5318367a21c8e2ae6c3ae700c5"
+      },
+      "final": {
+        "bytes": 35577,
+        "git_blob": "ef1e4778f978d2ff6c1cd1ce7d2a76e28a78af72",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/Core_darwin.m",
+        "sha256": "cc3074f3ad47d1f423bc529fdd93749d51e95e5318367a21c8e2ae6c3ae700c5"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 147084,
+        "git_blob": "0243220e91d03cb9e1d2132254c459979f2f732f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Service.objc.h",
+        "sha256": "e65fdb3c83cf304afa82df1c98506313fa4baf330a3f6341d4f8d0c9d955b742"
+      },
+      "final": {
+        "bytes": 147084,
+        "git_blob": "0243220e91d03cb9e1d2132254c459979f2f732f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/Service.objc.h",
+        "sha256": "e65fdb3c83cf304afa82df1c98506313fa4baf330a3f6341d4f8d0c9d955b742"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 230854,
+        "git_blob": "b6e30613b8aec4448651e0df20820081a94e83da",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Service_darwin.m",
+        "sha256": "4a6319b81ba0b15fe25e5490b278813be12492a41bc1af614948d3ab748abfaa"
+      },
+      "final": {
+        "bytes": 230854,
+        "git_blob": "b6e30613b8aec4448651e0df20820081a94e83da",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/Service_darwin.m",
+        "sha256": "4a6319b81ba0b15fe25e5490b278813be12492a41bc1af614948d3ab748abfaa"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 563,
+        "git_blob": "019e7502d581983722a15bf30799e85cbc5dd766",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Universe.objc.h",
+        "sha256": "61b1a0cd75801d2d8d1d82ef2accda4477966c691795473d696e45de05fcbc7b"
+      },
+      "final": {
+        "bytes": 563,
+        "git_blob": "019e7502d581983722a15bf30799e85cbc5dd766",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/Universe.objc.h",
+        "sha256": "61b1a0cd75801d2d8d1d82ef2accda4477966c691795473d696e45de05fcbc7b"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 969,
+        "git_blob": "369f238d550a7d118806053f9383a9395ab6811f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Universe_darwin.m",
+        "sha256": "21ef9b7d36ef017fb1ec6f4a7df6a797a547b8b5077fbdeac5d84520c4808f61"
+      },
+      "final": {
+        "bytes": 969,
+        "git_blob": "369f238d550a7d118806053f9383a9395ab6811f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/Universe_darwin.m",
+        "sha256": "21ef9b7d36ef017fb1ec6f4a7df6a797a547b8b5077fbdeac5d84520c4808f61"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 158,
+        "git_blob": "b35d8f0acd3641e005106201ef6db9cc7385e36c",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/core.h",
+        "sha256": "ad70d676ddbb2ed2b27d6cc7dee350b20516ec79fe62d8a77cc9300fb5b90da0"
+      },
+      "final": {
+        "bytes": 158,
+        "git_blob": "b35d8f0acd3641e005106201ef6db9cc7385e36c",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/core.h",
+        "sha256": "ad70d676ddbb2ed2b27d6cc7dee350b20516ec79fe62d8a77cc9300fb5b90da0"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 291,
+        "git_blob": "060f16505c734d22d122fcdd4c5d7558c9c34ef9",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/core_darwin.h",
+        "sha256": "4f605789435fc5f0aa4f05fb56b110dac93fd20dc0bd69f3cb43e374f9ce61c4"
+      },
+      "final": {
+        "bytes": 291,
+        "git_blob": "060f16505c734d22d122fcdd4c5d7558c9c34ef9",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/core_darwin.h",
+        "sha256": "4f605789435fc5f0aa4f05fb56b110dac93fd20dc0bd69f3cb43e374f9ce61c4"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 35188,
+        "git_blob": "6fe276f8471559d0436efb801d88bb3dd1ff6232",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_coremain.go",
+        "sha256": "a56e929b42f7e1c82f0f149eaf9e7a21656408081dc061254c63f7e8451f19b6"
+      },
+      "final": {
+        "bytes": 35188,
+        "git_blob": "6fe276f8471559d0436efb801d88bb3dd1ff6232",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/go_coremain.go",
+        "sha256": "a56e929b42f7e1c82f0f149eaf9e7a21656408081dc061254c63f7e8451f19b6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 859,
+        "git_blob": "3d863f5db155121a56558c77847ab94bd8ab0b8b",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_main.go",
+        "sha256": "24107d292ebad372e70666e5738eaee7bbf01e14608cc1b66b7ddbed385d8f29"
+      },
+      "final": {
+        "bytes": 859,
+        "git_blob": "3d863f5db155121a56558c77847ab94bd8ab0b8b",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/go_main.go",
+        "sha256": "24107d292ebad372e70666e5738eaee7bbf01e14608cc1b66b7ddbed385d8f29"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 211592,
+        "git_blob": "0f1af18dfd365b63659e7d93b935925210327b50",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_servicemain.go",
+        "sha256": "11c82ba06dd9de0a79caeec065a6f3192c30a341cf22775b57db54874a9e3d0a"
+      },
+      "final": {
+        "bytes": 211592,
+        "git_blob": "0f1af18dfd365b63659e7d93b935925210327b50",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/go_servicemain.go",
+        "sha256": "11c82ba06dd9de0a79caeec065a6f3192c30a341cf22775b57db54874a9e3d0a"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 1163,
+        "git_blob": "b8036a4d85c7387f3def61473a071b5d8c4c8208",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/ref.h",
+        "sha256": "d76b969941e61d61551ae1e6b7ddc674ac898d422f28cb5dbf8d640ba2ae8df6"
+      },
+      "final": {
+        "bytes": 1163,
+        "git_blob": "b8036a4d85c7387f3def61473a071b5d8c4c8208",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/ref.h",
+        "sha256": "d76b969941e61d61551ae1e6b7ddc674ac898d422f28cb5dbf8d640ba2ae8df6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 1243,
+        "git_blob": "392ec09c0539649dcd4b1a54629c59063013a5b6",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq.go",
+        "sha256": "dfd81dfcdce023a7a881e2e7c2b5491179066c5b376019d442e3c154b268d105"
+      },
+      "final": {
+        "bytes": 1243,
+        "git_blob": "392ec09c0539649dcd4b1a54629c59063013a5b6",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/seq.go",
+        "sha256": "dfd81dfcdce023a7a881e2e7c2b5491179066c5b376019d442e3c154b268d105"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 156,
+        "git_blob": "6194e947467c0ffb6abdf099717ef187ac44068b",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq.h",
+        "sha256": "da2cf07e2ce44f161fe212bc3cd4fc8d4a1ac2d450b51c9dd290c7e845406c90"
+      },
+      "final": {
+        "bytes": 156,
+        "git_blob": "6194e947467c0ffb6abdf099717ef187ac44068b",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/seq.h",
+        "sha256": "da2cf07e2ce44f161fe212bc3cd4fc8d4a1ac2d450b51c9dd290c7e845406c90"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 2214,
+        "git_blob": "0b4e5de7be579c2025ae9aa0d2b2134e5664618f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.go",
+        "sha256": "7ce757e5513eaf6d7dbbbed539d2018adeeaa7fbe39e16c05f9d7d0da32a6027"
+      },
+      "final": {
+        "bytes": 2214,
+        "git_blob": "0b4e5de7be579c2025ae9aa0d2b2134e5664618f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/seq_darwin.go",
+        "sha256": "7ce757e5513eaf6d7dbbbed539d2018adeeaa7fbe39e16c05f9d7d0da32a6027"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 2213,
+        "git_blob": "1aeec4adaaa5d6ff7ec6a0f3262c020a4811cfcb",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.h",
+        "sha256": "a93aaf442e7712d7c8e381fd6a923f4b02b998a4b4dabcbe661291e42050d3b6"
+      },
+      "final": {
+        "bytes": 2213,
+        "git_blob": "1aeec4adaaa5d6ff7ec6a0f3262c020a4811cfcb",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/seq_darwin.h",
+        "sha256": "a93aaf442e7712d7c8e381fd6a923f4b02b998a4b4dabcbe661291e42050d3b6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 10593,
+        "git_blob": "917a4efabfa7e3e964f7e9f4a5a48a0db3a35805",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.m",
+        "sha256": "cd691d1c60650320fe92dfe30b4410a4a0f9a0bca655ef8909e78088255ffeb4"
+      },
+      "final": {
+        "bytes": 10593,
+        "git_blob": "917a4efabfa7e3e964f7e9f4a5a48a0db3a35805",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/seq_darwin.m",
+        "sha256": "cd691d1c60650320fe92dfe30b4410a4a0f9a0bca655ef8909e78088255ffeb4"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 164,
+        "git_blob": "913981c9590b04549bc9cddcbe221ec5cd72dc31",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/service.h",
+        "sha256": "660b748a7c4e45149020a6d419afe305e37ee8d5b31c699473aa6e32e0ba66ea"
+      },
+      "final": {
+        "bytes": 164,
+        "git_blob": "913981c9590b04549bc9cddcbe221ec5cd72dc31",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/service.h",
+        "sha256": "660b748a7c4e45149020a6d419afe305e37ee8d5b31c699473aa6e32e0ba66ea"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 37767,
+        "git_blob": "3d95e5b5fbc93f1a515d64acfe4a83245cf3b0ce",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/service_darwin.h",
+        "sha256": "c25d97e2d0032ff056588b859e2dfc28fd79cf88c534b4257faba381361fb6a2"
+      },
+      "final": {
+        "bytes": 37767,
+        "git_blob": "3d95e5b5fbc93f1a515d64acfe4a83245cf3b0ce",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/service_darwin.h",
+        "sha256": "c25d97e2d0032ff056588b859e2dfc28fd79cf88c534b4257faba381361fb6a2"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 166,
+        "git_blob": "acb99c45881ebdbdbd8a135cd8e18dfc26373960",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/universe.h",
+        "sha256": "48ee13c5afc157fc6ff145eed8a99c78aabf67bb47030994af9b8671c59191c3"
+      },
+      "final": {
+        "bytes": 166,
+        "git_blob": "acb99c45881ebdbdbd8a135cd8e18dfc26373960",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/universe.h",
+        "sha256": "48ee13c5afc157fc6ff145eed8a99c78aabf67bb47030994af9b8671c59191c3"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 252,
+        "git_blob": "dec178551f870a96133fc6812d1228ec6cd63834",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/universe_darwin.h",
+        "sha256": "75e4ee1194cc33e516661b1065a22caa306b2c6d70a0d40a887f675e16930251"
+      },
+      "final": {
+        "bytes": 252,
+        "git_blob": "dec178551f870a96133fc6812d1228ec6cd63834",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/ios/src-arm64/gobind/universe_darwin.h",
+        "sha256": "75e4ee1194cc33e516661b1065a22caa306b2c6d70a0d40a887f675e16930251"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "ios-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 16388,
+        "git_blob": "e308e4e4785d624c423300b094d5c22c4318579c",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/go.mod",
+        "sha256": "775988dc753bd2c95c4bdb46c3a4d2c00f0bc0c8568d11d1cbe675d39cdbecdb"
+      },
+      "final": {
+        "bytes": 16388,
+        "git_blob": "e308e4e4785d624c423300b094d5c22c4318579c",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/go.mod",
+        "sha256": "775988dc753bd2c95c4bdb46c3a4d2c00f0bc0c8568d11d1cbe675d39cdbecdb"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 132924,
+        "git_blob": "f0c61168bfca9773d88b441774e9b7a9e69b3a87",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/go.sum",
+        "sha256": "7c873be1e5b4c65e5e46d18167ae6bc29f0f5b51c459a8398d75ab22f0b2432d"
+      },
+      "final": {
+        "bytes": 132924,
+        "git_blob": "f0c61168bfca9773d88b441774e9b7a9e69b3a87",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/go.sum",
+        "sha256": "7c873be1e5b4c65e5e46d18167ae6bc29f0f5b51c459a8398d75ab22f0b2432d"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 34408,
+        "git_blob": "a5d06cfee3f50fbf1629abb9432f94babbe7ac06",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Core.objc.h",
+        "sha256": "bf82471bd0c10caf3206ee36cbb63381fd47f6c7bb307058b156ad0b9a786da6"
+      },
+      "final": {
+        "bytes": 34408,
+        "git_blob": "a5d06cfee3f50fbf1629abb9432f94babbe7ac06",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/Core.objc.h",
+        "sha256": "bf82471bd0c10caf3206ee36cbb63381fd47f6c7bb307058b156ad0b9a786da6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 35577,
+        "git_blob": "ef1e4778f978d2ff6c1cd1ce7d2a76e28a78af72",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Core_darwin.m",
+        "sha256": "cc3074f3ad47d1f423bc529fdd93749d51e95e5318367a21c8e2ae6c3ae700c5"
+      },
+      "final": {
+        "bytes": 35577,
+        "git_blob": "ef1e4778f978d2ff6c1cd1ce7d2a76e28a78af72",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/Core_darwin.m",
+        "sha256": "cc3074f3ad47d1f423bc529fdd93749d51e95e5318367a21c8e2ae6c3ae700c5"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 147084,
+        "git_blob": "0243220e91d03cb9e1d2132254c459979f2f732f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Service.objc.h",
+        "sha256": "e65fdb3c83cf304afa82df1c98506313fa4baf330a3f6341d4f8d0c9d955b742"
+      },
+      "final": {
+        "bytes": 147084,
+        "git_blob": "0243220e91d03cb9e1d2132254c459979f2f732f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/Service.objc.h",
+        "sha256": "e65fdb3c83cf304afa82df1c98506313fa4baf330a3f6341d4f8d0c9d955b742"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 230854,
+        "git_blob": "b6e30613b8aec4448651e0df20820081a94e83da",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Service_darwin.m",
+        "sha256": "4a6319b81ba0b15fe25e5490b278813be12492a41bc1af614948d3ab748abfaa"
+      },
+      "final": {
+        "bytes": 230854,
+        "git_blob": "b6e30613b8aec4448651e0df20820081a94e83da",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/Service_darwin.m",
+        "sha256": "4a6319b81ba0b15fe25e5490b278813be12492a41bc1af614948d3ab748abfaa"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 563,
+        "git_blob": "019e7502d581983722a15bf30799e85cbc5dd766",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Universe.objc.h",
+        "sha256": "61b1a0cd75801d2d8d1d82ef2accda4477966c691795473d696e45de05fcbc7b"
+      },
+      "final": {
+        "bytes": 563,
+        "git_blob": "019e7502d581983722a15bf30799e85cbc5dd766",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/Universe.objc.h",
+        "sha256": "61b1a0cd75801d2d8d1d82ef2accda4477966c691795473d696e45de05fcbc7b"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 969,
+        "git_blob": "369f238d550a7d118806053f9383a9395ab6811f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Universe_darwin.m",
+        "sha256": "21ef9b7d36ef017fb1ec6f4a7df6a797a547b8b5077fbdeac5d84520c4808f61"
+      },
+      "final": {
+        "bytes": 969,
+        "git_blob": "369f238d550a7d118806053f9383a9395ab6811f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/Universe_darwin.m",
+        "sha256": "21ef9b7d36ef017fb1ec6f4a7df6a797a547b8b5077fbdeac5d84520c4808f61"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 158,
+        "git_blob": "b35d8f0acd3641e005106201ef6db9cc7385e36c",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/core.h",
+        "sha256": "ad70d676ddbb2ed2b27d6cc7dee350b20516ec79fe62d8a77cc9300fb5b90da0"
+      },
+      "final": {
+        "bytes": 158,
+        "git_blob": "b35d8f0acd3641e005106201ef6db9cc7385e36c",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/core.h",
+        "sha256": "ad70d676ddbb2ed2b27d6cc7dee350b20516ec79fe62d8a77cc9300fb5b90da0"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 291,
+        "git_blob": "060f16505c734d22d122fcdd4c5d7558c9c34ef9",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/core_darwin.h",
+        "sha256": "4f605789435fc5f0aa4f05fb56b110dac93fd20dc0bd69f3cb43e374f9ce61c4"
+      },
+      "final": {
+        "bytes": 291,
+        "git_blob": "060f16505c734d22d122fcdd4c5d7558c9c34ef9",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/core_darwin.h",
+        "sha256": "4f605789435fc5f0aa4f05fb56b110dac93fd20dc0bd69f3cb43e374f9ce61c4"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 35188,
+        "git_blob": "6fe276f8471559d0436efb801d88bb3dd1ff6232",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_coremain.go",
+        "sha256": "a56e929b42f7e1c82f0f149eaf9e7a21656408081dc061254c63f7e8451f19b6"
+      },
+      "final": {
+        "bytes": 35188,
+        "git_blob": "6fe276f8471559d0436efb801d88bb3dd1ff6232",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/go_coremain.go",
+        "sha256": "a56e929b42f7e1c82f0f149eaf9e7a21656408081dc061254c63f7e8451f19b6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 859,
+        "git_blob": "3d863f5db155121a56558c77847ab94bd8ab0b8b",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_main.go",
+        "sha256": "24107d292ebad372e70666e5738eaee7bbf01e14608cc1b66b7ddbed385d8f29"
+      },
+      "final": {
+        "bytes": 859,
+        "git_blob": "3d863f5db155121a56558c77847ab94bd8ab0b8b",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/go_main.go",
+        "sha256": "24107d292ebad372e70666e5738eaee7bbf01e14608cc1b66b7ddbed385d8f29"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 211592,
+        "git_blob": "0f1af18dfd365b63659e7d93b935925210327b50",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_servicemain.go",
+        "sha256": "11c82ba06dd9de0a79caeec065a6f3192c30a341cf22775b57db54874a9e3d0a"
+      },
+      "final": {
+        "bytes": 211592,
+        "git_blob": "0f1af18dfd365b63659e7d93b935925210327b50",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/go_servicemain.go",
+        "sha256": "11c82ba06dd9de0a79caeec065a6f3192c30a341cf22775b57db54874a9e3d0a"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 1163,
+        "git_blob": "b8036a4d85c7387f3def61473a071b5d8c4c8208",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/ref.h",
+        "sha256": "d76b969941e61d61551ae1e6b7ddc674ac898d422f28cb5dbf8d640ba2ae8df6"
+      },
+      "final": {
+        "bytes": 1163,
+        "git_blob": "b8036a4d85c7387f3def61473a071b5d8c4c8208",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/ref.h",
+        "sha256": "d76b969941e61d61551ae1e6b7ddc674ac898d422f28cb5dbf8d640ba2ae8df6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 1243,
+        "git_blob": "392ec09c0539649dcd4b1a54629c59063013a5b6",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq.go",
+        "sha256": "dfd81dfcdce023a7a881e2e7c2b5491179066c5b376019d442e3c154b268d105"
+      },
+      "final": {
+        "bytes": 1243,
+        "git_blob": "392ec09c0539649dcd4b1a54629c59063013a5b6",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/seq.go",
+        "sha256": "dfd81dfcdce023a7a881e2e7c2b5491179066c5b376019d442e3c154b268d105"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 156,
+        "git_blob": "6194e947467c0ffb6abdf099717ef187ac44068b",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq.h",
+        "sha256": "da2cf07e2ce44f161fe212bc3cd4fc8d4a1ac2d450b51c9dd290c7e845406c90"
+      },
+      "final": {
+        "bytes": 156,
+        "git_blob": "6194e947467c0ffb6abdf099717ef187ac44068b",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/seq.h",
+        "sha256": "da2cf07e2ce44f161fe212bc3cd4fc8d4a1ac2d450b51c9dd290c7e845406c90"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 2214,
+        "git_blob": "0b4e5de7be579c2025ae9aa0d2b2134e5664618f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.go",
+        "sha256": "7ce757e5513eaf6d7dbbbed539d2018adeeaa7fbe39e16c05f9d7d0da32a6027"
+      },
+      "final": {
+        "bytes": 2214,
+        "git_blob": "0b4e5de7be579c2025ae9aa0d2b2134e5664618f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/seq_darwin.go",
+        "sha256": "7ce757e5513eaf6d7dbbbed539d2018adeeaa7fbe39e16c05f9d7d0da32a6027"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 2213,
+        "git_blob": "1aeec4adaaa5d6ff7ec6a0f3262c020a4811cfcb",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.h",
+        "sha256": "a93aaf442e7712d7c8e381fd6a923f4b02b998a4b4dabcbe661291e42050d3b6"
+      },
+      "final": {
+        "bytes": 2213,
+        "git_blob": "1aeec4adaaa5d6ff7ec6a0f3262c020a4811cfcb",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/seq_darwin.h",
+        "sha256": "a93aaf442e7712d7c8e381fd6a923f4b02b998a4b4dabcbe661291e42050d3b6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 10593,
+        "git_blob": "917a4efabfa7e3e964f7e9f4a5a48a0db3a35805",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.m",
+        "sha256": "cd691d1c60650320fe92dfe30b4410a4a0f9a0bca655ef8909e78088255ffeb4"
+      },
+      "final": {
+        "bytes": 10593,
+        "git_blob": "917a4efabfa7e3e964f7e9f4a5a48a0db3a35805",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/seq_darwin.m",
+        "sha256": "cd691d1c60650320fe92dfe30b4410a4a0f9a0bca655ef8909e78088255ffeb4"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 164,
+        "git_blob": "913981c9590b04549bc9cddcbe221ec5cd72dc31",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/service.h",
+        "sha256": "660b748a7c4e45149020a6d419afe305e37ee8d5b31c699473aa6e32e0ba66ea"
+      },
+      "final": {
+        "bytes": 164,
+        "git_blob": "913981c9590b04549bc9cddcbe221ec5cd72dc31",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/service.h",
+        "sha256": "660b748a7c4e45149020a6d419afe305e37ee8d5b31c699473aa6e32e0ba66ea"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 37767,
+        "git_blob": "3d95e5b5fbc93f1a515d64acfe4a83245cf3b0ce",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/service_darwin.h",
+        "sha256": "c25d97e2d0032ff056588b859e2dfc28fd79cf88c534b4257faba381361fb6a2"
+      },
+      "final": {
+        "bytes": 37767,
+        "git_blob": "3d95e5b5fbc93f1a515d64acfe4a83245cf3b0ce",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/service_darwin.h",
+        "sha256": "c25d97e2d0032ff056588b859e2dfc28fd79cf88c534b4257faba381361fb6a2"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 166,
+        "git_blob": "acb99c45881ebdbdbd8a135cd8e18dfc26373960",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/universe.h",
+        "sha256": "48ee13c5afc157fc6ff145eed8a99c78aabf67bb47030994af9b8671c59191c3"
+      },
+      "final": {
+        "bytes": 166,
+        "git_blob": "acb99c45881ebdbdbd8a135cd8e18dfc26373960",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/universe.h",
+        "sha256": "48ee13c5afc157fc6ff145eed8a99c78aabf67bb47030994af9b8671c59191c3"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 252,
+        "git_blob": "dec178551f870a96133fc6812d1228ec6cd63834",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/universe_darwin.h",
+        "sha256": "75e4ee1194cc33e516661b1065a22caa306b2c6d70a0d40a887f675e16930251"
+      },
+      "final": {
+        "bytes": 252,
+        "git_blob": "dec178551f870a96133fc6812d1228ec6cd63834",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-arm64/gobind/universe_darwin.h",
+        "sha256": "75e4ee1194cc33e516661b1065a22caa306b2c6d70a0d40a887f675e16930251"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-arm64"
+    },
+    {
+      "donor": {
+        "bytes": 16388,
+        "git_blob": "e308e4e4785d624c423300b094d5c22c4318579c",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/go.mod",
+        "sha256": "775988dc753bd2c95c4bdb46c3a4d2c00f0bc0c8568d11d1cbe675d39cdbecdb"
+      },
+      "final": {
+        "bytes": 16388,
+        "git_blob": "e308e4e4785d624c423300b094d5c22c4318579c",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/go.mod",
+        "sha256": "775988dc753bd2c95c4bdb46c3a4d2c00f0bc0c8568d11d1cbe675d39cdbecdb"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 132924,
+        "git_blob": "f0c61168bfca9773d88b441774e9b7a9e69b3a87",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/go.sum",
+        "sha256": "7c873be1e5b4c65e5e46d18167ae6bc29f0f5b51c459a8398d75ab22f0b2432d"
+      },
+      "final": {
+        "bytes": 132924,
+        "git_blob": "f0c61168bfca9773d88b441774e9b7a9e69b3a87",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/go.sum",
+        "sha256": "7c873be1e5b4c65e5e46d18167ae6bc29f0f5b51c459a8398d75ab22f0b2432d"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 34408,
+        "git_blob": "a5d06cfee3f50fbf1629abb9432f94babbe7ac06",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Core.objc.h",
+        "sha256": "bf82471bd0c10caf3206ee36cbb63381fd47f6c7bb307058b156ad0b9a786da6"
+      },
+      "final": {
+        "bytes": 34408,
+        "git_blob": "a5d06cfee3f50fbf1629abb9432f94babbe7ac06",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/Core.objc.h",
+        "sha256": "bf82471bd0c10caf3206ee36cbb63381fd47f6c7bb307058b156ad0b9a786da6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 35577,
+        "git_blob": "ef1e4778f978d2ff6c1cd1ce7d2a76e28a78af72",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Core_darwin.m",
+        "sha256": "cc3074f3ad47d1f423bc529fdd93749d51e95e5318367a21c8e2ae6c3ae700c5"
+      },
+      "final": {
+        "bytes": 35577,
+        "git_blob": "ef1e4778f978d2ff6c1cd1ce7d2a76e28a78af72",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/Core_darwin.m",
+        "sha256": "cc3074f3ad47d1f423bc529fdd93749d51e95e5318367a21c8e2ae6c3ae700c5"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 147084,
+        "git_blob": "0243220e91d03cb9e1d2132254c459979f2f732f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Service.objc.h",
+        "sha256": "e65fdb3c83cf304afa82df1c98506313fa4baf330a3f6341d4f8d0c9d955b742"
+      },
+      "final": {
+        "bytes": 147084,
+        "git_blob": "0243220e91d03cb9e1d2132254c459979f2f732f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/Service.objc.h",
+        "sha256": "e65fdb3c83cf304afa82df1c98506313fa4baf330a3f6341d4f8d0c9d955b742"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 230854,
+        "git_blob": "b6e30613b8aec4448651e0df20820081a94e83da",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Service_darwin.m",
+        "sha256": "4a6319b81ba0b15fe25e5490b278813be12492a41bc1af614948d3ab748abfaa"
+      },
+      "final": {
+        "bytes": 230854,
+        "git_blob": "b6e30613b8aec4448651e0df20820081a94e83da",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/Service_darwin.m",
+        "sha256": "4a6319b81ba0b15fe25e5490b278813be12492a41bc1af614948d3ab748abfaa"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 563,
+        "git_blob": "019e7502d581983722a15bf30799e85cbc5dd766",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Universe.objc.h",
+        "sha256": "61b1a0cd75801d2d8d1d82ef2accda4477966c691795473d696e45de05fcbc7b"
+      },
+      "final": {
+        "bytes": 563,
+        "git_blob": "019e7502d581983722a15bf30799e85cbc5dd766",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/Universe.objc.h",
+        "sha256": "61b1a0cd75801d2d8d1d82ef2accda4477966c691795473d696e45de05fcbc7b"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 969,
+        "git_blob": "369f238d550a7d118806053f9383a9395ab6811f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/Universe_darwin.m",
+        "sha256": "21ef9b7d36ef017fb1ec6f4a7df6a797a547b8b5077fbdeac5d84520c4808f61"
+      },
+      "final": {
+        "bytes": 969,
+        "git_blob": "369f238d550a7d118806053f9383a9395ab6811f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/Universe_darwin.m",
+        "sha256": "21ef9b7d36ef017fb1ec6f4a7df6a797a547b8b5077fbdeac5d84520c4808f61"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 158,
+        "git_blob": "b35d8f0acd3641e005106201ef6db9cc7385e36c",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/core.h",
+        "sha256": "ad70d676ddbb2ed2b27d6cc7dee350b20516ec79fe62d8a77cc9300fb5b90da0"
+      },
+      "final": {
+        "bytes": 158,
+        "git_blob": "b35d8f0acd3641e005106201ef6db9cc7385e36c",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/core.h",
+        "sha256": "ad70d676ddbb2ed2b27d6cc7dee350b20516ec79fe62d8a77cc9300fb5b90da0"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 291,
+        "git_blob": "060f16505c734d22d122fcdd4c5d7558c9c34ef9",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/core_darwin.h",
+        "sha256": "4f605789435fc5f0aa4f05fb56b110dac93fd20dc0bd69f3cb43e374f9ce61c4"
+      },
+      "final": {
+        "bytes": 291,
+        "git_blob": "060f16505c734d22d122fcdd4c5d7558c9c34ef9",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/core_darwin.h",
+        "sha256": "4f605789435fc5f0aa4f05fb56b110dac93fd20dc0bd69f3cb43e374f9ce61c4"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 35188,
+        "git_blob": "6fe276f8471559d0436efb801d88bb3dd1ff6232",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_coremain.go",
+        "sha256": "a56e929b42f7e1c82f0f149eaf9e7a21656408081dc061254c63f7e8451f19b6"
+      },
+      "final": {
+        "bytes": 35188,
+        "git_blob": "6fe276f8471559d0436efb801d88bb3dd1ff6232",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/go_coremain.go",
+        "sha256": "a56e929b42f7e1c82f0f149eaf9e7a21656408081dc061254c63f7e8451f19b6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 859,
+        "git_blob": "3d863f5db155121a56558c77847ab94bd8ab0b8b",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_main.go",
+        "sha256": "24107d292ebad372e70666e5738eaee7bbf01e14608cc1b66b7ddbed385d8f29"
+      },
+      "final": {
+        "bytes": 859,
+        "git_blob": "3d863f5db155121a56558c77847ab94bd8ab0b8b",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/go_main.go",
+        "sha256": "24107d292ebad372e70666e5738eaee7bbf01e14608cc1b66b7ddbed385d8f29"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 211592,
+        "git_blob": "0f1af18dfd365b63659e7d93b935925210327b50",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/go_servicemain.go",
+        "sha256": "11c82ba06dd9de0a79caeec065a6f3192c30a341cf22775b57db54874a9e3d0a"
+      },
+      "final": {
+        "bytes": 211592,
+        "git_blob": "0f1af18dfd365b63659e7d93b935925210327b50",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/go_servicemain.go",
+        "sha256": "11c82ba06dd9de0a79caeec065a6f3192c30a341cf22775b57db54874a9e3d0a"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 1163,
+        "git_blob": "b8036a4d85c7387f3def61473a071b5d8c4c8208",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/ref.h",
+        "sha256": "d76b969941e61d61551ae1e6b7ddc674ac898d422f28cb5dbf8d640ba2ae8df6"
+      },
+      "final": {
+        "bytes": 1163,
+        "git_blob": "b8036a4d85c7387f3def61473a071b5d8c4c8208",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/ref.h",
+        "sha256": "d76b969941e61d61551ae1e6b7ddc674ac898d422f28cb5dbf8d640ba2ae8df6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 1243,
+        "git_blob": "392ec09c0539649dcd4b1a54629c59063013a5b6",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq.go",
+        "sha256": "dfd81dfcdce023a7a881e2e7c2b5491179066c5b376019d442e3c154b268d105"
+      },
+      "final": {
+        "bytes": 1243,
+        "git_blob": "392ec09c0539649dcd4b1a54629c59063013a5b6",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/seq.go",
+        "sha256": "dfd81dfcdce023a7a881e2e7c2b5491179066c5b376019d442e3c154b268d105"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 156,
+        "git_blob": "6194e947467c0ffb6abdf099717ef187ac44068b",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq.h",
+        "sha256": "da2cf07e2ce44f161fe212bc3cd4fc8d4a1ac2d450b51c9dd290c7e845406c90"
+      },
+      "final": {
+        "bytes": 156,
+        "git_blob": "6194e947467c0ffb6abdf099717ef187ac44068b",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/seq.h",
+        "sha256": "da2cf07e2ce44f161fe212bc3cd4fc8d4a1ac2d450b51c9dd290c7e845406c90"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 2214,
+        "git_blob": "0b4e5de7be579c2025ae9aa0d2b2134e5664618f",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.go",
+        "sha256": "7ce757e5513eaf6d7dbbbed539d2018adeeaa7fbe39e16c05f9d7d0da32a6027"
+      },
+      "final": {
+        "bytes": 2214,
+        "git_blob": "0b4e5de7be579c2025ae9aa0d2b2134e5664618f",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/seq_darwin.go",
+        "sha256": "7ce757e5513eaf6d7dbbbed539d2018adeeaa7fbe39e16c05f9d7d0da32a6027"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 2213,
+        "git_blob": "1aeec4adaaa5d6ff7ec6a0f3262c020a4811cfcb",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.h",
+        "sha256": "a93aaf442e7712d7c8e381fd6a923f4b02b998a4b4dabcbe661291e42050d3b6"
+      },
+      "final": {
+        "bytes": 2213,
+        "git_blob": "1aeec4adaaa5d6ff7ec6a0f3262c020a4811cfcb",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/seq_darwin.h",
+        "sha256": "a93aaf442e7712d7c8e381fd6a923f4b02b998a4b4dabcbe661291e42050d3b6"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 10593,
+        "git_blob": "917a4efabfa7e3e964f7e9f4a5a48a0db3a35805",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/seq_darwin.m",
+        "sha256": "cd691d1c60650320fe92dfe30b4410a4a0f9a0bca655ef8909e78088255ffeb4"
+      },
+      "final": {
+        "bytes": 10593,
+        "git_blob": "917a4efabfa7e3e964f7e9f4a5a48a0db3a35805",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/seq_darwin.m",
+        "sha256": "cd691d1c60650320fe92dfe30b4410a4a0f9a0bca655ef8909e78088255ffeb4"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 164,
+        "git_blob": "913981c9590b04549bc9cddcbe221ec5cd72dc31",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/service.h",
+        "sha256": "660b748a7c4e45149020a6d419afe305e37ee8d5b31c699473aa6e32e0ba66ea"
+      },
+      "final": {
+        "bytes": 164,
+        "git_blob": "913981c9590b04549bc9cddcbe221ec5cd72dc31",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/service.h",
+        "sha256": "660b748a7c4e45149020a6d419afe305e37ee8d5b31c699473aa6e32e0ba66ea"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 37767,
+        "git_blob": "3d95e5b5fbc93f1a515d64acfe4a83245cf3b0ce",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/service_darwin.h",
+        "sha256": "c25d97e2d0032ff056588b859e2dfc28fd79cf88c534b4257faba381361fb6a2"
+      },
+      "final": {
+        "bytes": 37767,
+        "git_blob": "3d95e5b5fbc93f1a515d64acfe4a83245cf3b0ce",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/service_darwin.h",
+        "sha256": "c25d97e2d0032ff056588b859e2dfc28fd79cf88c534b4257faba381361fb6a2"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 166,
+        "git_blob": "acb99c45881ebdbdbd8a135cd8e18dfc26373960",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/universe.h",
+        "sha256": "48ee13c5afc157fc6ff145eed8a99c78aabf67bb47030994af9b8671c59191c3"
+      },
+      "final": {
+        "bytes": 166,
+        "git_blob": "acb99c45881ebdbdbd8a135cd8e18dfc26373960",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/universe.h",
+        "sha256": "48ee13c5afc157fc6ff145eed8a99c78aabf67bb47030994af9b8671c59191c3"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    },
+    {
+      "donor": {
+        "bytes": 252,
+        "git_blob": "dec178551f870a96133fc6812d1228ec6cd63834",
+        "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/exact-go-archive-recovery.JvVNJyCs/exact-compiler-root.9NUpeZjN/generated/src/gobind/universe_darwin.h",
+        "sha256": "75e4ee1194cc33e516661b1065a22caa306b2c6d70a0d40a887f675e16930251"
+      },
+      "final": {
+        "bytes": 252,
+        "git_blob": "dec178551f870a96133fc6812d1228ec6cd63834",
+        "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/tmp/gomobile-work-2591336864/iossimulator/src-amd64/gobind/universe_darwin.h",
+        "sha256": "75e4ee1194cc33e516661b1065a22caa306b2c6d70a0d40a887f675e16930251"
+      },
+      "status": "ORIGINAL_FINAL_COMPILER_INPUT_RESTORED",
+      "target": "iossimulator-amd64"
+    }
+  ],
+  "scope": "ONLY69 final original compiler module/source inputs; pre-tidy historical evidence unchanged",
+  "source_pin": "e973cc7432419778f0342624a3b7052055fd270d",
+  "started_at": "2026-11-27T03:30:48.731640+00:00",
+  "status": "SIXTY_NINE_ORIGINAL_FINAL_COMPILER_INPUTS_RESTORED_BYTE_EXACT"
+}

@@ -1,0 +1,11 @@
+{
+  "copied_member_count": 0,
+  "native_tests_rerun": false,
+  "new_sdk_acceptance_granted": false,
+  "original_source_sha": "75a98ba98d6455eefc2c98113fa744b0f3c2e7bf",
+  "reference": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/ABI_DONOR_INPUT.json",
+  "reference_sha256": "adab56b1ad2c6fc06d7b154b4df0112a9a3dfdde4230a576e5064bd15bd04496",
+  "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "status": "PASS_EXACT_NATIVE_ABI_REUSE_ONLY_NEW_SDK_NOT_YET_ACCEPTED",
+  "verified_lib_members": 17
+}

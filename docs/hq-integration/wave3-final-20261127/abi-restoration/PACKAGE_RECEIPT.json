@@ -1,0 +1,25 @@
+{
+  "all_members_read_back_verified": true,
+  "archive": {
+    "bytes": 2071721,
+    "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp/RESTORATION_RAW_EVIDENCE.tar.gz",
+    "sha256": "004002315135a4f182caf4e1da5009fe4c7b6ca74a960508a60bd26dd7a67c6f"
+  },
+  "created_at": "2026-11-27T04:03:47.849381+00:00",
+  "file_count": 2024,
+  "free_bytes_after": 11031277568,
+  "handoff": {
+    "bytes": 6201,
+    "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp/SDK_CONTINUATION_READINESS.json",
+    "sha256": "a81c4d4a0efb1be3b5bf91ff7aa3b59f089bcc7de67d851320231cdd21a2e373"
+  },
+  "manifest": {
+    "bytes": 760767,
+    "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp/MEMBER_MANIFEST.json",
+    "sha256": "e4c4490527b60236031fa9e5aa0f51459fbcf782ee8638ab004dc20e572dec69"
+  },
+  "original_sources_preserved": true,
+  "raw_bytes": 12669277,
+  "schema": "otzaria.wave3.abi-restoration-evidence-package/1",
+  "status": "SEALED_ORIGINAL_EVIDENCE_MEMBERS_VERIFIED"
+}

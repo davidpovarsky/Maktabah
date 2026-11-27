@@ -1,0 +1,52 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/python@3.12/bin/python3.12",
+    "-B",
+    "-c",
+    "import importlib.util,json,sys; from pathlib import Path; root=Path(sys.argv[1]); p=root/'Tools/OriginalEditor/ABIPinnedWrapper/pinned_wrapper.py'; s=importlib.util.spec_from_file_location('original_pinned_wrapper',p); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); result=m.verify(Path(sys.argv[2]),sys.argv[3],root,sys.argv[4]); print(json.dumps(result,sort_keys=True))",
+    "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source",
+    "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Evidence/pinned-wrapper/RESULT.json",
+    "d7fca002ef2e7984ef6ada7bc23ac3f055cce10f8e079b24166aa0c39fea692f",
+    "e973cc7432419778f0342624a3b7052055fd270d"
+  ],
+  "argv_exactly_matches_preserved_failed_attempt": true,
+  "cwd": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source",
+  "finished_at": "2026-11-27T03:50:39.104202+00:00",
+  "free_after_bytes": 9581146112,
+  "hydration_result_sha256": "ba74c565bedddfb819ece0e90b6958ec14386f27a4d937c6042935492cd433e2",
+  "inputs": [
+    {
+      "bytes": 35309,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/Tools/OriginalEditor/ABIPinnedWrapper/pinned_wrapper.py",
+      "sha256": "178262cdfd5d8b07fb0d8915bb394150ef8988de5fe2115f02bac735f6c65289"
+    },
+    {
+      "bytes": 32343,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Evidence/pinned-wrapper/RESULT.json",
+      "sha256": "d7fca002ef2e7984ef6ada7bc23ac3f055cce10f8e079b24166aa0c39fea692f"
+    },
+    {
+      "bytes": 258766,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-e973cc74/source/build/ABI-Candidate-Work/pinned-go-launcher/CONFIG.json",
+      "sha256": "3bae7b4aa8faf0319886196946eb50b4b20df3265c2c00e1049fd0d32c470f09"
+    }
+  ],
+  "original_source_tracked_status": "",
+  "outputs": [
+    {
+      "bytes": 474,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/original-pinned-verifier.stdout.log",
+      "sha256": "7ac4ef28a58931774460334c3deba82b7114d0c5e936628bfde38a0e7bbab3bc"
+    },
+    {
+      "bytes": 0,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/original-pinned-verifier.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "returncode": 0,
+  "scope": "Unmodified original retained pinned-wrapper ABI closure validation after exact dependency restoration; no SDK or app build",
+  "source_pin": "e973cc7432419778f0342624a3b7052055fd270d",
+  "started_at": "2026-11-27T03:50:34.691641+00:00",
+  "status": "PASS"
+}

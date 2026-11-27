@@ -1,0 +1,96 @@
+{
+  "source": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "source_status_before": "",
+  "free_bytes_before": 27483713536,
+  "commands": [
+    {
+      "name": "focused-controls",
+      "command": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "-c",
+        "import unittest,sys,json,pathlib,time\nids=['test_prepare_donor_abi.RetainedStagingInventoryControls.test_retained_pointer_uses_its_exact_qualified_inventory', 'test_prepare_donor_abi.RetainedStagingInventoryControls.test_changed_qualification_bytes_are_rejected_before_staging', 'test_prepare_donor_abi.RetainedStagingInventoryControls.test_even_digest_bound_receipt_must_reference_the_exact_native_input', 'test_prepare_donor_abi.RetainedStagingInventoryControls.test_an_unknown_reference_schema_cannot_supply_a_file_inventory', 'test_prepare_donor_abi.RetainedStagingInventoryControls.test_existing_direct_inventory_is_retained']\nclass R(unittest.TextTestResult):\n def __init__(self,*a,**k):super().__init__(*a,**k);self.successes=[]\n def addSuccess(self,t):super().addSuccess(t);self.successes.append(t.id())\nstart=time.time();suite=unittest.defaultTestLoader.loadTestsFromNames(ids)\nres=unittest.TextTestRunner(verbosity=2,resultclass=R).run(suite)\np=pathlib.Path('/Users/m1/builds/otzaria-wave1-sdk-20261127/evidence/sdk-1be-preparation/focused-controls.json')\np.write_text(json.dumps({'source':'1be970356c655bcef3688ddf1d129d5029bbc533','requested':ids,'tests_run':res.testsRun,'passed':res.successes,'failures':[{'id':t.id(),'trace':v}for t,v in res.failures],'errors':[{'id':t.id(),'trace':v}for t,v in res.errors],'skipped':[(t.id(),v)for t,v in res.skipped],'elapsed_seconds':time.time()-start,'scope':'5 newly required retained staging inventory controls only; separate retained results remain source-scoped','native_or_ui_credit':False},indent=2))\nsys.exit(0 if res.wasSuccessful()and res.testsRun==len(ids)and not res.skipped else 1)\n"
+      ],
+      "rc": 0,
+      "seconds": 0.078,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "bf1cd7eefd8a111e1ed0b09e90e2296565df88a7a14ef993357c4438cc1e5fc5"
+    },
+    {
+      "name": "prepare-local",
+      "command": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_local_execution.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence",
+        "--work",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work"
+      ],
+      "rc": 0,
+      "seconds": 1.662,
+      "stdout_sha256": "f3d1938f180307c297c0256487bc631e98b1940848a384147e8a2c9c43000d36",
+      "stderr_sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+    },
+    {
+      "name": "source-only",
+      "command": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/run_framework_acceptance.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence",
+        "--work",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work",
+        "--source-only"
+      ],
+      "rc": 0,
+      "seconds": 7.993,
+      "stdout_sha256": "909578b4fad3e0d92b322fe06ca0a823b771a5a62711354d22c9511f7e700ea4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "check-original-hanlin",
+      "command": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/Hanlin/prepare_sdk.py",
+        "--check"
+      ],
+      "rc": 0,
+      "seconds": 1.345,
+      "stdout_sha256": "316086852fca3c2c195249bdfdb565259fa627af964a8409bb8d5087698ec3fc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "prepare-donor-abi",
+      "command": [
+        "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+        "-B",
+        "Tools/OriginalEditor/prepare_donor_abi.py",
+        "--root",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+        "--donor",
+        "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source",
+        "--evidence",
+        "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-NativeABI"
+      ],
+      "rc": 1,
+      "seconds": 15.376,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7bf00dcea5d6563ec2c46db0a1025513fdc6aa437b2115547ad6017742b961d7"
+    }
+  ],
+  "execution_identity": {
+    "OTZARIA_LOCAL_EXECUTION": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/local-execution.json",
+    "OTZARIA_LOCAL_EXECUTION_SHA256": "37147361fcaad1521fc3f3d47279341dd3c6b25db619f801babfab3ce0ff0528"
+  },
+  "status": "PREPARATION_STOPPED",
+  "error": "prepare-donor-abi exited 1",
+  "source_status_after": "",
+  "free_bytes_after": 27328000000
+}

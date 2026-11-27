@@ -1,0 +1,9 @@
+{
+  "consumer_local_execution_sha256": "37147361fcaad1521fc3f3d47279341dd3c6b25db619f801babfab3ce0ff0528",
+  "consumer_source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "donor_root": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source",
+  "new_sdk_acceptance_granted": false,
+  "policy_sha256": "dce7e7b72e6417c99a8d23a68010258735be21cfac41aa3e0c6cc80765f7671f",
+  "schema": "otzaria.original-import-donor-sdk-input/1",
+  "status": "EVIDENCE_REFERENCE_ONLY_REQUIRES_VERIFICATION"
+}

@@ -1,0 +1,2001 @@
+{
+  "already_identical_files": 0,
+  "current_identity": "zombiezen.com/go/sqlite@v1.4.2",
+  "current_module": 198,
+  "finished_at": "2026-11-27T03:49:28.145249+00:00",
+  "free_before_module_bytes": 7444013056,
+  "free_final_bytes": 7443513344,
+  "free_start_bytes": 9147367424,
+  "modules": [
+    {
+      "bytes": 111406,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 9006571520,
+      "index": 1,
+      "module": "filippo.io/edwards25519",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/001/RESULT.json",
+      "receipt_sha256": "0ee9fdb184fb983430ad044b61c2be6202e3a014efd8489bcd1a0167b3e51c41",
+      "version": "v1.2.0"
+    },
+    {
+      "bytes": 89841,
+      "files": 12,
+      "free_after_owned_cleanup_bytes": 8901435392,
+      "index": 2,
+      "module": "github.com/PuerkitoBio/goquery",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/002/RESULT.json",
+      "receipt_sha256": "97b54ca683d3785168fd4a8dded7fc2768e6489e0049dbc83e9cb7d7f8c6d88b",
+      "version": "v1.10.2"
+    },
+    {
+      "bytes": 49672,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 8813977600,
+      "index": 3,
+      "module": "github.com/andybalholm/cascadia",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/003/RESULT.json",
+      "receipt_sha256": "967fc96896618786b8e4ef99270f8cb76cc9baa6f20a48438be9df7a9ec6a272",
+      "version": "v1.3.3"
+    },
+    {
+      "bytes": 2708192,
+      "files": 84,
+      "free_after_owned_cleanup_bytes": 8730566656,
+      "index": 4,
+      "module": "github.com/anyproto/any-block",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/004/RESULT.json",
+      "receipt_sha256": "fd5709d6f509360f7e133b72c80ee1292f3b108a8809a907c80db30f3cbacbb5",
+      "version": "v0.0.0-20260919082013-9906a7c36b68"
+    },
+    {
+      "bytes": 202628,
+      "files": 50,
+      "free_after_owned_cleanup_bytes": 8674623488,
+      "index": 5,
+      "module": "github.com/anyproto/any-store",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/005/RESULT.json",
+      "receipt_sha256": "82c74a3f5e6966eb0d14de5a830ef9f7dafff4808ffdaceb48442d5e73b24075",
+      "version": "v1.0.3"
+    },
+    {
+      "bytes": 3355785,
+      "files": 313,
+      "free_after_owned_cleanup_bytes": 8465096704,
+      "index": 6,
+      "module": "github.com/anyproto/any-sync",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/006/RESULT.json",
+      "receipt_sha256": "04f49faaf46d22249ec8d4cf9ab4228a6fae863739f8bfc6e2c16b57681bc3a9",
+      "version": "v0.13.8"
+    },
+    {
+      "bytes": 88722,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 8443564032,
+      "index": 7,
+      "module": "github.com/anyproto/anytype-publish-server/publishclient",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/007/RESULT.json",
+      "receipt_sha256": "500bb1f596b7c131b559573dab4a1e5832c0cd67774caaea2971828001960f36",
+      "version": "v0.0.0-20260925080338-0fb960f00458"
+    },
+    {
+      "bytes": 90913,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 8311992320,
+      "index": 8,
+      "module": "github.com/anyproto/anytype-push-server/pushclient",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/008/RESULT.json",
+      "receipt_sha256": "c3f33aff5b9280f305271c5e4b9bef578f0696fb4c18be1917585be1225b72c2",
+      "version": "v0.0.0-20250801122506-553f6c085a23"
+    },
+    {
+      "bytes": 568690,
+      "files": 50,
+      "free_after_owned_cleanup_bytes": 8294445056,
+      "index": 9,
+      "module": "github.com/anyproto/badger/v4",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/009/RESULT.json",
+      "receipt_sha256": "a2564d43f1a05b2890782c4c8f49128acf5519060d1338ba1a3f41c5e8c4c03f",
+      "version": "v4.2.1-0.20240110160636-80743fa3d580"
+    },
+    {
+      "bytes": 172529,
+      "files": 11,
+      "free_after_owned_cleanup_bytes": 8289304576,
+      "index": 10,
+      "module": "github.com/anyproto/go-bip39",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/010/RESULT.json",
+      "receipt_sha256": "3aca7d47be5f5a193cd6da59788df5ccd61853cf1a61fc6b940ea6234df63250",
+      "version": "v1.0.0"
+    },
+    {
+      "bytes": 7609,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 8277635072,
+      "index": 11,
+      "module": "github.com/anyproto/go-chash",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/011/RESULT.json",
+      "receipt_sha256": "c46fbcf39b5939b5eeca56111840eca44d57b7b37a51d314117855aa0ac99998",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 45600,
+      "files": 10,
+      "free_after_owned_cleanup_bytes": 8270245888,
+      "index": 12,
+      "module": "github.com/anyproto/go-ds-flatfs",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/012/RESULT.json",
+      "receipt_sha256": "b5cc2c3bcd963526490ccd9e17a3ed33a8575f5e846a3135dc52e45d86b6252d",
+      "version": "v0.0.0-20250828183910-d49f5b2d567f"
+    },
+    {
+      "bytes": 18489,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 8257941504,
+      "index": 13,
+      "module": "github.com/anyproto/go-log/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/013/RESULT.json",
+      "receipt_sha256": "b0bcdb7a41f5e112b033ec02ca6144e60004c7e1f9382878c681f0e7355de471",
+      "version": "v2.1.2-0.20220721095711-bcf09ff293b2"
+    },
+    {
+      "bytes": 84356,
+      "files": 19,
+      "free_after_owned_cleanup_bytes": 8245723136,
+      "index": 14,
+      "module": "github.com/anyproto/go-multiaddr",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/014/RESULT.json",
+      "receipt_sha256": "9f589be4fb116b329559db5ad1886c15268d8be2492bf890d6bcbb61440e79d1",
+      "version": "v0.8.1-0.20250307125826-51ba58e2ebc7"
+    },
+    {
+      "bytes": 128036,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 8237408256,
+      "index": 15,
+      "module": "github.com/anyproto/go-naturaldate/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/015/RESULT.json",
+      "receipt_sha256": "0e6134204b61b807a74d1bf0f85c4d7c0fe06271b95677ae1b28740addc37055",
+      "version": "v2.0.2-0.20230524105841-9829cfd13438"
+    },
+    {
+      "bytes": 6089,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 8213520384,
+      "index": 16,
+      "module": "github.com/anyproto/go-slip10",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/016/RESULT.json",
+      "receipt_sha256": "50445c3b9379c61237782d25bb03d32e07352f29251297b34ffbd4162a14ab10",
+      "version": "v1.0.1"
+    },
+    {
+      "bytes": 1902,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 8183808000,
+      "index": 17,
+      "module": "github.com/anyproto/go-slip21",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/017/RESULT.json",
+      "receipt_sha256": "6460a52241147a3f309385e4b76eae0f235164d06ced87b136a01d6208b213e7",
+      "version": "v1.0.0"
+    },
+    {
+      "bytes": 213167,
+      "files": 20,
+      "free_after_owned_cleanup_bytes": 8138584064,
+      "index": 18,
+      "module": "github.com/anyproto/go-sqlite",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/018/RESULT.json",
+      "receipt_sha256": "daac5b66598cc654f5ee0674465fcbc173d14695989fd670230e12bd059991d6",
+      "version": "v1.4.2-any"
+    },
+    {
+      "bytes": 42749,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 8083013632,
+      "index": 19,
+      "module": "github.com/anyproto/goheif",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/019/RESULT.json",
+      "receipt_sha256": "61580a8467a025f268c09989d7276f1f10cec2416fa67bb1370614d9b19e244e",
+      "version": "v0.0.0-20260216083627-c3efd00cd92e"
+    },
+    {
+      "bytes": 61010,
+      "files": 16,
+      "free_after_owned_cleanup_bytes": 8042840064,
+      "index": 20,
+      "module": "github.com/anyproto/html-to-markdown",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/020/RESULT.json",
+      "receipt_sha256": "7cf475d67b045bd1cc6b15c0744adb8f9dcba9c2456fa85b57d3a090405c6c03",
+      "version": "v0.0.0-20231025221133-830bf0a6f139"
+    },
+    {
+      "bytes": 9925,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 8003436544,
+      "index": 21,
+      "module": "github.com/anyproto/lexid",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/021/RESULT.json",
+      "receipt_sha256": "2b2fad56da4fcea70e78b5908eab72acac2e6eaded84a09075a81d634f7b4484",
+      "version": "v0.0.6"
+    },
+    {
+      "bytes": 1008846,
+      "files": 57,
+      "free_after_owned_cleanup_bytes": 7964377088,
+      "index": 22,
+      "module": "github.com/anyproto/protobuf",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/022/RESULT.json",
+      "receipt_sha256": "8195354545812b8e135495fdc0e3d1aa0e5e6f20f4ad7ca5da0ac10753d86f54",
+      "version": "v1.3.3-0.20240201225420-6e325cf0ac38"
+    },
+    {
+      "bytes": 130740,
+      "files": 27,
+      "free_after_owned_cleanup_bytes": 7927894016,
+      "index": 23,
+      "module": "github.com/anyproto/ristretto",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/023/RESULT.json",
+      "receipt_sha256": "3519d3a9c684aeba06befdb6fd7d34f5ecffcf84ec5ce447c5cd9b58e2a5aa11",
+      "version": "v0.1.2-0.20240221153107-2b23839cc50c"
+    },
+    {
+      "bytes": 50076,
+      "files": 15,
+      "free_after_owned_cleanup_bytes": 7927451648,
+      "index": 24,
+      "module": "github.com/anyproto/tantivy-go",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/024/RESULT.json",
+      "receipt_sha256": "2f10b5a34c7251b1175a9d0d3faac31e9578ed4a5907bfa83e671c56a9c88a27",
+      "version": "v1.0.6"
+    },
+    {
+      "bytes": 59394,
+      "files": 8,
+      "free_after_owned_cleanup_bytes": 7927185408,
+      "index": 25,
+      "module": "github.com/anyproto/zeroconf/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/025/RESULT.json",
+      "receipt_sha256": "c5de5157ab4cce23c4ea060b000ee4b24fed0f7e558d8ee054b3b24e30b19722",
+      "version": "v2.2.1-0.20261012094456-27dfb04e233b"
+    },
+    {
+      "bytes": 15414,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7927058432,
+      "index": 26,
+      "module": "github.com/avast/retry-go/v4",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/026/RESULT.json",
+      "receipt_sha256": "c7ccff59d0ce181b4433b35a59d5cae8e0ad29f7fdb65ae2bf14affec4613155",
+      "version": "v4.6.1"
+    },
+    {
+      "bytes": 15741,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7926812672,
+      "index": 27,
+      "module": "github.com/aymerick/douceur",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/027/RESULT.json",
+      "receipt_sha256": "7b31fff43c3947da756c7e8728f2d671c7cc3cb2a0ff3284a5a82a4876620fbc",
+      "version": "v0.2.0"
+    },
+    {
+      "bytes": 8013,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7926693888,
+      "index": 28,
+      "module": "github.com/beorn7/perks",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/028/RESULT.json",
+      "receipt_sha256": "92db9583987f134aa286960910775b74b505bb1da27f33a6c2757d822244a12d",
+      "version": "v1.0.1"
+    },
+    {
+      "bytes": 10899,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7926579200,
+      "index": 29,
+      "module": "github.com/cespare/xxhash",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/029/RESULT.json",
+      "receipt_sha256": "064b6810a1cee8205db1d67abb36f644433e41f58a075b623376114c7d2d9c71",
+      "version": "v1.1.0"
+    },
+    {
+      "bytes": 15020,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7926472704,
+      "index": 30,
+      "module": "github.com/cespare/xxhash/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/030/RESULT.json",
+      "receipt_sha256": "f698e380f97e5c015dbad0b77f0a38c195501580ea6f418f355eb04c38a65228",
+      "version": "v2.3.0"
+    },
+    {
+      "bytes": 9695465,
+      "files": 485,
+      "free_after_owned_cleanup_bytes": 7913943040,
+      "index": 31,
+      "module": "github.com/chai2010/webp",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/031/RESULT.json",
+      "receipt_sha256": "b58d98d7928021eec34dd78e559d54de630b4bab1387c8e9386ed39c865abe94",
+      "version": "v1.4.0"
+    },
+    {
+      "bytes": 11674,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7913799680,
+      "index": 32,
+      "module": "github.com/cheggaaa/mb/v3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/032/RESULT.json",
+      "receipt_sha256": "04399df5b5d6fec99e91232c12ecae6eb43c51a69a287c1683d5d5140cd385fd",
+      "version": "v3.0.3"
+    },
+    {
+      "bytes": 8442,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7913725952,
+      "index": 33,
+      "module": "github.com/crackcomm/go-gitignore",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/033/RESULT.json",
+      "receipt_sha256": "b0efb2e70e215d16f0cdf25fea2e1d0c4466aaf1e2911764cbd44b2a957443ed",
+      "version": "v0.0.0-20241020182519-7843d2ba8fdf"
+    },
+    {
+      "bytes": 1755,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7913521152,
+      "index": 34,
+      "module": "github.com/davidlazar/go-crypto",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/034/RESULT.json",
+      "receipt_sha256": "a80e7c8bc140f7a60a1231e5391f93302ef1444e734e4ab709d67e9a939ea3af",
+      "version": "v0.0.0-20200604182044-b73af7476f6c"
+    },
+    {
+      "bytes": 37332,
+      "files": 8,
+      "free_after_owned_cleanup_bytes": 7913312256,
+      "index": 35,
+      "module": "github.com/dchesterton/go-jpeg-image-structure/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/035/RESULT.json",
+      "receipt_sha256": "ef00f85e371ca298cbd3a61f9e61d3e6aaac1a927a46171e990dd3e721c34a77",
+      "version": "v2.0.0-20240318203529-c3eea088bd38"
+    },
+    {
+      "bytes": 951953,
+      "files": 17,
+      "free_after_owned_cleanup_bytes": 7912054784,
+      "index": 36,
+      "module": "github.com/decred/dcrd/dcrec/secp256k1/v4",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/036/RESULT.json",
+      "receipt_sha256": "a3d901e52afced28071d863912cdd4c6b148f1f764aa3707b75412376a4b8d42",
+      "version": "v4.4.1"
+    },
+    {
+      "bytes": 72574,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 7911763968,
+      "index": 37,
+      "module": "github.com/dhowden/tag",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/037/RESULT.json",
+      "receipt_sha256": "ed3afd8891791464dc43a8248589a51e41aec5acc6cc8f8e70d53c23fb043408",
+      "version": "v0.0.0-20240417053706-3d75831295e8"
+    },
+    {
+      "bytes": 42940,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7911813120,
+      "index": 38,
+      "module": "github.com/didip/tollbooth/v8",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/038/RESULT.json",
+      "receipt_sha256": "b3eccc61f6afc3c9c3034b3c3fb3a62058078b3c52828b85add4d539b15dbf28",
+      "version": "v8.0.1"
+    },
+    {
+      "bytes": 250508,
+      "files": 37,
+      "free_after_owned_cleanup_bytes": 7911497728,
+      "index": 39,
+      "module": "github.com/dsoprea/go-exif/v3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/039/RESULT.json",
+      "receipt_sha256": "a9179461fce739c3ff05ff6c61e2a474a08a6f97435ebca291f165d607b116f7",
+      "version": "v3.0.1"
+    },
+    {
+      "bytes": 13095,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7911219200,
+      "index": 40,
+      "module": "github.com/dsoprea/go-iptc",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/040/RESULT.json",
+      "receipt_sha256": "9c305586250fca3bcaaef717dc9052821b97e7ad6d30bbdda3c90527ae567856",
+      "version": "v0.0.0-20200609062250-162ae6b44feb"
+    },
+    {
+      "bytes": 18235,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7911096320,
+      "index": 41,
+      "module": "github.com/dsoprea/go-logging",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/041/RESULT.json",
+      "receipt_sha256": "0e39e162f51dbdfbcea14d53243b56dc2dfb3285f333be6fd3e91a2fcedccbe7",
+      "version": "v0.0.0-20200710184922-b02d349568dd"
+    },
+    {
+      "bytes": 3999,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7910674432,
+      "index": 42,
+      "module": "github.com/dsoprea/go-photoshop-info-format",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/042/RESULT.json",
+      "receipt_sha256": "a4e5ec62cc18cc080e19d216c17001e3832b98486ee874abfdc92997ccf384ff",
+      "version": "v0.0.0-20200609050348-3db9b63b202c"
+    },
+    {
+      "bytes": 31438,
+      "files": 19,
+      "free_after_owned_cleanup_bytes": 7910629376,
+      "index": 43,
+      "module": "github.com/dsoprea/go-utility/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/043/RESULT.json",
+      "receipt_sha256": "224a598c30adf7adc757cd3e0c6360bfdd1cd198a0c478b6d082f13ae6d74fc2",
+      "version": "v2.0.0-20221003172846-a3e1774ef349"
+    },
+    {
+      "bytes": 30539,
+      "files": 20,
+      "free_after_owned_cleanup_bytes": 7910596608,
+      "index": 44,
+      "module": "github.com/dunglas/httpsfv",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/044/RESULT.json",
+      "receipt_sha256": "9b2275063a6c2a66223241ff2492b8fef71b51f3b687ce308c6daebf34cbb6f5",
+      "version": "v1.1.1"
+    },
+    {
+      "bytes": 209119,
+      "files": 24,
+      "free_after_owned_cleanup_bytes": 7909920768,
+      "index": 45,
+      "module": "github.com/ebitengine/purego",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/045/RESULT.json",
+      "receipt_sha256": "2e91dd34099bb648fcb30ffe24d7e667b97bdddfc355887be8da05d2a08f44a5",
+      "version": "v0.10.0"
+    },
+    {
+      "bytes": 181018,
+      "files": 29,
+      "free_after_owned_cleanup_bytes": 7909302272,
+      "index": 46,
+      "module": "github.com/ethereum/go-ethereum",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/046/RESULT.json",
+      "receipt_sha256": "b63af2585b9725960a35e2a7098599795c49676008b6a989d3fe84bb1a3b7424",
+      "version": "v1.13.15"
+    },
+    {
+      "bytes": 170522,
+      "files": 29,
+      "free_after_owned_cleanup_bytes": 7908773888,
+      "index": 47,
+      "module": "github.com/gabriel-vasile/mimetype",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/047/RESULT.json",
+      "receipt_sha256": "c0b3790919169db9385fab9716a98883c5d9f8bbacf897da37c8fc5f3ab7a404",
+      "version": "v1.4.15"
+    },
+    {
+      "bytes": 10258,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7908642816,
+      "index": 48,
+      "module": "github.com/gammazero/chanqueue",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/048/RESULT.json",
+      "receipt_sha256": "0e28a54a647f1817d7fd65f722b3e44904a1074bb8707e68db4e660e601bbf87",
+      "version": "v1.1.2"
+    },
+    {
+      "bytes": 18434,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7908552704,
+      "index": 49,
+      "module": "github.com/gammazero/deque",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/049/RESULT.json",
+      "receipt_sha256": "1fae104d50afa0bcc83720ce55f5b623095dc2e4cf1d1e5ba8900268e99cd48e",
+      "version": "v1.2.1"
+    },
+    {
+      "bytes": 6476,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7908458496,
+      "index": 50,
+      "module": "github.com/gin-contrib/sse",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/050/RESULT.json",
+      "receipt_sha256": "d7d3bcd9c1eb046500f57abc554de484b370428ddfaac43d98816bc11d4c1b68",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 180335,
+      "files": 47,
+      "free_after_owned_cleanup_bytes": 7907872768,
+      "index": 51,
+      "module": "github.com/gin-gonic/gin",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/051/RESULT.json",
+      "receipt_sha256": "840df13d8dd56ab62904b687d0017e873ad91c3b30933a2c0e91562e86fbb5c8",
+      "version": "v1.10.0"
+    },
+    {
+      "bytes": 201746,
+      "files": 16,
+      "free_after_owned_cleanup_bytes": 7907418112,
+      "index": 52,
+      "module": "github.com/globalsign/mgo",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/052/RESULT.json",
+      "receipt_sha256": "797baafdfeb15db9b43a3607d4b58d0473dc3a3e28d0ec4c4ddb4cabfe25b4e8",
+      "version": "v0.0.0-20181015135952-eeefdecb41b8"
+    },
+    {
+      "bytes": 49186,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7907176448,
+      "index": 53,
+      "module": "github.com/go-chi/chi/v5",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/053/RESULT.json",
+      "receipt_sha256": "47f48d6fc5459f61fe533d44fe987cbc6fed3a9de2ced064eb0cf11c6660100a",
+      "version": "v5.2.1"
+    },
+    {
+      "bytes": 11890,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7907090432,
+      "index": 54,
+      "module": "github.com/go-errors/errors",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/054/RESULT.json",
+      "receipt_sha256": "ae36e8ff2ed4a4f32a11493d5bd31116d4656b6bc16d23c72968cced369e1ba3",
+      "version": "v1.4.2"
+    },
+    {
+      "bytes": 69192,
+      "files": 10,
+      "free_after_owned_cleanup_bytes": 7906803712,
+      "index": 55,
+      "module": "github.com/go-logr/logr",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/055/RESULT.json",
+      "receipt_sha256": "7fb858fe2fc2e211d86b103efe6c54ff2d204927c49b835c94bc98e0e33e323c",
+      "version": "v1.4.4"
+    },
+    {
+      "bytes": 4935,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7906689024,
+      "index": 56,
+      "module": "github.com/go-logr/stdr",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/056/RESULT.json",
+      "receipt_sha256": "f9f28ec62e21146a7d382fd5154aed8af082c2c13aaab8f543abe182ce9ecf0e",
+      "version": "v1.2.2"
+    },
+    {
+      "bytes": 11207,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7906557952,
+      "index": 57,
+      "module": "github.com/go-pkgz/expirable-cache/v3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/057/RESULT.json",
+      "receipt_sha256": "2a5e5a56d54c86e5ddb95014f52ef99164f165670c84d7400dffa44539d41d46",
+      "version": "v3.0.0"
+    },
+    {
+      "bytes": 10322,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7906615296,
+      "index": 58,
+      "module": "github.com/go-playground/locales",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/058/RESULT.json",
+      "receipt_sha256": "ea84f14975985610e6c9d07cef76d9428b998e8d32a9e3fc85ae15f91447320f",
+      "version": "v0.14.1"
+    },
+    {
+      "bytes": 26258,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7906160640,
+      "index": 59,
+      "module": "github.com/go-playground/universal-translator",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/059/RESULT.json",
+      "receipt_sha256": "89f338984411b9910db304a5cb0ea8ab8976485c7cd4d5978038bf936d7acfc4",
+      "version": "v0.18.1"
+    },
+    {
+      "bytes": 298574,
+      "files": 16,
+      "free_after_owned_cleanup_bytes": 7905411072,
+      "index": 60,
+      "module": "github.com/go-playground/validator/v10",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/060/RESULT.json",
+      "receipt_sha256": "929424bf400a8428a9a052e2abb7b2234b7db151fc4cde63569c674601826e6e",
+      "version": "v10.22.1"
+    },
+    {
+      "bytes": 18184,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7905243136,
+      "index": 61,
+      "module": "github.com/go-shiori/dom",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/061/RESULT.json",
+      "receipt_sha256": "9c62fb25b377fbfe25df07e6409565afb7b4a880c564c06c4c94bcef95b13dd7",
+      "version": "v0.0.0-20230515143342-73569d674e1c"
+    },
+    {
+      "bytes": 160950,
+      "files": 11,
+      "free_after_owned_cleanup_bytes": 7904759808,
+      "index": 62,
+      "module": "github.com/go-shiori/go-readability",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/062/RESULT.json",
+      "receipt_sha256": "4ef28440956d634f5378c81530a86fb9466ba782777ca2e1fb2a80bb227c5741",
+      "version": "v0.0.0-20241012063810-92284fa8a71f"
+    },
+    {
+      "bytes": 1775,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7904382976,
+      "index": 63,
+      "module": "github.com/go-xmlfmt/xmlfmt",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/063/RESULT.json",
+      "receipt_sha256": "2d73b15686305717056426054cbc24dd07fce0f896558ad0ff72a89fc4c27853",
+      "version": "v0.0.0-20191208150333-d5b6f63a941b"
+    },
+    {
+      "bytes": 47237,
+      "files": 31,
+      "free_after_owned_cleanup_bytes": 7901417472,
+      "index": 64,
+      "module": "github.com/gobwas/glob",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/064/RESULT.json",
+      "receipt_sha256": "1b315ac9b9e07555cb1f7d2de5296f8f4ba11db4baaaffbca988b784cbf116c1",
+      "version": "v0.2.3"
+    },
+    {
+      "bytes": 11185,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7865307136,
+      "index": 65,
+      "module": "github.com/gofrs/flock",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/065/RESULT.json",
+      "receipt_sha256": "4734ac9f944accdd2ee8df0396b11d4cf8cdc5ed5dd4bb0332cf64078fb4ca73",
+      "version": "v0.12.1"
+    },
+    {
+      "bytes": 151783,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7840231424,
+      "index": 66,
+      "module": "github.com/gogo/googleapis",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/066/RESULT.json",
+      "receipt_sha256": "42948fae2be063265664c3da17bd7a2cb2e56a453c306e1d12e89102f91df3a9",
+      "version": "v1.3.1"
+    },
+    {
+      "bytes": 6853,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7810674688,
+      "index": 67,
+      "module": "github.com/gogo/status",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/067/RESULT.json",
+      "receipt_sha256": "7c8685d1a7f41f30fa4f22f071a900f7fb9ba5900df3830eabfd484e1c8d3863",
+      "version": "v1.1.1"
+    },
+    {
+      "bytes": 67035,
+      "files": 8,
+      "free_after_owned_cleanup_bytes": 7787216896,
+      "index": 68,
+      "module": "github.com/gogs/chardet",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/068/RESULT.json",
+      "receipt_sha256": "2d85984e9a31e1000b47c030544bc47c9b15bcf75bd0263a03753996ceb8856d",
+      "version": "v0.0.0-20211120154057-b7413eaefb8f"
+    },
+    {
+      "bytes": 38896,
+      "files": 17,
+      "free_after_owned_cleanup_bytes": 7761018880,
+      "index": 69,
+      "module": "github.com/golang-jwt/jwt",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/069/RESULT.json",
+      "receipt_sha256": "9b4ebdb23fa6cb317bcbed1dbeb7c59cfdd22b07f0ef7b34efc43ea0249f7803",
+      "version": "v3.2.2+incompatible"
+    },
+    {
+      "bytes": 764705,
+      "files": 65,
+      "free_after_owned_cleanup_bytes": 7727419392,
+      "index": 70,
+      "module": "github.com/golang/geo",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/070/RESULT.json",
+      "receipt_sha256": "30370b962869970c157008a168809ee5c287540085d51ea132fbc9a3e5b333cf",
+      "version": "v0.0.0-20210211234256-740aa86cb551"
+    },
+    {
+      "bytes": 71742,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7709941760,
+      "index": 71,
+      "module": "github.com/golang/glog",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/071/RESULT.json",
+      "receipt_sha256": "5c1843c325741e69580f7116d19a4f94e6e868f38a58def17f9a06b40a53b472",
+      "version": "v1.2.5"
+    },
+    {
+      "bytes": 3143,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7675801600,
+      "index": 72,
+      "module": "github.com/golang/groupcache",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/072/RESULT.json",
+      "receipt_sha256": "bbaf77cd8890bb415e7443523ca1049616e07a23fd47f795adf790f668e60199",
+      "version": "v0.0.0-20210331224755-41bb18bfe9da"
+    },
+    {
+      "bytes": 92040,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 7675101184,
+      "index": 73,
+      "module": "github.com/golang/protobuf",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/073/RESULT.json",
+      "receipt_sha256": "294d81abe50aaa0fbe3f5f1cc334824895aeaaacdfbc1bfabc42cf1e1f089222",
+      "version": "v1.5.4"
+    },
+    {
+      "bytes": 77655,
+      "files": 10,
+      "free_after_owned_cleanup_bytes": 7674810368,
+      "index": 74,
+      "module": "github.com/golang/snappy",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/074/RESULT.json",
+      "receipt_sha256": "f9f00083ca663b0703614b7c0582ba5b9cd66ab7af5bde153f14cf21caf9bb19",
+      "version": "v1.0.0"
+    },
+    {
+      "bytes": 45769,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7674449920,
+      "index": 75,
+      "module": "github.com/google/flatbuffers",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/075/RESULT.json",
+      "receipt_sha256": "46952d5b441613ec593000616b8144168f2daf633e1103268b22b7a88a5241dc",
+      "version": "v1.12.1"
+    },
+    {
+      "bytes": 10253,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7674052608,
+      "index": 76,
+      "module": "github.com/google/go-querystring",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/076/RESULT.json",
+      "receipt_sha256": "23564efe471bafe5e2a5ca090d21e908967adcf0fcf70982f8f36fbdbcbe3c8e",
+      "version": "v1.1.0"
+    },
+    {
+      "bytes": 11962,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7649619968,
+      "index": 77,
+      "module": "github.com/gorilla/css",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/077/RESULT.json",
+      "receipt_sha256": "38eb63897d81a56c58c012e57cc7414e5167475fc8e9fde307f1c7351e818315",
+      "version": "v1.0.1"
+    },
+    {
+      "bytes": 11746,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7553470464,
+      "index": 78,
+      "module": "github.com/gosimple/slug",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/078/RESULT.json",
+      "receipt_sha256": "ddb30d6928943694e5217c10d1f5b965dc1e68e0597869db59a423c99766f203",
+      "version": "v1.15.0"
+    },
+    {
+      "bytes": 213045,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7553179648,
+      "index": 79,
+      "module": "github.com/gosimple/unidecode",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/079/RESULT.json",
+      "receipt_sha256": "c882934e8affb463e9819578797dc5e3badd753e4866e1c41383fbde5e12611c",
+      "version": "v1.0.1"
+    },
+    {
+      "bytes": 114018,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7552999424,
+      "index": 80,
+      "module": "github.com/grokify/html-strip-tags-go",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/080/RESULT.json",
+      "receipt_sha256": "9a1cf5bc1e764215f11d60ee48d17efbc6e89cfe3b738ff1409f75caf394111f",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 4575,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7551451136,
+      "index": 81,
+      "module": "github.com/hashicorp/errwrap",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/081/RESULT.json",
+      "receipt_sha256": "76a386c8b985a37ab686e7e4358e7275c4dcb237fd645bdef64904b1126bd6e8",
+      "version": "v1.1.0"
+    },
+    {
+      "bytes": 7847,
+      "files": 8,
+      "free_after_owned_cleanup_bytes": 7550533632,
+      "index": 82,
+      "module": "github.com/hashicorp/go-multierror",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/082/RESULT.json",
+      "receipt_sha256": "3ea2461d0abfb2c5c5570ae2d0f1e4150e11fc31d557a1fc854542abdaf34d67",
+      "version": "v1.1.1"
+    },
+    {
+      "bytes": 32346,
+      "files": 8,
+      "free_after_owned_cleanup_bytes": 7550251008,
+      "index": 83,
+      "module": "github.com/hashicorp/golang-lru/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/083/RESULT.json",
+      "receipt_sha256": "1957113a7564dd89f1afcf7876e1fb3312f47a4932ba9af8fd22781f5032387e",
+      "version": "v2.0.7"
+    },
+    {
+      "bytes": 42459,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7550066688,
+      "index": 84,
+      "module": "github.com/hashicorp/yamux",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/084/RESULT.json",
+      "receipt_sha256": "1bba0599667da1625ccb6cd2e2a1eeba425a59730fd5baaaa9bcaa437721ad1b",
+      "version": "v0.1.2"
+    },
+    {
+      "bytes": 79216,
+      "files": 21,
+      "free_after_owned_cleanup_bytes": 7550017536,
+      "index": 85,
+      "module": "github.com/hbagdi/go-unsplash",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/085/RESULT.json",
+      "receipt_sha256": "4d48e46d76487f97baba6e0b0b7c52e267f4e56899a3febabe9a231c5ee89db8",
+      "version": "v0.0.0-20230414214043-474fc02c9119"
+    },
+    {
+      "bytes": 81359,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7549804544,
+      "index": 86,
+      "module": "github.com/holiman/uint256",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/086/RESULT.json",
+      "receipt_sha256": "51f18ed2f99fb1b606f812ca237f117861d5047cc22e85ef11059947d5ce54a9",
+      "version": "v1.2.4"
+    },
+    {
+      "bytes": 23672,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7549612032,
+      "index": 87,
+      "module": "github.com/huandu/skiplist",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/087/RESULT.json",
+      "receipt_sha256": "67ed02a80d642e0b89295735a12606d5e6cd79022d2f538542f011106ba16b60",
+      "version": "v1.2.1"
+    },
+    {
+      "bytes": 7154,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7547420672,
+      "index": 88,
+      "module": "github.com/iancoleman/strcase",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/088/RESULT.json",
+      "receipt_sha256": "7676511b59c4923985c302f39dfa7a1cf74758463b9e8188bfb17415b96c2b75",
+      "version": "v0.3.0"
+    },
+    {
+      "bytes": 16973,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7547097088,
+      "index": 89,
+      "module": "github.com/ipfs/bbloom",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/089/RESULT.json",
+      "receipt_sha256": "e8b9bd4dcfae6e52a616d294716f64f785c4a4c718e2441c78445d6a9d9b0d2e",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 397226,
+      "files": 81,
+      "free_after_owned_cleanup_bytes": 7545577472,
+      "index": 90,
+      "module": "github.com/ipfs/boxo",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/090/RESULT.json",
+      "receipt_sha256": "9fa077b25570f23523d3fed9c03e6c4d3819b7490d8983aba0bda3756737e3af",
+      "version": "v0.43.0"
+    },
+    {
+      "bytes": 2688,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7543828480,
+      "index": 91,
+      "module": "github.com/ipfs/go-bitfield",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/091/RESULT.json",
+      "receipt_sha256": "2e838fe18359d60aa5d2de7a0f91a33d4372eb0425dfbd11ce1feda0e0d3dd06",
+      "version": "v1.1.0"
+    },
+    {
+      "bytes": 3480,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7542599680,
+      "index": 92,
+      "module": "github.com/ipfs/go-block-format",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/092/RESULT.json",
+      "receipt_sha256": "0f4fdb836825813180679c339419319b6ea2d6358fd59e5cd7806a5d3eab2d5c",
+      "version": "v0.2.4"
+    },
+    {
+      "bytes": 26521,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7540219904,
+      "index": 93,
+      "module": "github.com/ipfs/go-cid",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/093/RESULT.json",
+      "receipt_sha256": "6117ec773be4f57a0b8a47449b4ea6a0570c67e4940ee6cb6dc186035d8ec7b6",
+      "version": "v0.6.2"
+    },
+    {
+      "bytes": 7657,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7540129792,
+      "index": 94,
+      "module": "github.com/ipfs/go-cidutil",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/094/RESULT.json",
+      "receipt_sha256": "6deec8f332684f6afe8578671299e53c8922aeddea04a6bd2eaad9ab62110b42",
+      "version": "v0.1.2"
+    },
+    {
+      "bytes": 61312,
+      "files": 17,
+      "free_after_owned_cleanup_bytes": 7539699712,
+      "index": 95,
+      "module": "github.com/ipfs/go-datastore",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/095/RESULT.json",
+      "receipt_sha256": "adafc5311d2a5ffff86652f9721247dc6c782f7bd8d4d40b4b1f35487f3fc580",
+      "version": "v0.9.2"
+    },
+    {
+      "bytes": 17475,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7539490816,
+      "index": 96,
+      "module": "github.com/ipfs/go-dsqueue",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/096/RESULT.json",
+      "receipt_sha256": "330d9c3a214b7fb04bdea2a6f0c1814de9d8bc8bb7a88a215e317f553fb851c4",
+      "version": "v0.2.0"
+    },
+    {
+      "bytes": 39785,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7539351552,
+      "index": 97,
+      "module": "github.com/ipfs/go-ipld-format",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/097/RESULT.json",
+      "receipt_sha256": "d8ca908e95817094af1b65b2b949a3466b232bfde08538dd77e8c39136bf44d2",
+      "version": "v0.6.4"
+    },
+    {
+      "bytes": 9776,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7539277824,
+      "index": 98,
+      "module": "github.com/ipfs/go-ipld-legacy",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/098/RESULT.json",
+      "receipt_sha256": "632b19de5e928b968c53e15c44bf386179af5b7d44882b881b095cc33e69f6d3",
+      "version": "v0.3.0"
+    },
+    {
+      "bytes": 70432,
+      "files": 23,
+      "free_after_owned_cleanup_bytes": 7538778112,
+      "index": 99,
+      "module": "github.com/ipfs/go-log",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/099/RESULT.json",
+      "receipt_sha256": "b81e3aa82f24a3170cb7eb751cf9d6b83d81e642e7fa7f25ede6a40ed27c1c13",
+      "version": "v1.0.5"
+    },
+    {
+      "bytes": 3536,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7764135936,
+      "index": 100,
+      "module": "github.com/ipfs/go-metrics-interface",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/100/RESULT.json",
+      "receipt_sha256": "d1fdce7c242befc87c7f89c5bcc23fa33ac804bf0017dd04b33b2e59c662435d",
+      "version": "v0.3.0"
+    },
+    {
+      "bytes": 114078,
+      "files": 8,
+      "free_after_owned_cleanup_bytes": 7763636224,
+      "index": 101,
+      "module": "github.com/ipld/go-codec-dagpb",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/101/RESULT.json",
+      "receipt_sha256": "b12e158dc1a105cb49fa14b69bc29e52d80490ccb87d6b0c1519066a3bd1731e",
+      "version": "v1.7.0"
+    },
+    {
+      "bytes": 654859,
+      "files": 106,
+      "free_after_owned_cleanup_bytes": 7762173952,
+      "index": 102,
+      "module": "github.com/ipld/go-ipld-prime",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/102/RESULT.json",
+      "receipt_sha256": "1dc0e83a5c97343c974a6a999ab25bfccfe95b7f71bb7f21696738aee922ecec",
+      "version": "v0.24.0"
+    },
+    {
+      "bytes": 4915,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7762460672,
+      "index": 103,
+      "module": "github.com/jbenet/go-temp-err-catcher",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/103/RESULT.json",
+      "receipt_sha256": "d227e74bb82ce92615baa544fe83e82a329f6a03a5db2b822df87eeb2acbcfe7",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 12435,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7762284544,
+      "index": 104,
+      "module": "github.com/joho/godotenv",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/104/RESULT.json",
+      "receipt_sha256": "2f07ad45077b4df8cd604bf93388b6e4aa24d5241f222c78a662a2d3156cf821",
+      "version": "v1.5.1"
+    },
+    {
+      "bytes": 26018,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7762137088,
+      "index": 105,
+      "module": "github.com/jsummers/gobmp",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/105/RESULT.json",
+      "receipt_sha256": "23870858a4a5c2cd4f59bfa327164333f94e0d7d394925e516186002327cafb3",
+      "version": "v0.0.0-20230614200233-a9de23ed2e25"
+    },
+    {
+      "bytes": 14920,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7762051072,
+      "index": 106,
+      "module": "github.com/kelseyhightower/envconfig",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/106/RESULT.json",
+      "receipt_sha256": "0380c06a5bdf172598a85a340a19c05a4a8a9e981275ffdf947ea904408a4c2c",
+      "version": "v1.4.0"
+    },
+    {
+      "bytes": 1841328,
+      "files": 127,
+      "free_after_owned_cleanup_bytes": 7758778368,
+      "index": 107,
+      "module": "github.com/klauspost/compress",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/107/RESULT.json",
+      "receipt_sha256": "e17c223943e29fe7cd0ffa49acf624196442995f4e956009f94bc805fd72be87",
+      "version": "v1.19.1"
+    },
+    {
+      "bytes": 105637,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7758946304,
+      "index": 108,
+      "module": "github.com/klauspost/cpuid/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/108/RESULT.json",
+      "receipt_sha256": "03eb5930eb5a68ccfc488d8e630c824f1e2e93d581c2680fe3600f0c4f55866e",
+      "version": "v2.4.0"
+    },
+    {
+      "bytes": 64563,
+      "files": 12,
+      "free_after_owned_cleanup_bytes": 7758495744,
+      "index": 109,
+      "module": "github.com/kovidgoyal/imaging",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/109/RESULT.json",
+      "receipt_sha256": "457221c00160369f2b34b7f34c04e0e785c997087d2fdc5ac4db3e6dd625caef",
+      "version": "v1.6.4"
+    },
+    {
+      "bytes": 90819,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7758209024,
+      "index": 110,
+      "module": "github.com/leodido/go-urn",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/110/RESULT.json",
+      "receipt_sha256": "cee60533555daf81a16ea57ca061f3997fefe8324e0cad78d43b5e8caf803bcb",
+      "version": "v1.4.0"
+    },
+    {
+      "bytes": 12528,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7757885440,
+      "index": 111,
+      "module": "github.com/libp2p/go-buffer-pool",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/111/RESULT.json",
+      "receipt_sha256": "730bb35ce38e1d4753ccd5a3f53a5c7769a62fb909e330829e8962ea1aa07eb6",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 213917,
+      "files": 56,
+      "free_after_owned_cleanup_bytes": 7757148160,
+      "index": 112,
+      "module": "github.com/libp2p/go-libp2p",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/112/RESULT.json",
+      "receipt_sha256": "310a23374c85c58450e278d86d37bc2b8639ff4989a884e258e6943949641a7b",
+      "version": "v0.50.0"
+    },
+    {
+      "bytes": 2342,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7753719808,
+      "index": 113,
+      "module": "github.com/matishsiao/goInfo",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/113/RESULT.json",
+      "receipt_sha256": "2f472d687c5407c5314f438ec1a1096df02e0c48336d08a559da580c7c53868b",
+      "version": "v0.0.0-20240924010139-10388a85396f"
+    },
+    {
+      "bytes": 750,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7753625600,
+      "index": 114,
+      "module": "github.com/mattn/go-isatty",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/114/RESULT.json",
+      "receipt_sha256": "7831086318023ccd507742cff0f2109d67316fcf53b99f63414f7f15a0028d64",
+      "version": "v0.0.22"
+    },
+    {
+      "bytes": 9833047,
+      "files": 21,
+      "free_after_owned_cleanup_bytes": 7743614976,
+      "index": 115,
+      "module": "github.com/mattn/go-sqlite3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/115/RESULT.json",
+      "receipt_sha256": "dd42a2995208877b558f789ee8ceacf3bd2707b465936f935fd96afa8bb42a3f",
+      "version": "v1.14.22"
+    },
+    {
+      "bytes": 5839,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7743287296,
+      "index": 116,
+      "module": "github.com/mb0/diff",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/116/RESULT.json",
+      "receipt_sha256": "46eeec2cc192abbcbfd06bb1a9ee28229c773d48b0278949ce6f0638b98724c6",
+      "version": "v0.0.0-20131118162322-d8d9a906c24d"
+    },
+    {
+      "bytes": 52844,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7743180800,
+      "index": 117,
+      "module": "github.com/mehanizm/dateparse",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/117/RESULT.json",
+      "receipt_sha256": "2139066ab33b3612cbc9c4d8239c3b0af0559337f06fa2c656545a21dea1028f",
+      "version": "v0.0.0-20210806203422-f82c8742c9f8"
+    },
+    {
+      "bytes": 150714,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7742926848,
+      "index": 118,
+      "module": "github.com/microcosm-cc/bluemonday",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/118/RESULT.json",
+      "receipt_sha256": "a9fbe41ac1e6efc0673934c013fbad082c2db928be76d796340e86871e60b1f1",
+      "version": "v1.0.27"
+    },
+    {
+      "bytes": 527414,
+      "files": 43,
+      "free_after_owned_cleanup_bytes": 7741984768,
+      "index": 119,
+      "module": "github.com/miekg/dns",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/119/RESULT.json",
+      "receipt_sha256": "d21a7e6ed5d665c5d7f889f98cd14747f857a25889715f5e8d5bcf3e9a49a60a",
+      "version": "v1.1.73"
+    },
+    {
+      "bytes": 3025,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7738855424,
+      "index": 120,
+      "module": "github.com/miolini/datacounter",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/120/RESULT.json",
+      "receipt_sha256": "0f74e3814801af9ed50749249e90f3efc7c4c73b08adeb82989f98688b3c01ca",
+      "version": "v1.0.3"
+    },
+    {
+      "bytes": 17792,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7737401344,
+      "index": 121,
+      "module": "github.com/mr-tron/base58",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/121/RESULT.json",
+      "receipt_sha256": "e17b934568ffdf8ec69a016303728a1efc6dd3841405f4150c1b48e82a9e774c",
+      "version": "v1.3.0"
+    },
+    {
+      "bytes": 12179,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7737442304,
+      "index": 122,
+      "module": "github.com/multiformats/go-base32",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/122/RESULT.json",
+      "receipt_sha256": "8ec253711376d27b2b0b52a9aca818ed3ff0c8920f229a05ebb1cfbf7baf95e3",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 3535,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7737348096,
+      "index": 123,
+      "module": "github.com/multiformats/go-base36",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/123/RESULT.json",
+      "receipt_sha256": "bc6b10778a43244f38f1ca75b9863270b549d62e0c3038ca6db847c8c064e51f",
+      "version": "v0.2.0"
+    },
+    {
+      "bytes": 14141,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7737233408,
+      "index": 124,
+      "module": "github.com/multiformats/go-multibase",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/124/RESULT.json",
+      "receipt_sha256": "ba4d9b807cd1138891384a397c982c02ddf6be76211eae735739959db45417b6",
+      "version": "v0.3.0"
+    },
+    {
+      "bytes": 135119,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7736848384,
+      "index": 125,
+      "module": "github.com/multiformats/go-multicodec",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/125/RESULT.json",
+      "receipt_sha256": "6e6d27d0c74450b788e6fecc7d24074505836ff97774fb8ff8e5d318d64f8271",
+      "version": "v0.10.0"
+    },
+    {
+      "bytes": 30380,
+      "files": 16,
+      "free_after_owned_cleanup_bytes": 7736000512,
+      "index": 126,
+      "module": "github.com/multiformats/go-multihash",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/126/RESULT.json",
+      "receipt_sha256": "9763665fa7a88a896024468c62075de59bcc97f2fa703528afe58bc8a4f1c67f",
+      "version": "v0.2.3"
+    },
+    {
+      "bytes": 18229,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7736070144,
+      "index": 127,
+      "module": "github.com/multiformats/go-multistream",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/127/RESULT.json",
+      "receipt_sha256": "159189a356d050e57b6eec510a4eb531583cad91a0307b9a9f174f47aba4597d",
+      "version": "v0.6.1"
+    },
+    {
+      "bytes": 4082,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7732711424,
+      "index": 128,
+      "module": "github.com/multiformats/go-varint",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/128/RESULT.json",
+      "receipt_sha256": "db709696ee974854054a1032994ff6d6d5f590a015fd51e05df2f6795c33aa67",
+      "version": "v0.1.0"
+    },
+    {
+      "bytes": 5079,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7732178944,
+      "index": 129,
+      "module": "github.com/munnerz/goautoneg",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/129/RESULT.json",
+      "receipt_sha256": "51d80f63b3c4193382f56e8b97fd58a59de8c6d65b1c32e368c4818f05f7944a",
+      "version": "v0.0.0-20191010083416-a7dc8b61c822"
+    },
+    {
+      "bytes": 15681,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7731773440,
+      "index": 130,
+      "module": "github.com/ncruces/go-strftime",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/130/RESULT.json",
+      "receipt_sha256": "64b8aee6bfd82e620198bd4a6c02110f3634b2471842d6c08714548878e63e25",
+      "version": "v0.1.9"
+    },
+    {
+      "bytes": 67103,
+      "files": 11,
+      "free_after_owned_cleanup_bytes": 7731593216,
+      "index": 131,
+      "module": "github.com/oov/psd",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/131/RESULT.json",
+      "receipt_sha256": "b6e9cc6bedce9c8aaddec15284f8d858a0a6cce81a6a4ab346c248a992b2677f",
+      "version": "v0.0.0-20220121172623-5db5eafcecbb"
+    },
+    {
+      "bytes": 47786,
+      "files": 12,
+      "free_after_owned_cleanup_bytes": 7729930240,
+      "index": 132,
+      "module": "github.com/opentracing/opentracing-go",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/132/RESULT.json",
+      "receipt_sha256": "ada57648b54e5c07cfd2aea6c0fe85833de780d6ab436389085bbeebadb1dd01",
+      "version": "v1.2.0"
+    },
+    {
+      "bytes": 16965,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7729725440,
+      "index": 133,
+      "module": "github.com/otiai10/copy",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/133/RESULT.json",
+      "receipt_sha256": "3b51f9b84e48e2e70c531b9af67e473a0e3cd382187d6b406c3eb70bb08a2853",
+      "version": "v1.14.1"
+    },
+    {
+      "bytes": 12636,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7729770496,
+      "index": 134,
+      "module": "github.com/otiai10/opengraph/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/134/RESULT.json",
+      "receipt_sha256": "b3b139497d11c537e206ac2bebcfe3b10bc33621ea97d50204b75427e0772c48",
+      "version": "v2.1.0"
+    },
+    {
+      "bytes": 142196,
+      "files": 23,
+      "free_after_owned_cleanup_bytes": 7729344512,
+      "index": 135,
+      "module": "github.com/pelletier/go-toml/v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/135/RESULT.json",
+      "receipt_sha256": "93acee9e349b98fd8d06469e234a571c351d3cb9cd50de7f945d82d2b53de503",
+      "version": "v2.2.4"
+    },
+    {
+      "bytes": 13140,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7728971776,
+      "index": 136,
+      "module": "github.com/pkg/errors",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/136/RESULT.json",
+      "receipt_sha256": "565342b48c07fa0a66565c60e761438903a8018c14c48777e3c336dec5b98ab5",
+      "version": "v0.9.1"
+    },
+    {
+      "bytes": 4099,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7728836608,
+      "index": 137,
+      "module": "github.com/planetscale/vtprotobuf",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/137/RESULT.json",
+      "receipt_sha256": "a19943728a817928496d6ef597db8be9d1c1d9d600559df96924b5f67cd81511",
+      "version": "v0.6.1-0.20250313105119-ba97887b0a25"
+    },
+    {
+      "bytes": 147768,
+      "files": 47,
+      "free_after_owned_cleanup_bytes": 7727804416,
+      "index": 138,
+      "module": "github.com/polydawn/refmt",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/138/RESULT.json",
+      "receipt_sha256": "a5a652d4f83572fafb2fc1dbe10bccf22416261e7421e08c6ce725abce59e902",
+      "version": "v0.90.0"
+    },
+    {
+      "bytes": 445409,
+      "files": 47,
+      "free_after_owned_cleanup_bytes": 7727407104,
+      "index": 139,
+      "module": "github.com/prometheus/client_golang",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/139/RESULT.json",
+      "receipt_sha256": "5211f7f515f716d662f3af7079937638721be90a7bd088f70187874e5fbda526",
+      "version": "v1.24.1"
+    },
+    {
+      "bytes": 52211,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7723782144,
+      "index": 140,
+      "module": "github.com/prometheus/client_model",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/140/RESULT.json",
+      "receipt_sha256": "83728da9c552bd95645d4662011eece95798de961e45fb8d7f18b6fa875320c8",
+      "version": "v0.6.3"
+    },
+    {
+      "bytes": 167850,
+      "files": 23,
+      "free_after_owned_cleanup_bytes": 7723163648,
+      "index": 141,
+      "module": "github.com/prometheus/common",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/141/RESULT.json",
+      "receipt_sha256": "dd1d45ba26c2049522629a562c7b3d46f68506d18b7ce47d3ed96fb9c719497e",
+      "version": "v0.70.1"
+    },
+    {
+      "bytes": 19023,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7722999808,
+      "index": 142,
+      "module": "github.com/quic-go/qpack",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/142/RESULT.json",
+      "receipt_sha256": "5043e2d36f68b5cc20c0cbd041ec54c0e753ed4781c121f0b9b92aa49cd089d3",
+      "version": "v0.6.0"
+    },
+    {
+      "bytes": 1033628,
+      "files": 169,
+      "free_after_owned_cleanup_bytes": 7721041920,
+      "index": 143,
+      "module": "github.com/quic-go/quic-go",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/143/RESULT.json",
+      "receipt_sha256": "15539b358786c1806af889175b28f91508f68b54db76ee40c1eb328ee0577aaf",
+      "version": "v0.63.0"
+    },
+    {
+      "bytes": 90593,
+      "files": 16,
+      "free_after_owned_cleanup_bytes": 7720562688,
+      "index": 144,
+      "module": "github.com/quic-go/webtransport-go",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/144/RESULT.json",
+      "receipt_sha256": "025e2649b214ebda5da134b220750c23f7b35bec11e4116364f45308f91c681e",
+      "version": "v0.13.0"
+    },
+    {
+      "bytes": 42452,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7720615936,
+      "index": 145,
+      "module": "github.com/rwcarlsen/goexif",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/145/RESULT.json",
+      "receipt_sha256": "27117e84cbc65200dc31abae5598e9a81df2a118b2740e7b8e42293a178379f5",
+      "version": "v0.0.0-20190401172101-9e8deecbddbd"
+    },
+    {
+      "bytes": 147199,
+      "files": 23,
+      "free_after_owned_cleanup_bytes": 7719841792,
+      "index": 146,
+      "module": "github.com/samber/lo",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/146/RESULT.json",
+      "receipt_sha256": "639aada05b2295fe09c99a50098b4c54ce36aad1d606e84583da918e726814a6",
+      "version": "v1.49.1"
+    },
+    {
+      "bytes": 148494,
+      "files": 35,
+      "free_after_owned_cleanup_bytes": 7719378944,
+      "index": 147,
+      "module": "github.com/santhosh-tekuri/jsonschema/v6",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/147/RESULT.json",
+      "receipt_sha256": "421be7f996703b19ad86fd759c675538b0187523eb4e932ebaeea3f9f4b4b043",
+      "version": "v6.0.2"
+    },
+    {
+      "bytes": 177275,
+      "files": 36,
+      "free_after_owned_cleanup_bytes": 7718965248,
+      "index": 148,
+      "module": "github.com/sashabaranov/go-openai",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/148/RESULT.json",
+      "receipt_sha256": "ee75e50c0f28ce5cae95fb0f80aaa0ca6fc829d893d4b6f93863790050f37dfc",
+      "version": "v1.41.2"
+    },
+    {
+      "bytes": 139024,
+      "files": 26,
+      "free_after_owned_cleanup_bytes": 7718637568,
+      "index": 149,
+      "module": "github.com/shirou/gopsutil/v4",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/149/RESULT.json",
+      "receipt_sha256": "fa158959074b8a479b7167997ccbc5be221528a41e4bda8c55070fa0dd72c6f9",
+      "version": "v4.26.2"
+    },
+    {
+      "bytes": 10684,
+      "files": 5,
+      "free_after_owned_cleanup_bytes": 7718617088,
+      "index": 150,
+      "module": "github.com/spaolacci/murmur3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/150/RESULT.json",
+      "receipt_sha256": "f693b412a0e3e5745782d7c041f448770e14a358fd9719460b80a02683903858",
+      "version": "v1.1.0"
+    },
+    {
+      "bytes": 48218,
+      "files": 10,
+      "free_after_owned_cleanup_bytes": 7718215680,
+      "index": 151,
+      "module": "github.com/srwiley/oksvg",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/151/RESULT.json",
+      "receipt_sha256": "0729f36192469ea3c88eb274d20834954ff1c568021d82b5b8766bf283242afa",
+      "version": "v0.0.0-20221011165216-be6e8873101c"
+    },
+    {
+      "bytes": 72005,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7717941248,
+      "index": 152,
+      "module": "github.com/srwiley/rasterx",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/152/RESULT.json",
+      "receipt_sha256": "600d5a01ccc9a108c5a67c45946e644fa73b6a0e326589e27bf68cb0c03f1181",
+      "version": "v0.0.0-20220730225603-2ab79fcdd4ef"
+    },
+    {
+      "bytes": 99481,
+      "files": 11,
+      "free_after_owned_cleanup_bytes": 7717535744,
+      "index": 153,
+      "module": "github.com/stretchr/objx",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/153/RESULT.json",
+      "receipt_sha256": "a6de7d7fedde6139fc5ebb2caabd2aa2482eded74a23b9469ba02406d9f63551",
+      "version": "v0.5.3"
+    },
+    {
+      "bytes": 448725,
+      "files": 26,
+      "free_after_owned_cleanup_bytes": 7716818944,
+      "index": 154,
+      "module": "github.com/stretchr/testify",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/154/RESULT.json",
+      "receipt_sha256": "e43163c3d94d35a114c4d3bfc7a7ec36580c1d9a1d280f8fbe3677f8a74700e2",
+      "version": "v1.12.1"
+    },
+    {
+      "bytes": 21103,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7717023744,
+      "index": 155,
+      "module": "github.com/tklauser/go-sysconf",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/155/RESULT.json",
+      "receipt_sha256": "4db73456df92955e366e5afffbbe0a7b73acd815f2b12190e13a84bd53675d4c",
+      "version": "v0.3.16"
+    },
+    {
+      "bytes": 612552,
+      "files": 29,
+      "free_after_owned_cleanup_bytes": 7715962880,
+      "index": 156,
+      "module": "github.com/ugorji/go/codec",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/156/RESULT.json",
+      "receipt_sha256": "a71ddb5c9daaa54f93b8b1c24cce5b63db89f464464bc4891bc0b44a894ecc2e",
+      "version": "v1.2.12"
+    },
+    {
+      "bytes": 53187,
+      "files": 11,
+      "free_after_owned_cleanup_bytes": 7715389440,
+      "index": 157,
+      "module": "github.com/valyala/fastjson",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/157/RESULT.json",
+      "receipt_sha256": "d27e4dffadd3d5421f610dd22a6d08c302c4acfde302a7087c3208eed8cb1e34",
+      "version": "v1.6.10"
+    },
+    {
+      "bytes": 16516,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7715217408,
+      "index": 158,
+      "module": "github.com/whyrusleeping/chunker",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/158/RESULT.json",
+      "receipt_sha256": "ea56b07dca42a778ca11d2da225be83ff5e97e0ecca364df20f90ef8022391ba",
+      "version": "v0.0.0-20181014151217-fe64bd25879f"
+    },
+    {
+      "bytes": 5514,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7714975744,
+      "index": 159,
+      "module": "github.com/xeipuuv/gojsonpointer",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/159/RESULT.json",
+      "receipt_sha256": "3a19f862e54014d10d1be70899ae21f46a44ab853518712a636035f7b9425d35",
+      "version": "v0.0.0-20180127040702-4e3ac2762d5f"
+    },
+    {
+      "bytes": 3965,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7714893824,
+      "index": 160,
+      "module": "github.com/xeipuuv/gojsonreference",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/160/RESULT.json",
+      "receipt_sha256": "26619fd6b9ae0c7584cb71af510cea94b28083a86d4532976f4a3e95eda4d5b8",
+      "version": "v0.0.0-20180127040603-bd5ef7bd5415"
+    },
+    {
+      "bytes": 145103,
+      "files": 18,
+      "free_after_owned_cleanup_bytes": 7714914304,
+      "index": 161,
+      "module": "github.com/xeipuuv/gojsonschema",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/161/RESULT.json",
+      "receipt_sha256": "20c1f8d57b4ff6fbdbfe5f15ae7f2381c80908e6ffc74b42b67e0f7d7056b1b3",
+      "version": "v1.2.0"
+    },
+    {
+      "bytes": 619278,
+      "files": 49,
+      "free_after_owned_cleanup_bytes": 7713841152,
+      "index": 162,
+      "module": "github.com/yuin/goldmark",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/162/RESULT.json",
+      "receipt_sha256": "657c05acd63212424c4a311fa285c4ba90d41e1889f00366876a1ec03a9e328f",
+      "version": "v1.7.8"
+    },
+    {
+      "bytes": 99001,
+      "files": 20,
+      "free_after_owned_cleanup_bytes": 7713427456,
+      "index": 163,
+      "module": "github.com/zeebo/blake3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/163/RESULT.json",
+      "receipt_sha256": "34907599b18f4ae810a0f30d904b7a2a4773dc142fcdc849c1b2c526d238b559",
+      "version": "v0.2.4"
+    },
+    {
+      "bytes": 9795,
+      "files": 4,
+      "free_after_owned_cleanup_bytes": 7713300480,
+      "index": 164,
+      "module": "github.com/zeebo/errs",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/164/RESULT.json",
+      "receipt_sha256": "0a89bea8563362ae2cde2305b8fad76f36bd146dceddaa90c3a8d5502f9a4ffe",
+      "version": "v1.4.0"
+    },
+    {
+      "bytes": 11092,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7713062912,
+      "index": 165,
+      "module": "go.abhg.dev/goldmark/wikilink",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/165/RESULT.json",
+      "receipt_sha256": "f3f7288e14c3d5bb1c702fef9aea83a76660a329de56b0a95cc821236c2e988f",
+      "version": "v0.6.0"
+    },
+    {
+      "bytes": 66248,
+      "files": 20,
+      "free_after_owned_cleanup_bytes": 7712157696,
+      "index": 166,
+      "module": "go.opencensus.io",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/166/RESULT.json",
+      "receipt_sha256": "fec87475fe33202592d23ff9c591afe1b5298168fc147fe5c54c76e3147306c8",
+      "version": "v0.24.0"
+    },
+    {
+      "bytes": 61938,
+      "files": 16,
+      "free_after_owned_cleanup_bytes": 7711731712,
+      "index": 167,
+      "module": "go.opentelemetry.io/auto/sdk",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/167/RESULT.json",
+      "receipt_sha256": "5a849859a6e3607c4dc34c88c1964e1e45750733deff9f8ccdc8d7a8b93c4d36",
+      "version": "v1.2.1"
+    },
+    {
+      "bytes": 1418993,
+      "files": 51,
+      "free_after_owned_cleanup_bytes": 7709257728,
+      "index": 168,
+      "module": "go.opentelemetry.io/otel",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/168/RESULT.json",
+      "receipt_sha256": "7b87035da86f2f007d6d1b68c0fb5b4e2d5571dd0d54bcb27581368c1834f43f",
+      "version": "v1.46.0"
+    },
+    {
+      "bytes": 90319,
+      "files": 10,
+      "free_after_owned_cleanup_bytes": 7672905728,
+      "index": 169,
+      "module": "go.opentelemetry.io/otel/metric",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/169/RESULT.json",
+      "receipt_sha256": "cb798e3c09b20b1b61df9b3de6a5bbdba913c4868e1d2df54618cddfa584da86",
+      "version": "v1.46.0"
+    },
+    {
+      "bytes": 121282,
+      "files": 25,
+      "free_after_owned_cleanup_bytes": 7639265280,
+      "index": 170,
+      "module": "go.opentelemetry.io/otel/trace",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/170/RESULT.json",
+      "receipt_sha256": "9ebe540ab51e326610359a76cbec9adbcb1c2ad7ba7820c72026eb7c3d2f6e04",
+      "version": "v1.46.0"
+    },
+    {
+      "bytes": 58826,
+      "files": 27,
+      "free_after_owned_cleanup_bytes": 7602016256,
+      "index": 171,
+      "module": "go.uber.org/atomic",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/171/RESULT.json",
+      "receipt_sha256": "c1879ac24df8995905dafd3cc2073784f06e5ae2e0b9dc3f27c3a0b094d29122",
+      "version": "v1.12.0"
+    },
+    {
+      "bytes": 19701,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7565287424,
+      "index": 172,
+      "module": "go.uber.org/multierr",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/172/RESULT.json",
+      "receipt_sha256": "b02f4053042fdccbda2fc7ccff90cb65cb2f3d35ee71a02899f2bd5906525c6f",
+      "version": "v1.11.0"
+    },
+    {
+      "bytes": 253468,
+      "files": 46,
+      "free_after_owned_cleanup_bytes": 7529349120,
+      "index": 173,
+      "module": "go.uber.org/zap",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/173/RESULT.json",
+      "receipt_sha256": "261c75a27015fd7a928c62f51d368a3cb5d64c2eb46c197d0344b0fc3af03b2c",
+      "version": "v1.28.0"
+    },
+    {
+      "bytes": 331953,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 7485845504,
+      "index": 174,
+      "module": "go.yaml.in/yaml/v3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/174/RESULT.json",
+      "receipt_sha256": "928e048b5e13cba4514c17a89df1ffcd773cea30c77c243956ef5e455f84e8a4",
+      "version": "v3.0.5"
+    },
+    {
+      "bytes": 437773,
+      "files": 48,
+      "free_after_owned_cleanup_bytes": 7484854272,
+      "index": 175,
+      "module": "golang.org/x/crypto",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/175/RESULT.json",
+      "receipt_sha256": "9a291e949e00526e1712459811725fec96f0ef868236546965d3879d6b057c33",
+      "version": "v0.57.0"
+    },
+    {
+      "bytes": 271438,
+      "files": 22,
+      "free_after_owned_cleanup_bytes": 7484071936,
+      "index": 176,
+      "module": "golang.org/x/exp",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/176/RESULT.json",
+      "receipt_sha256": "09a46b431979e25ed22ba27ddc4e3eb9085cf368f7c37e8cf51f9e78ff379baa",
+      "version": "v0.0.0-20260908205506-85c1c2202aba"
+    },
+    {
+      "bytes": 324400,
+      "files": 36,
+      "free_after_owned_cleanup_bytes": 7482081280,
+      "index": 177,
+      "module": "golang.org/x/image",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/177/RESULT.json",
+      "receipt_sha256": "128ce998472c0c73cb37bb225ef440b41d195c56bff9d44428cad9e3ec1b655d",
+      "version": "v0.27.0"
+    },
+    {
+      "bytes": 7839,
+      "files": 7,
+      "free_after_owned_cleanup_bytes": 7482351616,
+      "index": 178,
+      "module": "golang.org/x/mobile",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/178/RESULT.json",
+      "receipt_sha256": "53069e7d75dedc180e084b7c7a8162405254bd48af2ddce4127cbba25d982ee4",
+      "version": "v0.0.0-20250218173827-cd096645fcd3"
+    },
+    {
+      "bytes": 1404955,
+      "files": 141,
+      "free_after_owned_cleanup_bytes": 7479980032,
+      "index": 179,
+      "module": "golang.org/x/net",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/179/RESULT.json",
+      "receipt_sha256": "ecd1db0b403babf61185c206c9fed2f9bb8b23916dd3e6538114caf216ce735d",
+      "version": "v0.59.0"
+    },
+    {
+      "bytes": 44391,
+      "files": 10,
+      "free_after_owned_cleanup_bytes": 7479701504,
+      "index": 180,
+      "module": "golang.org/x/oauth2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/180/RESULT.json",
+      "receipt_sha256": "2d3aca333006a644170b53c008f468bdf62f2bfa056050b4f8c6b2531da0de79",
+      "version": "v0.37.0"
+    },
+    {
+      "bytes": 8683,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7479635968,
+      "index": 181,
+      "module": "golang.org/x/sync",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/181/RESULT.json",
+      "receipt_sha256": "9d3dc494575efe9d430732882f08c79c8147ca0ea81842671e3902eb31f4e67a",
+      "version": "v0.23.0"
+    },
+    {
+      "bytes": 588119,
+      "files": 59,
+      "free_after_owned_cleanup_bytes": 7488782336,
+      "index": 182,
+      "module": "golang.org/x/sys",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/182/RESULT.json",
+      "receipt_sha256": "b7d341d78f13d8a2292796f17566de86b0f61b70d75f183012586dca901e62b5",
+      "version": "v0.48.0"
+    },
+    {
+      "bytes": 10298965,
+      "files": 114,
+      "free_after_owned_cleanup_bytes": 7477751808,
+      "index": 183,
+      "module": "golang.org/x/text",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/183/RESULT.json",
+      "receipt_sha256": "ddd43af96672a0004e5332e096a8bc904a16714e91465b9ea924294803069387",
+      "version": "v0.42.0"
+    },
+    {
+      "bytes": 14959,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7477653504,
+      "index": 184,
+      "module": "golang.org/x/time",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/184/RESULT.json",
+      "receipt_sha256": "cb2f58ef9dd4e1cde87aa832f4e6dfcb0c219d3db890ab0f6f9f4be5444bb4de",
+      "version": "v0.16.0"
+    },
+    {
+      "bytes": 24140,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7477350400,
+      "index": 185,
+      "module": "golang.org/x/tools",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/185/RESULT.json",
+      "receipt_sha256": "3aae7e1c28de14f42ac1ad5143f62a0cfcd82c827bb278e2dbadbb3906d16828",
+      "version": "v0.50.0"
+    },
+    {
+      "bytes": 7634,
+      "files": 2,
+      "free_after_owned_cleanup_bytes": 7476895744,
+      "index": 186,
+      "module": "google.golang.org/genproto/googleapis/rpc",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/186/RESULT.json",
+      "receipt_sha256": "8b5ea3fba458fba30bd33b903abd44f25b7122e98491f78e748537d2cac0b3a9",
+      "version": "v0.0.0-20241021214115-324edc3d5d38"
+    },
+    {
+      "bytes": 1173989,
+      "files": 143,
+      "free_after_owned_cleanup_bytes": 7475265536,
+      "index": 187,
+      "module": "google.golang.org/grpc",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/187/RESULT.json",
+      "receipt_sha256": "363cae4efb8c7bbfa08b61647078e1340883284bd3897f32b4bb6ef082db31b8",
+      "version": "v1.83.1"
+    },
+    {
+      "bytes": 1498098,
+      "files": 154,
+      "free_after_owned_cleanup_bytes": 7472881664,
+      "index": 188,
+      "module": "google.golang.org/protobuf",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/188/RESULT.json",
+      "receipt_sha256": "2270c810f670404252ee6b7ebe58a3d9ffe331137fa64feb0b2adbbdaa8e4176",
+      "version": "v1.36.12"
+    },
+    {
+      "bytes": 15758,
+      "files": 3,
+      "free_after_owned_cleanup_bytes": 7472652288,
+      "index": 189,
+      "module": "gopkg.in/natefinch/lumberjack.v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/189/RESULT.json",
+      "receipt_sha256": "e5ef3a69a4ec1baddbfb94f85374b355f8aef1b6aa44b641b8be0198cd9cc134",
+      "version": "v2.2.1"
+    },
+    {
+      "bytes": 277028,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 7472214016,
+      "index": 190,
+      "module": "gopkg.in/yaml.v2",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/190/RESULT.json",
+      "receipt_sha256": "1950e5ca12d359eff689c507463c4ab6dc894344a7a980d8af1bb2ab66785c94",
+      "version": "v2.4.0"
+    },
+    {
+      "bytes": 328846,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 7471751168,
+      "index": 191,
+      "module": "gopkg.in/yaml.v3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/191/RESULT.json",
+      "receipt_sha256": "ed40879c87654ef8f41a0ad3722d9e3321f111ef8f4712b5fde90a51680a67df",
+      "version": "v3.0.1"
+    },
+    {
+      "bytes": 167127,
+      "files": 9,
+      "free_after_owned_cleanup_bytes": 7471407104,
+      "index": 192,
+      "module": "lukechampine.com/blake3",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/192/RESULT.json",
+      "receipt_sha256": "b62fe014976e11f5a90524c65b4b7135e52097ef3cdf36794a93123c21b389e3",
+      "version": "v1.4.1"
+    },
+    {
+      "bytes": 6876483,
+      "files": 127,
+      "free_after_owned_cleanup_bytes": 7463686144,
+      "index": 193,
+      "module": "modernc.org/libc",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/193/RESULT.json",
+      "receipt_sha256": "9130f9d8dca6da8ca57aae6df00af08ad74fc348969891642ec8ef8ba55cfed1",
+      "version": "v1.66.8"
+    },
+    {
+      "bytes": 440167,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 7462969344,
+      "index": 194,
+      "module": "modernc.org/mathutil",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/194/RESULT.json",
+      "receipt_sha256": "e76cce0c52160aa16947e2430dd90c1614a8a3888074d29a32ae07444ed4276d",
+      "version": "v1.7.1"
+    },
+    {
+      "bytes": 17030,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7462776832,
+      "index": 195,
+      "module": "modernc.org/memory",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/195/RESULT.json",
+      "receipt_sha256": "66b7868caf5056d4123d4dc33c1218c5dc71f3bf776e320c80d4605532034618",
+      "version": "v1.11.0"
+    },
+    {
+      "bytes": 18164162,
+      "files": 6,
+      "free_after_owned_cleanup_bytes": 7444660224,
+      "index": 196,
+      "module": "modernc.org/sqlite",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/196/RESULT.json",
+      "receipt_sha256": "8936246f1c74780d932080b096370207cd2aeb72fc50b02de1f88e188e50c5d1",
+      "version": "v1.37.1"
+    },
+    {
+      "bytes": 85388,
+      "files": 48,
+      "free_after_owned_cleanup_bytes": 7444029440,
+      "index": 197,
+      "module": "storj.io/drpc",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/197/RESULT.json",
+      "receipt_sha256": "5540909125fc656a4a9fd67be1e9ff41187cc141cc85ca525e1a0cfd5f0e1efa",
+      "version": "v1.0.0"
+    },
+    {
+      "bytes": 178827,
+      "files": 14,
+      "free_after_owned_cleanup_bytes": 7443546112,
+      "index": 198,
+      "module": "zombiezen.com/go/sqlite",
+      "receipt": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/modules/198/RESULT.json",
+      "receipt_sha256": "908db314c64334321f0fe64611d9d2605260c5b2b463a118e7cba85140c57f17",
+      "version": "v1.4.2"
+    }
+  ],
+  "pid": 80773,
+  "pins_modified": false,
+  "plan": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-original-input-restoration-20261127.elt9gekq/EXACT_MODULE_HYDRATION_PLAN.json",
+  "plan_sha256": "d755052f0eae0967c8d704fa9390a5a330c8dd3d7e8f1e8b4c3f397d785c201f",
+  "restored_files": 4444,
+  "scope": "exact original198 Go module versions; publish only original-declared missing/identical files",
+  "sdk_or_app_build_started": false,
+  "source_pin": "e973cc7432419778f0342624a3b7052055fd270d",
+  "started_at": "2026-11-27T03:45:00.274163+00:00",
+  "status": "ALL4444_ORIGINAL_DECLARED_MODULE_INPUTS_RESTORED_EXACT"
+}
