@@ -7,6 +7,8 @@ import HanlinChatUI
 import HanlinHostContracts
 import HanlinPresentationKit
 import HanlinRichUI
+import HanlinPlatformContracts
+import AI_Hanlin
 
 /// One immutable, transient request from the native connection form. The nonce
 /// binds the user's current-work consent to this exact endpoint/model/key
@@ -285,6 +287,11 @@ final class OtzariaHanlinChatSession: Identifiable {
     private(set) var activities: [Activity] = []
     private(set) var reasoning: [UUID: String] = [:]
     private(set) var sources: [OtzariaHanlinSourceLink] = []
+    private(set) var draftCapabilities: [HanlinCapabilityAttachment] = [] { didSet { historyChanged() } }
+    private(set) var messageCapabilities: [UUID: [HanlinCapabilityAttachment]] = [:]
+    private(set) var capabilityCatalog: [HanlinComposerCapabilityDescriptor] = []
+    private(set) var assistantServices: HanlinAssistantServices?
+    let assistantConsent = HanlinAppToolConsent()
     private(set) var isNavigating = false
     private(set) var isConfigured = false
     private(set) var isConnecting = false
@@ -311,6 +318,9 @@ final class OtzariaHanlinChatSession: Identifiable {
     @ObservationIgnored private var isMutatingHistory = false
     @ObservationIgnored private var agent: HanlinAgentSession?
     @ObservationIgnored private var model: HanlinModelReference?
+    @ObservationIgnored private var assistantHost: HanlinAssistantConversationHost?
+    @ObservationIgnored private var composedHost: OtzariaHanlinComposedHost?
+    @ObservationIgnored private var currentToolReferences: [HanlinSkillToolReference] = []
     @ObservationIgnored private var operation: Task<Void, Never>?
     @ObservationIgnored private var closed = false
 
@@ -349,6 +359,8 @@ final class OtzariaHanlinChatSession: Identifiable {
             historyRevision = revision
             draft = history.draft; selectedProfile = history.selectedProfile
             messages = history.messages; reasoning = history.reasoning; sources = history.sources
+            draftCapabilities = history.draftCapabilities ?? []
+            messageCapabilities = history.messageCapabilities ?? [:]
             activities = history.activities.map {
                 var value = $0
                 if value.isActive { value.isActive = false; value.status = String(localized: "Interrupted") }
@@ -366,10 +378,12 @@ final class OtzariaHanlinChatSession: Identifiable {
     private func checkpoint() throws {
         // Merely opening the native conversation picker does not create an
         // empty saved chat. A user draft, message or appearance choice does.
-        if historyRevision == nil, draft.isEmpty, messages.isEmpty,
+        if historyRevision == nil, draft.isEmpty, draftCapabilities.isEmpty, messages.isEmpty,
            selectedProfile == presentationDescriptor.defaultProfile { return }
         let history = OtzariaHanlinHistory(draft: draft, selectedProfile: selectedProfile, messages: messages,
-            presentations: messageStates.mapValues(\.snapshot), activities: activities, reasoning: reasoning, sources: sources)
+            presentations: messageStates.mapValues(\.snapshot), activities: activities, reasoning: reasoning, sources: sources,
+            draftCapabilities: draftCapabilities.isEmpty ? nil : draftCapabilities,
+            messageCapabilities: messageCapabilities.isEmpty ? nil : messageCapabilities)
         historyRevision = try store.saveHistory(history, replacing: historyRevision)
     }
 
@@ -401,6 +415,10 @@ final class OtzariaHanlinChatSession: Identifiable {
         isConfigured && !closed && !storageFailed && !isStreaming && !isConnecting && !isNavigating
             && !draft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             && draft.utf8.count <= 32_768 && messages.count <= 254
+            && draftCapabilities.allSatisfy { attachment in
+                capabilityCatalog.first(where: { $0.id == attachment.reference.id })?
+                    .validationIssues(for: attachment).isEmpty == true
+            }
     }
 
     var profile: ResolvedPresentationProfile? {
@@ -479,7 +497,14 @@ final class OtzariaHanlinChatSession: Identifiable {
                 try self.onConnectionConfigured(request.id)
                 OtzariaHanlinConnectionDiagnostic.record(.configurationActivated)
                 try await self.requireCurrent()
-                let session = HanlinAgentSession(identity: self.identity, host: self.host, engine: engine, store: self.store)
+                let composed = try await self.configureAssistantHost()
+                let session = HanlinAgentSession(identity: self.identity, host: composed, engine: engine,
+                    store: self.store, capabilities: composed)
+                session.onProviderToolApproval = { [weak self] approval in
+                    guard let self, !self.closed, self.isStreaming, approval.session == self.identity,
+                          (try? self.validateOwner()) != nil else { return false }
+                    return await self.assistantConsent.request(approval)
+                }
                 session.onHostResult = { [weak self] event in
                     var hostSucceeded = false
                     if case .completed = event.result.result.outcome { hostSucceeded = true }
@@ -526,6 +551,112 @@ final class OtzariaHanlinChatSession: Identifiable {
         }
     }
 
+
+    /// Original capability metadata and management remain in the selected facade.
+    /// Opening a picker does not prepare a request or execute a tool.
+    @discardableResult
+    func refreshCapabilityCatalog() -> Bool {
+        guard !closed, !isStreaming, let assistantHost else { return false }
+        do {
+            try validateOwner()
+            capabilityCatalog = try assistantHost.capabilityCatalog()
+            return true
+        } catch {
+            errorMessage = String(localized: "Capabilities are unavailable for the current conversation.")
+            return false
+        }
+    }
+
+    func attachCapability(_ descriptor: HanlinComposerCapabilityDescriptor, actionID: String?) {
+        guard !closed, !isStreaming, !storageFailed else { return }
+        do {
+            try validateOwner()
+            guard let current = capabilityCatalog.first(where: { $0.id == descriptor.id }),
+                  current == descriptor,
+                  actionID == nil || current.actions.contains(where: { $0.id == actionID }) else {
+                throw HanlinHostError.staleContext
+            }
+            let value = current.makeAttachment(actionID: actionID)
+            guard !draftCapabilities.contains(where: { $0.selectionKey == value.selectionKey }) else { return }
+            guard draftCapabilities.count < 32 else { throw HanlinHostError.storageLimitExceeded }
+            draftCapabilities.append(value)
+        } catch {
+            errorMessage = String(localized: "This capability changed or could not be added. Open the picker again.")
+        }
+    }
+
+    func updateCapability(_ attachment: HanlinCapabilityAttachment) {
+        guard !closed, !isStreaming, !storageFailed,
+              let index = draftCapabilities.firstIndex(where: { $0.id == attachment.id }) else { return }
+        do {
+            try validateOwner()
+            let prior = draftCapabilities[index]
+            guard prior.reference == attachment.reference, prior.title == attachment.title,
+                  prior.configurationVersion == attachment.configurationVersion,
+                  !draftCapabilities.enumerated().contains(where: {
+                      $0.offset != index && $0.element.selectionKey == attachment.selectionKey
+                  }) else { throw HanlinHostError.invalidArguments }
+            // Preserve invalid/intermediate edits for the original configuration
+            // view to explain; its original descriptor validator gates Send.
+            draftCapabilities[index] = attachment
+        } catch {
+            errorMessage = String(localized: "The capability could not be updated in this conversation.")
+        }
+    }
+
+    func removeCapability(_ id: UUID) {
+        guard !closed, !isStreaming, !storageFailed, (try? validateOwner()) != nil else { return }
+        draftCapabilities.removeAll { $0.id == id }
+    }
+
+    func answerToolConsent(id: UUID, allowed: Bool) {
+        guard !closed, isStreaming, assistantConsent.pending?.id == id,
+              (try? validateOwner()) != nil else {
+            assistantConsent.answer(id: id, allowed: false)
+            return
+        }
+        assistantConsent.answer(id: id, allowed: allowed)
+    }
+
+    private func configureAssistantHost() async throws -> OtzariaHanlinComposedHost {
+        try await requireCurrent()
+        let nativeCatalog = try await host.catalog(for: identity.context)
+        try await requireCurrent()
+        updateToolReferences(nativeCatalog)
+        guard let appIdentifier = Bundle.main.bundleIdentifier else { throw HanlinHostError.invalidContext }
+        let services = try HanlinAssistantServices.sharedRuntime(
+            runtimeConfiguration: .applicationSupport(appIdentifier: appIdentifier),
+            availableTools: { [weak self] in
+                guard let self, !self.closed, (try? self.validateOwner()) != nil else { return [] }
+                return self.currentToolReferences
+            },
+            validateConversation: { [weak self] conversationID in
+                guard let self, !self.closed, conversationID == self.identity.conversationID else {
+                    throw HanlinHostError.staleContext
+                }
+                try self.validateOwner()
+            })
+        let capabilityHost = services.makeConversationHost(identity: identity,
+            validateCurrent: { [weak self] in
+                guard let self, !self.closed else { throw HanlinHostError.staleContext }
+                try self.validateOwner()
+            }, consent: assistantConsent)
+        let composed = OtzariaHanlinComposedHost(identity: identity, library: host, assistant: capabilityHost)
+        assistantServices = services
+        assistantHost = capabilityHost
+        composedHost = composed
+        await services.prepare()
+        try await requireCurrent()
+        capabilityCatalog = try capabilityHost.capabilityCatalog()
+        return composed
+    }
+
+    private func updateToolReferences(_ catalog: HanlinHostCatalog) {
+        currentToolReferences = catalog.tools.map {
+            HanlinSkillToolReference(name: $0.route.alias, title: $0.descriptor.title.resolved(locale: .current))
+        }
+    }
+
     static func configuration(endpoint: String, modelID: String, credential: String) throws -> HanlinChatModelConfiguration {
         let model = modelID.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let url = URL(string: endpoint.trimmingCharacters(in: .whitespacesAndNewlines)),
@@ -543,15 +674,19 @@ final class OtzariaHanlinChatSession: Identifiable {
             .closed: closed, .storageFailed: storageFailed, .configured: isConfigured,
             .streaming: isStreaming, .connecting: isConnecting, .hasOperation: operation != nil,
         ])
-        guard canSend, let agent, let model, let profile else {
+        guard canSend, let agent, let model, let profile, let assistantHost else {
             OtzariaHanlinConnectionDiagnostic.record(.sendRejected)
             return
         }
         let prompt = draft
+        let selectedCapabilities = draftCapabilities
+        let userMessage = HanlinChatMessage.user(prompt)
         isMutatingHistory = true
         defer { isMutatingHistory = false }
         draft = ""
-        messages.append(.user(prompt))
+        draftCapabilities = []
+        messages.append(userMessage)
+        if !selectedCapabilities.isEmpty { messageCapabilities[userMessage.id] = selectedCapabilities }
         let history = messages.map { HanlinAISDKMessage(role: $0.role == "user" ? .user : .assistant, text: $0.content) }
         let answerID = UUID()
         messages.append(.init(id: answerID, role: "assistant", content: ""))
@@ -564,6 +699,8 @@ final class OtzariaHanlinChatSession: Identifiable {
             OtzariaHanlinConnectionDiagnostic.record(.sendCheckpointFailed,
                 reason: OtzariaHanlinConnectionDiagnostic.reason(for: error))
             messages.removeLast(2); messageStates[answerID] = nil
+            messageCapabilities[userMessage.id] = nil
+            draftCapabilities = selectedCapabilities
             storageFailed = true; draft = prompt
             errorMessage = String(localized: "The message could not be saved, so it was not sent. Close and reopen this conversation.")
             return
@@ -576,6 +713,7 @@ final class OtzariaHanlinChatSession: Identifiable {
         operation = Task { @MainActor [weak self] in
             guard let self else { return }
             defer {
+                assistantHost.finishRequest()
                 self.isStreaming = false; self.operation = nil
                 OtzariaHanlinConnectionDiagnostic.record(.sendSettled, flags: [
                     .closed: self.closed, .hasSources: !self.sources.isEmpty, .hasActivities: !self.activities.isEmpty,
@@ -584,6 +722,11 @@ final class OtzariaHanlinChatSession: Identifiable {
                 ])
             }
             do {
+                try await self.requireCurrent()
+                let nativeCatalog = try await self.host.catalog(for: self.identity.context)
+                try await self.requireCurrent()
+                self.updateToolReferences(nativeCatalog)
+                try await assistantHost.beginRequest(hostCatalog: nativeCatalog, attachments: selectedCapabilities)
                 try await self.requireCurrent()
                 let readInstructions = try self.currentWorkReadScope?.modelInstructions()
                     ?? "This conversation has no permission to read a book or selection or modify library data."
@@ -674,7 +817,11 @@ final class OtzariaHanlinChatSession: Identifiable {
         }
     }
 
-    func stop() { operation?.cancel() }
+    func stop() {
+        operation?.cancel()
+        assistantHost?.finishRequest()
+        assistantConsent.revoke()
+    }
 
     func requestNavigation(_ url: URL) {
         guard !closed, !isStreaming, !isConnecting, !isNavigating, operation == nil else { return }
@@ -693,17 +840,23 @@ final class OtzariaHanlinChatSession: Identifiable {
     func revoke() {
         guard !closed else { return }
         closed = true
+        assistantHost?.revoke()
+        assistantConsent.revoke()
         // Mutations already checkpoint through this exact lease. Flush once
         // while it is still current, then revoke before asynchronous SDK work.
         if !storageFailed { try? checkpoint() }
         store.revoke()
         operation?.cancel(); operation = nil
         let prior = agent
+        let priorHost = composedHost
         agent = nil; model = nil
+        assistantHost = nil; composedHost = nil; assistantServices = nil
+        capabilityCatalog.removeAll(); currentToolReferences.removeAll()
         draft = ""; messages.removeAll(); messageStates.removeAll(); activities.removeAll(); reasoning.removeAll(); sources.removeAll()
         pendingHostResults.removeAll()
+        draftCapabilities.removeAll(); messageCapabilities.removeAll()
         isConfigured = false; isConnecting = false; isStreaming = false; isNavigating = false
-        Task { await prior?.invalidate() }
+        Task { await priorHost?.revoke(); await prior?.invalidate() }
     }
 }
 #endif

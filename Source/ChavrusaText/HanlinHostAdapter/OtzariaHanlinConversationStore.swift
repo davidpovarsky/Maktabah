@@ -1,6 +1,7 @@
 import Foundation
 import HanlinChatCore
 import HanlinHostContracts
+import HanlinPlatformContracts
 import HanlinPresentationKit
 
 struct OtzariaHanlinToolActivity: Codable, Hashable, Identifiable, Sendable {
@@ -29,12 +30,25 @@ struct OtzariaHanlinHistory: Codable, Hashable, Sendable {
     var activities: [OtzariaHanlinToolActivity]
     var reasoning: [UUID: String]
     var sources: [OtzariaHanlinSourceLink] = []
+    // Optional fields preserve existing saved histories. These are value snapshots,
+    // never restored grants or permission to execute a capability.
+    var draftCapabilities: [HanlinCapabilityAttachment]? = nil
+    var messageCapabilities: [UUID: [HanlinCapabilityAttachment]]? = nil
 
     func validate(namespace: HanlinConversationNamespace, conversationID: UUID) throws {
         guard draft.utf8.count <= 32_768, messages.count <= 256,
               Set(messages.map(\.id)).count == messages.count,
               messages.allSatisfy({ ["user", "assistant"].contains($0.role) && $0.content.utf8.count <= 262_144 }),
               activities.count <= 256, sources.count <= 256 else { throw HanlinHostError.invalidRecord }
+        let users = Set(messages.filter { $0.role == "user" }.map(\.id))
+        let sentCapabilities = messageCapabilities ?? [:]
+        guard Set(sentCapabilities.keys).isSubset(of: users) else { throw HanlinHostError.invalidRecord }
+        for selection in [draftCapabilities ?? []] + Array(sentCapabilities.values) {
+            guard selection.count <= 32, Set(selection.map(\.id)).count == selection.count,
+                  Set(selection.map(\.selectionKey)).count == selection.count else {
+                throw HanlinHostError.invalidRecord
+            }
+        }
         let assistants = Set(messages.filter { $0.role == "assistant" }.map(\.id))
         guard Set(presentations.keys) == assistants, Set(reasoning.keys).isSubset(of: assistants),
               reasoning.values.allSatisfy({ $0.utf8.count <= 262_144 }),
