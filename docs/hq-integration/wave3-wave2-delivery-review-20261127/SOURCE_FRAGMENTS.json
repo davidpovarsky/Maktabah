@@ -1,0 +1,678 @@
+{
+  "originalInterruption": {
+    "path": "Scripts/CI/runtime27_interruption.py",
+    "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+    "fragment": [
+      {
+        "line": 91,
+        "text": "def stop_owned_process_group("
+      },
+      {
+        "line": 92,
+        "text": "    process,"
+      },
+      {
+        "line": 93,
+        "text": "    grace_seconds=5,"
+      },
+      {
+        "line": 94,
+        "text": "    kill_wait_seconds=2,"
+      },
+      {
+        "line": 95,
+        "text": "    killpg_fn=None,"
+      },
+      {
+        "line": 96,
+        "text": "    sleep_fn=time.sleep,"
+      },
+      {
+        "line": 97,
+        "text": "    monotonic_fn=time.monotonic,"
+      },
+      {
+        "line": 98,
+        "text": "):"
+      },
+      {
+        "line": 99,
+        "text": "    \"\"\"Observe and stop only the created process group independently of leader exit.\"\"\""
+      },
+      {
+        "line": 100,
+        "text": "    pgid = process.pid"
+      },
+      {
+        "line": 101,
+        "text": "    killpg = killpg_fn or getattr(os, \"killpg\", None)"
+      },
+      {
+        "line": 102,
+        "text": "    probe_errors = []"
+      },
+      {
+        "line": 103,
+        "text": "    send_errors = []"
+      },
+      {
+        "line": 104,
+        "text": ""
+      },
+      {
+        "line": 105,
+        "text": "    def alive():"
+      },
+      {
+        "line": 106,
+        "text": "        process.poll()  # Reap the leader if it exited; children may still exist."
+      },
+      {
+        "line": 107,
+        "text": "        if killpg is None:"
+      },
+      {
+        "line": 108,
+        "text": "            return process.poll() is None"
+      },
+      {
+        "line": 109,
+        "text": "        try:"
+      },
+      {
+        "line": 110,
+        "text": "            killpg(pgid, 0)"
+      },
+      {
+        "line": 111,
+        "text": "            return True"
+      },
+      {
+        "line": 112,
+        "text": "        except ProcessLookupError:"
+      },
+      {
+        "line": 113,
+        "text": "            return False"
+      },
+      {
+        "line": 114,
+        "text": "        except OSError as error:"
+      },
+      {
+        "line": 115,
+        "text": "            # Do not mistake a transient probe failure (e.g. PermissionError)"
+      },
+      {
+        "line": 116,
+        "text": "            # for group exit and thereby skip the bounded SIGKILL fallback."
+      },
+      {
+        "line": 117,
+        "text": "            probe_errors.append(type(error).__name__)"
+      },
+      {
+        "line": 118,
+        "text": "            return True"
+      },
+      {
+        "line": 119,
+        "text": ""
+      },
+      {
+        "line": 120,
+        "text": "    def send(kind):"
+      },
+      {
+        "line": 121,
+        "text": "        if killpg is None:"
+      },
+      {
+        "line": 122,
+        "text": "            return"
+      },
+      {
+        "line": 123,
+        "text": "        try:"
+      },
+      {
+        "line": 124,
+        "text": "            killpg(pgid, kind)"
+      },
+      {
+        "line": 125,
+        "text": "        except ProcessLookupError:"
+      },
+      {
+        "line": 126,
+        "text": "            pass"
+      },
+      {
+        "line": 127,
+        "text": "        except OSError as error:"
+      },
+      {
+        "line": 128,
+        "text": "            send_errors.append((int(kind), type(error).__name__))"
+      },
+      {
+        "line": 129,
+        "text": ""
+      },
+      {
+        "line": 130,
+        "text": "    def wait_gone(seconds):"
+      },
+      {
+        "line": 131,
+        "text": "        end = monotonic_fn() + seconds"
+      },
+      {
+        "line": 132,
+        "text": "        while alive():"
+      },
+      {
+        "line": 133,
+        "text": "            if monotonic_fn() >= end:"
+      },
+      {
+        "line": 134,
+        "text": "                return False"
+      },
+      {
+        "line": 135,
+        "text": "            sleep_fn(0.05)"
+      },
+      {
+        "line": 136,
+        "text": "        return True"
+      },
+      {
+        "line": 137,
+        "text": ""
+      },
+      {
+        "line": 138,
+        "text": "    send(signal.SIGINT)"
+      },
+      {
+        "line": 139,
+        "text": "    gone = wait_gone(grace_seconds)"
+      },
+      {
+        "line": 140,
+        "text": "    if not gone:"
+      },
+      {
+        "line": 141,
+        "text": "        send(getattr(signal, \"SIGKILL\", signal.SIGTERM))"
+      },
+      {
+        "line": 142,
+        "text": "        gone = wait_gone(kill_wait_seconds)"
+      },
+      {
+        "line": 143,
+        "text": "    result = {"
+      },
+      {
+        "line": 144,
+        "text": "        \"owned_pgid\": pgid,"
+      },
+      {
+        "line": 145,
+        "text": "        \"group_state\": \"GONE_CHECKED\" if (gone and not send_errors) else \"STILL_PRESENT_UNVERIFIED\","
+      },
+      {
+        "line": 146,
+        "text": "        \"off_group_simulator_agents\": \"NOT_INDEPENDENTLY_VERIFIED\","
+      },
+      {
+        "line": 147,
+        "text": "    }"
+      },
+      {
+        "line": 148,
+        "text": "    if probe_errors:"
+      },
+      {
+        "line": 149,
+        "text": "        result[\"probe_errors\"] = probe_errors"
+      },
+      {
+        "line": 150,
+        "text": "    if send_errors:"
+      },
+      {
+        "line": 151,
+        "text": "        result[\"send_errors\"] = [{\"signal\": sig, \"error\": err} for sig, err in send_errors]"
+      },
+      {
+        "line": 152,
+        "text": "    return result"
+      }
+    ]
+  },
+  "perbookRunner": {
+    "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+    "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59",
+    "fragment": [
+      {
+        "line": 439,
+        "text": ""
+      },
+      {
+        "line": 440,
+        "text": "class BudgetedOriginalRunner:"
+      },
+      {
+        "line": 441,
+        "text": "    \"\"\"Scoped core facade for the unchanged original one-case runner."
+      },
+      {
+        "line": 442,
+        "text": ""
+      },
+      {
+        "line": 443,
+        "text": "    Only its owned Popen handle is interrupted. Original argv/environment,"
+      },
+      {
+        "line": 444,
+        "text": "    original verifier/exporter and original process-group cleanup remain in use."
+      },
+      {
+        "line": 445,
+        "text": "    A cap breach invalidates the run; finalization may grow bytes and is retained."
+      },
+      {
+        "line": 446,
+        "text": "    \"\"\""
+      },
+      {
+        "line": 447,
+        "text": "    def __init__(self, core, guard, trace):"
+      },
+      {
+        "line": 448,
+        "text": "        self.core, self.guard, self.trace = core, guard, trace"
+      },
+      {
+        "line": 449,
+        "text": "        self.owned_process_groups = []"
+      },
+      {
+        "line": 450,
+        "text": ""
+      },
+      {
+        "line": 451,
+        "text": "    def __getattr__(self, name):"
+      },
+      {
+        "line": 452,
+        "text": "        return getattr(self.core, name)"
+      },
+      {
+        "line": 453,
+        "text": ""
+      },
+      {
+        "line": 454,
+        "text": "    def finish_process(self, process, phase, path, interruption):"
+      },
+      {
+        "line": 455,
+        "text": "        # Retain liveness in memory before writing: an ENOSPC evidence failure"
+      },
+      {
+        "line": 456,
+        "text": "        # must not let the outer owner shut down a still-active Simulator."
+      },
+      {
+        "line": 457,
+        "text": "        row = {\"phase\": phase, \"owned_pid\": process.pid, \"verified\": False}"
+      },
+      {
+        "line": 458,
+        "text": "        self.owned_process_groups.append(row)"
+      },
+      {
+        "line": 459,
+        "text": "        try:"
+      },
+      {
+        "line": 460,
+        "text": "            row[\"original_cleanup\"] = interruption[\"stop_owned_process_group\"](process)"
+      },
+      {
+        "line": 461,
+        "text": "            row[\"verified\"] = (row[\"original_cleanup\"].get(\"group_state\") == \"GONE_CHECKED\""
+      },
+      {
+        "line": 462,
+        "text": "                and row[\"original_cleanup\"].get(\"owned_pgid\") == process.pid)"
+      },
+      {
+        "line": 463,
+        "text": "        except BaseException as error:"
+      },
+      {
+        "line": 464,
+        "text": "            row[\"error_type\"] = type(error).__name__"
+      },
+      {
+        "line": 465,
+        "text": "            raise"
+      },
+      {
+        "line": 466,
+        "text": "        finally:"
+      },
+      {
+        "line": 467,
+        "text": "            self.core.write(path, row)"
+      },
+      {
+        "line": 468,
+        "text": "        require(row[\"verified\"], \"Owned native/exporter process group cleanup remains unverified\")"
+      },
+      {
+        "line": 469,
+        "text": ""
+      },
+      {
+        "line": 470,
+        "text": "    def command(self, args, timeout=90, check=True):"
+      },
+      {
+        "line": 471,
+        "text": "        # The unchanged original verifier and attachment exporter also run"
+      },
+      {
+        "line": 472,
+        "text": "        # while the trace is alive. Cover their entire subprocess lifetime,"
+      },
+      {
+        "line": 473,
+        "text": "        # not just the XCTest Popen interval, with the same owned-byte guard."
+      },
+      {
+        "line": 474,
+        "text": "        self.guard.check(); self.trace.require_running()"
+      },
+      {
+        "line": 475,
+        "text": "        interruption = runpy.run_path(str(ROOT / \"Scripts/CI/runtime27_interruption.py\"))"
+      },
+      {
+        "line": 476,
+        "text": "        process = subprocess.Popen(args, cwd=ROOT, text=True, stdout=subprocess.PIPE,"
+      },
+      {
+        "line": 477,
+        "text": "            stderr=subprocess.PIPE, start_new_session=True)"
+      },
+      {
+        "line": 478,
+        "text": "        deadline = time.monotonic() + timeout"
+      },
+      {
+        "line": 479,
+        "text": "        try:"
+      },
+      {
+        "line": 480,
+        "text": "            while True:"
+      },
+      {
+        "line": 481,
+        "text": "                self.guard.check(); self.trace.require_running()"
+      },
+      {
+        "line": 482,
+        "text": "                remaining = deadline - time.monotonic()"
+      },
+      {
+        "line": 483,
+        "text": "                if remaining <= 0:"
+      },
+      {
+        "line": 484,
+        "text": "                    raise subprocess.TimeoutExpired(args, timeout)"
+      },
+      {
+        "line": 485,
+        "text": "                try:"
+      },
+      {
+        "line": 486,
+        "text": "                    stdout, stderr = process.communicate(timeout=min(1, remaining))"
+      },
+      {
+        "line": 487,
+        "text": "                    break"
+      },
+      {
+        "line": 488,
+        "text": "                except subprocess.TimeoutExpired:"
+      },
+      {
+        "line": 489,
+        "text": "                    continue"
+      },
+      {
+        "line": 490,
+        "text": "            self.guard.check()"
+      },
+      {
+        "line": 491,
+        "text": "            result = subprocess.CompletedProcess(args, process.returncode, stdout, stderr)"
+      },
+      {
+        "line": 492,
+        "text": "            if check:"
+      },
+      {
+        "line": 493,
+        "text": "                require(result.returncode == 0, \"Original command failed: \" + str(args[0]))"
+      },
+      {
+        "line": 494,
+        "text": "            return result"
+      },
+      {
+        "line": 495,
+        "text": "        except BaseException as error:"
+      },
+      {
+        "line": 496,
+        "text": "            self.guard.failure = type(error).__name__"
+      },
+      {
+        "line": 497,
+        "text": "            raise"
+      },
+      {
+        "line": 498,
+        "text": "        finally:"
+      },
+      {
+        "line": 499,
+        "text": "            self.finish_process(process, \"original-command\", self.core.OUT /"
+      },
+      {
+        "line": 500,
+        "text": "                (\"command-process-cleanup-\" + uuid.uuid4().hex + \".json\"), interruption)"
+      },
+      {
+        "line": 501,
+        "text": ""
+      },
+      {
+        "line": 502,
+        "text": "    def bounded(self, args, log, timeout, environment=None):"
+      },
+      {
+        "line": 503,
+        "text": "        require(args and args[0] == \"xcodebuild\" and \"test-without-building\" in args, \"Only the original actual native invocation is budget guarded\")"
+      },
+      {
+        "line": 504,
+        "text": "        self.guard.check(); self.trace.require_running()"
+      },
+      {
+        "line": 505,
+        "text": "        interruption = runpy.run_path(str(ROOT / \"Scripts/CI/runtime27_interruption.py\"))"
+      },
+      {
+        "line": 506,
+        "text": "        with Path(log).open(\"w\") as output:"
+      },
+      {
+        "line": 507,
+        "text": "            process = subprocess.Popen(args, cwd=ROOT, env=environment, stdout=output,"
+      },
+      {
+        "line": 508,
+        "text": "                stderr=subprocess.STDOUT, start_new_session=True)"
+      },
+      {
+        "line": 509,
+        "text": "            deadline = time.monotonic() + timeout"
+      },
+      {
+        "line": 510,
+        "text": "            try:"
+      },
+      {
+        "line": 511,
+        "text": "                while process.poll() is None:"
+      },
+      {
+        "line": 512,
+        "text": "                    self.guard.check(); self.trace.require_running()"
+      },
+      {
+        "line": 513,
+        "text": "                    remaining = deadline - time.monotonic()"
+      },
+      {
+        "line": 514,
+        "text": "                    if remaining <= 0:"
+      },
+      {
+        "line": 515,
+        "text": "                        raise subprocess.TimeoutExpired(args, timeout)"
+      },
+      {
+        "line": 516,
+        "text": "                    try:"
+      },
+      {
+        "line": 517,
+        "text": "                        return process.wait(timeout=min(1, remaining))"
+      },
+      {
+        "line": 518,
+        "text": "                    except subprocess.TimeoutExpired:"
+      },
+      {
+        "line": 519,
+        "text": "                        pass"
+      },
+      {
+        "line": 520,
+        "text": "                return process.returncode"
+      },
+      {
+        "line": 521,
+        "text": "            except BaseException as error:"
+      },
+      {
+        "line": 522,
+        "text": "                self.guard.failure = type(error).__name__"
+      },
+      {
+        "line": 523,
+        "text": "                raise"
+      },
+      {
+        "line": 524,
+        "text": "            finally:"
+      },
+      {
+        "line": 525,
+        "text": "                self.finish_process(process, \"original-XCTest\", Path(log).with_suffix(\".process-cleanup.json\"), interruption)"
+      },
+      {
+        "line": 526,
+        "text": ""
+      },
+      {
+        "line": 592,
+        "text": "    groups = [] if proxy is None else proxy.owned_process_groups"
+      },
+      {
+        "line": 593,
+        "text": "    state[\"owned_native_and_exporter_groups\"] = groups"
+      },
+      {
+        "line": 594,
+        "text": "    groups_verified = all(r.get(\"verified\") is True and r.get(\"original_cleanup\", {}).get(\"group_state\") == \"GONE_CHECKED\""
+      },
+      {
+        "line": 595,
+        "text": "                          and r[\"original_cleanup\"].get(\"owned_pgid\") == r.get(\"owned_pid\") for r in groups)"
+      },
+      {
+        "line": 596,
+        "text": "    if not groups_verified:"
+      },
+      {
+        "line": 597,
+        "text": "        state[\"failures\"].append({\"phase\": \"native-exporter\", \"errorType\": \"OwnedProcessGroupExitUnverified\"})"
+      },
+      {
+        "line": 598,
+        "text": "    state[\"verified\"] = groups_verified and all(v.get(\"verified\") is True for v in state[\"producers\"].values())"
+      },
+      {
+        "line": 599,
+        "text": "    state[\"status\"] = \"OWNED_RUNTIME_EXIT_VERIFIED\" if state[\"verified\"] else \"OWNED_RUNTIME_EXIT_UNVERIFIED\""
+      },
+      {
+        "line": 600,
+        "text": "    return state"
+      },
+      {
+        "line": 601,
+        "text": ""
+      },
+      {
+        "line": 602,
+        "text": ""
+      },
+      {
+        "line": 603,
+        "text": "def retain_only_after_runtime_cleanup(owner, udid, states):"
+      },
+      {
+        "line": 604,
+        "text": "    if any(state.get(\"verified\") is not True for state in states):"
+      },
+      {
+        "line": 605,
+        "text": "        return {\"status\": \"NOT_SHUT_DOWN_HOST_CLEANUP_UNVERIFIED\", \"udid\": udid}, False"
+      },
+      {
+        "line": 606,
+        "text": "    return owner.retain_simulator(udid), True"
+      },
+      {
+        "line": 607,
+        "text": ""
+      }
+    ]
+  }
+}

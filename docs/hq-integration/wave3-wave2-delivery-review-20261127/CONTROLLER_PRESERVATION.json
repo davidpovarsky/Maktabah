@@ -1,0 +1,305 @@
+{
+  "scope": "Read-only literal/AST/source comparison, no controller import/execution or test rerun",
+  "root": "bdfb717340464fb41ed07294503abe83bd5a1124",
+  "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "rootControllerSHA256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248",
+  "donorControllerSHA256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755",
+  "oldPhaseCount": 11,
+  "newPhaseCount": 14,
+  "oldPhasesEqual": true,
+  "newPhases": [
+    "offline-zayit",
+    "offline-otzaria",
+    "reader-pending-sql"
+  ],
+  "phaseComparisons": {
+    "packages": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen"
+        ],
+        "allowance": 6000,
+        "payload_peak": 10241792951,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40PackagesInstallThroughOriginalSearchDataAndColdReopen"
+        ],
+        "allowance": 6000,
+        "payload_peak": 10241792951,
+        "inputs": []
+      }
+    },
+    "pages": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity",
+          "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity",
+          "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      }
+    },
+    "preview-hit": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40NafshiFirstPageForIndependentFullContextOracle"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      }
+    },
+    "preview-reader": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment",
+          "FullV40ReaderModeAcceptanceTests/testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus"
+        ],
+        "allowance": 3600,
+        "payload_peak": 0,
+        "inputs": [
+          "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+        ]
+      },
+      "donor": {
+        "cases": [
+          "PublishedProductionSearchDataTests/testPublishedV40NafshiFullParagraphAndChapterMatchEveryOriginalSourceSegment",
+          "FullV40ReaderModeAcceptanceTests/testOriginalSearchOpensLineParagraphAndChapterAtExactSourceFocus"
+        ],
+        "allowance": 3600,
+        "payload_peak": 0,
+        "inputs": [
+          "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+        ]
+      }
+    },
+    "reader-selection-navigation": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "FullV40ReaderModeAcceptanceTests/testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends",
+          "FullV40ReaderModeAcceptanceTests/testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized"
+        ],
+        "allowance": 3600,
+        "payload_peak": 0,
+        "inputs": [
+          "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+        ]
+      },
+      "donor": {
+        "cases": [
+          "FullV40ReaderModeAcceptanceTests/testOriginalUIKitSelectionPersistsExactUTF16AndRestoresAcrossThreeBackends",
+          "FullV40ReaderModeAcceptanceTests/testOriginalParagraphAndChapterPullCancellationAndCanonicalTOCStaySynchronized"
+        ],
+        "allowance": 3600,
+        "payload_peak": 0,
+        "inputs": [
+          "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+        ]
+      }
+    },
+    "reader-continuous-pull": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": [
+          "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+        ]
+      },
+      "donor": {
+        "cases": [
+          "FullV40ReaderModeAcceptanceTests/testOriginalContinuousTouchArmedRetreatPreservesParagraphAndChapterReader"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": [
+          "PRODUCTION_SEARCH_PREVIEW_COMPILE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE",
+          "PRODUCTION_SEARCH_PREVIEW_ORACLE_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_PRESENTATION_SHA256",
+          "PRODUCTION_SEARCH_PREVIEW_SERVICE_SHA256"
+        ]
+      }
+    },
+    "sefaria-contexts": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
+          "SefariaFullSearchContextAcceptanceTests/testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "SefariaFullSearchContextAcceptanceTests/testThreeActualSefariaEditionsAcrossTwoPagesKeepDistinctCompleteBodies",
+          "SefariaFullSearchContextAcceptanceTests/testHebrewUIEnglishResultHonorsOriginalSourceTranslationAndBothControls"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      }
+    },
+    "inspector": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "FullV40InspectorSemanticAcceptanceTests/testFullV40InspectorSemanticGroupsAndLinkedContent"
+        ],
+        "allowance": 3600,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "FullV40InspectorSemanticAcceptanceTests/testFullV40InspectorSemanticGroupsAndLinkedContent"
+        ],
+        "allowance": 3600,
+        "payload_peak": 0,
+        "inputs": []
+      }
+    },
+    "inspector-text-modes": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "SefariaInspectorModeAcceptanceTests/testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "SefariaInspectorModeAcceptanceTests/testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      }
+    },
+    "settings-update-last": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState"
+        ],
+        "allowance": 7200,
+        "payload_peak": 24000000000,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState"
+        ],
+        "allowance": 7200,
+        "payload_peak": 24000000000,
+        "inputs": []
+      }
+    },
+    "search-after-settings": {
+      "equal": true,
+      "root": {
+        "cases": [
+          "PublishedProductionSearchAfterBooksUpdateTests/testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      },
+      "donor": {
+        "cases": [
+          "PublishedProductionSearchAfterBooksUpdateTests/testOriginalBooksUpdateRetainsV40PackagesButRejectsTheirReadinessAndQueries"
+        ],
+        "allowance": 1800,
+        "payload_peak": 0,
+        "inputs": []
+      }
+    }
+  },
+  "unchangedDefinitions": [
+    "require",
+    "load_core",
+    "load_support",
+    "input_values",
+    "observe_inputs",
+    "actual_owner",
+    "install_images",
+    "prepare_context",
+    "official_metadata",
+    "verified_phase",
+    "positive_trace",
+    "updated_snapshot",
+    "admit_updated",
+    "image_resolver"
+  ],
+  "changedDefinitions": [
+    "source_context",
+    "run_original_case",
+    "execute",
+    "main"
+  ],
+  "verifierEqualSuffixStatementCount": 10,
+  "originalVerifierSuffixAST": [
+    "Assign(targets=[Name(id='strict', ctx=Store())], value=List(elts=[Attribute(value=Name(id='sys', ctx=Load()), attr='executable', ctx=Load()), Constant(value='tools/verify_xcresult_zero_skips.py'), Constant(value='--xcresult'), Call(func=Name(id='str', ctx=Load()), args=[Name(id='bundle', ctx=Load())], keywords=[]), Constant(value='--log'), Call(func=Name(id='str', ctx=Load()), args=[Name(id='log', ctx=Load())], keywords=[]), Constant(value='--scope'), Constant(value='focused-ui'), Constant(value='--expected-device'), Name(id='udid', ctx=Load()), Constant(value='--expected-os-major'), Constant(value='27'), Constant(value='--min-tests'), Constant(value='1'), Constant(value='--out'), Call(func=Name(id='str', ctx=Load()), args=[BinOp(left=Name(id='output', ctx=Load()), op=Div(), right=Constant(value='zero-skip.json'))], keywords=[]), Constant(value='--required-case'), Name(id='case', ctx=Load())], ctx=Load()))",
+    "Assign(targets=[Subscript(value=Name(id='result', ctx=Load()), slice=Constant(value='zero_skip_exit'), ctx=Store())], value=Attribute(value=Call(func=Attribute(value=Name(id='core', ctx=Load()), attr='command', ctx=Load()), args=[Name(id='strict', ctx=Load())], keywords=[keyword(arg='timeout', value=Constant(value=180)), keyword(arg='check', value=Constant(value=False))]), attr='returncode', ctx=Load()))",
+    "Assign(targets=[Name(id='verifier', ctx=Store())], value=Call(func=Attribute(value=Name(id='runpy', ctx=Load()), attr='run_path', ctx=Load()), args=[Call(func=Name(id='str', ctx=Load()), args=[BinOp(left=Name(id='ROOT', ctx=Load()), op=Div(), right=Constant(value='Scripts/CI/verify-faithful-xctest.py'))], keywords=[])], keywords=[]))",
+    "Assign(targets=[Name(id='declaration', ctx=Store())], value=Call(func=Subscript(value=Name(id='verifier', ctx=Load()), slice=Constant(value='verify'), ctx=Load()), args=[Call(func=Attribute(value=Name(id='log', ctx=Load()), attr='read_text', ctx=Load()), args=[], keywords=[keyword(arg='errors', value=Constant(value='replace'))]), List(elts=[Name(id='case', ctx=Load())], ctx=Load()), BinOp(left=Name(id='ROOT', ctx=Load()), op=Div(), right=Constant(value='Maktabah-iOSUITests'))], keywords=[]))",
+    "Expr(value=Call(func=Attribute(value=Name(id='core', ctx=Load()), attr='write', ctx=Load()), args=[BinOp(left=Name(id='output', ctx=Load()), op=Div(), right=Constant(value='actual-test-cases.json')), Name(id='declaration', ctx=Load())], keywords=[]))",
+    "Assign(targets=[Subscript(value=Name(id='result', ctx=Load()), slice=Constant(value='declaration_status'), ctx=Store())], value=Subscript(value=Name(id='declaration', ctx=Load()), slice=Constant(value='status'), ctx=Load()))",
+    "If(test=Call(func=Attribute(value=Name(id='bundle', ctx=Load()), attr='is_dir', ctx=Load()), args=[], keywords=[]), body=[Assign(targets=[Subscript(value=Name(id='result', ctx=Load()), slice=Constant(value='attachment_export_exit'), ctx=Store())], value=Attribute(value=Call(func=Attribute(value=Name(id='core', ctx=Load()), attr='command', ctx=Load()), args=[List(elts=[Constant(value='xcrun'), Constant(value='xcresulttool'), Constant(value='export'), Constant(value='attachments'), Constant(value='--path'), Call(func=Name(id='str', ctx=Load()), args=[Name(id='bundle', ctx=Load())], keywords=[]), Constant(value='--output-path'), Call(func=Name(id='str', ctx=Load()), args=[BinOp(left=Name(id='output', ctx=Load()), op=Div(), right=Constant(value='captures'))], keywords=[])], ctx=Load())], keywords=[keyword(arg='timeout', value=Constant(value=300)), keyword(arg='check', value=Constant(value=False))]), attr='returncode', ctx=Load()))], orelse=[])",
+    "Assign(targets=[Subscript(value=Name(id='result', ctx=Load()), slice=Constant(value='passed'), ctx=Store())], value=BoolOp(op=And(), values=[Compare(left=Subscript(value=Name(id='result', ctx=Load()), slice=Constant(value='xcodebuild_exit'), ctx=Load()), ops=[Eq(), Eq()], comparators=[Subscript(value=Name(id='result', ctx=Load()), slice=Constant(value='zero_skip_exit'), ctx=Load()), Constant(value=0)]), Compare(left=Subscript(value=Name(id='declaration', ctx=Load()), slice=Constant(value='status'), ctx=Load()), ops=[Eq()], comparators=[Constant(value='EXECUTED_PASS')]), Compare(left=Call(func=Attribute(value=Name(id='result', ctx=Load()), attr='get', ctx=Load()), args=[Constant(value='attachment_export_exit')], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])]))",
+    "Expr(value=Call(func=Attribute(value=Name(id='core', ctx=Load()), attr='write', ctx=Load()), args=[BinOp(left=Name(id='output', ctx=Load()), op=Div(), right=Constant(value='RESULT.json')), Name(id='result', ctx=Load())], keywords=[]))",
+    "Return(value=Name(id='result', ctx=Load()))"
+  ]
+}

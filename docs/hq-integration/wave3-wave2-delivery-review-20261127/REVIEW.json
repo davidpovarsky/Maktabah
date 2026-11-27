@@ -1,0 +1,105 @@
+{
+  "schema": "otzaria.wave3.wave2-source-review/1",
+  "reviewer": "ui_acceptance",
+  "donor": "2c23de7138c002cfa4476c40303d4d6973b4b6d5",
+  "rootComparison": "bdfb717340464fb41ed07294503abe83bd5a1124",
+  "decision": "HOLD_PERBOOK_PROCESS_OWNER_FIX_AND_PRESERVE_ROOT_PRODUCTION_PREFIX",
+  "mode": "READ_ONLY_SOURCE_AND_RETAINED_EVIDENCE",
+  "reviewedWithoutAdditionalDemonstratedBlocker": [
+    "study-ui-offline-exercises.py",
+    "study-ui-offline-oracle.py",
+    "study-ui-trace-exports.py",
+    "study-ui-pending-sql.py",
+    "study-ui-pending-execution.py",
+    "production-study-v40-ui.py",
+    "study-ui-prerequisites.py"
+  ],
+  "findings": [
+    {
+      "id": "W2-REVIEW-01",
+      "priority": "high",
+      "status": "OWNER_CORRECTION_REQUESTED",
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59",
+      "functions": [
+        "BudgetedOriginalRunner.command",
+        "BudgetedOriginalRunner.bounded",
+        "BudgetedOriginalRunner.finish_process",
+        "stop_owned_runtime"
+      ],
+      "lineRanges": [
+        [
+          449,
+          510
+        ],
+        [
+          592,
+          606
+        ]
+      ],
+      "issue": "Attempted child creation is not recorded before Popen; returned handle and deadline precede protected try; ledger rows are added only by finalizer. Outer all([]) can treat untracked native/exporter cleanup as verified.",
+      "nativeReproduction": false
+    },
+    {
+      "id": "W2-REVIEW-02",
+      "priority": "high",
+      "status": "OWNER_CORRECTION_REQUESTED",
+      "path": "Scripts/CI/reader-v40-perbook-mode-performance.py",
+      "sha256": "72db1997353022621398819a8bc8a50267f9ac5cf4da59376813ce776d7a9d59",
+      "functions": [
+        "BudgetedOriginalRunner.finish_process"
+      ],
+      "lineRanges": [
+        [
+          454,
+          468
+        ]
+      ],
+      "callee": {
+        "path": "Scripts/CI/runtime27_interruption.py",
+        "sha256": "4f41dfe0175d4da2983cf4c9df1e126e63eb00d3418dcf89149de81b350e488c",
+        "lineRanges": [
+          [
+            91,
+            152
+          ]
+        ]
+      },
+      "issue": "Unguarded original helper can signal a numeric group after original leader is reaped, without retained current kernel identity. Perbook verified predicate ignores probe_errors.",
+      "nativeReproduction": false
+    },
+    {
+      "id": "W2-REVIEW-03",
+      "priority": "integration-preservation",
+      "status": "ROOT_THREE_WAY_REQUIRED",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "issue": "Donor base lacks root's 73-byte conditional production workspace-namespace correction; preserve root prefix and append donor PERF01 section.",
+      "nativeReproduction": false
+    }
+  ],
+  "ownerFollowup": {
+    "asanaTask": "1220939536336523",
+    "comment": "1220949998485543",
+    "by": "root"
+  },
+  "reviewExecution": {
+    "controllerImports": 0,
+    "controlSuiteReruns": 0,
+    "childProcessesForTestOrReproduction": 0,
+    "signalsSent": 0,
+    "compilerInvocations": 0,
+    "appleCommands": 0,
+    "nativeCases": 0,
+    "networkDenial": 0,
+    "corpusQueries": 0
+  },
+  "acceptance": {
+    "fullProfileFrozen": false,
+    "finalSDK": false,
+    "native": false,
+    "performance": false,
+    "physicalQA": false,
+    "ownerSignaturesCreated": 0
+  },
+  "note": "Git/Python read-only retrieval/hash/AST/archive inspections occurred; zero execution fields refer to acceptance/reproduction, not the shell processes used to read files."
+}
