@@ -39,6 +39,7 @@ def sha(path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--artifacts-dir", type=Path, required=True)
+    parser.add_argument("--linked-sync-only", action="store_true", help="Run the distinct linked-state regression scope, preserving the full default suite")
     args = parser.parse_args()
     artifacts = args.artifacts_dir.resolve()
     artifacts.mkdir(parents=True, exist_ok=True)
@@ -131,6 +132,7 @@ let package = Package(name: "AnnotationExchangeAcceptance",
         "physical_device_executed": 0,
         "live_capability_enabled": False,
         "cases": [], "process_termination_checks": [],
+        "linked_sync_only": args.linked_sync_only,
     }
     exit_code = 1
     try:
@@ -144,7 +146,7 @@ let package = Package(name: "AnnotationExchangeAcceptance",
             return build.returncode
         show = subprocess.check_output(command[:2] + ["--show-bin-path"] + command[2:], cwd=ROOT, text=True, encoding="utf-8").strip()
         executable = Path(show) / ("ExchangeAcceptance.exe" if os.name == "nt" else "ExchangeAcceptance")
-        test_command = [str(executable), "self-tests", str(fixtures)]
+        test_command = [str(executable), "linked-sync-only" if args.linked_sync_only else "self-tests", str(fixtures)]
         report["test_command"] = test_command
         run = subprocess.run(test_command, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", timeout=150)
         report["execute_exit"] = run.returncode
@@ -159,6 +161,13 @@ let package = Package(name: "AnnotationExchangeAcceptance",
             report["cases"] = json.loads(cases.read_text(encoding="utf-8"))
         if run.returncode != 0:
             return run.returncode
+        if args.linked_sync_only:
+            if len(report["cases"]) != 11 or any(row["status"] != "PASS" for row in report["cases"]):
+                raise RuntimeError("All eleven linked-state cases must run and pass")
+            if before != {p: sha(ROOT / p) for p in provenance}:
+                raise RuntimeError("Source changed during linked-state execution")
+            exit_code = 0
+            return 0
         for phase, crash_mode in (("after", "crash-after-commit"), ("before", "crash-before-outer-commit")):
             child_command = [str(executable), crash_mode, str(fixtures)]
             child = subprocess.run(child_command, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", timeout=40)
@@ -205,7 +214,7 @@ let package = Package(name: "AnnotationExchangeAcceptance",
             exit_code = 1
         report["source_files_after"] = {p: sha(ROOT / p) for p in provenance}
         report["source_bytes_unchanged_during_run"] = before == report["source_files_after"]
-        report["status"] = "PASS_ACTUAL_SQLITE_COMPONENT" if exit_code == 0 and report["source_bytes_unchanged_during_run"] else "FAILED"
+        report["status"] = ("PASS_LINKED_SQLITE_COMPONENT" if args.linked_sync_only else "PASS_ACTUAL_SQLITE_COMPONENT") if exit_code == 0 and report["source_bytes_unchanged_during_run"] else "FAILED"
         report["passed_cases"] = sum(x["status"] == "PASS" for x in report["cases"])
         report["failed_cases"] = sum(x["status"] == "FAIL" for x in report["cases"])
         (artifacts / "RESULT.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
