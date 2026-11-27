@@ -1,0 +1,2028 @@
+{
+  "schema": "otzaria.wave3.reader-tab-intake.v1",
+  "base": "eb532ccad28ec78d456fba8c5064abf9c9fdfecc",
+  "donors": [
+    "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+    "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+    "b5f52c446a5eba31273b6e3ee61d53ba022244d5"
+  ],
+  "files": [
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "mode": "100644",
+      "donorBytes": 42094,
+      "donorSHA256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499",
+      "bytes": 42094,
+      "sha256": "3d81992d6bb12d7e057cce37a873fa35f8038de5fa8a9c5aaf8daefe68a35499"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift",
+      "mode": "100644",
+      "donorBytes": 10040,
+      "donorSHA256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift",
+      "mode": "100644",
+      "donorBytes": 15478,
+      "donorSHA256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa",
+      "bytes": 15478,
+      "sha256": "6726090835fe13b01172014bb5b08dc6bc2ed647e5d4ae9b587360138c9707fa"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "mode": "100644",
+      "donorBytes": 98832,
+      "donorSHA256": "a0cca077448d72b25cb3027e18cfa2b185b0fffd5be347323d7b1e8a3bb8fef1",
+      "bytes": 106920,
+      "sha256": "06f2d55c96100cdc0cbde8676b2808f99c0a933b455776f59ccdc07721631b41"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+      "mode": "100644",
+      "donorBytes": 6946,
+      "donorSHA256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a",
+      "bytes": 6946,
+      "sha256": "bb8da29ae7af5821ffdedca8fbe8908db9953b0e03a4abe1c7bab4c165d6903a"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+      "mode": "100644",
+      "donorBytes": 2178,
+      "donorSHA256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9",
+      "bytes": 2178,
+      "sha256": "9b3360819d500fdd6ecc4dbe8dd426a3819c752f1ea36b73960e5b5a2cd5d8e9"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "tools/test_native_reader_tab_intent_service.swift",
+      "mode": "100644",
+      "donorBytes": 10449,
+      "donorSHA256": "64ff93c6b47400dfe9fb5f53e359bd6ccefd5179122c907f3601c8100186ad2b",
+      "bytes": 10449,
+      "sha256": "64ff93c6b47400dfe9fb5f53e359bd6ccefd5179122c907f3601c8100186ad2b"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "tools/test_native_reader_tab_selection.py",
+      "mode": "100644",
+      "donorBytes": 16587,
+      "donorSHA256": "0c3319f05eb30cb7f43641584ba239db984df93ceb2142e0fd3d457b8cc173c3",
+      "bytes": 16587,
+      "sha256": "0c3319f05eb30cb7f43641584ba239db984df93ceb2142e0fd3d457b8cc173c3"
+    },
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "path": "tools/test_native_reader_tab_selection.swift",
+      "mode": "100644",
+      "donorBytes": 16888,
+      "donorSHA256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7",
+      "bytes": 16888,
+      "sha256": "b524a0deaa24e05a4b7affb55756a6e0985b1929cad43f53da0415b5d4ea14f7"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/EVIDENCE_MANIFEST.json",
+      "mode": "100644",
+      "donorBytes": 76210,
+      "donorSHA256": "e51c64423086107ac12aa2d308ef88b48b984d8169905cad0525da681c956eed",
+      "bytes": 76210,
+      "sha256": "e51c64423086107ac12aa2d308ef88b48b984d8169905cad0525da681c956eed"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/MEMBERSHIP_AND_TRANSLATIONS.json",
+      "mode": "100644",
+      "donorBytes": 2975,
+      "donorSHA256": "f5518723c1d5b06a29b0572e2bd8e20e3c4c9e90eba57963fce28a7f99ec9769",
+      "bytes": 2975,
+      "sha256": "f5518723c1d5b06a29b0572e2bd8e20e3c4c9e90eba57963fce28a7f99ec9769"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/NEXT_PROFILE_GROUP_CONTRACT.md",
+      "mode": "100644",
+      "donorBytes": 5650,
+      "donorSHA256": "7062f6d7678d16fa3bbfef1b43ea37a817b692291a2b04f9f69ee2ceba6346b4",
+      "bytes": 5650,
+      "sha256": "7062f6d7678d16fa3bbfef1b43ea37a817b692291a2b04f9f69ee2ceba6346b4"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/NEXT_PROFILE_GROUP_SOURCE_PINS.json",
+      "mode": "100644",
+      "donorBytes": 1603,
+      "donorSHA256": "9a695d5df8e04cb6d2c8d8c13767655af10c4e9de194e8d46b5cd6f4dd92de2d",
+      "bytes": 1603,
+      "sha256": "9a695d5df8e04cb6d2c8d8c13767655af10c4e9de194e8d46b5cd6f4dd92de2d"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/PACKAGING_CHECKS.json",
+      "mode": "100644",
+      "donorBytes": 1031,
+      "donorSHA256": "37c8745ca790e640dae126c03c41284fb2075d4ff8fa5dacd3b19e8f057919ab",
+      "bytes": 1031,
+      "sha256": "37c8745ca790e640dae126c03c41284fb2075d4ff8fa5dacd3b19e8f057919ab"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/PREFLIGHT.json",
+      "mode": "100644",
+      "donorBytes": 2336,
+      "donorSHA256": "16c2b3ac540918a747c5cb4b1c81492fa0e89fc8846d5568c9f63535ecb9cf75",
+      "bytes": 2336,
+      "sha256": "16c2b3ac540918a747c5cb4b1c81492fa0e89fc8846d5568c9f63535ecb9cf75"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/README.md",
+      "mode": "100644",
+      "donorBytes": 7533,
+      "donorSHA256": "fa0a230a074d4638fbfdec79d426f3dc28eef3028511054eb267ad793eb60d3e",
+      "bytes": 7533,
+      "sha256": "fa0a230a074d4638fbfdec79d426f3dc28eef3028511054eb267ad793eb60d3e"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/SOURCE_COMMIT.json",
+      "mode": "100644",
+      "donorBytes": 2783,
+      "donorSHA256": "996fd18ae03e41a8ad916f67860990bfed0bb4ac35213e7bd091f2afc2d8c2bc",
+      "bytes": 2783,
+      "sha256": "996fd18ae03e41a8ad916f67860990bfed0bb4ac35213e7bd091f2afc2d8c2bc"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/SOURCE_PROVENANCE.json",
+      "mode": "100644",
+      "donorBytes": 6824,
+      "donorSHA256": "1debcbb12b480fe2974cc20fb76d5890d80c30c1f3dd04a57c8dc83bf183b17c",
+      "bytes": 6824,
+      "sha256": "1debcbb12b480fe2974cc20fb76d5890d80c30c1f3dd04a57c8dc83bf183b17c"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/VALIDATION_INDEX.json",
+      "mode": "100644",
+      "donorBytes": 6015,
+      "donorSHA256": "48c0179f57b11c09d29b451091d3bcbbe5fda433d83d3358deadf95fab26a24c",
+      "bytes": 6015,
+      "sha256": "48c0179f57b11c09d29b451091d3bcbbe5fda433d83d3358deadf95fab26a24c"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/next-contract-source/BackendCoordinator.swift.gz",
+      "mode": "100644",
+      "donorBytes": 6307,
+      "donorSHA256": "d154ec2a71a3b79224c22caf88de2dc902bbece1ce7a5e3feddf3af9a75b81e1",
+      "bytes": 6307,
+      "sha256": "d154ec2a71a3b79224c22caf88de2dc902bbece1ce7a5e3feddf3af9a75b81e1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/next-contract-source/StudyGroupsOverview.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3306,
+      "donorSHA256": "9db4d2460d085762e29d29d9c1680f0c8dd828c3e7767754c9cbfb09ff272236",
+      "bytes": 3306,
+      "sha256": "9db4d2460d085762e29d29d9c1680f0c8dd828c3e7767754c9cbfb09ff272236"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/next-contract-source/StudyProfileMenu.swift.gz",
+      "mode": "100644",
+      "donorBytes": 1015,
+      "donorSHA256": "2a2167b09cfd8c9c051fc466946070234b3255c0b74e17a51880c81aa3b85cce",
+      "bytes": 1015,
+      "sha256": "2a2167b09cfd8c9c051fc466946070234b3255c0b74e17a51880c81aa3b85cce"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/next-contract-source/StudyWorkspaceNavigationAdapter.swift.gz",
+      "mode": "100644",
+      "donorBytes": 7062,
+      "donorSHA256": "f19b04518e4fd1eb0fa97fd9fb6e525ba5acae0f553e68ababceef5b8ebb17d1",
+      "bytes": 7062,
+      "sha256": "f19b04518e4fd1eb0fa97fd9fb6e525ba5acae0f553e68ababceef5b8ebb17d1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_COMPOSITION.patch.gz",
+      "mode": "100644",
+      "donorBytes": 2063,
+      "donorSHA256": "c2021d9f5ccb105852b0d1bfaedd0ecfcc4066dcfcbdeb509274d78adc171be0",
+      "bytes": 2063,
+      "sha256": "c2021d9f5ccb105852b0d1bfaedd0ecfcc4066dcfcbdeb509274d78adc171be0"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_MaktabahNativeIntents_ExplicitTab.swift.gz",
+      "mode": "100644",
+      "donorBytes": 455,
+      "donorSHA256": "24879a93194c1b5878675ac853129b53c90b200e4d0038888a6ee4df6403d43e",
+      "bytes": 455,
+      "sha256": "24879a93194c1b5878675ac853129b53c90b200e4d0038888a6ee4df6403d43e"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_MaktabahNativeRoutingComposition.swift.gz",
+      "mode": "100644",
+      "donorBytes": 32540,
+      "donorSHA256": "fa91ea6dda489fee2362884aba96948afb317e384feaafec7d1150e73e403e22",
+      "bytes": 32540,
+      "sha256": "fa91ea6dda489fee2362884aba96948afb317e384feaafec7d1150e73e403e22"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_MaktabahNativeSceneSession.swift.gz",
+      "mode": "100644",
+      "donorBytes": 17561,
+      "donorSHA256": "b1931866cab39dee10e7fa0bc46cab52d73d27b71b3c67436b09c394ba0091f7",
+      "bytes": 17561,
+      "sha256": "b1931866cab39dee10e7fa0bc46cab52d73d27b71b3c67436b09c394ba0091f7"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_SESSION.patch.gz",
+      "mode": "100644",
+      "donorBytes": 3671,
+      "donorSHA256": "755270dd1378a8d64de7bda0de911206e9133cfefc9259bfe6d25ebc1a422521",
+      "bytes": 3671,
+      "sha256": "755270dd1378a8d64de7bda0de911206e9133cfefc9259bfe6d25ebc1a422521"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/PROPOSED_SHORTCUT.patch.gz",
+      "mode": "100644",
+      "donorBytes": 323,
+      "donorSHA256": "a183b2c7bf577f218e1fb5904fcfec72c089cfc72a3bbf60a5f026d208f6fb77",
+      "bytes": 323,
+      "sha256": "a183b2c7bf577f218e1fb5904fcfec72c089cfc72a3bbf60a5f026d208f6fb77"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/previous-shortcut-phrase.patch.gz",
+      "mode": "100644",
+      "donorBytes": 320,
+      "donorSHA256": "ab67dae53a85ab2c8f957b4dc9248d5d668d08e517ccb423bbd52984b128c119",
+      "bytes": 320,
+      "sha256": "ab67dae53a85ab2c8f957b4dc9248d5d668d08e517ccb423bbd52984b128c119"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/proposals/previous-shortcut-phrase.swift.gz",
+      "mode": "100644",
+      "donorBytes": 451,
+      "donorSHA256": "b19fe39cca3a16e6e4e7a33e95e7a9e6ebec86a86c133a589c0bd9b8ba00313e",
+      "bytes": 451,
+      "sha256": "b19fe39cca3a16e6e4e7a33e95e7a9e6ebec86a86c133a589c0bd9b8ba00313e"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 8187,
+      "donorSHA256": "149176735b81287875464aa4dd68b801df0a854fa8bc0b502621bc1f255456c1",
+      "bytes": 8187,
+      "sha256": "149176735b81287875464aa4dd68b801df0a854fa8bc0b502621bc1f255456c1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/001-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/002-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/003-controls.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/004-controls.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 1097,
+      "donorSHA256": "bc7a301349f3ac6b66ba55a37c9d639b18f688a98e92063644ae074fe1a928ec",
+      "bytes": 1097,
+      "sha256": "bc7a301349f3ac6b66ba55a37c9d639b18f688a98e92063644ae074fe1a928ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/006-ActualOwnerBoundary.swift.gz",
+      "mode": "100644",
+      "donorBytes": 5950,
+      "donorSHA256": "eb24ef20f497b76aed9604b07cec9239bda7e01d487c7d12881386a8298999b8",
+      "bytes": 5950,
+      "sha256": "eb24ef20f497b76aed9604b07cec9239bda7e01d487c7d12881386a8298999b8"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/011-BackendSessionIntegrityRepair.swift.gz",
+      "mode": "100644",
+      "donorBytes": 1981,
+      "donorSHA256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496",
+      "bytes": 1981,
+      "sha256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/013-StudyWorkspaceMappingOwnership.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4110,
+      "donorSHA256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023",
+      "bytes": 4110,
+      "sha256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/014-StudyWorkspaceModels.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2564,
+      "donorSHA256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417",
+      "bytes": 2564,
+      "sha256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/015-StudyWorkspaceNavigationAdapter.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8002,
+      "donorSHA256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "bytes": 8002,
+      "sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/016-StudyWorkspacePersistence.swift.gz",
+      "mode": "100644",
+      "donorBytes": 1060,
+      "donorSHA256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716",
+      "bytes": 1060,
+      "sha256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/017-StudyWorkspaceStore.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3045,
+      "donorSHA256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154",
+      "bytes": 3045,
+      "sha256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/018-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2316,
+      "donorSHA256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "bytes": 2316,
+      "sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/020-LibraryBackendModels.swift.gz",
+      "mode": "100644",
+      "donorBytes": 7560,
+      "donorSHA256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f",
+      "bytes": 7560,
+      "sha256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/024-iOSNavigationManager.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8342,
+      "donorSHA256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba",
+      "bytes": 8342,
+      "sha256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/026-test_native_reader_tab_selection.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4108,
+      "donorSHA256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae",
+      "bytes": 4108,
+      "sha256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-attempt-1/raw/027-workspace_mapping_native_boundary_fixture.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4651,
+      "donorSHA256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1",
+      "bytes": 4651,
+      "sha256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 9073,
+      "donorSHA256": "ae9198c18506d07c414f6cc2f3466ba2a827e35d882e518e3d3bf738a5350c65",
+      "bytes": 9073,
+      "sha256": "ae9198c18506d07c414f6cc2f3466ba2a827e35d882e518e3d3bf738a5350c65"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/001-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/002-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/003-controls.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 1506,
+      "donorSHA256": "67ebdd10f9bcb04a7f7632c8752bd56b3ad9010d7c7f2a416f1891dbef9cb3ad",
+      "bytes": 1506,
+      "sha256": "67ebdd10f9bcb04a7f7632c8752bd56b3ad9010d7c7f2a416f1891dbef9cb3ad"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/004-controls.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 891,
+      "donorSHA256": "e3451167d040214366c1f3b7ac691dfea8efb1056cbc914a8abe0110a43afff1",
+      "bytes": 891,
+      "sha256": "e3451167d040214366c1f3b7ac691dfea8efb1056cbc914a8abe0110a43afff1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/006-ActualOwnerBoundary.swift.gz",
+      "mode": "100644",
+      "donorBytes": 5910,
+      "donorSHA256": "7b5580e1f7afc4dac87489eb8f3518c5e1c610707515c68c8e920732d394a4ed",
+      "bytes": 5910,
+      "sha256": "7b5580e1f7afc4dac87489eb8f3518c5e1c610707515c68c8e920732d394a4ed"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/011-StudyWorkspaceNavigationAdapter.swift.gz",
+      "mode": "100644",
+      "donorBytes": 7062,
+      "donorSHA256": "f19b04518e4fd1eb0fa97fd9fb6e525ba5acae0f553e68ababceef5b8ebb17d1",
+      "bytes": 7062,
+      "sha256": "f19b04518e4fd1eb0fa97fd9fb6e525ba5acae0f553e68ababceef5b8ebb17d1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/016-BackendSessionIntegrityRepair.swift.gz",
+      "mode": "100644",
+      "donorBytes": 1981,
+      "donorSHA256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496",
+      "bytes": 1981,
+      "sha256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/018-StudyWorkspaceMappingOwnership.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4110,
+      "donorSHA256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023",
+      "bytes": 4110,
+      "sha256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/019-StudyWorkspaceModels.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2564,
+      "donorSHA256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417",
+      "bytes": 2564,
+      "sha256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/020-StudyWorkspaceNavigationAdapter.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8002,
+      "donorSHA256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "bytes": 8002,
+      "sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/021-StudyWorkspacePersistence.swift.gz",
+      "mode": "100644",
+      "donorBytes": 1060,
+      "donorSHA256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716",
+      "bytes": 1060,
+      "sha256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/022-StudyWorkspaceStore.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3045,
+      "donorSHA256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154",
+      "bytes": 3045,
+      "sha256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/023-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2316,
+      "donorSHA256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "bytes": 2316,
+      "sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/025-LibraryBackendModels.swift.gz",
+      "mode": "100644",
+      "donorBytes": 7560,
+      "donorSHA256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f",
+      "bytes": 7560,
+      "sha256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/029-iOSNavigationManager.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8342,
+      "donorSHA256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba",
+      "bytes": 8342,
+      "sha256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/031-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 4520,
+      "donorSHA256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "bytes": 4520,
+      "sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/032-test_native_reader_tab_selection.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4108,
+      "donorSHA256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae",
+      "bytes": 4108,
+      "sha256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-original-hooks/raw/033-workspace_mapping_native_boundary_fixture.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4651,
+      "donorSHA256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1",
+      "bytes": 4651,
+      "sha256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 8689,
+      "donorSHA256": "c18b193aa05461ba91b76bc92a30f4828c110339fb1470d922025f122e6518e4",
+      "bytes": 8689,
+      "sha256": "c18b193aa05461ba91b76bc92a30f4828c110339fb1470d922025f122e6518e4"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/001-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/002-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/003-controls.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 1503,
+      "donorSHA256": "f5ca074834aebf7a0ea6abc4c0e76215f958a464886469860cf38a40a2c9874c",
+      "bytes": 1503,
+      "sha256": "f5ca074834aebf7a0ea6abc4c0e76215f958a464886469860cf38a40a2c9874c"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/004-controls.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 1107,
+      "donorSHA256": "13532048e71275ff8c63ca16634ce7e8f6a6d874aa0523646b0d5a90e4fb0cf0",
+      "bytes": 1107,
+      "sha256": "13532048e71275ff8c63ca16634ce7e8f6a6d874aa0523646b0d5a90e4fb0cf0"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/006-ActualOwnerBoundary.swift.gz",
+      "mode": "100644",
+      "donorBytes": 5950,
+      "donorSHA256": "eb24ef20f497b76aed9604b07cec9239bda7e01d487c7d12881386a8298999b8",
+      "bytes": 5950,
+      "sha256": "eb24ef20f497b76aed9604b07cec9239bda7e01d487c7d12881386a8298999b8"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/007-MutantReusableAllowance.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2310,
+      "donorSHA256": "db139af9d6aa5169d59dcc1acbbed61cc71de6bab2e2e13b591dbc1a878134b1",
+      "bytes": 2310,
+      "sha256": "db139af9d6aa5169d59dcc1acbbed61cc71de6bab2e2e13b591dbc1a878134b1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/012-BackendSessionIntegrityRepair.swift.gz",
+      "mode": "100644",
+      "donorBytes": 1981,
+      "donorSHA256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496",
+      "bytes": 1981,
+      "sha256": "54199bdf46f85c6d43775556818e2fa3939288bff40e32926619eedfb93aa496"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/014-StudyWorkspaceMappingOwnership.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4110,
+      "donorSHA256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023",
+      "bytes": 4110,
+      "sha256": "45aa4710e2ad3838a0332d0995ba8307e08b72fa744aecc9f24cee10aa4db023"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/015-StudyWorkspaceModels.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2564,
+      "donorSHA256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417",
+      "bytes": 2564,
+      "sha256": "467252735fed2ba4f31f80ce09cb244f56290d074348d01167168bb0eb33e417"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/016-StudyWorkspaceNavigationAdapter.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8002,
+      "donorSHA256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "bytes": 8002,
+      "sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/017-StudyWorkspacePersistence.swift.gz",
+      "mode": "100644",
+      "donorBytes": 1060,
+      "donorSHA256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716",
+      "bytes": 1060,
+      "sha256": "a6ca2cf57acfd5cb0e8480b85182c89edd8112cee7ce08afaa19e14ad3920716"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/018-StudyWorkspaceStore.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3045,
+      "donorSHA256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154",
+      "bytes": 3045,
+      "sha256": "6a47235bba7e99d19ef33fb07a39564638795ab49acd912d32aa7c9e179ac154"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/019-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2316,
+      "donorSHA256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "bytes": 2316,
+      "sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/021-LibraryBackendModels.swift.gz",
+      "mode": "100644",
+      "donorBytes": 7560,
+      "donorSHA256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f",
+      "bytes": 7560,
+      "sha256": "178964e9bbd92cf734084350da72c178be10b0d5054fc2eb7191a56dcdc0802f"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/025-iOSNavigationManager.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8342,
+      "donorSHA256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba",
+      "bytes": 8342,
+      "sha256": "36ad47075ce25b56e133ea53403529b2e55b77417cf60fb6631b8a7e3d7233ba"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/027-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 4520,
+      "donorSHA256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "bytes": 4520,
+      "sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/028-test_native_reader_tab_selection.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4108,
+      "donorSHA256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae",
+      "bytes": 4108,
+      "sha256": "1284a7181ecc7b9fbe913a43372ba7b85b923247f24c39fb7b491dd1b0e3c7ae"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/owner-reusable-allowance/raw/029-workspace_mapping_native_boundary_fixture.swift.gz",
+      "mode": "100644",
+      "donorBytes": 4651,
+      "donorSHA256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1",
+      "bytes": 4651,
+      "sha256": "0088d0ad3d1a8c10caf0b4bf94ea8ba3449c94a12dacf4224e65d2dad21d06b1"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/proposal-syntax-explicit-tab/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 1437,
+      "donorSHA256": "1be73ddd2d84378011ee1b9537846c752bf50e90376ab0d41b2d855d75a4ed0c",
+      "bytes": 1437,
+      "sha256": "1be73ddd2d84378011ee1b9537846c752bf50e90376ab0d41b2d855d75a4ed0c"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/proposal-syntax-explicit-tab/raw/001-stderr.log.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/proposal-syntax-explicit-tab/raw/002-stdout.log.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/proposal-syntax/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 1428,
+      "donorSHA256": "e5d8578bb3e93fcf87bc95eed28d16b6c6bef123ec3c36ae26420282ee8f53ee",
+      "bytes": 1428,
+      "sha256": "e5d8578bb3e93fcf87bc95eed28d16b6c6bef123ec3c36ae26420282ee8f53ee"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/proposal-syntax/raw/001-stderr.log.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/proposal-syntax/raw/002-stdout.log.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/ORIGINAL_PACKAGE_INPUTS.json",
+      "mode": "100644",
+      "donorBytes": 30728,
+      "donorSHA256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "bytes": 30728,
+      "sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 25719,
+      "donorSHA256": "d3b6ee5a9bbec7b4e7dda557c670e934ef1640f16fef52752ac6074a677492d7",
+      "bytes": 25719,
+      "sha256": "d3b6ee5a9bbec7b4e7dda557c670e934ef1640f16fef52752ac6074a677492d7"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/raw/002-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 958,
+      "donorSHA256": "04750024cd144f692c8b083da91ec2bf6035a49d24e5bcbd4ac7de83b5a5867f",
+      "bytes": 958,
+      "sha256": "04750024cd144f692c8b083da91ec2bf6035a49d24e5bcbd4ac7de83b5a5867f"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/raw/003-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/raw/004-controls.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 1993,
+      "donorSHA256": "c73616603838e6e4f6a84aeaddcf4acf97f3c46c149c6127584198a43309c31e",
+      "bytes": 1993,
+      "sha256": "c73616603838e6e4f6a84aeaddcf4acf97f3c46c149c6127584198a43309c31e"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/raw/005-controls.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 422,
+      "donorSHA256": "0073c967b9e47074cb753d7dcd225f65ac9c22ead4e0ec0acef4bf4e89658fe8",
+      "bytes": 422,
+      "sha256": "0073c967b9e47074cb753d7dcd225f65ac9c22ead4e0ec0acef4bf4e89658fe8"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/raw/013-NativeReaderTabIntentService.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2106,
+      "donorSHA256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "bytes": 2106,
+      "sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/raw/015-test_native_reader_tab_intent_service.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2906,
+      "donorSHA256": "fddcfb09cfa9b2d21822fdf752bac4013d4d403cf10845cdeaa2df74aa8e27da",
+      "bytes": 2906,
+      "sha256": "fddcfb09cfa9b2d21822fdf752bac4013d4d403cf10845cdeaa2df74aa8e27da"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-1/raw/016-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 4520,
+      "donorSHA256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "bytes": 4520,
+      "sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/ORIGINAL_PACKAGE_INPUTS.json",
+      "mode": "100644",
+      "donorBytes": 30728,
+      "donorSHA256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "bytes": 30728,
+      "sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 29548,
+      "donorSHA256": "dd711cddcb27fa575e9767e91b144f2dd2f211674199acd028f52c4f44e95b8b",
+      "bytes": 29548,
+      "sha256": "dd711cddcb27fa575e9767e91b144f2dd2f211674199acd028f52c4f44e95b8b"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/raw/002-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 957,
+      "donorSHA256": "f6ef54c517d60a4c2c7f48825fb285644c7318018ccea744b4fa0311f0c63f37",
+      "bytes": 957,
+      "sha256": "f6ef54c517d60a4c2c7f48825fb285644c7318018ccea744b4fa0311f0c63f37"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/raw/003-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/raw/004-controls.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/raw/005-controls.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 708,
+      "donorSHA256": "faab210ece764a964429c537c18992e6ba392e2b07b764df9ef675d12fd5bf78",
+      "bytes": 708,
+      "sha256": "faab210ece764a964429c537c18992e6ba392e2b07b764df9ef675d12fd5bf78"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/raw/013-NativeReaderTabIntentService.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2106,
+      "donorSHA256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "bytes": 2106,
+      "sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/raw/015-test_native_reader_tab_intent_service.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2906,
+      "donorSHA256": "fddcfb09cfa9b2d21822fdf752bac4013d4d403cf10845cdeaa2df74aa8e27da",
+      "bytes": 2906,
+      "sha256": "fddcfb09cfa9b2d21822fdf752bac4013d4d403cf10845cdeaa2df74aa8e27da"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-attempt-2/raw/016-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 4890,
+      "donorSHA256": "f5852ec8a5566b69de740d31ba85e066ed2b5f864e252bf45ccf1ae0378c1573",
+      "bytes": 4890,
+      "sha256": "f5852ec8a5566b69de740d31ba85e066ed2b5f864e252bf45ccf1ae0378c1573"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/ORIGINAL_PACKAGE_INPUTS.json",
+      "mode": "100644",
+      "donorBytes": 30728,
+      "donorSHA256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "bytes": 30728,
+      "sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 29533,
+      "donorSHA256": "245b8c1edb3fbc9f859491f206124da869e106c3dae9df800f1a1e5886834e03",
+      "bytes": 29533,
+      "sha256": "245b8c1edb3fbc9f859491f206124da869e106c3dae9df800f1a1e5886834e03"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/raw/002-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 955,
+      "donorSHA256": "b3230a4678901b717e873b8fc22333d22b0ea728b04df6b4912a58c2867c9365",
+      "bytes": 955,
+      "sha256": "b3230a4678901b717e873b8fc22333d22b0ea728b04df6b4912a58c2867c9365"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/raw/003-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/raw/004-controls.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/raw/005-controls.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 749,
+      "donorSHA256": "386bfcd31af6d70390dda57ada424e30ff22c7c09bd667904f9aefaeddbabe61",
+      "bytes": 749,
+      "sha256": "386bfcd31af6d70390dda57ada424e30ff22c7c09bd667904f9aefaeddbabe61"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/raw/013-NativeReaderTabIntentService.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2146,
+      "donorSHA256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9",
+      "bytes": 2146,
+      "sha256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/raw/015-test_native_reader_tab_intent_service.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3109,
+      "donorSHA256": "b131a0645c853e9edc48f54c96378a2b6e760e8e11d5883d24b9c0da86d5cfda",
+      "bytes": 3109,
+      "sha256": "b131a0645c853e9edc48f54c96378a2b6e760e8e11d5883d24b9c0da86d5cfda"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-final/raw/016-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 5317,
+      "donorSHA256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be",
+      "bytes": 5317,
+      "sha256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/ORIGINAL_PACKAGE_INPUTS.json",
+      "mode": "100644",
+      "donorBytes": 30728,
+      "donorSHA256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9",
+      "bytes": 30728,
+      "sha256": "a8b858f6baf4e6177ee186ebc654b5f843d23af2fbeb1c562359b7952261a9d9"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 30112,
+      "donorSHA256": "19bf062ed9348efe1e1d2809dbac8f5428d17d51fa43c651ef536ecd35d66300",
+      "bytes": 30112,
+      "sha256": "19bf062ed9348efe1e1d2809dbac8f5428d17d51fa43c651ef536ecd35d66300"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/002-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 961,
+      "donorSHA256": "fb1e07ad7b8c9a9472d7e144db45ddaa7c5456a3724fc8fd9157692fd9282684",
+      "bytes": 961,
+      "sha256": "fb1e07ad7b8c9a9472d7e144db45ddaa7c5456a3724fc8fd9157692fd9282684"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/003-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/004-controls.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 2022,
+      "donorSHA256": "53c11c0acad3140004002af27b70ef247f1d4e2d4ba93f2d2b792f76b6109550",
+      "bytes": 2022,
+      "sha256": "53c11c0acad3140004002af27b70ef247f1d4e2d4ba93f2d2b792f76b6109550"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/005-controls.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 754,
+      "donorSHA256": "f28796a9600e0316453bec71e805d7dc46803f4ff75efa969798eaab000b986b",
+      "bytes": 754,
+      "sha256": "f28796a9600e0316453bec71e805d7dc46803f4ff75efa969798eaab000b986b"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/007-OriginalServiceBeforeAckCancellation.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2106,
+      "donorSHA256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "bytes": 2106,
+      "sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/014-NativeReaderTabIntentService.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2146,
+      "donorSHA256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9",
+      "bytes": 2146,
+      "sha256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/016-test_native_reader_tab_intent_service.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3109,
+      "donorSHA256": "b131a0645c853e9edc48f54c96378a2b6e760e8e11d5883d24b9c0da86d5cfda",
+      "bytes": 3109,
+      "sha256": "b131a0645c853e9edc48f54c96378a2b6e760e8e11d5883d24b9c0da86d5cfda"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/service-original-ack-cancellation/raw/017-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 5317,
+      "donorSHA256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be",
+      "bytes": 5317,
+      "sha256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 4985,
+      "donorSHA256": "7093ef1932dd04fa5d54ec5e13cee4daa802601de099c4987a414a241f5c6758",
+      "bytes": 4985,
+      "sha256": "7093ef1932dd04fa5d54ec5e13cee4daa802601de099c4987a414a241f5c6758"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/001-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/002-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/008-StudyWorkspaceNavigationAdapter.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8002,
+      "donorSHA256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "bytes": 8002,
+      "sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/009-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2316,
+      "donorSHA256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "bytes": 2316,
+      "sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/012-MaktabahNativeReaderTabBinding.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3532,
+      "donorSHA256": "4998868e8544cb4fc543a8516324cb90b2fe56baed2c9156015c7e28c952ad58",
+      "bytes": 3532,
+      "sha256": "4998868e8544cb4fc543a8516324cb90b2fe56baed2c9156015c7e28c952ad58"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/013-MaktabahNativeSceneSession.swift.gz",
+      "mode": "100644",
+      "donorBytes": 17540,
+      "donorSHA256": "ac2a6800842876e25511da1cbd0eeed9d56d96c5ec657c7ef5f710c234791a01",
+      "bytes": 17540,
+      "sha256": "ac2a6800842876e25511da1cbd0eeed9d56d96c5ec657c7ef5f710c234791a01"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/016-NativeReaderTabIntentService.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2106,
+      "donorSHA256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad",
+      "bytes": 2106,
+      "sha256": "6e063ed2f02dfbff9c76ec5806af9569c98859479b8646dc0e1b1d9710555aad"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/017-NativeReaderTabIntents.swift.gz",
+      "mode": "100644",
+      "donorBytes": 737,
+      "donorSHA256": "6d465844c51bbb8d7547cb3e8bf474e57b14d47ee3ddb1fe49a421041503631a",
+      "bytes": 737,
+      "sha256": "6d465844c51bbb8d7547cb3e8bf474e57b14d47ee3ddb1fe49a421041503631a"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-attempt-1/raw/019-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 4520,
+      "donorSHA256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b",
+      "bytes": 4520,
+      "sha256": "49a2ca6c5125f4cd4a19cc20730757ce4fe42e044890a75abf20f74f1339ea2b"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 4986,
+      "donorSHA256": "ab90bec7dbab056524279f74512f6ec7bd07c0dc9450c0a13d09d7a3a427659a",
+      "bytes": 4986,
+      "sha256": "ab90bec7dbab056524279f74512f6ec7bd07c0dc9450c0a13d09d7a3a427659a"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/001-compile.stderr.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/002-compile.stdout.gz",
+      "mode": "100644",
+      "donorBytes": 20,
+      "donorSHA256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/008-StudyWorkspaceNavigationAdapter.swift.gz",
+      "mode": "100644",
+      "donorBytes": 8002,
+      "donorSHA256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62",
+      "bytes": 8002,
+      "sha256": "d2a895bfba103e9df18d2a8680712589a4beb508d8911f6ea904cde4b1f9ac62"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/009-StudyWorkspaceTabSelectionReservation.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2316,
+      "donorSHA256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325",
+      "bytes": 2316,
+      "sha256": "7ed76e58a0ebc42d444eb0ecec3e0828864a9b4040578dd580ed74017624c325"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/012-MaktabahNativeReaderTabBinding.swift.gz",
+      "mode": "100644",
+      "donorBytes": 3583,
+      "donorSHA256": "df3faa5f51b88d430cf2541683b64c9f7c2f5ea63cbdb6dcc43a055daeb9e08c",
+      "bytes": 3583,
+      "sha256": "df3faa5f51b88d430cf2541683b64c9f7c2f5ea63cbdb6dcc43a055daeb9e08c"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/013-MaktabahNativeSceneSession.swift.gz",
+      "mode": "100644",
+      "donorBytes": 17561,
+      "donorSHA256": "b1931866cab39dee10e7fa0bc46cab52d73d27b71b3c67436b09c394ba0091f7",
+      "bytes": 17561,
+      "sha256": "b1931866cab39dee10e7fa0bc46cab52d73d27b71b3c67436b09c394ba0091f7"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/016-NativeReaderTabIntentService.swift.gz",
+      "mode": "100644",
+      "donorBytes": 2146,
+      "donorSHA256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9",
+      "bytes": 2146,
+      "sha256": "3f5efc5430207fa9137a04f96f84e275bfb70caa77edc3f80baec7d7206d67d9"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/017-NativeReaderTabIntents.swift.gz",
+      "mode": "100644",
+      "donorBytes": 737,
+      "donorSHA256": "6d465844c51bbb8d7547cb3e8bf474e57b14d47ee3ddb1fe49a421041503631a",
+      "bytes": 737,
+      "sha256": "6d465844c51bbb8d7547cb3e8bf474e57b14d47ee3ddb1fe49a421041503631a"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/validation/syntax-final/raw/019-test_native_reader_tab_selection.py.gz",
+      "mode": "100644",
+      "donorBytes": 5317,
+      "donorSHA256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be",
+      "bytes": 5317,
+      "sha256": "7ee1c1ff74d759092e646f74705f9cb12fa6f7acbf2ce2589a9c515ead25a2be"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "mode": "100644",
+      "donorBytes": 36861,
+      "donorSHA256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f",
+      "bytes": 36861,
+      "sha256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/FINAL_DELIVERY.md",
+      "mode": "100644",
+      "donorBytes": 3896,
+      "donorSHA256": "32193448c9fbc64ca25efa4bbe12acaa551c94a45b0f30886ef49cf8c77fa78c",
+      "bytes": 3896,
+      "sha256": "32193448c9fbc64ca25efa4bbe12acaa551c94a45b0f30886ef49cf8c77fa78c"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/FINAL_RESULT.json",
+      "mode": "100644",
+      "donorBytes": 15226,
+      "donorSHA256": "3f1e23112de35b0d69e88b80c4685cc5065afa2d971696f31c0b4baa3da857d1",
+      "bytes": 15226,
+      "sha256": "3f1e23112de35b0d69e88b80c4685cc5065afa2d971696f31c0b4baa3da857d1"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/FINDINGS.md",
+      "mode": "100644",
+      "donorBytes": 6765,
+      "donorSHA256": "041e96722eb28e188f0214735e2bea99f1169bc257159841c8dbd3a6bf416558",
+      "bytes": 6765,
+      "sha256": "041e96722eb28e188f0214735e2bea99f1169bc257159841c8dbd3a6bf416558"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/PRESERVATION.json",
+      "mode": "100644",
+      "donorBytes": 826,
+      "donorSHA256": "2cc0fe14a3cc886836f04da2adcb19a90774845becca9c42b973be364e121622",
+      "bytes": 826,
+      "sha256": "2cc0fe14a3cc886836f04da2adcb19a90774845becca9c42b973be364e121622"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/PRESERVATION_FINAL.json",
+      "mode": "100644",
+      "donorBytes": 991,
+      "donorSHA256": "5c8f29c5108facfed058694bde1be378994bbc8243b794fc04e68731e9ddade2",
+      "bytes": 991,
+      "sha256": "5c8f29c5108facfed058694bde1be378994bbc8243b794fc04e68731e9ddade2"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/PROVENANCE.json",
+      "mode": "100644",
+      "donorBytes": 1595,
+      "donorSHA256": "155f0f6e73aff43a64468bdc182aade313c06e0e65147d27708e33b9a7cd8a9c",
+      "bytes": 1595,
+      "sha256": "155f0f6e73aff43a64468bdc182aade313c06e0e65147d27708e33b9a7cd8a9c"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/README.md",
+      "mode": "100644",
+      "donorBytes": 5065,
+      "donorSHA256": "1c09846428641c9442d687e8d1568c7074447a6aa005c82a852122555f4729c4",
+      "bytes": 5065,
+      "sha256": "1c09846428641c9442d687e8d1568c7074447a6aa005c82a852122555f4729c4"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 11609,
+      "donorSHA256": "86fab4f9f12e6638448fb2674e37d951fc92f506990e281cf7a39dcb239cf0fb",
+      "bytes": 11609,
+      "sha256": "86fab4f9f12e6638448fb2674e37d951fc92f506990e281cf7a39dcb239cf0fb"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/SOURCE.patch",
+      "mode": "100644",
+      "donorBytes": 2058,
+      "donorSHA256": "c5646f93ae98666d734d8b033bcb47618b04a61f428fb6f86773cb1d4c4c3954",
+      "bytes": 2058,
+      "sha256": "c5646f93ae98666d734d8b033bcb47618b04a61f428fb6f86773cb1d4c4c3954"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/SOURCE_FINAL.patch",
+      "mode": "100644",
+      "donorBytes": 1491,
+      "donorSHA256": "e71a9e963dcf8efa4d3b529e71f48daf75fcc78111c73c6e2def835246e7dc25",
+      "bytes": 1491,
+      "sha256": "e71a9e963dcf8efa4d3b529e71f48daf75fcc78111c73c6e2def835246e7dc25"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/TRACE_INPUTS.json",
+      "mode": "100644",
+      "donorBytes": 8817,
+      "donorSHA256": "bb315f83f15bffe7dfa3bc67a1bf37c32b644ec7cf473366761ef11f49a277f0",
+      "bytes": 8817,
+      "sha256": "bb315f83f15bffe7dfa3bc67a1bf37c32b644ec7cf473366761ef11f49a277f0"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/UPSTREAM_API_METADATA.json",
+      "mode": "100644",
+      "donorBytes": 1203,
+      "donorSHA256": "92f8f7c172077f5410397c1642ad29a266a871905dce6e9a1bde062ccaf0662f",
+      "bytes": 1203,
+      "sha256": "92f8f7c172077f5410397c1642ad29a266a871905dce6e9a1bde062ccaf0662f"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/baseline.swift",
+      "mode": "100644",
+      "donorBytes": 36770,
+      "donorSHA256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770,
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/candidate-final.swift",
+      "mode": "100644",
+      "donorBytes": 36861,
+      "donorSHA256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f",
+      "bytes": 36861,
+      "sha256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/candidate.swift",
+      "mode": "100644",
+      "donorBytes": 36790,
+      "donorSHA256": "70d64d593d22dbfb512b74bd8d6ed9d259c9404b8a47072ced30f5bc18d989a2",
+      "bytes": 36790,
+      "sha256": "70d64d593d22dbfb512b74bd8d6ed9d259c9404b8a47072ced30f5bc18d989a2"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/SPARSE_INITIALIZATION_NOTE.md",
+      "mode": "100644",
+      "donorBytes": 773,
+      "donorSHA256": "bbb65577bcb3d324f32c5b7ca9eaf8b41fd28e42e47a09f6c94f3ca15421c227",
+      "bytes": 773,
+      "sha256": "bbb65577bcb3d324f32c5b7ca9eaf8b41fd28e42e47a09f6c94f3ca15421c227"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/apply-exact-guards.py",
+      "mode": "100644",
+      "donorBytes": 3028,
+      "donorSHA256": "a9cef3d8964ca1e6a8dcde32e8bffb83d09b5d647ad5fc34cdb6bf504eba1633",
+      "bytes": 3028,
+      "sha256": "a9cef3d8964ca1e6a8dcde32e8bffb83d09b5d647ad5fc34cdb6bf504eba1633"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/commit-identity-first-failure.json",
+      "mode": "100644",
+      "donorBytes": 5691,
+      "donorSHA256": "2235a342447fed9e33e8021888834308149da0182ce8e447cc1d4c963e22b8c2",
+      "bytes": 5691,
+      "sha256": "2235a342447fed9e33e8021888834308149da0182ce8e447cc1d4c963e22b8c2"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/existing-test-inventory.json",
+      "mode": "100644",
+      "donorBytes": 634,
+      "donorSHA256": "d089f1ef902466e7aa1ffe878ae5368b8b28e834672854d8f8ee7352be58f887",
+      "bytes": 634,
+      "sha256": "d089f1ef902466e7aa1ffe878ae5368b8b28e834672854d8f8ee7352be58f887"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/initialize-final.json",
+      "mode": "100644",
+      "donorBytes": 294,
+      "donorSHA256": "aec9b75210db75a7ee8d08646ded0aed306e9439e58188f1e12f0b51c3c2999d",
+      "bytes": 294,
+      "sha256": "aec9b75210db75a7ee8d08646ded0aed306e9439e58188f1e12f0b51c3c2999d"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/initialize-first-transport-error.json",
+      "mode": "100644",
+      "donorBytes": 220,
+      "donorSHA256": "8098600a875c3553d473eb04df978a486abe92e41d0e5b49bbb4730c78f1710b",
+      "bytes": 220,
+      "sha256": "8098600a875c3553d473eb04df978a486abe92e41d0e5b49bbb4730c78f1710b"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/initialize-readback.json",
+      "mode": "100644",
+      "donorBytes": 920,
+      "donorSHA256": "053f7be0078624b09093178de3a5d8923f89b2115634d68a650cc6048d32f9cf",
+      "bytes": 920,
+      "sha256": "053f7be0078624b09093178de3a5d8923f89b2115634d68a650cc6048d32f9cf"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/parse-final-whole-file.py",
+      "mode": "100644",
+      "donorBytes": 2757,
+      "donorSHA256": "f6e7b244c92288de09dac015ef0332c02d539d45096e41093668cd92cff80b59",
+      "bytes": 2757,
+      "sha256": "f6e7b244c92288de09dac015ef0332c02d539d45096e41093668cd92cff80b59"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/parse-whole-file.py",
+      "mode": "100644",
+      "donorBytes": 2751,
+      "donorSHA256": "30d37c5dbb2b5aa53e2578d02c6520c31879f553eb76e708699601736de61f8d",
+      "bytes": 2751,
+      "sha256": "30d37c5dbb2b5aa53e2578d02c6520c31879f553eb76e708699601736de61f8d"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/preflight.json",
+      "mode": "100644",
+      "donorBytes": 2358,
+      "donorSHA256": "e01a1b53cca770f7e9ea3350ac0f0218c928ee1b5b3246f14727dbd34c4e4a3c",
+      "bytes": 2358,
+      "sha256": "e01a1b53cca770f7e9ea3350ac0f0218c928ee1b5b3246f14727dbd34c4e4a3c"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/previous-observed-git-identity.json",
+      "mode": "100644",
+      "donorBytes": 358,
+      "donorSHA256": "68fd328a14f954916760c76ea78314b1503aee44cc2d3bf400e66bdbf82dc6d6",
+      "bytes": 358,
+      "sha256": "68fd328a14f954916760c76ea78314b1503aee44cc2d3bf400e66bdbf82dc6d6"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/refine-original-error-semantics.py",
+      "mode": "100644",
+      "donorBytes": 3200,
+      "donorSHA256": "656df5d6b864ccd712f61ae82b3da4d733274f3087ab18460ced3e760644c871",
+      "bytes": 3200,
+      "sha256": "656df5d6b864ccd712f61ae82b3da4d733274f3087ab18460ced3e760644c871"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax-final/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 2347,
+      "donorSHA256": "b880426d29bfce9d728e142cce893f7f942f5e689fba09d7ed790a27d4845645",
+      "bytes": 2347,
+      "sha256": "b880426d29bfce9d728e142cce893f7f942f5e689fba09d7ed790a27d4845645"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax-final/parse.stderr.log",
+      "mode": "100644",
+      "donorBytes": 0,
+      "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax-final/parse.stdout.log",
+      "mode": "100644",
+      "donorBytes": 0,
+      "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax-final/version.stderr.log",
+      "mode": "100644",
+      "donorBytes": 0,
+      "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax-final/version.stdout.log",
+      "mode": "100644",
+      "donorBytes": 76,
+      "donorSHA256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce",
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/RESULT.json",
+      "mode": "100644",
+      "donorBytes": 2349,
+      "donorSHA256": "a66ff6593eb48f16aef08488a4c2f78968c02603d228609f2a3a96d0b9289d2d",
+      "bytes": 2349,
+      "sha256": "a66ff6593eb48f16aef08488a4c2f78968c02603d228609f2a3a96d0b9289d2d"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/parse.stderr.log",
+      "mode": "100644",
+      "donorBytes": 0,
+      "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/parse.stdout.log",
+      "mode": "100644",
+      "donorBytes": 0,
+      "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/version.stderr.log",
+      "mode": "100644",
+      "donorBytes": 0,
+      "donorSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/version.stdout.log",
+      "mode": "100644",
+      "donorBytes": 76,
+      "donorSHA256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce",
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/AGENTS.md",
+      "mode": "100644",
+      "donorBytes": 10301,
+      "donorSHA256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/PROJECT_AGENT_GUIDANCE.md",
+      "mode": "100644",
+      "donorBytes": 6019,
+      "donorSHA256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0",
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "mode": "100644",
+      "donorBytes": 7979,
+      "donorSHA256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074",
+      "bytes": 7979,
+      "sha256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "mode": "100644",
+      "donorBytes": 181320,
+      "donorSHA256": "b9323a2b896b6922b9dc8deb65572318d94e6872d8645bfb7058e848029ed27b",
+      "bytes": 181320,
+      "sha256": "b9323a2b896b6922b9dc8deb65572318d94e6872d8645bfb7058e848029ed27b"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "mode": "100644",
+      "donorBytes": 21276,
+      "donorSHA256": "9511ae34354914d1637c524c1a75d0479831bb4ade430e51fbf81ff5b5d98239",
+      "bytes": 21276,
+      "sha256": "9511ae34354914d1637c524c1a75d0479831bb4ade430e51fbf81ff5b5d98239"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "mode": "100644",
+      "donorBytes": 36770,
+      "donorSHA256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770,
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "mode": "100644",
+      "donorBytes": 24327,
+      "donorSHA256": "d1639d520bbb19235bcd5c4a5717b8f19156fa18687fc22dce71583d9ed56c59",
+      "bytes": 24327,
+      "sha256": "d1639d520bbb19235bcd5c4a5717b8f19156fa18687fc22dce71583d9ed56c59"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "mode": "100644",
+      "donorBytes": 90615,
+      "donorSHA256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "bytes": 90615,
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "mode": "100644",
+      "donorBytes": 11134,
+      "donorSHA256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+      "bytes": 11134,
+      "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift",
+      "mode": "100644",
+      "donorBytes": 26367,
+      "donorSHA256": "29f57981f85bdbc04aa72282dfa15564a44280f6f9f215e65b54f8e25a79693c",
+      "bytes": 26367,
+      "sha256": "29f57981f85bdbc04aa72282dfa15564a44280f6f9f215e65b54f8e25a79693c"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/Features/Search/iOS/SearchModeView.swift",
+      "mode": "100644",
+      "donorBytes": 12564,
+      "donorSHA256": "805b87e17cd062f5fd5a6099af525b772b8e65b068ac044a3f1bdc5a4a5b6f73",
+      "bytes": 12564,
+      "sha256": "805b87e17cd062f5fd5a6099af525b772b8e65b068ac044a3f1bdc5a4a5b6f73"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/Features/Search/iOS/SearchResultsListView.swift",
+      "mode": "100644",
+      "donorBytes": 21809,
+      "donorSHA256": "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf",
+      "bytes": 21809,
+      "sha256": "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "mode": "100644",
+      "donorBytes": 5278,
+      "donorSHA256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "bytes": 5278,
+      "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "mode": "100644",
+      "donorBytes": 70887,
+      "donorSHA256": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6",
+      "bytes": 70887,
+      "sha256": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+      "mode": "100644",
+      "donorBytes": 14414,
+      "donorSHA256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+      "bytes": 14414,
+      "sha256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "mode": "100644",
+      "donorBytes": 8269,
+      "donorSHA256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+      "bytes": 8269,
+      "sha256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift",
+      "mode": "100644",
+      "donorBytes": 14564,
+      "donorSHA256": "db189ccc54e82b2280b078dcd02e845d07ad3cba52a86f6d7a5e52551411e2a9",
+      "bytes": 14564,
+      "sha256": "db189ccc54e82b2280b078dcd02e845d07ad3cba52a86f6d7a5e52551411e2a9"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "mode": "100644",
+      "donorBytes": 34464,
+      "donorSHA256": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f",
+      "bytes": 34464,
+      "sha256": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "mode": "100644",
+      "donorBytes": 11503,
+      "donorSHA256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63",
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/docs/ui-routing/wave3-semantic-search-intent-20261127/RESULT_SELECTION_AND_PAGING_PROPOSAL.md",
+      "mode": "100644",
+      "donorBytes": 6302,
+      "donorSHA256": "2ce29dc44925d2dddfcedc3a320c5e0b900a69f03578cf13d80bb625c6745e67",
+      "bytes": 6302,
+      "sha256": "2ce29dc44925d2dddfcedc3a320c5e0b900a69f03578cf13d80bb625c6745e67"
+    }
+  ],
+  "manifests": [
+    {
+      "path": "docs/ui-routing/wave3-reader-tab-selection-20261127/EVIDENCE_MANIFEST.json",
+      "sha256": "e51c64423086107ac12aa2d308ef88b48b984d8169905cad0525da681c956eed",
+      "files": 135,
+      "gzipFiles": 111,
+      "externalExecutablesVerified": [
+        {
+          "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-attempt-1/owner-controls",
+          "original_bytes": 2025176,
+          "original_sha256": "31a98ae334b313121633b91425b682f51b1d036872c017f5c25ce7d178277d72",
+          "stored": null,
+          "retention": "Original executable retained in isolated build folder; no app/native qualification"
+        },
+        {
+          "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-original-hooks/owner-controls",
+          "original_bytes": 2025176,
+          "original_sha256": "28ba183229c974333520da869449a9ca227f557abf656fe19784426dbb0ef718",
+          "stored": null,
+          "retention": "Original executable retained in isolated build folder; no app/native qualification"
+        },
+        {
+          "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/owner-reusable-allowance/owner-controls",
+          "original_bytes": 2025144,
+          "original_sha256": "a47f6695c26168f05f5a4c57b7563ac514b78f721501534bd3a96a8daeb523a3",
+          "stored": null,
+          "retention": "Original executable retained in isolated build folder; no app/native qualification"
+        },
+        {
+          "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-1/service-controls",
+          "original_bytes": 7937168,
+          "original_sha256": "8e6de31e841d9a1ad6da75acb81fc45ea00252d2dafdb3d39b1a0cc9f67ac59d",
+          "stored": null,
+          "retention": "Original executable retained in isolated build folder; no app/native qualification"
+        },
+        {
+          "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-attempt-2/service-controls",
+          "original_bytes": 7937168,
+          "original_sha256": "6360da6833cb3fae632459b7476be669b728f5dbe1ecf2eba2e4bd9f28c9bc2b",
+          "stored": null,
+          "retention": "Original executable retained in isolated build folder; no app/native qualification"
+        },
+        {
+          "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-original-ack-cancellation/service-controls",
+          "original_bytes": 7941064,
+          "original_sha256": "794ca7f7314a086547ba889ba1c971b49d2d1cc5b3ecfe619312188ef44f1ac8",
+          "stored": null,
+          "retention": "Original executable retained in isolated build folder; no app/native qualification"
+        },
+        {
+          "original": "/mnt/development/projects/worktrees/Maktabah-wave3-reader-tab-intent-20261127/build/wave3-reader-tab-intent-20261127/service-final/service-controls",
+          "original_bytes": 7941056,
+          "original_sha256": "fbefc2fc2b4d58fe15aeabe5dbebd0d79b8a1d2c529eb1468feaa4b5ae866597",
+          "stored": null,
+          "retention": "Original executable retained in isolated build folder; no app/native qualification"
+        }
+      ]
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/FINAL_RESULT.json",
+      "sha256": "3f1e23112de35b0d69e88b80c4685cc5065afa2d971696f31c0b4baa3da857d1",
+      "files": 56,
+      "gzipFiles": 0
+    }
+  ],
+  "sessionResolution": {
+    "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/MaktabahNativeSceneSession.resolved.swift",
+    "sha256": "06f2d55c96100cdc0cbde8676b2808f99c0a933b455776f59ccdc07721631b41",
+    "bytes": 106920,
+    "conflicts": 4,
+    "preserves": "Both original History and Reader-tab route/apply/witness/projection branches"
+  },
+  "rootEdits": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "priorSHA256": "50b30773af0328903bef75960eb124f610b3d4689bd9369d3173a70c9057b968",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/composition.candidate",
+      "bytes": 194285,
+      "sha256": "4efcc3994a1cd5bf63a2b5c410e77fe0763818ff6b2f001973ec51bd88062573"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "priorSHA256": "5f642ff73dcff83d80591ccab9a0cf81aea049c98bfa8bda2541bce5e7538b08",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/shortcuts.candidate",
+      "bytes": 1266,
+      "sha256": "23404297c83bce209dc710e0ffb22e28d767d224c37ca4ae602eb84aad5836a4"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "priorSHA256": "ec22d62c446b8419b7640247d7b3c5cdc24a9b53462563b847cbab6dcd24b648",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/project.pbxproj.candidate",
+      "bytes": 633356,
+      "sha256": "02f3a7c6f3bfb2930d7c98dcdcb89437f69dc307436d58b093beef1209011cb2",
+      "addedLines": 8
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "priorSHA256": "be1cbda45c744b8409f6f7c85060720f3b01c0a7e96f67f902bc9092f56b13f4",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/Localizable.xcstrings.candidate",
+      "bytes": 382702,
+      "sha256": "4dc4752b9037289c0c07c30fbb32c05de8a86feb073a6265c9a68c5ed6d0da5c",
+      "oldEntriesPreserved": 721,
+      "addedKeys": [
+        "Reader tab",
+        "Open a reader tab",
+        "Open reader tab",
+        "Select an existing reader tab in the current study profile, group and library of the selected Maktabah window.",
+        "Open ${tab}"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+      "priorSHA256": "eb1dde0853ff9d68da2ee00efd9df438ae13b82c8d23b4b703c9ff13cbab8e16",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/AppShortcuts.xcstrings.candidate",
+      "bytes": 1203,
+      "sha256": "4951cfaa279a13dd49649babc42587625f3668da2fc54ca3785e7a6f4066741c",
+      "oldEntriesPreserved": 3,
+      "addedKeys": [
+        "Open reader tab ${tab} in ${applicationName}"
+      ]
+    }
+  ],
+  "syntax": {
+    "argv": [
+      "/usr/local/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/MaktabahNativeSceneSession.resolved.swift",
+      "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/MaktabahNativeRoutingComposition.merged.swift"
+    ],
+    "exit": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scope": "Linux frontend syntax only, no Apple SDK typecheck/app/native"
+  },
+  "sourceControlsReused": {
+    "owner": "40/0",
+    "service": "38/0",
+    "baselineOwner": "27/3",
+    "reusableAllowance": "37/3",
+    "preCancellationFix": "37/1"
+  },
+  "rawTransport": {
+    "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+    "path": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ZayitSearch/UnifiedSearchSessionController.swift",
+    "reason": "Original raw source ends in blank line; preserve losslessly as gzip plus explicit transport index after exact intake; do not alter evidence bytes or original receipts"
+  },
+  "nativeRuns": 0,
+  "at": "2026-11-27T10:54:13.893616+00:00"
+}

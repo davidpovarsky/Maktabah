@@ -1,0 +1,106 @@
+{
+  "schema": "otzaria.wave3.reader-tab-intake-result.v1",
+  "base": "eb532ccad28ec78d456fba8c5064abf9c9fdfecc",
+  "applied": [
+    {
+      "donor": "1d6a8e00a8f9f073f69cd5b53a34ccde6c3eca5d",
+      "integrated": "8389d43221a3e9b6faf588479e1a830d9f59d518"
+    },
+    {
+      "donor": "fe4db3f9c88658af0cd43be256574bd6005aca2d",
+      "integrated": "e30ca0514b031cf8e08d5a1c5931fc8e1b39cd41"
+    },
+    {
+      "donor": "b5f52c446a5eba31273b6e3ee61d53ba022244d5",
+      "integrated": "35b1352e92100c089a38f2f8a97ef7304bccc55b"
+    }
+  ],
+  "sourceCommit": "ec8f6a8a1834ac3251eab7d91e724b1d9b374b32",
+  "storageCommit": "0f77eb0e71301a7cdd08dd57863069a4bdcb96e9",
+  "sourceTree": "0f43c34b97246e049c729c93a8607f5bd6ee3b22",
+  "planSHA256": "b5703b158887bb92aa28da4626434efbe4f6070c9415798dc4a85bba1342e3f6",
+  "fileOccurrencesVerified": 207,
+  "manifestRowsVerified": 191,
+  "externalExecutablesVerified": 7,
+  "gzipRowsVerified": 111,
+  "sessionSHA256": "06f2d55c96100cdc0cbde8676b2808f99c0a933b455776f59ccdc07721631b41",
+  "fourSessionConflictsResolvedPreservingBoth": true,
+  "rootEdits": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "priorSHA256": "50b30773af0328903bef75960eb124f610b3d4689bd9369d3173a70c9057b968",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/composition.candidate",
+      "bytes": 194285,
+      "sha256": "4efcc3994a1cd5bf63a2b5c410e77fe0763818ff6b2f001973ec51bd88062573"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "priorSHA256": "5f642ff73dcff83d80591ccab9a0cf81aea049c98bfa8bda2541bce5e7538b08",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/shortcuts.candidate",
+      "bytes": 1266,
+      "sha256": "23404297c83bce209dc710e0ffb22e28d767d224c37ca4ae602eb84aad5836a4"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "priorSHA256": "ec22d62c446b8419b7640247d7b3c5cdc24a9b53462563b847cbab6dcd24b648",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/project.pbxproj.candidate",
+      "bytes": 633356,
+      "sha256": "02f3a7c6f3bfb2930d7c98dcdcb89437f69dc307436d58b093beef1209011cb2",
+      "addedLines": 8
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "priorSHA256": "be1cbda45c744b8409f6f7c85060720f3b01c0a7e96f67f902bc9092f56b13f4",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/Localizable.xcstrings.candidate",
+      "bytes": 382702,
+      "sha256": "4dc4752b9037289c0c07c30fbb32c05de8a86feb073a6265c9a68c5ed6d0da5c",
+      "oldEntriesPreserved": 721,
+      "addedKeys": [
+        "Reader tab",
+        "Open a reader tab",
+        "Open reader tab",
+        "Select an existing reader tab in the current study profile, group and library of the selected Maktabah window.",
+        "Open ${tab}"
+      ]
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/AppShortcuts.xcstrings",
+      "priorSHA256": "eb1dde0853ff9d68da2ee00efd9df438ae13b82c8d23b4b703c9ff13cbab8e16",
+      "candidate": "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/AppShortcuts.xcstrings.candidate",
+      "bytes": 1203,
+      "sha256": "4951cfaa279a13dd49649babc42587625f3668da2fc54ca3785e7a6f4066741c",
+      "oldEntriesPreserved": 3,
+      "addedKeys": [
+        "Open reader tab ${tab} in ${applicationName}"
+      ]
+    }
+  ],
+  "syntax": {
+    "argv": [
+      "/usr/local/bin/swiftc",
+      "-frontend",
+      "-parse",
+      "-parse-as-library",
+      "-swift-version",
+      "6",
+      "-target",
+      "arm64-apple-ios27.0-simulator",
+      "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/MaktabahNativeSceneSession.resolved.swift",
+      "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/MaktabahNativeRoutingComposition.merged.swift"
+    ],
+    "exit": 0,
+    "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scope": "Linux frontend syntax only, no Apple SDK typecheck/app/native"
+  },
+  "sourceControlsReused": {
+    "owner": "40/0",
+    "service": "38/0",
+    "baselineOwner": "27/3",
+    "reusableAllowance": "37/3",
+    "preCancellationFix": "37/1"
+  },
+  "nativeRuns": 0,
+  "sdkTypecheck": "NOT_RUN",
+  "at": "2026-11-27T10:56:11.166285+00:00"
+}

@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/MaktabahNativeSceneSession.resolved.swift",
+    "/home/ubuntu/.codex/artifacts/otzaria-wave3-reader-tab-intake-plan-20261127/MaktabahNativeRoutingComposition.merged.swift"
+  ],
+  "exit": 0,
+  "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Linux frontend syntax only, no Apple SDK typecheck/app/native"
+}
