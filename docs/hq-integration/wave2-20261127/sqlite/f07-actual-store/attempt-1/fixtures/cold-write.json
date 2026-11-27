@@ -1,0 +1,9 @@
+{
+  "annotations" : 30,
+  "cloudkit_transport_executed" : 0,
+  "database" : "\/Users\/m1\/builds\/otzaria-wave2-f07-20261127\/attempt-1\/fixtures\/cold-profile\/Annotations.sqlite",
+  "mode" : "cold-write",
+  "native_ui_executed" : 0,
+  "pid" : 48587,
+  "prior_pid" : null
+}
