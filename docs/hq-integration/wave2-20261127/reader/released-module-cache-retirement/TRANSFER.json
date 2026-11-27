@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "files": {
+    "RESULT.json": {
+      "sha256": "004948fa0e4380a8ad0575d3ada7a1dc12a61ec8e66b1a10a190e5868c670031",
+      "bytes": 503985,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/released-module-cache-retirement-20261127/RESULT.json",
+      "device": 16777232,
+      "inode": 71529589
+    },
+    "retire-owned-reader-module-caches.py": {
+      "sha256": "96462d9a7f7ec9b8c45ef31233e397e9bb3321671ad72c3cef9f8e04e40cb3c7",
+      "bytes": 5810,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/retire-owned-reader-module-caches.py",
+      "device": 16777232,
+      "inode": 71529586
+    },
+    "cache-retirement.stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/cache-retirement.stdout.log",
+      "device": 16777232,
+      "inode": 71529587
+    }
+  },
+  "scope": "Exact retained native filesystem cleanup receipts; not UI or performance acceptance"
+}
