@@ -1,0 +1,12 @@
+{
+  "MaktabahTorahInspectorAdapter.swift": {
+    "before": "b9b64795eee6afdb204fde4f31d96e38a2513c8caf4929dee1acfd03410e4c4b",
+    "after": "722c3e6dae328a217944d5298f60a2d6afc5125fdced02821cf34f2621d3b9e4",
+    "bytes": 48689
+  },
+  "OtzariaReaderSourcesInspectorHost.swift": {
+    "before": "2fc2eaf83bb56c63be833691a6e8d0df96bde09660f377f2dca06138460a92b7",
+    "after": "b5166743145329783d5650aed8caffeb6fc755b599987ae7629cb75893a6d006",
+    "bytes": 22057
+  }
+}
