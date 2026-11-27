@@ -1,0 +1,10 @@
+{
+  "name": "closed-native-self-contained.tar.gz",
+  "id": 802156560,
+  "bytes": 1463489048,
+  "sha256": "6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7",
+  "state": "uploaded",
+  "authenticatedFullReadback": true,
+  "readbackSeconds": 247.10698318202049,
+  "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/802156560"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "PRESERVED_ARCHIVE_MANIFEST.json",
+  "id": 802156548,
+  "bytes": 8651,
+  "sha256": "e8e6210b7fd6e4a808ac851f8e2842df2db8ade6914a667ec6bd648a0adb87c5",
+  "state": "uploaded",
+  "authenticatedFullReadback": true,
+  "readbackSeconds": 0.6270506056025624,
+  "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/802156548"
+}

@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-27T21:40:14.849850+00:00",
+  "releaseID": 461088091,
+  "assets": {
+    "closed-native-preservation-metadata-20261127.tar.gz": {
+      "bytes": 5201005,
+      "sha256": "e4d4d954bee4797c3b4fc9e8abf415937f47214aefdfd5cde55aa6b9eb77187a"
+    },
+    "PRESERVED_ARCHIVE_MANIFEST.json": {
+      "bytes": 8651,
+      "sha256": "e8e6210b7fd6e4a808ac851f8e2842df2db8ade6914a667ec6bd648a0adb87c5"
+    },
+    "closed-native-self-contained.tar.gz": {
+      "bytes": 1463489048,
+      "sha256": "6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7"
+    }
+  },
+  "automaticRetries": 0
+}

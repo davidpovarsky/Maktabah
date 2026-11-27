@@ -1,0 +1,54 @@
+{
+  "schema": "otzaria.source-only-private-archive-review.v1",
+  "reviewer": "/root/release_preflight",
+  "source": {
+    "path": "/workspace/scratch/c1c70cc48453/private-evidence-preservation/upload_closed_native.py",
+    "bytes": 10557,
+    "sha256": "f366f7e4a96b26d1177bbd0dce2fc03f841663f203cdf67e8a5f55dcdb1c70d5"
+  },
+  "scope": "Read complete private upload/readback controller. No execution, API request, capacity/process scan, private repository change, or retirement by reviewer.",
+  "observedGuards": [
+    "Exact repository full name, numeric ID 1474927804, private=true, owner login and not-archived checks before creation/upload and after readback.",
+    "Exact original archive 1463489048 bytes / SHA256 6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7, regular single-link leaf and device/inode/mtime/ctime equality around reads.",
+    "Exact previously verified archive receipt SHA50987d6a7daa36458322f755068f6730609ad470309ab2fa6cd4e96fdcf0720e and every_source_file_maps_to_verified_member=true.",
+    "Metadata tar gathers all regular source-directory siblings existing in that snapshot, records source identity/size/SHA and checks each after packing; manifest binds metadata archive and archive payload.",
+    "Draft release only; no retry or clobber. Exact remote asset name set and sizes, optional provider digest, then complete authenticated stream SHA and byte count for each archive/metadata/manifest asset.",
+    "Final success rechecks original archive identity/SHA and private repository. Local artifact remains; no removal operation is implemented."
+  ],
+  "findings": [
+    {
+      "id": "transfer-cleanup-entry",
+      "severity": "failure-path-source-defect",
+      "location": "Both Popen calls precede fallible PROCESS ledger/setup operations outside their try/cleanup region.",
+      "consequence": "A ledger write or readback selector/setup exception can bypass stop_owned and leave that owned transfer process running. This does not negate an actually completed whole-byte success receipt, but failed attempts require explicit owned-process closure before retirement.",
+      "minimumCorrectionForFutureExecution": "Enter try/finally immediately after successful Popen; record the owned child before other fallible setup, guarantee closure on setup/ledger failure, and retain the original exact-child signal fence. Do not stop the already running authorized job merely from this source finding."
+    },
+    {
+      "id": "retirement-not-implemented",
+      "severity": "retirement-prerequisite",
+      "location": "Controller ends with localRetirement=false.",
+      "consequence": "Its receipt alone is not an unlink implementation or proof of restoration-pointer durability/no active use.",
+      "minimumCorrectionForRetirement": "Use the exact one-leaf contract in this review and obtain the root-reviewed separate retirement controller/receipt."
+    }
+  ],
+  "retirementContract": {
+    "soleLeaf": "/mnt/development/projects/diagnostics/otzaria-wave3-closed-native-preservation-20261127.fcws2jok/closed-native-self-contained.tar.gz",
+    "bytes": 1463489048,
+    "sha256": "6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7",
+    "repository": {
+      "full_name": "davidpovarsky/Maktabah-preserved-evidence",
+      "id": 1474927804,
+      "private": true,
+      "tag": "closed-native-20261127-wave3"
+    },
+    "requiredRemoteProof": "Consume the actual terminal whole-byte VERIFIED_PRIVATE_PRESERVATION receipt; pin exact numeric release and three asset IDs, names, byte counts and SHA256. Require authenticated full-stream success for original archive, metadata tar and manifest. Cross-join manifest to receipt and metadata tar members to the manifest before unlink. A partial upload or provider digest alone is insufficient.",
+    "requiredRestorationPointer": "Before unlink, durably save and independently read back a fixed restoration pointer and script, with hashes, outside the retiring leaf and in the Git-backed/private preservation evidence. The script must recheck private repo numeric identity, download the exact pinned asset IDs without exposing credentials, verify all three complete payload sizes/SHA and metadata members, then recreate only the intended artifact with exclusive creation. Record the original leaf mode/owner/timestamps in the pointer; no extraction into arbitrary source roots.",
+    "requiredFreshSourceFence": "Pin/open the exact existing parent directory with O_DIRECTORY/O_NOFOLLOW, require its known dev/inode, then open the single basename with O_NOFOLLOW relative to that fd. Require regular file, link count1, exact receipt device/inode/size/mtime/ctime and full SHA. Re-fstat the same open descriptor after hashing; before unlink require parent-fd leaf lookup still matches. Keep all other metadata siblings and parent identity unchanged.",
+    "requiredNoUse": "Require original uploader/readback job terminal and no active holder of the exact leaf dev/inode/path, including open/mapped references; inspection failures are refusal. Recheck immediately before unlink. Do not signal any process as part of this controller. The archive source remains until this proof is current.",
+    "requiredPredeleteDurability": "Fsync a bounded PREDELETE receipt and its containing directory outside the leaf; independently read back/hash acknowledge the exact receipt before the authorized unlink. Bind actual remote proof, restoration pointer/script hashes, source identity and no-use evidence. Keep raw failures and an idempotent partial/terminal outcome.",
+    "allowedMutation": "One os.unlink of the fixed basename using the pinned parent dirfd after final guards, followed by parent fsync. No recursion, rmtree, globs, follows, parent removal, other artifact deletion, remote asset/repository change or SDK/native run.",
+    "postcondition": "Confirm only that leaf is absent, parent and all protected metadata siblings retain their identities/content, every restoration asset/receipt remains referenced, and write a durable terminal result. Report actual free before/after as concurrent observations, not guaranteed reclaimed allocation.",
+    "abort": "Any changed source/archive/metadata/remote identity, missing or partial readback, failed durability acknowledgement, active/unknown use, path mismatch or missing original receipt aborts unchanged."
+  },
+  "result": "SOURCE_REVIEW_ONLY; upload success and future retirement remain contingent on actual runtime receipts; no SDK/native/production/TestFlight acceptance."
+}

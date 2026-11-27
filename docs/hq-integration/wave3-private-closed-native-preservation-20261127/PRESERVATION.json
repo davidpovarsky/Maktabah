@@ -1,0 +1,214 @@
+{
+  "schema": "otzaria.private-archive-readback-git-preservation.v1",
+  "status": "ACTUAL_PRIVATE_FULL_READBACK_PRESERVED_ORIGINAL_LOCAL_ARCHIVE_RETAINED",
+  "utc": "2026-11-27T21:58:40.986104+00:00",
+  "integrationBase": "4bfea146611280ca4d2b5c2e4ed4ddd8a7843ce8",
+  "allNonDocumentationRootEntries": [
+    "040000 tree 46b478d886ed159784e2c92497b2d984e62c0c50\t.agents",
+    "040000 tree bce7772eb5eb55be69f56b1cdcacc5e5a94a2075\t.codex",
+    "100644 blob a16c1454153ceaee01dbdc7f62f1c72ada757137\t.gitattributes",
+    "040000 tree 9c2a99bc3b2da6ce1e7fdda492ef2360b236597f\t.github",
+    "100755 blob 13e0283e18450fefd77f87532412f30be5a3124b\t.gitignore",
+    "100644 blob dbefe3a99b1c267817d7e95a8979554b08d8f9a8\t.gitmodules",
+    "100644 blob c719a9821dd6acc4f83d068ab856cd195968c3bb\t.swiftformat",
+    "100644 blob 7ac6889dbdee7248e61fc71e4147f41093920a5e\t.swiftlint.yml",
+    "100644 blob c4484e966f3f0b897a673c86d9b1f373f4ebf19c\tAGENTS.md",
+    "100644 blob b527e5f0dba1979adb32d4144b4d8c9e99163824\tCLAUDE.md",
+    "100644 blob 1d7e56a2bc577209712d184c3570ebfb0a7cdd3b\tCONTRIBUTING.md",
+    "040000 tree cafdd94d6b16c7dcb71ef622a5aa7f2270ce2fc7\tCloudKit",
+    "100644 blob 4c193c2178e97201b019c065de62e0b68d2f2c91\tDESIGN_LANGUAGE.md",
+    "100644 blob 0c7d5aee54aeed25c55de6bff2cecc5fc73a3caf\tGEMINI.md",
+    "100644 blob f288702d2fa16d3cdf0035b15a9fcbc552cd88e7\tLICENSE",
+    "040000 tree 2e8b47fb335ed5b9d2b64f7e54514b4390b07f05\tMaktabah-iOSNativeTests",
+    "040000 tree 0a3d5b475c2e72d52d973a66a1e078ba2031db13\tMaktabah-iOSUITests",
+    "040000 tree 4679996b48174eccff2ae350de4c86f87495db85\tMaktabah.xcodeproj",
+    "040000 tree b4ea8d9ef86400672d68948d760d98c936efa8f7\tMaktabahTests",
+    "040000 tree 46a3fd8a407f0c7baf078e82314821024e940f63\tMiniApps",
+    "100644 blob 77952126169991d431766f44b5d62ecd2567a189\tPROJECT_AGENT_GUIDANCE.md",
+    "100644 blob 7257a506fd72fdeda16f1c6d3fb2885af79c5638\tPROJECT_BOARD.md",
+    "100644 blob 29785dbf6a16a5103afabc741ebe8fff3cac1239\tPodfile",
+    "100644 blob 03c10be552d73ce31cdb2e74735ed8116bde4dbd\tREADME.md",
+    "100644 blob 48c1821b3c9db539c3365d4e95a99c194320b438\tREADME_OTZARIA_PHASE1.md",
+    "100644 blob d95d1d2bf5bf5fa433c008346b6b9e81c5d05e54\tSECURITY.md",
+    "100644 blob 85683df893fade45b36030622aa98feb5bc1e430\tSOURCE_TO_PORT_DIFF.md",
+    "040000 tree 283cc4d5ba67ce7b0dd59341dfed707586ebd7d1\tScreenshots",
+    "040000 tree 7bc40e16e64dbc638b001dfe78450b488d15e6d6\tScripts",
+    "040000 tree c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb\tSource",
+    "040000 tree df84d029512d9be03624b14c29297d43b31b7a4e\tTests",
+    "100644 blob b19e9e90d967a30cc0177d7f8d00e398449a4cb7\tUPSTREAM_SYNC_2026-10-21_BASELINE.md",
+    "100644 blob 7d9633fea2daef74e995bf6e6c95624a70239b91\tUPSTREAM_SYNC_CHANGE_COVERAGE.md",
+    "100644 blob 13a2a0c2bf04adca517ea76ddea6326c1a979f48\tUPSTREAM_SYNC_CONFLICT_LEDGER.md",
+    "100644 blob 61a99b6e0dcc2d6d20aac5f0a960a209f3fe4223\tUPSTREAM_SYNC_DOWNSTREAM_PRESERVATION.md",
+    "100644 blob e01198a8a2c8393c08f24f809f9a301b77248a2b\tUPSTREAM_SYNC_FINAL_REPORT.md",
+    "100644 blob 49b89137c68f5c8e69b21da6965f89fd06030d2b\tUPSTREAM_SYNC_V42_FEATURE_PARITY.md",
+    "100644 blob 60f7632e4bc75b3297e256a70f96691a041f102b\tUPSTREAM_SYNC_VALIDATION_MATRIX.md",
+    "040000 tree 2fb868bdbe5d2d52735e857a24933918ff658cef\tVendor",
+    "040000 tree d8272f500d6541ef97d05903c6bda0ad48623417\tci_scripts",
+    "100644 blob f042cbe6520f47ed94743122d2be35a9d64b0892\tmaktabah_otsaria_phase1.zip",
+    "100644 blob 7ffdbe9817810c179af8e56d597dcc4b412e04e1\tmkdocs.yml",
+    "040000 tree 7c1c4d6e9e6025ef745e0390cebcbb9ddd534be5\tscripts",
+    "040000 tree e89d698e2328ed66051db3a372a4f8eec158826c\ttools"
+  ],
+  "repository": {
+    "id": 1474927804,
+    "full_name": "davidpovarsky/Maktabah-preserved-evidence",
+    "private": true
+  },
+  "releaseID": 461088091,
+  "receiptSHA256": "c8eb38f53a7b704587523d330c1c1ac63a2dd17cf49900cebb7a9406b545c1ed",
+  "manifestSHA256": "e8e6210b7fd6e4a808ac851f8e2842df2db8ade6914a667ec6bd648a0adb87c5",
+  "metadataMembersVerified": 22,
+  "assets": [
+    {
+      "name": "closed-native-preservation-metadata-20261127.tar.gz",
+      "id": 802156561,
+      "bytes": 5201005,
+      "sha256": "e4d4d954bee4797c3b4fc9e8abf415937f47214aefdfd5cde55aa6b9eb77187a",
+      "state": "uploaded",
+      "authenticatedFullReadback": true,
+      "readbackSeconds": 1.1984271286055446,
+      "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/802156561"
+    },
+    {
+      "name": "closed-native-self-contained.tar.gz",
+      "id": 802156560,
+      "bytes": 1463489048,
+      "sha256": "6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7",
+      "state": "uploaded",
+      "authenticatedFullReadback": true,
+      "readbackSeconds": 247.10698318202049,
+      "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/802156560"
+    },
+    {
+      "name": "PRESERVED_ARCHIVE_MANIFEST.json",
+      "id": 802156548,
+      "bytes": 8651,
+      "sha256": "e8e6210b7fd6e4a808ac851f8e2842df2db8ade6914a667ec6bd648a0adb87c5",
+      "state": "uploaded",
+      "authenticatedFullReadback": true,
+      "readbackSeconds": 0.6270506056025624,
+      "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/802156548"
+    }
+  ],
+  "files": [
+    {
+      "path": "ACTUAL_SENTINEL_UPLOAD_RESULT.json",
+      "bytes": 2207,
+      "sha256": "2e828b12b06eb43d0c46b2257cdde19872dae3076aea17a863ba13a5ca7d2a83"
+    },
+    {
+      "path": "DISPATCHED_UPLOAD_CONTROLLER.py",
+      "bytes": 10557,
+      "sha256": "f366f7e4a96b26d1177bbd0dce2fc03f841663f203cdf67e8a5f55dcdb1c70d5"
+    },
+    {
+      "path": "PEER_SOURCE_AND_RETIREMENT_REVIEW.json",
+      "bytes": 6539,
+      "sha256": "07a930cf0e73c8b8744b1e1f5ba8f2059008c6526696a8deee753b483b1f3e25"
+    },
+    {
+      "path": "actual/ARCHIVE_UPLOAD_STARTED.json",
+      "bytes": 606,
+      "sha256": "7ac137aa6bea50f36e2d2dc49a5e7d336eb7d3795103cd069fa8ac810170810f"
+    },
+    {
+      "path": "actual/CREATE_VERIFIED.json",
+      "bytes": 515,
+      "sha256": "ffdecd8c83b9e0b5a63f96eee88ba5d18d8ecb8b10a588c7c90a667548f8d6a3"
+    },
+    {
+      "path": "actual/DRAFT_RELEASE_CREATED.json",
+      "bytes": 373,
+      "sha256": "62c3618ee0a1a18c48d1919db8cd0699fbbeb80224c01fbae1069466073a6e78"
+    },
+    {
+      "path": "actual/DRAFT_RELEASE_REQUEST.json",
+      "bytes": 669,
+      "sha256": "3280a864ed35c71d43dfc93fe5c9976e6f5a68bb0fef7dfeed5f9f7fb3c298f1"
+    },
+    {
+      "path": "actual/PRESERVED_ARCHIVE_MANIFEST.json",
+      "bytes": 8651,
+      "sha256": "e8e6210b7fd6e4a808ac851f8e2842df2db8ade6914a667ec6bd648a0adb87c5"
+    },
+    {
+      "path": "actual/READBACK-802156548-PROCESS_STARTED.json",
+      "bytes": 85,
+      "sha256": "ce5084fffd08a0f1e1bf01f1642ffa53ed5dc01998869df5476dc34789de3d1c"
+    },
+    {
+      "path": "actual/READBACK-802156548.json",
+      "bytes": 377,
+      "sha256": "932531f66a1d1c0ad82450225f0c2d0a21220ad444c19ec4b391624d78f47e0c"
+    },
+    {
+      "path": "actual/READBACK-802156548.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual/READBACK-802156560-PROCESS_STARTED.json",
+      "bytes": 85,
+      "sha256": "00a19390d24e752741d240de3514092d0fb0f0e9a1c22775240322b1b8a69aa5"
+    },
+    {
+      "path": "actual/READBACK-802156560.json",
+      "bytes": 387,
+      "sha256": "216e3a3be9a7b436972e03467c0797aafa269b099458c5405ec95e917b95fbd4"
+    },
+    {
+      "path": "actual/READBACK-802156560.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual/READBACK-802156561-PROCESS_STARTED.json",
+      "bytes": 85,
+      "sha256": "1ac48b0770cba3975c3a470b2966565d3bb3d30195ffa8d274af804cfa1a6ab1"
+    },
+    {
+      "path": "actual/READBACK-802156561.json",
+      "bytes": 400,
+      "sha256": "f40e3f7a464dcae5b3d46d16401cc030b6559c102e5066cf70693d68bb892b87"
+    },
+    {
+      "path": "actual/READBACK-802156561.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual/UPLOAD.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual/UPLOAD.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "actual/UPLOAD_EXIT.json",
+      "bytes": 42,
+      "sha256": "1765e859f35c9885cd05ffe0458d6a61ca602bb87325c4215bbc9c4ae04aad89"
+    },
+    {
+      "path": "actual/UPLOAD_PROCESS_STARTED.json",
+      "bytes": 85,
+      "sha256": "9b0a02e5fa226c73fbb4111c541d74ec314a24d41e8ac80336f89cbcbb0cc406"
+    },
+    {
+      "path": "actual/VERIFIED_PRIVATE_PRESERVATION.json",
+      "bytes": 2047,
+      "sha256": "c8eb38f53a7b704587523d330c1c1ac63a2dd17cf49900cebb7a9406b545c1ed"
+    }
+  ],
+  "localRetirement": false,
+  "newSDKBuilds": 0,
+  "nativeRuns": 0,
+  "limitations": [
+    "The private archive and metadata tar are not copied into this public source repository.",
+    "The observed upload/readback succeeded; the initial controller cleanup-entry defect is retained for review.",
+    "Separate restoration, source/no-use and exact one-leaf retirement checks remain required.",
+    "This is evidence preservation, not SDK/native/production/TestFlight acceptance."
+  ]
+}

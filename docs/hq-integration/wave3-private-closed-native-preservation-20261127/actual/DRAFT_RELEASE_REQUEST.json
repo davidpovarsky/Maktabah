@@ -1,0 +1,9 @@
+{
+  "tag_name": "closed-native-20261127-wave3",
+  "target_commitish": "main",
+  "name": "Wave3 closed native evidence \u2014 exact preserved archive",
+  "body": "Private archival evidence for Maktabah / Otzaria.\n\nThe original self-contained archive and complete metadata are preserved with SHA256 and authenticated readback. Original failed and successful test evidence remains distinct. This draft is not an application release and establishes no SDK, native, production or TestFlight acceptance.\n\nSource archive SHA256: 6e5202a79e92edd6d03c0c00af50a94633539817fb34bc3a203c7340239d71e7",
+  "draft": true,
+  "prerelease": false,
+  "generate_release_notes": false
+}
