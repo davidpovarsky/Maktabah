@@ -1,0 +1,24 @@
+{
+  "scope": "EXACT_RETAINED_ROOT_DRAFT_SOURCE_PROJECTION_NOT_RUNTIME",
+  "source": {
+    "path": "/workspace/scratch/ca3b32b82803/root-study-offline/production-study-v40-ui.py",
+    "bytes": 61274,
+    "sha256": "887196e04b721491e629afba55ed239533d78b1f5e3da7004e9c6cf21a5f3755"
+  },
+  "filesSource": "FILES = [\n    \"Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift\",\n    \"Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift\",\n    \"Maktabah-iOSUITests/Build8401SevenDefectsAcceptanceTests.swift\",\n    \"Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift\",\n    \"Maktabah-iOSUITests/MaktabahUITestBase.swift\",\n    \"Scripts/CI/prepare-managed-library-update-context.py\",\n    \"Scripts/CI/prepare-production-search-preview-oracle.py\",\n    \"Scripts/CI/study-ui-settings-receipts.py\",\n    \"Scripts/CI/study-ui-prerequisites.py\",\n    \"Scripts/CI/study-ui-search-log.py\",\n    \"Scripts/CI/study-ui-offline-execution.py\",\n    \"Scripts/CI/study-ui-offline-exercises.py\",\n    \"Scripts/CI/study-ui-offline-oracle.py\",\n    \"Scripts/CI/study-ui-offline-window.py\",\n    \"Scripts/CI/study-ui-offline-heartbeat.py\",\n    \"Scripts/CI/OfflineTransportProbe.swift\",\n    \"Scripts/CI/build-offline-transport-probe.py\",\n    \"Scripts/CI/study-ui-pending-sql.py\",\n    \"Scripts/CI/study-ui-pending-execution.py\",\n    \"Scripts/CI/study-ui-sqlite-wait.py\",\n    \"Scripts/CI/runtime27_interruption.py\",\n    \"Scripts/CI/runtime27-url-delivery.py\",\n    \"Scripts/CI/reader-v40-perbook-mode-performance.py\",\n    \"docs/hq-integration/wave2-20261127/reader/FullV40ObservationCatalog.swift\",\n    \"Scripts/CI/reader-continuous-pull-host.py\",\n    \"docs/hq-integration/wave2-20261127/search/production-ui-contract.json\",\n    \"docs/hq-integration/wave2-20261127/search/native-context/TEST_CONTRACT.md\",\n    \"docs/hq-integration/wave2-20261127/search/native-context/sefaria-native-source-oracle.json\",\n    \"docs/hq-integration/wave2-20261127/library/inspector-v40/ORACLE.json\",\n    \"docs/hq-integration/wave2-20261127/library/settings-receipts/POST_UPDATE_RECEIPT.schema.json\",\n    \"docs/hq-integration/wave2-20261127/reader/continuous-pull/TEST_CONTRACT.md\",\n    \"docs/hq-integration/wave2-20261127/search/post-update-ui/TEST_CONTRACT.md\",\n    \"docs/hq-integration/wave2-20261127/library/inspector-mode-ui/sefaria-inspector-default-mode-oracle.json\",\n    \"docs/hq-integration/wave2-20261127/library/inspector-mode-ui/psalms35-default-response.json\",\n    \"docs/hq-integration/wave2-20261127/library/inspector-mode-ui/psalms35-default-response-receipt.json\",\n]",
+  "sourceContext": "def source_context(core, phase, frozen):\n    original = getattr(core, \"study_original_source_context\", core.source_context)\n    context = original(require_frozen=frozen)\n    paths = [Path(__file__).resolve().relative_to(ROOT).as_posix(), *FILES]\n    observed = {}\n    for name in paths:\n        path = ROOT / name\n        require(path.is_file() and not path.is_symlink(), \"Missing registered study execution source: \" + name)\n        if frozen:\n            require(core.command([\"git\", \"hash-object\", str(path)]).stdout.strip()\n                    == core.git(\"rev-parse\", \"HEAD:\" + name), \"Dirty study execution source: \" + name)\n        observed[name] = core.witness(path)\n    selected = PHASES[phase][\"cases\"]\n    declarations = \"\\n\".join((ROOT / p).read_text() for p in FILES if p.endswith(\".swift\"))\n    for case in selected:\n        klass, method = case.split(\"/\")\n        require(re.search(r\"\\bclass\\s+\" + re.escape(klass) + r\"\\b\", declarations)\n                and re.search(r\"\\bfunc\\s+\" + re.escape(method) + r\"\\s*\\(\", declarations),\n                \"Registered native selector declaration missing: \" + case)\n    context[\"study_ui_execution_sources\"] = observed\n    context[\"study_ui_phase\"] = phase\n    context[\"executed_case_ids\"] = selected\n    context[\"shared_profile_scope\"] = \"Full-v40 ownership/source admission only; original two Reader/Inspector observation cases are not executed by this controller\"\n    return context",
+  "offlinePhases": {
+    "offline-zayit": {
+      "cases": [
+        "PublishedProductionSearchDataTests/testPublishedV40ZayitPages50_100_150RetainSQLIdentity"
+      ],
+      "allowance": 1800
+    },
+    "offline-otzaria": {
+      "cases": [
+        "PublishedProductionSearchDataTests/testPublishedV40OtzariaPagesRetainCumulativeSQLMetadata"
+      ],
+      "allowance": 1800
+    }
+  }
+}

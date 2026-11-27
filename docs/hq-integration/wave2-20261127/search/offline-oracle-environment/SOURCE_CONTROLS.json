@@ -1,0 +1,14 @@
+{
+  "scope": "BOUNDED_SOURCE_ENVIRONMENT_BASELINE_CANDIDATE_AND_STUBBED_LIFECYCLE_CONTROLS_ONLY",
+  "baselineSHA256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244",
+  "candidateSHA256": "7f40ce53485a56e327f6a09012066a8ee6d97dd4f0ce65363e30de8387110c9c",
+  "originalEnvironmentReadSHA256": "9c1b88cbd6d57faedc65ded5e427fedb112ad726c28acb0dcf2befe93029b6ae",
+  "testsRun": 13,
+  "failures": 0,
+  "errors": 0,
+  "actualSSH": 0,
+  "actualMac": 0,
+  "actualNetworkDenial": 0,
+  "actualNativeCases": 0,
+  "actualSignals": 0
+}

@@ -1,0 +1,122 @@
+{
+  "scope": "READ_ONLY_ACTUAL_ORACLE_SOURCE_AT_B2D00B4_NO_NATIVE_OR_SSH",
+  "inputs": {
+    "original-source-build": {
+      "checkout": "b2d00b4cb5f0aad21fe4dd9b660fbbc4e7b0f0e7",
+      "files": {
+        "reader-full-v32-ui-observation.py": {
+          "bytes": 84518,
+          "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49",
+          "environment_references": [
+            {
+              "line": 121,
+              "source": "        require(head == os.environ.get(\"EXPECTED_CHECKOUT_SHA\"), \"Wrong immutable checkout\")"
+            },
+            {
+              "line": 1004,
+              "source": "    selected = os.environ.get(\"FAITHFUL_RUNTIME27_IDENTIFIER\")"
+            },
+            {
+              "line": 1046,
+              "source": "        environment = os.environ.copy()"
+            }
+          ],
+          "functions": {
+            "source_context": "def source_context(require_frozen):\n    config = json.loads(INPUTS.read_text())\n    require(config.get(\"schema\") == OBSERVATION_SCHEMA, \"Wrong observation schema\")\n    require(config[\"selected_case_ids\"] == SELECTED, \"The exact two original additive cases are required\")\n    head = git(\"rev-parse\", \"HEAD\")\n    source = config[\"application_source_sha\"]\n    trees = {p: git(\"rev-parse\", \"HEAD:\" + p) for p in (\"Source\", \"Vendor\", \"Maktabah.xcodeproj\", \"Maktabah-iOSUITests\")}\n    if require_frozen:\n        require(re.fullmatch(r\"[0-9a-f]{40}\", source) is not None, \"Application source is UNFINALIZED\")\n        require(head == os.environ.get(\"EXPECTED_CHECKOUT_SHA\"), \"Wrong immutable checkout\")\n        require(command([\"git\", \"merge-base\", \"--is-ancestor\", source, head], check=False).returncode == 0,\n                \"Frozen application source is not an ancestor\")\n        require(trees == config[\"application_trees\"], \"Actual compiled source/test trees differ from frozen inputs\")\n        require(all(git(\"rev-parse\", source + \":\" + p) == value for p, value in trees.items()), \"Frozen tree drift\")\n    records = {}\n    for path in config[\"execution_input_paths\"]:\n        local = ROOT / path\n        require(local.is_file() and not local.is_symlink(), \"Missing exact execution input: \" + path)\n        data = local.read_bytes()\n        records[path] = {\"bytes\": len(data), \"sha256\": hashlib.sha256(data).hexdigest()}\n        if require_frozen:\n            expected = config[\"input_sha256\"].get(path)\n            require(expected is not None and records[path][\"sha256\"] == expected, \"Execution byte pin changed: \" + path)\n            require(command([\"git\", \"hash-object\", str(local)]).stdout.strip() == git(\"rev-parse\", \"HEAD:\" + path),\n                    \"Dirty committed execution input: \" + path)\n    return {\"checkout_sha\": head, \"application_source_sha\": source, \"application_trees\": trees,\n            \"inputs_file_sha256\": digest(INPUTS), \"execution_inputs\": records,\n            \"scope\": \"Debug original production-corpus UI observation; no final Native116/Release114/device acceptance\"}",
+            "build_identity": "def build_identity(context):\n    build = json.loads((ROOT / \"build/hq-stage2/result.json\").read_text())\n    require(build.get(\"status\") == \"SIMULATOR_BUILD_FOR_REAL_UI_PASS\"\n            and build.get(\"checkout_sha\") == context[\"checkout_sha\"], \"No authentic same-checkout app/UI test build\")\n    original = runpy.run_path(str(ROOT / \"Scripts/CI/hq-stage2-focused-apple.py\"))\n    original[\"verify_actual_sources\"](build)\n    qualified_sdk = verify_qualified_sdk(build)\n    products = ROOT / \"build/DerivedData/Build/Products/Debug-iphonesimulator\"\n    bundles = [products / \"Maktabah.app\", products / \"Maktabah-iOSUITests-Runner.app\",\n               products / \"Maktabah-iOSUITests-Runner.app/PlugIns/Maktabah-iOSUITests.xctest\"]\n    binary_records = {}\n    dwarf_uuids = {}\n    for bundle in bundles:\n        info = plistlib.loads((bundle / \"Info.plist\").read_bytes())\n        binary_records[str(bundle.relative_to(ROOT))] = witness(bundle / info[\"CFBundleExecutable\"])\n        dwarf_uuids[str(bundle.relative_to(ROOT))] = command([\"xcrun\", \"dwarfdump\", \"--uuid\", str(bundle / info[\"CFBundleExecutable\"])]).stdout\n        require(re.search(r\"UUID: [0-9A-Fa-f-]{36}\", dwarf_uuids[str(bundle.relative_to(ROOT))]) is not None, \"Actual Mach-O symbol identity missing\")\n    test_runs = sorted(products.parent.glob(\"*.xctestrun\"))\n    require(len(test_runs) == 1, \"Exactly one original same-build xctestrun is required\")\n    result = {\"built_binaries\": binary_records, \"actual_macho_dwarf_uuids\": dwarf_uuids, \"xctestrun\": witness(test_runs[0]),\n              \"build_receipt\": witness(ROOT / \"build/hq-stage2/result.json\"), \"qualified_sdk_route\": qualified_sdk,\n              \"complete_native_images\": runpy.run_path(str(ROOT / \"Scripts/CI/mac-prepared-inputs.py\"))[\"code_images\"](ROOT)}\n    write(OUT / \"actual-built-inputs.json\", result)\n    return products, test_runs[0], result",
+            "verify_qualified_sdk": "def verify_qualified_sdk(build):\n    routes = build.get(\"original_editor_routes\")\n    require(isinstance(routes, dict), \"Full-v32 observations require the final qualified original SDK routes\")\n    app = ROOT / \"build/DerivedData/Build/Products/Debug-iphonesimulator/Maktabah.app\"\n    # The original build already executed symbol/runtime ownership checks.\n    # Revalidate their exact code/resources/signatures without recompilation.\n    return runpy.run_path(str(ROOT / \"Scripts/CI/original_editor_sdk_routes.py\"))[\"verify\"](\n        ROOT, routes[\"path\"], \"Debug\", \"iphonesimulator\", app, route_sha256=routes[\"sha256\"], after_ui=True)"
+          }
+        },
+        "hq-stage2-focused-apple.py": {
+          "bytes": 69168,
+          "sha256": "e040ba791585670e2a5aae7733be3e93f99f6dcedd69ce2fd4db1cbf7ba4edca",
+          "environment_references": [
+            {
+              "line": 184,
+              "source": "    value = os.environ.get(\"OTZARIA_STAGED_INPUTS\")"
+            },
+            {
+              "line": 249,
+              "source": "    expected = os.environ.get(\"EXPECTED_CHECKOUT_SHA\")"
+            },
+            {
+              "line": 508,
+              "source": "    os.environ.update(PROJECT_ROOT=str(vendor), NODE_PATH=str(vendor / \"node_modules\"),"
+            },
+            {
+              "line": 987,
+              "source": "        report[\"developer_dir\"] = os.environ.get(\"DEVELOPER_DIR\") or capture(\"xcode-select\", \"-p\")"
+            }
+          ],
+          "functions": {
+            "verify_actual_sources": "def verify_actual_sources(report):\n    entries = subprocess.check_output([\"git\", \"ls-tree\", \"-r\", \"-z\", \"HEAD\", \"--\", \"Source\", \"Vendor\"], cwd=ROOT)\n    expected = {}\n    for entry in entries.split(b\"\\0\"):\n        if not entry:\n            continue\n        meta, path = entry.split(b\"\\t\", 1)\n        if meta.split()[1] == b\"blob\":\n            expected[path.decode()] = meta.split()[2].decode()\n    paths = list(expected)\n    actual = subprocess.check_output([\"git\", \"hash-object\", \"--no-filters\", \"--stdin-paths\"], cwd=ROOT,\n                                     input=(\"\\n\".join(paths) + \"\\n\").encode()).decode().splitlines()\n    require(len(actual) == len(paths), \"Actual source hash inventory incomplete\")\n    mismatches = [path for path, blob in zip(paths, actual) if blob != expected[path]]\n    if \"Source/PrivacyInfo.xcprivacy\" in mismatches:\n        audit_generated_privacy(report, expected[\"Source/PrivacyInfo.xcprivacy\"])\n        mismatches.remove(\"Source/PrivacyInfo.xcprivacy\")\n    require(not mismatches, \"Dependency setup changed tracked app input: \" + \", \".join(mismatches[:10]))\n    report[\"actual_source_inputs_verified\"] = len(paths)\n    (OUT / \"actual-source-inputs.json\").write_text(json.dumps(dict(zip(paths, actual)), indent=2) + \"\\n\")\n    checkouts = ROOT / \"build/SourcePackages/checkouts\"\n    folders = {p.name.casefold(): p for p in checkouts.iterdir() if p.is_dir()}\n    report[\"actual_package_checkouts\"] = {}\n    for identity, revision in report[\"package_pins\"].items():\n        require(identity.casefold() in folders, \"Pinned package checkout missing: \" + identity)\n        folder = folders[identity.casefold()]\n        head = capture(\"git\", \"-C\", str(folder), \"rev-parse\", \"HEAD\")\n        dirty = capture(\"git\", \"-C\", str(folder), \"status\", \"--porcelain\")\n        require(head == revision and not dirty, \"Pinned package source differs/dirty: \" + identity)\n        report[\"actual_package_checkouts\"][identity] = {\"head\": head, \"status\": \"CLEAN\"}"
+          }
+        },
+        "original_editor_sdk_routes.py": {
+          "bytes": 22036,
+          "sha256": "c86095fd316426f00f3320768121c3779db04de6a9fb774e8aced3843b3ee263",
+          "environment_references": [
+            {
+              "line": 275,
+              "source": "    configuration, platform = os.environ.get('CONFIGURATION'), os.environ.get('PLATFORM_NAME')"
+            }
+          ],
+          "functions": {
+            "verify": "def verify(root, route_path, configuration, platform, app, *, route_sha256, after_ui=False, after_archive=False):\n    row, admitted = admitted_route(root, route_path, route_sha256, configuration, platform)\n    if platform == 'iphoneos':\n        require(not after_ui, 'Device compiler/archive verification cannot claim a Simulator UI phase')\n        module = runpy.run_path(str(Path(root) / 'Scripts/CI/original_editor_device_signature.py'))\n        verified = module['verify'](root, Path(root) / row['path'], row['sha256'], app, Path(root) / row['evidence'],\n                                    expected_team=admitted['signing_team_id'], after_archive=after_archive)\n        directory = Path(root) / row['evidence'] / ('device-archive' if after_archive else 'device-build')\n        directory.mkdir(parents=True, exist_ok=True)\n        api = sdk_api(root)\n        shared = runpy.run_path(str(Path(root) / 'Scripts/CI/original_editor_shared_runtime.py'))\n        shared['verify_app_ownership'](Path(root), admitted, Path(app), directory, api['command'],\n            host_library_files=verified['host_build_products']['host_libraries'])\n        policy = admitted['shared_package_policy']\n        if policy['swift_syntax_requires_actual_runtime_absence']:\n            api['verify_absence_receipt'](Path(root), Path(root) / admitted['distribution_root'],\n                                         policy['producer_runtime_absence'])\n            proof = api['runtime_absence_proof'](Path(root), Path(app), directory / 'swift-syntax-app')\n            api['write'](directory / 'swift-syntax-runtime-absence.json', {\n                'status': 'EXACT_REVIEWED_BUILD_TOOL_PAIR_WITH_ACTUAL_RUNTIME_ABSENCE',\n                'sdk': policy['producer_runtime_absence'], 'app': proof, 'device_runtime': 'NOT_RUN'})\n    else:\n        require(not after_archive, 'Simulator route cannot grant device archive verification')\n        sdk_api(root)['verify_built_app'](root, admitted, app, Path(root) / row['evidence'], after_ui=after_ui)\n    return {'status': 'ACTUAL_BUILT_APP_SDK_ROUTE_VERIFIED', 'configuration': configuration, 'platform': platform,\n            'sdk_source_sha': admitted['source_sha'], 'admission_sha256': admitted['admission_sha256'],\n            'after_ui': after_ui, 'after_archive': after_archive, 'native_editor_ui_credit': False}"
+          }
+        },
+        "mac-prepared-inputs.py": {
+          "bytes": 16112,
+          "sha256": "38f403c94b4289ec43e13bbb97d7ce9b288a353e710e4a406a50f05dcc08a6c9",
+          "environment_references": [
+            {
+              "line": 123,
+              "source": "    developer = os.environ.get(\"DEVELOPER_DIR\") or command([\"xcode-select\", \"-p\"])"
+            }
+          ],
+          "functions": {
+            "code_images": "def code_images(root):\n    result, required = {}, []\n    magic = {b\"\\xce\\xfa\\xed\\xfe\", b\"\\xcf\\xfa\\xed\\xfe\", b\"\\xfe\\xed\\xfa\\xce\", b\"\\xfe\\xed\\xfa\\xcf\",\n             b\"\\xca\\xfe\\xba\\xbe\", b\"\\xbe\\xba\\xfe\\xca\", b\"\\xca\\xfe\\xba\\xbf\", b\"\\xbf\\xba\\xfe\\xca\"}\n    for name in PRODUCT_PATHS:\n        bundle = root / name\n        info = plistlib.loads((bundle / \"Info.plist\").read_bytes())\n        required.append((bundle / info[\"CFBundleExecutable\"]).relative_to(root).as_posix())\n        for path in bundle.rglob(\"*\"):\n            require(not path.is_symlink(), \"Prior native product contains an unexpected alias\")\n            if not path.is_file():\n                continue\n            with path.open(\"rb\") as stream:\n                header = stream.read(8)\n            if header[:4] in magic or header == b\"!<arch>\\n\":\n                result[path.relative_to(root).as_posix()] = record(path)\n    require(all(path in result for path in required), \"Prior original app/UI-runner images are absent\")\n    return result"
+          }
+        }
+      }
+    },
+    "original-sdk-route": {
+      "sdk_api": "def sdk_api(root):\n    return runpy.run_path(str(Path(root) / 'Scripts/CI/hq-original-editor-distribution.py'))",
+      "admitted_route": "def admitted_route(root, route_path, route_sha256, configuration, platform):\n    root = Path(root)\n    path = owned(root, route_path, 'build/')\n    require(re.fullmatch(r'[a-f0-9]{64}', route_sha256) and digest(path) == route_sha256,\n            'Generated original SDK route receipt changed')\n    receipt = json.loads(path.read_bytes())\n    routes = load(root)\n    require(receipt.get('schema') == 'otzaria.original-editor.admitted-build-routes/1'\n            and receipt.get('manifest_path') == routes['manifest_path']\n            and receipt.get('manifest_sha256') == routes['manifest_sha256']\n            and receipt.get('sdk_source_sha') == routes['sdk_source_sha']\n            and receipt.get('native_source_tree') == routes['native_source_tree']\n            and receipt.get('signing_team_id') == routes['signing_team_id']\n            and set(receipt.get('routes', {})) == set(VARIANTS), 'SDK admission routes differ from committed source')\n    selected = select(routes, configuration, platform)\n    name = next(key for key, pair in VARIANTS.items() if pair == (configuration, platform))\n    row = receipt['routes'][name]\n    require(row['admission_path'] == selected['admission_path']\n            and row['admission_sha256'] == selected['admission_sha256']\n            and (row['configuration'], row['platform']) == (configuration, platform),\n            'Selected app route points to another SDK variant')\n    admission_path = owned(root, row['path'], 'build/')\n    require(digest(admission_path) == row['sha256'], 'Actual SDK admission bytes changed')\n    admitted = json.loads(admission_path.read_bytes())\n    require(admitted.get('admission_path') == row['admission_path']\n            and admitted.get('admission_sha256') == row['admission_sha256']\n            and admitted.get('source_sha') == routes['sdk_source_sha'],\n            'SDK consumer receipt does not bind the selected committed input')\n    return row, admitted"
+    },
+    "original-sdk-distribution": {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-core-20261127/Scripts/CI/hq-original-editor-distribution.py",
+      "bytes": 72109,
+      "sha256": "3aacab5fc36a523929a3646b4a6ffc9e7c4d13638a999c302dde89a6babeafa5",
+      "environment_references": [
+        {
+          "line": 718,
+          "source": "    require(os.environ.get(\"TARGET_NAME\") == TARGET and os.environ.get(\"CONFIGURATION\") == (\"Release\" if production else \"Debug\")"
+        },
+        {
+          "line": 719,
+          "source": "            and os.environ.get(\"PLATFORM_NAME\") == \"iphonesimulator\""
+        },
+        {
+          "line": 720,
+          "source": "            and os.environ.get(\"PRODUCT_BUNDLE_IDENTIFIER\") == BUNDLE,"
+        },
+        {
+          "line": 753,
+          "source": "    require(not any(key in os.environ for key in keys), \"Existing original Ruby observation context\")"
+        },
+        {
+          "line": 771,
+          "source": "    environment = dict(os.environ)"
+        },
+        {
+          "line": 872,
+          "source": "    environment = dict(os.environ)"
+        }
+      ],
+      "functions": {
+        "verify_built_app": "def verify_built_app(root, admitted, app, evidence, *, after_ui=False):\n    root, evidence = Path(root), Path(evidence)\n    app = app_bundle(root, app)\n    require_unchanged(root, admitted)\n    embedding = read_json(evidence / \"app-embedding.json\")\n    original_app = Path(embedding[\"target\"])\n    app_layout = app.relative_to(root).parts\n    require(embedding[\"status\"] == \"EXACT_PRODUCTS_PRESENT\"\n            and embedding[\"overwritten_products\"] == 0\n            and embedding[\"codesign_on_copy\"] is False\n            and embedding[\"remove_headers_on_copy\"] is False\n            and (original_app == app or (after_ui and original_app.is_absolute()\n                 and \"..\" not in original_app.parts and original_app.parts[-len(app_layout):] == app_layout)),\n            \"Original app embed phase did not execute for the exact product layout\")\n    product_receipts = {(row[\"kind\"], row[\"name\"]): row for row in embedding[\"products\"]}\n    expected_products = {(\"Frameworks\", name) for name in admitted[\"dynamic_frameworks\"]}\n    expected_products.update((\"Bundles\", name) for name in admitted[\"resource_bundles\"])\n    require(set(product_receipts) == expected_products\n            and len(product_receipts) == len(embedding[\"products\"]),\n            \"Original app embed product inventory differs\")\n    distribution = root / admitted[\"distribution_root\"]\n    prefix = \"after-ui-\" if after_ui else \"\"\n    for index, name in enumerate(admitted[\"dynamic_frameworks\"]):\n        target = app / \"Frameworks\" / name\n        require(inventory(target, metadata=True) == inventory(distribution / \"Frameworks\" / name, metadata=True)\n                == product_receipts[\"Frameworks\", name][\"files\"],\n                \"Embedded original framework changed: \" + name)\n        command([\"codesign\", \"--verify\", \"--strict\", str(target)], root=root, evidence=evidence,\n                label=prefix + \"embedded-sdk-signature-\" + str(index))\n    for name in admitted[\"resource_bundles\"]:\n        require(inventory(app / name, metadata=True) == inventory(distribution / \"Bundles\" / name, metadata=True)\n                == product_receipts[\"Bundles\", name][\"files\"],\n                \"Embedded original resource bundle changed: \" + name)\n    command([\"codesign\", \"--verify\", \"--strict\", str(app)], root=root, evidence=evidence, label=prefix + \"actual-app-signature\")\n    policy = admitted[\"shared_package_policy\"]\n    if policy[\"swift_syntax_requires_actual_runtime_absence\"]:\n        sdk_proof = policy[\"producer_runtime_absence\"]\n        verify_absence_receipt(root, distribution, sdk_proof)\n        # This directory is Simulator-only; the original macOS macro targets\n        # and their separately verified pins/authorization remain untouched.\n        expected_configuration = (\"Release\" if admitted.get(\"schema\") == \"otzaria.original-editor.production-admission/1\" else \"Debug\")\n        require(app.parent.name == expected_configuration + \"-iphonesimulator\", \"Wrong actual Simulator product directory\")\n        require_no_syntax_names(path.relative_to(app.parent).as_posix() for path in app.parent.rglob(\"*\"))\n        if after_ui:\n            if \"consumer_runtime_absence\" not in admitted:\n                retained = read_json(evidence / \"swift-syntax-runtime-absence.json\")\n                require(retained.get(\"status\") == \"EXACT_REVIEWED_BUILD_TOOL_PAIR_WITH_ACTUAL_RUNTIME_ABSENCE\"\n                        and retained.get(\"sdk\") == sdk_proof, \"Retained built-app runtime proof differs\")\n                admitted[\"consumer_runtime_absence\"] = retained[\"app\"]\n            verify_absence_receipt(root, app, admitted[\"consumer_runtime_absence\"], reused=sdk_proof,\n                                   observed_app=original_app)\n        else:\n            admitted[\"consumer_runtime_absence\"] = runtime_absence_proof(\n                root, app, evidence / \"swift-syntax-app\", reused=sdk_proof)\n        write(evidence / (prefix + \"swift-syntax-runtime-absence.json\"), {\n            \"status\": \"EXACT_REVIEWED_BUILD_TOOL_PAIR_WITH_ACTUAL_RUNTIME_ABSENCE\",\n            \"maktabah_revision\": SYNTAX_APP, \"sdk_revision\": SYNTAX_SDK,\n            \"sdk\": sdk_proof, \"app\": admitted[\"consumer_runtime_absence\"],\n            \"new_native_execution\": False, \"lock_or_macro_inputs_changed\": False})\n    if admitted.get(\"schema\") in {3, \"otzaria.original-editor.production-admission/1\"}:\n        shared = runpy.run_path(str(owned_path(root, \"Scripts/CI/original_editor_shared_runtime.py\")))\n        shared[\"verify_app_ownership\"](root, admitted, app, evidence, command, after_ui=after_ui)\n    write(evidence / (prefix + \"built-app-distribution-verification.json\"), {\"status\": \"EXACT_ORIGINAL_DISTRIBUTION_EMBEDDED\",\n          \"dynamic_frameworks\": admitted[\"dynamic_frameworks\"], \"resource_bundles\": admitted[\"resource_bundles\"],\n          \"native_editor_ui_tests\": 0, \"production_or_device_qualification\": False})"
+      }
+    }
+  }
+}

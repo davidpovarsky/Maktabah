@@ -133,13 +133,14 @@ def validate_launch(value):
         if key in inputs:
             require(witness_shape(inputs[key])['path'] == options[option], 'Input witness differs from the actual argv')
     environment = value['environment']
-    required_env = {'FAITHFUL_RUNTIME27_IDENTIFIER', 'LC_ALL', 'TZ'}
+    required_env = {'EXPECTED_CHECKOUT_SHA', 'FAITHFUL_RUNTIME27_IDENTIFIER', 'LC_ALL', 'TZ'}
     require(isinstance(environment, dict) and required_env <= set(environment)
             and set(environment) <= required_env | {'PATH', 'DEVELOPER_DIR'}
             and all(type(v) is str and v and '\x00' not in v and '\n' not in v for v in environment.values())
             and environment['LC_ALL'] == 'C' and environment['TZ'] == 'UTC'
+            and re.fullmatch(r'[0-9a-f]{40}', environment['EXPECTED_CHECKOUT_SHA'])
             and re.fullmatch(r'com\.apple\.CoreSimulator\.SimRuntime\.iOS-27(?:-[0-9]+)+', environment['FAITHFUL_RUNTIME27_IDENTIFIER']),
-            'Use explicit original runtime/locale values; arbitrary runner, proxy or provider overrides are forbidden')
+            'Use explicit original immutable checkout/runtime/locale values; arbitrary runner, proxy or provider overrides are forbidden')
     if 'DEVELOPER_DIR' in environment: absolute(environment['DEVELOPER_DIR'])
     timeouts = value['timeouts']
     require(isinstance(timeouts, dict) and set(timeouts) == {'preReadySeconds', 'postRestorationSeconds'}
@@ -173,7 +174,8 @@ class EventState:
                 and value.get('event') == 'ORIGINAL_CONTROLLER_EXEC_READY'
                 and type(value.get('actualControllerPID')) is int and value['actualControllerPID'] > 1
                 and type(value.get('actualUID')) is int and value['actualUID'] > 0
-                and value.get('argv') == self.launch['argv'] and value.get('macRepository') == self.launch['macRepository'],
+                and value.get('argv') == self.launch['argv'] and value.get('macRepository') == self.launch['macRepository']
+                and value.get('checkoutSHA') == self.launch['environment']['EXPECTED_CHECKOUT_SHA'],
                 'Missing, duplicated or foreign actual remote launch identity')
         require(type(value.get('parentPID')) is int and value['parentPID'] > 1
                 and type(value.get('startUTC')) is str and value['startUTC'], 'Actual controller start/parent identity is absent')
@@ -289,6 +291,15 @@ def check_python(payload):
     w=payload['launch']['python']; verified(w)
     need(str(Path(sys.executable).resolve(strict=True))==w['path'],'actual interpreter differs')
     need(sys.platform=='darwin' and os.geteuid()>0,'actual nonroot Mac required')
+def checkout(payload):
+    root=canonical(payload['launch']['macRepository'],True)
+    expected=payload['launch']['environment'].get('EXPECTED_CHECKOUT_SHA')
+    need(type(expected) is str and re.fullmatch('[0-9a-f]{40}',expected),'explicit immutable checkout required')
+    actual=subprocess.run(['git','-C',str(root),'rev-parse','HEAD'],capture_output=True,timeout=5)
+    need(actual.returncode==0 and not actual.stderr,'actual immutable checkout read failed')
+    observed=actual.stdout.decode('ascii').strip()
+    need(observed==expected,'actual checkout differs from the explicit original source freeze')
+    return observed
 def control(payload, live=True):
     binding=payload['binding']; directory=canonical(binding['controlDirectory'],True); s=directory.lstat()
     need(str(directory)==str(Path(payload['launch']['outputDirectory'])/'offline-control') and s.st_uid==os.geteuid()
@@ -329,6 +340,7 @@ check_python(payload)
 REMOTE_START = REMOTE_COMMON + r'''
 observed=sources(payload)
 spec=payload['launch']; root=canonical(spec['macRepository'],True)
+checkout_sha=checkout(payload)
 need(spec['controller']==observed['Scripts/CI/production-study-v40-ui.py'],'actual main witness differs')
 for w in spec['inputs'].values(): verified(w)
 out=Path(spec['outputDirectory']); need(not out.exists() and not out.is_symlink() and out.is_relative_to(root/'build/artifacts'),'new owned output required')
@@ -337,7 +349,7 @@ argv=spec['argv']; need(argv[:7]==[spec['python']['path'],'-I','-B','-u',spec['c
 current=process(os.getpid()); need(current and current['parentPID']==os.getppid(),'actual launch identity')
 value={'schema':'otzaria.owned-original-offline-oracle-coordinator/1','event':'ORIGINAL_CONTROLLER_EXEC_READY',
        'actualControllerPID':os.getpid(),'actualUID':os.geteuid(),'parentPID':os.getppid(),'startUTC':current['startUTC'],
-       'argv':argv,'macRepository':str(root),'sources':observed,'python':spec['python'],
+       'argv':argv,'macRepository':str(root),'checkoutSHA':checkout_sha,'sources':observed,'python':spec['python'],
        'observedMacUnix':time.time(),'clockDomain':'Mac'}
 print('OTZARIA_OFFLINE_ORACLE_LAUNCH '+json.dumps(value,separators=(',',':')),flush=True)
 os.chdir(root)
@@ -447,12 +459,18 @@ def validate_sources(observed, expected, mac_root):
                 'Original Mac source is not the current committed Oracle source: ' + name)
 
 
+def validate_checkout_context(source, launch):
+    require(source.get('checkout_sha') == launch['environment']['EXPECTED_CHECKOUT_SHA'],
+            'Original source context differs from the explicitly supplied immutable checkout')
+
+
 def validate_final(value, *, state, binding, source_before, expected_sources, response, relay_rows, ssh_exit, join):
     require(ssh_exit == 0 and state.pending is not None and state.aborted is None,
             'Actual controller exit0 and its complete ordered events are required')
     require(value.get('operation') == 'collect' and value.get('actualUID') == state.boot['actualUID']
             and value.get('currentControllerProcess') != binding['process'], 'Original controller is still alive or the actual Mac owner changed')
     spec, records = state.launch, value['records']
+    validate_checkout_context(source_before, spec)
     validate_sources(value['sources'], expected_sources, spec['macRepository'])
     report = strict_json(unpack(records['RESULT.json']))
     require(records['RESULT.json']['file']['path'] == str(Path(spec['outputDirectory']) / 'RESULT.json')
@@ -755,6 +773,7 @@ class OracleOfflineCoordinator:
             validate_sources(actual['sources'], self.sources, self.spec['macRepository'])
             require(strict_json(unpack(actual['readyRecord'])) == value, 'Actual live private ready bytes differ')
             self.source_before = strict_json(unpack(actual['sourceBefore']))
+            validate_checkout_context(self.source_before, self.spec)
             validate_sources(self.source_before['study_ui_execution_sources'], self.sources, self.spec['macRepository'])
             require(self.source_before.get('study_ui_phase') == self.spec['phase']
                     and self.source_before.get('executed_case_ids') == [CASE_IDS[self.spec['phase']]], 'Ready source has another phase/selector')
