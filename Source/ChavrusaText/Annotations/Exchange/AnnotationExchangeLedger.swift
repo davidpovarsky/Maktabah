@@ -1078,10 +1078,11 @@ extension AnnotationExchangeLedger {
         static let deliveries = "otzaria_annotation_exchange_linked_deliveries"
         static let incoming = "otzaria_annotation_exchange_linked_incoming"
         static let reviews = "otzaria_annotation_exchange_linked_reviews"
+        static let reconciliations = "otzaria_annotation_exchange_linked_reconciliations"
     }
 
     private static var linkedDefinitions: [(name: String, type: String, table: String, sql: String)] {
-        let links = LinkedTables.links, deliveries = LinkedTables.deliveries, incoming = LinkedTables.incoming, reviews = LinkedTables.reviews
+        let links = LinkedTables.links, deliveries = LinkedTables.deliveries, incoming = LinkedTables.incoming, reviews = LinkedTables.reviews, reconciliations = LinkedTables.reconciliations
         return [
             (links, "table", links, """
                 CREATE TABLE \(links) (
@@ -1135,7 +1136,22 @@ extension AnnotationExchangeLedger {
                     prior_attempt_id TEXT,
                     native_root_sha256 TEXT NOT NULL CHECK(length(native_root_sha256) = 64),
                     native_response_sha256 TEXT NOT NULL CHECK(length(native_response_sha256) = 64),
+                    resolution_attempt_id TEXT NOT NULL CHECK(length(resolution_attempt_id) = 36),
                     FOREIGN KEY(message_id) REFERENCES \(Self.outbox)(message_id)
+                )
+                """),
+            (reconciliations, "table", reconciliations, """
+                CREATE TABLE \(reconciliations) (
+                    attempt_id TEXT PRIMARY KEY NOT NULL CHECK(length(attempt_id) = 36),
+                    link_id TEXT NOT NULL CHECK(length(link_id) = 36),
+                    mutation_id TEXT NOT NULL CHECK(length(mutation_id) = 36),
+                    expected_root_sha256 TEXT NOT NULL CHECK(length(expected_root_sha256) = 64),
+                    state TEXT NOT NULL CHECK(state IN ('dispatch_may_have_occurred', 'verified', 'superseded')),
+                    resolution_attempt_id TEXT CHECK(resolution_attempt_id IS NULL OR length(resolution_attempt_id) = 36),
+                    native_root_sha256 TEXT CHECK(native_root_sha256 IS NULL OR length(native_root_sha256) = 64),
+                    native_response_sha256 TEXT CHECK(native_response_sha256 IS NULL OR length(native_response_sha256) = 64),
+                    FOREIGN KEY(link_id) REFERENCES \(links)(link_id),
+                    FOREIGN KEY(mutation_id) REFERENCES \(Self.versions)(mutation_id)
                 )
                 """)
         ]
@@ -1161,7 +1177,7 @@ extension AnnotationExchangeLedger {
                   actual.2 == definition.table, actual.3 == definition.sql else { throw AnnotationExchangeError.schemaMismatch }
         }
         let implicit = objects.filter { !names.contains($0.0) }
-        let expected = Set([LinkedTables.links, LinkedTables.deliveries, LinkedTables.incoming, LinkedTables.reviews].map { "sqlite_autoindex_" + $0 + "_1" })
+        let expected = Set([LinkedTables.links, LinkedTables.deliveries, LinkedTables.incoming, LinkedTables.reviews, LinkedTables.reconciliations].map { "sqlite_autoindex_" + $0 + "_1" })
         guard implicit.count == expected.count, Set(implicit.map { $0.0 }) == expected,
               implicit.allSatisfy({ $0.1 == "index" && $0.3 == nil }) else { throw AnnotationExchangeError.schemaMismatch }
         return true
@@ -1294,6 +1310,7 @@ extension AnnotationExchangeLedger {
               current.link.active, current.state == .pending, now >= current.notBefore,
               current.link.nativeRootSHA256 == observedRootSHA256,
               try currentVersion(namespace: current.delivery.namespace, annotationUUID: current.delivery.annotationUUID)?.mutationID == current.delivery.mutationID,
+              !(try unresolvedLinkedReconciliations(for: [current.link])).contains(current.link.id),
               !(try linkedDeliveries(for: current.link)).contains(where: { $0.state == .dispatchMayHaveOccurred || $0.state == .needsReview }) else { throw AnnotationExchangeError.staleRevision }
         _ = try requireMaterializablePendingDelivery(current.delivery)
         try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'dispatch_may_have_occurred', attempt_id = ?, expected_root_sha256 = ? WHERE message_id = ? AND state = 'pending';",
@@ -1321,36 +1338,100 @@ extension AnnotationExchangeLedger {
             try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'verified', native_root_sha256 = ?, native_response_sha256 = ? WHERE message_id = ? AND attempt_id = ?;",
                 parameters: [nativeRootSHA256, nativeResponseSHA256, messageID.uuidString, attemptID.uuidString])
             if current.link.active {
-                try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ?, confirmed_local_revision = ? WHERE link_id = ? AND active = 1;",
-                    parameters: [nativeRootSHA256, delivery.revision, current.link.id.uuidString])
+                // A valid historical R2 completion may arrive after an R3
+                // receive. Keep its ACK, but never roll the live baseline back.
+                try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ?, confirmed_local_revision = ? WHERE link_id = ? AND active = 1 AND confirmed_local_revision <= ?;",
+                    parameters: [nativeRootSHA256, delivery.revision, current.link.id.uuidString, delivery.revision])
             }
         }
     }
 
-    /// A new explicit review records the genuine fresh native read before
-    /// allowing a new conditional revision. The old native attempt and this
-    /// review's prior uncertainty remain immutable history, not an inferred ACK.
-    func acceptLinkedReview(_ supplied: AnnotationExchangeLinkedDelivery,
-                            origin: AnnotationExchangeNativeReadOrigin) throws -> AnnotationExchangeLinkedDelivery {
-        guard sqlite3_get_autocommit(database.dbPointer) == 0 else { throw AnnotationExchangeError.receiptMismatch }
-        try validateNativeOrigin(origin)
-        guard let current = try linkedDelivery(messageID: supplied.delivery.messageID), current == supplied,
-              current.link.active, [.pending, .needsReview, .dispatchMayHaveOccurred].contains(current.state),
-              current.link.destination == origin.destination, current.link.objectID == origin.objectID,
-              try currentVersion(namespace: current.delivery.namespace, annotationUUID: current.delivery.annotationUUID)?.mutationID == current.delivery.mutationID else { throw AnnotationExchangeError.staleRevision }
-        try database.execute(query: "INSERT INTO main.\(LinkedTables.reviews) (review_id, message_id, prior_state, prior_attempt_id, native_root_sha256, native_response_sha256) VALUES (?, ?, ?, ?, ?, ?);",
-            parameters: [UUID().uuidString, current.delivery.messageID.uuidString, current.state.rawValue,
-                current.attemptID.map { $0.uuidString as Any } ?? NSNull(), origin.nativeRootSHA256, origin.nativeResponseSHA256])
-        for older in try linkedDeliveries(for: current.link) where older.delivery.messageID != current.delivery.messageID && [.pending, .needsReview, .dispatchMayHaveOccurred].contains(older.state) {
-            try database.execute(query: "INSERT INTO main.\(LinkedTables.reviews) (review_id, message_id, prior_state, prior_attempt_id, native_root_sha256, native_response_sha256) VALUES (?, ?, ?, ?, ?, ?);",
-                parameters: [UUID().uuidString, older.delivery.messageID.uuidString, older.state.rawValue,
-                    older.attemptID.map { $0.uuidString as Any } ?? NSNull(), origin.nativeRootSHA256, origin.nativeResponseSHA256])
-            try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'superseded' WHERE message_id = ?;", parameters: [older.delivery.messageID.uuidString])
+    func unresolvedLinkedReconciliations(for links: [AnnotationExchangeNativeLink]) throws -> Set<UUID> {
+        guard try hasLinkedSyncSchema() else { return [] }
+        var unresolved = Set<UUID>()
+        for link in links {
+            let rows = try database.fetch(query: "SELECT attempt_id, mutation_id FROM main.\(LinkedTables.reconciliations) WHERE link_id = ? AND state = 'dispatch_may_have_occurred';", parameters: [link.id.uuidString]) { row in
+                (try Self.nativeText(row, 0), try Self.nativeText(row, 1))
+            }
+            for row in rows {
+                guard let attempt = UUID(uuidString: row.0), attempt.uuidString == row.0,
+                      let mutation = UUID(uuidString: row.1), mutation.uuidString == row.1,
+                      let version = try version(mutationID: mutation), version.annotationUUID == link.annotationUUID,
+                      version.namespace == link.namespace else { throw AnnotationExchangeError.corruptRecord }
+            }
+            if !rows.isEmpty { unresolved.insert(link.id) }
         }
-        try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ? WHERE link_id = ? AND active = 1;", parameters: [origin.nativeRootSHA256, current.link.id.uuidString])
-        try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'pending', attempt_id = NULL, expected_root_sha256 = NULL, not_before = 0 WHERE message_id = ?;", parameters: [current.delivery.messageID.uuidString])
-        guard let result = try linkedDelivery(messageID: current.delivery.messageID) else { throw AnnotationExchangeError.corruptRecord }
-        return result
+        return unresolved
+    }
+
+    /// A reviewed CAS can target a currently received version with no outgoing
+    /// message. Its genuine native attempt still needs a durable restart fence.
+    /// This joins the existing native dispatch transaction; it queues no echo.
+    func markLinkedReconciliationDispatch(link: AnnotationExchangeNativeLink, version: AnnotationExchangeVersion,
+                                          attemptID: UUID, observedRootSHA256: String) throws {
+        guard sqlite3_get_autocommit(database.dbPointer) == 0,
+              AnnotationExchangeValidation.digest(observedRootSHA256),
+              try nativeLinks(namespace: link.namespace, annotationUUID: link.annotationUUID).contains(link),
+              try currentVersion(namespace: link.namespace, annotationUUID: link.annotationUUID) == version,
+              version.annotationUUID == link.annotationUUID, version.namespace == link.namespace else { throw AnnotationExchangeError.staleRevision }
+        try database.execute(query: """
+            INSERT INTO main.\(LinkedTables.reconciliations)
+            (attempt_id, link_id, mutation_id, expected_root_sha256, state)
+            VALUES (?, ?, ?, ?, 'dispatch_may_have_occurred');
+            """, parameters: [attemptID.uuidString, link.id.uuidString, version.mutationID.uuidString, observedRootSHA256])
+    }
+
+    /// Only the closed receipt of the new reviewed CAS calls this in product.
+    /// Prior uncertain intentions remain historical, without manufactured ACKs.
+    /// A current-version outbox, when one exists, is acknowledged for its exact
+    /// immutable bytes. Receiving a version never needs an invented outbox row.
+    func recordLinkedReconciliationReadback(link: AnnotationExchangeNativeLink, version: AnnotationExchangeVersion,
+                                           attemptID: UUID, nativeRootSHA256: String, nativeResponseSHA256: String) throws {
+        guard AnnotationExchangeValidation.digest(nativeRootSHA256), AnnotationExchangeValidation.digest(nativeResponseSHA256) else { throw AnnotationExchangeError.receiptMismatch }
+        try database.transaction {
+            guard try hasLinkedSyncSchema(), try self.version(mutationID: version.mutationID) == version,
+                  version.annotationUUID == link.annotationUUID, version.namespace == link.namespace else { throw AnnotationExchangeError.receiptMismatch }
+            let actualLinks = try linkedRows(where: "link_id = ?", parameters: [link.id.uuidString])
+            guard actualLinks.count == 1, let actualLink = actualLinks.first,
+                  actualLink.namespace == link.namespace, actualLink.annotationUUID == link.annotationUUID,
+                  actualLink.destination == link.destination, actualLink.objectID == link.objectID else {
+                throw AnnotationExchangeError.receiptMismatch
+            }
+            let attempts = try database.fetch(query: "SELECT state, native_root_sha256, native_response_sha256 FROM main.\(LinkedTables.reconciliations) WHERE attempt_id = ? AND link_id = ? AND mutation_id = ?;",
+                parameters: [attemptID.uuidString, link.id.uuidString, version.mutationID.uuidString]) { row in
+                    (try Self.nativeText(row, 0), row.string(at: 1), row.string(at: 2))
+                }
+            guard attempts.count == 1, let attempt = attempts.first else { throw AnnotationExchangeError.receiptMismatch }
+            if attempt.0 == "verified" {
+                guard attempt.1 == nativeRootSHA256, attempt.2 == nativeResponseSHA256 else { throw AnnotationExchangeError.receiptMismatch }
+                return
+            }
+            guard attempt.0 == "dispatch_may_have_occurred" else { throw AnnotationExchangeError.receiptMismatch }
+            for pending in try linkedDeliveries(for: link) where pending.delivery.revision <= version.revision && [.pending, .needsReview, .dispatchMayHaveOccurred].contains(pending.state) {
+                try database.execute(query: "INSERT INTO main.\(LinkedTables.reviews) (review_id, message_id, prior_state, prior_attempt_id, native_root_sha256, native_response_sha256, resolution_attempt_id) VALUES (?, ?, ?, ?, ?, ?, ?);",
+                    parameters: [UUID().uuidString, pending.delivery.messageID.uuidString, pending.state.rawValue,
+                        pending.attemptID.map { $0.uuidString as Any } ?? NSNull(), nativeRootSHA256, nativeResponseSHA256, attemptID.uuidString])
+                if pending.delivery.mutationID == version.mutationID && pending.delivery.payloadDigest == version.payloadDigest {
+                    let delivery = pending.delivery
+                    _ = try acknowledge(.init(messageID: delivery.messageID, destination: delivery.destination,
+                        namespace: delivery.namespace, annotationUUID: delivery.annotationUUID,
+                        revision: delivery.revision, payloadDigest: delivery.payloadDigest))
+                    try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'verified', attempt_id = ?, native_root_sha256 = ?, native_response_sha256 = ? WHERE message_id = ?;",
+                        parameters: [attemptID.uuidString, nativeRootSHA256, nativeResponseSHA256, delivery.messageID.uuidString])
+                } else {
+                    try database.execute(query: "UPDATE main.\(LinkedTables.deliveries) SET state = 'superseded' WHERE message_id = ?;", parameters: [pending.delivery.messageID.uuidString])
+                }
+            }
+            try database.execute(query: """
+                UPDATE main.\(LinkedTables.reconciliations) SET state = 'superseded', resolution_attempt_id = ?
+                WHERE link_id = ? AND attempt_id != ? AND state = 'dispatch_may_have_occurred'
+                AND mutation_id IN (SELECT mutation_id FROM \(Self.versions) WHERE namespace = ? AND annotation_uuid = ? AND revision <= ?);
+                """, parameters: [attemptID.uuidString, link.id.uuidString, attemptID.uuidString, link.namespace, link.annotationUUID.uuidString, version.revision])
+            try database.execute(query: "UPDATE main.\(LinkedTables.reconciliations) SET state = 'verified', native_root_sha256 = ?, native_response_sha256 = ? WHERE attempt_id = ?;",
+                parameters: [nativeRootSHA256, nativeResponseSHA256, attemptID.uuidString])
+            try database.execute(query: "UPDATE main.\(LinkedTables.links) SET native_root_sha256 = ?, confirmed_local_revision = ? WHERE link_id = ? AND active = 1 AND confirmed_local_revision <= ?;",
+                parameters: [nativeRootSHA256, version.revision, link.id.uuidString, version.revision])
+        }
     }
 
     func deferLinkedRead(_ supplied: AnnotationExchangeLinkedDelivery, now: Int64) throws {

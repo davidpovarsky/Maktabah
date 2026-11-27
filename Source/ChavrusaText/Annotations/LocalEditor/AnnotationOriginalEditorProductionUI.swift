@@ -315,6 +315,7 @@ struct AnnotationOriginalEditorProductionEntry: View {
             if automaticallyResume && scenePhase == .active && !childPresented,
                availability == .rich, linkedState?.links.isEmpty == false,
                automaticAttempt != snapshot.version?.mutationID,
+               linkedState?.unresolvedReconciliationLinks.isEmpty == true,
                !(linkedState?.deliveries.contains(where: {
                    $0.state == .dispatchMayHaveOccurred || $0.state == .needsReview ||
                        ($0.state == .pending && $0.notBefore > Int64(Date().timeIntervalSince1970))

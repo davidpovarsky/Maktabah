@@ -294,7 +294,9 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
         let unsettled = linkedState?.deliveries.filter {
             $0.link.id == link.id && ($0.state == .dispatchMayHaveOccurred || $0.state == .needsReview)
         } ?? []
-        if !unsettled.isEmpty { localChangedSinceShare = true; stage = .reviewing; return }
+        if !unsettled.isEmpty || linkedState?.unresolvedReconciliationLinks.contains(link.id) == true {
+            localChangedSinceShare = true; stage = .reviewing; return
+        }
         if let delivery = selectedDelivery {
             guard delivery.link.nativeRootSHA256 == actual.observedNativeRevisionSHA256 else {
                 try await local.requireLinkedReview(delivery, snapshot: snapshot)
@@ -367,15 +369,12 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
               let snapshot, let account else { return }
         stage = .updating
         do {
-            var delivery = selectedDelivery
-            if let current = delivery, explicitReview {
-                delivery = try await local.acceptLinkedReview(current, snapshot: snapshot, actual: actual)
-                linkedState = try await local.linkedState(snapshot: snapshot)
-            }
+            let reviewedLink = explicitReview ? selectedLink : nil
+            let delivery = reviewedLink == nil ? selectedDelivery : nil
             let prepared = try await AnnotationOriginalEditorRevisionAttempt.prepare(
                 local: local, snapshot: snapshot, observation: observation,
                 readSource: readSource, read: actual, retainedReadURL: historyURL, account: account,
-                linkedDelivery: delivery)
+                linkedDelivery: delivery, linkedReconciliation: reviewedLink)
             switch prepared {
             case .recordedWithoutOwnership:
                 stage = .changed

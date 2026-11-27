@@ -338,7 +338,8 @@ extension AnnotationLocalEditorSession {
         snapshot: AnnotationLocalEditorSnapshot,
         comparison: AnnotationLocalEditorNativeComparison,
         target: AnnotationLocalEditorNativeRevisionTarget,
-        linkedDelivery: AnnotationExchangeLinkedDelivery? = nil
+        linkedDelivery: AnnotationExchangeLinkedDelivery? = nil,
+        linkedReconciliation: AnnotationExchangeNativeLink? = nil
     ) async throws -> AnnotationLocalEditorNativeRevisionPreparationOutcome {
         guard !busy else { throw AnnotationLocalEditorError.busy }
         guard isCurrent else { throw AnnotationLocalEditorError.retired }
@@ -346,7 +347,7 @@ extension AnnotationLocalEditorSession {
         defer { busy = false }
         let storage = persistence, owner = persistence.owner
         let worker = Task.detached {
-            try storage.prepareNativeRevision(snapshot: snapshot, comparison: comparison, target: target, linkedDelivery: linkedDelivery)
+            try storage.prepareNativeRevision(snapshot: snapshot, comparison: comparison, target: target, linkedDelivery: linkedDelivery, linkedReconciliation: linkedReconciliation)
         }
         return try await withTaskCancellationHandler {
             let prepared = try await worker.value
@@ -473,16 +474,6 @@ extension AnnotationLocalEditorSession {
             guard canDeliver && storage.isOwned else { return .completedWithoutOwnership(saved.receipt) }
             return .committed(saved)
         } onCancel: { owner.retire(); worker.cancel() }
-    }
-
-    func acceptLinkedReview(_ delivery: AnnotationExchangeLinkedDelivery, snapshot: AnnotationLocalEditorSnapshot,
-                            actual: AnytypeOriginalAnnotationReadReceipt) async throws -> AnnotationExchangeLinkedDelivery {
-        guard !busy && isCurrent else { throw AnnotationLocalEditorError.retired }
-        busy = true; defer { busy = false }
-        let storage = persistence
-        let result = try await Task.detached { try storage.acceptLinkedReview(delivery, snapshot: snapshot, actual: actual) }.value
-        try storage.requireUnchanged(snapshot)
-        return result
     }
 
     func linkedRevisionCompletion(_ prepared: AnnotationLocalEditorNativeRevisionPreparation)
