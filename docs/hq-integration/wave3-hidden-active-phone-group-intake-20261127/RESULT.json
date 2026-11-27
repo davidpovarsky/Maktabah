@@ -1,0 +1,161 @@
+{
+  "schema": "otzaria.wave3.hidden-active-phone-group-intake.v1",
+  "base": "7230fe99a84c0b96abc0a3e86d1107811d30d6ce",
+  "donor": "8223dab6d0031027fb08998a5043bc97228ff983",
+  "picked": "2fe45a32ee7df004fe797918495d2da5f59c8667",
+  "sourceTree": "f0bfdbf5ee81d59365588df581bc2acb3cb48735",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "sourcePaths": 3,
+  "docsPaths": 25,
+  "exactSourceEdits": 23,
+  "wholeFileInverse": true,
+  "sourceFiles": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "before": {
+        "bytes": 17686,
+        "sha256": "a9a75bd53eb711e2a21e5f3011c965eb50414b2397f797806eb08bd74f6c739d"
+      },
+      "after": {
+        "bytes": 18607,
+        "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "before": {
+        "bytes": 80067,
+        "sha256": "3e01142c5d0dcc5f16136173e973d438349cf2b741e62c71fae7929e55b3e7c3"
+      },
+      "after": {
+        "bytes": 84493,
+        "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "before": {
+        "bytes": 24666,
+        "sha256": "97249458394c290bb2c52f13da088b7f597226ae27faad0d8e19fdd9847ff24d"
+      },
+      "after": {
+        "bytes": 26559,
+        "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+      }
+    }
+  ],
+  "artifactRowsVerified": 24,
+  "rawFilesVerified": 405,
+  "preservedGeneratedProductsVerified": 41,
+  "originalDependenciesVerified": 30,
+  "donorResultSHA256": "07b5711ca92e56fe3850de1e0e702f73a91cb2a47b51ab0c7e03ce6fc5f457d4",
+  "counts": {
+    "originalBaseline": {
+      "passed": 0,
+      "failed": 4
+    },
+    "finalCandidate": {
+      "passed": 22,
+      "failed": 0
+    },
+    "omitCanonicalValidator": {
+      "passed": 0,
+      "failed": 3
+    },
+    "explicitObservationFixture": {
+      "passed": 2,
+      "failed": 0
+    },
+    "preservedAttempt4": {
+      "passed": 19,
+      "failed": 3
+    },
+    "wholeFileSyntaxOnly": 6,
+    "appSDK": 0,
+    "native": 0
+  },
+  "historicModuleScope": "Original retained Core/UIRouting/Host products from the prior parent controls; current three product files compile anew. No current full Host/App claim.",
+  "currentBindingSourceControls": {
+    "passed": 22,
+    "failed": 0,
+    "resultSHA256": "bf05e1706729252234f7196fd6f052e3124e830823b91ccc55b7b7911f02d580",
+    "originalModuleFiles": 85,
+    "modules": {
+      "Core": 31,
+      "Host": 41,
+      "UI": 13
+    },
+    "actualLinkedProducts": [
+      {
+        "bytes": 444488,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+        "sha256": "66f9ec0fb9581527b483ef6e766c1ce7c5e405c8417f54dc9d6504af8e2e88cb",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 3097048,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+        "sha256": "88d6217c0bec3136ad9a2f36c4bc68ef0daeb886fe994b1536560038a3b90f77",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 315448,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+        "sha256": "7d3b1cb4f488ef5178a117c9200458a33d5e83578255f648d87feb6a7d0793e4",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 1578856,
+        "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+        "sha256": "d5f0b4a3880467dab9103481dd11b825008c74958395d1ac122671b2d482595d",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 708952,
+        "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+        "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103",
+        "use": "read-only existing original compiled product"
+      },
+      {
+        "bytes": 3002144,
+        "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+        "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a",
+        "use": "read-only existing original compiled product"
+      }
+    ],
+    "scope": "Exact same candidate22 over current original31Core/13UI/41Host products. UIKit/SwiftUI/domain/Reader/persistence fixture boundaries retained. No original baseline, negative3 or historical failures rerun."
+  },
+  "currentRawArchive": {
+    "bytes": 134913,
+    "sha256": "99d2a2046863db1cf3f2e2e2544cb0e0b03d14edcf93beeb30332c97fdbdc834",
+    "files": 42
+  },
+  "protectedTrees": {
+    "Source/Otzaria": "51eb8282fbcd72be297e13ad5e53893a7a524052",
+    "Source/UI": "71eb32d72958533a02a09be51dad125927a99660",
+    "Source/Features": "de0e38ade3f847c59b2f1aaaa5438eac9ed86136",
+    "Source/Core": "70ae6ec7ac428f2ff290405e88e4c6261c524cc0",
+    "Source/LibraryBackend": "bc0dae1d5f72db8b4db8a0cd70c5a9602b493994",
+    "Source/ChavrusaText/Navigation": "d19f756e9b5c54ff373be8a94862013262621f47",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "7bc40e16e64dbc638b001dfe78450b488d15e6d6",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah.xcodeproj": "fabd40081470fce15959c6b13ef34552023c51c1",
+    "Maktabah-iOSUITests": "02284bdd57cc915d9d18a145631e03b52ae06104"
+  },
+  "newNativeExecutions": 0,
+  "AppleSDK": "NOT_RUN",
+  "preservedFailures": [
+    "Attempt1 missing runner free() before compiler spawn",
+    "Attempt2 initial recursive callback fixture: signal11",
+    "Attempt3 isolated same callback: signal11; exact corrected compile timed out and was reaped",
+    "Attempt4 unseeded optional Int annotation-clear callback fixture:19passed/3failed"
+  ],
+  "open": [
+    "Actual iOS app SDK typecheck",
+    "Six proposed hidden-phone Group/Profile native selectors",
+    "Full document restoration, viewport/selection/TOC, relaunch, multiwindow, VoiceOver and production acceptance",
+    "Final real-owner signatures, production Native116/Release114+2, target merge, TestFlight and physical-owner acceptance"
+  ]
+}

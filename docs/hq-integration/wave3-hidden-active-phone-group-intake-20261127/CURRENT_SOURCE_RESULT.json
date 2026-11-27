@@ -1,0 +1,561 @@
+{
+  "schema": "otzaria.wave3.hidden-group-current-bindings.v1",
+  "base": "7230fe99a84c0b96abc0a3e86d1107811d30d6ce",
+  "donor": "8223dab6d0031027fb08998a5043bc97228ff983",
+  "status": "PASS_CURRENT_BINDINGS_SOURCE_CONTROLS_ONLY",
+  "steps": [
+    {
+      "name": "compile-current-candidate",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-lChavrusaUIRoutingHost",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-lOtzariaUIRouting",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ActualWindowSource.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/AppMode.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/BackendNavigationAdapter.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/BackendSessionIntegrityRepair.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ExplicitDomainBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ExplicitIntegrationBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/HiddenGroupControls.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/LibraryBackendModels.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/MaktabahNativeViewerParentContinuation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/MaktabahNativeWindowObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/MaktabahNativeWorkspaceOwner.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/NativeComponentSourceObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/OriginalGroupFixture.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ParentBoundary.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ReaderContentLoadCoordinator.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ReaderInitialContentRequest.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceMappingOwnership.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceModels.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspacePersistence.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspacePreparedGroupSelection.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceStore.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceTabSelectionReservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/candidate/MaktabahNativeWorkspaceSelectionBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/candidate/StudyWorkspaceGroupSelectionReservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/candidate/StudyWorkspaceNavigationAdapter.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/output/current-candidate-controls"
+      ],
+      "started": 1795809298.7529817,
+      "freeBefore": {
+        "root": 2294243328,
+        "data": 4457766912
+      },
+      "allocatedBefore": 729088,
+      "owner": {
+        "pid": 2209210,
+        "parent": 2209004,
+        "group": 2209210,
+        "startTicks": 733637058
+      },
+      "exit": 0,
+      "finished": 1795809327.9424143,
+      "freeAfter": {
+        "root": 2294063104,
+        "data": 4436189184
+      },
+      "allocatedAfter": 22204416,
+      "logs": {
+        "stdout": {
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/compile-current-candidate.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/compile-current-candidate.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "actual-current-linked-libraries",
+      "argv": [
+        "ldd",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/output/current-candidate-controls"
+      ],
+      "started": 1795809327.9459333,
+      "freeBefore": {
+        "root": 2294063104,
+        "data": 4436189184
+      },
+      "allocatedBefore": 22204416,
+      "owner": {
+        "pid": 2210522,
+        "parent": 2209004,
+        "group": 2210522,
+        "startTicks": 733639977
+      },
+      "exit": 0,
+      "finished": 1795809328.1503465,
+      "freeAfter": {
+        "root": 2294063104,
+        "data": 4436185088
+      },
+      "allocatedAfter": 22208512,
+      "logs": {
+        "stdout": {
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/actual-current-linked-libraries.stdout",
+          "bytes": 3192,
+          "sha256": "f7260ee9a344f36ec4888af09927a986e2ee0fd763e911e82df1ca6df37f6f85"
+        },
+        "stderr": {
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/actual-current-linked-libraries.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "same22-current-candidate",
+      "argv": [
+        "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/output/current-candidate-controls"
+      ],
+      "started": 1795809328.1538963,
+      "freeBefore": {
+        "root": 2294063104,
+        "data": 4436185088
+      },
+      "allocatedBefore": 22208512,
+      "owner": {
+        "pid": 2210529,
+        "parent": 2209004,
+        "group": 2210529,
+        "startTicks": 733639998
+      },
+      "exit": 0,
+      "finished": 1795809328.558299,
+      "freeAfter": {
+        "root": 2294063104,
+        "data": 4436176896
+      },
+      "allocatedAfter": 22216704,
+      "logs": {
+        "stdout": {
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/same22-current-candidate.stdout",
+          "bytes": 2019,
+          "sha256": "cf82cde2b301af9ba72b305d7b6e34a7e53d608cf2ad277ccf43f97ffa35faa5"
+        },
+        "stderr": {
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/same22-current-candidate.stderr",
+          "bytes": 2626,
+          "sha256": "c461d6333fb4b4694dafd6a47c97a3d3e16f484dce07311907cdf39e49287999"
+        }
+      }
+    }
+  ],
+  "started": 1795809297.5069277,
+  "nativeRuns": 0,
+  "AppleSDK": "NOT_RUN",
+  "explicitAdapterFixtureSuffix": {
+    "bytes": 715,
+    "sha256": "1e1a6e59cb15f12433e53ba924e319b34785670e443f6c2ed3f9770e7a365b8b",
+    "text": "\n// Explicit fixture attachment only; does not replace the original native selection functions.\nextension StudyWorkspaceNavigationAdapter {\n    func fixtureConnect(_ manager: iOSNavigationManager, groupID: UUID) {\n        bindMappingOwner(manager); attached = true\n        setMappingLiveContext(groupID: groupID, backend: BackendCoordinator.shared.activeBackendID, manager: manager)\n    }\n    func fixtureCache(_ tabs: [iOSNavigationManager.ReaderTab], groupID: UUID) { cache[groupID, default: [:]][BackendCoordinator.shared.activeBackendID] = tabs }\n}\n\nextension StudyWorkspaceNavigationAdapter {\n    func fixtureGroupReservation() -> StudyWorkspaceNativeGroupSelectionReservation? { groupSelectionReservation }\n}\n"
+  },
+  "scope": "Exact same candidate22 over current original31Core/13UI/41Host products. UIKit/SwiftUI/domain/Reader/persistence fixture boundaries retained. No original baseline, negative3 or historical failures rerun.",
+  "originalSourceJoinCount": 30,
+  "modules": {
+    "Core": 31,
+    "Host": 41,
+    "UI": 13
+  },
+  "moduleSourceJoinSHA256": "7768e4896eb3fc6fb2ff2256a820bc03c315b9c512936948c6346164b7a4efef",
+  "readOnlyProducts": [
+    {
+      "bytes": 444488,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+      "sha256": "66f9ec0fb9581527b483ef6e766c1ce7c5e405c8417f54dc9d6504af8e2e88cb",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 3097048,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+      "sha256": "88d6217c0bec3136ad9a2f36c4bc68ef0daeb886fe994b1536560038a3b90f77",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 315448,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+      "sha256": "7d3b1cb4f488ef5178a117c9200458a33d5e83578255f648d87feb6a7d0793e4",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 1578856,
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+      "sha256": "d5f0b4a3880467dab9103481dd11b825008c74958395d1ac122671b2d482595d",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 708952,
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+      "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103",
+      "use": "read-only existing original compiled product"
+    },
+    {
+      "bytes": 3002144,
+      "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+      "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a",
+      "use": "read-only existing original compiled product"
+    }
+  ],
+  "compiledInputs": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ActualWindowSource.swift",
+      "bytes": 3636,
+      "sha256": "a656a429feaf2774b6e5fbe4612554e6a057dffda43de51d2f3fb8218b81f3a2"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/AppMode.swift",
+      "bytes": 277,
+      "sha256": "e616e8865cff4388d13ec5752a4394d86574c3d702ed20cc020f291a27f35839"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/BackendNavigationAdapter.swift",
+      "bytes": 18828,
+      "sha256": "67cd2b7a0ecf0f3a25a0ada658e00b05cda9a7c7d31be0acdfac65626ecd3dc0"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/BackendSessionIntegrityRepair.swift",
+      "bytes": 6794,
+      "sha256": "bbe6304cfa7bc78f971949de906e2678e825dd8d7b7b0b2c94d01b0ab05d01db"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ExplicitDomainBoundary.swift",
+      "bytes": 29230,
+      "sha256": "d01b7f0cd048af2de1de31472379dc78c912e0224adb15e7e20557d442106a06"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ExplicitIntegrationBoundary.swift",
+      "bytes": 7714,
+      "sha256": "5c0ec258c889320b15ee0c68bcac2d70aec544477c3a60076200ce6ebef87906"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/HiddenGroupControls.swift",
+      "bytes": 17024,
+      "sha256": "ac881027f4d725614aa056da8b7e753de7de5470f476dd93269ae1ccbf5b7a56"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/LibraryBackendModels.swift",
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/MaktabahNativeViewerParentContinuation.swift",
+      "bytes": 23652,
+      "sha256": "35fd45bf3c6c2738432cf345b457aa3f3e456ffca2564ad44b5de9739b8920cf"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/MaktabahNativeWindowObservation.swift",
+      "bytes": 924,
+      "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/MaktabahNativeWorkspaceOwner.swift",
+      "bytes": 4741,
+      "sha256": "1606d28d5ada936eb071bc8ed01c0452db7e2b45e0ee9ee30b25da862de5ebf8"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/NativeComponentSourceObservation.swift",
+      "bytes": 3125,
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/OriginalGroupFixture.swift",
+      "bytes": 6495,
+      "sha256": "6a72fdfeba9055d439252acec1cef07db2254ca6a590777d98568e598ab3599a"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ParentBoundary.swift",
+      "bytes": 6792,
+      "sha256": "bb8d2cb35f038db378147b42757203b203f07174e877593042d3668a86860010"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ReaderContentLoadCoordinator.swift",
+      "bytes": 12268,
+      "sha256": "1ce79e9b4fe86a35c1a3d786cffb4b3878097965a6c9e473287bcd3e79700108"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/ReaderInitialContentRequest.swift",
+      "bytes": 2841,
+      "sha256": "b1a8fb7778da58078bd051c0f04bc75fccacffbc0b675c8c7db6efb9ac628a1a"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceMappingOwnership.swift",
+      "bytes": 16626,
+      "sha256": "2312adc6da96a26218e756424e5d5a363c9d8084e4dd6eba538c30093eed2f25"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceModels.swift",
+      "bytes": 7601,
+      "sha256": "6c9bdc6fbab2c3ab778fadbe21cb197be8628e6b624066dd805f32ac311632bc"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspacePersistence.swift",
+      "bytes": 2974,
+      "sha256": "5ec9e6e4ed1b61485318886d39cbeb04e1df0ee130efa147edb60579677e5c9b"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspacePreparedGroupSelection.swift",
+      "bytes": 1779,
+      "sha256": "f1ea2c5b5709b9ca56f4c48d82f23a76640001ad7e2b80815f09e53d4ea89118"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceStore.swift",
+      "bytes": 14933,
+      "sha256": "22d20126a623b7593080a8a1f17b59a1003c821ecf0c25426df2ffc476a20aea"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/common/StudyWorkspaceTabSelectionReservation.swift",
+      "bytes": 10040,
+      "sha256": "fb8e03b9a72ab8051d661874319e73727a003cfbe335ed488bc0afe30286a8c2"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/candidate/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "bytes": 26525,
+      "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/candidate/StudyWorkspaceGroupSelectionReservation.swift",
+      "bytes": 18607,
+      "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/inputs/controls/candidate/StudyWorkspaceNavigationAdapter.swift",
+      "bytes": 85215,
+      "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+    }
+  ],
+  "resourcePins": [
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/Info.plist",
+      "bytes": 530,
+      "sha256": "5b1ec795a95ab9085dac85595695113ef7ae21cae8d1d5083379f03ad19d077d",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-catalog.v1.json",
+      "bytes": 43332,
+      "sha256": "208a0f190a8791a5188fe30291cacd6720ef90220bebdde5d21e0db4bc7bf7c8",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-request.v1.schema.json",
+      "bytes": 1510,
+      "sha256": "28f6d3540dcab9128b62b75b7eb22bf99999508c6fb901ad9a277e2900c05fca",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/action-result.v1.schema.json",
+      "bytes": 3669,
+      "sha256": "e17de05facb862a69add6a8668018cad08ce9a183aababd472a0280ef904d462",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-acceptance-cases.v1.json",
+      "bytes": 95749,
+      "sha256": "248a6e2c7d4b8490334487a569ca2b58521c43058b7849a25773f2dea45242d0",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/backend-capability-matrix.v1.json",
+      "bytes": 36033,
+      "sha256": "f41dd24bcacc639f213c7711d5f1750fa163e4b03ab49c85e5f4a9dc6f33dda7",
+      "preserved": true
+    },
+    {
+      "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-20261127/attempt-5/output/OtzariaActionCore_OtzariaActionCore.bundle/examples.v1.json",
+      "bytes": 10140,
+      "sha256": "e49b28afd3481960425582cc8e1f045b41cdc5927c97cbff814f789b8dadffa1",
+      "preserved": true
+    }
+  ],
+  "priorCandidateResultSHA256": "1f3ff09b4dac620220c1764300345effa407c07ddc6ee71ea53921422280d070",
+  "priorRawArchiveSHA256": "977e2ee2aa8eca7bfee86df7abda1e6026f9cbe8e2aaa180bba0f848fd182ece",
+  "verifiedPriorRawFiles": 405,
+  "productBodyJoins": [
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceGroupSelectionReservation.swift",
+      "product": {
+        "bytes": 18607,
+        "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+      },
+      "compiled": {
+        "bytes": 18607,
+        "sha256": "1f7f2ceb81ddf48478e231bb0614f4463fd10ee00e9b8e8e63f39d93ae7dfae5"
+      },
+      "transforms": [],
+      "completeProductBodyExact": true
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "product": {
+        "bytes": 84493,
+        "sha256": "268d8cf6e57efd7621bd94d62e410b6eb5456cf7cb6a174f6808e6053c3de955"
+      },
+      "compiled": {
+        "bytes": 85215,
+        "sha256": "1f134609fe8f66ef16c8a29dbdca4ee180c88c9a7b1cc3249977adf88532da97"
+      },
+      "transforms": [
+        "Exact two Apple imports replaced by Foundation/Observation",
+        "Exact 715-byte prior fixture attachment/read-only accessors appended"
+      ],
+      "completeProductBodyExact": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceSelectionBinding.swift",
+      "product": {
+        "bytes": 26559,
+        "sha256": "66f98cce914637228133f1f21b838e9cd3cf7254ae45c9eee8333625ab94b0d5"
+      },
+      "compiled": {
+        "bytes": 26525,
+        "sha256": "3621f8f132deaaba454da7443e2178e4fccc9365d2d550ebd41a3cb3b05d14a4"
+      },
+      "transforms": [
+        "Only outer iOS guard and SwiftUI import removed"
+      ],
+      "completeProductBodyExact": true
+    }
+  ],
+  "candidate": {
+    "fail": 0,
+    "pass": 22,
+    "rows": [
+      {
+        "name": "hidden_same_active_group_uses_original_presentation_once",
+        "pass": true
+      },
+      {
+        "name": "hidden_same_active_profile_uses_original_presentation_once",
+        "pass": true
+      },
+      {
+        "name": "hidden_same_active_group_history_keeps_one_original_parent",
+        "pass": true
+      },
+      {
+        "name": "hidden_same_active_profile_search_keeps_one_original_parent",
+        "pass": true
+      },
+      {
+        "name": "ordinary_selectTab_same_active_early_return_is_unchanged",
+        "pass": true
+      },
+      {
+        "name": "already_presented_phone_group_keeps_zero_book_publications",
+        "pass": true
+      },
+      {
+        "name": "ipad_same_active_does_not_acquire_phone_presentation",
+        "pass": true
+      },
+      {
+        "name": "different_phone_group_uses_original_selectTab",
+        "pass": true
+      },
+      {
+        "name": "empty_phone_group_keeps_original_close_sequence",
+        "pass": true
+      },
+      {
+        "name": "hidden_catalog_refuses_foreign_book",
+        "pass": true
+      },
+      {
+        "name": "hidden_catalog_refuses_overflow",
+        "pass": true
+      },
+      {
+        "name": "hidden_catalog_refuses_exhausted",
+        "pass": true
+      },
+      {
+        "name": "equal_nil_book_during_catalog_await_retires_before_store",
+        "pass": true
+      },
+      {
+        "name": "same_id_cached_replacement_reader_refuses_before_store",
+        "pass": true
+      },
+      {
+        "name": "binding_release_during_original_annotation_callback_stops_book",
+        "pass": true
+      },
+      {
+        "name": "reentrant_equal_book_setter_is_not_second_owned_publication",
+        "pass": true
+      },
+      {
+        "name": "release_after_book_didSet_preserves_partial_effect_and_blocks_persistence",
+        "pass": true
+      },
+      {
+        "name": "completed_source_cannot_survive_later_original_book_ABA",
+        "pass": true
+      },
+      {
+        "name": "released_helper_does_not_strand_later_genuine_request",
+        "pass": true
+      },
+      {
+        "name": "original_annotation_callback_settings_ABA_prevents_later_book",
+        "pass": true
+      },
+      {
+        "name": "original_annotation_callback_deadline_prevents_later_book",
+        "pass": true
+      },
+      {
+        "name": "same_parent_becomes_hidden_during_original_restore_prevents_book",
+        "pass": true
+      }
+    ],
+    "scope": "Actual complete Group policy/Adapter/Binding, original Manager presentation and setter bodies, Store/persistence, original Viewer/window sources and coordinator. Explicit native geometry, Reader/backend and session-persistence shells. No app SDK/native execution."
+  },
+  "executable": {
+    "path": "/mnt/development/projects/diagnostics/otzaria-wave3-hidden-group-current-bindings-20261127/output/current-candidate-controls",
+    "bytes": 3702464,
+    "sha256": "dd4d3228b3538fb07c191653813c424a080fc95054099606a7fca594c4169333"
+  },
+  "priorScopesPreserved": true,
+  "finished": 1795809328.6108797,
+  "freeAfter": {
+    "root": 2294063104,
+    "data": 4436176896
+  },
+  "allocatedAfter": 22216704
+}
