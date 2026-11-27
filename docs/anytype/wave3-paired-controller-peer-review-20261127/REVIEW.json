@@ -1,0 +1,131 @@
+{
+  "schema": "otzaria.wave3.paired-controller.peer-source-review.v1",
+  "reviewer": "/root/navigation_fix",
+  "reviewed_at": "2026-11-27T09:23:59.084429+00:00",
+  "status": "NO_SOURCE_BLOCKER_FOUND",
+  "method": "Read-only complete candidate source/diff and relevant original imported contract bodies; no candidate execution, native run, credential read or peer source edit",
+  "source_pins": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-paired-controller-20261127/Scripts/CI/ordinary-native-two-full-apps.py",
+      "repository_path": "Scripts/CI/ordinary-native-two-full-apps.py",
+      "source_state": "uncommitted root-owned candidate reviewed by exact bytes",
+      "bytes": 39805,
+      "sha256": "f3f25d462ba16d197ec6cd518aee1642447f7ecb40f0e0eead554165eb8286ca",
+      "retained_lossless": "source/ordinary-native-two-full-apps.py.gz",
+      "stored_bytes": 11512,
+      "stored_sha256": "6ac6df8bea92d909ee2a2a8a846d9418fb6babe873ed530d42b5ad5c20921b55"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-paired-controller-20261127/Scripts/CI/ordinary-native-exchange-ui.py",
+      "repository_path": "Scripts/CI/ordinary-native-exchange-ui.py",
+      "source_state": "uncommitted root-owned candidate reviewed by exact bytes",
+      "bytes": 33392,
+      "sha256": "5812f6780cd90fb585d3fabf49659ecc746767f1dafce9086168f75cce3fa6aa",
+      "retained_lossless": "source/ordinary-native-exchange-ui.py.gz",
+      "stored_bytes": 10111,
+      "stored_sha256": "4696e70d2e202c50ed49c70cc90fe05621c59afe603f1e3a1b116bb6e59ddb34"
+    }
+  ],
+  "original_contracts": [
+    {
+      "path": "Scripts/CI/production-annotation-native.py",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 21515,
+      "sha256": "e1c20b326cbcecf0ded659baa9c53901f3bc2dbf7ea673756ef4c5e1ca57915c",
+      "edited": false
+    },
+    {
+      "path": "Scripts/CI/runtime27-original-editor-native.py",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 55398,
+      "sha256": "9f5a9e43adaa2f5c9b8ad0c5969a59d276add15c71853495234144f2393da7c3",
+      "edited": false
+    },
+    {
+      "path": "Scripts/CI/library-v40-focused-native.py",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 24369,
+      "sha256": "6eb5768fe51a5c3339b107c839afd84e70cb02d093176cd166107b71beddaff0",
+      "edited": false
+    },
+    {
+      "path": "Scripts/CI/original_editor_mac_projection.py",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 11458,
+      "sha256": "0e6080141d07fa91ba5f2b014443c6bd865971ec778ff0dd46c2fa11fc40978c",
+      "edited": false
+    },
+    {
+      "path": "Scripts/CI/mac-prepared-inputs.py",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 16112,
+      "sha256": "38f403c94b4289ec43e13bbb97d7ce9b288a353e710e4a406a50f05dcc08a6c9",
+      "edited": false
+    },
+    {
+      "path": "Scripts/CI/prepare-faithful-ipad-fixtures.py",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 4384,
+      "sha256": "19c79cbcd58669ec0a2605fff33e4778367c9fe1bec1a7eea4cf888d9485072d",
+      "edited": false
+    },
+    {
+      "path": "Scripts/CI/miniapps-simulator-containers.py",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 10524,
+      "sha256": "64fbcba5b642ffefc8188301abc0540e706f39d1165e98d87268a398d2472ef7",
+      "edited": false
+    },
+    {
+      "path": "Source/Core/Configuration/AppConfig.swift",
+      "commit": "95a8e41c69da9add6e260d6b5afb20fe316fcfe4",
+      "bytes": 25258,
+      "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a",
+      "edited": false
+    }
+  ],
+  "swift_counterpart": {
+    "commit": "2f71c9a2995ed1cf7d8d476df4f33919f06da97b",
+    "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+    "sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1"
+  },
+  "reviewed_boundaries": [
+    {
+      "name": "Original source and successful-build authority",
+      "finding": "production-annotation-native.source_context delegates to original runtime source_context(require_current_build=True); the separate original v40 qualified-build context also verifies final source/generated projection/SDK routes and current checkout receipt. Inputs must match actual returned source fields."
+    },
+    {
+      "name": "Product and xctestrun binding",
+      "finding": "Caller image list must exactly equal the original complete app/UI-runner Mach-O/archive closure. The one selected UI target resolves test host, test bundle and target app to exact original built products. Installed original app images are compared before phases and in final admission; source and all context records must remain identical."
+    },
+    {
+      "name": "Actual original production installer",
+      "finding": "Command uses unchanged prepare-faithful-ipad-fixtures.py with --profile production --release-id 455390662 --artifact-label 11-reader. Fresh per-replica cwd supplies original sim_udid.txt and retains its expected report.3900-second subprocess budget exceeds the original3600 observation +90 launch +60 termination scope. Original disk reserve remains enforced."
+    },
+    {
+      "name": "Full corpus and actual MCM",
+      "finding": "Original simctl data container is independently corroborated by original MCM resolver. Native report finalPath must bind the original itorah AppGroup or actual Debug AppConfig fallback. Original metadata_context/inspect_database verify actual full v40 identity and counts, with full byte witness before and after phases."
+    },
+    {
+      "name": "Swift and storage agreement",
+      "finding": "Controller supplies exact production receipt keys/SHA and no viewport/database override. It validates real production Workspace path/book and independently JSON-decodes annotations.backendLocator for equality with Swift actualSavedNoteSource. Rich body, canonical version, UUID and export/convergence assertions remain."
+    },
+    {
+      "name": "Private fixture retention",
+      "finding": "Companion adds exact hashes for all six original fixture receipts while preserving original semantic validation. Controller does not open recovery-key material. Authentication logs/results remain under the fresh private output; only final status/count/path are printed."
+    },
+    {
+      "name": "Failure and cleanup",
+      "finding": "Every generated owned device is attempted after timeout or prior failure. Both shutdown and delete are attempted; deletion must be confirmed absent from simctl and disk. Primary errors remain, all final source/corpus/image failures are collected, and PASS is assigned only after successful phases, final checks and successful two-device cleanup."
+    }
+  ],
+  "native": "NOT_RUN",
+  "executed_controls_by_reviewer": 0,
+  "owner_signatures_created": 0,
+  "limits": [
+    "No Mac artifacts, actual xctestrun, live process, production MCM/corpus or network were inspected by this review.",
+    "Root-owned source controls and counterfactuals are independent evidence, not rerun or counted here.",
+    "Actual full-app behavior, actual process/image identity during execution, production installer and cleanup results require the original native run.",
+    "Final integrated source admission and a new qualified original app/UI-runner build remain mandatory."
+  ]
+}
