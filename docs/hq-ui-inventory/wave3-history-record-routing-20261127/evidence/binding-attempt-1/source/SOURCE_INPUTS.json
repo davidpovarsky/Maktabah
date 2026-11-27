@@ -1,0 +1,114 @@
+{
+  "scope": "Verbatim production binding, parent, original counters, metadata, row geometry/scroll owner; real portable Core/UIRouting/Host modules. Explicit UIKit/SwiftUI/Combine/domain/lifetime inputs; hash constructor is a declared deterministic boundary. Not SDK/native acceptance.",
+  "files": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift": {
+      "bytes": 28765,
+      "sha256": "73ad9e8753e2d2dd1b0371f0d48d1eed9f0125e39be9f27fbe2c9dc754513008"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecordViews.swift": {
+      "bytes": 11979,
+      "sha256": "a0e3038b0d2df3d92996818bc5b37890432c3a5b206846fa5a75e24673850258"
+    },
+    "Source/Features/History/ViewModel/HistoryViewModel.swift": {
+      "bytes": 11196,
+      "sha256": "1c9c6427d22e6785c37b238d2ee9024290b37cc73b48d3f61da0319b03a107df"
+    },
+    "Source/LibraryBackend/QualifiedLocatorStore.swift": {
+      "bytes": 6136,
+      "sha256": "469a99e702dcd331dca2fd2a55154de8239ef9b5599befcaf398a56b347065df"
+    },
+    "Source/LibraryBackend/LibraryBackendModels.swift": {
+      "bytes": 32419,
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d"
+    },
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift": {
+      "bytes": 45301,
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift": {
+      "bytes": 27583,
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": {
+      "bytes": 36770,
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": {
+      "bytes": 7979,
+      "sha256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074"
+    }
+  },
+  "verbatimSegments": [
+    {
+      "marker": "    var currentMode: AppMode",
+      "bytes": 466,
+      "sha256": "5d1e2495a776b69b2097eacbcc86cf225ff77efe2017e0031931e414ce7f9b8a"
+    },
+    {
+      "marker": "    var selectedBook: BooksData?",
+      "bytes": 553,
+      "sha256": "0c815ae0758feb164f06d591280597c0aaeda46f58b337aa70020e7d81ee86b3"
+    },
+    {
+      "marker": "    var isPresentationReady: Bool",
+      "bytes": 285,
+      "sha256": "942c42881174b1c6b72a91ae22bd4fdbf7bd67172c3a30f4515508573d2e64b7"
+    },
+    {
+      "marker": "@MainActor\nfinal class MaktabahNativeRootPublicationSource",
+      "bytes": 942,
+      "sha256": "f34202593381d88b43869e81c53d658e8da7efd742af9d941574819baa7e31bb"
+    },
+    {
+      "marker": "@MainActor enum MaktabahNativeHistoryRecords",
+      "bytes": 2432,
+      "sha256": "98e0c3e0cc9ab4a1a67b5461506d43001d3ea6899aaba3ef7e6cef76f8e98dba"
+    },
+    {
+      "marker": "    static func record(",
+      "bytes": 723,
+      "sha256": "9ff2590b0e8a45ce61016ec38602001e7202132ea5e8c5e41f0ee191ce8545b7"
+    },
+    {
+      "marker": "@MainActor\nfinal class HistoryQualifiedPublication",
+      "bytes": 3928,
+      "sha256": "23a92549a0205ea3ca50c3af4522a84580613955ae2dffd8740e18a189295dd6"
+    },
+    {
+      "marker": "@MainActor final class MaktabahNativeComponentSourceObservation",
+      "bytes": 1091,
+      "sha256": "c1392c825b76836bf9be802475785ef67326de9c2bc57e0fe166657dcf856580"
+    },
+    {
+      "marker": "@MainActor\nstruct MaktabahNativeHistoryRecordParentTransition",
+      "bytes": 3946,
+      "sha256": "741f2620c86d11257f830c8f2904f7da6bd089252e024b6f20eacd09e71f0765"
+    },
+    {
+      "marker": "extension MaktabahNativeSceneBindings",
+      "bytes": 631,
+      "sha256": "7741c0ad93ae48397da8de0ab42ccbc345caddd680826ded8284e59a9467a839"
+    },
+    {
+      "marker": "@MainActor final class MaktabahNativeHistoryRecordBinding",
+      "bytes": 21117,
+      "sha256": "8a190d1e3c633ff26063a509bdf8f8569756c4e25fc958d1ba506ed73ea20905"
+    },
+    {
+      "marker": "@MainActor final class MaktabahNativeHistoryScrollOwner",
+      "bytes": 1925,
+      "sha256": "d9646a054964fbedf03551a56879a2cce3201ef3a917f972686f212ff866f3ca"
+    },
+    {
+      "marker": "@MainActor enum MaktabahNativeHistoryRecordGeometry",
+      "bytes": 1935,
+      "sha256": "7f81b3656cc34454adb36a7832acb882565bd1438895ca0249f1df6a9a96baf0"
+    }
+  ],
+  "fixtureFiles": {
+    "generate.py": "7dd193bcd36f2f9ccff32101dc5ca1e0d5c674d2d12fded6a72ee9ed3f2bbb2e",
+    "DomainBoundary.swift": "e3fcbbeca3ad2e299f109c5d5f31f5557c9d7266f12f172f48bb5a468262616b",
+    "Tests.swift": "06a7140cefecafaebeb5eaffa079a39f87710de41660867869bb7da38fe85c8b"
+  },
+  "generatedSHA256": "a0c76c3ebd380f7be64a87195a33bd6f5bd66e0582f303e7084eba45841693ea"
+}

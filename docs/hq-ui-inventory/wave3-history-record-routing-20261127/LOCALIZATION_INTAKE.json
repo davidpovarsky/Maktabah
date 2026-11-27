@@ -1,0 +1,52 @@
+{
+  "owner": "root integration",
+  "catalogEditedByThisPacket": false,
+  "observedBase": "9b376a42234ebb176f36a0b3cca94de97e41869c",
+  "originalEntryCount": 703,
+  "entries": [
+    {
+      "key": "History record",
+      "en": "History record",
+      "he": "רשומת היסטוריה"
+    },
+    {
+      "key": "Favorite record",
+      "en": "Favorite record",
+      "he": "רשומת מועדף"
+    },
+    {
+      "key": "Show a history entry",
+      "en": "Show a history entry",
+      "he": "הצגת רשומה מההיסטוריה"
+    },
+    {
+      "key": "Reveal an existing reading-history card in the selected Maktabah window.",
+      "en": "Reveal an existing reading-history card in the selected Maktabah window.",
+      "he": "הצגת כרטיס קיים מהיסטוריית הקריאה בחלון אוצריא שנבחר."
+    },
+    {
+      "key": "History entry",
+      "en": "History entry",
+      "he": "רשומה מההיסטוריה"
+    },
+    {
+      "key": "Show a favorite",
+      "en": "Show a favorite",
+      "he": "הצגת מועדף"
+    },
+    {
+      "key": "Reveal an existing favorite card in the selected Maktabah window.",
+      "en": "Reveal an existing favorite card in the selected Maktabah window.",
+      "he": "הצגת כרטיס מועדף קיים בחלון אוצריא שנבחר."
+    },
+    {
+      "key": "Favorite",
+      "en": "Favorite",
+      "he": "מועדף"
+    }
+  ],
+  "reuse": [
+    "History window"
+  ],
+  "ownerAttestation": "Fresh authentic integrated review required; no signature supplied."
+}

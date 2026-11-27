@@ -797,6 +797,74 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         record(result)
         return result
     }
+    /// One typed local record, one exact existing window, one original Core
+    /// commit. Neither discovery nor the caller's entity is navigation authority.
+    private func revealHistoryRecord(_ request: NativeHistoryRecordIntentService.OpenRequest) async throws
+        -> UISceneAcknowledgement {
+        try Task.checkCancellation()
+        let window = request.window, end = deadline()
+        let windows = try intentRootEntities().filter { $0.id == window.id && $0 == window }
+        guard windows.count == 1, window.destination == MaktabahNativeHistoryRecords.destination,
+              window.component == nil, let original = scenes[window.sceneID], original.session.mounted,
+              window.backend == request.record.reference.locator.backend,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "intent_record_window_changed")
+        }
+        // Retain the ORIGINAL qualified publication/card and parent counters
+        // before foreground activation or any other suspension.
+        let retained = try original.session.retainHistoryRecord(request.record, requestID: request.requestID)
+        defer { retained.releaseSource(requestID: request.requestID) }
+        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: original.managerID)
+        }
+        try Task.checkCancellation()
+        guard activated == window.sceneID, let current = scenes[window.sceneID],
+              current.session === original.session, current.managerID == original.managerID,
+              current.session.foreground, current.session.mounted,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+        }
+        try retained.validateSource(requestID: request.requestID)
+        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: request.expectedSnapshot)
+        try issue(context, sceneID: window.sceneID)
+        defer { finish(context, sceneID: window.sceneID) }
+        let invocation = ActionPortInvocation(requestId: request.requestID, snapshot: request.expectedSnapshot,
+                                             deadlineUptimeNanoseconds: end)
+        let scene = try await directory.currentScene(sceneID: window.sceneID, context: context, invocation: invocation)
+        try retained.validateSource(requestID: request.requestID)
+        guard scenes[window.sceneID]?.session === original.session,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "intent_record_source_changed")
+        }
+        let route = try original.session.prepareHistoryRecord(invocation: invocation, scene: scene)
+        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+        let result = try await orchestrator.commit(command, context: context)
+        // Preserve the real canonical result even if later source revalidation
+        // refuses completion. No requested state is emitted as record evidence.
+        record(result)
+        if case .acknowledged(let receipt) = result {
+            do {
+                try Task.checkCancellation()
+                guard scenes[window.sceneID]?.session === original.session,
+                      try backend.currentBackendSnapshot() == request.expectedSnapshot,
+                      SystemActionClock().now() < end else {
+                    throw UIRouteError(.staleState, "intent_record_completion_changed")
+                }
+                try original.session.validateCompletedHistoryRecord(receipt, original: retained)
+                guard receipt.requestId == request.requestID, receipt.sceneID == window.sceneID,
+                      receipt.route.state.selectedItemID == request.record.itemID else {
+                    throw UIRouteError(.failed, "native_effect_uncertain")
+                }
+                // Opaque qualified identity only; no title, locator, query or
+                // note contents. The generic canonical receipt format is intact.
+                OtzariaFileLogger.shared.log("[NativeHistoryRecordReceipt] request=\(receipt.requestId) scene=\(receipt.sceneID.rawValue) item=\(request.record.itemID.rawValue)")
+            } catch {
+                throw NativeHistoryRecordIntentService.Failure(acknowledgement: result, underlying: error)
+            }
+        }
+        return result
+    }
+
     func makeGuide(_ definition: UIGuideDefinition, session: MaktabahNativeSceneSession,
                    manager: iOSNavigationManager) -> UIGuideRun {
         let sceneID = session.sceneID, managerID = ObjectIdentifier(manager)
@@ -2017,6 +2085,20 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "navigation"); throw error }
         })
         AppDependencyManager.shared.add(dependency: service)
+        let historyService = NativeHistoryRecordIntentService(read: { [self] in
+            let snapshot = try backend.currentBackendSnapshot()
+            let records = try MaktabahNativeHistoryRecords.catalog()
+            guard try backend.currentBackendSnapshot() == snapshot else {
+                throw UIRouteError(.staleState, "intent_source_generation_changed")
+            }
+            return .init(snapshot: snapshot, records: records)
+        }, windows: { [self] in
+            try intentRootEntities()
+        }, navigate: { [self] in
+            do { return try await revealHistoryRecord($0) }
+            catch { logIntentFailure(error, stage: "history_record"); throw error }
+        })
+        AppDependencyManager.shared.add(dependency: historyService)
         let readerService = NativeReaderIntentService(execute: { [self] in
             do { return try await readerIntentMetadata($0) }
             catch { logIntentFailure(error, stage: "reader_metadata"); throw error }

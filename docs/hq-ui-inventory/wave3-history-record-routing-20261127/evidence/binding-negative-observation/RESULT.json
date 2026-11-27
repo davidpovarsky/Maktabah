@@ -1,0 +1,11 @@
+{
+  "exit": 1,
+  "expected": "four original model ABA variants must fail",
+  "stoppedForReserve": false,
+  "start": "2026-11-27T09:16:33.474235+00:00",
+  "end": "2026-11-27T09:16:45.478680+00:00",
+  "packageInputSha256": "43e03219ace3a41a8c6d143fceededb23eea91912611f5e68c5a673e594241f1",
+  "rawSha256": "4e49864e7a2bd8077cbe28fc18f6817aefba99b9017610de18c89e6113dc510a",
+  "freeAfter": 1998077952,
+  "scope": "one exact isolated source predicate counterfactual over domain/UI inputs; no app/native proof"
+}

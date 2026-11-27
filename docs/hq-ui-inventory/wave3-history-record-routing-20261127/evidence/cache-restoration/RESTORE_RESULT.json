@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T08:37:09.690477+00:00",
+  "archiveSha256": "c154c6dc687eed1ff14e6f794b35ebb55980a570a9b384fac880cbf974600e89",
+  "archiveBytes": 42552150,
+  "entries": 1788,
+  "verifiedFiles": 1294,
+  "sourceArchiveUnchanged": true,
+  "root": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration",
+  "freeAfter": 4183674880,
+  "scope": "restoration only; historical modules/results are not new acceptance"
+}

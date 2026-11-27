@@ -1,0 +1,14 @@
+[
+  {
+    "originalPath": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/ChavrusaUIRoutingHostTests.so",
+    "copyPath": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/preserved-candidate-products/ChavrusaUIRoutingHostTests.so",
+    "bytes": 16662280,
+    "sha256": "fcf3ad67ccd7156c7fa8f25346a87a8a857f6a670cebf8798e037ff333c39b3d"
+  },
+  {
+    "originalPath": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch/out/Products/Debug-linux-aarch64/ChavrusaUIRoutingHostTests-test-runner",
+    "copyPath": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/preserved-candidate-products/ChavrusaUIRoutingHostTests-test-runner",
+    "bytes": 1543432,
+    "sha256": "376d9b1de7321ecbce2f119ee4789acce16070a451a6eeff5d5de8484596e737"
+  }
+]

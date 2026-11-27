@@ -1,0 +1,13 @@
+{
+  "capturedUTC": "2026-11-27T09:34:16.173885+00:00",
+  "reason": "Initial scoped git diff --cached --check rejected a new blank line at EOF in binding and README; no commit ran.",
+  "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+  "beforeBytes": 28765,
+  "beforeSha256": "73ad9e8753e2d2dd1b0371f0d48d1eed9f0125e39be9f27fbe2c9dc754513008",
+  "afterBytes": 28764,
+  "afterSha256": "1c1c01dce6b394f5356251ee9d2d3635adcbdbe2bbe311d79ad96a08d763cba1",
+  "exactTransformation": "before == after + one LF byte",
+  "preTrimArchive": "evidence/formatting/MaktabahNativeHistoryRecords.beforeEOFTrim.swift.gz",
+  "rerun": false,
+  "scope": "No executable source or test assertion changed; original successful test source inputs remain immutable."
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "path": "ChavrusaUIRoutingHostTests.so",
+    "bytes": 18812984,
+    "sha256": "ed05db45ab7ff36b7b501514cefc736dedca19bd5447dfbd6287d73991462413"
+  },
+  {
+    "path": "ChavrusaUIRoutingHostTests-test-runner",
+    "bytes": 1734080,
+    "sha256": "29e0b20f330780ffae00625216fe74693d44f6a58b649cdebccedd1ff8f00fcb"
+  }
+]

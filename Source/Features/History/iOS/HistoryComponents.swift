@@ -86,12 +86,15 @@ struct SyncedScrollRow: View {
     let cardSpacing: CGFloat
     let navigationManager: iOSNavigationManager
     var isRTL: Bool
+    @Environment(\.nativeHistoryRecordScope) private var nativeRecordScope
+    @State private var nativeRecordScroll = MaktabahNativeHistoryScrollOwner()
 
     var body: some View {
         SyncedUIScrollView(
             rowIndex: rowIndex,
             scrollState: scrollState,
-            isRTL: isRTL
+            isRTL: isRTL,
+            nativeRecordScroll: nativeRecordScroll
         ) {
             HStack(spacing: cardSpacing) {
                 ForEach(rowBooks, id: \.id) { book in
@@ -116,6 +119,9 @@ struct SyncedScrollRow: View {
                     }
                 }
             }
+            .environment(\.nativeHistoryRecordScope, nativeRecordScope)
+            .environment(\.nativeHistoryScrollOwner, nativeRecordScroll)
+            .environment(navigationManager)
         }
         .frame(height: cardHeight)
     }
@@ -127,6 +133,7 @@ struct SyncedUIScrollView<Content: View>: UIViewRepresentable {
     let rowIndex: Int
     var scrollState: ScrollState
     var isRTL: Bool
+    var nativeRecordScroll: MaktabahNativeHistoryScrollOwner?
     @ViewBuilder let content: Content
 
     func makeCoordinator() -> Coordinator {
@@ -154,6 +161,8 @@ struct SyncedUIScrollView<Content: View>: UIViewRepresentable {
 
         context.coordinator.hostedController = hosted
         context.coordinator.scrollView = scrollView
+        context.coordinator.nativeRecordScroll = nativeRecordScroll
+        context.coordinator.attachNativeRecordScroll()
 
         if isRTL {
             DispatchQueue.main.async {
@@ -168,6 +177,8 @@ struct SyncedUIScrollView<Content: View>: UIViewRepresentable {
         context.coordinator.hostedController?.rootView = content
         context.coordinator.scrollState = scrollState
         context.coordinator.isRTL = isRTL
+        context.coordinator.nativeRecordScroll = nativeRecordScroll
+        context.coordinator.attachNativeRecordScroll()
 
         // Sync offset dari row lain
         guard scrollState.lastScrollingRow != rowIndex else { return }
@@ -184,12 +195,26 @@ struct SyncedUIScrollView<Content: View>: UIViewRepresentable {
         }
     }
 
+    static func dismantleUIView(_ scrollView: UIScrollView, coordinator: Coordinator) {
+        coordinator.nativeRecordScroll?.detach(scrollView)
+    }
+
     class Coordinator: NSObject, UIScrollViewDelegate {
         let rowIndex: Int
         var scrollState: ScrollState
         var isRTL: Bool
         weak var scrollView: UIScrollView?
         var hostedController: UIHostingController<Content>?
+        var nativeRecordScroll: MaktabahNativeHistoryScrollOwner?
+
+        func attachNativeRecordScroll() {
+            guard let scrollView, let content = hostedController?.view else { return }
+            nativeRecordScroll?.attach(scrollView: scrollView, contentView: content) { [weak self, weak scrollView] rect in
+                guard let self, let scrollView, self.scrollView === scrollView else { return }
+                self.scrollState.lastScrollingRow = self.rowIndex
+                scrollView.scrollRectToVisible(rect, animated: false)
+            }
+        }
 
         init(rowIndex: Int, scrollState: ScrollState, isRTL: Bool) {
             self.rowIndex = rowIndex
@@ -225,6 +250,14 @@ struct BookCard: View {
     @Environment(iOSNavigationManager.self) private var navigationManager: iOSNavigationManager
     @State private var showPopover = false
     @State private var isDeleted = false
+    @Environment(\.nativeHistoryRecordScope) private var nativeRecordScope
+    @Environment(\.nativeHistoryScrollOwner) private var nativeRecordScroll
+    private var nativePopover: Binding<Bool> {
+        MaktabahNativeHistoryRecordState.binding($showPopover, scope: nativeRecordScope)
+    }
+    private var nativeDeletion: Binding<Bool> {
+        MaktabahNativeHistoryRecordState.binding($isDeleted, scope: nativeRecordScope)
+    }
 
     var body: some View {
         Button(action: action) {
@@ -256,12 +289,12 @@ struct BookCard: View {
             .onLongPressGesture(minimumDuration: 0.5) {
                 let impact = UIImpactFeedbackGenerator(style: .medium)
                 impact.impactOccurred()
-                showPopover = true
+                nativePopover.wrappedValue = true
             }
-            .popover(isPresented: $showPopover, attachmentAnchor: .rect(.bounds), arrowEdge: .top) {
+            .popover(isPresented: nativePopover, attachmentAnchor: .rect(.bounds), arrowEdge: .top) {
                 VStack(alignment: .leading, spacing: 0) {
                     Button {
-                        showPopover = false
+                        nativePopover.wrappedValue = false
                         navigationManager.selectedBookForInfo = book
                     } label: {
                         BookInfoLabel()
@@ -275,8 +308,8 @@ struct BookCard: View {
                         Divider()
 
                         Button(role: .destructive) {
-                            isDeleted = true
-                            showPopover = false
+                            nativeDeletion.wrappedValue = true
+                            nativePopover.wrappedValue = false
                         } label: {
                             Label("Remove from History", systemImage: "clock.badge.xmark")
                                 .foregroundColor(.red)
@@ -307,6 +340,11 @@ struct BookCard: View {
             .horizontal, MaktabahApp.isIpad ? 0 : historySection ? 0 : 2
         )
         .buttonStyle(.plain)
+        .accessibilityIdentifier(MaktabahNativeHistoryRecords.accessibilityID(
+            book: book, kind: historySection ? .history : .favorite, model: viewModel))
+        .background(MaktabahNativeHistoryRecordWitness(scope: nativeRecordScope,
+            kind: historySection ? .history : .favorite, book: book,
+            scroll: nativeRecordScroll, blocked: showPopover || isDeleted))
     }
 }
 

@@ -1,0 +1,708 @@
+{
+  "files": [
+    {
+      "path": "BUILD_ARTIFACTS.json",
+      "bytes": 3848,
+      "sha256": "9f29e28e8391a0e33b036b15a429bbfcea8d0e5419853d144141a4d2eb93209e"
+    },
+    {
+      "path": "FORMATTING_FINALIZATION.json",
+      "bytes": 785,
+      "sha256": "c86cf86f3349a05aff31b4390659321a733a404a54d7e76dbd3dc2ee71be1709"
+    },
+    {
+      "path": "LOCALIZATION_INTAKE.json",
+      "bytes": 1566,
+      "sha256": "2cb41d91841941c753202e799104ffe7eb1199d4b475a3acf76caee90c2b94fb"
+    },
+    {
+      "path": "NATIVE_SELECTORS.json",
+      "bytes": 1166,
+      "sha256": "10cb290434dfb126a866aade7bab78a1a04e43110d7c879e0bffcfad498a34fb"
+    },
+    {
+      "path": "README.md",
+      "bytes": 10992,
+      "sha256": "ff5c475e4b684cfddde0f5f2a2b9e7bc2a6a7bf6ef24c8d19c39160ffb374c19"
+    },
+    {
+      "path": "RESULT_SUMMARY.json",
+      "bytes": 941,
+      "sha256": "2a780425a0fc23155a9a015e6da97bdc6b84672e5059cba3ee61c08fd501c2a2"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 3835,
+      "sha256": "830fe07eb0d25b949bb477457c9e937b7b4a72545f29ec3b9de75f4760aa010b"
+    },
+    {
+      "path": "TARGET_MEMBERSHIP.json",
+      "bytes": 703,
+      "sha256": "96e51a353b9c18168c571beed412665718030c99100cadf63220d6b765a90bc1"
+    },
+    {
+      "path": "evidence/BINDING_SOURCE_RESTORED.json",
+      "bytes": 221,
+      "sha256": "4ae2aa7e091891d7fdde7dd06621ea322d21f78710d61c10a8bc5519b6d25fbc",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/BINDING_SOURCE_RESTORED.json"
+    },
+    {
+      "path": "evidence/BINDING_SOURCE_RESTORED_AFTER_NEGATIVES.json",
+      "bytes": 221,
+      "sha256": "ce95b6efc502326a5ef5eb0f5a1008b3750a95dc29002ffb22b957fba92e7fd3",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/BINDING_SOURCE_RESTORED_AFTER_NEGATIVES.json"
+    },
+    {
+      "path": "evidence/binding-attempt-1/ACTUAL_STORE_FIXTURE_MANIFEST.json",
+      "bytes": 11527,
+      "sha256": "d9704b1515c96c0b5e11ed57ab4225239e8f813fc56e9bc1921179046e968491"
+    },
+    {
+      "path": "evidence/binding-attempt-1/DISK_SAMPLES.json",
+      "bytes": 1123,
+      "sha256": "2f4d068a77d07b9f9827d64895146baf202234f161c93cd0fc439cc660c9a721",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/DISK_SAMPLES.json"
+    },
+    {
+      "path": "evidence/binding-attempt-1/PACKAGE_INPUTS.json",
+      "bytes": 30666,
+      "sha256": "29f91225edea03e4ff8e2e7454462de5559916c45e77f828c744a493b3c62b24",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/PACKAGE_INPUTS.json"
+    },
+    {
+      "path": "evidence/binding-attempt-1/RESULT.json",
+      "bytes": 592,
+      "sha256": "40e35de992c7c48da73496c1477fecab3e0503a0c0a464f39b9b3b52c7f16e53",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/RESULT.json"
+    },
+    {
+      "path": "evidence/binding-attempt-1/START.json",
+      "bytes": 640,
+      "sha256": "7a18dbd62cd3074ce0291fe00a9ce7ae414b93a117610c6853abfe563d21deb8",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/START.json"
+    },
+    {
+      "path": "evidence/binding-attempt-1/actual-store-fixtures.tar.gz",
+      "bytes": 3438,
+      "sha256": "db6b15a37c908d4bda2d3359f33f0d72c639ca26eaf867aa644d18ce0da97455",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/actual-store-fixtures",
+      "uncompressedBytes": 71680,
+      "uncompressedSha256": "5dd5b642294989e9f1bbfe4c54c66f3845c0724e653599fc850b1e0e64321e8c"
+    },
+    {
+      "path": "evidence/binding-attempt-1/generator.log.gz",
+      "bytes": 214,
+      "sha256": "b50f0ddea633ebf11e43052cf43ca68f9180f5f058054fce149a46ac7342fb75",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/generator.log",
+      "uncompressedBytes": 266,
+      "uncompressedSha256": "e7ef192adf1427448f956f83a4401c8c956f9fc2f2f26a9b14e1df5779f8a1d7"
+    },
+    {
+      "path": "evidence/binding-attempt-1/preserved-candidate-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "40434b23e4abc058f5a9460533025ae81c6e91b97ee78dc27e17da2136164ca5",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/preserved-candidate-products/MANIFEST.json"
+    },
+    {
+      "path": "evidence/binding-attempt-1/raw.log.gz",
+      "bytes": 1417,
+      "sha256": "78f7915950888accf60c1fcab9bb8040d9078888ea0547cd27eb239f3d9de20b",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/raw.log",
+      "uncompressedBytes": 7960,
+      "uncompressedSha256": "3e4f865d20b05208b449c00937206e6900c72e885edd5cd0137aa644e425a58a"
+    },
+    {
+      "path": "evidence/binding-attempt-1/source/DomainBoundary.swift.txt.gz",
+      "bytes": 3796,
+      "sha256": "483d1e43f3618f4d5e13f59764d0d8db68bca924fd140f313d2c8bfcc4f9ed7b",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/source/DomainBoundary.swift.txt",
+      "uncompressedBytes": 12263,
+      "uncompressedSha256": "d6908f9c06fd4749270f1be299b9732a79faabdcae79b7db7a08efd66b7b8763"
+    },
+    {
+      "path": "evidence/binding-attempt-1/source/HistoryRecordBindingSourceTests.swift.gz",
+      "bytes": 17490,
+      "sha256": "74f32a151443dc9e23a3501f507ec6a1dbfaf9a65cf6425171e58b34719faf11",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/source/HistoryRecordBindingSourceTests.swift",
+      "uncompressedBytes": 82054,
+      "uncompressedSha256": "a0c76c3ebd380f7be64a87195a33bd6f5bd66e0582f303e7084eba45841693ea"
+    },
+    {
+      "path": "evidence/binding-attempt-1/source/SOURCE_INPUTS.json",
+      "bytes": 4789,
+      "sha256": "cd57c67327a1a0709f53d5cd2e7c8486e470519c38f5b906925a2aac5eb5de77",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/source/SOURCE_INPUTS.json"
+    },
+    {
+      "path": "evidence/binding-control-fixture/DomainBoundary.swift.gz",
+      "bytes": 2665,
+      "sha256": "11de4f0382cd3773a12acd423f4724f759a6df77f7194d181ff457c5cb9e3bf8",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-control-fixture/DomainBoundary.swift",
+      "uncompressedBytes": 7563,
+      "uncompressedSha256": "e3fcbbeca3ad2e299f109c5d5f31f5557c9d7266f12f172f48bb5a468262616b"
+    },
+    {
+      "path": "evidence/binding-control-fixture/Tests.swift.gz",
+      "bytes": 5352,
+      "sha256": "68d80af18de997db74e16e31c1efd1698d7c8272c2f1ae655358cdde251df363",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-control-fixture/Tests.swift",
+      "uncompressedBytes": 22858,
+      "uncompressedSha256": "06a7140cefecafaebeb5eaffa079a39f87710de41660867869bb7da38fe85c8b"
+    },
+    {
+      "path": "evidence/binding-control-fixture/generate.py",
+      "bytes": 6089,
+      "sha256": "7dd193bcd36f2f9ccff32101dc5ca1e0d5c674d2d12fded6a72ee9ed3f2bbb2e",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-control-fixture/generate.py"
+    },
+    {
+      "path": "evidence/binding-negative-observation/ACTUAL_STORE_FIXTURE_MANIFEST.json",
+      "bytes": 691,
+      "sha256": "56af6337e1226e5a7c5dff3d09c139b06adae01c9315bd54d95af5cf941b2d81"
+    },
+    {
+      "path": "evidence/binding-negative-observation/DISK_SAMPLES.json",
+      "bytes": 560,
+      "sha256": "04286e29a321c441b12ae6603d229d7c0008ca70d20f78a83f044b24e61945a0",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/DISK_SAMPLES.json"
+    },
+    {
+      "path": "evidence/binding-negative-observation/NEGATIVE_SOURCE.swift.gz",
+      "bytes": 17487,
+      "sha256": "e9d85c07ec5269134daee4fd6f6bb8b369158e8ed81be2693528d42f898da3bb",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/NEGATIVE_SOURCE.swift",
+      "uncompressedBytes": 82011,
+      "uncompressedSha256": "cc238f72a5d34643489ff809f7b2d0cab6e54f396fcf07e9c2d38d46367ec7d4"
+    },
+    {
+      "path": "evidence/binding-negative-observation/PACKAGE_INPUTS.json",
+      "bytes": 30666,
+      "sha256": "43e03219ace3a41a8c6d143fceededb23eea91912611f5e68c5a673e594241f1",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/PACKAGE_INPUTS.json"
+    },
+    {
+      "path": "evidence/binding-negative-observation/RESULT.json",
+      "bytes": 508,
+      "sha256": "561875a6e27c208597287c90dcb0c1cf6c83eb65db68182b3d1fde7a54f6c2da",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/RESULT.json"
+    },
+    {
+      "path": "evidence/binding-negative-observation/START.json",
+      "bytes": 676,
+      "sha256": "a22aa31b816d7fd8b3fd0d84e2252816f8bb8dc335da8fecb26434bac724120f",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/START.json"
+    },
+    {
+      "path": "evidence/binding-negative-observation/actual-store-fixtures.tar.gz",
+      "bytes": 523,
+      "sha256": "9e444d22d6b0b7314f61383ef057eb543c43a913f7b717ce3f98eea3191c4d29",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/actual-store-fixtures",
+      "uncompressedBytes": 10240,
+      "uncompressedSha256": "4a440571902fb375391c106480314e861a49dc62d93fbc1cc96592f22174dee5"
+    },
+    {
+      "path": "evidence/binding-negative-observation/preserved-negative-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "5c2fb7400fbbc3a28487465b8a65575d431557f7c5e54d1e857c17dd3eb29cd2",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/preserved-negative-products/MANIFEST.json"
+    },
+    {
+      "path": "evidence/binding-negative-observation/raw.log.gz",
+      "bytes": 965,
+      "sha256": "f0313d34197c8599cfc28df981338b0eab02b14d495a29fce27a38aee5d6c4e3",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/raw.log",
+      "uncompressedBytes": 3975,
+      "uncompressedSha256": "4e49864e7a2bd8077cbe28fc18f6817aefba99b9017610de18c89e6113dc510a"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/ACTUAL_STORE_FIXTURE_MANIFEST.json",
+      "bytes": 1895,
+      "sha256": "1e8760529f9de535ba6ec3f504a837381977bf262602e3a82192a8a99c46a91b"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/DISK_SAMPLES.json",
+      "bytes": 467,
+      "sha256": "ceffd2d359507bfb12c954427540a8740b4a95435adc82b68c041991d1db14bb",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/DISK_SAMPLES.json"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/NEGATIVE_SOURCE.swift.gz",
+      "bytes": 17476,
+      "sha256": "b481026553fcc17516972fe7f22f7a345ea75282451ad0cda3cdccc603957e03",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/NEGATIVE_SOURCE.swift",
+      "uncompressedBytes": 81989,
+      "uncompressedSha256": "0ae010e9a03ca1195906c93b739b89752a75bdadbf3fe4d9de30a52f42370de1"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/PACKAGE_INPUTS.json",
+      "bytes": 30666,
+      "sha256": "dd2b0bfb3347ecb864d4965bfea542f5972a028e1e7c981b3c095012271b9aaf",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/PACKAGE_INPUTS.json"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/RESULT.json",
+      "bytes": 555,
+      "sha256": "8cc1f20af0c8de186e4c903bb83fdfa699dd7405ac4331eefd7cef514f836c5b",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/RESULT.json"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/START.json",
+      "bytes": 685,
+      "sha256": "e6b2ae375f1420c4716719043c94ca0e002d604fdfb2c0d8b71ed0727131bda7",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/START.json"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/actual-store-fixtures.tar.gz",
+      "bytes": 892,
+      "sha256": "51100df7e596340b0854c89e54076bee17eb85a664a31d8df5d9b66b51b8ae11",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/actual-store-fixtures",
+      "uncompressedBytes": 20480,
+      "uncompressedSha256": "dcd6996d1a8d8dd6950f5740c4089bc1a315de6e49197f7b5faf761e0a2db6bb"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/preserved-negative-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "407ceb43351eabe046265f6df119fd427557e6c36e2a247aad063bbe6adcd38e",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/preserved-negative-products/MANIFEST.json"
+    },
+    {
+      "path": "evidence/binding-negative-row-geometry/raw.log.gz",
+      "bytes": 1067,
+      "sha256": "60534206fffa5fd0b9dc23bf3d8267f0c38ee55666eb16051abfa6cb33363b35",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/raw.log",
+      "uncompressedBytes": 8729,
+      "uncompressedSha256": "aecb08f147db536f445c838c56be2e6fdb833a9915613b579437f841a8c76e53"
+    },
+    {
+      "path": "evidence/cache-restoration/MANIFEST.json.gz",
+      "bytes": 109199,
+      "sha256": "094291f88c1af7dd8075767897487be55d992b7512edd12591fab20d4b29ffd5",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/MANIFEST.json",
+      "uncompressedBytes": 805074,
+      "uncompressedSha256": "77f3f6fc38e792c6c70824dcff40ca3f2893568da95256338aff016881ce35ff"
+    },
+    {
+      "path": "evidence/cache-restoration/RESTORE_RESULT.json",
+      "bytes": 511,
+      "sha256": "fe4547d12573b3264fa624f6f291f7fe26315d611a8f50391149be4004732894",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/RESTORE_RESULT.json"
+    },
+    {
+      "path": "evidence/formatting/MaktabahNativeHistoryRecords.beforeEOFTrim.swift.gz",
+      "bytes": 5890,
+      "sha256": "8c59145575b8e96654cfcff5cd176a3fc8be7cd12664d535b76c6c9d575a711b",
+      "uncompressedBytes": 28765,
+      "uncompressedSha256": "73ad9e8753e2d2dd1b0371f0d48d1eed9f0125e39be9f27fbe2c9dc754513008"
+    },
+    {
+      "path": "evidence/native-syntax-attempt-1/0.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/native-syntax-attempt-1/0.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/native-syntax-attempt-1/1.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/native-syntax-attempt-1/1.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/native-syntax-attempt-1/RESULT.json",
+      "bytes": 866,
+      "sha256": "0a6222dab8458d2115747490d843a9cb506def5bf4cff6059fc60b2d72b23825",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/native-syntax-attempt-1/RESULT.json"
+    },
+    {
+      "path": "evidence/notifications/ui_records_binding_attempt1_notification.json.gz",
+      "bytes": 1243,
+      "sha256": "7e74181e1c7c038d01cf21fb52fbaf29f505d5d20e9e0076e9c3aea1bd598b76",
+      "uncompressedBytes": 3738,
+      "uncompressedSha256": "a0c611dc7895923939f613fb2c1062254110fc78a9950aacd3a6dcf017f15227"
+    },
+    {
+      "path": "evidence/notifications/ui_records_binding_negatives2_notification.json.gz",
+      "bytes": 1932,
+      "sha256": "1a87c11f6c39fe8184a2d561860783433ea510c14f58556ec33d3dba3515e5b6",
+      "uncompressedBytes": 20678,
+      "uncompressedSha256": "8031655f2d997df129be62b008c936cdb05f2022e92206fb2a6a574518d5447f"
+    },
+    {
+      "path": "evidence/notifications/ui_records_binding_negatives_notification.json.gz",
+      "bytes": 631,
+      "sha256": "b6399161b34423ef0b69c4b47a1843cff7e0f50afdde712a2e9fea109f1e0368",
+      "uncompressedBytes": 1546,
+      "uncompressedSha256": "bfd6b498cd5372709de49b4d798a2708699d1fcb8836227c1217c37c56448f05"
+    },
+    {
+      "path": "evidence/notifications/ui_records_service_attempt1_notification.json.gz",
+      "bytes": 2597,
+      "sha256": "3d8e337ea31e09ef72ae7750e68a92334433c0229b7d527ef7b2267cc3345bd2",
+      "uncompressedBytes": 34274,
+      "uncompressedSha256": "6997aaeca898d86fb186a3547701c71fc9b1cad0babca36a0bff7f2598857a74"
+    },
+    {
+      "path": "evidence/notifications/ui_records_service_attempt2_notification.json.gz",
+      "bytes": 2343,
+      "sha256": "6b29095504287d362581a61506921a4c7f4bc577fdcf68369343decb60281664",
+      "uncompressedBytes": 26347,
+      "uncompressedSha256": "de5153f46c9113f27cdd4e846cd7bc1d87a16c109c4295f4e9f2b97ce6fe46cc"
+    },
+    {
+      "path": "evidence/notifications/ui_records_service_attempt3_notification.json.gz",
+      "bytes": 1026,
+      "sha256": "d83a443b68faaf919b499f71badb25972b606aded319a7745ccf9693047ec622",
+      "uncompressedBytes": 3234,
+      "uncompressedSha256": "25014a0f7e38e7ccd1d0a79cb95b07c5700a72f108fd5bc08ab50e6b2900c210"
+    },
+    {
+      "path": "evidence/notifications/ui_records_service_negative2_notification.json.gz",
+      "bytes": 1379,
+      "sha256": "0bdb9bc72524c8032cffbf309cbb460d4aa7f26aaa727053f2bf7ac6d21133ae",
+      "uncompressedBytes": 5335,
+      "uncompressedSha256": "057f2994973eb6c44e122e66b1d1d2b278a69ee53549aa6a7c2826bba37da936"
+    },
+    {
+      "path": "evidence/producers/ui_records_binding_attempt1_producer.py.gz",
+      "bytes": 11546,
+      "sha256": "a7cf04dce81fdcfceb8a95cf56bcadd0b486f9749022618e5389b756c2c9b85f",
+      "uncompressedBytes": 16326,
+      "uncompressedSha256": "e79e9be2f1f99c303e2190ac7941c4b56a6b0e98fdb1471e78b91c2d5562b6cd"
+    },
+    {
+      "path": "evidence/producers/ui_records_binding_negatives2_producer.py.gz",
+      "bytes": 1997,
+      "sha256": "02c07554c6f72ee6712937b8aec27dddd910226a3cea1e48fb6d13e2f7789617",
+      "uncompressedBytes": 4718,
+      "uncompressedSha256": "479c43285ce0feb0f58995c540fc3c8f9b423d5e0374d04c8c2278c297326fd9"
+    },
+    {
+      "path": "evidence/producers/ui_records_binding_negatives_producer.py.gz",
+      "bytes": 1986,
+      "sha256": "912084211498edb38b3f81af79f6e0614b836b726f7b46287fef01893e30e64a",
+      "uncompressedBytes": 4851,
+      "uncompressedSha256": "f00e18e8a0a8066cd8892783ace8297e319fc376193dd6d805f1e59d6a238fc8"
+    },
+    {
+      "path": "evidence/producers/ui_records_service_attempt1_producer.py.gz",
+      "bytes": 1576,
+      "sha256": "0f47cca8eaae3e6d065a7e7423e3cbf3386992b0874a41c64145530337e498b8",
+      "uncompressedBytes": 3634,
+      "uncompressedSha256": "2758f93fc601b9ff65f81521bfa64dd4d28c00a10b31ccfc383b0579fdf3129b"
+    },
+    {
+      "path": "evidence/producers/ui_records_service_attempt2_producer.py.gz",
+      "bytes": 1182,
+      "sha256": "f443d9c190113ad0525696471ef31ef602b82a7735ec76af3027104714110a6d",
+      "uncompressedBytes": 2461,
+      "uncompressedSha256": "7bce6a29d4c38781ddc70d53eddf2f4ee98cfc12cd14c7ab000880874977580f"
+    },
+    {
+      "path": "evidence/producers/ui_records_service_attempt3_producer.py.gz",
+      "bytes": 1298,
+      "sha256": "c543ec289b6458da02d780218bc99d520ddc4cac492a27f702f4844acdf39abd",
+      "uncompressedBytes": 2753,
+      "uncompressedSha256": "3757b0f49fe08947d0e1c86bd66c8020e46f15254bfe1606ee2ad76a8377f62e"
+    },
+    {
+      "path": "evidence/producers/ui_records_service_negative2_producer.py.gz",
+      "bytes": 1720,
+      "sha256": "d87329e68aa85bcd4d913c9e34ddf9b142fa28fc92d132789319ccf1c567243a",
+      "uncompressedBytes": 3703,
+      "uncompressedSha256": "753032bf00c0b0f8faf4ecafa0f034a45bce59e21bb383992e7aa348dfe61694"
+    },
+    {
+      "path": "evidence/producers/ui_records_service_negative_producer.py.gz",
+      "bytes": 1731,
+      "sha256": "42ed7ce8ac0ed440f4dd29abbfd311beb476131d91d5b6dc815b7420de4b4e5a",
+      "uncompressedBytes": 3657,
+      "uncompressedSha256": "01ecb95a8ab20b6fddacff42af9082b757fd7139792faa86d04ef1a05a421d69"
+    },
+    {
+      "path": "evidence/service-attempt-1/DISK_SAMPLES.json",
+      "bytes": 328,
+      "sha256": "44c68080cc4eafe30628f8fb97cd5c36eedbf255c6021fcb2e2b9c283fbfaf7b",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-1/DISK_SAMPLES.json"
+    },
+    {
+      "path": "evidence/service-attempt-1/RESULT.json",
+      "bytes": 406,
+      "sha256": "0d6059f33c40c0489c87ef054452c6d20d77fedf11f6401484a75648722a7757",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-1/RESULT.json"
+    },
+    {
+      "path": "evidence/service-attempt-1/SOURCE_INPUTS.json",
+      "bytes": 38490,
+      "sha256": "ff6d03701e164919f2c2d9b9d2ec9184b40b52d5c3255eceb884b3d2abbad550",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-1/SOURCE_INPUTS.json"
+    },
+    {
+      "path": "evidence/service-attempt-1/START.json",
+      "bytes": 712,
+      "sha256": "0742487055cb995d88e410c37e5f27bd5af1df0b87f94fede20cfea8af1481ef",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-1/START.json"
+    },
+    {
+      "path": "evidence/service-attempt-1/raw.log.gz",
+      "bytes": 5023,
+      "sha256": "3f9d6fed76b971ad3a70c46c630e3558fcf6990dc61f48230e9e355a94a5b75e",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-1/raw.log",
+      "uncompressedBytes": 147954,
+      "uncompressedSha256": "36cca137f934027716aee38f0a956a6bc056e2023ff268bd3e436e42618350f0"
+    },
+    {
+      "path": "evidence/service-attempt-2/DISK_SAMPLES.json",
+      "bytes": 1588,
+      "sha256": "6cecaebc65d2fca265faca9b0dda46aee3478bfc358a2d71068b9fa6f4678e4c",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-2/DISK_SAMPLES.json"
+    },
+    {
+      "path": "evidence/service-attempt-2/RELOCATED_CACHE.json",
+      "bytes": 11679,
+      "sha256": "2c90cc1ebf45b0444563566e06c65ae291b66dc61030cb9fa5abb4a8d5b7b786",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-2/RELOCATED_CACHE.json"
+    },
+    {
+      "path": "evidence/service-attempt-2/RESULT.json",
+      "bytes": 445,
+      "sha256": "6fa0f4bc784c2841e8ec7d5f44b955ce2e51c1135c138bb3a952789abdc659fb",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-2/RESULT.json"
+    },
+    {
+      "path": "evidence/service-attempt-2/SOURCE_INPUTS.json",
+      "bytes": 38490,
+      "sha256": "ff6d03701e164919f2c2d9b9d2ec9184b40b52d5c3255eceb884b3d2abbad550",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-2/SOURCE_INPUTS.json"
+    },
+    {
+      "path": "evidence/service-attempt-2/START.json",
+      "bytes": 613,
+      "sha256": "2a218bdf254d3245385c1d5fa7b32a8da24392a46be1ebb37827c2e20cdf52fe",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-2/START.json"
+    },
+    {
+      "path": "evidence/service-attempt-2/raw.log.gz",
+      "bytes": 1971,
+      "sha256": "bb4308a95f99baa2ff7798fef88ecc15046f13efc677a618faefb801fcd77c71",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-2/raw.log",
+      "uncompressedBytes": 16602,
+      "uncompressedSha256": "65cbc115777cdda71ff1ff136f18d76212cce67bd9539627ad7f67ef16fb783b"
+    },
+    {
+      "path": "evidence/service-attempt-3/DISK_SAMPLES.json",
+      "bytes": 1778,
+      "sha256": "19212d673d93a3eb6ef30ce4dfb65d4f08a5a6e157d817df5fb7f538258791eb",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-3/DISK_SAMPLES.json"
+    },
+    {
+      "path": "evidence/service-attempt-3/RESULT.json",
+      "bytes": 445,
+      "sha256": "0bcb6903cbaada854cd1da972c09f9e1b3ac0361399509139a05fefa131ee9aa",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-3/RESULT.json"
+    },
+    {
+      "path": "evidence/service-attempt-3/SOURCE_INPUTS.json",
+      "bytes": 38490,
+      "sha256": "3fa99fa8b3819e93e02dcaa1fd89c7f6165da70e4c38e615f56ac4bdea7621d5",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-3/SOURCE_INPUTS.json"
+    },
+    {
+      "path": "evidence/service-attempt-3/START.json",
+      "bytes": 613,
+      "sha256": "19a99b0b172ecb47aeb988a2921736d9c5fa5637dc9c6709583db007f9f61070",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-3/START.json"
+    },
+    {
+      "path": "evidence/service-attempt-3/raw.log.gz",
+      "bytes": 934,
+      "sha256": "2cd3fa455c89e502b7ca52ec4a57562f252b4bc7b12ccb998c9b3a2045a1cbd8",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-attempt-3/raw.log",
+      "uncompressedBytes": 4612,
+      "uncompressedSha256": "6d05d0ae3955b80e4c2a992ddfb7b6a4571e578a9f066e341556c48429270dc0"
+    },
+    {
+      "path": "evidence/service-selected-item-negative/CANDIDATE_SERVICE.swift.gz",
+      "bytes": 2435,
+      "sha256": "09dba0a48f94bd408b806558d5601f9475969c17fa06cb7af2d7c28631318125",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative/CANDIDATE_SERVICE.swift",
+      "uncompressedBytes": 9821,
+      "uncompressedSha256": "cea5c452b7168eba3f8a9617b2b7f330dbe044eff80059e49366b298a0ab5a3c"
+    },
+    {
+      "path": "evidence/service-selected-item-negative/NEGATIVE_SERVICE.swift.gz",
+      "bytes": 2422,
+      "sha256": "8abde8e5e25753ee3b40fc7d3dd3208fdb11fd064e9c4e6b9a1fbd7ffef7f49b",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative/NEGATIVE_SERVICE.swift",
+      "uncompressedBytes": 9754,
+      "uncompressedSha256": "0896b3e23916aba06a92f4356a4a4436220baf9f6eb03510b6f4dc6619a14634"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/CANDIDATE_SERVICE.swift.gz",
+      "bytes": 2435,
+      "sha256": "09dba0a48f94bd408b806558d5601f9475969c17fa06cb7af2d7c28631318125",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/CANDIDATE_SERVICE.swift",
+      "uncompressedBytes": 9821,
+      "uncompressedSha256": "cea5c452b7168eba3f8a9617b2b7f330dbe044eff80059e49366b298a0ab5a3c"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/DISK_SAMPLES.json",
+      "bytes": 655,
+      "sha256": "9352cef575eea9ea4539a9bf21dfe5fa174f83d35fdd8845d3b57d9c75e2b06e",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/DISK_SAMPLES.json"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/NEGATIVE_SERVICE.swift.gz",
+      "bytes": 2422,
+      "sha256": "8abde8e5e25753ee3b40fc7d3dd3208fdb11fd064e9c4e6b9a1fbd7ffef7f49b",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/NEGATIVE_SERVICE.swift",
+      "uncompressedBytes": 9754,
+      "uncompressedSha256": "0896b3e23916aba06a92f4356a4a4436220baf9f6eb03510b6f4dc6619a14634"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/PRESERVED_PRODUCT.json",
+      "bytes": 1168,
+      "sha256": "b804253e1fd04af82345512798af626891231382d37669e0f194a2e31244f9d4",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/PRESERVED_PRODUCT.json"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/RESULT.json",
+      "bytes": 634,
+      "sha256": "b61e5dd13211b44747af5bc6255e68e550db795e4554525b6542e47374b823bb",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/RESULT.json"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/SOURCE_INPUTS.json",
+      "bytes": 38490,
+      "sha256": "389d5a70950aca0cda076ac7edab2aebaebf5c70032888a5c99506da28aabcc6",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/SOURCE_INPUTS.json"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/START.json",
+      "bytes": 666,
+      "sha256": "83399ef68d3f49453d5ec3cbcc8859636775142c14a9768b909b41548e74f46c",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/START.json"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/preserved-negative-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "242979f4f46a78d5511091e378bbe34c9a83a8bf0663083c8d9be641ecb059fa",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/preserved-negative-products/MANIFEST.json"
+    },
+    {
+      "path": "evidence/service-selected-item-negative-attempt-2/raw.log.gz",
+      "bytes": 566,
+      "sha256": "e692ed4bd91851ebb54c1772f782540b8cb225fdd51927bd9a4bfc4947fe305d",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/raw.log",
+      "uncompressedBytes": 1949,
+      "uncompressedSha256": "a9a1709823de9798971a1e117375b3a83c6378bc0aa8fd47f56518376d980489"
+    },
+    {
+      "path": "evidence/setup-failures/job_41c0843c2482.json",
+      "bytes": 726,
+      "sha256": "7d66f66d4d04afc5931b16c8efb8c8fedb2ff1c685cd29912b9cda4fb3ac3748"
+    },
+    {
+      "path": "evidence/setup-failures/job_44436a613fa2.json",
+      "bytes": 728,
+      "sha256": "4cb8adb1347b9dd0dedd19b565814c598b054bb1cdcd3a08d2f105592ff122ea"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/HistoryComponents.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/HistoryComponents.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/MaktabahNativeHistoryRecordViews.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/MaktabahNativeHistoryRecordViews.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/MaktabahNativeHistoryRecords.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/MaktabahNativeHistoryRecords.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/MaktabahNativeRoutingComposition.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/MaktabahNativeRoutingComposition.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/MaktabahNativeSceneProjection.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/MaktabahNativeSceneProjection.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/MaktabahNativeSceneSession.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/MaktabahNativeSceneSession.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/NativeHistoryRecordIntentService.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/NativeHistoryRecordIntentService.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/NativeHistoryRecordIntentServiceTests.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/NativeHistoryRecordIntentServiceTests.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/NativeHistoryRecordIntents.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/NativeHistoryRecordIntents.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/RESULT.json",
+      "bytes": 2415,
+      "sha256": "15a7ccbbfc2184501710d6aa28e44279e82f52742d784d59f5e0f0d311144c22",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/RESULT.json"
+    },
+    {
+      "path": "evidence/source-syntax-attempt-1/iOSHistoryView.swift.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/source-syntax-attempt-1/iOSHistoryView.swift.log",
+      "uncompressedBytes": 0,
+      "uncompressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source.diff.gz",
+      "bytes": 25944,
+      "sha256": "d8d2183d238a4624b1d5a0d025b9a2e41a794f2818f9598ab82d7f9a982644eb",
+      "source": "git diff 9b376a42234ebb176f36a0b3cca94de97e41869c; explicit new-file diff",
+      "uncompressedBytes": 129748,
+      "uncompressedSha256": "e42bfdd8989af1c0a4a0b16ce0dbd94b7d1d6a378e577d26ac902a27b127ff87"
+    }
+  ],
+  "manifestExcludesItself": true
+}

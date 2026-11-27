@@ -1,0 +1,10 @@
+{
+  "exit": 1,
+  "stoppedForReserve": false,
+  "start": "2026-11-27T08:42:39.269511+00:00",
+  "end": "2026-11-27T08:42:46.275852+00:00",
+  "sourceInputSha256": "ff6d03701e164919f2c2d9b9d2ec9184b40b52d5c3255eceb884b3d2abbad550",
+  "rawSha256": "36cca137f934027716aee38f0a956a6bc056e2023ff268bd3e436e42618350f0",
+  "freeAfter": 3591041024,
+  "scope": "actual package/service controls; no app/native claim"
+}

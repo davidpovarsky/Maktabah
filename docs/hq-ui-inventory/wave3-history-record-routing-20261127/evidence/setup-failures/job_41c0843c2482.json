@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_41c0843c2482",
+    "type": "job_result",
+    "source": "exec@host_299cf75f6b338ecd",
+    "severity": "warning",
+    "tool": "exec",
+    "host": "host_299cf75f6b338ecd",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795770879.9365325,
+    "started_at": "2026-11-27T09:14:40.022200+00:00",
+    "finished_at": "2026-11-27T09:14:40.474529+00:00",
+    "duration_s": 0.45,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 600,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\n  File \"<string>\", line 19, in <module>\nAssertionError"
+  }
+}
