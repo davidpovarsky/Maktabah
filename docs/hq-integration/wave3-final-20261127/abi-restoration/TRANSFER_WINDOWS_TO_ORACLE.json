@@ -1,0 +1,54 @@
+{
+  "archive_payloads_not_included": true,
+  "files": [
+    {
+      "bytes": 2071721,
+      "file": "RESTORATION_RAW_EVIDENCE.tar.gz",
+      "oracle_path": "/mnt/development/projects/worktrees/Maktabah-wave3-abi-restoration-evidence-20261127/build/abi-restoration-transport/RESTORATION_RAW_EVIDENCE.tar.gz",
+      "sha256": "004002315135a4f182caf4e1da5009fe4c7b6ca74a960508a60bd26dd7a67c6f"
+    },
+    {
+      "bytes": 760767,
+      "file": "MEMBER_MANIFEST.json",
+      "oracle_path": "/mnt/development/projects/worktrees/Maktabah-wave3-abi-restoration-evidence-20261127/build/abi-restoration-transport/MEMBER_MANIFEST.json",
+      "sha256": "e4c4490527b60236031fa9e5aa0f51459fbcf782ee8638ab004dc20e572dec69"
+    },
+    {
+      "bytes": 6201,
+      "file": "SDK_CONTINUATION_READINESS.json",
+      "oracle_path": "/mnt/development/projects/worktrees/Maktabah-wave3-abi-restoration-evidence-20261127/build/abi-restoration-transport/SDK_CONTINUATION_READINESS.json",
+      "sha256": "a81c4d4a0efb1be3b5bf91ff7aa3b59f089bcc7de67d851320231cdd21a2e373"
+    },
+    {
+      "bytes": 1203,
+      "file": "PACKAGE_RECEIPT.json",
+      "oracle_path": "/mnt/development/projects/worktrees/Maktabah-wave3-abi-restoration-evidence-20261127/build/abi-restoration-transport/PACKAGE_RECEIPT.json",
+      "sha256": "a263bfce98fb68a90df193a74b197bc524521e56a6a29e8934878b8c9978ffeb"
+    },
+    {
+      "bytes": 2946,
+      "file": "TRANSFER_MAC_TO_WINDOWS.json",
+      "oracle_path": "/mnt/development/projects/worktrees/Maktabah-wave3-abi-restoration-evidence-20261127/build/abi-restoration-transport/TRANSFER_MAC_TO_WINDOWS.json",
+      "sha256": "865efdc88fb875bd9b8c94ac512a57c3aa7415e8b9bf0075d35c48e5488319b8"
+    }
+  ],
+  "module_completion_receipts": 198,
+  "original_raw_members_verified": 2024,
+  "schema": "otzaria.wave3.evidence-transfer/1",
+  "selected_raw_receipts_copied_verbatim": [
+    "ABI_DONOR_INPUT.json",
+    "DONOR_PREPARE_COMMAND_RESULT.json",
+    "MODULE_HYDRATION_RESULT.json",
+    "ORIGINAL_DONOR_PREPARE_RESULT.json",
+    "ORIGINAL_VERIFIER_AFTER_MODULE_HYDRATION_PASS.json",
+    "ORIGINAL_VERIFIER_BEFORE_MODULE_HYDRATION_FAIL.json",
+    "ORIGINAL_WAVE1_FAILED_PREPARATION.json",
+    "SIXTY_NINE_COMPILER_INPUTS_RESULT.json",
+    "THREE_ARCHIVES_RESULT.json"
+  ],
+  "source_module_payloads_not_included": true,
+  "source_windows_root": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-abi-restoration-20261127",
+  "status": "ALL_TRANSFERRED_FILES_AND_2024_RAW_MEMBERS_VERIFIED",
+  "transport": "existing pinned Windows to Oracle SSH/SCP",
+  "verified_at": "2026-11-27T04:07:47.285947+00:00"
+}

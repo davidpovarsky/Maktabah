@@ -1,0 +1,125 @@
+{
+  "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+  "donor_input": {
+    "bytes": 538,
+    "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/ABI_DONOR_INPUT.json",
+    "sha256": "adab56b1ad2c6fc06d7b154b4df0112a9a3dfdde4230a576e5064bd15bd04496"
+  },
+  "environment_source": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/local-execution.env",
+  "framework_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "Tools/OriginalEditor/run_framework_acceptance.py",
+    "--root",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+    "--evidence",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence",
+    "--work",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work",
+    "--import-abi-receipt",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/ABI_DONOR_INPUT.json",
+    "--import-abi-sha256",
+    "adab56b1ad2c6fc06d7b154b4df0112a9a3dfdde4230a576e5064bd15bd04496"
+  ],
+  "framework_invocations_by_this_recovery": 0,
+  "free_bytes": 11034124288,
+  "genuine_local_execution": {
+    "bytes": 987,
+    "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/local-execution.json",
+    "sha256": "37147361fcaad1521fc3f3d47279341dd3c6b25db619f801babfab3ce0ff0528"
+  },
+  "macro_evidence_exists": false,
+  "native_tests_by_this_recovery": 0,
+  "observed_at": "2026-11-27T04:03:46.945267+00:00",
+  "original_hanlin_check_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "Tools/Hanlin/prepare_sdk.py",
+    "--check"
+  ],
+  "original_optional_cache_seeds": [
+    {
+      "exists": false,
+      "path": "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source/build/SDK-Work/producer-derived-preserved",
+      "route": "original ABI donor"
+    },
+    {
+      "exists": false,
+      "path": "/Users/m1/builds/anytype-f875d09160ef-miniapps-sdk/build/SDK-Work-7/producer-derived-preserved",
+      "route": "committed qualified_cache_seed policy"
+    }
+  ],
+  "original_source_files": [
+    {
+      "bytes": 6935,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Tools/OriginalEditor/LOCAL_MAC.md",
+      "sha256": "7c7da3e9c1998e376e87fe92f557c9d61a7b20c6f0137af201c4784db4ec9942"
+    },
+    {
+      "bytes": 47632,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Tools/OriginalEditor/run_framework_acceptance.py",
+      "sha256": "51944452de1d5fa6ca6d6fc9a9f89097ab7c15445763d2b2d7251a198d21b8b4"
+    },
+    {
+      "bytes": 5201,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Tools/OriginalEditor/prepare_donor_abi.py",
+      "sha256": "8b89c1fddf1e1677a017e554f8854be3f0966dc0a2ded1daf56a4684db386c59"
+    },
+    {
+      "bytes": 13035,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Tools/OriginalEditor/prepare_reviewed_macro.py",
+      "sha256": "e756f385eb130f5de6a679f90f20f4f7644791fb242d0a90be6e1c6c242b5760"
+    },
+    {
+      "bytes": 12279,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Tools/OriginalEditor/qualified_cache_seed.py",
+      "sha256": "021bc6aee7adf3e0a6a7b07b8152d49733a0be32c549d04beaaeec27507dd4a6"
+    },
+    {
+      "bytes": 4137,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/Tools/OriginalEditor/MiniApps/qualified_cache_seed.json",
+      "sha256": "8466e11954826cfe6f0ab79bd84ce91c720bc3656bbe6f875306f6cbec8013ec"
+    }
+  ],
+  "prior_hanlin_check": "PASS_IN_RETAINED_WAVE1_PREPARATION",
+  "required_generated_scopes": [
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/producer-derived-preserved",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/distribution",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/external-consumer",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Work/consumer-derived",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/framework-build.xcresult",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-Evidence/consumer-build.xcresult"
+  ],
+  "reviewed_macro_prepare_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "Tools/OriginalEditor/prepare_reviewed_macro.py",
+    "--root",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+    "--evidence",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestoration-20261127"
+  ],
+  "reviewed_macro_restore_argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "Tools/OriginalEditor/prepare_reviewed_macro.py",
+    "--root",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+    "--evidence",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave1-1be97035-Debug-ReviewedMacro-AfterRestoration-20261127",
+    "--restore"
+  ],
+  "root": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+  "schema": "otzaria.wave3.sdk-continuation-readiness/1",
+  "source_and_identity_preflight": "EXISTING_MATCHED_ORIGINAL_LOCAL_EXECUTION_AND_SOURCE_ONLY_ADMISSION",
+  "source_sha": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "status": "ORIGINAL_ABI_DONOR_PREPARED_FRAMEWORK_NOT_STARTED",
+  "storage_estimate": {
+    "new_build_peak_bytes": null,
+    "prior_75a_distribution_bytes": 1307281591,
+    "qualification_scope": "prior immutable Debug distribution; not a fresh build peak measurement",
+    "reason": "Both originally allowed compiler cache seed directories are absent. Fresh strict resolution, producer intermediates/products, independent distribution and consumer products are required. No numerical peak is invented."
+  },
+  "work_exists": false
+}

@@ -1,0 +1,42 @@
+{
+    "schema":  "otzaria.wave3.evidence-transfer/1",
+    "source_host":  "109bcd84-6a7a-475f-9c53-0cf427912d04",
+    "source_alias":  "scaleway-mac",
+    "transport":  "existing pinned SSH/SCP",
+    "status":  "ALL_FOUR_FILES_MATCH_MAC_SHA256_AND_SIZE",
+    "files":  [
+                  {
+                      "name":  "MEMBER_MANIFEST.json",
+                      "source":  "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp/MEMBER_MANIFEST.json",
+                      "destination":  "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-abi-restoration-20261127\\MEMBER_MANIFEST.json",
+                      "bytes":  760767,
+                      "sha256":  "e4c4490527b60236031fa9e5aa0f51459fbcf782ee8638ab004dc20e572dec69",
+                      "verified_at":  "2026-11-27T04:04:25.4494063Z"
+                  },
+                  {
+                      "name":  "PACKAGE_RECEIPT.json",
+                      "source":  "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp/PACKAGE_RECEIPT.json",
+                      "destination":  "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-abi-restoration-20261127\\PACKAGE_RECEIPT.json",
+                      "bytes":  1203,
+                      "sha256":  "a263bfce98fb68a90df193a74b197bc524521e56a6a29e8934878b8c9978ffeb",
+                      "verified_at":  "2026-11-27T04:04:27.1354115Z"
+                  },
+                  {
+                      "name":  "RESTORATION_RAW_EVIDENCE.tar.gz",
+                      "source":  "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp/RESTORATION_RAW_EVIDENCE.tar.gz",
+                      "destination":  "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-abi-restoration-20261127\\RESTORATION_RAW_EVIDENCE.tar.gz",
+                      "bytes":  2071721,
+                      "sha256":  "004002315135a4f182caf4e1da5009fe4c7b6ca74a960508a60bd26dd7a67c6f",
+                      "verified_at":  "2026-11-27T04:04:29.4705584Z"
+                  },
+                  {
+                      "name":  "SDK_CONTINUATION_READINESS.json",
+                      "source":  "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-abi-restoration-evidence-packet-20261127.t_eb_tkp/SDK_CONTINUATION_READINESS.json",
+                      "destination":  "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-abi-restoration-20261127\\SDK_CONTINUATION_READINESS.json",
+                      "bytes":  6201,
+                      "sha256":  "a81c4d4a0efb1be3b5bf91ff7aa3b59f089bcc7de67d851320231cdd21a2e373",
+                      "verified_at":  "2026-11-27T04:04:31.0278604Z"
+                  }
+              ],
+    "completed_at":  "2026-11-27T04:04:31.0278604Z"
+}

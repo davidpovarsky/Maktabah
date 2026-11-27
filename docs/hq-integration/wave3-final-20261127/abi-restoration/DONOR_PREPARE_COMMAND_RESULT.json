@@ -1,0 +1,59 @@
+{
+  "argv": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "Tools/OriginalEditor/prepare_donor_abi.py",
+    "--root",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+    "--donor",
+    "/Users/m1/builds/otzaria-shared-agent1-20261126/anytype-formal-original-swift-abi-9bc6420f/source",
+    "--evidence",
+    "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127"
+  ],
+  "copy_requirement_bytes": 0,
+  "cwd": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source",
+  "execution_sha256": "37147361fcaad1521fc3f3d47279341dd3c6b25db619f801babfab3ce0ff0528",
+  "finished_at": "2026-11-27T03:56:39.278765+00:00",
+  "free_after_bytes": 11146711040,
+  "free_before_bytes": 11137908736,
+  "original_receipts": [
+    {
+      "bytes": 538,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/ABI_DONOR_INPUT.json",
+      "sha256": "adab56b1ad2c6fc06d7b154b4df0112a9a3dfdde4230a576e5064bd15bd04496"
+    },
+    {
+      "bytes": 574,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/RESULT.json",
+      "sha256": "a7420d2de274685f6b23a50a9bcbfaa42bec0336b05a4fba6a78143c712b279e"
+    },
+    {
+      "bytes": 18924,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/VERIFIED_DONOR.json",
+      "sha256": "83bba88a0aac6314d7c2da9270f4de3e71a5f0cfc9cb32f265d0311e5a604e93"
+    },
+    {
+      "bytes": 329479,
+      "path": "/Users/m1/builds/otzaria-wave1-sdk-20261127/source/build/SDK-Wave3-1be97035-NativeABI-AfterRestoration-20261127/consumer-source-before.json",
+      "sha256": "96c2ef0ff40998b069f0757192ec198f9a151b79d76ec62b098ff0e3a02c2ad6"
+    }
+  ],
+  "outputs": [
+    {
+      "bytes": 554,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/donor-preparation/prepare.stdout.log",
+      "sha256": "6f13479cbea88b9acd49bad70bf7983be17301f1b76c45b1a7b4d4166257dee2"
+    },
+    {
+      "bytes": 0,
+      "path": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/wave3-e973-exact-module-hydration-20261127.f0wt7m72/donor-preparation/prepare.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "pid": 93947,
+  "returncode": 0,
+  "scope": "Original donor preparation only; framework/app build not invoked",
+  "source_after": "1be970356c655bcef3688ddf1d129d5029bbc533",
+  "started_at": "2026-11-27T03:56:08.869294+00:00",
+  "tracked_status_after": ""
+}
