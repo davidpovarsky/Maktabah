@@ -1,0 +1,49 @@
+{
+  "schema": "otzaria.native-selector-syntax-only.v1",
+  "base": "dd4b28f42950689713a5980dbd3dae21eb414f26",
+  "started": "2026-11-27T13:02:05.834719+00:00",
+  "finished": "2026-11-27T13:02:06.660268+00:00",
+  "argv": [
+    "swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "-module-cache-path",
+    "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/module-cache-local",
+    "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/native-selector-parse-attempt-1/NativeRoutingAcceptanceTests.swift",
+    "/home/ubuntu/.codex/artifacts/otzaria-wave3-profile-group-controls-20261127/native-selector-parse-attempt-1/NativeWorkspaceSelectionAcceptanceTests.swift"
+  ],
+  "exit": 0,
+  "scope": "Linux Swift frontend syntax only for iOS27 target; no Apple SDK typecheck, XCTest, simulator, device or actual AppIntent invocation",
+  "native": "NOT_RUN",
+  "sdk": "NOT_RUN",
+  "swiftVersion": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "files": [
+    {
+      "path": "NativeRoutingAcceptanceTests.swift",
+      "bytes": 259080,
+      "sha256": "7f735919df764571929bb858dd21e082c7a52b68d01b9e15b65aa738284ee4ad"
+    },
+    {
+      "path": "NativeWorkspaceSelectionAcceptanceTests.swift",
+      "bytes": 2407,
+      "sha256": "e9e8b88188399e30c05471444cd75a59ca3ea4b84fa5acc37addffc2044ebc48"
+    },
+    {
+      "path": "NativeWorkspaceSelectionHelper.swift",
+      "bytes": 21629,
+      "sha256": "5da45c405e0693847658ce1100a6bbf8582707b594387fe7caa45549e1e983f8"
+    },
+    {
+      "path": "parse.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "parse.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

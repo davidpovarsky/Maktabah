@@ -1,0 +1,17 @@
+{
+  "schema": "otzaria.profile-group.native-selector-source.v1",
+  "base": "dd4b28f42950689713a5980dbd3dae21eb414f26",
+  "sourceFileCount": 2,
+  "selectorCount": 8,
+  "oldPrefixBytes": 237451,
+  "oldPrefixSHA256": "5ad00a2b15b7029d56146dd2da8a738c895961c0e761583f2e892328cab66ae8",
+  "syntaxExit": 0,
+  "syntaxReceiptSHA256": "69a0d48c1b25bf84064adf58118f5143c6b67b707036a53676d6a909f140177e",
+  "appSDK": "NOT_RUN",
+  "native": "NOT_RUN",
+  "physical": "NOT_RUN",
+  "historicalSuites": "not altered or executed",
+  "productSourceChanged": false,
+  "peerReview": "Independent source review requested; no reviewer result claimed in this packet",
+  "recordedUTC": "2026-11-27T13:07:01.717124+00:00"
+}

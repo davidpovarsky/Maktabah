@@ -1,0 +1,25 @@
+{
+  "head": "362f3883a16ed96dd6a08c6556534721de28253e",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 237451,
+      "sha256": "5ad00a2b15b7029d56146dd2da8a738c895961c0e761583f2e892328cab66ae8"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
+      "bytes": 1583,
+      "sha256": "2af6d183cdb25f2c1676dda1640f1fd92d3a06ae17b16be57d5d54f5c29decb1"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "bytes": 19225,
+      "sha256": "a1f9d235af9d13bd6c8bb878e28dd93679afc31041a0a2085ec6b086f2a1f994"
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "bytes": 13056,
+      "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798"
+    }
+  ]
+}
