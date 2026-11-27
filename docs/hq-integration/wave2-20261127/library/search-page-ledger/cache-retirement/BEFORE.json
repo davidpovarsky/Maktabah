@@ -1,0 +1,193 @@
+{
+  "allocatedRootAndMembersBytes": 17768448,
+  "authorization": "Root authorized retirement of only this owned inactive reproducible module cache after committed evidence; user authorized verified reproducible cleanup.",
+  "cache": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache",
+  "freeBefore": 691933184,
+  "inventory": [
+    {
+      "allocatedBytes": 4096,
+      "bytes": 4096,
+      "ctimeNs": 1795774632267126211,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225431,
+      "links": 3,
+      "mode": 17917,
+      "mtimeNs": 1795774632267126211,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 4096,
+      "bytes": 4096,
+      "ctimeNs": 1795774634614139853,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225467,
+      "links": 2,
+      "mode": 17912,
+      "mtimeNs": 1795774634614139853,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 733184,
+      "bytes": 731408,
+      "ctimeNs": 1795774632457127315,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225472,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632455127304,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/CDispatch-2FVHGXUL9RCM5.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 36864,
+      "bytes": 34976,
+      "ctimeNs": 1795774632468127379,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225473,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632468127379,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/Dispatch-2FVHGXUL9RCM5.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 2723840,
+      "bytes": 2722968,
+      "ctimeNs": 1795774632881129780,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225474,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632878129762,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/SwiftGlibc-IGSGJKVMPVR1.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 241664,
+      "bytes": 239752,
+      "ctimeNs": 1795774632910129948,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225476,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632910129948,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/SwiftOverlayShims-1QXSX1OVYZY8L.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 163840,
+      "bytes": 163584,
+      "ctimeNs": 1795774632313126478,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225470,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632313126478,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/SwiftShims-1QXSX1OVYZY8L.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 40960,
+      "bytes": 37680,
+      "ctimeNs": 1795774632375126839,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225475,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632374126833,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/_Builtin_stddef-354LLFK8RZG2A.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 11063296,
+      "bytes": 11057896,
+      "ctimeNs": 1795774634198137435,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225478,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774634193137406,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/_FoundationCShims-O2Q1FP8A0YE6.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 2326528,
+      "bytes": 2325112,
+      "ctimeNs": 1795774634611139836,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225479,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774634607139812,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/_FoundationICU-1Z7BBYW838GM3.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 36864,
+      "bytes": 36360,
+      "ctimeNs": 1795774632325126548,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225471,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632325126548,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 393216,
+      "bytes": 389600,
+      "ctimeNs": 1795774632987130396,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225477,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632987130396,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/UA7LT4M1IAF2/_SynchronizationShims-1QXSX1OVYZY8L.pcm",
+      "uid": 1001
+    },
+    {
+      "allocatedBytes": 0,
+      "bytes": 0,
+      "ctimeNs": 1795774632106125275,
+      "device": 2064,
+      "gid": 1002,
+      "inode": 1225460,
+      "links": 1,
+      "mode": 33204,
+      "mtimeNs": 1795774632106125275,
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave2-search-page-ledger-20261127/build/page-ledger-controls-20261127/attempt-1/module-cache/modules.timestamp",
+      "uid": 1001
+    }
+  ],
+  "processScan": {
+    "count": 414,
+    "excludedVerifierAncestors": [
+      1,
+      230233,
+      3709888
+    ],
+    "references": [],
+    "vanishedDuringRead": [
+      230091
+    ]
+  },
+  "schema": 1,
+  "sourceCommit": "a23ae34c74b1cde8a9344fefd1e41e87101784b0",
+  "time": "2026-11-27T10:28:05.750161+00:00",
+  "verifiedRetainedEvidenceFiles": 55
+}
