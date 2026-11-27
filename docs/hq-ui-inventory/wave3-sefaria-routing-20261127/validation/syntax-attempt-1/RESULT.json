@@ -1,0 +1,81 @@
+{
+  "scope": "Swift frontend syntax only on Linux; not Apple SDK typecheck or app/native execution",
+  "utc": "2026-11-27T06:07:37.717329+00:00",
+  "results": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "sha256": "e68ffe454f7345c23e1e27ad2bfbc1f2bbbe715dd5c66e5d5f7c02c536c7d19e",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "1c30374785818edf9d307190d8d42aa00f2d27b9b380afe55d8730ce1a641ef1",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "sha256": "9511ae34354914d1637c524c1a75d0479831bb4ade430e51fbf81ff5b5d98239",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "sha256": "d1639d520bbb19235bcd5c4a5717b8f19156fa18687fc22dce71583d9ed56c59",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "191cd7c9ac906b4b194c4a512cea8fa1d9f3dc58d8cdad6777b461d95ce043b2",
+      "command": [
+        "swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

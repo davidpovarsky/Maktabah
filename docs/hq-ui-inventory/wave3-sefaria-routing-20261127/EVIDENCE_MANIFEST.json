@@ -1,0 +1,915 @@
+{
+  "scope": "All committed artifacts; raw attempts and source/producer snapshots retained without modification. Control binaries remain at original execution host paths.",
+  "artifacts": [
+    {
+      "path": ".gitignore",
+      "sha256": "b8f5543fae1c5f03a7ac0108d03821b5ec276356c8593e615b8a4556b8632af6",
+      "bytes": 24
+    },
+    {
+      "path": "INTAKE.json",
+      "sha256": "123fa8eecead4624e0a58f983fa2bd51b0f00e7b4e0d0f7463e13e837e24902a",
+      "bytes": 2439
+    },
+    {
+      "path": "ORIGINAL_NOTES_READ_SET.json",
+      "sha256": "ba416687d362a066201245c3a2e688b2046bc66a23684103051b92cb42427b80",
+      "bytes": 6382
+    },
+    {
+      "path": "OWNERSHIP_PRE_EDIT.json",
+      "sha256": "4dcf19c7fab4abd689f46b7e799f1490af95e25f7fee350ec26d569de5c5cb21",
+      "bytes": 6097
+    },
+    {
+      "path": "README.md",
+      "sha256": "c4f13e120073e87469d635a3b0d543ac2bdd4fab49f575d721d155822ab67bed",
+      "bytes": 8544
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "sha256": "07d7c85d91692dffa49879b227b88a338f5c84e70926aeb83f44426f42eae18f",
+      "bytes": 3373
+    },
+    {
+      "path": "TEST_TARGET_MEMBERSHIP.json",
+      "sha256": "8ef777b24d343af30feb3fb39bd0cfa3a00059f7fa6625eda1994022778c6130",
+      "bytes": 2051
+    },
+    {
+      "path": "controls/Controls.swift",
+      "sha256": "9d5010af05a6731006877fb6167844d180fa325cd0d1bf973394e07ed319041a",
+      "bytes": 22284
+    },
+    {
+      "path": "controls/DomainBoundary.swift",
+      "sha256": "601a3318b33eccb4f3317a37d44a56668f5a44933a30850d4d29dadb92b06c25",
+      "bytes": 6982
+    },
+    {
+      "path": "controls/generate.py",
+      "sha256": "457dc9032d0e3806179a77484c8a09716bf2c2a8dfa15ea505fcb629d59e061f",
+      "bytes": 12851
+    },
+    {
+      "path": "validation/controls-attempt-1/COMPILE.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-1/COMPILE.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-1/EXECUTION.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-1/EXECUTION.stdout.log",
+      "sha256": "60a677d17a80d64305056f100a7a9d6f0e3b50466b221b72b1aa36d690850ee3",
+      "bytes": 2426
+    },
+    {
+      "path": "validation/controls-attempt-1/GENERATOR.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-1/GENERATOR.stdout.log",
+      "sha256": "98f4abfa602fe4b952144b807a3788157f4880f7c7ee4dd2a52841fab9630055",
+      "bytes": 327
+    },
+    {
+      "path": "validation/controls-attempt-1/Generated.swift",
+      "sha256": "ae38402670d9edc252e345b5606af0776a3592964b73173aac447a1229ba618c",
+      "bytes": 42601
+    },
+    {
+      "path": "validation/controls-attempt-1/RESULT.json",
+      "sha256": "8b3c4a8c30da94f94966270e59baad62aef8eacd7824f106658368d92aa28e9b",
+      "bytes": 994
+    },
+    {
+      "path": "validation/controls-attempt-1/SOURCE_INPUTS.json",
+      "sha256": "b0818bea7c4d8f8a581ea42b9a9d323206d55ac3e5e6ca175006472d79a6425e",
+      "bytes": 2129
+    },
+    {
+      "path": "validation/controls-attempt-1/producer/Controls.swift",
+      "sha256": "f377b56973fe06b4299557a27643c3bfb2f2eb7df54892b9d1bb665567146c6f",
+      "bytes": 18866
+    },
+    {
+      "path": "validation/controls-attempt-1/producer/DomainBoundary.swift",
+      "sha256": "f6dfb6e7f43af6c4c361189671670e0b2e7e55e395796bce1335bd0b978cdb98",
+      "bytes": 6180
+    },
+    {
+      "path": "validation/controls-attempt-1/producer/generate.py",
+      "sha256": "b33b8182f88ad464644be316dceed8660715b0084d546b594767860da685e5f9",
+      "bytes": 10617
+    },
+    {
+      "path": "validation/controls-attempt-1/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/controls-attempt-1/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/controls-attempt-1/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "191cd7c9ac906b4b194c4a512cea8fa1d9f3dc58d8cdad6777b461d95ce043b2",
+      "bytes": 89924
+    },
+    {
+      "path": "validation/controls-attempt-1/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/controls-attempt-1/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/controls-attempt-1/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/COMPILE.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/COMPILE.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/EXECUTION.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/EXECUTION.stdout.log",
+      "sha256": "cc666dd4d32a75e28fe697f5c72977209991224e77d20fc09f45f1803aef2099",
+      "bytes": 2475
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/GENERATOR.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/GENERATOR.stdout.log",
+      "sha256": "e79f719fa8ac80b1042b43569a71f9cb0c670682091eec411f14262c044c6b31",
+      "bytes": 347
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/Generated.swift",
+      "sha256": "92be97c7d46e45416c38598ff807da278a4a5e0428459a2c97683d4385160c59",
+      "bytes": 42589
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/RESULT.json",
+      "sha256": "7ba48acfff9f35c673152e964ca96ca94aef38b2413c0296169e67dea9301f27",
+      "bytes": 1252
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/SOURCE_INPUTS.json",
+      "sha256": "fe154959030600e538fc1a96b3f31449128e68e568485957e457db311b91c95f",
+      "bytes": 2129
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/producer/Controls.swift",
+      "sha256": "f377b56973fe06b4299557a27643c3bfb2f2eb7df54892b9d1bb665567146c6f",
+      "bytes": 18866
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/producer/DomainBoundary.swift",
+      "sha256": "5fa4322db0dd45c051f614744de63473d4056c77a81fa5a8a34f70376055fec1",
+      "bytes": 6168
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/producer/generate.py",
+      "sha256": "b33b8182f88ad464644be316dceed8660715b0084d546b594767860da685e5f9",
+      "bytes": 10617
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "191cd7c9ac906b4b194c4a512cea8fa1d9f3dc58d8cdad6777b461d95ce043b2",
+      "bytes": 89924
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/Generated.swift",
+      "sha256": "a431d19c55f50cedc54735032cfcc5adcc4018bf6411d2bf7b0d59e1e7afcb08",
+      "bytes": 49742
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/RESULT.json",
+      "sha256": "1b4c5c913980debb2b28a635f44f2b94bf7fa7826b0437b951fd890030850dbd",
+      "bytes": 1012
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/SOURCE_INPUTS.json",
+      "sha256": "981d6722564ee50970a953a854050c14ad43b1ccfaa21132c021afabc8ab6bc4",
+      "bytes": 2422
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/compile.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/execution.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/execution.stdout.log",
+      "sha256": "18fffd22ea5efc2cf9b1b1c5261dccf574fbcce266975dac167142c3782384fb",
+      "bytes": 2869
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/generate.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/generate.stdout.log",
+      "sha256": "fed0b615701a05ae958dbfb9d0a113622f8bf7a98ffa6f4e4a16837afb44c282",
+      "bytes": 348
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/producer/Controls.swift",
+      "sha256": "9d5010af05a6731006877fb6167844d180fa325cd0d1bf973394e07ed319041a",
+      "bytes": 22284
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/producer/DomainBoundary.swift",
+      "sha256": "601a3318b33eccb4f3317a37d44a56668f5a44933a30850d4d29dadb92b06c25",
+      "bytes": 6982
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/producer/generate.py",
+      "sha256": "457dc9032d0e3806179a77484c8a09716bf2c2a8dfa15ea505fcb629d59e061f",
+      "bytes": 12851
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "bytes": 90615
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/source-inputs/source/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+      "bytes": 46951
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/Generated.swift",
+      "sha256": "a34e60b6974b960a445389d9d36612b987d841202808b02ae2b1a7b17dad73fa",
+      "bytes": 49707
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/RESULT.json",
+      "sha256": "bd566c57562dc6aa182ce444f30f3f5106bd3c49b536e0415b295d54a99d187f",
+      "bytes": 2077
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/SOURCE_INPUTS.json",
+      "sha256": "3b4f7726c491795368e9a0e319b85bece99a3fddbe0ebc9c8d98cbb54c7fac22",
+      "bytes": 2533
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/compile.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/execution.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/execution.stdout.log",
+      "sha256": "f6cf227cb27efb3b1bca143e1773774719875452f195e4ec4108ccc7b36616f6",
+      "bytes": 3317
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/generate.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/generate.stdout.log",
+      "sha256": "4d14d66f20a06941ecf4caebc4a137a2eb2bb00f672e503b2016b47a233e6779",
+      "bytes": 362
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/producer/Controls.swift",
+      "sha256": "9d5010af05a6731006877fb6167844d180fa325cd0d1bf973394e07ed319041a",
+      "bytes": 22284
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/producer/DomainBoundary.swift",
+      "sha256": "601a3318b33eccb4f3317a37d44a56668f5a44933a30850d4d29dadb92b06c25",
+      "bytes": 6982
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/producer/generate.py",
+      "sha256": "457dc9032d0e3806179a77484c8a09716bf2c2a8dfa15ea505fcb629d59e061f",
+      "bytes": 12851
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "bytes": 90615
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/source-inputs/source/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+      "bytes": 46951
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/Generated.swift",
+      "sha256": "d8b628ebe44cc76950704ebc3666caaed7217e36a18b924107e2620c8371caa4",
+      "bytes": 49617
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/RESULT.json",
+      "sha256": "94889be4d8dd602df8171d5e98c65c7b14e6e477380f744d36a79e1836d207a4",
+      "bytes": 1530
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/SOURCE_INPUTS.json",
+      "sha256": "9ba6ba6e304b53f853d8cf80e87f4f32991dc4afbc3980f6644634b123b824f3",
+      "bytes": 2556
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/compile.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/execution.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/execution.stdout.log",
+      "sha256": "8a1c4d2eac7920a7231a995af46910be51715a2a6148ccd512ce1f9b4233059c",
+      "bytes": 3072
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/generate.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/generate.stdout.log",
+      "sha256": "c2561af97e1c55e58fc125d07db07eeae0e136956c24ea2ab7446924ccf9af2c",
+      "bytes": 372
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/producer/Controls.swift",
+      "sha256": "9d5010af05a6731006877fb6167844d180fa325cd0d1bf973394e07ed319041a",
+      "bytes": 22284
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/producer/DomainBoundary.swift",
+      "sha256": "601a3318b33eccb4f3317a37d44a56668f5a44933a30850d4d29dadb92b06c25",
+      "bytes": 6982
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/producer/generate.py",
+      "sha256": "457dc9032d0e3806179a77484c8a09716bf2c2a8dfa15ea505fcb629d59e061f",
+      "bytes": 12851
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "bytes": 90615
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/source-inputs/source/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+      "bytes": 46951
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "validation/final-without-root-counters/Generated.swift",
+      "sha256": "3e53d63b2e69c3cdc57fded1c9a9c07e9eb2611f0a80177aaf396ec9a2601fdf",
+      "bytes": 49640
+    },
+    {
+      "path": "validation/final-without-root-counters/RESULT.json",
+      "sha256": "b73553f75b733da36802e8a5216fe96478e26f1ee0087c82ded50195c148d105",
+      "bytes": 1774
+    },
+    {
+      "path": "validation/final-without-root-counters/SOURCE_INPUTS.json",
+      "sha256": "82d56b0e8d3aab88e21ed2382acd276002c9090295b45fe784f4811d8c767ca0",
+      "bytes": 2531
+    },
+    {
+      "path": "validation/final-without-root-counters/compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-root-counters/compile.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-root-counters/execution.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-root-counters/execution.stdout.log",
+      "sha256": "7f5d5c7bceff401335d3f61be75ec429c73ed2b17c1730f2e4d99c3b27b99cd5",
+      "bytes": 3219
+    },
+    {
+      "path": "validation/final-without-root-counters/generate.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/final-without-root-counters/generate.stdout.log",
+      "sha256": "d87e5f0860df080e12bff100a9409d733886405b9348bdcf84c4b97810073160",
+      "bytes": 348
+    },
+    {
+      "path": "validation/final-without-root-counters/producer/Controls.swift",
+      "sha256": "9d5010af05a6731006877fb6167844d180fa325cd0d1bf973394e07ed319041a",
+      "bytes": 22284
+    },
+    {
+      "path": "validation/final-without-root-counters/producer/DomainBoundary.swift",
+      "sha256": "601a3318b33eccb4f3317a37d44a56668f5a44933a30850d4d29dadb92b06c25",
+      "bytes": 6982
+    },
+    {
+      "path": "validation/final-without-root-counters/producer/generate.py",
+      "sha256": "457dc9032d0e3806179a77484c8a09716bf2c2a8dfa15ea505fcb629d59e061f",
+      "bytes": 12851
+    },
+    {
+      "path": "validation/final-without-root-counters/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/final-without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/final-without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "bytes": 90615
+    },
+    {
+      "path": "validation/final-without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/final-without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/final-without-root-counters/source-inputs/source/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "877129c0a126562ed93aa31a237c9769454ec4cbce46950ba4229833b49bc603",
+      "bytes": 46951
+    },
+    {
+      "path": "validation/final-without-root-counters/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "validation/syntax-attempt-1/RESULT.json",
+      "sha256": "79d4dd263f08fb84934f8c413134e153d76a619cd2599c95567e8eaadb0db56b",
+      "bytes": 2993
+    },
+    {
+      "path": "validation/syntax-final/1.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/1.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/2.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/2.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/3.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/3.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/4.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/4.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/5.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/5.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/6.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/6.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/syntax-final/RESULT.json",
+      "sha256": "d6603872dcc934319d97a2b2c0516392e39d2a0196c81511947909cf6cbbbd2c",
+      "bytes": 3275
+    },
+    {
+      "path": "validation/without-one-shot-observation/COMPILE.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-one-shot-observation/COMPILE.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-one-shot-observation/EXECUTION.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-one-shot-observation/EXECUTION.stdout.log",
+      "sha256": "b663774f89f0b7dc720d9de134d23327774d841c85565dc69f7eec190a92e492",
+      "bytes": 2720
+    },
+    {
+      "path": "validation/without-one-shot-observation/GENERATOR.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-one-shot-observation/GENERATOR.stdout.log",
+      "sha256": "821abf105ae9c421accd901c68692f6fbdc956e56d56798402186fcdbefc0772",
+      "bytes": 356
+    },
+    {
+      "path": "validation/without-one-shot-observation/Generated.swift",
+      "sha256": "933915f7e3ba367bb807d40403efd643982a2a64388ac334479ac9780c9e9b5a",
+      "bytes": 42566
+    },
+    {
+      "path": "validation/without-one-shot-observation/RESULT.json",
+      "sha256": "71ace46988db415015e0d8dc1f4df8f39e5b0b9f95686cf35318159b4f2c4ca2",
+      "bytes": 1616
+    },
+    {
+      "path": "validation/without-one-shot-observation/SOURCE_INPUTS.json",
+      "sha256": "5557bfaefb4af7037d43c266fcec1e20b59d6506efe71c7c4cd397ab03695964",
+      "bytes": 2240
+    },
+    {
+      "path": "validation/without-one-shot-observation/producer/Controls.swift",
+      "sha256": "f377b56973fe06b4299557a27643c3bfb2f2eb7df54892b9d1bb665567146c6f",
+      "bytes": 18866
+    },
+    {
+      "path": "validation/without-one-shot-observation/producer/DomainBoundary.swift",
+      "sha256": "f6dfb6e7f43af6c4c361189671670e0b2e7e55e395796bce1335bd0b978cdb98",
+      "bytes": 6180
+    },
+    {
+      "path": "validation/without-one-shot-observation/producer/generate.py",
+      "sha256": "b33b8182f88ad464644be316dceed8660715b0084d546b594767860da685e5f9",
+      "bytes": 10617
+    },
+    {
+      "path": "validation/without-one-shot-observation/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "191cd7c9ac906b4b194c4a512cea8fa1d9f3dc58d8cdad6777b461d95ce043b2",
+      "bytes": 89924
+    },
+    {
+      "path": "validation/without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/without-one-shot-observation/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/without-one-shot-observation/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    {
+      "path": "validation/without-root-counters/COMPILE.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-root-counters/COMPILE.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-root-counters/EXECUTION.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-root-counters/EXECUTION.stdout.log",
+      "sha256": "375c6a183c5120ceaeb6362a4e52abbf1f7bccf7608331a8796188a08a80d88f",
+      "bytes": 2776
+    },
+    {
+      "path": "validation/without-root-counters/GENERATOR.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "validation/without-root-counters/GENERATOR.stdout.log",
+      "sha256": "e241d0a0773b97b33bc27382637fb535b61ee21cfcba780b6d9a97922dfeb700",
+      "bytes": 342
+    },
+    {
+      "path": "validation/without-root-counters/Generated.swift",
+      "sha256": "effd4b5fccbbe3f942de8d1619a2ad545828bef887cde05cd40933a2c0876d28",
+      "bytes": 42499
+    },
+    {
+      "path": "validation/without-root-counters/RESULT.json",
+      "sha256": "31db887041aaacd7da9906aa2b10130f8275e2541dbbd737c7524215258a5c98",
+      "bytes": 1717
+    },
+    {
+      "path": "validation/without-root-counters/SOURCE_INPUTS.json",
+      "sha256": "bdb11b04402746a78137b07ef3f84e6e9b63a4833a51f268cd9faf1e2e895262",
+      "bytes": 2238
+    },
+    {
+      "path": "validation/without-root-counters/producer/Controls.swift",
+      "sha256": "f377b56973fe06b4299557a27643c3bfb2f2eb7df54892b9d1bb665567146c6f",
+      "bytes": 18866
+    },
+    {
+      "path": "validation/without-root-counters/producer/DomainBoundary.swift",
+      "sha256": "f6dfb6e7f43af6c4c361189671670e0b2e7e55e395796bce1335bd0b978cdb98",
+      "bytes": 6180
+    },
+    {
+      "path": "validation/without-root-counters/producer/generate.py",
+      "sha256": "b33b8182f88ad464644be316dceed8660715b0084d546b594767860da685e5f9",
+      "bytes": 10617
+    },
+    {
+      "path": "validation/without-root-counters/source-inputs/peer/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    },
+    {
+      "path": "validation/without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    {
+      "path": "validation/without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "191cd7c9ac906b4b194c4a512cea8fa1d9f3dc58d8cdad6777b461d95ce043b2",
+      "bytes": 89924
+    },
+    {
+      "path": "validation/without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    {
+      "path": "validation/without-root-counters/source-inputs/source/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    {
+      "path": "validation/without-root-counters/source-inputs/source/Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    }
+  ],
+  "hostOnlyExecutables": [
+    {
+      "path": "validation/controls-attempt-1/Controls",
+      "sha256": "3bb3f55275f65c0bb0418f7cccf6e1c4b1da3d659e635e4de1b7ceebbcbc02c0",
+      "bytes": 562504,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/controls-attempt-1/Controls"
+    },
+    {
+      "path": "validation/controls-attempt-2-original-note-owner/Controls",
+      "sha256": "832e851117fecfa51601526cca1f65c54c1d8c1d00871a8bde02a5825baa64c8",
+      "bytes": 558848,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/controls-attempt-2-original-note-owner/Controls"
+    },
+    {
+      "path": "validation/controls-attempt-3-original-note-setter/Controls",
+      "sha256": "8f3c75e4ef98266a2fbd8048c375fc6af7a274e19a5f83d10efb7821a8e3d798",
+      "bytes": 654936,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/controls-attempt-3-original-note-setter/Controls"
+    },
+    {
+      "path": "validation/final-without-one-shot-observation/Controls",
+      "sha256": "73cbad2ea9afcebb29360a7f2313461a9e3e64c534d814c63bbdac5a230148a2",
+      "bytes": 654936,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/final-without-one-shot-observation/Controls"
+    },
+    {
+      "path": "validation/final-without-original-note-setter-hook/Controls",
+      "sha256": "8352f4efbe359356fd71a0128e3c4188d0531246b8bdf1598ac67a08ccc9e2db",
+      "bytes": 654992,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/final-without-original-note-setter-hook/Controls"
+    },
+    {
+      "path": "validation/final-without-root-counters/Controls",
+      "sha256": "d14635e8f7647261e0ae49459eea68ce1ca56580b2ef594fbed50ded81c51fde",
+      "bytes": 654936,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/final-without-root-counters/Controls"
+    },
+    {
+      "path": "validation/without-one-shot-observation/Controls",
+      "sha256": "a9c8249442f1b9a3d722c2b38e3a737b802b0c79a32381728d3c510fa5a923fb",
+      "bytes": 562504,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/without-one-shot-observation/Controls"
+    },
+    {
+      "path": "validation/without-root-counters/Controls",
+      "sha256": "2544e135efb1402de0bfd3b15295eb3f1d52fa08351ea0f34bfd0d612b776fc9",
+      "bytes": 562504,
+      "executionHostPath": "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/without-root-counters/Controls"
+    }
+  ]
+}

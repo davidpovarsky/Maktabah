@@ -1,0 +1,31 @@
+{
+  "variant": "without-one-shot-observation",
+  "scope": "Deliberate private counterfactual; product source unchanged",
+  "generatorExit": 0,
+  "compileCommand": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/without-one-shot-observation/Generated.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/without-one-shot-observation/Controls"
+  ],
+  "compileExit": 0,
+  "compileSeconds": 2.568058166652918,
+  "executionExit": 1,
+  "summary": [
+    "RESULT 36 PASS / 6 FAIL"
+  ],
+  "failures": [
+    "FAIL Donation modal A-B-A consumes original observation: retained source was accepted after invalidation",
+    "FAIL original Reader popover A-B-A consumes observation: retained source was accepted after invalidation",
+    "FAIL original Sidebar blocker A-B-A consumes observation: retained source was accepted after invalidation",
+    "FAIL background-foreground does not renew original source: retained source was accepted after invalidation",
+    "FAIL foreign note editor presentation A-B-A consumes observation: retained source was accepted after invalidation",
+    "FAIL native window owner invalidation cannot be rearmed: retained source was accepted after invalidation"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "scope": "Actual source bodies over explicit app/UIKit/RPC/presentation boundary inputs; no Apple SDK, app, Core grant or native execution.",
+  "variant": "without-one-shot-observation",
+  "counterfactual": "Remove only retained one-shot validation; original counter/value/readiness comparisons remain.",
+  "inputs": {
+    "source:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+      "sha256": "191cd7c9ac906b4b194c4a512cea8fa1d9f3dc58d8cdad6777b461d95ce043b2",
+      "bytes": 89924
+    },
+    "source:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": {
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "bytes": 36770
+    },
+    "source:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift": {
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "bytes": 27583
+    },
+    "source:Source/UI/iOS/Managers/iOSNavigationManager.swift": {
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "bytes": 45301
+    },
+    "source:Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift": {
+      "sha256": "7500e261a20ac8c1ea672d944c084ec52d0c4c62a02b8788b6953171636cde21",
+      "bytes": 1195
+    },
+    "peer:Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift": {
+      "sha256": "6cdcbdea01f060b274a62be9baf24d5dc7fe7a94b4da869d29acd8d887c930ba",
+      "bytes": 35707
+    }
+  },
+  "generatedSHA256": "933915f7e3ba367bb807d40403efd643982a2a64388ac334479ac9780c9e9b5a",
+  "domainSHA256": "f6dfb6e7f43af6c4c361189671670e0b2e7e55e395796bce1335bd0b978cdb98",
+  "controlsSHA256": "f377b56973fe06b4299557a27643c3bfb2f2eb7df54892b9d1bb665567146c6f",
+  "extractedBodies": [
+    "MaktabahNativeSefariaRootSource",
+    "MaktabahNativeRootPublicationSource",
+    "NativeComponentSourceObservation",
+    "original manager mode/book declarations",
+    "original Workspace state revision/advance",
+    "original bindings.isPresentationReady",
+    "Session.isSefariaOriginalRootReady",
+    "Session RN readiness branch",
+    "Session.waitUntilVisible"
+  ]
+}

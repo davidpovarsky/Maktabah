@@ -12,6 +12,7 @@ struct MaktabahNativePublicPresentation {
     let witnessedReader: NativeSurfaceState?
     var searchFieldAvailable: Bool = false
     var readyTableOfContents: Bool = false
+    var readySefariaSurface: Bool = false
     var readyWorkspaceParents: Set<UIDestinationID> = []
     var availableComponents: [UIDestinationID: Set<UIDestinationID>] = [:]
     var inspectorAvailable: Bool = false
@@ -21,6 +22,7 @@ struct MaktabahNativePublicPresentation {
     func ready(for destination: UIDestinationID) -> Bool {
         switch destination.rawValue {
         case "native.reader.toc": return readyTableOfContents
+        case "native.sefariaEmbedded": return readySefariaSurface
         case "native.workspace.profiles", "native.workspace.overview":
             return readyWorkspaceParents.contains(destination)
         default: return ready
@@ -62,6 +64,7 @@ struct MaktabahNativePublicPresentation {
          presentation: @escaping @MainActor () throws -> MaktabahNativePublicPresentation,
          validateParentSource: @escaping @MainActor (UIDestinationID, UUID) throws -> Void = { destination, _ in
              guard MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) == nil,
+                   destination != MaktabahNativeSefariaSurfaceBinding.destination,
                    MaktabahApp.isIpad || destination != MaktabahNativeTOCComponents.destination else {
                  throw UIRouteError(.unavailable, "native_parent_source_missing")
              }
@@ -119,7 +122,7 @@ struct MaktabahNativePublicPresentation {
         guard live.active, live.lifetimeID == lease.lifetimeID else { throw UIRouteError(.staleState, "public_binding_lifetime_changed") }
         return live
     }
-    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader, inspector, workspaceProfiles, workspaceOverview }
+    private enum Shape { case library, tableOfContents, history, search, annotations, settings, reader, inspector, workspaceProfiles, workspaceOverview, sefariaEmbedded }
     private func shape(destination: UIDestinationID, presentation: PublicNavigationSpecV2.Presentation,
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
         if let component {
@@ -150,6 +153,7 @@ struct MaktabahNativePublicPresentation {
         case ("native.settings", .sheet, false): return .settings
         case ("native.workspace.profiles", .sheet, false): return .workspaceProfiles
         case ("native.workspace.overview", .sheet, false): return .workspaceOverview
+        case ("native.sefariaEmbedded", .sheet, false): return .sefariaEmbedded
         case ("native.reader.inspector", .inspector, false): return .inspector
         case ("native.reader", .currentTab, true), ("native.reader", .newTab, true): return .reader
         default: throw UIRouteError(.notSupported, "public_binding_variant_not_installed")
@@ -183,7 +187,7 @@ struct MaktabahNativePublicPresentation {
         case .tableOfContents:
             guard visible.tableOfContentsAvailable else { throw UIRouteError(.unavailable, "native_toc_unavailable") }
             tab = .absent; inspector = nil
-        case .library, .settings, .search, .annotations, .workspaceProfiles, .workspaceOverview:
+        case .library, .settings, .search, .annotations, .workspaceProfiles, .workspaceOverview, .sefariaEmbedded:
             tab = .absent; inspector = nil
         case .inspector:
             guard visible.inspectorAvailable, let actualInspectorVisible = visible.witnessedInspectorVisible,
@@ -280,7 +284,8 @@ struct MaktabahNativePublicPresentation {
                          supported: false, ready: false, allowed: false)
         }
         let root: PublicNavigationSpecV2.Presentation = descriptor.id.rawValue == "native.settings"
-            || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: descriptor.id.rawValue) != nil ? .sheet
+            || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: descriptor.id.rawValue) != nil
+            || descriptor.id == MaktabahNativeSefariaSurfaceBinding.destination ? .sheet
             : descriptor.id.rawValue == "native.reader.inspector" ? .inspector : .currentTab
         return try await assessPublicVariant(.init(destination: descriptor.id, presentation: root, component: nil,
             requiresContent: descriptor.requiresContent), scene: scene, context: context, invocation: invocation)

@@ -1,0 +1,43 @@
+PASS root capture preserves all original +0 owners
+PASS selectedTab A-B-A before original mode publication revokes
+PASS equal original selectedTab write revokes
+PASS Settings false-true-false before view mount revokes
+PASS equal original Settings false write revokes
+PASS last finite selection revision permits zero writes then exhausts
+PASS exhausted Settings revision never re-arms
+PASS original mode A-B-A revokes
+PASS equal original mode publication revokes
+PASS original mode exhaustion fails closed
+PASS original selectedBook A-B-A revokes
+PASS same original selectedBook assignment revokes
+PASS original book exhaustion fails closed
+PASS foreign Workspace local State A-B-A revokes
+PASS foreign Workspace exhausted publication never re-arms
+PASS original geometry alone does not change Workspace State source
+PASS replaced Workspace state owner with same counter is refused
+PASS missing original source counters refuse capture
+PASS replaced root publication object with equal values is refused
+PASS replaced original manager with equal values is refused
+PASS Donation modal A-B-A consumes original observation
+PASS original Reader popover A-B-A consumes observation
+PASS original Sidebar blocker A-B-A consumes observation
+PASS background-foreground does not renew original source
+PASS foreign note editor presentation A-B-A consumes observation
+PASS native window owner invalidation cannot be rearmed
+PASS cold RN requires actual original ready window
+PASS cold RN does not substitute a missing window owner
+PASS cold RN cannot use unavailable original runtime/backend
+PASS Settings remains blocking without dismissal
+PASS foreign Workspace presentation remains blocking
+PASS own applied continuation can await only its same transition
+PASS own continuation cannot bypass foreign Settings
+PASS pending requested sheet without actual mount is not fresh readiness
+PASS warm original sheet requires stable real host facets
+PASS foreign foreground lifetime and ended command cannot continue
+PASS structured RN wait cannot inspect or report marker before original child drains
+PASS cancelled original RN child joins before shared wait returns
+PASS original RN invalidation stops before marker observation
+PASS Settings ABA during original RN wait is checked again before marker
+PASS RN source proof alone cannot replace missing native marker
+PASS different submission cannot start original RN child
+RESULT 42 PASS / 0 FAIL

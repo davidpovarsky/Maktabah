@@ -1,0 +1,23 @@
+{
+  "scope": "Actual RN root/Session wait and original note setter bodies over explicit Foundation/Observation app/UI/React boundary substitutes. No SDK/app/native execution.",
+  "compileCommand": [
+    "swiftc",
+    "-swift-version",
+    "6",
+    "-strict-concurrency=complete",
+    "-parse-as-library",
+    "-module-cache-path",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-search-entry-20261127/module-cache",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/controls-attempt-3-original-note-setter/Generated.swift",
+    "-o",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-sefaria-routing-20261127/docs/hq-ui-inventory/wave3-sefaria-routing-20261127/validation/controls-attempt-3-original-note-setter/Controls"
+  ],
+  "compileExit": 0,
+  "compileSeconds": 6.234943108633161,
+  "executionExit": 0,
+  "summary": [
+    "RESULT 48 PASS / 0 FAIL"
+  ],
+  "failures": [],
+  "freeBytes": 875798528
+}
