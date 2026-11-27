@@ -1,0 +1,28 @@
+{
+  "prefixBytes": 307308,
+  "prefixSHA256": "e0fff6e19dc8bdea7b2f6e9a6a79f874f652c60816b6302dc6993f1a79019b1d",
+  "prefixExact": true,
+  "newHelperNames": [
+    "publicSearchEvidenceFile",
+    "publicSearchReturn",
+    "publicSearchReference",
+    "publicSearchLink",
+    "actualPublicSearchTarget",
+    "prefix",
+    "runPublicSearchContinuation"
+  ],
+  "existingHelperCollision": false,
+  "selectors": [
+    "testPadPublicLoadedSearchHitIntentEnglish",
+    "testPadPublicNextSearchPageIntentHebrew",
+    "testPadPublicLoadedSearchHitHTTPSHebrew",
+    "testPadPublicNextSearchPageCustomURLEnglish",
+    "testPhonePublicLoadedSearchHitIntentHebrew",
+    "testPhonePublicNextSearchPageIntentEnglish",
+    "testPhonePublicNextSearchPageHTTPSHebrew",
+    "testPhonePublicLoadedSearchHitCustomURLEnglish"
+  ],
+  "selectorCount": 8,
+  "native": "NOT_RUN",
+  "AppleSDK": "NOT_RUN"
+}
