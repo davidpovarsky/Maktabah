@@ -1,6 +1,7 @@
 #if DEBUG && canImport(UIKit)
 import SwiftUI
 import UIKit
+import CryptoKit
 
 /// Read-only test observation of the original TextKit view. No renderer hooks,
 /// viewport mutations or acceptance elements are installed. A fresh request ID
@@ -128,6 +129,12 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
                         "schema": 1, "status": "UNAVAILABLE", "reason": "encoded-report-cap"
                     ]
                 }
+                // Raw bounded metrics use a separate atomic companion so the
+                // existing 65 KiB viewport readers and source/selection limits
+                // remain unchanged. This runs only on the original fresh
+                // post-epoch request, outside any SQLite/recorder ownership.
+                report["sqliteFetchWaitObservation"] = ReaderSQLiteFetchWaitSnapshotExport.write(
+                    requestID: request, prefix: prefix)
             }
 
             if ProcessInfo.processInfo.environment["CHAVRUSA_READER_SELECTION_OBSERVATION"] == "1" {
@@ -144,6 +151,51 @@ struct ReaderViewportAcceptanceObserver: UIViewRepresentable {
                 // A missing report fails the requesting XCTest. Observation
                 // must never crash or change the reader under test.
             }
+        }
+    }
+}
+
+enum ReaderSQLiteFetchWaitSnapshotExport {
+    static let maximumBytes = 1_048_576
+
+    static func write(requestID: String, prefix: String) -> [String: Any] {
+        var unavailable: [String: Any] = ["schema": 1, "status": "UNAVAILABLE", "requestID": requestID,
+                                         "processID": ProcessInfo.processInfo.processIdentifier]
+        guard let snapshot = SQLiteFetchWaitObservation.snapshot(requestID: requestID) else {
+            unavailable["reason"] = "observation-disabled-or-invalid-request"
+            return unavailable
+        }
+        do {
+            let bytes = try JSONSerialization.data(withJSONObject: snapshot, options: [.sortedKeys])
+            guard bytes.count <= maximumBytes else {
+                unavailable["reason"] = "encoded-snapshot-cap"
+                return unavailable
+            }
+            let path = prefix + ".sqlite-fetch-wait.json"
+            let descriptor: [String: Any] = [
+                "schema": 1, "status": "AVAILABLE", "requestID": requestID,
+                "processID": ProcessInfo.processInfo.processIdentifier,
+                "snapshotPath": path, "bytes": bytes.count,
+                "sha256": SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined(),
+                "completeLifetimeCoverage": snapshot["completeLifetimeCoverage"] ?? false,
+                "activeCount": snapshot["activeCount"] ?? NSNull(),
+                "completedRetainedCount": snapshot["completedRetainedCount"] ?? NSNull(),
+                "lifetimeDropped": snapshot["lifetimeDropped"] ?? NSNull(),
+                "lifetimeOverwritten": snapshot["lifetimeOverwritten"] ?? NSNull(),
+                "scope": "Bounded passive fetch lock observations; not performance acceptance"
+            ]
+            guard try JSONSerialization.data(withJSONObject: descriptor, options: [.sortedKeys]).count <= 2048 else {
+                unavailable["reason"] = "encoded-descriptor-cap"
+                return unavailable
+            }
+            // One bounded file is replaced, never an unbounded export queue.
+            try bytes.write(to: URL(fileURLWithPath: path), options: .atomic)
+            return descriptor
+        } catch {
+            // The original source request still reports the unavailable metric.
+            // An older companion can never qualify a different request ID/hash.
+            unavailable["reason"] = "snapshot-encoding-or-write-failed"
+            return unavailable
         }
     }
 }

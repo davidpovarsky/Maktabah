@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "originalMacDirectory": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/sqlite-fetch-wait-20261127T051704Z",
+  "files": {
+    "release-compile.stderr": {
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    },
+    "baseline-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ReaderSelectionRangeMapper.swift": {
+      "bytes": 8095,
+      "sha256": "97f05de4dcb3ce774b3ac6f881ab352501695793f861bb0efdcb42f5b54cf8af"
+    },
+    "whole-observer-ios-sdk-typecheck.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "OriginalHighlightSnapshot.swift": {
+      "bytes": 1986,
+      "sha256": "669b84059048ffd2088d8cc45dd5cad06ab7e0263a4471504d74255190c82546"
+    },
+    "RESULT.json": {
+      "bytes": 8280,
+      "sha256": "b4e28dbca8e6da702bb31b759dde339e738dc0e782048ac11fdc4bdce492bda1"
+    },
+    "INPUT.json": {
+      "bytes": 131872,
+      "sha256": "c0f5bbc3ba6eb2ffe224cad1be10486fd7445ddcb4a97fcf35194a2cb0c0bbdd"
+    },
+    "CandidateObserver.swift": {
+      "bytes": 17268,
+      "sha256": "3d85e2a11b80234d28fc0d8423e73030cc424a3aeaaee1bd7be8d78f1d54517b"
+    },
+    "whole-observer-ios-sdk-typecheck.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "OriginalSQLiteDatabase.swift": {
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    "release-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-compile.stderr": {
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    },
+    "whole-observer-catalyst-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "AppTypeBoundaries.swift": {
+      "bytes": 745,
+      "sha256": "fdb3f11840870db015a594024f347bab87b9ffcdf9907b8bee396cb2aa9aaf2f"
+    },
+    "candidate-compile.stderr": {
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    },
+    "OriginalTextDeltaEvent.swift": {
+      "bytes": 1690,
+      "sha256": "8919ea1f148c37b7004b904b2c8fbfdbd1bc14f1518dac0f3983495fd496bb5d"
+    },
+    "OriginalArabicRenderResult.swift": {
+      "bytes": 3982,
+      "sha256": "3d5470ca7dfa34ebebc5fdf83065eb337649b757ea1952890f4bd4993eb95c01"
+    },
+    "SQLiteFetchWaitControls.swift": {
+      "bytes": 19570,
+      "sha256": "4980d0e7412bbb068e2cf3d31fc0e67eec69d3a05d7fef20f391876ea90b2a37"
+    },
+    "CandidateSQLiteDatabase.swift": {
+      "bytes": 28139,
+      "sha256": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661"
+    },
+    "candidate-compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "UnusedZstdBoundary.swift": {
+      "bytes": 443,
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    "whole-observer-catalyst-compile.stderr": {
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    }
+  },
+  "binariesRetainedOnMac": {},
+  "transportExit": 0,
+  "compressedTransferSHA256": "f2657a8edab97e3cd8ff18315b69984408a2998f88290e32e54aca3337b13927",
+  "scope": "Exact retained source controls and their original raw observations; no application UI/performance acceptance"
+}

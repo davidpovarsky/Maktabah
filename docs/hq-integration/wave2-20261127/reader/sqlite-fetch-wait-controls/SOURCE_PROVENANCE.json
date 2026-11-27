@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "originalCheckoutHEAD": "298770025ec4b15429cd8e86f2d9ef92d07d2382",
+  "actualAppleResult": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/RESULT.json",
+  "actualAppleResultSHA256": "00a7e67662d7b3a92511be1a85d99dfad665e69f02acb80e9ece83391c37a7ee",
+  "productFiles": {
+    "Source/Core/Database/SQLiteDatabase.swift": {
+      "beforeSHA256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3",
+      "afterSHA256": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661",
+      "matchesActualAppleInput": true
+    },
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": {
+      "beforeSHA256": "742d3e9dec8c432c8bfebea5f6e8d31b0188202f786501d24057556fb93f9bd2",
+      "afterSHA256": "3d85e2a11b80234d28fc0d8423e73030cc424a3aeaaee1bd7be8d78f1d54517b",
+      "matchesActualAppleInput": true
+    }
+  },
+  "applicationUIExecuted": 0
+}
