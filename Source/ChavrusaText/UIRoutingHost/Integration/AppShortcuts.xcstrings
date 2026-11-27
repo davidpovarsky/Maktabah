@@ -30,6 +30,16 @@
           }
         }
       }
+    },
+    "Open reader tab ${tab} in ${applicationName}": {
+      "localizations": {
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת כרטיסיית הקריאה ${tab} באפליקציה ${applicationName}"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

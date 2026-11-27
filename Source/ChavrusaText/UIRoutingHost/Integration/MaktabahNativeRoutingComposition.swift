@@ -240,6 +240,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             .init(id: id("native.reader.noteDraft"), title: "Note Draft".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.sheet],
                   requiredCoreActions: ["notes.prepareDraft"]),
+            .init(id: NativeReaderTabIntentService.destination, title: "Reader tab".localized, implementation: .implemented,
+                  supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: []),
             .init(id: id("native.reader"), title: "Reader".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab, .newTab],
                   requiredCoreActions: ["reader.open"], requiresContent: true,
@@ -2097,6 +2099,86 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
     }
 
+    /// Existing live tabs in the original mounted scene/profile/group. This is
+    /// metadata only: no foreground change, context, grant or Reader allocation.
+    private func readerTabIntentEntities() throws -> [NativeReaderTabIntentService.Tab] {
+        try Task.checkCancellation()
+        let snapshot = try backend.currentBackendSnapshot()
+        var values: [NativeReaderTabIntentService.Tab] = []
+        for (_, entry) in scenes.sorted(by: { $0.key.rawValue < $1.key.rawValue }) where entry.session.mounted {
+            values += try entry.session.readerTabCatalog(
+                windowTitle: entry.session.windowLabel(number: entry.windowNumber))
+        }
+        try Task.checkCancellation()
+        guard try backend.currentBackendSnapshot() == snapshot,
+              values.allSatisfy({ $0.backend == snapshot.backend }) else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        return values
+    }
+
+    /// Keep the exact existing tab source across activation and Core awaits.
+    /// Only the original native selection owner may publish its one planned
+    /// mapping transition; the canonical orchestrator still owns all authority.
+    private func openReaderTabIntent(_ target: NativeReaderTabIntentService.Tab,
+                                     requestID: UUID) async throws -> UISceneAcknowledgement {
+        try Task.checkCancellation()
+        let snapshot = try backend.currentBackendSnapshot()
+        guard target.backend == snapshot.backend, let entry = scenes[target.sceneID],
+              entry.session.mounted, let manager = entry.manager,
+              entry.managerID == ObjectIdentifier(manager), contexts[target.sceneID] == nil else {
+            throw UIRouteError(.staleState, "intent_window_no_longer_available")
+        }
+        let bound = try entry.session.retainReaderTabSelection(target, requestID: requestID)
+        defer { entry.session.releaseReaderTabSelection(bound) }
+        let end = deadline()
+        func validateSource(context expectedContext: ActionExecutionContext?) throws {
+            try Task.checkCancellation()
+            guard let current = scenes[target.sceneID], current.managerID == entry.managerID,
+                  current.manager === manager, current.session === entry.session,
+                  current.session.mounted, current.session.foreground,
+                  contexts[target.sceneID] == expectedContext,
+                  try backend.currentBackendSnapshot() == snapshot else {
+                throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+            }
+            try bound.validate()
+        }
+        let mountedScene = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: entry.managerID)
+        }
+        guard mountedScene == target.sceneID else {
+            throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+        }
+        try validateSource(context: nil)
+        // Retire prior mapping contracts BEFORE acquiring this request's Core
+        // authority. The same retained source, tab and deadline remain in force.
+        try entry.session.reserveReaderTabSelection(bound)
+        try validateSource(context: nil)
+        let context = context(sceneID: target.sceneID, origin: .appIntent, snapshot: snapshot)
+        try issue(context, sceneID: target.sceneID)
+        defer { finish(context, sceneID: target.sceneID) }
+        let invocation = ActionPortInvocation(requestId: requestID, snapshot: snapshot,
+                                             deadlineUptimeNanoseconds: end)
+        let scene = try await directory.currentScene(sceneID: target.sceneID, context: context, invocation: invocation)
+        try validateSource(context: context)
+        let route = try entry.session.prepareReaderTabRoute(bound, invocation: invocation, scene: scene)
+        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+        let result = try await orchestrator.commit(command, context: context)
+        if case .acknowledged(let receipt) = result {
+            do {
+                try validateSource(context: context)
+                try entry.session.validateReaderTabCompletion(bound, receipt: receipt)
+                try validateSource(context: context)
+            } catch {
+                // Preserve an observed effect if source/visibility/cancellation
+                // changes after ACK; never invent a new successful receipt.
+                throw NativeReaderTabIntentService.Failure(receipt: receipt, code: "native_effect_uncertain")
+            }
+        }
+        record(result)
+        return result
+    }
+
     func installIntentDependency() {
         guard !intentsInstalled else { return }
         let service = NativeIntentService(discover: { [self] in
@@ -2138,6 +2220,14 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "reader_navigation"); throw error }
         })
         AppDependencyManager.shared.add(dependency: readerService)
+        let tabService = NativeReaderTabIntentService(discover: { [self] in
+            do { return try readerTabIntentEntities() }
+            catch { logIntentFailure(error, stage: "reader_tab_metadata"); throw error }
+        }, navigate: { [self] target, requestID in
+            do { return try await openReaderTabIntent(target, requestID: requestID) }
+            catch { logIntentFailure(error, stage: "reader_tab_navigation"); throw error }
+        })
+        AppDependencyManager.shared.add(dependency: tabService)
         let searchService = NativeSearchIntentService(snapshot: { [self] in
             try backend.currentBackendSnapshot()
         }, windows: { [self] in

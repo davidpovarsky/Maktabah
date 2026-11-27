@@ -15091,6 +15091,91 @@
           }
         }
       }
+    },
+    "Reader tab": {
+      "comment": "Original live Reader-tab App Intent. Interpolation follows the existing destination/book catalog contract; Apple metadata extraction remains required.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reader tab"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כרטיסיית קריאה"
+          }
+        }
+      }
+    },
+    "Open a reader tab": {
+      "comment": "Original live Reader-tab App Intent. Interpolation follows the existing destination/book catalog contract; Apple metadata extraction remains required.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a reader tab"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת כרטיסיית קריאה"
+          }
+        }
+      }
+    },
+    "Open reader tab": {
+      "comment": "Original live Reader-tab App Intent. Interpolation follows the existing destination/book catalog contract; Apple metadata extraction remains required.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open reader tab"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת כרטיסיית קריאה"
+          }
+        }
+      }
+    },
+    "Select an existing reader tab in the current study profile, group and library of the selected Maktabah window.": {
+      "comment": "Original live Reader-tab App Intent. Interpolation follows the existing destination/book catalog contract; Apple metadata extraction remains required.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select an existing reader tab in the current study profile, group and library of the selected Maktabah window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחירת כרטיסיית קריאה קיימת בפרופיל הלימוד, בקבוצה ובספרייה הנוכחיים בחלון אוצריא שנבחר."
+          }
+        }
+      }
+    },
+    "Open ${tab}": {
+      "comment": "Original live Reader-tab App Intent. Interpolation follows the existing destination/book catalog contract; Apple metadata extraction remains required.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open ${tab}"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת ${tab}"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

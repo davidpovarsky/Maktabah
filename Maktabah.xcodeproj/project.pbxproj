@@ -1310,6 +1310,7 @@
 		0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */; };
 		B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */; };
 		F2AD42BF9D75E1CCC26788D5 /* StudyWorkspaceMappingOwnership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */; };
+		0147357DB79764E276AE1734 /* StudyWorkspaceTabSelectionReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EBADAF2187FA90C9A54505 /* StudyWorkspaceTabSelectionReservation.swift */; };
 		4AC1B94E53D4565B1277EB5E /* DocumentTabsHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C836B89C31C005A845669 /* DocumentTabsHost.swift */; };
 		2BA4D3E268150206B50CE829 /* ReaderBookTabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FCA5A550FADFADA13D7A3D /* ReaderBookTabsModel.swift */; };
 		A88154B857645A7CAF251D72 /* ReaderTabFadeOutLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3327565FE0F4D12098FBBD3D /* ReaderTabFadeOutLabel.swift */; };
@@ -1449,6 +1450,7 @@
 		5C12DC5FD970F6D82B213DE0 /* MaktabahNativePhoneTOCPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */; };
 		641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */; };
 		08EAB23AB03ED0077FDEADFD /* MaktabahNativeSearchEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */; };
+		6B23D6D5CEF1B1ABE2E3E6AF /* MaktabahNativeReaderTabBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF830EF2F76ECCB2A6E93A27 /* MaktabahNativeReaderTabBinding.swift */; };
 		1E513E12221C0FEB9B9BCEE8 /* MaktabahNativeHistoryRecordViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED28240DD89DB1CE3FE0058 /* MaktabahNativeHistoryRecordViews.swift */; };
 		136F1EA6A457AEEB63D4995F /* MaktabahNativeHistoryRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCF16F3D1C3D5C6F5010A18 /* MaktabahNativeHistoryRecords.swift */; };
 		7DBDC48C30D136AA385A1CDF /* MaktabahNativeSefariaSurfaceBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B87619CD439FE744CDCE0C /* MaktabahNativeSefariaSurfaceBinding.swift */; };
@@ -2203,6 +2205,7 @@
 		7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspacePersistence.swift"; sourceTree = "<group>"; };
 		38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/StudyWorkspaceStore.swift"; sourceTree = "<group>"; };
 		5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/StudyWorkspace/StudyWorkspaceMappingOwnership.swift; sourceTree = SOURCE_ROOT; };
+		E5EBADAF2187FA90C9A54505 /* StudyWorkspaceTabSelectionReservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/StudyWorkspace/StudyWorkspaceTabSelectionReservation.swift; sourceTree = SOURCE_ROOT; };
 		990C836B89C31C005A845669 /* DocumentTabsHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DocumentTabsHost.swift"; sourceTree = "<group>"; };
 		C9FCA5A550FADFADA13D7A3D /* ReaderBookTabsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderBookTabsModel.swift"; sourceTree = "<group>"; };
 		3327565FE0F4D12098FBBD3D /* ReaderTabFadeOutLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift"; sourceTree = "<group>"; };
@@ -2292,6 +2295,7 @@
 		8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift; sourceTree = "<group>"; };
 		122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift; sourceTree = "<group>"; };
 		F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSearchEntry.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift; sourceTree = "<group>"; };
+		CF830EF2F76ECCB2A6E93A27 /* MaktabahNativeReaderTabBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeReaderTabBinding.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeReaderTabBinding.swift; sourceTree = "<group>"; };
 		DED28240DD89DB1CE3FE0058 /* MaktabahNativeHistoryRecordViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeHistoryRecordViews.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecordViews.swift; sourceTree = "<group>"; };
 		1BCF16F3D1C3D5C6F5010A18 /* MaktabahNativeHistoryRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeHistoryRecords.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift; sourceTree = "<group>"; };
 		57B87619CD439FE744CDCE0C /* MaktabahNativeSefariaSurfaceBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MaktabahNativeSefariaSurfaceBinding.swift; path = Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSefariaSurfaceBinding.swift; sourceTree = "<group>"; };
@@ -2446,6 +2450,7 @@
 				990C836B89C31C005A845669 /* DocumentTabsHost.swift */,
 				38B97DF0DEF05B94BF47F3D6 /* StudyWorkspaceStore.swift */,
 				5F7B5E7CFC1C5368638997DD /* StudyWorkspaceMappingOwnership.swift */,
+				E5EBADAF2187FA90C9A54505 /* StudyWorkspaceTabSelectionReservation.swift */,
 				7C1CFB38BF18B871F499F3AF /* StudyWorkspacePersistence.swift */,
 				6930BB1B38DAAAEDD6116B80 /* StudyWorkspaceNavigationAdapter.swift */,
 				C9336519789154002DB5A1B7 /* StudyGroupSwitchPerformanceObservation.swift */,
@@ -4033,6 +4038,7 @@
 				8BE06AC18C74083897E6428B /* MaktabahNativePhoneTOCPresentation.swift */,
 				122AC74686C1F87D2B9FBA56 /* MaktabahNativeLibraryComponents.swift */,
 				F95F1BA3F98DDA37711CAB38 /* MaktabahNativeSearchEntry.swift */,
+				CF830EF2F76ECCB2A6E93A27 /* MaktabahNativeReaderTabBinding.swift */,
 				DED28240DD89DB1CE3FE0058 /* MaktabahNativeHistoryRecordViews.swift */,
 				1BCF16F3D1C3D5C6F5010A18 /* MaktabahNativeHistoryRecords.swift */,
 				5BD780D5143563A4BC2ED614 /* MaktabahNativeSefariaSurfacePresentation.swift */,
@@ -5241,6 +5247,7 @@
 				5C12DC5FD970F6D82B213DE0 /* MaktabahNativePhoneTOCPresentation.swift in Sources */,
 				641384BB990C84731287AA3A /* MaktabahNativeLibraryComponents.swift in Sources */,
 				08EAB23AB03ED0077FDEADFD /* MaktabahNativeSearchEntry.swift in Sources */,
+				6B23D6D5CEF1B1ABE2E3E6AF /* MaktabahNativeReaderTabBinding.swift in Sources */,
 				1E513E12221C0FEB9B9BCEE8 /* MaktabahNativeHistoryRecordViews.swift in Sources */,
 				136F1EA6A457AEEB63D4995F /* MaktabahNativeHistoryRecords.swift in Sources */,
 				82AEF0CA294D2BD71A5CA816 /* MaktabahNativeSefariaSurfacePresentation.swift in Sources */,
@@ -5304,6 +5311,7 @@
 				0A17F7E8BBDA06247E7CAF65 /* StudyWorkspacePersistence.swift in Sources */,
 				B51EE7D17CE12DEE940894A0 /* StudyWorkspaceStore.swift in Sources */,
 				F2AD42BF9D75E1CCC26788D5 /* StudyWorkspaceMappingOwnership.swift in Sources */,
+				0147357DB79764E276AE1734 /* StudyWorkspaceTabSelectionReservation.swift in Sources */,
 				4AC1B94E53D4565B1277EB5E /* DocumentTabsHost.swift in Sources */,
 				2BA4D3E268150206B50CE829 /* ReaderBookTabsModel.swift in Sources */,
 				A88154B857645A7CAF251D72 /* ReaderTabFadeOutLabel.swift in Sources */,
