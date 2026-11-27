@@ -190,4 +190,151 @@ import OtzariaUIRouting
         XCTAssertEqual(owner.renderRevision, 0)
     }
 
+    func testDeferredRevealWaitsForNewOriginalLayoutBeforeVisibleAcknowledgement() async throws {
+        let source = Source(), owner = owner(source), id = UUID(), view = UUID()
+        owner.attach(viewID: view, blocked: { false })
+        try begin(owner, source: source, id: id)
+        try owner.apply(requestID: id)
+        owner.observe(anchor: anchor, token: UUID()) { [anchor, scene] in
+            .init(anchor: anchor, sceneID: scene, isVisible: true)
+        }
+        owner.render(viewID: view, layoutRevision: 7) { target, phase in
+            XCTAssertEqual(phase, .initial)
+            source.reveals.append(target)
+            return .awaitingOriginalLayout
+        }
+        XCTAssertNil(owner.actualFocus(in: scene), "An expanded branch is not a completed original reveal")
+        for revision in [UInt64(6), 7] {
+            owner.render(viewID: view, layoutRevision: revision) { _, _ in
+                XCTFail("No later original layout has been published")
+                return .rendered
+            }
+        }
+        owner.render(viewID: view, layoutRevision: 8) { target, phase in
+            XCTAssertEqual(phase, .afterOriginalLayout)
+            source.reveals.append(target)
+            return .rendered
+        }
+        XCTAssertEqual(source.reveals, [anchor, anchor])
+        XCTAssertEqual(owner.actualFocus(in: scene)?.anchor, anchor)
+        XCTAssertEqual(source.captures, 1, "The continuation cannot acquire a replacement source")
+        XCTAssertEqual(owner.renderRevision, 1, "Only the original canonical apply occurs")
+    }
+
+    func testDeferredRevealKeepsOriginalDeadlineAndSourceAcrossLayout() async throws {
+        for sourceChanged in [false, true] {
+            let source = Source(), owner = owner(source), id = UUID(), view = UUID()
+            owner.attach(viewID: view, blocked: { false })
+            try begin(owner, source: source, id: id)
+            try owner.apply(requestID: id)
+            owner.render(viewID: view, layoutRevision: 0) { target, _ in
+                source.reveals.append(target); return .awaitingOriginalLayout
+            }
+            if sourceChanged { source.epoch += 1 } else { source.live = false }
+            owner.render(viewID: view, layoutRevision: 1) { _, _ in
+                XCTFail("A layout callback cannot renew an expired/revoked admission")
+                return .rendered
+            }
+            XCTAssertEqual(source.reveals, [anchor])
+            XCTAssertNil(owner.actualFocus(in: scene))
+            XCTAssertEqual(source.captures, 1)
+        }
+    }
+
+    func testOldViewLayoutCannotResumeAfterOriginalMountIsReplaced() async throws {
+        let source = Source(), owner = owner(source), id = UUID(), old = UUID(), replacement = UUID()
+        owner.attach(viewID: old, blocked: { false })
+        try begin(owner, source: source, id: id)
+        try owner.apply(requestID: id)
+        owner.render(viewID: old, layoutRevision: 0) { target, _ in
+            source.reveals.append(target); return .awaitingOriginalLayout
+        }
+        owner.detach(viewID: old)
+        owner.attach(viewID: replacement, blocked: { false })
+        XCTAssertFalse(owner.owns(viewID: old))
+        XCTAssertTrue(owner.owns(viewID: replacement))
+        for view in [old, replacement] {
+            owner.render(viewID: view, layoutRevision: 100) { _, _ in
+                XCTFail("Neither stale callback nor replacement can inherit the old request")
+                return .rendered
+            }
+        }
+        XCTAssertEqual(source.reveals, [anchor])
+        XCTAssertNil(owner.actualFocus(in: scene))
+    }
+
+    func testEachContinuationNeedsStrictlyNewLayoutAndCompletedRevealCannotReplay() async throws {
+        let source = Source(), owner = owner(source), id = UUID(), view = UUID()
+        owner.attach(viewID: view, blocked: { false })
+        try begin(owner, source: source, id: id)
+        try owner.apply(requestID: id)
+        for revision in [UInt64(20), 19, 20, 21, 21, 22, 23] {
+            owner.render(viewID: view, layoutRevision: revision) { target, phase in
+                source.reveals.append(target)
+                XCTAssertEqual(phase, source.reveals.count == 1 ? .initial : .afterOriginalLayout)
+                return source.reveals.count < 3 ? .awaitingOriginalLayout : .rendered
+            }
+        }
+        XCTAssertEqual(source.reveals.count, 3)
+        XCTAssertNil(owner.actualFocus(in: scene), "A render result is never a visible witness")
+        owner.observe(anchor: anchor, token: UUID()) { [anchor, scene] in
+            .init(anchor: anchor, sceneID: scene, isVisible: true)
+        }
+        XCTAssertEqual(owner.actualFocus(in: scene)?.anchor, anchor)
+    }
+
+    func testSourceChangedByOriginalCallbackIsRevalidatedBeforeCompletion() async throws {
+        let source = Source(), owner = owner(source), id = UUID(), view = UUID()
+        var revocations = 0
+        owner.install(changed: {}, invalidated: { revocations += 1 })
+        owner.attach(viewID: view, blocked: { false })
+        try begin(owner, source: source, id: id)
+        try owner.apply(requestID: id)
+        owner.observe(anchor: anchor, token: UUID()) { [anchor, scene] in
+            .init(anchor: anchor, sceneID: scene, isVisible: true)
+        }
+        owner.render(viewID: view, layoutRevision: 0) { _, _ in
+            source.epoch += 1
+            return .rendered
+        }
+        XCTAssertEqual(revocations, 1)
+        XCTAssertNil(owner.actualFocus(in: scene))
+    }
+
+    func testReentrantOriginalLayoutCallbackCannotRenderTwice() async throws {
+        let source = Source(), owner = owner(source), id = UUID(), view = UUID()
+        owner.attach(viewID: view, blocked: { false })
+        try begin(owner, source: source, id: id)
+        try owner.apply(requestID: id)
+        owner.render(viewID: view, layoutRevision: 0) { target, _ in
+            source.reveals.append(target)
+            owner.render(viewID: view, layoutRevision: 1) { _, _ in
+                XCTFail("A synchronous callback cannot recursively borrow the same apply")
+                return .rendered
+            }
+            return .rendered
+        }
+        XCTAssertEqual(source.reveals, [anchor])
+        XCTAssertEqual(owner.renderRevision, 1)
+    }
+
+    func testMountedAnchorAvailabilityDoesNotHideOtherOriginalControls() async throws {
+        let source = Source(), view = UUID()
+        let other = UIDestinationID(rawValue: "native.settings.history")!
+        let owner = NativeComponentRevealOwner(destination: destination, presentation: .sheet,
+            descriptors: [.init(anchor: anchor, title: "Appearance"), .init(anchor: other, title: "History")],
+            available: { _ in true })
+        owner.attach(viewID: view, blocked: { false }, componentAvailable: { [anchor] candidate in
+            candidate != anchor || !source.blocked
+        })
+        XCTAssertTrue(owner.isAvailable(anchor))
+        source.blocked = true
+        XCTAssertFalse(owner.isAvailable(anchor), "The getter reads live original control state")
+        XCTAssertTrue(owner.isAvailable(other), "A private filter need not hide unrelated original controls")
+        XCTAssertThrowsError(try owner.retainSource(requestID: UUID(), anchor: anchor))
+        let allowed = UUID()
+        try owner.retainSource(requestID: allowed, anchor: other)
+        try owner.validateSource(requestID: allowed, anchor: other)
+    }
+
 }

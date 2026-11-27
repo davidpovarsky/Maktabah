@@ -1,0 +1,18 @@
+{
+  "returncode": 0,
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-frontend",
+    "-parse",
+    "-target",
+    "arm64-apple-ios27.0",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-layout-20261127/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-component-layout-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+  ],
+  "output": "",
+  "scope": "active_iOS27_syntax_NOT_SDK_typecheck",
+  "sources": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "8ae179e3204b31fcf28bd0f55c7e4dcd790355337b0b13813ac04d7c4f40bf44",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074"
+  }
+}

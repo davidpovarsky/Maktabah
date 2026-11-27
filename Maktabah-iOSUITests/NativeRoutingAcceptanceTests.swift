@@ -2661,7 +2661,8 @@ extension NativeRoutingAcceptanceTests {
                                          title: String, anchor: String, identifier: String,
                                          presentation: String = "currentTab",
                                          fromBackground: Bool = false,
-                                         launchArgs: [String] = [], expectedValue: String? = nil) async throws {
+                                         launchArgs: [String] = [], expectedValue: String? = nil,
+                                         originalTarget: (@MainActor (XCUIApplication) -> XCUIElement)? = nil) async throws {
         _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: launchArgs)
         let original = try actualReaderWorkspace().current()
         // Start on another original page. No Settings/TOC/Library parent is
@@ -2677,7 +2678,8 @@ extension NativeRoutingAcceptanceTests {
         if fromBackground { XCUIDevice.shared.press(.home) }
         _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
         XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
-        let control = app.descendants(matching: .any).matching(identifier: identifier).firstMatch
+        let control = originalTarget?(app)
+            ?? app.descendants(matching: .any).matching(identifier: identifier).firstMatch
         let revealed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             control.exists && control.isHittable && !control.frame.isEmpty
         }, object: nil)

@@ -1,0 +1,119 @@
+{
+  "schema": "otzaria.wave3.component-layout.v1",
+  "base_commit": "64c1e74a5888f807e127e43611c3aab8fa702755",
+  "fixture_only_parent_commit": "8466190cc559ac48ad22c177459f8f553ef2e8e2",
+  "source_hashes": {
+    "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift": "8ae179e3204b31fcf28bd0f55c7e4dcd790355337b0b13813ac04d7c4f40bf44",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074",
+    "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift": "eacf05d1d8d2ec6599bc2f2b1f88c5478059a7cdc37befbfb6c7a7f32b0f4345",
+    "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeComponentRevealOwnerTests.swift": "d11502d7c8e828e70482fc82fb48bad7394226a2add6243a1fa5851f814163fc"
+  },
+  "inputs_verified": 52,
+  "final_portable_result": {
+    "passed": 27,
+    "failed": 0,
+    "skipped": 0,
+    "test_seconds": 0.017,
+    "build_seconds": 16.36,
+    "whole_command_seconds": 23.464,
+    "cases": [
+      "NativeComponentRevealOwnerTests.testColdMountRequiresRenderedExactVisibleTargetInOriginalScene",
+      "NativeComponentRevealOwnerTests.testDeferredRevealKeepsOriginalDeadlineAndSourceAcrossLayout",
+      "NativeComponentRevealOwnerTests.testDeferredRevealWaitsForNewOriginalLayoutBeforeVisibleAcknowledgement",
+      "NativeComponentRevealOwnerTests.testDetachAndReattachSameViewIdentityCannotReplay",
+      "NativeComponentRevealOwnerTests.testEachContinuationNeedsStrictlyNewLayoutAndCompletedRevealCannotReplay",
+      "NativeComponentRevealOwnerTests.testLocalOverlayABARevokesSourceRetainedBeforeBegin",
+      "NativeComponentRevealOwnerTests.testMountedAnchorAvailabilityDoesNotHideOtherOriginalControls",
+      "NativeComponentRevealOwnerTests.testOldViewLayoutCannotResumeAfterOriginalMountIsReplaced",
+      "NativeComponentRevealOwnerTests.testOneApplyCannotBecomeDeferredReplay",
+      "NativeComponentRevealOwnerTests.testOriginalOverlayBlocksRevealAndVisibleFacet",
+      "NativeComponentRevealOwnerTests.testReentrantOriginalLayoutCallbackCannotRenderTwice",
+      "NativeComponentRevealOwnerTests.testReplacementViewCannotInheritCommittedRequest",
+      "NativeComponentRevealOwnerTests.testRevokedOriginalAdmissionCannotRenderAfterParentMount",
+      "NativeComponentRevealOwnerTests.testSourceABAAndConditionalAvailabilityAreRecheckedAtRender",
+      "NativeComponentRevealOwnerTests.testSourceChangedByOriginalCallbackIsRevalidatedBeforeCompletion",
+      "NativeComponentRevealOwnerTests.testSourceIsCapturedOnceBeforeAwaitAndCannotDriftAtBegin",
+      "NativeComponentRevealOwnerTests.testStaleGeometryDismantleCannotEraseNewOriginalWitness",
+      "NativeComponentRevealOwnerTests.testUnknownAnchorAndMissingSourceAreRejectedBeforePublication",
+      "NativeComponentSourceObservationTests.testActualValueABAInvalidatesBeforeSuspensionResumes",
+      "NativeComponentSourceObservationTests.testBlockingPresentationOpenCloseIsNotMissed",
+      "NativeComponentSourceObservationTests.testCompletedFocusRemainsBoundToOriginalObservation",
+      "NativeComponentSourceObservationTests.testInvalidationIsOneShotAcrossFurtherValues",
+      "NativeComponentSourceObservationTests.testOnlyDeclaredSourceFieldsAreObserved",
+      "NativeComponentSourceObservationTests.testOriginalModelReplacementAndRestoreCannotRevalidate",
+      "NativeComponentSourceObservationTests.testOriginalPublisherCanInvalidateAcrossExecutors",
+      "NativeComponentSourceObservationTests.testRetainedOwnerRejectsABAWhileCoreIsSuspendedWithoutRecapture",
+      "NativeComponentSourceObservationTests.testUnchangedOriginalSourceRemainsValid"
+    ],
+    "job_id": "job_bfbef1c15d26",
+    "log_sha256": "0fe3495f0c9c8d07ddf18766b5297d52ba069894e8dcd934ea2021f1eac2d2aa"
+  },
+  "earlier_iteration": {
+    "passed": 26,
+    "failed": 0,
+    "status": "Preserved separate prior source iteration before mounted per-anchor availability; not added to final case count.",
+    "job_id": "job_36ae9a45e773",
+    "result": "bounded-owner-result.json"
+  },
+  "ios27_syntax": {
+    "passed": true,
+    "files": 2,
+    "receipt": "ios27-parse-final.json",
+    "apple_sdk_typecheck": false
+  },
+  "original_native_suite_preservation": {
+    "base": "64c1e74a5888f807e127e43611c3aab8fa702755",
+    "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "exact_preserved_prefix_bytes": 170801,
+    "prefix_sha256": "788bb653b4e9c1116739b7c5a691fbd89ef3d4c3948c189b7be46906ddbe7bb8",
+    "change": "Only existing downstream component helper gains optional originalTarget selector; no original Native116/Release114 selector, assertion, count or timeout is changed."
+  },
+  "native_and_physical_execution": "NOT_RUN for this packet; no UIKit layout, List scrolling, Siri/Shortcuts, device, VoiceOver or production-v40 acceptance inferred from portable tests.",
+  "provenance": "Downstream original routing host extension. No replacement feature UI, private public identifiers, dependency changes or owner signatures.",
+  "artifacts": {
+    "bounded-owner-result.json": {
+      "sha256": "8297e54a6472eb6dd62101aaf6e431d9e4343475f0b5dc3cb87c77f46502ec7c",
+      "bytes": 989,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/bounded-owner-result.json"
+    },
+    "source-snapshot.json": {
+      "sha256": "f58728be3836c0c7c38518df07aab85255eac4d4a61bd5b2de14e0c86349f978",
+      "bytes": 8456,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/source-snapshot.json"
+    },
+    "ios27-parse.json": {
+      "sha256": "48142d4bce7d97aad7ba1f46d1effbc55bc6978982b5a10d3eecce849ecbab4d",
+      "bytes": 852,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/ios27-parse.json"
+    },
+    "bounded-owner-result-final.json": {
+      "sha256": "f93f7b672f6100bff031ca61b3d4e442d7aac3b1dcfb8d6a4c8f6e0674c4993d",
+      "bytes": 988,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/bounded-owner-result-final.json"
+    },
+    "source-snapshot-final.json": {
+      "sha256": "74469eca01234a02cc5a7dd64f09a14e7af757806760f357fe645204c75d8bbb",
+      "bytes": 8456,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/source-snapshot-final.json"
+    },
+    "ios27-parse-final.json": {
+      "sha256": "7d5e27e70569814e39b1872ef461ded94b24cb03612d46704d32adc25c33477d",
+      "bytes": 824,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/ios27-parse-final.json"
+    },
+    "bounded-owner-tests.log.gz": {
+      "sha256": "ac1479018708906359efe60a4ef48ae24466e4c86a3e0fdc2da8ba23a5fae025",
+      "bytes": 1497,
+      "uncompressed_sha256": "0e1f28d7998c0676ea9c7de1fbbc9cad06bbad50ce5b1a3ea98bd7463516b219",
+      "uncompressed_bytes": 8707,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/bounded-owner-tests.log"
+    },
+    "bounded-owner-tests-final.log.gz": {
+      "sha256": "799a74f95a126d99e98e4577ef194ab3f1f38e5048b012f25708c883c2867e91",
+      "bytes": 1399,
+      "uncompressed_sha256": "0fe3495f0c9c8d07ddf18766b5297d52ba069894e8dcd934ea2021f1eac2d2aa",
+      "uncompressed_bytes": 8506,
+      "source": "/mnt/development/projects/diagnostics/otzaria-wave3-component-layout-20261127/bounded-owner-tests-final.log"
+    }
+  }
+}

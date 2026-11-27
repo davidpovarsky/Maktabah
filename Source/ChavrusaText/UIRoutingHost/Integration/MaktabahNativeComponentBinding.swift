@@ -117,19 +117,47 @@ struct MaktabahNativeComponentWitness: UIViewRepresentable {
 struct MaktabahNativeComponentContainer: ViewModifier {
     let owner: MaktabahNativeComponentOwner?
     let blocked: @MainActor () -> Bool
-    let reveal: @MainActor (UIDestinationID) -> Void
-    @State private var viewID = UUID()
+    private let suppliedViewID: UUID?
+    private let componentAvailable: @MainActor (UIDestinationID) -> Bool
+    private let layoutRevision: UInt64
+    private let revealPhase: @MainActor (UIDestinationID, NativeComponentRenderPhase) -> NativeComponentRenderResult
+    @State private var localViewID = UUID()
+    private var viewID: UUID { suppliedViewID ?? localViewID }
+
+    init(owner: MaktabahNativeComponentOwner?, blocked: @escaping @MainActor () -> Bool,
+         componentAvailable: @escaping @MainActor (UIDestinationID) -> Bool = { _ in true },
+         reveal: @escaping @MainActor (UIDestinationID) -> Void) {
+        self.owner = owner; self.blocked = blocked
+        suppliedViewID = nil; layoutRevision = 0; self.componentAvailable = componentAvailable
+        revealPhase = { anchor, _ in reveal(anchor); return .rendered }
+    }
+
+    /// Caller and passive layout publisher share the original view's stable ID.
+    /// They must also reject dismantled publisher tokens; a UI body update is
+    /// not a layout publication and must not manufacture layoutRevision.
+    init(owner: MaktabahNativeComponentOwner?, blocked: @escaping @MainActor () -> Bool,
+         viewID: UUID, layoutRevision: UInt64,
+         componentAvailable: @escaping @MainActor (UIDestinationID) -> Bool = { _ in true },
+         revealPhase: @escaping @MainActor (UIDestinationID, NativeComponentRenderPhase) -> NativeComponentRenderResult) {
+        self.owner = owner; self.blocked = blocked
+        suppliedViewID = viewID; self.layoutRevision = layoutRevision; self.componentAvailable = componentAvailable
+        self.revealPhase = revealPhase
+    }
 
     func body(content: Content) -> some View {
         content
             .onAppear {
-                owner?.attach(viewID: viewID, blocked: blocked)
-                owner?.render(viewID: viewID, reveal: reveal)
+                owner?.attach(viewID: viewID, blocked: blocked, componentAvailable: componentAvailable)
+                render()
             }
-            .onChange(of: owner?.renderRevision) { _, _ in
-                owner?.render(viewID: viewID, reveal: reveal)
-            }
+            .onChange(of: owner?.renderRevision) { _, _ in render() }
+            .onChange(of: layoutRevision) { _, _ in render() }
             .onDisappear { owner?.detach(viewID: viewID) }
     }
+
+    private func render() {
+        owner?.render(viewID: viewID, layoutRevision: layoutRevision, reveal: revealPhase)
+    }
 }
+
 #endif
