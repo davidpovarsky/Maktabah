@@ -5,6 +5,8 @@ import HanlinScriptUI
 import HanlinHostContracts
 import HanlinPresentationKit
 import HanlinRichUI
+import HanlinPlatformContracts
+import AI_Hanlin
 
 /// The actual native reader/global toolbar shares this scene's original owner.
 struct OtzariaHanlinChatLaunchButton: View {
@@ -43,6 +45,9 @@ private struct OtzariaHanlinChatView: View {
     @Bindable var session: OtzariaHanlinChatSession
     let owner: OtzariaHanlinChatOwner
     @State private var showsConnection = false
+    @State private var showsCapabilities = false
+    @State private var showsMCPSelection = false
+    @State private var editingCapabilityID: UUID?
     @State private var expanded = false
     @State private var activePage: String?
     @State private var editorHeight: CGFloat = 38
@@ -66,6 +71,15 @@ private struct OtzariaHanlinChatView: View {
                     .accessibilityIdentifier("otzaria-hanlin-book-access")
                 }
                 if let error = session.errorMessage { HanlinChatErrorBanner(errorMessage: error) }
+                if let request = session.assistantConsent.pending {
+                    HanlinInlineToolApproval(requestID: request.id.uuidString, toolName: request.tool,
+                        reviewText: String(decoding: request.originalArgumentsJSON ?? Data(), as: UTF8.self),
+                        remembersDecision: request.remembersDecision) { allowed in
+                            session.answerToolConsent(id: request.id, allowed: allowed)
+                        }
+                        .padding(.horizontal)
+                        .accessibilityIdentifier("otzaria-hanlin-original-tool-approval")
+                }
                 if session.isConfigured || !session.messages.isEmpty || !session.draft.isEmpty {
                     GeometryReader { geometry in
                         HanlinChatView(shell: session.profile?.shell ?? .init(id: "hanlin.research", title: String(localized: "Study chat"))) {
@@ -82,6 +96,35 @@ private struct OtzariaHanlinChatView: View {
             .navigationTitle(String(localized: "Study chat"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                if let services = session.assistantServices {
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Button {
+                                if session.refreshCapabilityCatalog() {
+                                    editingCapabilityID = nil; showsCapabilities = true
+                                }
+                            } label: {
+                                Label(String(localized: "Tools and skills"), systemImage: "sparkles")
+                            }
+                            .accessibilityIdentifier("otzaria-hanlin-choose-capabilities")
+                            Button { showsMCPSelection = true } label: {
+                                Label(String(localized: "MCP servers for this chat"), systemImage: "server.rack")
+                            }
+                            .accessibilityIdentifier("otzaria-hanlin-mcp-selection")
+                            NavigationLink {
+                                HanlinAssistantSettingsView(service: services)
+                                    .onDisappear { session.refreshCapabilityCatalog() }
+                            } label: {
+                                Label(String(localized: "Assistant settings"), systemImage: "gearshape")
+                            }
+                            .accessibilityIdentifier("otzaria-hanlin-assistant-settings")
+                        } label: {
+                            Label(String(localized: "Capabilities"), systemImage: "wrench.and.screwdriver")
+                        }
+                        .disabled(session.isStreaming || session.isConnecting)
+                        .accessibilityIdentifier("otzaria-hanlin-capabilities-menu")
+                    }
+                }
                 if !session.isConfigured && (!session.messages.isEmpty || !session.draft.isEmpty) {
                     ToolbarItem(placement: .primaryAction) {
                         Button(String(localized: "Connect")) { showsConnection = true }
@@ -116,6 +159,16 @@ private struct OtzariaHanlinChatView: View {
                 }
             }
         }
+        .sheet(isPresented: $showsCapabilities, onDismiss: { editingCapabilityID = nil }) {
+            capabilitySelection
+        }
+        .sheet(isPresented: $showsMCPSelection, onDismiss: { session.refreshCapabilityCatalog() }) {
+            if let services = session.assistantServices {
+                MCPChatServerSheet(service: services.mcp, conversationID: session.identity.conversationID) { _ in
+                    session.refreshCapabilityCatalog()
+                }
+            }
+        }
         .onChange(of: session.isConfigured) { _, value in if value { showsConnection = false } }
         .background {
             ReaderSceneIdentityReader { sceneID in owner.didMount(sceneID: sceneID, sessionID: session.id) }
@@ -131,6 +184,48 @@ private struct OtzariaHanlinChatView: View {
         .accessibilityIdentifier("otzaria-hanlin-chat")
     }
 
+
+    private var capabilitySelection: some View {
+        NavigationStack {
+            ScrollView {
+                if let id = editingCapabilityID,
+                   let attachment = session.draftCapabilities.first(where: { $0.id == id }),
+                   let descriptor = session.capabilityCatalog.first(where: { $0.id == attachment.reference.id }) {
+                    HanlinCapabilityConfigurationView(capability: descriptor,
+                        attachment: Binding(
+                            get: { session.draftCapabilities.first(where: { $0.id == id }) ?? attachment },
+                            set: { session.updateCapability($0) }),
+                        onDone: { showsCapabilities = false })
+                } else {
+                    HanlinCapabilityPicker(capabilities: session.capabilityCatalog,
+                        attachments: session.draftCapabilities) { descriptor, actionID in
+                        session.attachCapability(descriptor, actionID: actionID)
+                        let selected = descriptor.makeAttachment(actionID: actionID)
+                        if descriptor.configuration != nil || !descriptor.actions.isEmpty {
+                            editingCapabilityID = session.draftCapabilities.first {
+                                $0.selectionKey == selected.selectionKey
+                            }?.id
+                        } else { showsCapabilities = false }
+                    }
+                }
+            }
+            .padding()
+            .navigationTitle(String(localized: "Tools and skills"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(String(localized: "Close")) { showsCapabilities = false }
+                }
+                if editingCapabilityID != nil {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button(String(localized: "Choose capability")) { editingCapabilityID = nil }
+                    }
+                }
+            }
+        }
+        .accessibilityIdentifier("otzaria-hanlin-capability-selection")
+    }
+
     private var transcript: some View {
         ScrollViewReader { reader in
             ScrollView {
@@ -139,6 +234,9 @@ private struct OtzariaHanlinChatView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             if message.role == "user" {
                                 HanlinChatMessageBubble(message: message, presentationMode: .full)
+                                if let selected = session.messageCapabilities[message.id] {
+                                    HanlinCapabilityAttachmentChips(attachments: selected)
+                                }
                             } else if let state = session.messageStates[message.id] {
                                 if let reasoning = session.reasoning[message.id], !reasoning.isEmpty {
                                     DisclosureGroup(String(localized: "Thinking"), isExpanded: Binding(
@@ -233,27 +331,38 @@ private struct OtzariaHanlinChatView: View {
             }, detail: { _ in
                 EmptyView()
             }, input: {
-                HStack(alignment: .bottom, spacing: 10) {
-                    NativeMultilineTextEditor(
-                        text: Binding(
-                            get: { [session] in session.draft },
-                            set: { [session] in session.updateDraftFromEditor($0) }),
-                        textHeight: $editorHeight,
-                        placeholderText: String(localized: "Message"), maxHeight: budget,
-                        usesAutomaticLineLimits: true, onSendMessage: session.send,
-                        readCurrentTextState: { [session] in session.readCurrentDraftTextState() })
-                        .frame(height: min(editorHeight, budget))
-                        .accessibilityIdentifier("otzaria-hanlin-composer")
-                    if session.isStreaming {
-                        Button(action: session.stop) {
-                            Image(systemName: "stop.circle.fill").font(.title)
+                VStack(spacing: 8) {
+                    HanlinCapabilityAttachmentChips(attachments: session.draftCapabilities,
+                        capabilities: session.capabilityCatalog,
+                        onEdit: { attachment in
+                            if session.refreshCapabilityCatalog() {
+                                editingCapabilityID = attachment.id; showsCapabilities = true
+                            }
+                        },
+                        onRemove: session.removeCapability)
+                        .disabled(session.isStreaming)
+                    HStack(alignment: .bottom, spacing: 10) {
+                        NativeMultilineTextEditor(
+                            text: Binding(
+                                get: { [session] in session.draft },
+                                set: { [session] in session.updateDraftFromEditor($0) }),
+                            textHeight: $editorHeight,
+                            placeholderText: String(localized: "Message"), maxHeight: budget,
+                            usesAutomaticLineLimits: true, onSendMessage: session.send,
+                            readCurrentTextState: { [session] in session.readCurrentDraftTextState() })
+                            .frame(height: min(editorHeight, budget))
+                            .accessibilityIdentifier("otzaria-hanlin-composer")
+                        if session.isStreaming {
+                            Button(action: session.stop) {
+                                Image(systemName: "stop.circle.fill").font(.title)
+                            }
+                            .accessibilityLabel(String(localized: "Stop"))
+                            .accessibilityIdentifier("otzaria-hanlin-stop")
+                        } else {
+                            HanlinChatSendButton(canSend: session.canSend, isStreaming: false,
+                                presentationMode: .full, action: session.send)
+                                .accessibilityIdentifier("otzaria-hanlin-send")
                         }
-                        .accessibilityLabel(String(localized: "Stop"))
-                        .accessibilityIdentifier("otzaria-hanlin-stop")
-                    } else {
-                        HanlinChatSendButton(canSend: session.canSend, isStreaming: false,
-                            presentationMode: .full, action: session.send)
-                            .accessibilityIdentifier("otzaria-hanlin-send")
                     }
                 }
                 .padding(10)
@@ -315,7 +424,7 @@ private struct OtzariaHanlinConnectionView: View {
                 }
             }
             Section {
-                Text(String(localized: "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Selections are not shared."))
+                Text(String(localized: "This conversation uses your messages and permitted catalog metadata. Book search is off unless you allow the displayed book. Book selections are not shared."))
                 Text(String(localized: "Conversations are saved for this study profile, group and library. Your API key lasts only until you close this chat."))
             }
         }
