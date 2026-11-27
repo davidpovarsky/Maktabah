@@ -7,6 +7,7 @@ import UIKit
 /// SDK qualification account, injects native bodies, or writes SQLite directly.
 final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
     override var readerTestTier: TestTier { .realUI }
+    private var pairedProduction: PairedProductionInstallation?
 
     @MainActor
     func testOrdinaryEditorSavesSameAnnotationDiscardsDraftAndRecoversAfterTermination() async throws {
@@ -490,7 +491,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func openAnnotations() async throws {
         tap(app.buttons["reader-more-menu"])
-        let action = app.buttons.matching(NSPredicate(format: "label == %@", "Annotations"))
+        let action = app.collectionViews.cells.buttons.matching(NSPredicate(format: "label == %@", "Annotations"))
         XCTAssertTrue(action.firstMatch.waitForExistence(timeout: 15))
         XCTAssertEqual(action.count, 1)
         tap(action.firstMatch)
@@ -725,13 +726,49 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let objectID: String
     }
 
-    private enum OrdinaryNetworkFixture {
-        static let accountID = "AA5y2wipdZPPGiMoK3hckf6DUJQHHehNPt6BgyenPamSnfQm"
-        static let spaceID = "bafyreigdy7rjfil42wczgnam5njdwy5e2pcio23p2jls4ycgtzmp3usdqa.2xu9o61hnno0b"
-        static let spaceTitle = "Otzaria original network acceptance"
-        // Reserved for the independent peer CAS regression. UI creates new notes.
-        static let protectedRoot = "bafyreiarjeh5gi2eb6cespoglsvraum4ku226iainadbhfkncyvsavgadm"
-        static let keyPath = "/Users/m1/builds/anytype-original-network-acceptance-20261125/run-1-private/development-mnemonic.private"
+    private struct OrdinaryNetworkFixture {
+        let accountID: String
+        let spaceID: String
+        let spaceTitle: String
+        let protectedRoot: String
+        let keyPath: String
+
+        private struct Pointer: Decodable {
+            let account_id: String
+            let space_id: String
+            let object_id: String
+            let space_title: String?
+        }
+
+        static func load() throws -> Self {
+            guard let path = ProcessInfo.processInfo.environment["OTZARIA_ANYTYPE_NETWORK_FIXTURE_ROOT"] else {
+                return .init(accountID: "AA5y2wipdZPPGiMoK3hckf6DUJQHHehNPt6BgyenPamSnfQm", spaceID: "bafyreigdy7rjfil42wczgnam5njdwy5e2pcio23p2jls4ycgtzmp3usdqa.2xu9o61hnno0b",
+                             spaceTitle: "Otzaria original network acceptance", protectedRoot: "bafyreiarjeh5gi2eb6cespoglsvraum4ku226iainadbhfkncyvsavgadm", keyPath: "/Users/m1/builds/anytype-original-network-acceptance-20261125/run-1-private/development-mnemonic.private")
+            }
+            let root = URL(fileURLWithPath: path, isDirectory: true)
+            let pointerURL = root.appendingPathComponent("source-pointer.json")
+            let info = try pointerURL.resourceValues(forKeys: [.fileSizeKey, .isRegularFileKey, .isSymbolicLinkKey])
+            guard root.path == path, root.resolvingSymlinksInPath().path == path,
+                  info.isRegularFile == true, info.isSymbolicLink != true,
+                  let size = info.fileSize, (1...4096).contains(size) else {
+                throw OrdinaryNativeAcceptanceError.failed("Invalid owned Anytype network fixture")
+            }
+            let pointer = try JSONDecoder().decode(Pointer.self, from: Data(contentsOf: pointerURL))
+            let identities = [pointer.account_id, pointer.space_id, pointer.object_id]
+            guard identities.allSatisfy({ (20...180).contains($0.utf8.count)
+                && $0.utf8.allSatisfy { (48...57).contains($0) || (65...90).contains($0)
+                    || (97...122).contains($0) || $0 == 46 } }) else {
+                throw OrdinaryNativeAcceptanceError.failed("Invalid original account or Space identity")
+            }
+            let title = pointer.space_title ?? "Otzaria original network acceptance"
+            guard !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                  title.utf8.count <= 256 else {
+                throw OrdinaryNativeAcceptanceError.failed("Invalid original Space display name")
+            }
+            return .init(accountID: pointer.account_id, spaceID: pointer.space_id,
+                         spaceTitle: title, protectedRoot: pointer.object_id,
+                         keyPath: root.appendingPathComponent("development-mnemonic.private").path)
+        }
     }
 
     private enum OrdinaryNativeAcceptanceError: Error { case failed(String) }
@@ -752,7 +789,11 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         }
         XCTAssertTrue(isPad)
         XCUIDevice.shared.orientation = .landscapeLeft
-        launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        if pairedProduction != nil {
+            try await launchPairedProductionReader()
+        } else {
+            launchReader(scenario: "readerDetail", backend: "otzaria", language: "en", recordViewport: true)
+        }
         XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
         XCTAssertNil(app.launchEnvironment["OTZARIA_ANYTYPE_NETWORK_UI"])
         XCTAssertNil(app.launchEnvironment["OTZARIA_ORIGINAL_EDITOR_QUALIFICATION"])
@@ -796,9 +837,10 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         try await waitForEnabled(app.buttons["annotation-anytype-share-open"])
         tap(app.buttons["annotation-anytype-share-open"])
         try await selectOriginalDevelopmentSpace(accountViewID: "annotation-anytype-original-account")
+        let fixture = try OrdinaryNetworkFixture.load()
         let selected = app.staticTexts["annotation-anytype-selected-space"]
         XCTAssertTrue(selected.waitForExistence(timeout: 120))
-        try nativeRequire(selected.label == OrdinaryNetworkFixture.spaceID,
+        try nativeRequire(selected.label == fixture.spaceID,
             "Refuse to send unless the original UI selected the exact test-owned Space")
         let send = app.buttons["annotation-anytype-share-confirm"]
         try await waitForEnabled(send)
@@ -811,8 +853,8 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         let record = try XCTUnwrap(imports.values.first)
         try nativeRequire(record["status"] as? String == "LOCAL_NATIVE_IMPORT_READBACK_VERIFIED",
             "The original import must have genuine readback")
-        try nativeRequire(record["accountID"] as? String == OrdinaryNetworkFixture.accountID
-            && record["spaceID"] as? String == OrdinaryNetworkFixture.spaceID,
+        try nativeRequire(record["accountID"] as? String == fixture.accountID
+            && record["spaceID"] as? String == fixture.spaceID,
             "The receipt must belong to the genuine test-owned account and Space")
         try nativeRequire(record["annotationUUID"] as? String == saved.uuid.uuidString
             && (record["savedRevision"] as? NSNumber)?.int64Value == saved.revision
@@ -821,7 +863,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
             "The actual import must bind the saved local note exactly")
         try verifyNativeResponse(record)
         let objectID = try XCTUnwrap(record["objectID"] as? String)
-        try nativeRequire(!objectID.isEmpty && objectID != OrdinaryNetworkFixture.protectedRoot,
+        try nativeRequire(!objectID.isEmpty && objectID != fixture.protectedRoot,
             "UI must create its own root and preserve the independent peer regression object")
         XCTAssertEqual(try readCanonicalRow(rowID), saved)
         tap(app.buttons["annotation-anytype-share-close"])
@@ -833,19 +875,21 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func selectOriginalDevelopmentSpace(accountViewID: String) async throws {
+        let fixture = try OrdinaryNetworkFixture.load()
         let account = app.descendants(matching: .any)[accountViewID]
         XCTAssertTrue(account.waitForExistence(timeout: 120))
         let login = account.buttons["I already have a key"]
-        let space = account.buttons.matching(NSPredicate(format: "label == %@", OrdinaryNetworkFixture.spaceTitle))
+        let space = account.buttons.matching(NSPredicate(format: "label == %@", fixture.spaceTitle))
         let ready = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
             predicate: NSPredicate { _, _ in login.exists || space.count > 0 }, object: nil)], timeout: 120)
         XCTAssertEqual(ready, .completed)
         if login.exists {
+            try await selectOriginalDevelopmentNetworkIfNeeded(account)
             tap(login)
             let fields = account.textViews
             XCTAssertTrue(fields.firstMatch.waitForExistence(timeout: 30))
             try nativeRequire(fields.count == 1, "Require the original single recovery-key field")
-            let file = URL(fileURLWithPath: OrdinaryNetworkFixture.keyPath)
+            let file = URL(fileURLWithPath: fixture.keyPath)
             let values = try file.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
             let attributes = try FileManager.default.attributesOfItem(atPath: file.path)
             try nativeRequire(values.isRegularFile == true && values.isSymbolicLink != true
@@ -992,10 +1036,14 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
     @MainActor
     private func coldReopenOrdinaryNativeNote(_ context: OrdinaryNativeExchangeContext) async throws {
         let args = app.launchArguments, environment = app.launchEnvironment
-        app.terminate()
-        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
-        app.launch()
-        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        if pairedProduction != nil {
+            try await pairedRelaunchOriginalReader()
+        } else {
+            app.terminate()
+            XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+            app.launch()
+            XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        }
         XCTAssertEqual(app.launchArguments, args); XCTAssertEqual(app.launchEnvironment, environment)
         assertReaderHasText()
         try await openAnnotations()
@@ -1015,8 +1063,7 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
                                       schema: String) throws -> [String: [String: Any]] {
         try nativeRequire([".native-import-history", ".native-revision-history", ".native-lifecycle-history"]
             .contains(suffix), "The reader is restricted to the original local history directories")
-        let sidecar = try workspaceSidecarURL()
-        let container = (0..<6).reduce(sidecar) { value, _ in value.deletingLastPathComponent() }
+        let container = try ordinaryNativeContainer()
         let parent = container.appendingPathComponent("Library/Application Support/Maktabah-Debug")
         let directory = parent.appendingPathComponent("Annotations.sqlite" + suffix)
             .appendingPathComponent(annotation.uuidString)
@@ -1062,9 +1109,10 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         try nativeRequire(record["kind"] as? String == "verified"
             && record["objectID"] as? String == context.objectID,
             "The actual original readback must verify the same native root")
+        let fixture = try OrdinaryNetworkFixture.load()
         let source = try XCTUnwrap(record["source"] as? [String: Any])
-        try nativeRequire(source["accountID"] as? String == OrdinaryNetworkFixture.accountID
-            && source["spaceID"] as? String == OrdinaryNetworkFixture.spaceID
+        try nativeRequire(source["accountID"] as? String == fixture.accountID
+            && source["spaceID"] as? String == fixture.spaceID
             && source["annotationUUID"] as? String == context.saved.uuid.uuidString
             && (source["savedRevision"] as? NSNumber)?.int64Value == context.saved.revision,
             "The action must retain the captured real account, Space and local note")
@@ -1102,18 +1150,25 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
 
     @MainActor
     private func readCanonicalRow(_ rowID: Int64) throws -> CanonicalRow {
-        let initialPath = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE"])
-        XCTAssertTrue(initialPath.hasPrefix("/"))
-        let initialDatabase = URL(fileURLWithPath: initialPath)
-        let initialContainer = (0..<4).reduce(initialDatabase) { value, _ in value.deletingLastPathComponent() }
-        // XCTest can relocate the installed app's data container. Reuse the
-        // original UUID-bound workspace observer to resolve its current home.
-        let sidecar = try workspaceSidecarURL()
-        let container = (0..<6).reduce(sidecar) { value, _ in value.deletingLastPathComponent() }
-        XCTAssertEqual(container.deletingLastPathComponent(), initialContainer.deletingLastPathComponent())
-        XCTAssertEqual(container.resolvingSymlinksInPath().standardizedFileURL, container.standardizedFileURL)
-        let databaseURL = container.appendingPathComponent("Library/Application Support/Maktabah-Debug/Annotations.sqlite")
-        XCTAssertEqual(initialDatabase.lastPathComponent, databaseURL.lastPathComponent)
+        let container: URL
+        let databaseURL: URL
+        if pairedProduction != nil {
+            container = try ordinaryNativeContainer()
+            databaseURL = container.appendingPathComponent("Library/Application Support/Maktabah-Debug/Annotations.sqlite")
+        } else {
+            let initialPath = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE"])
+            XCTAssertTrue(initialPath.hasPrefix("/"))
+            let initialDatabase = URL(fileURLWithPath: initialPath)
+            let initialContainer = (0..<4).reduce(initialDatabase) { value, _ in value.deletingLastPathComponent() }
+            // XCTest can relocate the installed app's data container. Reuse the
+            // original UUID-bound workspace observer to resolve its current home.
+            let sidecar = try workspaceSidecarURL()
+            container = (0..<6).reduce(sidecar) { value, _ in value.deletingLastPathComponent() }
+            XCTAssertEqual(container.deletingLastPathComponent(), initialContainer.deletingLastPathComponent())
+            XCTAssertEqual(container.resolvingSymlinksInPath().standardizedFileURL, container.standardizedFileURL)
+            databaseURL = container.appendingPathComponent("Library/Application Support/Maktabah-Debug/Annotations.sqlite")
+            XCTAssertEqual(initialDatabase.lastPathComponent, databaseURL.lastPathComponent)
+        }
         let preferences = container.appendingPathComponent("Library/Preferences/com.davidpovarsky.chavrusatext.plist")
         if FileManager.default.fileExists(atPath: preferences.path) {
             let values = try XCTUnwrap(PropertyListSerialization.propertyList(
@@ -1227,5 +1282,718 @@ final class ProductionAnnotationEditorAcceptanceTests: FaithfulReaderUIBase {
         attachment.lifetime = .keepAlways
         add(attachment)
         print("NORMAL_ANNOTATION_STORAGE " + String(decoding: bytes, as: UTF8.self))
+    }
+}
+
+// Appended to ProductionAnnotationEditorAcceptanceTests.swift. This test uses
+// the original JSON import/export UI only to transfer the saved annotation UUID.
+// Every rich-body exchange and subsequent edit uses the original Anytype account,
+// discovery, read, update and local CAS product flows in two independent apps.
+extension ProductionAnnotationEditorAcceptanceTests {
+    @MainActor
+    func testOrdinaryOriginalNativeTwoAppExchangePhase() async throws {
+        let environment = ProcessInfo.processInfo.environment
+        try nativeRequire(environment["OTZARIA_ANYTYPE_NETWORK_UI"] == "test-owned-original-account",
+                          "Require the original isolated account route")
+        let directory = URL(fileURLWithPath: try XCTUnwrap(environment["OTZARIA_ANYTYPE_PAIRED_PHASE_ROOT"]),
+                            isDirectory: true).standardizedFileURL
+        try nativeRequire(directory.path.hasPrefix("/Users/m1/builds/")
+            && directory.resolvingSymlinksInPath() == directory,
+            "The pair controller must own one canonical phase evidence directory")
+        let input = try XCTUnwrap(JSONSerialization.jsonObject(
+            with: Data(contentsOf: directory.appendingPathComponent("input.json"))) as? [String: Any])
+        try nativeRequire(input["schema"] as? String == "otzaria.original.two-full-apps.phase-input.v1",
+                          "Require the exact paired UI input schema")
+        let phase = try XCTUnwrap(input["phase"] as? String)
+        let replica = try XCTUnwrap(input["replica"] as? String)
+        try nativeRequire(["A", "B"].contains(replica), "Require a named independent app replica")
+        pairedProduction = try loadPairedProduction()
+        defer { pairedProduction = nil }
+        var context: OrdinaryNativeExchangeContext
+        var exported: URL?
+        if phase == "create-and-export" {
+            try nativeRequire(replica == "A", "Only the first app creates this ordinary note")
+            context = try await createAndShareOrdinaryNativeNote(prefix: "Two full apps")
+            exported = try await peerExportSavedAnnotation(context)
+        } else {
+            try nativeRequire(["import-receive-update", "receive-update", "receive-final"].contains(phase),
+                              "Reject unrecognized paired UI phases")
+            XCUIDevice.shared.orientation = .landscapeLeft
+                try await launchPairedProductionReader()
+            XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+            XCTAssertNil(app.launchEnvironment["OTZARIA_ANYTYPE_NETWORK_UI"])
+            XCTAssertNil(app.launchEnvironment["OTZARIA_ANYTYPE_PAIRED_PHASE_ROOT"])
+            assertReaderHasText()
+            let remote = try XCTUnwrap(input["remote"] as? [String: Any])
+            if phase == "import-receive-update" {
+                try nativeRequire(replica == "B", "Only the second app imports the original UUID export")
+                let filename = try XCTUnwrap(input["exportFilename"] as? String)
+                try await peerImportOriginalExport(filename: filename)
+                try await pairedRelaunchOriginalReader()
+                try await openAnnotations()
+                let rows = annotationRows().allElementsBoundByIndex
+                let matches = try rows.filter { row in
+                    guard let identifier = Int64(row.identifier.dropFirst("original-book-annotation-".count)) else { return false }
+                    return try readCanonicalRow(identifier).uuid.uuidString == remote["annotationUUID"] as? String
+                }
+                try nativeRequire(matches.count == 1, "Original import must produce exactly one row with the exported UUID")
+                let row = try XCTUnwrap(matches.first)
+                let rowID = try XCTUnwrap(Int64(row.identifier.dropFirst("original-book-annotation-".count)))
+                let plain = try readCanonicalRow(rowID)
+                XCTAssertNil(plain.body, "JSON transports identity and plain content; native body must come from Anytype")
+                XCTAssertTrue(try nativeHistoryRecords(plain.uuid, suffix: ".native-import-history",
+                    schema: "otzaria.original.annotation.native-commit.v1").isEmpty,
+                    "A new app has no locally invented native-copy mapping")
+                try editAnnotation(row)
+                try await waitForEnabled(app.buttons["annotation-expanded-editor-open"])
+                tap(app.buttons["annotation-expanded-editor-open"])
+                _ = try await expandedHost()
+                tap(app.buttons["annotation-expanded-editor-save"])
+                XCTAssertTrue(app.staticTexts["Note saved"].waitForExistence(timeout: 120))
+                let prepared = try readCanonicalRow(rowID)
+                XCTAssertEqual(prepared.uuid, plain.uuid)
+                XCTAssertNotNil(prepared.body)
+                tap(app.buttons["annotation-expanded-editor-close"])
+                try await waitForAbsence(app.textViews["annotation-note-text"])
+                context = try peerContext(remote, rowID: rowID, saved: prepared)
+            } else {
+                let local = try XCTUnwrap(input["local"] as? [String: Any])
+                let rowID = try XCTUnwrap((local["rowID"] as? NSNumber)?.int64Value)
+                let saved = try readCanonicalRow(rowID)
+                try nativeRequire(saved.uuid.uuidString == local["annotationUUID"] as? String
+                    && saved.body.map(Self.sha256) == local["bodySHA256"] as? String,
+                    "The next phase must reopen the exact previously observed local save")
+                context = try peerContext(local, rowID: rowID, saved: saved)
+                if let filename = input["reimportFilename"] as? String {
+                    try await peerImportOriginalExport(filename: filename)
+                    XCTAssertEqual(try readCanonicalRow(rowID), saved,
+                                   "Skip Duplicates must preserve the current rich version")
+                    try await pairedRelaunchOriginalReader()
+                }
+                try await openAnnotations()
+            }
+            context = try await peerReceive(context, remote: remote)
+            if phase != "receive-final" {
+                context = try await editAndSaveOrdinaryNativeNote(context,
+                    suffix: " saved-by-full-app-" + replica + "-" + UUID().uuidString)
+                try await peerPublish(context)
+            }
+            try await coldReopenOrdinaryNativeNote(context)
+        }
+        let canonical = try readCanonicalRow(context.rowID)
+        XCTAssertEqual(canonical, context.saved)
+        let container = try ordinaryNativeContainer()
+        let production = try XCTUnwrap(pairedProduction)
+        let workspace = try pairedWorkspaceSelection()
+        let noteSource = try pairedSavedNoteSource(context.rowID)
+        var receipt: [String: Any] = [
+            "schema": "otzaria.original.two-full-apps.phase-result.v1", "phase": phase, "replica": replica,
+            "rowID": context.rowID, "annotationUUID": canonical.uuid.uuidString,
+            "objectID": context.objectID, "firstText": context.firstText, "secondText": context.secondText,
+            "preview": canonical.preview, "revision": canonical.revision,
+            "bodySHA256": try XCTUnwrap(canonical.body.map(Self.sha256)),
+            "payloadSHA256": canonical.payloadDigest ?? "", "container": container.path,
+            "sqliteOpenMode": "read-only", "appQualificationMode": false,
+            "nativeResponseRemoteDeviceAcknowledgement": false,
+            "actualOrdinaryReceiveAndColdReopen": phase != "create-and-export",
+            "dataProfile": "production", "productionReceiptSHA256": production.receiptSHA256,
+            "productionWorkspace": workspace, "actualSavedNoteSource": noteSource,
+            "targetBookID": production.receipt.target_book.book_id
+        ]
+        if let exported {
+            receipt["exportPath"] = exported.path
+            receipt["exportSHA256"] = Self.sha256(try Data(contentsOf: exported))
+        }
+        let bytes = try JSONSerialization.data(withJSONObject: receipt, options: [.sortedKeys, .prettyPrinted])
+        try bytes.write(to: directory.appendingPathComponent("actual-ui-result.json"), options: .atomic)
+        let attachment = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        attachment.name = "two-full-apps-" + replica + "-" + phase
+        attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    private func peerContext(_ value: [String: Any], rowID: Int64,
+                             saved: CanonicalRow) throws -> OrdinaryNativeExchangeContext {
+        try nativeRequire(saved.uuid.uuidString == value["annotationUUID"] as? String,
+                          "The local and remote saved UUID must match")
+        return .init(rowIdentifier: "original-book-annotation-" + String(rowID), rowID: rowID,
+            firstText: try XCTUnwrap(value["firstText"] as? String),
+            secondText: try XCTUnwrap(value["secondText"] as? String), saved: saved,
+            objectID: try XCTUnwrap(value["objectID"] as? String))
+    }
+
+    @MainActor
+    private func peerReceive(_ original: OrdinaryNativeExchangeContext,
+                             remote: [String: Any]) async throws -> OrdinaryNativeExchangeContext {
+        try nativeRequire(original.objectID == remote["objectID"] as? String,
+                          "Both apps must use the same actual original native object")
+        var context = original
+        try await peerOpenNativeRead(context, updating: false)
+        let review = app.descendants(matching: .any)["annotation-anytype-receive-review"]
+        XCTAssertTrue(review.waitForExistence(timeout: 120))
+        let first = try XCTUnwrap(remote["firstText"] as? String)
+        let second = try XCTUnwrap(remote["secondText"] as? String)
+        XCTAssertTrue(review.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", first)).firstMatch.exists)
+        XCTAssertTrue(review.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", second)).firstMatch.exists,
+                      "Original network discovery/read must see the other app's actual latest saved content")
+        XCTAssertEqual(try readCanonicalRow(context.rowID), original.saved,
+                       "Discovery and review cannot overwrite the local note")
+        tap(app.buttons["annotation-anytype-receive-accept"])
+        let confirm = app.buttons.matching(NSPredicate(format: "label == %@", "Use the Anytype version here"))
+            .allElementsBoundByIndex.filter(\.isHittable)
+        try nativeRequire(confirm.count == 1, "Require the actual local receive confirmation")
+        tap(try XCTUnwrap(confirm.first))
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-anytype-receive-saved"].waitForExistence(timeout: 120))
+        let saved = try readCanonicalRow(context.rowID)
+        XCTAssertEqual(saved.id, original.saved.id); XCTAssertEqual(saved.uuid, original.saved.uuid)
+        XCTAssertEqual(saved.revision, original.saved.revision + 1)
+        XCTAssertNotNil(saved.body)
+        XCTAssertTrue(saved.preview.contains(first)); XCTAssertTrue(saved.preview.contains(second))
+        context.secondText = second; context.saved = saved
+        tap(app.buttons["annotation-anytype-receive-close"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+        return context
+    }
+
+    @MainActor
+    private func peerPublish(_ context: OrdinaryNativeExchangeContext) async throws {
+        let before = try nativeHistoryRecords(context.saved.uuid, suffix: ".native-revision-history",
+            schema: "otzaria.original.annotation.revision-result.v1")
+        try await peerOpenNativeRead(context, updating: true)
+        let accept = app.buttons["annotation-anytype-update-accept"]
+        XCTAssertTrue(accept.waitForExistence(timeout: 120)); tap(accept)
+        let confirm = app.buttons.matching(NSPredicate(format: "label == %@", "Update this copy in Anytype"))
+            .allElementsBoundByIndex.filter(\.isHittable)
+        try nativeRequire(confirm.count == 1, "Require the actual same-object native update confirmation")
+        tap(try XCTUnwrap(confirm.first))
+        XCTAssertTrue(app.descendants(matching: .any)["annotation-anytype-update-verified"].waitForExistence(timeout: 120))
+        _ = try verifyNewNativeHistory(context, previous: before, suffix: ".native-revision-history",
+            schema: "otzaria.original.annotation.revision-result.v1")
+        XCTAssertEqual(try readCanonicalRow(context.rowID), context.saved)
+        tap(app.buttons["annotation-anytype-receive-close"])
+        try await waitForAbsence(app.textViews["annotation-note-text"])
+    }
+
+    @MainActor
+    private func peerOpenNativeRead(_ context: OrdinaryNativeExchangeContext, updating: Bool) async throws {
+        try editAnnotation(app.buttons[context.rowIdentifier])
+        let open = app.buttons[updating ? "annotation-anytype-update-open" : "annotation-anytype-receive-open"]
+        try await waitForEnabled(open); tap(open)
+        try await selectOriginalDevelopmentSpace(accountViewID: "annotation-anytype-receive-account")
+        let read = app.buttons["annotation-anytype-receive-read"]
+        // The independent original replica can still be receiving its real
+        // catalog. Refresh only through the visible product control, bounded by
+        // four native discovery attempts; never manufacture a shared mapping.
+        for attempt in 0..<4 {
+            let ready = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "exists == true AND enabled == true"), object: read
+            )], timeout: 15)
+            if ready == .completed { tap(read); return }
+            let refresh = app.buttons["annotation-anytype-refresh-copies"]
+            guard attempt < 3, refresh.exists, refresh.isEnabled else { break }
+            tap(refresh)
+        }
+        try nativeRequire(false, "The original remote copy did not become selectable through real product discovery")
+    }
+
+    @MainActor
+    private func selectOriginalDevelopmentNetworkIfNeeded(_ account: XCUIElement) async throws {
+        guard let filename = ProcessInfo.processInfo.environment["OTZARIA_ANYTYPE_NETWORK_CONFIGURATION_FILENAME"] else { return }
+        try nativeRequire(filename == "otzaria-original-anysync.yaml", "Use the pinned original AnySync client configuration")
+        let gear = account.buttons["original-anytype-auth-network"]
+        XCTAssertTrue(gear.waitForExistence(timeout: 15)); tap(gear)
+        let settings = app.descendants(matching: .any)["original-anytype-network-settings"]
+        XCTAssertTrue(settings.waitForExistence(timeout: 15))
+        let installed = app.buttons[filename]
+        if !installed.exists {
+            tap(app.buttons["original-anytype-add-network"])
+            try peerChooseDocumentsInFilePicker()
+            let file = app.cells.matching(NSPredicate(format: "label CONTAINS %@", "otzaria-original-anysync"))
+            XCTAssertTrue(file.firstMatch.waitForExistence(timeout: 15))
+            try nativeRequire(file.count == 1, "Select the actual original client YAML once through Files")
+            tap(file.firstMatch)
+            XCTAssertTrue(installed.waitForExistence(timeout: 15))
+        }
+        if !installed.isSelected { tap(installed) }
+        XCTAssertTrue(installed.isSelected, "Original network storage must select the actual imported configuration")
+        settings.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.02))
+            .press(forDuration: 0.1, thenDragTo: settings.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95)))
+        try await waitForAbsence(settings)
+        XCTAssertTrue(account.buttons["I already have a key"].waitForExistence(timeout: 15))
+    }
+
+    @MainActor
+    private func peerOpenGlobalAnnotations() throws {
+        let close = app.navigationBars["Annotations"].buttons["Close"]
+        if close.exists { tap(close) }
+        let tabs = app.tabBars.buttons.matching(NSPredicate(format: "label == %@", "Annotations"))
+        XCTAssertTrue(tabs.firstMatch.waitForExistence(timeout: 15))
+        try nativeRequire(tabs.count == 1, "Require the original global Annotations tab")
+        tap(tabs.firstMatch)
+        XCTAssertTrue(app.buttons["original-annotations-file-menu"].waitForExistence(timeout: 15))
+    }
+
+    @MainActor
+    private func peerDocuments() throws -> URL {
+        let container = try ordinaryNativeContainer()
+        return container.appendingPathComponent("Documents", isDirectory: true)
+    }
+
+    @MainActor
+    private func peerChooseDocumentsInFilePicker() throws {
+        // These are actual Files-provider controls. No test writes a selected
+        // URL, bypasses the security-scoped picker, or invokes the importer.
+        let browse = app.buttons["Browse"]
+        if browse.waitForExistence(timeout: 3), browse.isHittable { tap(browse) }
+        let onDevice = app.buttons["On My iPad"]
+        let onDeviceText = app.staticTexts["On My iPad"]
+        if onDevice.waitForExistence(timeout: 5), onDevice.isHittable { tap(onDevice) }
+        else if onDeviceText.exists, onDeviceText.isHittable { tap(onDeviceText) }
+        let displayName = try XCTUnwrap(ProcessInfo.processInfo.environment["OTZARIA_ANYTYPE_PAIRED_APP_NAME"])
+        let predicate = NSPredicate(format: "label == %@", displayName)
+        let cells = app.cells.matching(predicate).allElementsBoundByIndex.filter(\.isHittable)
+        let folders = cells.isEmpty
+            ? app.buttons.matching(predicate).allElementsBoundByIndex.filter(\.isHittable) : cells
+        try nativeRequire(folders.count == 1, "Require the original app's Files-provider Documents folder")
+        tap(try XCTUnwrap(folders.first))
+    }
+
+    @MainActor
+    private func peerExportSavedAnnotation(_ context: OrdinaryNativeExchangeContext) async throws -> URL {
+        try peerOpenGlobalAnnotations()
+        tap(app.buttons["original-annotations-file-menu"])
+        tap(app.buttons["original-annotations-export-json"])
+        try peerChooseDocumentsInFilePicker()
+        let save = app.buttons["Export"]
+        let alternate = app.buttons["Save"]
+        if save.waitForExistence(timeout: 5), save.isHittable { tap(save) }
+        else { try nativeRequire(alternate.exists && alternate.isHittable, "Require Files Export or Save"); tap(alternate) }
+        let exported = try peerDocuments().appendingPathComponent("maktabah_annotations.json")
+        let present = await XCTWaiter.fulfillment(of: [XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: exported.path)
+        }, object: nil)], timeout: 30)
+        XCTAssertEqual(present, .completed)
+        let data = try Data(contentsOf: exported)
+        let contents = String(decoding: data, as: UTF8.self)
+        XCTAssertTrue(contents.contains(context.saved.uuid.uuidString), "The original export must preserve the real saved UUID")
+        XCTAssertEqual(try readCanonicalRow(context.rowID), context.saved)
+        return exported
+    }
+
+    @MainActor
+    private func peerImportOriginalExport(filename: String) async throws {
+        try nativeRequire(filename == "maktabah_annotations.json", "Only the unchanged original exporter file is admitted")
+        let exported = try peerDocuments().appendingPathComponent(filename)
+        let attributes = try exported.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        try nativeRequire(attributes.isRegularFile == true && attributes.isSymbolicLink != true
+            && (attributes.fileSize ?? 0) > 0, "Require the exact copied original JSON export")
+        try peerOpenGlobalAnnotations()
+        tap(app.buttons["original-annotations-file-menu"])
+        tap(app.buttons["original-annotations-import-json"])
+        try peerChooseDocumentsInFilePicker()
+        let document = app.cells.matching(NSPredicate(format: "label CONTAINS %@", "maktabah_annotations"))
+        XCTAssertTrue(document.firstMatch.waitForExistence(timeout: 15))
+        try nativeRequire(document.count == 1, "Require the one actual exported JSON file in Files")
+        tap(document.firstMatch)
+        let skip = app.buttons["Skip Duplicates"]
+        XCTAssertTrue(skip.waitForExistence(timeout: 30)); tap(skip)
+        let okay = app.alerts.buttons["OK"]
+        XCTAssertTrue(okay.waitForExistence(timeout: 30))
+        XCTAssertFalse(app.alerts["Import Failed"].exists)
+        tap(okay)
+    }
+}
+
+// Paired acceptance consumes only read-only evidence from the original full-v40
+// installer. This policy never supplies a database, workspace, process or app state.
+private struct OrdinaryPairedProductionReceipt: Decodable {
+    struct Witness: Decodable {
+        let path: String
+        let bytes: Int64
+        let sha256: String
+    }
+    struct Corpus: Decodable {
+        let counts: [String: Int64]
+    }
+    struct TargetBook: Decodable {
+        let book_id: Int64
+        let title: String
+    }
+    let schema: String
+    let udid: String
+    let bundle_id: String
+    let profile: String
+    let release_id: Int64
+    let data_container: String
+    let documents_directory: String
+    let data_container_metadata: Witness
+    let corpus_owner_container: String
+    let corpus_owner_metadata: Witness
+    let installed_database: Witness
+    let corpus: Corpus
+    let installation_manifest: Witness
+    let install_receipt: Witness
+    let target_book: TargetBook
+}
+
+private enum OrdinaryPairedProductionPolicy {
+    enum Rejected: Error { case invalid(String) }
+    static let bundleID = "com.davidpovarsky.chavrusatext"
+    static let databaseBytes: Int64 = 4_355_063_808
+    static let databaseSHA256 = "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+    // Exact unmodified MaktabahUITestBase.launchWithTier(.production, scenario:nil).
+    // smokeBackend here is the original provider-selection argument, not a scenario.
+    static let launchArguments = [
+        "-OtzariaDataProfile", "production", "-preferredBackend", "otzaria",
+        "-smokeBackend", "otzaria", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"
+    ]
+    static let launchEnvironment = [
+        "OTZARIA_DATA_PROFILE": "production", "SIMCTL_CHILD_OTZARIA_DATA_PROFILE": "production"
+    ]
+
+    static func require(_ condition: Bool, _ message: String) throws {
+        guard condition else { throw Rejected.invalid(message) }
+    }
+
+    static func validateRunner(_ environment: [String: String]) throws {
+        let forbidden: Set<String> = [
+            "OTZARIA_SHARED_ROOT_OVERRIDE", "OTZARIA_PRODUCTION_DB_PATH",
+            "OTZARIA_ANNOTATION_ACCEPTANCE_DATABASE", "CHAVRUSA_READER_VIEWPORT_REPORT",
+            "FAITHFUL_VIEWPORT_DIRECTORY",
+            "OTZARIA_NATIVE_BOOTSTRAP_ACCEPTANCE", "OTZARIA_NATIVE_BOOTSTRAP_RELEASE_ID",
+            "OTZARIA_ORIGINAL_EDITOR_QUALIFICATION", "OTZARIA_ORIGINAL_EDITOR_PROCESS_RESUME"
+        ]
+        for (rawKey, value) in environment {
+            var key = rawKey
+            while true {
+                if key.hasPrefix("TEST_RUNNER_") { key = String(key.dropFirst("TEST_RUNNER_".count)) }
+                else if key.hasPrefix("SIMCTL_CHILD_") { key = String(key.dropFirst("SIMCTL_CHILD_".count)) }
+                else { break }
+            }
+            try require(!forbidden.contains(key), "Paired production refuses fixture or storage overrides")
+            if key == "OTZARIA_DATA_PROFILE" {
+                try require(value == "production", "Paired production refuses a different data profile")
+            }
+        }
+    }
+
+    static func validate(_ receipt: OrdinaryPairedProductionReceipt, actualUDID: String) throws {
+        try require(receipt.schema == "otzaria.original.two-full-apps.production.v1"
+            && receipt.bundle_id == bundleID && receipt.profile == "production"
+            && receipt.release_id == 455_390_662, "Require the original full-v40 production receipt")
+        try require(UUID(uuidString: actualUDID) != nil
+            && UUID(uuidString: receipt.udid) == UUID(uuidString: actualUDID),
+            "Production evidence must belong to the actual XCTest Simulator")
+        try require(receipt.installed_database.bytes == databaseBytes
+            && receipt.installed_database.sha256 == databaseSHA256
+            && receipt.corpus.counts == ["book": 8259, "line": 7_925_185, "link": 7_001_824],
+            "Require the independently inspected complete original v40 corpus")
+        try require(receipt.target_book.book_id == 103
+            && !receipt.target_book.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && receipt.target_book.title.utf8.count <= 1024,
+            "Use the exact catalog identity observed by the original production controller")
+        for witness in [receipt.data_container_metadata, receipt.corpus_owner_metadata,
+                        receipt.installed_database, receipt.installation_manifest, receipt.install_receipt] {
+            try require(witness.bytes > 0 && witness.path.hasPrefix("/")
+                && witness.sha256.utf8.count == 64
+                && witness.sha256.utf8.allSatisfy { (48...57).contains($0) || (97...102).contains($0) },
+                "Every production input must retain a bounded, actual file witness")
+        }
+    }
+
+    static func validateLaunch(arguments: [String], environment: [String: String]) throws {
+        try require(arguments == launchArguments && environment == launchEnvironment,
+                    "Require the unchanged original production launch without fixture, namespace or app overrides")
+    }
+}
+
+extension ProductionAnnotationEditorAcceptanceTests {
+    private struct PairedProductionInstallation {
+        let receiptURL: URL
+        let receiptSHA256: String
+        let receipt: OrdinaryPairedProductionReceipt
+    }
+
+    private func pairedBytes(_ url: URL, maximum: Int64) throws -> Data {
+        try nativeRequire(url.isFileURL && url.standardizedFileURL == url
+            && url.resolvingSymlinksInPath() == url, "Read only canonical original evidence paths")
+        let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        try nativeRequire(values.isRegularFile == true && values.isSymbolicLink == false
+            && (values.fileSize.map(Int64.init) ?? 0) > 0
+            && (values.fileSize.map(Int64.init) ?? Int64.max) <= maximum,
+            "Require a bounded regular original evidence file")
+        return try Data(contentsOf: url)
+    }
+
+    private func pairedWitness(_ witness: OrdinaryPairedProductionReceipt.Witness,
+                               expected: URL? = nil, maximum: Int64) throws -> Data {
+        let url = URL(fileURLWithPath: witness.path)
+        if let expected {
+            try nativeRequire(url == expected, "The evidence witness must name the actual original owner path")
+        }
+        let bytes = try pairedBytes(url, maximum: maximum)
+        try nativeRequire(Int64(bytes.count) == witness.bytes && Self.sha256(bytes) == witness.sha256,
+                          "Original production evidence bytes changed")
+        return bytes
+    }
+
+    private func loadPairedProduction() throws -> PairedProductionInstallation {
+        let environment = ProcessInfo.processInfo.environment
+        try OrdinaryPairedProductionPolicy.validateRunner(environment)
+        let path = try XCTUnwrap(environment["OTZARIA_ORDINARY_PRODUCTION_RECEIPT"])
+        let digest = try XCTUnwrap(environment["OTZARIA_ORDINARY_PRODUCTION_RECEIPT_SHA256"])
+        let url = URL(fileURLWithPath: path)
+        try nativeRequire(path.hasPrefix("/Users/m1/builds/") && url.path == path,
+                          "Use the controller's canonical owned production evidence")
+        let bytes = try pairedBytes(url, maximum: 1_048_576)
+        try nativeRequire(Self.sha256(bytes) == digest, "The exact production receipt hash is required")
+        let receipt = try JSONDecoder().decode(OrdinaryPairedProductionReceipt.self, from: bytes)
+        try OrdinaryPairedProductionPolicy.validate(receipt,
+            actualUDID: try XCTUnwrap(environment["SIMULATOR_UDID"]))
+        let installation = PairedProductionInstallation(receiptURL: url, receiptSHA256: digest, receipt: receipt)
+        _ = try verifyPairedProduction(installation)
+        try verifyPairedProductionTarget(installation)
+        return installation
+    }
+
+    private func pairedMCMOwners(in parent: URL, identifier: String) throws -> [URL] {
+        try nativeRequire(parent.standardizedFileURL == parent && parent.resolvingSymlinksInPath() == parent,
+                          "MCM discovery stays within the actual owned Simulator")
+        let children = try FileManager.default.contentsOfDirectory(at: parent,
+            includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+        try nativeRequire(children.count <= 256, "Bound original MCM container discovery")
+        return try children.compactMap { child in
+            let values = try child.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+            guard values.isDirectory == true && values.isSymbolicLink == false
+                && UUID(uuidString: child.lastPathComponent) != nil else { return nil }
+            let metadata = child.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist")
+            guard let bytes = try? pairedBytes(metadata, maximum: 65_536),
+                  let object = try? PropertyListSerialization.propertyList(from: bytes, format: nil),
+                  let value = object as? [String: Any],
+                  value["MCMMetadataIdentifier"] as? String == identifier else { return nil }
+            return child
+        }
+    }
+
+    @discardableResult
+    private func verifyPairedProduction(_ installation: PairedProductionInstallation) throws -> URL {
+        let receipt = installation.receipt
+        let environment = ProcessInfo.processInfo.environment
+        try OrdinaryPairedProductionPolicy.validateRunner(environment)
+        try OrdinaryPairedProductionPolicy.validate(receipt,
+            actualUDID: try XCTUnwrap(environment["SIMULATOR_UDID"]))
+        try nativeRequire(Self.sha256(try pairedBytes(installation.receiptURL, maximum: 1_048_576))
+            == installation.receiptSHA256, "The retained controller receipt cannot be replaced")
+        let container = URL(fileURLWithPath: receipt.data_container, isDirectory: true)
+        let components = container.pathComponents
+        try nativeRequire(container.path == receipt.data_container && container.standardizedFileURL == container
+            && container.resolvingSymlinksInPath() == container
+            && UUID(uuidString: container.lastPathComponent) != nil
+            && components.count >= 7
+            && Array(components.suffix(7)).enumerated().allSatisfy { index, value in
+                let expected = ["Devices", receipt.udid, "data", "Containers", "Data", "Application", container.lastPathComponent]
+                return index == 1 ? value.lowercased() == expected[index].lowercased() : value == expected[index]
+            }, "Require the exact real app data container of this Simulator")
+        let parent = container.deletingLastPathComponent()
+        let appOwners = try pairedMCMOwners(in: parent, identifier: OrdinaryPairedProductionPolicy.bundleID)
+        try nativeRequire(appOwners == [container], "The actual MCM app owner must be unique and match this receipt")
+        let metadataName = ".com.apple.mobile_container_manager.metadata.plist"
+        _ = try pairedWitness(receipt.data_container_metadata,
+            expected: container.appendingPathComponent(metadataName), maximum: 65_536)
+        let documents = container.appendingPathComponent("Documents", isDirectory: true)
+        try nativeRequire(URL(fileURLWithPath: receipt.documents_directory, isDirectory: true) == documents,
+                          "Documents must belong to the same actual original app")
+
+        let simulatorData = (0..<4).reduce(container) { value, _ in value.deletingLastPathComponent() }
+        let groupParent = simulatorData.appendingPathComponent("Containers/Shared/AppGroup", isDirectory: true)
+        let groups = FileManager.default.fileExists(atPath: groupParent.path)
+            ? try pairedMCMOwners(in: groupParent, identifier: "group.com.davidpovarsky.itorah") : []
+        try nativeRequire(groups.count <= 1, "The original production App Group owner cannot be ambiguous")
+        let corpusOwner = groups.first ?? container
+        try nativeRequire(URL(fileURLWithPath: receipt.corpus_owner_container, isDirectory: true) == corpusOwner,
+                          "The corpus must belong to the original current App Group or genuine app fallback")
+        _ = try pairedWitness(receipt.corpus_owner_metadata,
+            expected: corpusOwner.appendingPathComponent(metadataName), maximum: 65_536)
+        let root = groups.isEmpty
+            ? container.appendingPathComponent("Library/Application Support/Maktabah-Debug", isDirectory: true)
+            : corpusOwner
+        let database = root.appendingPathComponent("Otzaria/seforim.db")
+        try nativeRequire(URL(fileURLWithPath: receipt.installed_database.path) == database
+            && database.standardizedFileURL == database && database.resolvingSymlinksInPath() == database,
+            "Read the original installed corpus path; no database override or other Simulator")
+        let resource = try database.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        try nativeRequire(resource.isRegularFile == true && resource.isSymbolicLink == false
+            && resource.fileSize.map(Int64.init) == OrdinaryPairedProductionPolicy.databaseBytes,
+            "The independently hashed full production corpus must remain present")
+        let manifest = try pairedWitness(receipt.installation_manifest,
+            expected: database.deletingLastPathComponent().appendingPathComponent("seforim-installation.json"),
+            maximum: 1_048_576)
+        let value = try XCTUnwrap(JSONSerialization.jsonObject(with: manifest) as? [String: Any])
+        try nativeRequire(value["releaseTag"] as? String == "v40-20261123094345"
+            && (value["releaseID"] as? NSNumber)?.int64Value == 455_390_662
+            && (value["databaseFileSize"] as? NSNumber)?.int64Value == OrdinaryPairedProductionPolicy.databaseBytes
+            && (value["profileID"] as? String ?? "production") == "production",
+            "The unchanged original installed manifest must identify full production v40")
+        _ = try pairedWitness(receipt.install_receipt, maximum: 8_388_608)
+        return container
+    }
+
+    private func verifyPairedProductionTarget(_ installation: PairedProductionInstallation) throws {
+        var connection: OpaquePointer?
+        try nativeRequire(sqlite3_open_v2(installation.receipt.installed_database.path, &connection,
+            SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil) == SQLITE_OK,
+            "Read the original production catalog without creating or modifying it")
+        let database = try XCTUnwrap(connection)
+        defer { sqlite3_close(database) }
+        try nativeRequire(sqlite3_db_readonly(database, "main") == 1, "Catalog inspection must be read-only")
+        var statement: OpaquePointer?
+        try nativeRequire(sqlite3_prepare_v2(database, "SELECT title FROM book WHERE id = ?", -1, &statement, nil) == SQLITE_OK,
+                          "The original production book table must be available")
+        let query = try XCTUnwrap(statement)
+        defer { sqlite3_finalize(query) }
+        try nativeRequire(sqlite3_bind_int64(query, 1, installation.receipt.target_book.book_id) == SQLITE_OK
+            && sqlite3_step(query) == SQLITE_ROW, "The exact production catalog book must exist")
+        let title = String(cString: try XCTUnwrap(sqlite3_column_text(query, 0)))
+        try nativeRequire(title == installation.receipt.target_book.title && sqlite3_step(query) == SQLITE_DONE,
+                          "The source-bound catalog identity must be unique and unchanged")
+    }
+
+    @MainActor
+    private func ordinaryNativeContainer() throws -> URL {
+        if let pairedProduction { return try verifyPairedProduction(pairedProduction) }
+        let sidecar = try workspaceSidecarURL()
+        return (0..<6).reduce(sidecar) { value, _ in value.deletingLastPathComponent() }
+    }
+
+    @MainActor
+    private func validatePairedProductionLaunch() throws {
+        try OrdinaryPairedProductionPolicy.validateLaunch(arguments: app.launchArguments,
+                                                           environment: app.launchEnvironment)
+        try nativeRequire(app.state == .runningForeground, "The actual original production app must be foreground")
+        _ = try verifyPairedProduction(try XCTUnwrap(pairedProduction))
+    }
+
+    @MainActor
+    private func pairedOpenLibraryTab() throws {
+        let library = findTabButton(hebrew: "ספר", english: "Library")
+        try nativeRequire(library.waitForExistence(timeout: 30) && library.isHittable,
+                          "Open the actual original Library tab")
+        tap(library)
+    }
+
+    @MainActor
+    private func launchPairedProductionReader() async throws {
+        let installation = try XCTUnwrap(pairedProduction)
+        _ = try verifyPairedProduction(installation)
+        launchWithTier(.production, scenario: nil, backend: "otzaria", language: "en", locale: "en_US")
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        try validatePairedProductionLaunch()
+        try pairedOpenLibraryTab()
+        let launcher = readerLibraryPaletteLauncher()
+        tap(launcher)
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        try nativeRequire(palette.waitForExistence(timeout: 30), "Open the actual original Library palette")
+        let input = palette.textFields.firstMatch
+        try nativeRequire(input.waitForExistence(timeout: 20) && input.isHittable,
+                          "The actual original Library query field must be reachable")
+        tap(input)
+        input.typeKey("a", modifierFlags: .command)
+        input.typeText(installation.receipt.target_book.title)
+        XCTAssertEqual(input.value as? String, installation.receipt.target_book.title)
+        let results = palette.buttons.matching(NSPredicate(format: "label == %@", installation.receipt.target_book.title))
+        try nativeRequire(results.firstMatch.waitForExistence(timeout: 60)
+            && results.count == 1 && results.firstMatch.isHittable,
+            "Require the unique original result for the real SQL title")
+        tap(results.firstMatch)
+        try await waitForAbsence(palette)
+        try pairedRequireReaderSource()
+        _ = try pairedWorkspaceSelection()
+    }
+
+    @MainActor
+    private func pairedRequireReaderSource() throws {
+        let installation = try XCTUnwrap(pairedProduction)
+        assertReaderHasText()
+        let pieces = app.staticTexts["reader-current-locator"].label.components(separatedBy: "|")
+        try nativeRequire(pieces.count == 3 && pieces[0] == "otzaria"
+            && pieces[1] == "book:" + String(installation.receipt.target_book.book_id)
+            && pieces[2].hasPrefix("line:") && Int64(pieces[2].dropFirst(5)).map { $0 >= 0 } == true,
+            "The original native reader must display the exact production book")
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, installation.receipt.target_book.title)
+        try verifyPairedProductionTarget(installation)
+    }
+
+    private struct PairedWorkspaceSelection: Decodable {
+        struct Session: Decodable { let id: UUID; let backendLocator: Locator?; let locator: Locator? }
+        struct Locator: Decodable { let backend: String; let workKey: String }
+        struct Tab: Decodable { let backend: String; let session: Session }
+        struct Group: Decodable { let id: UUID; let profileID: UUID; let activeTabID: UUID?; let tabs: [Tab] }
+        struct Scene: Decodable { let profileID: UUID; let groupID: UUID; let activeTabIDsByGroup: [UUID: UUID]? }
+        let groups: [Group]
+        let scenes: [String: Scene]
+        let lastActiveSceneID: String?
+    }
+
+    @MainActor
+    private func pairedWorkspaceSelection() throws -> [String: String] {
+        let container = try ordinaryNativeContainer()
+        let path = container.appendingPathComponent("Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json")
+        let bytes = try pairedBytes(path, maximum: 8_388_608)
+        let workspace = try JSONDecoder().decode(PairedWorkspaceSelection.self, from: bytes)
+        let scene = try XCTUnwrap(workspace.scenes[try XCTUnwrap(workspace.lastActiveSceneID)])
+        let groups = workspace.groups.filter { $0.id == scene.groupID && $0.profileID == scene.profileID }
+        try nativeRequire(groups.count == 1, "The original production Workspace must select one real profile and group")
+        let group = try XCTUnwrap(groups.first)
+        let active = try XCTUnwrap(scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID)
+        let tabs = group.tabs.filter { $0.session.id == active && $0.backend == "otzaria" }
+        try nativeRequire(tabs.count == 1, "The original production Workspace must select the real Otzaria document")
+        let session = try XCTUnwrap(tabs.first).session
+        let locators = [session.backendLocator, session.locator].compactMap { $0 }
+        try nativeRequire(!locators.isEmpty && locators.allSatisfy {
+            $0.backend == "otzaria" && $0.workKey == "book:103"
+        }, "The actual production Workspace must bind the selected catalog book")
+        return ["path": path.path, "profile": scene.profileID.uuidString,
+                "group": group.id.uuidString, "document": active.uuidString, "workKey": "book:103"]
+    }
+
+    @MainActor
+    private func pairedRelaunchOriginalReader() async throws {
+        let before = try pairedWorkspaceSelection()
+        let arguments = app.launchArguments, environment = app.launchEnvironment
+        app.terminate()
+        XCTAssertTrue(app.wait(for: .notRunning, timeout: 15))
+        _ = try verifyPairedProduction(try XCTUnwrap(pairedProduction))
+        app.launch()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        XCTAssertEqual(app.launchArguments, arguments); XCTAssertEqual(app.launchEnvironment, environment)
+        try validatePairedProductionLaunch()
+        // Reveal the restored original document, without a new book/open command.
+        try pairedOpenLibraryTab()
+        try pairedRequireReaderSource()
+        XCTAssertEqual(try pairedWorkspaceSelection(), before,
+                       "Cold reopening must retain the actual production profile, group and document")
+    }
+
+    @MainActor
+    private func pairedSavedNoteSource(_ rowID: Int64) throws -> [String: Any] {
+        let container = try ordinaryNativeContainer()
+        let path = container.appendingPathComponent("Library/Application Support/Maktabah-Debug/Annotations.sqlite")
+        var connection: OpaquePointer?
+        try nativeRequire(sqlite3_open_v2(path.path, &connection, SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil) == SQLITE_OK,
+                          "Read only the actual original annotation store")
+        let database = try XCTUnwrap(connection)
+        defer { sqlite3_close(database) }
+        try nativeRequire(sqlite3_db_readonly(database, "main") == 1, "Annotation source inspection is read-only")
+        var statement: OpaquePointer?
+        try nativeRequire(sqlite3_prepare_v2(database, "SELECT backendLocator FROM annotations WHERE id = ?",
+            -1, &statement, nil) == SQLITE_OK, "Observe the actual saved annotation source")
+        let query = try XCTUnwrap(statement)
+        defer { sqlite3_finalize(query) }
+        try nativeRequire(sqlite3_bind_int64(query, 1, rowID) == SQLITE_OK && sqlite3_step(query) == SQLITE_ROW,
+                          "The exact original saved row must exist")
+        let bytes = Data(String(cString: try XCTUnwrap(sqlite3_column_text(query, 0))).utf8)
+        let locator = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        try nativeRequire(sqlite3_step(query) == SQLITE_DONE && locator["backend"] as? String == "otzaria"
+            && locator["workKey"] as? String == "book:103", "The actual saved note must retain the selected production source")
+        return locator
     }
 }
