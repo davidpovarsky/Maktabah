@@ -1,0 +1,11 @@
+{
+  "exit": 0,
+  "stoppedForReserve": false,
+  "start": "2026-11-27T09:11:40.615616+00:00",
+  "end": "2026-11-27T09:12:04.630274+00:00",
+  "packageInputSha256": "29f91225edea03e4ff8e2e7454462de5559916c45e77f828c744a493b3c62b24",
+  "generatedInputSha256": "cd57c67327a1a0709f53d5cd2e7c8486e470519c38f5b906925a2aac5eb5de77",
+  "rawSha256": "3e4f865d20b05208b449c00937206e6900c72e885edd5cd0137aa644e425a58a",
+  "freeAfter": 2022973440,
+  "scope": "actual record-binding/metadata/parent/geometry methods over explicit domain/UI inputs, actual portable Core/UIRouting/Host; no SDK/native proof"
+}

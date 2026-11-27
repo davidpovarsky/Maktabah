@@ -1,0 +1,41 @@
+{
+  "service": {
+    "tests": 12,
+    "failures": 0,
+    "attempt": "service-attempt-3"
+  },
+  "binding": {
+    "tests": 27,
+    "failures": 0,
+    "attempt": "binding-attempt-1"
+  },
+  "counterfactuals": [
+    {
+      "attempt": "service-selected-item-negative-attempt-2",
+      "methods": 1,
+      "expectedFailures": 2
+    },
+    {
+      "attempt": "binding-negative-observation",
+      "methods": 1,
+      "expectedFailures": 4
+    },
+    {
+      "attempt": "binding-negative-row-geometry",
+      "methods": 1,
+      "expectedFailures": 16,
+      "invalidGeometryVariants": 8
+    }
+  ],
+  "nativeSelectors": {
+    "declared": 6,
+    "executed": 0,
+    "status": "NOT_RUN"
+  },
+  "appSDK": "NOT_RUN",
+  "physicalQA": "NOT_RUN",
+  "initialCompileFailuresPreserved": 2,
+  "counterfactualSetupFailuresPreserved": 2,
+  "openFilteredHistoryDiscovery": true,
+  "scope": "Explicit source/domain controls only; no broadened acceptance claims."
+}

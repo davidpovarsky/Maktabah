@@ -1,0 +1,10 @@
+{
+  "exit": 1,
+  "stoppedForReserve": false,
+  "start": "2026-11-27T08:45:40.495703+00:00",
+  "end": "2026-11-27T08:46:14.525365+00:00",
+  "sourceInputSha256": "ff6d03701e164919f2c2d9b9d2ec9184b40b52d5c3255eceb884b3d2abbad550",
+  "rawSha256": "65cbc115777cdda71ff1ff136f18d76212cce67bd9539627ad7f67ef16fb783b",
+  "freeAfter": 3562807296,
+  "scope": "actual original package compilation; only History record service tests; no app/native proof"
+}

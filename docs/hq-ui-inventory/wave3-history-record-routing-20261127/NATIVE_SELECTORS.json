@@ -1,0 +1,26 @@
+{
+  "status": "NOT_RUN",
+  "data": "original miniTest10 fixture",
+  "selectors": [
+    "NativeHistoryRecordAcceptanceTests/testHistoryRecordFromOriginalLibraryShowsExactOriginalCardAndReceipt",
+    "NativeHistoryRecordAcceptanceTests/testFavoriteRecordOnWarmOriginalHistoryShowsExactOriginalCardAndReceipt",
+    "NativeHistoryRecordAcceptanceTests/testCachedFavoriteRemovedThroughOriginalControlIsRefusedWithoutReceipt",
+    "NativeHistoryRecordPhoneAcceptanceTests/testPhoneHistoryRecordFromOriginalLibraryShowsExactOriginalCardAndReceipt",
+    "NativeHistoryRecordPhoneAcceptanceTests/testPhoneFavoriteRecordReturnsFromBackgroundToExactOriginalCardAndReceipt",
+    "NativeHistoryRecordPhoneAcceptanceTests/testPhoneCachedFavoriteRemovedThroughOriginalControlIsRefusedWithoutReceipt"
+  ],
+  "requires": [
+    "integrated qualified application",
+    "actual AppIntentsTesting delivery",
+    "original visible card",
+    "canonical and record receipt correlation"
+  ],
+  "doesNotEstablish": [
+    "production library acceptance",
+    "Reader remembered-position restoration",
+    "full 294/51 acceptance",
+    "Native116",
+    "Release114+2",
+    "physical QA"
+  ]
+}

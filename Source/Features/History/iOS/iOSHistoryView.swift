@@ -14,9 +14,11 @@ struct iOSHistoryView: View {
         let filteredFavorites = viewModel.filteredFavorites
         let filteredHistory = viewModel.filteredHistory
 
+        ScrollViewReader { nativeRecordScroll in
         ThemeList {
             if !filteredHistory.isEmpty {
                 HistorySection(books: filteredHistory, viewModel: viewModel)
+                    .id(MaktabahNativeHistoryRecords.originalGridID)
             }
 
             if donationManager.shouldShowDonation {
@@ -53,6 +55,8 @@ struct iOSHistoryView: View {
         }
         .withActiveIntegrationStates()
         .navigationTitle(Text(.Library.historyAndFavorites))
+        .modifier(MaktabahNativeHistoryRecordContainer(model: viewModel, proxy: nativeRecordScroll))
+        }
     }
 
     private func donationCard(

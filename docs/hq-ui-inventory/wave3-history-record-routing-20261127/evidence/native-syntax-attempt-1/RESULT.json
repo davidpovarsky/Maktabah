@@ -1,0 +1,23 @@
+{
+  "utc": "2026-11-27T09:04:05.080129+00:00",
+  "scope": "Swift frontend syntax only; no SDK or native execution",
+  "prefixBytes": 194950,
+  "prefixSHA256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+  "files": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "bytes": 212559,
+      "sha256": "67b579969c146eb6fd01e6d0c00a8e982cc5bea2ee3351ac12b932bbaed16bac",
+      "exit": 0,
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+      "bytes": 2255,
+      "sha256": "28f965184793c4f82c41063637b2e1b91d7c21489b7c32c69b275e97e393df90",
+      "exit": 0,
+      "logSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "freeAfter": 2101706752
+}

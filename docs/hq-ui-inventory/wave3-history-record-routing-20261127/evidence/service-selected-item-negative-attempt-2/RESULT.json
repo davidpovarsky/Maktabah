@@ -1,0 +1,12 @@
+{
+  "exit": 1,
+  "expected": "one test fails both root-only and wrong-item variants",
+  "stoppedForReserve": false,
+  "start": "2026-11-27T08:59:50.607182+00:00",
+  "end": "2026-11-27T09:00:04.615944+00:00",
+  "sourceInputSha256": "389d5a70950aca0cda076ac7edab2aebaebf5c70032888a5c99506da28aabcc6",
+  "rawSha256": "a9a1709823de9798971a1e117375b3a83c6378bc0aa8fd47f56518376d980489",
+  "restoredProductionSourceSha256": "cea5c452b7168eba3f8a9617b2b7f330dbe044eff80059e49366b298a0ab5a3c",
+  "freeAfter": 2138988544,
+  "scope": "isolated package-only counterfactual; original production/worktree service untouched; no app/native proof"
+}

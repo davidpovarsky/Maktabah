@@ -1,0 +1,16 @@
+{
+  "owner": "root integration",
+  "pbxEditedByThisPacket": false,
+  "iOSAppSourcesToRegister": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecordViews.swift"
+  ],
+  "swiftPM": "Existing Host Sources and Tests directory membership; Package.swift unchanged.",
+  "nativeUITests": {
+    "path": "Maktabah-iOSUITests",
+    "group": "F30578032FA46222005732C6",
+    "isa": "PBXFileSystemSynchronizedRootGroup",
+    "newFile": "NativeHistoryRecordAcceptanceTests.swift",
+    "instruction": "Verify target membership through synchronized group; no duplicate explicit source membership."
+  }
+}

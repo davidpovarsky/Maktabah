@@ -1,0 +1,11 @@
+{
+  "exit": 1,
+  "expected": "actual row geometry counterfactual must fail; independent window readiness remains active",
+  "stoppedForReserve": false,
+  "start": "2026-11-27T09:16:45.514024+00:00",
+  "end": "2026-11-27T09:16:55.518922+00:00",
+  "packageInputSha256": "dd2b0bfb3347ecb864d4965bfea542f5972a028e1e7c981b3c095012271b9aaf",
+  "rawSha256": "aecb08f147db536f445c838c56be2e6fdb833a9915613b579437f841a8c76e53",
+  "freeAfter": 1976864768,
+  "scope": "one exact isolated source predicate counterfactual over domain/UI inputs; no app/native proof"
+}

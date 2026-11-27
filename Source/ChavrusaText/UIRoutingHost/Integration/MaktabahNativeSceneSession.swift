@@ -157,6 +157,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
     @ObservationIgnored private var retainedSearchField: UISearchTextField?
     private(set) var searchEntryBinding: MaktabahNativeSearchEntryBinding?
+    private(set) var historyRecordBinding: MaktabahNativeHistoryRecordBinding?
+    @ObservationIgnored private var retainedHistoryRecord = false
     @ObservationIgnored private var searchFieldUpdateScheduled = false
     @ObservationIgnored private var inspectorBinding: MaktabahNativeInspectorBinding?
     @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
@@ -315,6 +317,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func nativeWindowDidChange(_ source: MaktabahNativeWindowSource) {
         guard mounted, windowSource === source else { return }
         searchEntryBinding?.retire()
+        historyRecordBinding?.retire()
         sefariaRootSources.values.forEach { $0.invalidate() }
         completedSefariaRootSource?.invalidate()
         presentation.revoke()
@@ -327,6 +330,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
     func originalSearchPresentationWillChange(owner: UUID) {
         searchEntryBinding?.originalPresentationWillChange(owner: owner)
+        if searchPresentationOwner == owner { historyRecordBinding?.originalForeignStateWillChange() }
     }
     func renderSearchEntryFromOriginalView() {
         guard mounted, foreground else { return }
@@ -542,6 +546,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         // and completed proof; final-value equality cannot revive either one.
         sefariaRootSources.values.forEach { $0.invalidate() }
         completedSefariaRootSource?.invalidate()
+        historyRecordBinding?.originalForeignStateWillChange()
         if retainedSefariaSurface { presentation.revoke() }
     }
     func detachNoteEditor(id: UUID) {
@@ -731,6 +736,31 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 originalPresentationStateDidChange()
             }, invalidated: { [weak self] in self?.presentation.revoke() })
             for owner in MaktabahNativeWorkspaceComponents.makeOwners(binding: original) { attachComponentOwner(owner) }
+            let history = MaktabahNativeHistoryRecordBinding(sceneID: sceneID, bindings: bindings,
+                workspaceSource: workspaceSource, workspacePresentation: original,
+                commonReady: { [weak self] in
+                    guard let self else { return false }
+                    // Source is retained before system foreground activation.
+                    // Foreground and the real window are mandatory at begin.
+                    return mounted && isPresentationReady && !bindings.showSettings.wrappedValue
+                        && searchPresentationBlocked?() != true
+                }, windowReady: { [weak self] in
+                    guard let self else { return false }
+                    return foreground && windowSource?.isPresentationReady(in: sceneID) == true
+                }, readForeignPresentations: { [weak self] in
+                    guard let self else { return }
+                    _ = mounted; _ = studyChatPresentationID
+                    // Original Notes/Search local State invalidates through
+                    // their existing exact-owner pre-mutation callbacks.
+                })
+            historyRecordBinding = history
+            history.install(changed: { [weak self, weak history] in
+                guard let self, let history, historyRecordBinding === history else { return }
+                originalPresentationStateDidChange()
+            }, invalidated: { [weak self] in
+                guard let self, retainedHistoryRecord else { return }
+                presentation.revoke()
+            })
             let sefaria = MaktabahNativeSefariaSurfaceBinding(sceneID: sceneID,
                 manager: bindings.manager, workspaceSource: workspaceSource)
             sefariaSurfaceBinding = sefaria
@@ -805,8 +835,10 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         let workspaceParent = MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: value.route.route.destination.rawValue)
         let phoneTOC = usesOriginalPhoneTOC(value.route.route.destination)
         let sefaria = value.route.route.destination == MaktabahNativeSefariaSurfaceBinding.destination
+        let historyRecord = value.route.route.destination == MaktabahNativeHistoryRecords.destination
+            && value.route.route.state.selectedItemID != nil
         let parentValidation: (@MainActor () throws -> Void)?
-        if workspaceParent != nil || phoneTOC || sefaria {
+        if workspaceParent != nil || phoneTOC || sefaria || historyRecord {
             parentValidation = try renderValidation ?? boundedRenderValidation(for: value)
         } else { parentValidation = nil }
         let inspector: MaktabahNativeInspectorBinding?
@@ -834,6 +866,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 }
                 try sefariaSurfaceBinding.begin(requestID: value.invocation.requestId, validate: parentValidation)
             }
+            if historyRecord {
+                guard let historyRecordBinding, let parentValidation else {
+                    throw UIRouteError(.unavailable, "native_history_record_owner_missing")
+                }
+                try historyRecordBinding.begin(requestID: value.invocation.requestId, validate: parentValidation)
+            }
             if let component, let anchor = value.route.route.focus?.anchor, let renderValidation {
                 if component === searchEntryBinding?.owner {
                     try searchEntryBinding?.begin(requestID: value.invocation.requestId, validate: renderValidation)
@@ -845,12 +883,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             phoneTOCPresentation?.finish(requestID: value.invocation.requestId, completed: false)
             searchEntryBinding?.finish(requestID: value.invocation.requestId, completed: false)
             sefariaSurfaceBinding?.finish(requestID: value.invocation.requestId, completed: false)
+            historyRecordBinding?.finish(requestID: value.invocation.requestId, completed: false)
             presentation.end(requestID: value.invocation.requestId)
             throw error
         }
         retainedWorkspaceParent = workspaceParent
         retainedPhoneTOC = phoneTOC
         retainedSefariaSurface = sefaria
+        retainedHistoryRecord = historyRecord
+        if !historyRecord { historyRecordBinding?.clearCompletedProof() }
         retainedComponentOwner = component
         inspectorBinding = inspector
         retainedSearchField = field
@@ -877,6 +918,40 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         retained.release(); readerBinding = nil
     }
 
+    /// Typed record metadata is converted into private route state only by the
+    /// exact scene which retained its actual original publication before await.
+    func retainHistoryRecord(_ record: NativeHistoryRecordIntentService.Record, requestID: UUID) throws
+        -> MaktabahNativeHistoryRecordBinding {
+        guard mounted, let original = historyRecordBinding else {
+            throw UIRouteError(.unavailable, "native_history_record_owner_missing")
+        }
+        try original.retain(record: record, requestID: requestID)
+        return original
+    }
+    func prepareHistoryRecord(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard mounted, foreground, scene.sceneID == sceneID, let original = historyRecordBinding else {
+            throw UIRouteError(.staleState, "native_history_record_window_changed")
+        }
+        let itemID = try original.selectedItem(requestID: invocation.requestId)
+        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding)
+        return RouteSpec(requestId: invocation.requestId, destination: MaktabahNativeHistoryRecords.destination,
+            backend: invocation.snapshot.backend,
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID, selectedItemID: itemID),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),
+            expectedBackendSnapshot: invocation.snapshot)
+    }
+    func validateCompletedHistoryRecord(_ receipt: UISceneReceipt,
+                                        original: MaktabahNativeHistoryRecordBinding) throws {
+        guard historyRecordBinding === original,
+              receipt.route.destination == MaktabahNativeHistoryRecords.destination,
+              try original.selectedItem(requestID: receipt.requestId) == receipt.route.state.selectedItemID,
+              try original.observedItem() == receipt.route.state.selectedItemID else {
+            throw UIRouteError(.staleState, "native_history_record_completion_changed")
+        }
+        try validateCompletedJourneySurface(receipt)
+        try original.validateSource(requestID: receipt.requestId)
+    }
+
     func validateSurface(_ command: UISceneCommand) throws {
         guard mounted, foreground else { throw UIRouteError(.requiresForeground, "exact_foreground_scene_required") }
         guard isPresentationReady(for: command.route.route.destination) else {
@@ -887,6 +962,16 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         try validateParentSource(destination: route.destination, requestID: command.invocation.requestId)
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
+        if route.destination == MaktabahNativeHistoryRecords.destination, let itemID = route.state.selectedItemID {
+            guard route.content == nil, route.focus == nil, route.presentation.kind == .currentTab,
+                  route.presentation.tabID == nil, let historyRecordBinding,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID,
+                      profileID: identity.state.profileID, selectedItemID: itemID),
+                  try historyRecordBinding.selectedItem(requestID: command.invocation.requestId) == itemID else {
+                throw UIRouteError(.staleState, "native_history_record_route_changed")
+            }
+            return
+        }
         if route.destination.rawValue == "native.reader.noteDraft" {
             guard route.content == nil, route.focus == nil, route.presentation.kind == .sheet,
                   route.presentation.tabID == nil,
@@ -971,6 +1056,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
 
     func apply(_ command: UISceneCommand) throws {
+        if command.route.route.destination == MaktabahNativeHistoryRecords.destination,
+           command.route.route.state.selectedItemID != nil {
+            try validateSurface(command)
+            guard retainedHistoryRecord, let historyRecordBinding else {
+                throw UIRouteError(.staleState, "native_history_record_not_prepared")
+            }
+            try historyRecordBinding.apply(requestID: command.invocation.requestId)
+            return
+        }
         if command.route.route.destination == MaktabahNativeSefariaSurfaceBinding.destination {
             try validateSurface(command)
             guard retainedSefariaSurface, let original = sefariaSurfaceBinding else {
@@ -1093,11 +1187,12 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         // or TextKit paint/scroll restoration. Observe the same live UIKit
         // witness only while its original request is waiting; never echo the route.
         let readerObservation: Task<Void, Never>?
-        if retainedComponentOwner != nil || ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations",
+        if retainedComponentOwner != nil || retainedHistoryRecord || ["native.reader", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations",
                                              "native.workspace.profiles", "native.workspace.overview", "native.sefariaEmbedded"].contains(command.route.route.destination.rawValue) {
             readerObservation = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
                     guard let self, mounted, submissionID == command.invocation.requestId else { return }
+                    if retainedHistoryRecord { historyRecordBinding?.renderOriginalContainer() }
                     if let actual = visibilityChecks[command.route.route.destination]?() { observe(actual) }
                     do { try await Task.sleep(for: .milliseconds(33)) } catch { return }
                 }
@@ -1146,9 +1241,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         _ = componentRevision
         _ = phoneTOCPresentation?.stateRevision
         _ = sefariaSurfaceBinding?.renderRevision
+        let historySource = kind == .history && (retainedHistoryRecord
+            || (command == nil && lastCompletedSurface?.route.destination == MaktabahNativeHistoryRecords.destination
+                && lastCompletedSurface?.route.state.selectedItemID != nil)) ? historyRecordBinding : nil
         guard let state = try project().surface(kind, workspacePresentation: workspacePresentation,
                                                phoneTOCPresentation: phoneTOCPresentation,
-                                               sefariaSurface: sefariaSurfaceBinding) else { return nil }
+                                               sefariaSurface: sefariaSurfaceBinding,
+                                               historyRecord: historySource) else { return nil }
         if command?.route.route.focus != nil, let owner = retainedComponentOwner, owner.destination == state.destination {
             _ = componentRevision
             return .init(destination: state.destination, presentation: state.presentation,
@@ -1329,6 +1428,27 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func observe(_ evidence: NativeSurfaceWitness.Evidence) {
         guard mounted, evidence.sceneID == sceneID else { return }
+        if evidence.isVisible, evidence.surface.destination == MaktabahNativeHistoryRecords.destination,
+           evidence.surface.state.selectedItemID != nil, let requestID = evidence.submissionID {
+            do {
+                guard retainedHistoryRecord, let original = historyRecordBinding,
+                      submissionID == requestID, command?.invocation.requestId == requestID else {
+                    throw UIRouteError(.staleState, "native_history_record_report_not_owned")
+                }
+                // The actor's exact publication token remains locked across
+                // final row/root revalidation and the original native report.
+                try original.withValidatedRecord(requestID: requestID) {
+                    guard let current = try surface(.history), current == evidence.surface else {
+                        throw UIRouteError(.staleState, "native_history_record_report_changed")
+                    }
+                    recordNativeObservation(evidence)
+                }
+            } catch {
+                if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+                presentation.revoke()
+            }
+            return
+        }
         if evidence.isVisible, evidence.surface.destination.rawValue == "native.reader.noteDraft",
            (try? noteDraftBinding?.validateVisible()) == nil {
             if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
@@ -1390,6 +1510,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         workspacePresentation?.finish(requestID: requestID, completed: completed)
         phoneTOCPresentation?.finish(requestID: requestID, completed: completed)
         searchEntryBinding?.finish(requestID: requestID, completed: completed)
+        historyRecordBinding?.finish(requestID: requestID, completed: completed && retainedHistoryRecord)
         if retainedSefariaSurface, completed, let root = sefariaRootSources[requestID],
            (try? root.validate(bindings, workspace: workspacePresentation)) != nil {
             completedSefariaRootSource = root
@@ -1397,6 +1518,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         sefariaSurfaceBinding?.finish(requestID: requestID, completed: completedSefariaRootSource != nil)
         retainedComponentOwner = nil; retainedWorkspaceParent = nil; retainedPhoneTOC = false
         retainedSefariaSurface = false
+        retainedHistoryRecord = false
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
         // metadata after its owner has validated the complete visible receipt.
@@ -1436,6 +1558,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         workspacePresentation?.retire(); workspacePresentation = nil; retainedWorkspaceParent = nil
         phoneTOCPresentation?.unmount(); phoneTOCPresentation = nil; retainedPhoneTOC = false
         searchEntryBinding?.unmount(); searchEntryBinding = nil
+        historyRecordBinding?.unmount(); historyRecordBinding = nil; retainedHistoryRecord = false
         sefariaRootSources.values.forEach { $0.invalidate() }; sefariaRootSources.removeAll()
         completedSefariaRootSource?.invalidate(); completedSefariaRootSource = nil
         sefariaSurfaceBinding?.unmount(); sefariaSurfaceBinding = nil; retainedSefariaSurface = false

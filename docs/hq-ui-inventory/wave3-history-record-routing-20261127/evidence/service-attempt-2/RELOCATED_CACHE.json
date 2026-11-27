@@ -1,0 +1,316 @@
+{
+  "reason": "actual compiler rejects PCMs bound to old absolute module cache path",
+  "preserved": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/relocated-original-ModuleCache.noindex",
+  "files": [
+    {
+      "path": "Glibc-VF84UH25UZGD.swiftmodule",
+      "bytes": 96216,
+      "sha256": "3a7e20127df64826308254c00e2d0df49ed008d72bf76523a968c485f19fcd91"
+    },
+    {
+      "path": "Observation-1OXC8ZF7P5VCG.swiftmodule",
+      "bytes": 42932,
+      "sha256": "bb7841ec2c7567449147a55b9add27961553fe4c7f5c482da909da82177cf637"
+    },
+    {
+      "path": "Testing-3GX7ADAWIJ0E2.swiftmodule",
+      "bytes": 205708,
+      "sha256": "5728722a9e58c4cb26267b7197fa7c2b91de18649bae5882e858e2654ad9b6e4"
+    },
+    {
+      "path": "_Concurrency-329TINXVGEUST.swiftmodule",
+      "bytes": 762048,
+      "sha256": "23fad90a59d938a83439ff2cc4e64350c4bd665a07a1818a5521f4f47af09a02"
+    },
+    {
+      "path": "modules.timestamp",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_StringProcessing-1W57EXG22TDBM.swiftmodule",
+      "bytes": 115052,
+      "sha256": "60eaab0e06b4cc5d6b2521c1bbfa2998096b205c572c6cec15b445b708688800"
+    },
+    {
+      "path": "Session.modulevalidation",
+      "bytes": 244,
+      "sha256": "5a28cc366a94a923a68b21fba307ac9bd41a0816b293018309b363808a9e5457"
+    },
+    {
+      "path": "Synchronization-36LWYKK400R1.swiftmodule",
+      "bytes": 587784,
+      "sha256": "aa9a802893e16221238c618b918ff2bb06552c88acac702bdc8891b45fd1824f"
+    },
+    {
+      "path": "2VKSFLGR68MXS/SwiftGlibc-IGSGJKVMPVR1.pcm",
+      "bytes": 2725488,
+      "sha256": "550bd377edeada1ace21f0e5e0e4fc8613ddc7bf9e2f269effb064c913c6b827"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_SynchronizationShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 391840,
+      "sha256": "98f51858b5bf5dbc7669140543a5fcd572510ce05737fccc690c1bc1bbb0978c"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_SynchronizationShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_FoundationCShims-O2Q1FP8A0YE6.pcm",
+      "bytes": 11060552,
+      "sha256": "1da18a0a5d365726e5424525aaf033dfaa50c6f730cdbc57f29ca7658a3c12bd"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/Dispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 37080,
+      "sha256": "100bb000c82f6576759ed6531ca97e9fd996b03cc27993a9e3e9ca254a4aed52"
+    },
+    {
+      "path": "2VKSFLGR68MXS/SwiftGlibc-IGSGJKVMPVR1.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/CDispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 734408,
+      "sha256": "cbec3cbb25fe4e580db35e47eb2f9024f674ef39963b4a287bacd52215183048"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_Builtin_stddef-354LLFK8RZG2A.pcm",
+      "bytes": 39872,
+      "sha256": "3a0fdd6994db70e4941cfd38f28b8d85be1c70ae178165595011da1074b354ba"
+    },
+    {
+      "path": "2VKSFLGR68MXS/Dispatch-2FVHGXUL9RCM5.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/CDispatch-2FVHGXUL9RCM5.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_Builtin_stddef-354LLFK8RZG2A.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/SwiftShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/SwiftOverlayShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/SwiftShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 166360,
+      "sha256": "b7e0a7d85c410a4fa4c60cd6d6d42cf7189692ff96d70c251c0e8ae02c9f629f"
+    },
+    {
+      "path": "2VKSFLGR68MXS/SwiftOverlayShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 241960,
+      "sha256": "5610aef25a6c771d522f335a78a80825fd3d2d264b274941c494bde40fe9e481"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_FoundationICU-1Z7BBYW838GM3.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 38552,
+      "sha256": "7910dc62a49880604f6a5198ce47672b3c121f39ec6a16aefc0ff53bbcd6a7f3"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_FoundationCShims-O2Q1FP8A0YE6.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2VKSFLGR68MXS/_FoundationICU-1Z7BBYW838GM3.pcm",
+      "bytes": 2332576,
+      "sha256": "c57a7191eb873475da9eef07d4bf38afc8f3cb77f431bf85c803ff52ced96d46"
+    },
+    {
+      "path": "2J6URBOFM90E/SwiftGlibc-IGSGJKVMPVR1.pcm",
+      "bytes": 2725384,
+      "sha256": "ed1aaddbbaffd3c910be8f0d2bd3f37e09fb60eaeae5c644230a1d39a8d65ba4"
+    },
+    {
+      "path": "2J6URBOFM90E/_SynchronizationShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 391736,
+      "sha256": "815f3f73b85bb7ca97d3e530aa595f55d304089d64936152c988614f7c67a372"
+    },
+    {
+      "path": "2J6URBOFM90E/_SynchronizationShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/_FoundationCShims-O2Q1FP8A0YE6.pcm",
+      "bytes": 11060440,
+      "sha256": "143358662da59fb7af270bbf42a76e428da46beaaea4beb4d4b4e3d7f850a51d"
+    },
+    {
+      "path": "2J6URBOFM90E/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/Dispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 36976,
+      "sha256": "c022f4baa715dd0d69036bbfd04296df29734d0c284b481248cf88600606f5dd"
+    },
+    {
+      "path": "2J6URBOFM90E/SwiftGlibc-IGSGJKVMPVR1.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/CDispatch-2FVHGXUL9RCM5.pcm",
+      "bytes": 734296,
+      "sha256": "62c6ce8794ae3a32bda584671decb8c62aa05dafdc68cd0988f05b428fcab592"
+    },
+    {
+      "path": "2J6URBOFM90E/_Builtin_stddef-354LLFK8RZG2A.pcm",
+      "bytes": 39768,
+      "sha256": "42b7fbf28ae620d464b2ff40ef67be5392dc269d1ffbd62bb1913d1c0ff18473"
+    },
+    {
+      "path": "2J6URBOFM90E/Dispatch-2FVHGXUL9RCM5.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/CDispatch-2FVHGXUL9RCM5.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/_Builtin_stddef-354LLFK8RZG2A.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/SwiftShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/SwiftOverlayShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/SwiftShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 166256,
+      "sha256": "26c43f160a1d35d8036c6c72eb502b78959c64f026c7d5573a1057339887206f"
+    },
+    {
+      "path": "2J6URBOFM90E/SwiftOverlayShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 241856,
+      "sha256": "f7e315d6d0bc82dbc0095bf5e97b5deb269f2fc80fdfb7c7d3eff5b51f0b411d"
+    },
+    {
+      "path": "2J6URBOFM90E/_FoundationICU-1Z7BBYW838GM3.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 38440,
+      "sha256": "2fff0c04d1f77d118d0180c667d73447f7875eacd2dcb9a089e674a1ed239e50"
+    },
+    {
+      "path": "2J6URBOFM90E/_FoundationCShims-O2Q1FP8A0YE6.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "2J6URBOFM90E/_FoundationICU-1Z7BBYW838GM3.pcm",
+      "bytes": 2332464,
+      "sha256": "649859c5497f9af4670d8f6a43e66a8acfe92ab2dba0b01e843de6d554ba0894"
+    },
+    {
+      "path": "24ANANFGQ724A/SwiftGlibc-IGSGJKVMPVR1.pcm",
+      "bytes": 2725104,
+      "sha256": "3b50d2170d5514af217eaf84295c04faadcb9580df79fb2ac6526c59e96042cf"
+    },
+    {
+      "path": "24ANANFGQ724A/_SynchronizationShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 390072,
+      "sha256": "ad7880f0803c36aa43e72f0d38a90b9a4535b7d4a17ad43eb5defeef78ff5f5c"
+    },
+    {
+      "path": "24ANANFGQ724A/_SynchronizationShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "24ANANFGQ724A/SwiftGlibc-IGSGJKVMPVR1.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "24ANANFGQ724A/_Builtin_stddef-354LLFK8RZG2A.pcm",
+      "bytes": 38088,
+      "sha256": "5f0f6e346e04a422c1aaf54754fdc81f5812551c0ff851e55bb061309cbaf712"
+    },
+    {
+      "path": "24ANANFGQ724A/_Builtin_stddef-354LLFK8RZG2A.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "24ANANFGQ724A/SwiftShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "24ANANFGQ724A/SwiftOverlayShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "24ANANFGQ724A/SwiftShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 164576,
+      "sha256": "bcb6355cbd47ddbadd155401f967a0cdccadef4a565d84fc3149860b29b46ec4"
+    },
+    {
+      "path": "24ANANFGQ724A/SwiftOverlayShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 240200,
+      "sha256": "7cacd6ddb9eeafd7aae7f02b623f7f709b68e25fce4cc7af02eb5cd71310c86f"
+    },
+    {
+      "path": "T62HHY61E9LA/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "T62HHY61E9LA/SwiftShims-1QXSX1OVYZY8L.pcm.timestamp",
+      "bytes": 15,
+      "sha256": "f7782004579827aa390c420afddc62d15093f1237113e56b508078ca19843ff9"
+    },
+    {
+      "path": "T62HHY61E9LA/SwiftShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 164576,
+      "sha256": "65e6dfe52b59e9aa9c7c3661b7923ba51c63c77baf8ebf1e7b05e8bc97774f4e"
+    },
+    {
+      "path": "T62HHY61E9LA/_SwiftConcurrencyShims-1QXSX1OVYZY8L.pcm",
+      "bytes": 36768,
+      "sha256": "235e06bf5a11e13a52d1be803aeb83f6149a9568a9f92023fe7c39b96c3d727d"
+    }
+  ]
+}

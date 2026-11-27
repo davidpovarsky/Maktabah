@@ -1,0 +1,65 @@
+{
+  "scope": "frontend syntax only, no SDK typing or native acceptance",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+      "sha256": "73ad9e8753e2d2dd1b0371f0d48d1eed9f0125e39be9f27fbe2c9dc754513008",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecordViews.swift",
+      "sha256": "a0e3038b0d2df3d92996818bc5b37890432c3a5b206846fa5a75e24673850258",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "5370b00c8dac540518920b365635f04eea7d0e327142a69c2809d14806438d9a",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "sha256": "cef63351464ee956e16c43ea41feeb9fbbddc4f4e57377abb4b840cbec297eb4",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "8dc62f7208411a3985f0725d7c4f23af99f52b1e0bf3d7068aa54ea29297c830",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntentService.swift",
+      "sha256": "cea5c452b7168eba3f8a9617b2b7f330dbe044eff80059e49366b298a0ab5a3c",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+      "sha256": "a4203fdc1251a04a23e06cb74511dfafff83be76fbe1fd77a8a40f34aa5a582f",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeHistoryRecordIntentServiceTests.swift",
+      "sha256": "d8e3ad719ea75a917d28e889ea0078c956de7de10c75cfe3a9951a0fc672fa49",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "sha256": "6f3ea2696498eae8ce094c9f195f15a343aa820a27af24daf0b79658ef1461af",
+      "exit": 0,
+      "detail": ""
+    },
+    {
+      "path": "Source/Features/History/iOS/HistoryComponents.swift",
+      "sha256": "aa06ced1615addbf43b8e0566bdd5f96d1efa71e4557a5a35c93baa0b9930a25",
+      "exit": 0,
+      "detail": ""
+    }
+  ]
+}

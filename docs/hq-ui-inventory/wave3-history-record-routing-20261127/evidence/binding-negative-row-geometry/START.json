@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/package-source/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch",
+    "--jobs",
+    "2",
+    "--filter",
+    "HistoryRecordBindingSourceTests.testOriginalRowGeometryIsRequiredAfterParentReveal"
+  ],
+  "pid": 8458,
+  "pgid": 8458,
+  "utc": "2026-11-27T09:16:45.514024+00:00",
+  "free": 1977389056,
+  "reserveStopBytes": 838860800
+}

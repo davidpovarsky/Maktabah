@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/usr/local/bin/swift",
+    "test",
+    "--package-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/package-source/Source/ChavrusaText/UIRoutingHost",
+    "--scratch-path",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/scratch",
+    "--jobs",
+    "2",
+    "--filter",
+    "NativeHistoryRecordIntentServiceTests"
+  ],
+  "pid": 4097680,
+  "pgid": 4097680,
+  "utc": "2026-11-27T08:42:39.269511+00:00",
+  "scope": "actual package source controls; catalog/native transport doubles, SDK/native NOT_RUN",
+  "free": 3595247616
+}

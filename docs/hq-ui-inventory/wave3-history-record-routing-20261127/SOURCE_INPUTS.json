@@ -1,0 +1,93 @@
+{
+  "base": "9b376a42234ebb176f36a0b3cca94de97e41869c",
+  "branch": "codex/otzaria-wave3-history-records-20261127",
+  "capturedUTC": "2026-11-27T09:32:15.615448+00:00",
+  "changed": [
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "size": 212559,
+      "sha256": "67b579969c146eb6fd01e6d0c00a8e982cc5bea2ee3351ac12b932bbaed16bac"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "size": 176909,
+      "sha256": "8dc62f7208411a3985f0725d7c4f23af99f52b1e0bf3d7068aa54ea29297c830"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "size": 24987,
+      "sha256": "cef63351464ee956e16c43ea41feeb9fbbddc4f4e57377abb4b840cbec297eb4"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "size": 98703,
+      "sha256": "5370b00c8dac540518920b365635f04eea7d0e327142a69c2809d14806438d9a"
+    },
+    {
+      "path": "Source/Features/History/iOS/HistoryComponents.swift",
+      "size": 14977,
+      "sha256": "aa06ced1615addbf43b8e0566bdd5f96d1efa71e4557a5a35c93baa0b9930a25"
+    },
+    {
+      "path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "size": 4423,
+      "sha256": "6f3ea2696498eae8ce094c9f195f15a343aa820a27af24daf0b79658ef1461af"
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeHistoryRecordAcceptanceTests.swift",
+      "size": 2255,
+      "sha256": "28f965184793c4f82c41063637b2e1b91d7c21489b7c32c69b275e97e393df90"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecordViews.swift",
+      "size": 11979,
+      "sha256": "a0e3038b0d2df3d92996818bc5b37890432c3a5b206846fa5a75e24673850258"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeHistoryRecords.swift",
+      "size": 28764,
+      "sha256": "1c1c01dce6b394f5356251ee9d2d3635adcbdbe2bbe311d79ad96a08d763cba1"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntentService.swift",
+      "size": 9821,
+      "sha256": "cea5c452b7168eba3f8a9617b2b7f330dbe044eff80059e49366b298a0ab5a3c"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+      "size": 5489,
+      "sha256": "a4203fdc1251a04a23e06cb74511dfafff83be76fbe1fd77a8a40f34aa5a582f"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeHistoryRecordIntentServiceTests.swift",
+      "size": 14273,
+      "sha256": "a48b517b4aa2697165ffb03690d25147aed6e1b3bafedb6f79777f929d74458a"
+    }
+  ],
+  "unchangedMetadataDependencies": [
+    {
+      "path": "Source/LibraryBackend/QualifiedLocatorStore.swift",
+      "bytes": 6136,
+      "sha256": "469a99e702dcd331dca2fd2a55154de8239ef9b5599befcaf398a56b347065df"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/HistoryViewModel.swift",
+      "bytes": 11196,
+      "sha256": "1c9c6427d22e6785c37b238d2ee9024290b37cc73b48d3f61da0319b03a107df"
+    },
+    {
+      "path": "Source/Features/History/ViewModel/Extensions/History+Database.swift",
+      "bytes": 3360,
+      "sha256": "4a07073a687e31a8d929d1483a6bad73020adcaaea65f536ae4df4afc2d208ac"
+    }
+  ],
+  "nativeOriginalPrefix": {
+    "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "bytes": 194950,
+    "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+    "preserved": true,
+    "addedBytes": 17609
+  },
+  "scope": "source checkpoint; no app SDK, simulator, physical or production acceptance",
+  "postTestFormatting": "One extra terminal newline removed; exact proof in FORMATTING_FINALIZATION.json. No executable source changed."
+}

@@ -1,0 +1,84 @@
+{
+  "ownedDirectory": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127",
+  "executableProductManifests": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-attempt-1/preserved-candidate-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "40434b23e4abc058f5a9460533025ae81c6e91b97ee78dc27e17da2136164ca5",
+      "content": [
+        {
+          "path": "ChavrusaUIRoutingHostTests.so",
+          "bytes": 18813024,
+          "sha256": "4e821dca7d9177c68a022cb1d253106c81746cfdea271443e7bd6b67f6376d1f"
+        },
+        {
+          "path": "ChavrusaUIRoutingHostTests-test-runner",
+          "bytes": 1734080,
+          "sha256": "29e0b20f330780ffae00625216fe74693d44f6a58b649cdebccedd1ff8f00fcb"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-observation/preserved-negative-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "5c2fb7400fbbc3a28487465b8a65575d431557f7c5e54d1e857c17dd3eb29cd2",
+      "content": [
+        {
+          "path": "ChavrusaUIRoutingHostTests.so",
+          "bytes": 18812984,
+          "sha256": "ed05db45ab7ff36b7b501514cefc736dedca19bd5447dfbd6287d73991462413"
+        },
+        {
+          "path": "ChavrusaUIRoutingHostTests-test-runner",
+          "bytes": 1734080,
+          "sha256": "29e0b20f330780ffae00625216fe74693d44f6a58b649cdebccedd1ff8f00fcb"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/binding-negative-row-geometry/preserved-negative-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "407ceb43351eabe046265f6df119fd427557e6c36e2a247aad063bbe6adcd38e",
+      "content": [
+        {
+          "path": "ChavrusaUIRoutingHostTests.so",
+          "bytes": 18813024,
+          "sha256": "61650fb2aef38cd15851f248c72cc8f6e7008d79c4b1532287149c92def65ba5"
+        },
+        {
+          "path": "ChavrusaUIRoutingHostTests-test-runner",
+          "bytes": 1734080,
+          "sha256": "29e0b20f330780ffae00625216fe74693d44f6a58b649cdebccedd1ff8f00fcb"
+        }
+      ]
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/service-selected-item-negative-attempt-2/preserved-negative-products/MANIFEST.json",
+      "bytes": 327,
+      "sha256": "242979f4f46a78d5511091e378bbe34c9a83a8bf0663083c8d9be641ecb059fa",
+      "content": [
+        {
+          "path": "ChavrusaUIRoutingHostTests.so",
+          "bytes": 16662096,
+          "sha256": "0e778aeb43043aa13523a67b34ed81afbc5a93f7a7e97d3b174f273a757c2511"
+        },
+        {
+          "path": "ChavrusaUIRoutingHostTests-test-runner",
+          "bytes": 1543432,
+          "sha256": "376d9b1de7321ecbce2f119ee4789acce16070a451a6eeff5d5de8484596e737"
+        }
+      ]
+    }
+  ],
+  "restoredArchive": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave3-history-records-20261127/build/history-record-controls-20261127/cache-restoration/original-cache.tar.gz",
+    "bytes": 42552150,
+    "sha256": "c154c6dc687eed1ff14e6f794b35ebb55980a570a9b384fac880cbf974600e89",
+    "originalWindowsPath": "C:\\Users\\DAVID\\.codex\\artifacts\\otzaria-wave3-idle-swift-cache-20261127\\idle-swiftpm-cache.tar.gz",
+    "manifestSha256": "77f3f6fc38e792c6c70824dcff40ca3f2893568da95256338aff016881ce35ff",
+    "verifiedEntries": 1788,
+    "verifiedFiles": 1294,
+    "priorResultsReusedAsCurrent": false
+  },
+  "limitations": "Preserved binaries are source controls over the stated boundaries, never native application products."
+}

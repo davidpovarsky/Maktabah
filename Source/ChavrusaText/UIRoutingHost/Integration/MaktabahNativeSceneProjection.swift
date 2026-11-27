@@ -61,7 +61,8 @@ struct MaktabahNativeSceneProjection {
     func surface(_ surface: Surface,
                  workspacePresentation: MaktabahNativeWorkspacePresentationBinding? = nil,
                  phoneTOCPresentation: MaktabahNativePhoneTOCPresentationBinding? = nil,
-                 sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil) throws -> NativeSurfaceState? {
+                 sefariaSurface: MaktabahNativeSefariaSurfaceBinding? = nil,
+                 historyRecord: MaktabahNativeHistoryRecordBinding? = nil) throws -> NativeSurfaceState? {
         let state = UIStateSpec(workspaceID: stable(workspace?.selection?.groupID),
             profileID: stable(workspace?.selection?.profileID), selectedItemID: nil)
         switch surface {
@@ -93,8 +94,16 @@ struct MaktabahNativeSceneProjection {
             guard settingsPresented else { return nil }
             return .init(destination: id("native.settings"), presentation: .init(kind: .sheet), content: nil, state: state, focus: nil)
         case .history:
-            guard !settingsPresented, selectedTab.canonical == .history, manager.currentMode == .history,
-                  HistoryViewModel.shared.searchText.isEmpty else { return nil }
+            guard !settingsPresented, selectedTab.canonical == .history, manager.currentMode == .history else { return nil }
+            if let historyRecord {
+                guard let selected = try historyRecord.observedItem() else { return nil }
+                // This opaque identity is derived from the retained original
+                // card and actual row visibility, never from the requested route.
+                return .init(destination: id("native.history"), presentation: .init(), content: nil,
+                    state: .init(workspaceID: state.workspaceID, profileID: state.profileID,
+                                 selectedItemID: selected), focus: nil)
+            }
+            guard HistoryViewModel.shared.searchText.isEmpty else { return nil }
             return .init(destination: id("native.history"), presentation: .init(), content: nil, state: state, focus: nil)
         case .searchResults:
             let search = manager.unifiedSearchSession

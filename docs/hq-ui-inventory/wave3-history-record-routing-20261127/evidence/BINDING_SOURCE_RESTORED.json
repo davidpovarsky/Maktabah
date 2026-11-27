@@ -1,0 +1,5 @@
+{
+  "sha256": "a0c76c3ebd380f7be64a87195a33bd6f5bd66e0582f303e7084eba45841693ea",
+  "utc": "2026-11-27T09:14:40.303405+00:00",
+  "scope": "restore byte-exact candidate test capsule; production source was never mutated"
+}
