@@ -1,0 +1,13 @@
+{
+  "actualIndependentReadbackExit": 0,
+  "actualIndependentReadbackJob": "job_947ea99b063e",
+  "foreignCleanup": false,
+  "gitCommit": "e3b780e2648f0cd221eedda5fc79524ae3b99b4d",
+  "predeleteSHA256": "93738162a5ffc0f36cffe31eb2638cfa37081140477536ba9355a4f892c043ba",
+  "protectedSiblings": 12,
+  "restorationExecutions": 0,
+  "selfContained": false,
+  "soleLeaf": "/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/session-pair-differential.tar.gz",
+  "status": "ROOT_ACKNOWLEDGED_EXACT_COMMITTED_PREDELETE_AFTER_INDEPENDENT_READBACK",
+  "utc": "2026-11-27T23:20:08.648370+00:00"
+}

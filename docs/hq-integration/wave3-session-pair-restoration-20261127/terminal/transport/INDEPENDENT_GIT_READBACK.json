@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_947ea99b063e",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795821544.7993803,
+    "started_at": "2026-11-27T23:19:04.881115+00:00",
+    "finished_at": "2026-11-27T23:19:05.131499+00:00",
+    "duration_s": 0.25,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 180,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"utc\": \"2026-11-27T23:19:05.123509+00:00\", \"status\": \"INDEPENDENT_COMMITTED_EIGHT_PINS_READ_BACK\", \"head\": \"e3b780e2648f0cd221eedda5fc79524ae3b99b4d\", \"pins\": [{\"name\": \"PREDELETE.json\", \"bytes\": 18117, \"sha256\": \"93738162a5ffc0f36cffe31eb2638cfa37081140477536ba9355a4f892c043ba\"}, {\"name\": \"RESTORATION_POINTER.json\", \"bytes\": 29938, \"sha256\": \"82f75ca26fcd83af71031383168879ad774153d8fad2fddee96be68b908471db\"}, {\"name\": \"restore_session_pair_differential.py\", \"bytes\": 33944, \"sha256\": \"0c70a1f0801f777b47b1ffb1589da49172b91273437a4eb367fc15c45dbafa39\"}, {\"name\": \"retire_session_pair_differential.py\", \"bytes\": 20603, \"sha256\": \"3118489cb4e9e344e4b5d507f1471cf8bcf23c4ccfd7ee07011729ec5c564eed\"}, {\"name\": \"VERIFIED_PRIVATE_SESSION_PAIR_TRANSPORT.json\", \"bytes\": 12987, \"sha256\": \"0c07d1c5b25136331d7790f88436aef3a3d7aef5b82e4cd23ca61ba848ffb05a\"}, {\"name\": \"PRESERVED_SESSION_PAIR_MANIFEST.json\", \"bytes\": 17372, \"sha256\": \"47755d066e979027fecb45944a236f5284addc62644a9b44a9487f5e9919c0f7\"}, {\"name\": \"SESSION_PAIR_TRANSPORT_TERMINAL_JOB.json\", \"bytes\": 1861, \"sha256\": \"b9ff599b5da607379f5cd6535c7a04db5e6c5e043d1eb4852e3b2be214e19257\"}, {\"name\": \"SESSION_PAIR_FINAL_RECEIPT_PUBLISHED.json\", \"bytes\": 603, \"sha256\": \"3005be20cf8c2f2ff26f64597f6726709f53df4900a97948326bc93999e6960c\"}], \"mutation\": false, \"retirement\": false}"
+  }
+}

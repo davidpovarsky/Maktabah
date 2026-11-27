@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_e8a1b542788c",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "info",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "succeeded",
+    "exit_code": 0,
+    "created_at": 1795821608.4818845,
+    "started_at": "2026-11-27T23:20:08.563207+00:00",
+    "finished_at": "2026-11-27T23:20:28.525454+00:00",
+    "duration_s": 19.96,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 3000,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"ROOT_ACKNOWLEDGED_EXACT_COMMITTED_PREDELETE_AFTER_INDEPENDENT_READBACK\", \"utc\": \"2026-11-27T23:20:08.648370+00:00\", \"gitCommit\": \"e3b780e2648f0cd221eedda5fc79524ae3b99b4d\", \"actualIndependentReadbackJob\": \"job_947ea99b063e\", \"actualIndependentReadbackExit\": 0, \"predeleteSHA256\": \"93738162a5ffc0f36cffe31eb2638cfa37081140477536ba9355a4f892c043ba\", \"soleLeaf\": \"/mnt/development/projects/diagnostics/otzaria-wave3-session-pair-preservation-20261127/session-pair-differential.tar.gz\", \"protectedSiblings\": 12, \"selfContained\": false, \"restorationExecutions\": 0, \"foreignCleanup\": false}\n{\"status\": \"ONE_EXACT_PRIVATELY_PRESERVED_DIFFERENTIAL_LEAF_RETIRED\", \"receipt\": {\"path\": \"/home/ubuntu/otzaria-wave3-private-session-pair-publication-20261127/retire-f0d875eb-2b71-49af-a2f9-1f2f7b85c792/RETIREMENT_RESULT.json\", \"bytes\": 9362, \"sha256\": \"a7823fc706c1a2cd9b9765df59f0e5688b87f3ccbe4c93b99831b004de56f329\"}, \"removed\": true, \"freeBefore\": 10113024, \"freeAfter\": 1352871936}"
+  }
+}
