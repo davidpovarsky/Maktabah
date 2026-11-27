@@ -18,6 +18,17 @@ public struct NativeComponentDescriptor: Sendable {
     public init(anchor: UIDestinationID, title: String) { self.anchor = anchor; self.title = title }
 }
 
+/// A bounded reveal can wait for the ORIGINAL view to publish a later layout.
+/// Neither phase is authority or evidence that the requested control is visible.
+public enum NativeComponentRenderPhase: Sendable, Equatable {
+    case initial
+    case afterOriginalLayout
+}
+public enum NativeComponentRenderResult: Sendable, Equatable {
+    case awaitingOriginalLayout
+    case rendered
+}
+
 /// Scene-owned PRESENTATION state for an original feature. The one canonical
 /// commit publishes the parent and target together. A newly mounted view renders
 /// that state through its original scroll owner; it never obtains another grant.
@@ -35,6 +46,7 @@ public final class NativeComponentRevealOwner {
     @ObservationIgnored private var invalidated: @MainActor () -> Void = {}
     @ObservationIgnored private var viewID: UUID?
     @ObservationIgnored private var blocked: @MainActor () -> Bool = { false }
+    @ObservationIgnored private var mountedAvailability: @MainActor (UIDestinationID) -> Bool = { _ in true }
     @ObservationIgnored private var checks: [UIDestinationID: (UUID, @MainActor () -> NativeComponentEvidence?)] = [:]
     @ObservationIgnored private var pending: Pending?
     @ObservationIgnored private var renderedAnchor: UIDestinationID?
@@ -47,6 +59,8 @@ public final class NativeComponentRevealOwner {
         var viewID: UUID?
         var applied = false
         var rendered = false
+        var rendering = false
+        var awaitingLayoutAfter: UInt64?
     }
 
     public init(destination: UIDestinationID, presentation: PresentationSpec.Kind,
@@ -61,10 +75,11 @@ public final class NativeComponentRevealOwner {
         self.changed = changed; self.invalidated = invalidated
     }
     public func isAvailable(_ anchor: UIDestinationID) -> Bool {
-        descriptors.contains { $0.anchor == anchor } && available(anchor) && !blocked()
+        descriptors.contains { $0.anchor == anchor } && available(anchor) && !blocked() && mountedAvailability(anchor)
     }
 
     public var isMounted: Bool { viewID != nil }
+    public func owns(viewID: UUID) -> Bool { self.viewID == viewID }
 
     /// Capture once at initial local binding, BEFORE any Core/directory await.
     /// A feature retains its actual tab/model/node/structure here, not just a
@@ -114,12 +129,15 @@ public final class NativeComponentRevealOwner {
         renderRevision &+= 1
     }
 
-    public func attach(viewID: UUID, blocked: @escaping @MainActor () -> Bool) {
-        guard self.viewID != viewID else { self.blocked = blocked; return }
+    public func attach(viewID: UUID, blocked: @escaping @MainActor () -> Bool,
+                       componentAvailable: @escaping @MainActor (UIDestinationID) -> Bool = { _ in true }) {
+        guard self.viewID != viewID else {
+            self.blocked = blocked; mountedAvailability = componentAvailable; return
+        }
         if self.viewID != nil {
             retirePresentation()
         }
-        self.viewID = viewID; self.blocked = blocked
+        self.viewID = viewID; self.blocked = blocked; mountedAvailability = componentAvailable
         if var value = pending {
             // A cold presentation may bind its FIRST original view. A replaced
             // view can never inherit an already retained request.
@@ -130,7 +148,7 @@ public final class NativeComponentRevealOwner {
     }
     public func detach(viewID: UUID) {
         guard self.viewID == viewID else { return }
-        self.viewID = nil; blocked = { false }; checks.removeAll()
+        self.viewID = nil; blocked = { false }; mountedAvailability = { _ in true }; checks.removeAll()
         retirePresentation()
         changed()
     }
@@ -138,20 +156,50 @@ public final class NativeComponentRevealOwner {
     /// Normal original-view rendering, bounded by the original command. This
     /// closure can reveal UI only; it must not alter feature data or execute a
     /// button. Calling scrollTo is not evidence that scrolling succeeded.
-    public func render(viewID: UUID, reveal: (UIDestinationID) -> Void) {
-        guard var value = pending, value.applied, !value.rendered,
+    public func render(viewID: UUID, reveal: @MainActor (UIDestinationID) -> Void) {
+        render(viewID: viewID, layoutRevision: 0) { anchor, _ in
+            reveal(anchor)
+            return .rendered
+        }
+    }
+
+    /// The revision belongs to the original view's actual layout publication.
+    /// A repeated body evaluation, submitted route or elapsed timer cannot
+    /// resume a phase. Every continuation uses the same retained admission.
+    public func render(viewID: UUID, layoutRevision: UInt64,
+                       reveal: @MainActor (UIDestinationID, NativeComponentRenderPhase) -> NativeComponentRenderResult) {
+        guard var value = pending, value.applied, !value.rendered, !value.rendering,
               self.viewID == viewID, value.viewID == viewID,
               isAvailable(value.anchor) else { return }
+        let phase: NativeComponentRenderPhase
+        if let previous = value.awaitingLayoutAfter {
+            guard layoutRevision > previous else { return }
+            phase = .afterOriginalLayout
+        } else {
+            phase = .initial
+        }
         do { try value.validate() }
         catch { retirePresentation(); return }
-        reveal(value.anchor)
-        // No await between the exact ownership check and native UI rendering.
-        guard self.viewID == viewID, pending?.requestID == value.requestID else {
+        value.rendering = true; pending = value
+        let result = reveal(value.anchor, phase)
+        // No await, regrant or source recapture across the original UI callback.
+        guard self.viewID == viewID, pending?.requestID == value.requestID,
+              pending?.rendering == true, isAvailable(value.anchor) else {
             retirePresentation(); return
         }
-        value.rendered = true; pending = value
-        renderedAnchor = value.anchor
-        renderedSource = sources[value.requestID]?.1
+        do { try value.validate() }
+        catch { retirePresentation(); return }
+        value.rendering = false
+        switch result {
+        case .awaitingOriginalLayout:
+            value.awaitingLayoutAfter = layoutRevision
+        case .rendered:
+            value.rendered = true
+            value.awaitingLayoutAfter = nil
+            renderedAnchor = value.anchor
+            renderedSource = sources[value.requestID]?.1
+        }
+        pending = value
         changed()
     }
 
