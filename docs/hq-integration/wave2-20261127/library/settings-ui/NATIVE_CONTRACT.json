@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "status": "UI_NOT_RUN",
+  "testIdentifier": "Maktabah-iOSUITests/ManagedLibraryUpdateAcceptanceTests/testOrdinarySettingsUpdatePreservesProductionLibraryAndUserState",
+  "sourceSHA256": "17ef068ee5e9d21897a085e9fc7bf6a8b9d4598937698e66638e52ab7fc3338c",
+  "environmentVariable": "OTZARIA_LIBRARY_UPDATE_CONTEXT",
+  "contextHelper": "Scripts/CI/prepare-managed-library-update-context.py",
+  "requiredContainer": "Same owned Simulator UDID, managed-v40 installation and ordinary persisted user namespace; never seeded by controller",
+  "currentRelease": {
+    "id": 455390662,
+    "tag": "v40-20261123094345",
+    "databaseSHA256": "8389709c1702753af6f0719ef1c98c09854450e48ebb05fe1f95486b26348b01"
+  },
+  "observedTarget": {
+    "id": 459809828,
+    "tag": "v41-20261126162443",
+    "requiresLiveLatestRevalidation": true
+  },
+  "transactionFilesMustBeAbsentAfterSuccess": [
+    "seforim.db.previous",
+    "seforim-installation.json.previous",
+    "seforim-installation.json.installing"
+  ],
+  "downloadsMustBeAbsentAfterSuccess": [
+    "seforim.db.zst.part",
+    "seforim.db.zst.part.json",
+    "seforim.db.zst.parts",
+    "seforim.db.zst.assembling"
+  ],
+  "fixedJSONAttachments": [
+    "settings-update-official-target",
+    "settings-update-original-note-fixture",
+    "settings-update-original-group-fixture",
+    "settings-update-semantic-before-update",
+    "settings-update-semantic-preservation-before",
+    "settings-update-user-state-before",
+    "settings-update-owned-fault",
+    "settings-update-failed-and-rolled-back",
+    "settings-update-user-state-after",
+    "settings-update-installed",
+    "settings-update-semantic-saved-note-context",
+    "settings-update-semantic-saved-favorite-history"
+  ],
+  "dynamicJSONAttachments": [
+    {
+      "pattern": "settings-update-semantic-group-<UUID>",
+      "count": 2,
+      "uuidSource": "original_group and copied_group in settings-update-semantic-preservation-before"
+    }
+  ],
+  "fixedScreenshots": [
+    "settings-update-favorite-before-open",
+    "settings-update-original-tagged-note",
+    "settings-update-original-copied-group",
+    "settings-update-reader-before-update",
+    "settings-update-offered",
+    "settings-update-paused",
+    "settings-update-retry-offered-after-real-failure",
+    "settings-update-recovered-old-reader",
+    "settings-update-completed",
+    "settings-update-reopened-original-note-editor",
+    "settings-update-reader-saved-note-context",
+    "settings-update-favorite-after-cold-open",
+    "settings-update-reader-saved-favorite-history",
+    "settings-update-cold-current"
+  ],
+  "dynamicScreenshots": [
+    {
+      "pattern": "settings-update-reopen-group-<UUID>",
+      "count": 2
+    },
+    {
+      "pattern": "settings-update-reader-group-<UUID>",
+      "count": 2
+    }
+  ],
+  "successAuthority": "Actual xcresult passed status, exact case identity, receipts, original source and container identity; attachment existence alone is not success",
+  "newDatabaseHashAttachment": {
+    "name": "settings-update-installed",
+    "field": "new_database_sha256"
+  },
+  "limitations": [
+    "Compiler receipt is not UI execution",
+    "Only captured saved objects are semantically checked",
+    "No full-body or all-ID equality claim",
+    "No dedicated go-to-source action exists in the original Notes editor route",
+    "Segment Note context is not exact UIKit selected UTF-16 range",
+    "HTTP Range response acceptance remains the separate installer gate"
+  ]
+}
