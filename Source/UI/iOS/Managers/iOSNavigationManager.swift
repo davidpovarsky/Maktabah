@@ -24,7 +24,18 @@ class iOSNavigationManager: BackendSwitchParticipant {
         }
     }
 
-    var currentMode: AppMode = .viewer
+    var currentMode: AppMode = .viewer {
+        willSet {
+            // Observe every original mode publication, including equal writes.
+            // This metadata neither selects a mode nor replaces TabView's owner.
+            if let revision = nativeModePresentationRevision, revision < .max {
+                nativeModePresentationRevision = revision + 1
+            } else {
+                nativeModePresentationRevision = nil
+            }
+        }
+    }
+    private(set) var nativeModePresentationRevision: UInt64? = 0
     var selectedBook: BooksData? {
         willSet {
             // Original presentation ownership metadata. Every setter, including

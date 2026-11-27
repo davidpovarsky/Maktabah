@@ -80,6 +80,7 @@ struct iOSMainView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @State private var navigationManager: iOSNavigationManager
     @State private var selectedTab: iOSTab
+    @State private var nativeRootPublications = MaktabahNativeRootPublicationSource()
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var showSettings = false
     @State private var sidebar = ReaderSidebarPageCoordinator()
@@ -100,6 +101,15 @@ struct iOSMainView: View {
         _selectedTab = State(initialValue: initialTab)
     }
 
+    // Preserve the original State storage and transaction. Record every
+    // publication before SwiftUI can coalesce an A -> B -> A update.
+    private var originalSelectedTab: Binding<iOSTab> {
+        nativeRootPublications.selectionBinding($selectedTab)
+    }
+    private var originalSettingsPresentation: Binding<Bool> {
+        nativeRootPublications.settingsBinding($showSettings)
+    }
+
     var body: some View {
         @Bindable var bManager = navigationManager
 
@@ -107,16 +117,16 @@ struct iOSMainView: View {
             if horizontalSizeClass == .regular || (MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled) {
                 iPadLayout(
                     bManager: bManager,
-                    selectedTab: $selectedTab,
+                    selectedTab: originalSelectedTab,
                     columnVisibility: $columnVisibility,
-                    showSettings: $showSettings,
+                    showSettings: originalSettingsPresentation,
                     sidebar: sidebar
                 )
             } else {
                 iPhoneLayout(
                     bManager: bManager,
-                    selectedTab: $selectedTab,
-                    showSettings: $showSettings
+                    selectedTab: originalSelectedTab,
+                    showSettings: originalSettingsPresentation
                 )
             }
         }
@@ -128,7 +138,7 @@ struct iOSMainView: View {
         .onOpenURL { url in
             handleOpenURL(url, bManager: bManager)
         }
-        .sheet(isPresented: $showSettings) {
+        .sheet(isPresented: originalSettingsPresentation) {
             NavigationStack {
                 SettingsView()
                     .modifier(MaktabahNativeRoutingSurface(kind: .settings))
@@ -138,7 +148,7 @@ struct iOSMainView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
-                            Button("Done") { showSettings = false }
+                            Button("Done") { originalSettingsPresentation.wrappedValue = false }
                                 .accessibilityIdentifier("settings-done-button")
                         }
                     }
@@ -190,7 +200,10 @@ struct iOSMainView: View {
                 .opacity(0.02)
                 .allowsHitTesting(false)
         }
-        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: $selectedTab, columnVisibility: $columnVisibility, showSettings: $showSettings, sidebar: MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled ? sidebar : nil))
+        .modifier(MaktabahNativeRoutingHost(manager: navigationManager, selectedTab: originalSelectedTab,
+            columnVisibility: $columnVisibility, showSettings: originalSettingsPresentation,
+            sidebar: MaktabahApp.isIpad && ChavrusaTextReaderUI.isEnabled ? sidebar : nil,
+            rootPublications: nativeRootPublications))
         .modifier(CompactStudyWorkspaceHostModifier(manager: navigationManager))
         #if DEBUG
         .task {
@@ -352,7 +365,7 @@ private extension iOSMainView {
 
         switch scenario {
         case "catalog":
-            selectedTab = .viewer
+            originalSelectedTab.wrappedValue = .viewer
             navigationManager.switchToMode(.viewer)
             columnVisibility = .all
             await navigationManager.libraryViewModel.refreshLibrary()
@@ -369,27 +382,27 @@ private extension iOSMainView {
             smokeFailureDetail = result.failureDetail
 
         case "reader", "readerTOC", "readerDetail":
-            selectedTab = .viewer
+            originalSelectedTab.wrappedValue = .viewer
             columnVisibility = scenario == "readerDetail" ? .detailOnly : .all
             await openSmokeBook(for: backend, inspectorMode: .none)
 
         case "inspector", "studyCommentaries", "studyFloating", "studyFloatingFull", "studyLinks", "studyNotes", "studyCompactLarge", "compactStudyToTOC":
-            selectedTab = .viewer
+            originalSelectedTab.wrappedValue = .viewer
             columnVisibility = ["studyCommentaries", "studyLinks", "studyNotes"].contains(scenario) ? .detailOnly : .all
             await openSmokeBook(for: backend, inspectorMode: .inspector)
 
         case "commentator":
-            selectedTab = .viewer
+            originalSelectedTab.wrappedValue = .viewer
             columnVisibility = .all
             await openSmokeBook(for: backend, inspectorMode: .commentatorTab)
 
         case "search":
-            selectedTab = .search
+            originalSelectedTab.wrappedValue = .search
             navigationManager.switchToMode(.search)
 
         case "searchResults":
             let query = "בראשית"
-            selectedTab = .search
+            originalSelectedTab.wrappedValue = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
             try? await Task.sleep(for: .milliseconds(500))
@@ -397,7 +410,7 @@ private extension iOSMainView {
 
         case "searchPreview":
             let query = "בראשית"
-            selectedTab = .search
+            originalSelectedTab.wrappedValue = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
             TextViewState.shared.setReaderTextMode(.both)
@@ -408,13 +421,13 @@ private extension iOSMainView {
 
         case "searchOpen":
             let query = "בראשית"
-            selectedTab = .search
+            originalSelectedTab.wrappedValue = .search
             navigationManager.switchToMode(.search)
             columnVisibility = .all
             try? await Task.sleep(for: .milliseconds(500))
             if let first = await prepareSmokeSearch(query: query) {
                 navigationManager.unifiedSearchSession.openResult(first, using: navigationManager)
-                selectedTab = .viewer
+                originalSelectedTab.wrappedValue = .viewer
                 navigationManager.switchToMode(.viewer)
             } else {
                 smokeSucceeded = false
@@ -422,14 +435,14 @@ private extension iOSMainView {
 
         case "annotationsList":
             _ = await prepareSmokeAnnotation(for: backend)
-            selectedTab = .annotations
+            originalSelectedTab.wrappedValue = .annotations
             navigationManager.switchToMode(.annotations)
             columnVisibility = .all
             await navigationManager.annotationViewModel.loadAnnotations()
 
         case "annotationsSearch":
             _ = await prepareSmokeAnnotation(for: backend)
-            selectedTab = .annotations
+            originalSelectedTab.wrappedValue = .annotations
             navigationManager.switchToMode(.annotations)
             columnVisibility = .all
             await navigationManager.annotationViewModel.loadAnnotations()
@@ -438,21 +451,21 @@ private extension iOSMainView {
 
         case "annotationsOpen":
             if let target = await prepareSmokeAnnotation(for: backend) {
-                selectedTab = .viewer
+                originalSelectedTab.wrappedValue = .viewer
                 navigationManager.switchToMode(.viewer)
                 columnVisibility = .all
                 navigationManager.openBook(target.0, initialContentId: target.1, targetAnnotation: target.2, recordHistory: false)
             }
 
         case "settings":
-            selectedTab = .viewer
+            originalSelectedTab.wrappedValue = .viewer
             navigationManager.switchToMode(.viewer)
-            showSettings = true
+            originalSettingsPresentation.wrappedValue = true
 
         case "engineSwitch":
             let otherBackend: BackendID = (backend == .otzaria) ? .sefaria : .otzaria
             BackendCoordinator.shared.commit(otherBackend)
-            selectedTab = .viewer
+            originalSelectedTab.wrappedValue = .viewer
             navigationManager.switchToMode(.viewer)
             columnVisibility = .all
 

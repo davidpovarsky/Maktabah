@@ -1,0 +1,9 @@
+/mnt/development/projects/worktrees/Maktabah-wave3-search-focus-20261127/docs/hq-ui-inventory/wave3-search-parent-focus-20261127/validation/lifecycle-negative-one-shot-removed/ActualSearchEntry.swift:236:13: warning: initialization of immutable value 'observation' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+234 |         // Original @Observable reads are one-shot: value restoration cannot
+235 |         // restore this request. The backend bridge also observes aborted switches.
+236 |         let observation = MaktabahNativeComponentSourceObservation {
+    |             `- warning: initialization of immutable value 'observation' was never used; consider replacing with assignment to '_' or removing it [#NoUsage]
+237 |             _ = try? workspaceSource.read(); _ = workspace.attached; _ = workspace.isSwitching
+238 |             _ = workspace.mappingOwnershipSource.event
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>

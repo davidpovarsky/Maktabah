@@ -70,6 +70,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     var searchResultsBinding: MaktabahNativeSearchResultsBinding?
     @ObservationIgnored private weak var nativeSearchField: UISearchTextField?
     @ObservationIgnored private var retainedSearchField: UISearchTextField?
+    private(set) var searchEntryBinding: MaktabahNativeSearchEntryBinding?
     @ObservationIgnored private var searchFieldUpdateScheduled = false
     @ObservationIgnored private var inspectorBinding: MaktabahNativeInspectorBinding?
     @ObservationIgnored private var noteEditorOwner: MaktabahNativeNoteEditorOwner?
@@ -128,11 +129,27 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
     func retainComponentSource(destination: UIDestinationID, anchor: UIDestinationID, requestID: UUID) throws -> MaktabahNativeComponentOwner {
         guard let owner = componentOwners[destination] else { throw UIRouteError(.notSupported, "native_component_not_installed") }
-        try owner.retainSource(requestID: requestID, anchor: anchor)
+        let searchEntry = destination == MaktabahNativeSearchEntryBinding.destination
+            && anchor == MaktabahNativeSearchEntryBinding.anchor
+        if searchEntry {
+            guard let searchEntryBinding, searchEntryBinding.owner === owner else {
+                throw UIRouteError(.unavailable, "native_search_entry_source_missing")
+            }
+            try searchEntryBinding.retainSource(requestID: requestID)
+        }
+        do { try owner.retainSource(requestID: requestID, anchor: anchor) }
+        catch {
+            if searchEntry { searchEntryBinding?.releaseSource(requestID: requestID) }
+            throw error
+        }
         return owner
     }
+    func releaseComponentSource(_ owner: MaktabahNativeComponentOwner, requestID: UUID) {
+        owner.releaseSource(requestID: requestID)
+        if searchEntryBinding?.owner === owner { searchEntryBinding?.releaseSource(requestID: requestID) }
+    }
     func validateComponentSource(destination: UIDestinationID, anchor: UIDestinationID, requestID: UUID) throws {
-        if destination == NativeSearchFieldVisibility.destination { return }
+        if destination == NativeSearchFieldVisibility.destination, anchor == NativeSearchFieldVisibility.focus.anchor { return }
         guard let owner = componentOwners[destination] else { throw UIRouteError(.notSupported, "native_component_not_installed") }
         try owner.validateSource(requestID: requestID, anchor: anchor)
     }
@@ -175,15 +192,25 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     }
     func nativeWindowDidChange(_ source: MaktabahNativeWindowSource) {
         guard mounted, windowSource === source else { return }
+        searchEntryBinding?.retire()
         presentation.revoke()
         try? nativeStateChanged()
     }
     func observeSearchPresentation(owner: UUID, isBlocked: @escaping @MainActor () -> Bool) {
         guard mounted else { return }
+        searchEntryBinding?.observeOriginalPresentation(owner: owner)
         searchPresentationOwner = owner; searchPresentationBlocked = isBlocked
+    }
+    func originalSearchPresentationWillChange(owner: UUID) {
+        searchEntryBinding?.originalPresentationWillChange(owner: owner)
+    }
+    func renderSearchEntryFromOriginalView() {
+        guard mounted, foreground else { return }
+        searchEntryBinding?.renderOriginalFieldIfReady()
     }
     func removeSearchPresentation(owner: UUID) {
         guard searchPresentationOwner == owner else { return }
+        searchEntryBinding?.originalPresentationDidDisappear(owner: owner)
         // A hidden Search tab can retain its opaque FTS overlay state. Keep
         // that original blocker until the actual owner clears/replaces it;
         // reopening Search semantically must not submit behind a restored mask.
@@ -203,11 +230,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         guard nativeSearchField !== field else { return }
         if retainedSearchField != nil { presentation.revoke() }
         nativeSearchField = field
+        searchEntryBinding?.attachOriginalField(field)
         searchFieldStateDidChange(field)
     }
 
     func detachSearchField(_ field: UISearchTextField) {
         guard nativeSearchField === field else { return }
+        searchEntryBinding?.detachOriginalField(field)
         if retainedSearchField === field { presentation.revoke() }
         nativeSearchField = nil
         // Ownership invalidation is synchronous even if the SwiftUI graph has
@@ -218,8 +247,13 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
 
     func searchFieldStateDidChange(_ field: UISearchTextField) {
         guard nativeSearchField === field else { return }
+        searchEntryBinding?.originalFieldStateDidChange(field)
         try? nativeStateChanged()
         scheduleSearchFieldObservation()
+    }
+    func searchFieldDidLayout(_ field: UISearchTextField) {
+        guard nativeSearchField === field else { return }
+        searchEntryBinding?.originalFieldDidLayout(field)
     }
 
     private func scheduleSearchFieldObservation() {
@@ -509,6 +543,20 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         workspaceProjectionSource = workspaceSource
         presentation = NativePresentationObserver(sceneID: sceneID)
         if let workspaceSource, workspaceSource.isAuthoritative {
+            let searchEntry = MaktabahNativeSearchEntryBinding(sceneID: sceneID, bindings: bindings,
+                workspaceSource: workspaceSource,
+                commonReady: { [weak self] in
+                    guard let self else { return false }
+                    return mounted && foreground && isPresentationReady && searchPresentationBlocked?() != true
+                }, windowReady: { [weak self] in
+                    guard let self else { return false }
+                    return windowSource?.isPresentationReady(in: sceneID) == true
+                }, parentVisible: { [weak self] in
+                    guard let self else { return false }
+                    return (try? project().surface(.search)) != nil
+                })
+            searchEntryBinding = searchEntry
+            attachComponentOwner(searchEntry.owner)
             let original = MaktabahNativeWorkspacePresentationBinding(sceneID: sceneID,
                 manager: bindings.manager, workspaceSource: workspaceSource, sidebar: bindings.sidebar,
                 selectViewer: { bindings.selectOriginalWorkspaceParent() })
@@ -563,7 +611,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
     func beginObservation(_ value: UISceneCommand) throws {
         guard mounted, lease != nil, value.scene.sceneID == sceneID else { throw UIRouteError(.staleState, "scene_lifetime_changed") }
         let field: UISearchTextField?
-        if value.route.route.focus != nil, value.route.route.destination == NativeSearchFieldVisibility.destination {
+        if value.route.route.focus != nil, value.route.route.destination == NativeSearchFieldVisibility.destination,
+           value.route.route.focus?.anchor != MaktabahNativeSearchEntryBinding.anchor {
             guard value.route.route.focus == NativeSearchFieldVisibility.focus,
                   searchFieldAvailable, let original = nativeSearchField else {
                 throw UIRouteError(.unavailable, "native_search_field_not_visible")
@@ -607,11 +656,15 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
                 try phoneTOCPresentation.begin(requestID: value.invocation.requestId, validate: parentValidation)
             }
             if let component, let anchor = value.route.route.focus?.anchor, let renderValidation {
+                if component === searchEntryBinding?.owner {
+                    try searchEntryBinding?.begin(requestID: value.invocation.requestId, validate: renderValidation)
+                }
                 try component.begin(requestID: value.invocation.requestId, anchor: anchor, validate: renderValidation)
             }
         } catch {
             workspacePresentation?.finish(requestID: value.invocation.requestId, completed: false)
             phoneTOCPresentation?.finish(requestID: value.invocation.requestId, completed: false)
+            searchEntryBinding?.finish(requestID: value.invocation.requestId, completed: false)
             presentation.end(requestID: value.invocation.requestId)
             throw error
         }
@@ -696,7 +749,8 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
             return
         }
         if let focus = route.focus {
-            if route.destination == NativeSearchFieldVisibility.destination {
+            if route.destination == NativeSearchFieldVisibility.destination,
+               focus.anchor != MaktabahNativeSearchEntryBinding.anchor {
                 guard focus == NativeSearchFieldVisibility.focus, searchFieldAvailable,
                       retainedSearchField == nil || retainedSearchField === nativeSearchField else {
                     throw UIRouteError(.unavailable, "native_search_field_not_visible")
@@ -788,6 +842,11 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         if let owner = retainedComponentOwner, command.route.route.focus != nil {
             try validateSurface(command)
             try owner.apply(requestID: command.invocation.requestId)
+            if let searchEntryBinding, owner === searchEntryBinding.owner {
+                try searchEntryBinding.apply(requestID: command.invocation.requestId)
+                searchEntryBinding.renderOriginalFieldIfReady()
+                return
+            }
             // One guarded, synchronous navigation commit publishes BOTH parent
             // visibility and exact target. The original view renders that state.
             try bindings.apply(command)
@@ -1082,6 +1141,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         retainedComponentOwner?.finish(requestID: requestID, completed: completed)
         workspacePresentation?.finish(requestID: requestID, completed: completed)
         phoneTOCPresentation?.finish(requestID: requestID, completed: completed)
+        searchEntryBinding?.finish(requestID: requestID, completed: completed)
         retainedComponentOwner = nil; retainedWorkspaceParent = nil; retainedPhoneTOC = false
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
@@ -1109,6 +1169,7 @@ final class MaktabahNativeSceneSession: NativeSceneDriver {
         forwardingWorkspaceOwner?.detachNativeRoutingSession(self); forwardingWorkspaceOwner = nil
         workspacePresentation?.retire(); workspacePresentation = nil; retainedWorkspaceParent = nil
         phoneTOCPresentation?.unmount(); phoneTOCPresentation = nil; retainedPhoneTOC = false
+        searchEntryBinding?.unmount(); searchEntryBinding = nil
         mounted = false; presentation.revoke(); submissionID = nil; command = nil; visible.removeAll(); visibilityChecks.removeAll()
         nativeSearchField = nil; retainedSearchField = nil; inspectorBinding = nil
         for owner in componentOwners.values { owner.retirePresentation() }

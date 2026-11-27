@@ -1,0 +1,34 @@
+{
+  "base": "cbf619cc897e17aae723112ecef31ff65f819eba",
+  "destination": "native.search",
+  "component": "native.search.queryEntry",
+  "presentation": "currentTab",
+  "legacyComponentPreserved": "native.search.query",
+  "localization": {
+    "key": "Open query input",
+    "en": "Open query input",
+    "he": "פתיחת שורת השאילתה",
+    "owner": "root shared catalog integration; not changed by this branch"
+  },
+  "newAppSourceMembership": {
+    "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+    "target": "iOS app Sources phase only",
+    "pbxWriter": "root"
+  },
+  "focusedNativeSelectors": [
+    "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests/testColdSystemIntentOpensOriginalSearchAndFocusesQueryEntry",
+    "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests/testWarmPublicQueryEntryPreservesPrivateQueryAndOriginalOwner",
+    "Maktabah-iOSUITests/NativeSearchEntryPhoneAcceptanceTests/testPhoneColdSystemIntentOpensOriginalSearchAndFocusesQueryEntry",
+    "Maktabah-iOSUITests/NativeSearchEntryPhoneAcceptanceTests/testPhoneWarmPublicQueryEntryPreservesPrivateQueryAndOriginalOwner"
+  ],
+  "nativeTestsExecuted": 0,
+  "appSDKBuildPerformed": false,
+  "physicalTestsPerformed": false,
+  "protectedSourceAttestation": "fresh authentic source-bound owner workflow required where project policy applies; no signatures changed",
+  "originalCriteria": [
+    "UI-03 source task 1220542361203468: original parent plus exact component through common orchestrator",
+    "UI-04 task 1220542420331748: real system App Intent delivery and original visible destination",
+    "UI-05 task 1220542420330496: real URL delivery through original public route",
+    "UI-07 task 1220542416158970: final native geometry/keyboard/locale/accessibility acceptance remains pending"
+  ]
+}

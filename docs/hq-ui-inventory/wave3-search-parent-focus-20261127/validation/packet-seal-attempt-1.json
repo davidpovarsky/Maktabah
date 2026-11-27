@@ -1,0 +1,6 @@
+{
+  "stage": "source evidence verification",
+  "result": "FAILED",
+  "reason": "The wrapper regex for named scenario bodies was over-escaped, so the assertion expecting39 and52 entries stopped. Product source, compiled tests and actual run outcomes unchanged. Correct explicit verifier follows.",
+  "app_or_native_claim": false
+}

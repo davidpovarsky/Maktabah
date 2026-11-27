@@ -1,0 +1,471 @@
+{
+  "created_utc": "2026-11-27T05:36:55.433107+00:00",
+  "scope": "Committed evidence files; original attempt2 compiler log is losslessly stored as gzip per RAW_LOG_STORAGE.json; executed binaries remain private",
+  "items": [
+    {
+      "path": ".gitignore",
+      "bytes": 159,
+      "sha256": "018f85584b1ecace7e265b5bbf91ab42e7c27c905e7a24d52cc2f2b21cd55d63"
+    },
+    {
+      "path": "INTAKE.json",
+      "bytes": 1834,
+      "sha256": "5a4ee12e2970fe2d320604a3b66e303f1c9386c159ebb7e958289df0883c50f1"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8658,
+      "sha256": "c9ddc1e222f583c35f9a2addf422fbcc5aaa630ad7148874826816c323beb77f"
+    },
+    {
+      "path": "SOURCE_INPUTS.json",
+      "bytes": 2492,
+      "sha256": "2621802ce25227210831894b9eed66ba85293379cbb16ce7099a277c75e9cf5c"
+    },
+    {
+      "path": "controls/Controls.swift",
+      "bytes": 22925,
+      "sha256": "cda9dc755bb275b461f8b7dff6854de7c7fb0263700cf31c657f9dad31b63843"
+    },
+    {
+      "path": "controls/DomainBoundary.swift",
+      "bytes": 9148,
+      "sha256": "afc036601d693f41774779752fe68f9cf7b26090063689eac61b5145df2bf73f"
+    },
+    {
+      "path": "controls/generate.py",
+      "bytes": 5936,
+      "sha256": "5ec52443460e08c096574b68433587d09f13b24450ad93a1b92303348e69e5bc"
+    },
+    {
+      "path": "controls/verify_packet.py",
+      "bytes": 4073,
+      "sha256": "f9c8287fa386fb855ec7dbcf95b11a0fb384bdea609e401d08a2625a84b6c115"
+    },
+    {
+      "path": "validation/FINAL_SYNTAX_INPUTS.json",
+      "bytes": 2759,
+      "sha256": "a93bbfb9ef2e6cabe93ea46a9101aacd314b384e13556cb45efcb05533680d09"
+    },
+    {
+      "path": "validation/ORIGINAL39_PRESERVATION.json",
+      "bytes": 2916,
+      "sha256": "76ca60b3110e3d70dc49033cee4e7f395ec0050a6aede33d1ad0e622796517fc"
+    },
+    {
+      "path": "validation/ORIGINAL_TEST_PREFIX.json",
+      "bytes": 376,
+      "sha256": "5cd4a8540539ac739f64db428492042950dbbece9890fc477e52d25b9dd4652f"
+    },
+    {
+      "path": "validation/PACKET_VERIFY.log",
+      "bytes": 167,
+      "sha256": "b6283f737f944f3eeaf86461ca4e91c5a840572e1444324b0d08eca4dd46ec10"
+    },
+    {
+      "path": "validation/RAW_LOG_STORAGE.json",
+      "bytes": 571,
+      "sha256": "d889523f3d3f3f2617655d2b88746ba9b7e5dd21e5a3ea99cdf3b6d28079699a"
+    },
+    {
+      "path": "validation/ROOT_CALLERS.json",
+      "bytes": 433,
+      "sha256": "3c31eb0847497a085ad9d444fd1bca44d50a21330eb27bd94076cb22bb8ddbba"
+    },
+    {
+      "path": "validation/initial-syntax/RESULT.json",
+      "bytes": 3014,
+      "sha256": "665a3a2bb47a229c1f1714c6baab9757246378440adad69cee03ad8b2b045b51"
+    },
+    {
+      "path": "validation/lifecycle-attempt-1-generator-failure/GENERATOR_FAILURE.json",
+      "bytes": 345,
+      "sha256": "da5c06f65aaa6ef22272d9b3d3039ec59e8b4a0d03562a0dd87d7e935a6cdbaa"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/ActualBackendObservation.swift",
+      "bytes": 1250,
+      "sha256": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/ActualObservation.swift",
+      "bytes": 1189,
+      "sha256": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/ActualOwner.swift",
+      "bytes": 11756,
+      "sha256": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/ActualSearchEntry.swift",
+      "bytes": 25050,
+      "sha256": "3fce834477bcca1dd8bc71bac07afef166f126e6fa73f51a9a47b085945a19c7"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/COMPILE.log.gz",
+      "bytes": 2403,
+      "sha256": "56e7fa17367174cef05e4d81049d6755cfe67071b6beebaba425928684f37be8"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/Controls.swift",
+      "bytes": 17705,
+      "sha256": "a3c944927978ad4a696a600d3b7be6570dedaa890a9dcdec2866a7ec0ce02577"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/DRIVER.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/DomainBoundary.swift",
+      "bytes": 11876,
+      "sha256": "be0b7f8ac0090c80ff9f39135e7bcd00d8643d14248a4341cb92773e23002d50"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/INPUTS.json",
+      "bytes": 1764,
+      "sha256": "4c601d1ae083aab7b1bf1f40976dee7478f5f2f5a4fc92c28eaeb4ae5ed7f303"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/PID.json",
+      "bytes": 41,
+      "sha256": "2862a04841b9f81a5598a0661c43bd6fee1850cb470bb33e133e638ddb8114f9"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/RESULT.json",
+      "bytes": 3706,
+      "sha256": "346769b2cbd6d73bb0446d74dc6b277a9708e0c87c6447ffd99f7517355b39a6"
+    },
+    {
+      "path": "validation/lifecycle-attempt-2/run.py",
+      "bytes": 2187,
+      "sha256": "44fb76eb8b45184d363fc942e827a2a24824a1af69cb0a1ef9f5aaf60bd23321"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/ActualBackendObservation.swift",
+      "bytes": 1250,
+      "sha256": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/ActualObservation.swift",
+      "bytes": 1189,
+      "sha256": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/ActualOwner.swift",
+      "bytes": 11756,
+      "sha256": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/ActualSearchEntry.swift",
+      "bytes": 25050,
+      "sha256": "3fce834477bcca1dd8bc71bac07afef166f126e6fa73f51a9a47b085945a19c7"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/COMPILE.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/Controls.swift",
+      "bytes": 17705,
+      "sha256": "a3c944927978ad4a696a600d3b7be6570dedaa890a9dcdec2866a7ec0ce02577"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/DRIVER.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/DomainBoundary.swift",
+      "bytes": 11960,
+      "sha256": "e75d3eece99bc71f6cce6267138ad6260f3cd606630ad2c11cf57deeba5bf4aa"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/INPUTS.json",
+      "bytes": 1764,
+      "sha256": "e4f257c63759eebd7e4bfd74cd3f2aeb024077896c16cfc3fec092073f4a0773"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/PID.json",
+      "bytes": 41,
+      "sha256": "143fe4fadd486c6d4654d6b72b5bf85031d08c278cf12e8b3331ead33c7cadad"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/RESULT.json",
+      "bytes": 3817,
+      "sha256": "b65a4e1c87714cff28c5b0f30c96259cd183aa728c04449d1a76bf948ff01c63"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/RUN.log",
+      "bytes": 2020,
+      "sha256": "bd76dec2429059b53d22a5bf770d6aaaba57d64acaf7a06bc420ade4e54623ac"
+    },
+    {
+      "path": "validation/lifecycle-attempt-3/run.py",
+      "bytes": 2187,
+      "sha256": "44fb76eb8b45184d363fc942e827a2a24824a1af69cb0a1ef9f5aaf60bd23321"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/ActualBackendObservation.swift",
+      "bytes": 1250,
+      "sha256": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/ActualObservation.swift",
+      "bytes": 1189,
+      "sha256": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/ActualOwner.swift",
+      "bytes": 11756,
+      "sha256": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/ActualSearchEntry.swift",
+      "bytes": 25081,
+      "sha256": "8578bcbdd6119c0c6baaf768c86a53ea9340c6c12b096047071e3b52dd568ceb"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/COMPILE.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/Controls.swift",
+      "bytes": 19488,
+      "sha256": "cd6875202d796ba1569ddfbd70b3c9dc316f0da267fa2e341693396834c2e048"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/DRIVER.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/DomainBoundary.swift",
+      "bytes": 11960,
+      "sha256": "e75d3eece99bc71f6cce6267138ad6260f3cd606630ad2c11cf57deeba5bf4aa"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/INPUTS.json",
+      "bytes": 1764,
+      "sha256": "9cb99454d5899e533cb1c025e82f6483e431ec5b7f7da7c73ded6f48cc400c04"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/PID.json",
+      "bytes": 41,
+      "sha256": "6d07b44678473b0979d73a8c674d20ace9ace3e1845ae1a4c17f5c87191fa6c6"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/RESULT.json",
+      "bytes": 4062,
+      "sha256": "42f8eb5774a24b013c02669ad4746e9abe73b7192e041bca41a9728e226b7c38"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/RUN.log",
+      "bytes": 2522,
+      "sha256": "f8dd7e579f910ed70b9de6a70d6468762b3bbb6d3a5228c9a3d1c8f2163f4350"
+    },
+    {
+      "path": "validation/lifecycle-attempt-4-original-root-publication-baseline/run.py",
+      "bytes": 2187,
+      "sha256": "44fb76eb8b45184d363fc942e827a2a24824a1af69cb0a1ef9f5aaf60bd23321"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/ActualBackendObservation.swift",
+      "bytes": 1250,
+      "sha256": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/ActualObservation.swift",
+      "bytes": 1189,
+      "sha256": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/ActualOwner.swift",
+      "bytes": 11756,
+      "sha256": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/ActualSearchEntry.swift",
+      "bytes": 27862,
+      "sha256": "48dc045655cf295ccd57d271ac44b0afee780821be60476d0a10cfb02ed3297f"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/COMPILE.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/Controls.swift",
+      "bytes": 22925,
+      "sha256": "cda9dc755bb275b461f8b7dff6854de7c7fb0263700cf31c657f9dad31b63843"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/DRIVER.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/DomainBoundary.swift",
+      "bytes": 12504,
+      "sha256": "1f00d19bae9298a2b2282b6635abda30cf82393d2e783a531ee0d11d769860b5"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/INPUTS.json",
+      "bytes": 1877,
+      "sha256": "e4187c2a09a7b37ae095da7cadc53c368b7f238f4b8e9ca868c56d8d9404a7ff"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/PID.json",
+      "bytes": 41,
+      "sha256": "a41b1b113275a81cca1d25bbff52f832d15309b0a36bd46b783089a034114d6f"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/RESULT.json",
+      "bytes": 4120,
+      "sha256": "7870c588a4c73958368b0a903e98f7816172adfe6e18e884dda72eb12a689afe"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/RUN.log",
+      "bytes": 2780,
+      "sha256": "5204eb25a6135499589c14b524bf15fac5e645d201a44350697cd355dd1faa64"
+    },
+    {
+      "path": "validation/lifecycle-attempt-5-root-publication-candidate/run.py",
+      "bytes": 2187,
+      "sha256": "44fb76eb8b45184d363fc942e827a2a24824a1af69cb0a1ef9f5aaf60bd23321"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/ActualBackendObservation.swift",
+      "bytes": 1250,
+      "sha256": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/ActualObservation.swift",
+      "bytes": 1189,
+      "sha256": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/ActualOwner.swift",
+      "bytes": 11756,
+      "sha256": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/ActualSearchEntry.swift",
+      "bytes": 27862,
+      "sha256": "48dc045655cf295ccd57d271ac44b0afee780821be60476d0a10cfb02ed3297f"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/Controls.swift",
+      "bytes": 22925,
+      "sha256": "cda9dc755bb275b461f8b7dff6854de7c7fb0263700cf31c657f9dad31b63843"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/DomainBoundary.swift",
+      "bytes": 12504,
+      "sha256": "1f00d19bae9298a2b2282b6635abda30cf82393d2e783a531ee0d11d769860b5"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/INPUTS.json",
+      "bytes": 1877,
+      "sha256": "d01cfae8b7fab6cf43757932b6d63c04888a469416f4806b7e97a865abb78228"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/RESULT.json",
+      "bytes": 2520,
+      "sha256": "3b74cd16120d4b37a513e696e8f62573107cb55a957ed9ef9dd6d1a22d5eb8e3"
+    },
+    {
+      "path": "validation/lifecycle-attempt-6-final-root-callers/RUN.log",
+      "bytes": 2780,
+      "sha256": "5204eb25a6135499589c14b524bf15fac5e645d201a44350697cd355dd1faa64"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/ActualBackendObservation.swift",
+      "bytes": 1250,
+      "sha256": "f7a6f3ff81b6a316c40929fa385d58ec71eb98569e1f117337a92d11f401ddc5"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/ActualObservation.swift",
+      "bytes": 1189,
+      "sha256": "5eec243213b777463009d511dc9426e9d86fe4f5ccde807813a44c78459bfe4e"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/ActualOwner.swift",
+      "bytes": 11756,
+      "sha256": "45ad7c46f96e62f949df464f0455f27b9cd38687d64f74ca499b73af4918489a"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/ActualSearchEntry.swift",
+      "bytes": 27834,
+      "sha256": "5e763a3d40ef2d07d0e16ffb4fddebd030af8074071e591d57770fb30ecd24f3"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/COMPILE.log",
+      "bytes": 1003,
+      "sha256": "c50755a77a5eaf934346abbee8e006f2e5faa9f412bd96a98660a86f079e4ba5"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/Controls.swift",
+      "bytes": 22925,
+      "sha256": "cda9dc755bb275b461f8b7dff6854de7c7fb0263700cf31c657f9dad31b63843"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/DRIVER.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/DomainBoundary.swift",
+      "bytes": 12504,
+      "sha256": "1f00d19bae9298a2b2282b6635abda30cf82393d2e783a531ee0d11d769860b5"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/INPUTS.json",
+      "bytes": 2143,
+      "sha256": "622c6774c08839403e2528122bd8874b5a3c9a8830bb7cee3e651e3e97af14c5"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/PID.json",
+      "bytes": 41,
+      "sha256": "525130ac8267b64d08542588f620b253f677533d31713ce903056bcc70737f15"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/RESULT.json",
+      "bytes": 4043,
+      "sha256": "ebb52ed62dea5ae33488408e0c01f497f26d69c1294f284d2633fedde6fd8a7c"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/RUN.log",
+      "bytes": 3404,
+      "sha256": "7b8d7ca223b40607695807e01cbeddffdf725fdec6096ed38422efaa84e64a09"
+    },
+    {
+      "path": "validation/lifecycle-negative-one-shot-removed/run.py",
+      "bytes": 2187,
+      "sha256": "44fb76eb8b45184d363fc942e827a2a24824a1af69cb0a1ef9f5aaf60bd23321"
+    },
+    {
+      "path": "validation/packet-seal-attempt-1.json",
+      "bytes": 330,
+      "sha256": "6614f154470b3a0fd4bd941436e4e3259488dbdd1218f9687c115fa70f97e073"
+    },
+    {
+      "path": "validation/syntax-final-main-callers.json",
+      "bytes": 189,
+      "sha256": "c1cc6183497c1dab86d090394b48233e2809a029eddc851522436d7758fe0ae2"
+    },
+    {
+      "path": "validation/syntax-final-session.json",
+      "bytes": 230,
+      "sha256": "0cb5a903b3cdb0e457987e4a49b856ef7e030e6a1b1e01898436a65bdd14e0d2"
+    },
+    {
+      "path": "validation/syntax-final.json",
+      "bytes": 2755,
+      "sha256": "878b8c7ad18beaa3773b545d3612f4cbbb9f75cc85c1f580e30174bc1b77567e"
+    }
+  ]
+}

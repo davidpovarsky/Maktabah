@@ -1,0 +1,78 @@
+{
+  "scope": "SYNTAX ONLY, Linux Swift frontend with iOS27 target; no SDK/module typecheck/native execution",
+  "items": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "sha256": "21fe1b89569f0d0aeef27dca5b389f8492ce950d72b0b577af5cc8858d3af140",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "sha256": "8f9474f4ce779a83cf30e3ebb27ad3a696b2937f0f9834125f8b3009dcc75f61",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "sha256": "bf845665b1c86f88463b81ba722f3ede17f2c2ae66c23dc53c069172f7ba3bc9",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "sha256": "d40fc6112d075009ee1939798699aacbdb6cd88f8b554eb847846cd33daf4752",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "sha256": "486f55917c10daae161c2c17063f85c8f6b20b2f3cd2551405f049599824b749",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "sha256": "07b66c6f679c7f51fcb73b48d119a05fd16aeffc341f9638692ec140343621a7",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "sha256": "805b87e17cd062f5fd5a6099af525b772b8e65b068ac044a3f1bdc5a4a5b6f73",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "3a899f742fb77d3e694ceceffd92543f999f823c427cab59c08ca4bc1847c6d6",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "sha256": "7ed267876790dcda4dbff2ca27dddc4ac4adaa3d0b598ecf74ff8b436a34b139",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeSearchEntryAcceptanceTests.swift",
+      "sha256": "78254ce06bce715793b9d4b2c974e6db940a80767b561af909fc97b01c322ce0",
+      "exit": 0,
+      "output": ""
+    }
+  ],
+  "native_tests_executed": 0
+}

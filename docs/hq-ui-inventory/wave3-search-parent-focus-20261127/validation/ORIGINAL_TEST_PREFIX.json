@@ -1,0 +1,9 @@
+{
+  "base": "cbf619cc897e17aae723112ecef31ff65f819eba",
+  "original_bytes": 187907,
+  "prefix_exact": true,
+  "git_blob": "54b4aa02f673921ab7ce83cac9fcd584f98f8acd",
+  "original_sha256": "394f39cb485f61162351cdedf310ab75f566aefb56e96b3e5c664524151e228f",
+  "candidate_sha256": "3eec09f8042e0a24deb5cd39434bc3a8d307e2bd8a6ba176435e368c58a7da6d",
+  "native_tests_executed": 0
+}

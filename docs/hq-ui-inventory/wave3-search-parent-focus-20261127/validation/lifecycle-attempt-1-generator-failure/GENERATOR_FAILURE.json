@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "controls/generate.py",
+    ".",
+    "controls/attempt-1"
+  ],
+  "returncode": 1,
+  "error": "Missing local immutable MaktabahNativeComponentBinding.swift input; generator stopped before constructing test sources. Exact committed blob was subsequently fetched.",
+  "compiler_executed": false,
+  "native": 0
+}

@@ -66,8 +66,10 @@ struct MaktabahNativePublicPresentation {
                  throw UIRouteError(.unavailable, "native_parent_source_missing")
              }
          },
-         validateComponentSource: @escaping @MainActor (UIDestinationID, UIDestinationID, UUID) throws -> Void = { destination, _, _ in
-             guard destination.rawValue == "native.search" else { throw UIRouteError(.unavailable, "native_component_source_missing") }
+         validateComponentSource: @escaping @MainActor (UIDestinationID, UIDestinationID, UUID) throws -> Void = { destination, anchor, _ in
+             guard destination.rawValue == "native.search", anchor.rawValue == "native.search.query" else {
+                 throw UIRouteError(.unavailable, "native_component_source_missing")
+             }
          },
          invalidated: @escaping @MainActor () -> Void) throws {
         guard lease.sceneID == sceneID, workspaceOwner.current === workspace else { throw UIRouteError(.staleState, "public_binding_wrong_lease_or_owner") }
@@ -122,7 +124,7 @@ struct MaktabahNativePublicPresentation {
                        component: UIDestinationID?, hasContent: Bool) throws -> Shape {
         if let component {
             let search = destination.rawValue == "native.search" && presentation == .currentTab
-                && component.rawValue == "native.search.query"
+                && (component.rawValue == "native.search.query" || component == MaktabahNativeSearchEntryBinding.anchor)
             let settings = destination == MaktabahNativeSettingsComponents.destination && presentation == .sheet
                 && MaktabahNativeSettingsComponents.descriptors.contains { $0.anchor == component }
             let library = destination == MaktabahNativeLibraryComponents.destination && presentation == .currentTab
