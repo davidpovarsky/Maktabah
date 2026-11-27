@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 1261 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 1264,
+      "bookTitle": "הון עשיר על משנה מנחות",
+      "declaredTotalLines": 132,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1267,
+      "bookTitle": "הון עשיר על משנה חולין",
+      "declaredTotalLines": 105,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1272,
+      "bookTitle": "הון עשיר על משנה זבחים",
+      "declaredTotalLines": 118,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1315,
+      "bookTitle": "בועז על משנה טהרות",
+      "declaredTotalLines": 137,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1317,
+      "bookTitle": "בועז על משנה נגעים",
+      "declaredTotalLines": 140,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1318,
+      "bookTitle": "בועז על משנה אהלות",
+      "declaredTotalLines": 212,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1319,
+      "bookTitle": "בועז על משנה כלים",
+      "declaredTotalLines": 249,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1320,
+      "bookTitle": "בועז על משנה מקואות",
+      "declaredTotalLines": 101,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1321,
+      "bookTitle": "בועז על משנה פרה",
+      "declaredTotalLines": 140,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1343,
+      "bookTitle": "אזהרות לרבי שלמה אבן גבירול",
+      "declaredTotalLines": 281,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1347,
+      "bookTitle": "כתר מלכות",
+      "declaredTotalLines": 489,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1349,
+      "bookTitle": "פרק שירה",
+      "declaredTotalLines": 112,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1350,
+      "bookTitle": "סדר תשעה באב",
+      "declaredTotalLines": 722,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1352,
+      "bookTitle": "קינות לתשעה באב (אשכנז)",
+      "declaredTotalLines": 1139,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1353,
+      "bookTitle": "מעבר יבק",
+      "declaredTotalLines": 998,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1356,
+      "bookTitle": "לשון חכמים",
+      "declaredTotalLines": 4547,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1357,
+      "bookTitle": "סדר מעמדות",
+      "declaredTotalLines": 377,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1363,
+      "bookTitle": "מרבה לספר על הגדה של פסח",
+      "declaredTotalLines": 523,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1364,
+      "bookTitle": "דברי נגידים על הגדה של פסח",
+      "declaredTotalLines": 143,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1365,
+      "bookTitle": "פה אחד על הגדה של פסח",
+      "declaredTotalLines": 127,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1366,
+      "bookTitle": "מעשה ניסים על הגדה של פסח",
+      "declaredTotalLines": 245,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1367,
+      "bookTitle": "בתי הנפש על הגדה של פסח",
+      "declaredTotalLines": 109,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1368,
+      "bookTitle": "שבלי הלקט על הגדה של פסח",
+      "declaredTotalLines": 205,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1370,
+      "bookTitle": "גאולת עולם על הגדה של פסח",
+      "declaredTotalLines": 137,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1371,
+      "bookTitle": "טעבעלה באנדי על הגדה של פסח",
+      "declaredTotalLines": 177,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1372,
+      "bookTitle": "שמחת הרגל על הגדה של פסח",
+      "declaredTotalLines": 595,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1373,
+      "bookTitle": "ברוך שאמר על הגדה של פסח",
+      "declaredTotalLines": 137,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1374,
+      "bookTitle": "אפוד בד על הגדה של פסח",
+      "declaredTotalLines": 196,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1375,
+      "bookTitle": "מדרש בחדוש על הגדה של פסח",
+      "declaredTotalLines": 322,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1376,
+      "bookTitle": "שפה אחת על הגדה של פסח",
+      "declaredTotalLines": 102,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1377,
+      "bookTitle": "קמחא דאבישונא על הגדה של פסח",
+      "declaredTotalLines": 180,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1378,
+      "bookTitle": "ביאור הריטב\"א על הגדה של פסח",
+      "declaredTotalLines": 158,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1379,
+      "bookTitle": "נפתלי שבע רצון על הגדה של פסח",
+      "declaredTotalLines": 122,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1380,
+      "bookTitle": "זרוע ימין על הגדה של פסח",
+      "declaredTotalLines": 167,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1381,
+      "bookTitle": "זבח פסח על הגדה של פסח",
+      "declaredTotalLines": 612,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1382,
+      "bookTitle": "כוס אליהו על הגדה של פסח",
+      "declaredTotalLines": 192,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1383,
+      "bookTitle": "הגדה של פסח עדות המזרח",
+      "declaredTotalLines": 276,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1384,
+      "bookTitle": "הגדה של פסח",
+      "declaredTotalLines": 274,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1385,
+      "bookTitle": "מחזור אשכנז לראש השנה",
+      "declaredTotalLines": 1596,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1387,
+      "bookTitle": "מחזור אשכנז ליום כיפור",
+      "declaredTotalLines": 3118,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 1193 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 1194,
+      "bookTitle": "מלאכת שלמה על משנה ידים",
+      "declaredTotalLines": 105,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1195,
+      "bookTitle": "מלאכת שלמה על משנה זבים",
+      "declaredTotalLines": 135,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1196,
+      "bookTitle": "מלאכת שלמה על משנה אהלות",
+      "declaredTotalLines": 549,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1197,
+      "bookTitle": "מלאכת שלמה על משנה עוקצים",
+      "declaredTotalLines": 142,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1198,
+      "bookTitle": "מלאכת שלמה על משנה טהרות",
+      "declaredTotalLines": 345,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1199,
+      "bookTitle": "מלאכת שלמה על משנה מכשירין",
+      "declaredTotalLines": 207,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1200,
+      "bookTitle": "מלאכת שלמה על משנה כלים",
+      "declaredTotalLines": 1106,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1201,
+      "bookTitle": "מלאכת שלמה על משנה מעילה",
+      "declaredTotalLines": 229,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1202,
+      "bookTitle": "מלאכת שלמה על משנה תמיד",
+      "declaredTotalLines": 334,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1203,
+      "bookTitle": "מלאכת שלמה על משנה כריתות",
+      "declaredTotalLines": 257,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1204,
+      "bookTitle": "מלאכת שלמה על משנה זבחים",
+      "declaredTotalLines": 506,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1205,
+      "bookTitle": "מלאכת שלמה על משנה חולין",
+      "declaredTotalLines": 449,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1206,
+      "bookTitle": "מלאכת שלמה על משנה ערכין",
+      "declaredTotalLines": 263,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1208,
+      "bookTitle": "מלאכת שלמה על משנה בכורות",
+      "declaredTotalLines": 423,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1209,
+      "bookTitle": "מלאכת שלמה על משנה תמורה",
+      "declaredTotalLines": 197,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1210,
+      "bookTitle": "מלאכת שלמה על משנה מדות",
+      "declaredTotalLines": 207,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1211,
+      "bookTitle": "מלאכת שלמה על משנה מנחות",
+      "declaredTotalLines": 517,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1212,
+      "bookTitle": "הון עשיר על משנה פסחים",
+      "declaredTotalLines": 146,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1215,
+      "bookTitle": "הון עשיר על משנה שבת",
+      "declaredTotalLines": 319,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1217,
+      "bookTitle": "הון עשיר על משנה עירובין",
+      "declaredTotalLines": 148,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1222,
+      "bookTitle": "הון עשיר על משנה יומא",
+      "declaredTotalLines": 105,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1224,
+      "bookTitle": "הון עשיר על משנה גיטין",
+      "declaredTotalLines": 106,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1225,
+      "bookTitle": "הון עשיר על משנה כתובות",
+      "declaredTotalLines": 134,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1226,
+      "bookTitle": "הון עשיר על משנה יבמות",
+      "declaredTotalLines": 139,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1227,
+      "bookTitle": "הון עשיר על משנה סוטה",
+      "declaredTotalLines": 154,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1230,
+      "bookTitle": "הון עשיר על משנה נדרים",
+      "declaredTotalLines": 115,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1231,
+      "bookTitle": "הון עשיר על משנה סנהדרין",
+      "declaredTotalLines": 143,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1234,
+      "bookTitle": "הון עשיר על משנה אבות",
+      "declaredTotalLines": 148,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1237,
+      "bookTitle": "הון עשיר על משנה בבא מציעא",
+      "declaredTotalLines": 136,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1238,
+      "bookTitle": "הון עשיר על משנה בבא קמא",
+      "declaredTotalLines": 154,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1240,
+      "bookTitle": "הון עשיר על משנה בבא בתרא",
+      "declaredTotalLines": 112,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1242,
+      "bookTitle": "הון עשיר על משנה תרומות",
+      "declaredTotalLines": 203,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1243,
+      "bookTitle": "הון עשיר על משנה דמאי",
+      "declaredTotalLines": 161,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1244,
+      "bookTitle": "הון עשיר על משנה ברכות",
+      "declaredTotalLines": 214,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1248,
+      "bookTitle": "הון עשיר על משנה פאה",
+      "declaredTotalLines": 210,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1249,
+      "bookTitle": "הון עשיר על משנה מעשר שני",
+      "declaredTotalLines": 109,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1250,
+      "bookTitle": "הון עשיר על משנה כלאים",
+      "declaredTotalLines": 206,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1251,
+      "bookTitle": "הון עשיר על משנה שביעית",
+      "declaredTotalLines": 172,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "declaredTotalLines": 106,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 1261,
+      "bookTitle": "הון עשיר על משנה כלים",
+      "declaredTotalLines": 218,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "35ce9feeb6b43f87230943502c5413a98a1b74d4",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

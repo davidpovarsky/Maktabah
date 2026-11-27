@@ -1,0 +1,111 @@
+{
+  "bookID": 58,
+  "bookTitle": "משנה ראש השנה",
+  "declaredTotalLines": 40,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.05826661642640829,
+  "resolvedAnchorRows": 1805,
+  "units": [
+    {
+      "unitID": "toc:1133",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "bookID": 58,
+      "bookTitle": "משנה ראש השנה",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 10,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 545,
+      "sourceIndicesSHA256": "4e32a54293b69c11850674dc05a87dad2c32116051b99653d34429342254b6b6",
+      "rawMembershipSHA256": "e44f03a405a0c0298e692d2f936fc1f44f9269005df56e0bc164ba237df4046c"
+    },
+    {
+      "unitID": "toc:1134",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "bookID": 58,
+      "bookTitle": "משנה ראש השנה",
+      "mode": "chapter",
+      "unitStartLineIndex": 11,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 356,
+      "sourceIndicesSHA256": "51cfc10696573a75dd779ae0d37291f0f816de1bea7831cb9dd3db6252733db2",
+      "rawMembershipSHA256": "2247b381096ccf12d1af30f56d53176b8313408e1b4d188719a934bfda02e9ac"
+    },
+    {
+      "unitID": "toc:1135",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "bookID": 58,
+      "bookTitle": "משנה ראש השנה",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 29,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 419,
+      "sourceIndicesSHA256": "f98efdef64d89539778bb5e6cd3e49261a8aac67a492434c08becb2dff24daf4",
+      "rawMembershipSHA256": "3ffe0be5d55e9ec34b3b1f641af77b48b07c3f12903fcea702b3d26d5b857be1"
+    },
+    {
+      "unitID": "toc:1136",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "bookID": 58,
+      "bookTitle": "משנה ראש השנה",
+      "mode": "chapter",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 39,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 469,
+      "sourceIndicesSHA256": "9baa11b7ba4c9f313cfd6db7e26a9b6e21dc1fb783cc2d6a32b2415afd7a95bd",
+      "rawMembershipSHA256": "698d582f698f9040caafcd19b12b706d0a471f4d4081c3eb94d9871a5c2ff1e9"
+    }
+  ]
+}

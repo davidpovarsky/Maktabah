@@ -1,0 +1,2613 @@
+{
+  "bookID": 398,
+  "bookTitle": "צוואת הריב\"ש",
+  "declaredTotalLines": 457,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.020965000614523888,
+  "resolvedAnchorRows": 237,
+  "units": [
+    {
+      "unitID": "toc:43546",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 4,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "7f2c5f390b0c7e30e5a644380decea0554bbb62cfc03eff193d13a8c1a117708",
+      "rawMembershipSHA256": "71b27ca946ef0dbae889d7c2f79b3c45cdde964d9a54c9f9271f7a5b5954a7c9"
+    },
+    {
+      "unitID": "toc:43547",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        5,
+        6,
+        7
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 5,
+      "unitEndLineIndex": 7,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "419f49e7575753b9756af1bf43941cae34f9a35fed91a9a0303483b242ae61f1",
+      "rawMembershipSHA256": "d1992d5ffc750657be1dd46a038abf076cca3fbc5a248ebe3c5bd625dc0a9462"
+    },
+    {
+      "unitID": "toc:43548",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 8,
+      "unitEndLineIndex": 11,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "7d0ceec09c87c140b838b0528e566d53df878626e97d6f6ff22e2037c2c32996",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43549",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        12,
+        13
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 12,
+      "unitEndLineIndex": 13,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "d44b49da11eef52c8694d1cd320ab433ebeca43ebdb81c3a7196a0b6abd9dd6b",
+      "rawMembershipSHA256": "276419351716b6f28563f3371759af7b333c93ef18fde68f4b9de30e32f65023"
+    },
+    {
+      "unitID": "toc:43550",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        14,
+        15
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 14,
+      "unitEndLineIndex": 15,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "7acc3be837b191e910d1db8f1f4e4ca67000b9bd917e3e25d14796e7273c43c1",
+      "rawMembershipSHA256": "5b2fac29dedb01ab4a5dfd9817c7538c719bc27d5c45f6ef2f3480db6614541c"
+    },
+    {
+      "unitID": "toc:43551",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        16,
+        17,
+        18
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 16,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "878181bc506b956124ea98571e52e23c909c817bbe91b52e65ae4cea1ceec6d6",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43552",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        19,
+        20
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "06fa2ca73c0fa7564b269d43e1658e83660968b8b4178910338a37d64d4f31ec",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43553",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        21,
+        22
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "16f2380a3e0b5e5b1c2d4f701b94a23cff01b0676f32c88b60f22fcd84a26da8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43554",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        23,
+        24,
+        25,
+        26
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 23,
+      "unitEndLineIndex": 26,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "194cf399d1bc2269bb14fb668710d67ba01b02785fbc366d7d7eac38ee743db7",
+      "rawMembershipSHA256": "33d4731a5dc68541268709d7f692037ab8535e84d01c6ac96d70c245170bfce6"
+    },
+    {
+      "unitID": "toc:43555",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        27,
+        28
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 27,
+      "unitEndLineIndex": 28,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "174b4f0e4c4348c546001862b6173cad8da801b308af0497bb80400774e413a9",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43556",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        29,
+        30
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 29,
+      "unitEndLineIndex": 30,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8195aa19b2860c12ecd1600d71b1464c7d78613b4732e54d1d8289d94d7e5956",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43557",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        31,
+        32,
+        33
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 31,
+      "unitEndLineIndex": 33,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "722f5737b0db9e04bcfe454cc0f38bdc40b4be6910893805ef9969d757483d76",
+      "rawMembershipSHA256": "ef5c59a87370bdf7fe668641b1aad6e8fc65b933242c00a275242f5f6be98067"
+    },
+    {
+      "unitID": "toc:43558",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        34,
+        35
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 34,
+      "unitEndLineIndex": 35,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "69154ec3b3327ccc6c530123ee56527b3e6b702df75bf4cda2e89a6f65b205a3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43559",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        36,
+        37,
+        38
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 36,
+      "unitEndLineIndex": 38,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d7cb7a8a5f6ecca018a29ef845262f398abe0b1a8ef1e8e33fb1efa385ef0478",
+      "rawMembershipSHA256": "fc24fb555d97801065cc02e90480b7d76c048cf5135c3baf2d22a826941f144f"
+    },
+    {
+      "unitID": "toc:43560",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        39,
+        40,
+        41,
+        42
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 39,
+      "unitEndLineIndex": 42,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "8edb4d5d16c6f61302711acb8a9b124e0b28796d31e77cd570e1ff836678dca1",
+      "rawMembershipSHA256": "9f04383636a8e253ee2211db18422b6a68875e3c1d98642fb666cb693932c054"
+    },
+    {
+      "unitID": "toc:43561",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 43,
+      "unitEndLineIndex": 47,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "eb3b535832bdc2b5a85c03b0a432b4b296766b353c1a1096dafc4c6b93eb2967",
+      "rawMembershipSHA256": "9196ef7a3912b3fe71ca5bb6de9bca18cd0f67efce6585aa8f8fcfa5bf28ebc1"
+    },
+    {
+      "unitID": "toc:43562",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 48,
+      "unitEndLineIndex": 52,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "0e2facf0829963fcaa3233347856148115330424c1905c92a3bff2cbe5dd6ee0",
+      "rawMembershipSHA256": "bc805debdc9732aca6b626d5612783cd7612c3ddb88cec2dedff2b917b3536f9"
+    },
+    {
+      "unitID": "toc:43563",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        53,
+        54
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 53,
+      "unitEndLineIndex": 54,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "5b0078cd414c695e4cf5e745fa5cf3a7d09c1cc637ac3a06c3263f4c0d54690a",
+      "rawMembershipSHA256": "d45eed81dec0dd0bd3e9209478ba173cc3c30769858fad3519cfbc1da0c29ab8"
+    },
+    {
+      "unitID": "toc:43564",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        55,
+        56,
+        57
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 55,
+      "unitEndLineIndex": 57,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "37846507e58bdc53c97724ab3af52dd647db3e7d8dc4a31f3667deb38341a24f",
+      "rawMembershipSHA256": "56c60a015dd93c485c87b70ebd5791a2aa6aa62908fba4fa819e392987d24c5d"
+    },
+    {
+      "unitID": "toc:43565",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        58,
+        59
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 58,
+      "unitEndLineIndex": 59,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c61af223d3c897245c0a20358552f827ed2ed4bf60223d14419c68c913a00533",
+      "rawMembershipSHA256": "a7cb89043751d8f1a0b137404a10adceaa2f4c0b2ac95d116007253501c39e8f"
+    },
+    {
+      "unitID": "toc:43566",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        60,
+        61
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 60,
+      "unitEndLineIndex": 61,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "9c319fb96dded87b10bd20e7fbca730d6b9c06edc57d468988cf2c5892c1fc51",
+      "rawMembershipSHA256": "95d3f37b443a93f0fe8e7adc7d0bac524381c29013eb2e041036d5cdf4d821ec"
+    },
+    {
+      "unitID": "toc:43567",
+      "rawUnitTitle": "פרק כב",
+      "sourceLineIndices": [
+        62,
+        63
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 62,
+      "unitEndLineIndex": 63,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "5e90ed2aed27592b28a5aa58436ac2fb912e73e87103cf3f338fb0af6d4a926e",
+      "rawMembershipSHA256": "b641a0e5220e152c407d098a561f9dd7cea6b3554165689579a154ec73f1c5ad"
+    },
+    {
+      "unitID": "toc:43568",
+      "rawUnitTitle": "פרק כג",
+      "sourceLineIndices": [
+        64,
+        65
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 64,
+      "unitEndLineIndex": 65,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "ce235e123302227dee8fd019e2ad081710d455f550399cdb795aa20fb8fb736f",
+      "rawMembershipSHA256": "d4b98f04db6de73fd7d78d159d6b2268c8b91c0dbe899fbb0495e101b74509d1"
+    },
+    {
+      "unitID": "toc:43569",
+      "rawUnitTitle": "פרק כד",
+      "sourceLineIndices": [
+        66,
+        67
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 66,
+      "unitEndLineIndex": 67,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "edfcd0502a531fd4f74233620c0cf89f06f73133e91d75fb0b8c8ff5a07d50cd",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43570",
+      "rawUnitTitle": "פרק כה",
+      "sourceLineIndices": [
+        68,
+        69
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 68,
+      "unitEndLineIndex": 69,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c035abd52429d24d732bf0ca2282d23dbdd7ab1b79c3f248488bd4fd09d7a2b9",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43571",
+      "rawUnitTitle": "פרק כו",
+      "sourceLineIndices": [
+        70,
+        71
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 70,
+      "unitEndLineIndex": 71,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "d80ae6b3fb194d7a1fea3230223f35ae27325602e42b920080807087094fca66",
+      "rawMembershipSHA256": "a6f67091cc1311c1e37426cb4ae95c8aad1200b5755e17c5da138911fd59e74f"
+    },
+    {
+      "unitID": "toc:43572",
+      "rawUnitTitle": "פרק כז",
+      "sourceLineIndices": [
+        72,
+        73
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 72,
+      "unitEndLineIndex": 73,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "994536fe07517ee44a29b5a44e4d0d9f80d50c2ed20fe2c0de104a100aab31e3",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43573",
+      "rawUnitTitle": "פרק כח",
+      "sourceLineIndices": [
+        74,
+        75,
+        76
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 74,
+      "unitEndLineIndex": 76,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "267192706b56605141ec340268504d80332612f48e5534b5a966d00b1e55dfd9",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43574",
+      "rawUnitTitle": "פרק כט",
+      "sourceLineIndices": [
+        77,
+        78,
+        79
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 77,
+      "unitEndLineIndex": 79,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "577fb0f2e37b6acb7b11816d4fe55f18ecae02b80e742b616733578dc2915d56",
+      "rawMembershipSHA256": "85e715665bc3901994c2e1b19cd8893d8c4ec919dbf4a4238548d94d0f4ebdf5"
+    },
+    {
+      "unitID": "toc:43575",
+      "rawUnitTitle": "פרק ל",
+      "sourceLineIndices": [
+        80,
+        81,
+        82
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 80,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "b7543b0d40357ecabe39f6605879eb9dd09b1bad3a2491fe8862ccac49e41af6",
+      "rawMembershipSHA256": "3ddd8cf3a8ba1b16aec0d8bac4413b15489e625624271d4e250a3d950f7d8010"
+    },
+    {
+      "unitID": "toc:43576",
+      "rawUnitTitle": "פרק לא",
+      "sourceLineIndices": [
+        83,
+        84,
+        85,
+        86
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 86,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "4c916f224d8f331d12f5e9c7889a5c864e2b5eaddd870ad06b7aea03e58fb98b",
+      "rawMembershipSHA256": "ebdd71c2fcea8c1cf64e5ccc8d260c15d9111330c2f22983658971c50a40ce32"
+    },
+    {
+      "unitID": "toc:43577",
+      "rawUnitTitle": "פרק לב",
+      "sourceLineIndices": [
+        87,
+        88,
+        89
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 87,
+      "unitEndLineIndex": 89,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "d5f69e4ebb28a844b62a2c80e3cfe8dc7a08894836648dfee8b0641de784911d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43578",
+      "rawUnitTitle": "פרק לג",
+      "sourceLineIndices": [
+        90,
+        91
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 90,
+      "unitEndLineIndex": 91,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "5bc33c52f64ccd5339df9b24980bb20ef3e3ce9b005f10a989f0f6cfb908d93a",
+      "rawMembershipSHA256": "1cc83f0fd7d8b4852e4daa951a479cd624027db32699b6bbf327832d8ea7bc80"
+    },
+    {
+      "unitID": "toc:43579",
+      "rawUnitTitle": "פרק לד",
+      "sourceLineIndices": [
+        92,
+        93
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 92,
+      "unitEndLineIndex": 93,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "2d701ded91fa3564b54734f4b7b0c87e15db458248b21e44b3b5beb2f83a2642",
+      "rawMembershipSHA256": "dcf3150c672540bfb19cc24010ca2cb02d0bb732c69962f425dadd9d10a14cae"
+    },
+    {
+      "unitID": "toc:43580",
+      "rawUnitTitle": "פרק לה",
+      "sourceLineIndices": [
+        94,
+        95
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 94,
+      "unitEndLineIndex": 95,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "58a4a0740f8f34b103263ea016799f0d531f725dd0ccb4a237d8a79d7e4c2e91",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43581",
+      "rawUnitTitle": "פרק לו",
+      "sourceLineIndices": [
+        96,
+        97
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 96,
+      "unitEndLineIndex": 97,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "b51244e28a2c80cbfc69516d9e1fff53a467a3e30b1377c3101e2878be52ca85",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43582",
+      "rawUnitTitle": "פרק לז",
+      "sourceLineIndices": [
+        98,
+        99
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 98,
+      "unitEndLineIndex": 99,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "448339eb6c39e792f20ad1b877ff8e39fe3920fb33d6fbcda95edab1782e278a",
+      "rawMembershipSHA256": "c33e69612c6479b141b6e0fb32861aa7e9a2a4f8bd9b633dd35507ed6b62c938"
+    },
+    {
+      "unitID": "toc:43583",
+      "rawUnitTitle": "פרק לח",
+      "sourceLineIndices": [
+        100,
+        101
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 100,
+      "unitEndLineIndex": 101,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e6ed5e5ba1ffdb00c5e74bc012817eac783eea305479b95deeb36312d0ee164f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43584",
+      "rawUnitTitle": "פרק לט",
+      "sourceLineIndices": [
+        102,
+        103
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 102,
+      "unitEndLineIndex": 103,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "49d8ae7cab615ec2266262f5512ea79ff21f1e3a88bcbe03f0df54bddd1f93f1",
+      "rawMembershipSHA256": "5eea2861e0e17de6a180cfc660ea8cb87bf4c66dfdc91a9dcc7a7efae83b56ef"
+    },
+    {
+      "unitID": "toc:43585",
+      "rawUnitTitle": "פרק מ",
+      "sourceLineIndices": [
+        104,
+        105,
+        106
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 104,
+      "unitEndLineIndex": 106,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1e26de4b724760f9706045a0610d1c5c0b11b0c6e950e4bb555c4676c56707f8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43586",
+      "rawUnitTitle": "פרק מא",
+      "sourceLineIndices": [
+        107,
+        108
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 107,
+      "unitEndLineIndex": 108,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c0dde9b0845814e404a179bc1fd46190d457cb328abb9226f43c61b6eab10386",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43587",
+      "rawUnitTitle": "פרק מב",
+      "sourceLineIndices": [
+        109,
+        110,
+        111
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 109,
+      "unitEndLineIndex": 111,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e981cd188f957166fe52352ac749c3338e12a20d80c6e953179a898eddd3d240",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43588",
+      "rawUnitTitle": "פרק מג",
+      "sourceLineIndices": [
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 112,
+      "unitEndLineIndex": 129,
+      "unitRowCount": 18,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "bdd9bf35351847e4ed6ebcbc9e87a4550e01f3d42a9b513a09fc32fc43f17191",
+      "rawMembershipSHA256": "a011bc6d12fc7d2a1915d05362876291b2d40cecfce695e9a0cc546f7e08065b"
+    },
+    {
+      "unitID": "toc:43589",
+      "rawUnitTitle": "פרק מד",
+      "sourceLineIndices": [
+        130,
+        131,
+        132
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 130,
+      "unitEndLineIndex": 132,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "f11fe5cee574ef4366cea5a460efb0dd98e1e559a99591d16221b1038d7731aa",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43590",
+      "rawUnitTitle": "פרק מה",
+      "sourceLineIndices": [
+        133,
+        134
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 133,
+      "unitEndLineIndex": 134,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8c7729d172b027784eadf4e6f4669813a6990e67d65147d276a3c3692df68ebe",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43591",
+      "rawUnitTitle": "פרק מו",
+      "sourceLineIndices": [
+        135,
+        136,
+        137,
+        138,
+        139,
+        140
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 135,
+      "unitEndLineIndex": 140,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "62e4d5189d50bb149800ce93b554692289b10466ebb4729facc7cc73a21f8b5d",
+      "rawMembershipSHA256": "8d677df99068e3c467ced1e1eaa4bba87f41bbc333c60a977c30a5c44262c737"
+    },
+    {
+      "unitID": "toc:43592",
+      "rawUnitTitle": "פרק מז",
+      "sourceLineIndices": [
+        141,
+        142
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 141,
+      "unitEndLineIndex": 142,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "6e80cb7f7062219dff3c209751fc81107688c9ca0e25d2d9ef15f254020cb158",
+      "rawMembershipSHA256": "6325e5d595279a4b0dc157a04c58465a45a7605a8d4037e453405011f799262c"
+    },
+    {
+      "unitID": "toc:43593",
+      "rawUnitTitle": "פרק מח",
+      "sourceLineIndices": [
+        143,
+        144
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 143,
+      "unitEndLineIndex": 144,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "18d0f0d4b660eac7a52237e3e73bf9ce3bb5eda493e39d1c9173823f92717858",
+      "rawMembershipSHA256": "603839c58eea867f70ea2f38515049c287346135ca856522278bc71c068fda69"
+    },
+    {
+      "unitID": "toc:43594",
+      "rawUnitTitle": "פרק מט",
+      "sourceLineIndices": [
+        145,
+        146
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 145,
+      "unitEndLineIndex": 146,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "a708dfbecd19defc13516895551488f602813c563fa6387b555538b03be769d9",
+      "rawMembershipSHA256": "8406dde3d17c7362c7f88c2c9809bbcfff981d93b87f030a880fe916671bd83c"
+    },
+    {
+      "unitID": "toc:43595",
+      "rawUnitTitle": "פרק נ",
+      "sourceLineIndices": [
+        147,
+        148,
+        149
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 147,
+      "unitEndLineIndex": 149,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "db75e133a35f4a9c9093674efd885c753dae001edfbc3dbafd196fd3c62b20ad",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43596",
+      "rawUnitTitle": "פרק נא",
+      "sourceLineIndices": [
+        150,
+        151
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 150,
+      "unitEndLineIndex": 151,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "cadac826a85e81725a6c69b0877255385efbb95bec70e5eb87b762e9368bdf7f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43597",
+      "rawUnitTitle": "פרק נב",
+      "sourceLineIndices": [
+        152,
+        153
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 152,
+      "unitEndLineIndex": 153,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "4aef7a480eee7a916ef90e2bafb680aee53d99cfcc15521ef9ec0be10b8c7427",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43598",
+      "rawUnitTitle": "פרק נג",
+      "sourceLineIndices": [
+        154,
+        155
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 154,
+      "unitEndLineIndex": 155,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "1cec7f0b8201d1a29b9d63ddac276ad12f853dbba057fea51918f5d7ef9354b8",
+      "rawMembershipSHA256": "2a20636c6255bbed67a886cfc68e0d92a28074fa79a4d7c5114c5a3815d42dc1"
+    },
+    {
+      "unitID": "toc:43599",
+      "rawUnitTitle": "פרק נד",
+      "sourceLineIndices": [
+        156,
+        157
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 156,
+      "unitEndLineIndex": 157,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "726312cd230593096f8e3f1018037cc67c33d614d6f70382a219c8a0df2fed9f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43600",
+      "rawUnitTitle": "פרק נה",
+      "sourceLineIndices": [
+        158,
+        159,
+        160
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 158,
+      "unitEndLineIndex": 160,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "157176734cf4c77a1abf321df90566e06d5da174ef982b1dbf0e0b65d499999b",
+      "rawMembershipSHA256": "110dd271d3481f1322dacd28719677e6804e85a682c89f4dd3586ee8b812c2d9"
+    },
+    {
+      "unitID": "toc:43601",
+      "rawUnitTitle": "פרק נו",
+      "sourceLineIndices": [
+        161,
+        162,
+        163
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 161,
+      "unitEndLineIndex": 163,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "9e84b804a95027e6b12292e4c4fb68f46b6d1283565e7c40480607ad6fc8343a",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43602",
+      "rawUnitTitle": "פרק נז",
+      "sourceLineIndices": [
+        164,
+        165,
+        166
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 164,
+      "unitEndLineIndex": 166,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "d96148ae82eccce2b89dda07252690ab7a93b1349f9b7910fea65cca324bde13",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43603",
+      "rawUnitTitle": "פרק נח",
+      "sourceLineIndices": [
+        167,
+        168,
+        169,
+        170
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 167,
+      "unitEndLineIndex": 170,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "c49f71386e5d122e591fbb90d6e661832925c33b919fbddfc322b2e1d8f48612",
+      "rawMembershipSHA256": "0273817ebc25de38a2ea3d07174cd58dd80602b9f4ff1140ba822ba9c8223573"
+    },
+    {
+      "unitID": "toc:43604",
+      "rawUnitTitle": "פרק נט",
+      "sourceLineIndices": [
+        171,
+        172
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 171,
+      "unitEndLineIndex": 172,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "70862b977355f30a95555f1154990d86b3631f02acb44aee8bacd150d19c8fd0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43605",
+      "rawUnitTitle": "פרק ס",
+      "sourceLineIndices": [
+        173,
+        174
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 173,
+      "unitEndLineIndex": 174,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "bfb828a8c87994bc0c7a5f28fc600da0bace83e0ccfd4c13434db0ffdc3149dd",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43606",
+      "rawUnitTitle": "פרק סא",
+      "sourceLineIndices": [
+        175,
+        176
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 175,
+      "unitEndLineIndex": 176,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "71d0fce62267b734970363170884d33e790f2a1d88e69d5a1f153ca5e6fd5921",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43607",
+      "rawUnitTitle": "פרק סב",
+      "sourceLineIndices": [
+        177,
+        178,
+        179
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 177,
+      "unitEndLineIndex": 179,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "972fb038ae841c276655bd9538158b33ac210c24433d7d9e22e7a38ed5c0a4ec",
+      "rawMembershipSHA256": "ad2c6ed8e4158791da9929dbe378c141a0d0b4828732d12796ee228a09b3385c"
+    },
+    {
+      "unitID": "toc:43608",
+      "rawUnitTitle": "פרק סג",
+      "sourceLineIndices": [
+        180,
+        181,
+        182
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 180,
+      "unitEndLineIndex": 182,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "50285eb24bbd8370916dac58aef34d958bfbb26aeeef2c327286f2dfdf6f6906",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43609",
+      "rawUnitTitle": "פרק סד",
+      "sourceLineIndices": [
+        183,
+        184
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 183,
+      "unitEndLineIndex": 184,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "c8e085a51d9718a1641ffaedff7137c45c840bf2e43a5b29e407a3946cbd05ad",
+      "rawMembershipSHA256": "08fb3eaf0401ef4b4a721dff9327e3ff25025336ccc5fd8ad201a5b26b459df4"
+    },
+    {
+      "unitID": "toc:43610",
+      "rawUnitTitle": "פרק סה",
+      "sourceLineIndices": [
+        185,
+        186
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 185,
+      "unitEndLineIndex": 186,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "99c6fc645891dd04cd58f83c24af08a59f02b557603bcf92391ee970c9ca6f65",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43611",
+      "rawUnitTitle": "פרק סו",
+      "sourceLineIndices": [
+        187,
+        188
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 187,
+      "unitEndLineIndex": 188,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "6effa6dff3a4c3eb12560cff005666641e62c5625c4927c48349cf926ac5012d",
+      "rawMembershipSHA256": "7beba2d1e322dff2d05d44f5721e9dd8f35d84340d509f1676433e192c4625e8"
+    },
+    {
+      "unitID": "toc:43612",
+      "rawUnitTitle": "פרק סז",
+      "sourceLineIndices": [
+        189,
+        190
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 189,
+      "unitEndLineIndex": 190,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "9bf83dabec9cb9c48a5e7242b3e54aa47794100bf69b7c2bfa3b7b6294b16728",
+      "rawMembershipSHA256": "e8c6fd6aa63e4f1a71cbdde0f6af203d36fba3d7904ed86e1cc774593cbb5c66"
+    },
+    {
+      "unitID": "toc:43613",
+      "rawUnitTitle": "פרק סח",
+      "sourceLineIndices": [
+        191,
+        192,
+        193
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 191,
+      "unitEndLineIndex": 193,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "c81ac5e062fa5e1a455be89164c96b6b117717d7b3fe6dd1647826b99480e692",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43614",
+      "rawUnitTitle": "פרק סט",
+      "sourceLineIndices": [
+        194,
+        195
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 194,
+      "unitEndLineIndex": 195,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "a9c555e19b20b3a9fb8bb43dfd2a63b09da6098352fbb006d5ff4d946222d17f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43615",
+      "rawUnitTitle": "פרק ע",
+      "sourceLineIndices": [
+        196,
+        197
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 196,
+      "unitEndLineIndex": 197,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "00f1685563e7be105ac8540783b9735ffe107f12e23cf2b000eee65b24e931be",
+      "rawMembershipSHA256": "31fcb3b3665cc66a8dfedb7d89bbde311c399ea40d77a3ae92cae106067aabaa"
+    },
+    {
+      "unitID": "toc:43616",
+      "rawUnitTitle": "פרק עא",
+      "sourceLineIndices": [
+        198,
+        199
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 198,
+      "unitEndLineIndex": 199,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "7a9b7c030786acdbbda799cc7d834ffc94424a1245173f99960fedc023338641",
+      "rawMembershipSHA256": "4f13a953471be735558b5e5e5967d71ce8b7288fdbd408d3dce791a9a3237c45"
+    },
+    {
+      "unitID": "toc:43617",
+      "rawUnitTitle": "פרק עב",
+      "sourceLineIndices": [
+        200,
+        201,
+        202,
+        203
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 200,
+      "unitEndLineIndex": 203,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ab303a7b58d48ff47ebd655e46ceee42d213eb3ca9fa868754a71f371e0b0274",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43618",
+      "rawUnitTitle": "פרק עג",
+      "sourceLineIndices": [
+        204,
+        205
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 204,
+      "unitEndLineIndex": 205,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "8d75e11d761faf72134326965ffb062df1e7614444c7c362abaee8649ca3dbe5",
+      "rawMembershipSHA256": "bb91049a71dd9e83e53c506028fc171a2368ce61cf53ac790f31af17eec1869d"
+    },
+    {
+      "unitID": "toc:43619",
+      "rawUnitTitle": "פרק עד",
+      "sourceLineIndices": [
+        206,
+        207,
+        208,
+        209,
+        210,
+        211
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 206,
+      "unitEndLineIndex": 211,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "1404a3e72b1607dff4d768eec9b9c937b785f4fc36e01a592d39fc7671eec9f4",
+      "rawMembershipSHA256": "6e1705a74de95f7a2700202082a89dd53ad70386a739a12d62934327c2243f49"
+    },
+    {
+      "unitID": "toc:43620",
+      "rawUnitTitle": "פרק עה",
+      "sourceLineIndices": [
+        212,
+        213,
+        214,
+        215,
+        216
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 212,
+      "unitEndLineIndex": 216,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "1704653201e94aa44f187f9abf139cc5cac888738e6a608bd30d8e41bb7c6520",
+      "rawMembershipSHA256": "6636c7e4109726f288a21b15e93eb722029c2545da115a66db07ee0edf2fa6bf"
+    },
+    {
+      "unitID": "toc:43621",
+      "rawUnitTitle": "פרק עו",
+      "sourceLineIndices": [
+        217,
+        218,
+        219
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 217,
+      "unitEndLineIndex": 219,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "e1bfd743d07b0cfc55ddd0d690ec4d41da548768b8117a32013ba29a0a8babed",
+      "rawMembershipSHA256": "dbed9dccad254df8439bb3a6ee34191f7b5ae76a78ef28acf4bca24d80aba4f8"
+    },
+    {
+      "unitID": "toc:43622",
+      "rawUnitTitle": "פרק עז",
+      "sourceLineIndices": [
+        220,
+        221
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 220,
+      "unitEndLineIndex": 221,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "f517dc4b71044ad502e3bae5a4ca89b57923a11806634c47139fa46df557fcce",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43623",
+      "rawUnitTitle": "פרק עח",
+      "sourceLineIndices": [
+        222,
+        223,
+        224
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 222,
+      "unitEndLineIndex": 224,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "d076ea4097a3490acb854959e483756ee33b9f91dd84767420bffb2884470df9",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43624",
+      "rawUnitTitle": "פרק עט",
+      "sourceLineIndices": [
+        225,
+        226,
+        227
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 225,
+      "unitEndLineIndex": 227,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c06344ef20b89db159c9de969832a9061dcb45b9d6f2dd3441f6cb0b3a39c0c7",
+      "rawMembershipSHA256": "56711d3c8a7cacf193142caacb471f8892241dfb2362c6df68613cf008d33713"
+    },
+    {
+      "unitID": "toc:43625",
+      "rawUnitTitle": "פרק פ",
+      "sourceLineIndices": [
+        228,
+        229
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 228,
+      "unitEndLineIndex": 229,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e425b054dd3104f3fe18bdd21e32a86765fc3ca6b914aa6648ca0862d5d72d4e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43626",
+      "rawUnitTitle": "פרק פא",
+      "sourceLineIndices": [
+        230,
+        231
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 230,
+      "unitEndLineIndex": 231,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "b25e9328ac384899f1fb6600d06511b17e644dcefca4af5136785f82798c503a",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43627",
+      "rawUnitTitle": "פרק פב",
+      "sourceLineIndices": [
+        232,
+        233
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 232,
+      "unitEndLineIndex": 233,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "f6e0478b2544073bb37a46f6d847ed4105fa683fbadfce2651db8fa78c72db34",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43628",
+      "rawUnitTitle": "פרק פג",
+      "sourceLineIndices": [
+        234,
+        235
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 234,
+      "unitEndLineIndex": 235,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ce65d5d253109c8f799a8fa8cd0d34143dab1df95fa9a3dfa0ec2582aa2b3dbf",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43629",
+      "rawUnitTitle": "פרק פד",
+      "sourceLineIndices": [
+        236,
+        237,
+        238,
+        239,
+        240,
+        241
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 236,
+      "unitEndLineIndex": 241,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "77aefd6835b9ecf8786575e86fac968c4dbef01919f3e4c339084282fae7952f",
+      "rawMembershipSHA256": "37a9d716bc01bb5c8ac98a3a4d4bedac459dcd56129fb6f18b6661519492d63f"
+    },
+    {
+      "unitID": "toc:43630",
+      "rawUnitTitle": "פרק פה",
+      "sourceLineIndices": [
+        242,
+        243
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 242,
+      "unitEndLineIndex": 243,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "6858d98139cda5a8c5d7fdc68d585a43fced11ec782571e7fdb0c8816f7c73af",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43631",
+      "rawUnitTitle": "פרק פו",
+      "sourceLineIndices": [
+        244,
+        245
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 244,
+      "unitEndLineIndex": 245,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e36c7505733cf7d9e1a9e80ec84051446b6869173b66209bbbac0278d1a1c9cf",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43632",
+      "rawUnitTitle": "פרק פז",
+      "sourceLineIndices": [
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 246,
+      "unitEndLineIndex": 258,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "93b514d5161b6a58e8bfed3377905b470db6ef43ae0e17db03395717acbdb22b",
+      "rawMembershipSHA256": "e1c7e0eb80b11024efc84471532e181aab2f3046b0a2e4785b5b51484a103c87"
+    },
+    {
+      "unitID": "toc:43633",
+      "rawUnitTitle": "פרק פח",
+      "sourceLineIndices": [
+        259,
+        260
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 259,
+      "unitEndLineIndex": 260,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "adaee0db10cf70cc8b9a09cffe0df7e79439b5ada9f667bc1bbad41490af2fc5",
+      "rawMembershipSHA256": "3919906c7209625ee78163508a46aee33d1cc8a85551dc6fc1d3c22ef39e38e9"
+    },
+    {
+      "unitID": "toc:43634",
+      "rawUnitTitle": "פרק פט",
+      "sourceLineIndices": [
+        261,
+        262,
+        263,
+        264
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 261,
+      "unitEndLineIndex": 264,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "5e824a7a6279ab5ecd4328e82531c7f4871079c98ff3d0c43b072f5aeeabeb68",
+      "rawMembershipSHA256": "f7e5460868d111cd481c6cef030ab7c12821e2b91bdf33509559fe0b18ba642d"
+    },
+    {
+      "unitID": "toc:43635",
+      "rawUnitTitle": "פרק צ",
+      "sourceLineIndices": [
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 265,
+      "unitEndLineIndex": 280,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "f3cfa712567a9996a9046d430667f795a07e65af057b28928ff1d181b944334e",
+      "rawMembershipSHA256": "394d4f13b7140bfec13d9a8d670694ffbd71a68f7b4340832f24a5894509a3b3"
+    },
+    {
+      "unitID": "toc:43636",
+      "rawUnitTitle": "פרק צא",
+      "sourceLineIndices": [
+        281,
+        282
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 281,
+      "unitEndLineIndex": 282,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "c2ffda92f16ead65d1dfdbc453e95a6f882d5b50058cd07bb47f788d1ffa7020",
+      "rawMembershipSHA256": "00a518bac8670695307f427bec7a28bc07463c468be4bf4207743a4b5a240270"
+    },
+    {
+      "unitID": "toc:43637",
+      "rawUnitTitle": "פרק צב",
+      "sourceLineIndices": [
+        283,
+        284
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 283,
+      "unitEndLineIndex": 284,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "e3e35aa399159bfdc35e543212852f2aaa59159329c3c31915a953bc3f17f3a0",
+      "rawMembershipSHA256": "f4ff65dab3380e15c8928e80bb8bf2f9fdedde81f84fe3b70524ccb55c8b6edd"
+    },
+    {
+      "unitID": "toc:43638",
+      "rawUnitTitle": "פרק צג",
+      "sourceLineIndices": [
+        285,
+        286,
+        287
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 285,
+      "unitEndLineIndex": 287,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "f3afdab08a51becff6f2b12cf80d31c25b74c2ef103a80572d910f04a894bfa4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43639",
+      "rawUnitTitle": "פרק צד",
+      "sourceLineIndices": [
+        288,
+        289
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 288,
+      "unitEndLineIndex": 289,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "5dbe7b1f6b37cd60cd6f20799f95957185b4a83da7b6efe46758e440b6208e5e",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43640",
+      "rawUnitTitle": "פרק צה",
+      "sourceLineIndices": [
+        290,
+        291
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 290,
+      "unitEndLineIndex": 291,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "4faa5cec7f598296d73eb3329bc43ade6ab5fd663c08b7975516055e35ef9a2d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43641",
+      "rawUnitTitle": "פרק צו",
+      "sourceLineIndices": [
+        292,
+        293,
+        294,
+        295
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 292,
+      "unitEndLineIndex": 295,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "9c27683d5b8fbf8ef7f77295959f963a3b7348d7509c17a081f713cc702084cb",
+      "rawMembershipSHA256": "6a7356e8b07f1678a35ccfb103e3900aac4c5e7376e4e994d7dd9c9c016a25dc"
+    },
+    {
+      "unitID": "toc:43642",
+      "rawUnitTitle": "פרק צז",
+      "sourceLineIndices": [
+        296,
+        297,
+        298
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 296,
+      "unitEndLineIndex": 298,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "21c4a1ae0dc42f1c48a9fbe98da6426b0a3ee7128ddaf489257bcfd85feb4bad",
+      "rawMembershipSHA256": "aa91e648957533c73661e803d0f737cddffecb6d81c9df0127471b729da7b5b5"
+    },
+    {
+      "unitID": "toc:43643",
+      "rawUnitTitle": "פרק צח",
+      "sourceLineIndices": [
+        299,
+        300
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 299,
+      "unitEndLineIndex": 300,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "dff31a882bce55c4d559b4fd5eaabdf15eb6eb21f5b5b7a3375172abdc590496",
+      "rawMembershipSHA256": "49006d33b8b587e827f8df89b90b0289ad264ca9abb1a56067303f9a00eb8052"
+    },
+    {
+      "unitID": "toc:43644",
+      "rawUnitTitle": "פרק צט",
+      "sourceLineIndices": [
+        301,
+        302
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 301,
+      "unitEndLineIndex": 302,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "316f0d492df49348ccd0cd0dad250f881f7fd0633ca7d08f0d05346c1b84c925",
+      "rawMembershipSHA256": "3ee31bcf298754f954b69bf1688c07c5994b328606f29ac2ebdc3866d376edde"
+    },
+    {
+      "unitID": "toc:43645",
+      "rawUnitTitle": "פרק ק",
+      "sourceLineIndices": [
+        303,
+        304
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 303,
+      "unitEndLineIndex": 304,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "96d2653a0cc1537d73f636bc48ad9701471cdf9cdf82b236512cbf3a91c193f1",
+      "rawMembershipSHA256": "2a9cc6cb612e9cb126961ef84b4e2b5c141532f2cf4d33531686e84f02e75e67"
+    },
+    {
+      "unitID": "toc:43646",
+      "rawUnitTitle": "פרק קא",
+      "sourceLineIndices": [
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 305,
+      "unitEndLineIndex": 315,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "49e872f1b3b6934580f4ba5f8a847aa17ed17f0a00744538cb42b8a6fa867ac4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43647",
+      "rawUnitTitle": "פרק קב",
+      "sourceLineIndices": [
+        316,
+        317
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 316,
+      "unitEndLineIndex": 317,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "3e9be0f3a55fd1af7efc902508142036eb0378709dbef14555d0c92e5dea2cf7",
+      "rawMembershipSHA256": "d79de586249f5058c0402dd8f65273fd357b804caeab9a2ccd843df77c870f31"
+    },
+    {
+      "unitID": "toc:43648",
+      "rawUnitTitle": "פרק קג",
+      "sourceLineIndices": [
+        318,
+        319
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 318,
+      "unitEndLineIndex": 319,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "70ed79e42d01d4e0a31ca9e8184c2563f04bdd1bc64990c6a018b8d66e86c933",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43649",
+      "rawUnitTitle": "פרק קד",
+      "sourceLineIndices": [
+        320,
+        321
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 320,
+      "unitEndLineIndex": 321,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0d5a9278f661d3d277c3ec96b32673f4e8d3ef330f43df26e4a93f6f2d93ecd9",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43650",
+      "rawUnitTitle": "פרק קה",
+      "sourceLineIndices": [
+        322,
+        323
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 322,
+      "unitEndLineIndex": 323,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "0f7dddbf265918ba816d43061b5803d0302e9cca5fa2e998823d4d6071e2007b",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43651",
+      "rawUnitTitle": "פרק קו",
+      "sourceLineIndices": [
+        324,
+        325
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 324,
+      "unitEndLineIndex": 325,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "e69141c9b320266b3ec8197b4108b4eed0c75c99b1ec8d9197dbeba3e152237d",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43652",
+      "rawUnitTitle": "פרק קז",
+      "sourceLineIndices": [
+        326,
+        327,
+        328
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 326,
+      "unitEndLineIndex": 328,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "ddffc69ca0d1229071aaf5b1247ce3601cb443326c2c4ea0642e2077d65dfd74",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43653",
+      "rawUnitTitle": "פרק קח",
+      "sourceLineIndices": [
+        329,
+        330
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 329,
+      "unitEndLineIndex": 330,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "53eca3946c6b8108f2972b89855e4047e259e646fe02ce10532b5104e492abe4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43654",
+      "rawUnitTitle": "פרק קט",
+      "sourceLineIndices": [
+        331,
+        332,
+        333,
+        334,
+        335
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 331,
+      "unitEndLineIndex": 335,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "8dedeeba481118c297e65ba82f51d813aa7380917d31f152a90e3f3671cb30b9",
+      "rawMembershipSHA256": "15ba1b1a7d61328ab2ede5942d455de758ba4790134ff7561033b2991d4559eb"
+    },
+    {
+      "unitID": "toc:43655",
+      "rawUnitTitle": "פרק קי",
+      "sourceLineIndices": [
+        336,
+        337
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 336,
+      "unitEndLineIndex": 337,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3f301b83712f2863c3c4937f083ad26a80efe141e798a0b4a372fe41c9ca14f8",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43656",
+      "rawUnitTitle": "פרק קיא",
+      "sourceLineIndices": [
+        338,
+        339,
+        340,
+        341
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 338,
+      "unitEndLineIndex": 341,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "9fe824a818a1095dc92717a9763d3dfac6da10721d102537ba952b58deae2230",
+      "rawMembershipSHA256": "6d9ef4aecff85709c7af2d8a3eba0479a0bcb53b1665e65565569749a836d9de"
+    },
+    {
+      "unitID": "toc:43657",
+      "rawUnitTitle": "פרק קיב",
+      "sourceLineIndices": [
+        342,
+        343
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 342,
+      "unitEndLineIndex": 343,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "e6cb84a3e60ee28e85c03147ccd3a1b3125dbc5798d26de6cbadd14959f42011",
+      "rawMembershipSHA256": "fe35e00c4fef4252b0091f3f275d9b1bfe6ec9a59e1bb8ff51477ef0cbb5eea7"
+    },
+    {
+      "unitID": "toc:43658",
+      "rawUnitTitle": "פרק קיג",
+      "sourceLineIndices": [
+        344,
+        345
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 344,
+      "unitEndLineIndex": 345,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "48a354234378d2e030cf18d7db80efa0985ab0a51df1c5288426c8b033348964",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43659",
+      "rawUnitTitle": "פרק קיד",
+      "sourceLineIndices": [
+        346,
+        347
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 346,
+      "unitEndLineIndex": 347,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "c08a94372d9dc24a926416b41b8ad67f9a17a1fc6e6eca0b7366949e058faa00",
+      "rawMembershipSHA256": "1477f2f31956a1590cad012181ed0fd55e6a3d074e05b468536fc7784086fe79"
+    },
+    {
+      "unitID": "toc:43660",
+      "rawUnitTitle": "פרק קטו",
+      "sourceLineIndices": [
+        348,
+        349,
+        350
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 348,
+      "unitEndLineIndex": 350,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8ba76b4904b79fafbde57eb6da1312c00baa19e4c55de829a24da6d6f7c1ddc6",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43661",
+      "rawUnitTitle": "פרק קטז",
+      "sourceLineIndices": [
+        351,
+        352,
+        353
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 351,
+      "unitEndLineIndex": 353,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "944d050a2370022ba73ec3cad8a1097e48ef8f5971415e024d93ebc31405e5ca",
+      "rawMembershipSHA256": "fe25768047b976e2df87359c938f98af0add2673501a949c344bd89e48e49ed8"
+    },
+    {
+      "unitID": "toc:43662",
+      "rawUnitTitle": "פרק קיז",
+      "sourceLineIndices": [
+        354,
+        355,
+        356
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 354,
+      "unitEndLineIndex": 356,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "1b8614c87cad6d579b76cc958c038d6fa950b7ebd74a83c68b8dd43ce8aa25ff",
+      "rawMembershipSHA256": "27ff355241df7ca955801a3ac3d0e8e73d3006b281a5753bfd7c81ac27aa343e"
+    },
+    {
+      "unitID": "toc:43663",
+      "rawUnitTitle": "פרק קיח",
+      "sourceLineIndices": [
+        357,
+        358,
+        359
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 357,
+      "unitEndLineIndex": 359,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "3e2bbd8f4e8a06219f6a1d7dcd348e45d9846a1b500385316d2f2f16c9e4d871",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43664",
+      "rawUnitTitle": "פרק קיט",
+      "sourceLineIndices": [
+        360,
+        361
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 360,
+      "unitEndLineIndex": 361,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "62d4db5cebff3e7b7bd00bf8a11418c00b74a2e18ea0c55096d192aefdf0635f",
+      "rawMembershipSHA256": "5330f6f7f55499dd3859f0f23f9761faa49139e0e3a091327df901841774460e"
+    },
+    {
+      "unitID": "toc:43665",
+      "rawUnitTitle": "פרק קכ",
+      "sourceLineIndices": [
+        362,
+        363,
+        364,
+        365,
+        366
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 362,
+      "unitEndLineIndex": 366,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "380b8bf0c6a22a4dd4d465d1d23cbe2ed758f9b01283884ef6259727dfe0ac67",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43666",
+      "rawUnitTitle": "פרק קכא",
+      "sourceLineIndices": [
+        367,
+        368
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 367,
+      "unitEndLineIndex": 368,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "3cfcae3302bdc3dd32be200bc6053841abbf13764efcc2fec52aeaecf09459b0",
+      "rawMembershipSHA256": "5fd8b0970b02bd49dad0cd710d6681f2837c0f0e19b499883a4566cf0d71a8de"
+    },
+    {
+      "unitID": "toc:43667",
+      "rawUnitTitle": "פרק קכב",
+      "sourceLineIndices": [
+        369,
+        370,
+        371
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 369,
+      "unitEndLineIndex": 371,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "661b2673527cffa9fd38c56fcd08f7c7441757ccc7d7ab59da740a834463dbf7",
+      "rawMembershipSHA256": "bb3c7b58b2bb12fd0e440d715ce7d8440fd29f8369a1187901bdbee45c27af58"
+    },
+    {
+      "unitID": "toc:43668",
+      "rawUnitTitle": "פרק קכג",
+      "sourceLineIndices": [
+        372,
+        373,
+        374,
+        375,
+        376
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 372,
+      "unitEndLineIndex": 376,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "fc2317c3270fcf6904d4c0830c16de81e32d3364d08dffdd7c7c2266be3074fc",
+      "rawMembershipSHA256": "ed140b423cdced98c9b8c0911b6075d431a2da392b457b2d9f45718f9e83779c"
+    },
+    {
+      "unitID": "toc:43669",
+      "rawUnitTitle": "פרק קכד",
+      "sourceLineIndices": [
+        377,
+        378,
+        379
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 377,
+      "unitEndLineIndex": 379,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "fc953ec21571732d736dbcff9bec4d173d66235ad011ecbe451a37acc0a894f2",
+      "rawMembershipSHA256": "6f2defaa31db183bd18e4247498fe778c96e910ba9ed82379eef96a477ff6e4d"
+    },
+    {
+      "unitID": "toc:43670",
+      "rawUnitTitle": "פרק קכה",
+      "sourceLineIndices": [
+        380,
+        381,
+        382
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 380,
+      "unitEndLineIndex": 382,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "d6ce57932e23174a06d2b27fabbbe8d2547cb77e0f13114afcb8d096581879be",
+      "rawMembershipSHA256": "97f9962a0bf40c6c4cc9665e540ff71e8a3f5e938180f9e5f2a57879c873d9e0"
+    },
+    {
+      "unitID": "toc:43671",
+      "rawUnitTitle": "פרק קכו",
+      "sourceLineIndices": [
+        383,
+        384
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 383,
+      "unitEndLineIndex": 384,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "00cb4b01e9e875017c31816e0e560810587ee5013feb81d37ba6c78af3b5a284",
+      "rawMembershipSHA256": "7c6395bb406b5aefd8603886dc9f6cd38f134fcb5b986153854bdd0167ed65a4"
+    },
+    {
+      "unitID": "toc:43672",
+      "rawUnitTitle": "פרק קכז",
+      "sourceLineIndices": [
+        385,
+        386,
+        387,
+        388
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 385,
+      "unitEndLineIndex": 388,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "a22323ea07a2361b44a4a083b26df740ec0ba6d0265d0b4f14feb61dfce10433",
+      "rawMembershipSHA256": "974ac00cbef107cf4e1874b42d8b216a3b9d0450ac780de6f33c8dfffa2b8ef7"
+    },
+    {
+      "unitID": "toc:43673",
+      "rawUnitTitle": "פרק קכח",
+      "sourceLineIndices": [
+        389,
+        390
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 389,
+      "unitEndLineIndex": 390,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "059860239860bfd5148f2ae45b6e23e231f77000382dd94a6517f0c1a8e55e7f",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43674",
+      "rawUnitTitle": "פרק קכט",
+      "sourceLineIndices": [
+        391,
+        392
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 391,
+      "unitEndLineIndex": 392,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "8678b2e4eac653058315dcc24fc06cdd7648a17c672984dff89be71606beea47",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43675",
+      "rawUnitTitle": "פרק קל",
+      "sourceLineIndices": [
+        393,
+        394,
+        395,
+        396
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 393,
+      "unitEndLineIndex": 396,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "1b950ef94ab8a07aa4da935673de7ea752d1bbbec355c41e7539549b23fad79c",
+      "rawMembershipSHA256": "54d0ed7841d50aa89e2e44b6e9ff055afaaebdd791fb75bd2114a51c4369fa05"
+    },
+    {
+      "unitID": "toc:43676",
+      "rawUnitTitle": "פרק קלא",
+      "sourceLineIndices": [
+        397,
+        398,
+        399
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 397,
+      "unitEndLineIndex": 399,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "f2cdb5e3be59d9019e1adf0547565581b510431fd54bd3bebaa9f25160b13fc3",
+      "rawMembershipSHA256": "198b7d8ec44bdf0ef6bd1795095853474eed3ca53142e81ff259a6414939ce2e"
+    },
+    {
+      "unitID": "toc:43677",
+      "rawUnitTitle": "פרק קלב",
+      "sourceLineIndices": [
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 400,
+      "unitEndLineIndex": 409,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "bc91b32a7f8fece86d316487c081c00b13160851f5f03111f1d812366bc14f9e",
+      "rawMembershipSHA256": "4ac439ef71aa9fe52ed90b8f031ac4d7c1783c2f9429e107b3868813ecf80075"
+    },
+    {
+      "unitID": "toc:43678",
+      "rawUnitTitle": "פרק קלג",
+      "sourceLineIndices": [
+        410,
+        411,
+        412
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 410,
+      "unitEndLineIndex": 412,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "5e278f432e6871c93dc30536cdcd969a750de56973396a49a5332230f7160780",
+      "rawMembershipSHA256": "4819ec2135ceba456478031a90bca6dd6e81b0b536c28e86a6421c5d3107c7b0"
+    },
+    {
+      "unitID": "toc:43679",
+      "rawUnitTitle": "פרק קלד",
+      "sourceLineIndices": [
+        413,
+        414
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 413,
+      "unitEndLineIndex": 414,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "dbdd2b43b6e8551a7674be36623defaf5b9a8f7967a6b62cc0f32b13d6227aa4",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43680",
+      "rawUnitTitle": "פרק קלה",
+      "sourceLineIndices": [
+        415,
+        416,
+        417
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 415,
+      "unitEndLineIndex": 417,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "1a9beed74cb4ce697ec18ef19b4ea47c2c35e958a818e8904c8e86907c56c5bd",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43681",
+      "rawUnitTitle": "פרק קלו",
+      "sourceLineIndices": [
+        418,
+        419,
+        420
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 418,
+      "unitEndLineIndex": 420,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "611b4b94f741a1a545e6e7265867b1b6372588b717a0047e20f6605b0bf1decb",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:43682",
+      "rawUnitTitle": "פרק קלז",
+      "sourceLineIndices": [
+        421,
+        422,
+        423,
+        424,
+        425,
+        426
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 421,
+      "unitEndLineIndex": 426,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "58100dcce76dd8227db0ed290d43dc3b5361bd0b56afa6b61c1fbb62080614ee",
+      "rawMembershipSHA256": "cd68493bc5c6a0f49038651d88165ece8f2bccf74a2f4abefa776cef646815da"
+    },
+    {
+      "unitID": "toc:43683",
+      "rawUnitTitle": "פרק קלח",
+      "sourceLineIndices": [
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 427,
+      "unitEndLineIndex": 434,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "e59a10de166b076a05ee9bfff9b8913c2746a1fe50246e54aa464781af2e5b75",
+      "rawMembershipSHA256": "5204eb882d4473d760d9d8e62f7ab1af32abe77f6d4ed1ab65007674563a3ede"
+    },
+    {
+      "unitID": "toc:43684",
+      "rawUnitTitle": "פרק קלט",
+      "sourceLineIndices": [
+        435,
+        436,
+        437,
+        438,
+        439,
+        440
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 435,
+      "unitEndLineIndex": 440,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "9cd998d2eb40d62f6e7084cd568f4883bf43343d4c1bc3c6fc5ad722f7a50457",
+      "rawMembershipSHA256": "4247a1d53c0f97e146e7043b40cf26a35577b276f782ed1fd201d8fd8efbd9fc"
+    },
+    {
+      "unitID": "toc:43685",
+      "rawUnitTitle": "פרק קמ",
+      "sourceLineIndices": [
+        441,
+        442,
+        443,
+        444,
+        445,
+        446
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 441,
+      "unitEndLineIndex": 446,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "c97562d4e2d3b60c955b8a54e88356d5f056dc9b4ace956759ca56fa55160963",
+      "rawMembershipSHA256": "80f023f61a2b45fe7f473883480d0ab7924f767a9efbb59fed2292ad9de7d757"
+    },
+    {
+      "unitID": "toc:43686",
+      "rawUnitTitle": "פרק קמא",
+      "sourceLineIndices": [
+        447,
+        448
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 447,
+      "unitEndLineIndex": 448,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "c57f3b6d0121174eeeff41ece3f572e160deff94acfae79e1160085ef432b31e",
+      "rawMembershipSHA256": "dfa6ad2d078acbcbab2f0abb724b10eb8151b9d74d5e4631de64255bc49d7c16"
+    },
+    {
+      "unitID": "toc:43687",
+      "rawUnitTitle": "פרק קמב",
+      "sourceLineIndices": [
+        449,
+        450
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 449,
+      "unitEndLineIndex": 450,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "8658c6d78d87a243023e765dd30d6126fe326c70185bdbd30e586e1efe5dcb3d",
+      "rawMembershipSHA256": "666ec5135438cb6b1f92c82222181599a7c0c90f8e80620279260b9787ced83a"
+    },
+    {
+      "unitID": "toc:43688",
+      "rawUnitTitle": "פרק קמג",
+      "sourceLineIndices": [
+        451,
+        452,
+        453,
+        454,
+        455,
+        456
+      ],
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "mode": "chapter",
+      "unitStartLineIndex": 451,
+      "unitEndLineIndex": 456,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "04c70d357567c3e6a5edbf4fed77a54955d931b7619e65337be37c0ea8d734f0",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}

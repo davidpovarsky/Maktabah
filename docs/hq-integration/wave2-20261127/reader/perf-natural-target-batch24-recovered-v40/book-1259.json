@@ -1,0 +1,387 @@
+{
+  "bookID": 1259,
+  "bookTitle": "הון עשיר על משנה אהלות",
+  "declaredTotalLines": 106,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.0015696082264184952,
+  "resolvedAnchorRows": 87,
+  "units": [
+    {
+      "unitID": "toc:131872",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 4,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "7f2c5f390b0c7e30e5a644380decea0554bbb62cfc03eff193d13a8c1a117708",
+      "rawMembershipSHA256": "a466d281b0088b9e13f326d4788cc557c56ae33b2cab45ac4a2e0fdd42ae7db2"
+    },
+    {
+      "unitID": "toc:131874",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 5,
+      "unitEndLineIndex": 10,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "164253e9c67ddc265109e8244c4c3022cf31e563ed4670ec290e6a0156f1dae5",
+      "rawMembershipSHA256": "ec99c3e2d6e7215e0e47283f1205f06c03f2b956f85af1618185adeb2cfaedd3"
+    },
+    {
+      "unitID": "toc:131877",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 11,
+      "unitEndLineIndex": 21,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "cb3a8baca5dc5a9b84d87cf936b06ac06ad7aebd8508f78dcee462476641b557",
+      "rawMembershipSHA256": "dd7d1aa55782cf6300453d63554c0c965177e58d6e2608457abfe9619bacab61"
+    },
+    {
+      "unitID": "toc:131882",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        22,
+        23,
+        24
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 22,
+      "unitEndLineIndex": 24,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "4339d377e41b50a340ec268c35a4e76b405b8ea6bd557bb6a5771fd7340aa5fa",
+      "rawMembershipSHA256": "2bdc720d0211d94efd0cde08801fc36b1ddf286fb4e2aea08bf9d7d82a5964a3"
+    },
+    {
+      "unitID": "toc:131884",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 25,
+      "unitEndLineIndex": 31,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "2e1e61d1846962e592a068de575af99e77613cf590185fcf86d06fea385627cd",
+      "rawMembershipSHA256": "f521f0d8f99ef5ac5ae5ee1cacd86fa1d9ccf5e2c975f70017604e22e8893608"
+    },
+    {
+      "unitID": "toc:131888",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        32,
+        33,
+        34
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 32,
+      "unitEndLineIndex": 34,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "e5c26913235c836e581abdb9d165aba947622755aeb224c1c19e102958a69e0b",
+      "rawMembershipSHA256": "5d53e31baacc5a5ade42baab087fe1e33e17e8ccbbb085f4797ab664fab65f2f"
+    },
+    {
+      "unitID": "toc:131890",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 35,
+      "unitEndLineIndex": 41,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "49efd412090636fed73027f4b59b497b640793d7926947fc817ed0949f4dbb14",
+      "rawMembershipSHA256": "4c3bec85b142c6964d81929607991f0afac855113c312fc378ca48c04161a90b"
+    },
+    {
+      "unitID": "toc:131893",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 42,
+      "unitEndLineIndex": 47,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "b0770ec419ad1c9d01b4def3142c7c793c945015c61732cc43510aaea2915424",
+      "rawMembershipSHA256": "2138229d3d7d10b015f88fff4d8f9795261c36b4eac673fdf9ce8e9461414d3d"
+    },
+    {
+      "unitID": "toc:131896",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        48,
+        49,
+        50
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 48,
+      "unitEndLineIndex": 50,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "b10a19707aff61be3604e203d499a1acb9c6d7382bbfe54a7ad37de4d8fc3446",
+      "rawMembershipSHA256": "11cadde26d8b1aa07ad6945fd0c37d6ea34c439865ce264d060b79d221364b53"
+    },
+    {
+      "unitID": "toc:131898",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        51,
+        52,
+        53
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 51,
+      "unitEndLineIndex": 53,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "fe8dca0d50ecbcf2b9ef1ee682796c259edbbdb2980ca70b0806315cb1291925",
+      "rawMembershipSHA256": "10419047135b9be7ab446c5ef4d42e53ecb7fdb7d861c4c0ec7ff521c243daf8"
+    },
+    {
+      "unitID": "toc:131900",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        54,
+        55,
+        56,
+        57,
+        58
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 54,
+      "unitEndLineIndex": 58,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "9410fc13aa1e1c364f6f2434643f4f47409bd2fb335e4947b48c38355977addb",
+      "rawMembershipSHA256": "14bcc3579f7ed5f397a1be0865c9f4196fb3c758a4266315778d0aa7e5b46f4c"
+    },
+    {
+      "unitID": "toc:131903",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 59,
+      "unitEndLineIndex": 68,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "185b071007f577bafd7e15d7f9b0c3c12b2dbc95f33359fa0702c02ad1f559b1",
+      "rawMembershipSHA256": "317e6292b9984744ab3d08de81f034016ea26e887bed41aef1f943f463854047"
+    },
+    {
+      "unitID": "toc:131907",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 69,
+      "unitEndLineIndex": 75,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "e3cb5784682042b9cfada18d4453ecf30915a7918cc156f5c0f22cc3d04183a7",
+      "rawMembershipSHA256": "e69ab8a56a15c10e6f656a5841c26176128b9a7e6e0ea0da7c68176b436dbf64"
+    },
+    {
+      "unitID": "toc:131910",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 76,
+      "unitEndLineIndex": 80,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "854a3ef605083a553f668ea4bd1c2b07d9652eac6606c7a9f1caecb9a03fc6a4",
+      "rawMembershipSHA256": "ec1ebd0ca9d1c828f0d9b1d1ca4adb3d148c4547250f6a55fc8b545c49338ad8"
+    },
+    {
+      "unitID": "toc:131913",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 81,
+      "unitEndLineIndex": 87,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "94af95ecd571870db70b043b625c61800b6c8862d2027e12937331b535f16b0f",
+      "rawMembershipSHA256": "5c356cc9338a595a72de52b168324e8f04529604e361416d8433e00fc8ae31d2"
+    },
+    {
+      "unitID": "toc:131917",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        88,
+        89,
+        90,
+        91,
+        92
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 88,
+      "unitEndLineIndex": 92,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 2,
+      "sourceIndicesSHA256": "9a0096def83280cfb855b61cc76dd4b7633aaffe3bb35fe1272c9d8be9e932d5",
+      "rawMembershipSHA256": "2186a47323e5998f4c48f634d8fc3467b0916f431051ddb55adcdd160f3e013d"
+    },
+    {
+      "unitID": "toc:131920",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        93,
+        94,
+        95
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 93,
+      "unitEndLineIndex": 95,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "19194d165f14a1ded777ad01dd9b1c06d9e598c3accaafcbcd4d25c36c673c9e",
+      "rawMembershipSHA256": "8370f73d7a805b95d710f44d3b746c666d767067d2848d736b3f02dd91d5d242"
+    },
+    {
+      "unitID": "toc:131922",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "bookID": 1259,
+      "bookTitle": "הון עשיר על משנה אהלות",
+      "mode": "chapter",
+      "unitStartLineIndex": 96,
+      "unitEndLineIndex": 105,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "b6c0a475f104ab6426b0ba4f95da2e9942447028cc737bae593d402ce4bb2abb",
+      "rawMembershipSHA256": "48c05d6a799af7dc503e23f97f0513ad96d0f937ca7d7946e76930d2b60bce8a"
+    }
+  ]
+}

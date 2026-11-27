@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 699 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 703,
+      "bookTitle": "רש״ש על משנה שקלים",
+      "declaredTotalLines": 111,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 706,
+      "bookTitle": "רש״ש על משנה עירובין",
+      "declaredTotalLines": 126,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 709,
+      "bookTitle": "רש״ש על משנה שבת",
+      "declaredTotalLines": 194,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 713,
+      "bookTitle": "רש״ש על משנה יבמות",
+      "declaredTotalLines": 161,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 715,
+      "bookTitle": "רש״ש על משנה נדרים",
+      "declaredTotalLines": 122,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 716,
+      "bookTitle": "רש״ש על משנה כתובות",
+      "declaredTotalLines": 158,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 717,
+      "bookTitle": "רש״ש על משנה בבא בתרא",
+      "declaredTotalLines": 128,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 718,
+      "bookTitle": "רש״ש על משנה סנהדרין",
+      "declaredTotalLines": 110,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 721,
+      "bookTitle": "רש״ש על משנה בבא קמא",
+      "declaredTotalLines": 116,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 725,
+      "bookTitle": "רש״ש על משנה בבא מציעא",
+      "declaredTotalLines": 122,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 734,
+      "bookTitle": "רש״ש על משנה תרומות",
+      "declaredTotalLines": 134,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 739,
+      "bookTitle": "רש״ש על משנה פרה",
+      "declaredTotalLines": 156,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 740,
+      "bookTitle": "רש״ש על משנה טהרות",
+      "declaredTotalLines": 123,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 741,
+      "bookTitle": "רש״ש על משנה נדה",
+      "declaredTotalLines": 104,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 742,
+      "bookTitle": "רש״ש על משנה כלים",
+      "declaredTotalLines": 291,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 743,
+      "bookTitle": "רש״ש על משנה אהלות",
+      "declaredTotalLines": 221,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 745,
+      "bookTitle": "רש״ש על משנה מקואות",
+      "declaredTotalLines": 116,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 749,
+      "bookTitle": "רש״ש על משנה נגעים",
+      "declaredTotalLines": 210,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 751,
+      "bookTitle": "רש״ש על משנה בכורות",
+      "declaredTotalLines": 117,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 753,
+      "bookTitle": "רש״ש על משנה מנחות",
+      "declaredTotalLines": 146,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 757,
+      "bookTitle": "רש״ש על משנה חולין",
+      "declaredTotalLines": 115,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 758,
+      "bookTitle": "רש״ש על משנה זבחים",
+      "declaredTotalLines": 168,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 761,
+      "bookTitle": "יכין עירובין",
+      "declaredTotalLines": 1226,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 762,
+      "bookTitle": "יכין יומא",
+      "declaredTotalLines": 842,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 763,
+      "bookTitle": "יכין מועד קטן",
+      "declaredTotalLines": 376,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 764,
+      "bookTitle": "יכין שבת",
+      "declaredTotalLines": 2332,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 765,
+      "bookTitle": "יכין ראש השנה",
+      "declaredTotalLines": 425,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 766,
+      "bookTitle": "יכין ביצה",
+      "declaredTotalLines": 535,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 767,
+      "bookTitle": "יכין תענית",
+      "declaredTotalLines": 470,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 768,
+      "bookTitle": "יכין שקלים",
+      "declaredTotalLines": 716,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 769,
+      "bookTitle": "יכין פסחים",
+      "declaredTotalLines": 1171,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 770,
+      "bookTitle": "יכין מגילה",
+      "declaredTotalLines": 486,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 771,
+      "bookTitle": "יכין חגיגה",
+      "declaredTotalLines": 349,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 772,
+      "bookTitle": "יכין סוכה",
+      "declaredTotalLines": 657,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 773,
+      "bookTitle": "יכין יבמות",
+      "declaredTotalLines": 1328,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 774,
+      "bookTitle": "יכין נזיר",
+      "declaredTotalLines": 695,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 775,
+      "bookTitle": "יכין קידושין",
+      "declaredTotalLines": 554,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 776,
+      "bookTitle": "יכין סוטה",
+      "declaredTotalLines": 868,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 777,
+      "bookTitle": "יכין נדרים",
+      "declaredTotalLines": 1065,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 778,
+      "bookTitle": "יכין כתובות",
+      "declaredTotalLines": 1212,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

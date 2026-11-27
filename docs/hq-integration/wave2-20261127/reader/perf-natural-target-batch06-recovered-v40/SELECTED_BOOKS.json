@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=1 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 323 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 324,
+      "bookTitle": "משנה תורה, הלכות שחיטה",
+      "declaredTotalLines": 294,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 325,
+      "bookTitle": "משנה תורה, הלכות איסורי ביאה",
+      "declaredTotalLines": 528,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 326,
+      "bookTitle": "משנה תורה, הלכות נדרים",
+      "declaredTotalLines": 265,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 327,
+      "bookTitle": "משנה תורה, הלכות נזירות",
+      "declaredTotalLines": 196,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 328,
+      "bookTitle": "משנה תורה, הלכות ערכים וחרמין",
+      "declaredTotalLines": 180,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 329,
+      "bookTitle": "משנה תורה, הלכות שבועות",
+      "declaredTotalLines": 219,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 330,
+      "bookTitle": "משנה תורה, הלכות תרומות",
+      "declaredTotalLines": 334,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 331,
+      "bookTitle": "משנה תורה, הלכות מעשרות",
+      "declaredTotalLines": 240,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 332,
+      "bookTitle": "משנה תורה, הלכות מעשר שני ונטע רבעי",
+      "declaredTotalLines": 207,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 333,
+      "bookTitle": "משנה תורה, הלכות שמיטה ויובל",
+      "declaredTotalLines": 268,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 334,
+      "bookTitle": "משנה תורה, הלכות מתנות עניים",
+      "declaredTotalLines": 212,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 335,
+      "bookTitle": "משנה תורה, הלכות כלאים",
+      "declaredTotalLines": 194,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 336,
+      "bookTitle": "משנה תורה, הלכות ביכורים ושאר מתנות כהונה שבגבולין",
+      "declaredTotalLines": 238,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 337,
+      "bookTitle": "משנה תורה, הלכות בית הבחירה",
+      "declaredTotalLines": 147,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 338,
+      "bookTitle": "משנה תורה, הלכות כלי המקדש והעובדין בו",
+      "declaredTotalLines": 168,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 339,
+      "bookTitle": "משנה תורה, הלכות איסורי המזבח",
+      "declaredTotalLines": 109,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 340,
+      "bookTitle": "משנה תורה, הלכות ביאת מקדש",
+      "declaredTotalLines": 158,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 341,
+      "bookTitle": "משנה תורה, הלכות מעשה הקרבנות",
+      "declaredTotalLines": 343,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 343,
+      "bookTitle": "משנה תורה, הלכות פסולי המוקדשין",
+      "declaredTotalLines": 366,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 344,
+      "bookTitle": "משנה תורה, הלכות תמידים ומוספין",
+      "declaredTotalLines": 180,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 345,
+      "bookTitle": "משנה תורה, הלכות מעילה",
+      "declaredTotalLines": 111,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 346,
+      "bookTitle": "משנה תורה, הלכות בכורות",
+      "declaredTotalLines": 133,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 347,
+      "bookTitle": "משנה תורה, הלכות שגגות",
+      "declaredTotalLines": 154,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 350,
+      "bookTitle": "משנה תורה, הלכות קרבן פסח",
+      "declaredTotalLines": 137,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 352,
+      "bookTitle": "משנה תורה, הלכות נזקי ממון",
+      "declaredTotalLines": 232,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 353,
+      "bookTitle": "משנה תורה, הלכות גזילה ואבידה",
+      "declaredTotalLines": 295,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 354,
+      "bookTitle": "משנה תורה, הלכות גניבה",
+      "declaredTotalLines": 142,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 355,
+      "bookTitle": "משנה תורה, הלכות חובל ומזיק",
+      "declaredTotalLines": 145,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 356,
+      "bookTitle": "משנה תורה, הלכות רוצח ושמירת נפש",
+      "declaredTotalLines": 199,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 357,
+      "bookTitle": "משנה תורה, הלכות מכירה",
+      "declaredTotalLines": 446,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 358,
+      "bookTitle": "משנה תורה, הלכות זכייה ומתנה",
+      "declaredTotalLines": 233,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 360,
+      "bookTitle": "משנה תורה, הלכות עבדים",
+      "declaredTotalLines": 127,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 361,
+      "bookTitle": "משנה תורה, הלכות שכנים",
+      "declaredTotalLines": 173,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 362,
+      "bookTitle": "משנה תורה, הלכות מלווה ולווה",
+      "declaredTotalLines": 327,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 363,
+      "bookTitle": "משנה תורה, הלכות שכירות",
+      "declaredTotalLines": 140,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 364,
+      "bookTitle": "משנה תורה, הלכות נחלות",
+      "declaredTotalLines": 130,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 365,
+      "bookTitle": "משנה תורה, הלכות טוען ונטען",
+      "declaredTotalLines": 205,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 367,
+      "bookTitle": "משנה תורה, הלכות שאר אבות הטומאות",
+      "declaredTotalLines": 276,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 368,
+      "bookTitle": "משנה תורה, הלכות טומאת מת",
+      "declaredTotalLines": 273,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 369,
+      "bookTitle": "משנה תורה, הלכות טומאת צרעת",
+      "declaredTotalLines": 192,
+      "isBaseBook": 1
+    }
+  ],
+  "source": {
+    "commit": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

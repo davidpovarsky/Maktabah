@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 778 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 779,
+      "bookTitle": "יכין גיטין",
+      "declaredTotalLines": 1011,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 780,
+      "bookTitle": "יכין עדיות",
+      "declaredTotalLines": 1095,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 781,
+      "bookTitle": "יכין בבא מציעא",
+      "declaredTotalLines": 1383,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 782,
+      "bookTitle": "יכין בבא בתרא",
+      "declaredTotalLines": 1468,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 783,
+      "bookTitle": "יכין בבא קמא",
+      "declaredTotalLines": 1118,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 784,
+      "bookTitle": "יכין מכות",
+      "declaredTotalLines": 488,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 785,
+      "bookTitle": "יכין סנהדרין",
+      "declaredTotalLines": 1177,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 786,
+      "bookTitle": "יכין עבודה זרה",
+      "declaredTotalLines": 735,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 787,
+      "bookTitle": "יכין הוריות",
+      "declaredTotalLines": 285,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 788,
+      "bookTitle": "יכין שבועות",
+      "declaredTotalLines": 766,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 789,
+      "bookTitle": "יכין אבות",
+      "declaredTotalLines": 1711,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 790,
+      "bookTitle": "יכין חלה",
+      "declaredTotalLines": 430,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 791,
+      "bookTitle": "יכין מעשרות",
+      "declaredTotalLines": 631,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 792,
+      "bookTitle": "יכין מעשר שני",
+      "declaredTotalLines": 613,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 793,
+      "bookTitle": "יכין שביעית",
+      "declaredTotalLines": 1150,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 794,
+      "bookTitle": "יכין ערלה",
+      "declaredTotalLines": 333,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 795,
+      "bookTitle": "יכין דמאי",
+      "declaredTotalLines": 610,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 796,
+      "bookTitle": "יכין תרומות",
+      "declaredTotalLines": 981,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 797,
+      "bookTitle": "יכין ברכות",
+      "declaredTotalLines": 605,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 798,
+      "bookTitle": "יכין כלאים",
+      "declaredTotalLines": 1062,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 799,
+      "bookTitle": "יכין ביכורים",
+      "declaredTotalLines": 299,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 800,
+      "bookTitle": "יכין פאה",
+      "declaredTotalLines": 750,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 801,
+      "bookTitle": "יכין נגעים",
+      "declaredTotalLines": 1948,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 802,
+      "bookTitle": "יכין מכשירין",
+      "declaredTotalLines": 576,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 803,
+      "bookTitle": "יכין טהרות",
+      "declaredTotalLines": 1290,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 804,
+      "bookTitle": "יכין אהלות",
+      "declaredTotalLines": 2338,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 805,
+      "bookTitle": "יכין נדה",
+      "declaredTotalLines": 850,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 806,
+      "bookTitle": "יכין עוקצים",
+      "declaredTotalLines": 523,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 807,
+      "bookTitle": "יכין זבים",
+      "declaredTotalLines": 501,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 808,
+      "bookTitle": "יכין מקואות",
+      "declaredTotalLines": 1134,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 809,
+      "bookTitle": "יכין כלים",
+      "declaredTotalLines": 4704,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 810,
+      "bookTitle": "יכין טבול יום",
+      "declaredTotalLines": 326,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 811,
+      "bookTitle": "יכין ידים",
+      "declaredTotalLines": 390,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 812,
+      "bookTitle": "יכין פרה",
+      "declaredTotalLines": 1538,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 813,
+      "bookTitle": "יכין זבחים",
+      "declaredTotalLines": 1468,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 814,
+      "bookTitle": "יכין מנחות",
+      "declaredTotalLines": 1442,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 815,
+      "bookTitle": "יכין בכורות",
+      "declaredTotalLines": 1139,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 816,
+      "bookTitle": "יכין חולין",
+      "declaredTotalLines": 1314,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 817,
+      "bookTitle": "יכין ערכין",
+      "declaredTotalLines": 673,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 818,
+      "bookTitle": "יכין תמיד",
+      "declaredTotalLines": 735,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

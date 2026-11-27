@@ -1,0 +1,49 @@
+{
+  "bookID": 18,
+  "bookTitle": "עובדיה",
+  "declaredTotalLines": 23,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.3807145208120346,
+  "resolvedAnchorRows": 1189,
+  "units": [
+    {
+      "unitID": "toc:546",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "bookID": 18,
+      "bookTitle": "עובדיה",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 23,
+      "candidateRawRelationshipCount": 1145,
+      "sourceIndicesSHA256": "40c1130abddfda2f14450d5c3ec3046cee84e7e1094ceab67f98df8bc0280c9f",
+      "rawMembershipSHA256": "b1a36d811fd2f8e753f5a90f1bd2d4cbd43856aa517a8518aaecfe4e7967ee3d"
+    }
+  ]
+}

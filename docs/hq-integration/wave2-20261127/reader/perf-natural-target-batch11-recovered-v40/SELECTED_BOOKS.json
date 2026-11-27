@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 469 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 470,
+      "bookTitle": "תקנת השבין",
+      "declaredTotalLines": 356,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 471,
+      "bookTitle": "מחשבות חרוץ",
+      "declaredTotalLines": 233,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 473,
+      "bookTitle": "צדקת הצדיק",
+      "declaredTotalLines": 537,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 474,
+      "bookTitle": "קומץ המנחה",
+      "declaredTotalLines": 412,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 475,
+      "bookTitle": "שיחת מלאכי השרת",
+      "declaredTotalLines": 186,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 476,
+      "bookTitle": "ישראל קדושים",
+      "declaredTotalLines": 201,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "declaredTotalLines": 209,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 479,
+      "bookTitle": "ספר ליקוטי מאמרים",
+      "declaredTotalLines": 193,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 481,
+      "bookTitle": "תוספתא שבת (ליברמן)",
+      "declaredTotalLines": 367,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 485,
+      "bookTitle": "תוספתא פסחים (ליברמן)",
+      "declaredTotalLines": 178,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 486,
+      "bookTitle": "תוספתא עירובין (ליברמן)",
+      "declaredTotalLines": 168,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 496,
+      "bookTitle": "תוספתא יבמות (ליברמן)",
+      "declaredTotalLines": 129,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 498,
+      "bookTitle": "תוספתא סוטה (ליברמן)",
+      "declaredTotalLines": 209,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 499,
+      "bookTitle": "תוספתא כתובות (ליברמן)",
+      "declaredTotalLines": 113,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 500,
+      "bookTitle": "תוספתא בבא מציעא (ליברמן)",
+      "declaredTotalLines": 297,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 501,
+      "bookTitle": "תוספתא בבא בתרא (ליברמן)",
+      "declaredTotalLines": 186,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 502,
+      "bookTitle": "תוספתא בבא קמא (ליברמן)",
+      "declaredTotalLines": 230,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 504,
+      "bookTitle": "תוספתא תרומות (ליברמן)",
+      "declaredTotalLines": 183,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 508,
+      "bookTitle": "תוספתא מעשר שני (ליברמן)",
+      "declaredTotalLines": 106,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 509,
+      "bookTitle": "תוספתא דמאי (ליברמן)",
+      "declaredTotalLines": 189,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 510,
+      "bookTitle": "תוספתא ברכות (ליברמן)",
+      "declaredTotalLines": 147,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 513,
+      "bookTitle": "תוספתא שביעית (ליברמן)",
+      "declaredTotalLines": 166,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 515,
+      "bookTitle": "מגן אבות",
+      "declaredTotalLines": 488,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 516,
+      "bookTitle": "הקדמת הרמב\"ם למשנה",
+      "declaredTotalLines": 497,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 517,
+      "bookTitle": "רמב\"ם על משנה יומא",
+      "declaredTotalLines": 165,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 518,
+      "bookTitle": "רמב\"ם על משנה עירובין",
+      "declaredTotalLines": 205,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 521,
+      "bookTitle": "רמב\"ם על משנה סוכה",
+      "declaredTotalLines": 129,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 523,
+      "bookTitle": "רמב\"ם על משנה שקלים",
+      "declaredTotalLines": 153,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 524,
+      "bookTitle": "רמב\"ם על משנה פסחים",
+      "declaredTotalLines": 269,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 525,
+      "bookTitle": "רמב\"ם על משנה שבת",
+      "declaredTotalLines": 305,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 526,
+      "bookTitle": "רמב\"ם על משנה מגילה",
+      "declaredTotalLines": 108,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 529,
+      "bookTitle": "רמב\"ם על משנה יבמות",
+      "declaredTotalLines": 251,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 530,
+      "bookTitle": "רמב\"ם על משנה נזיר",
+      "declaredTotalLines": 132,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 531,
+      "bookTitle": "רמב\"ם על משנה גיטין",
+      "declaredTotalLines": 168,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 532,
+      "bookTitle": "רמב\"ם על משנה כתובות",
+      "declaredTotalLines": 203,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 533,
+      "bookTitle": "רמב\"ם על משנה נדרים",
+      "declaredTotalLines": 171,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 534,
+      "bookTitle": "רמב\"ם על משנה קידושין",
+      "declaredTotalLines": 101,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 535,
+      "bookTitle": "רמב\"ם על משנה סוטה",
+      "declaredTotalLines": 134,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 537,
+      "bookTitle": "רמב\"ם על משנה בבא בתרא",
+      "declaredTotalLines": 184,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 539,
+      "bookTitle": "רמב\"ם על משנה עבודה זרה",
+      "declaredTotalLines": 107,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

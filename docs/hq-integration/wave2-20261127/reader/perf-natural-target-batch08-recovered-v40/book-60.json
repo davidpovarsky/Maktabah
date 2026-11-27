@@ -1,0 +1,109 @@
+{
+  "bookID": 60,
+  "bookTitle": "משנה מגילה",
+  "declaredTotalLines": 38,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.08270343951880932,
+  "resolvedAnchorRows": 2155,
+  "units": [
+    {
+      "unitID": "toc:1143",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "bookID": 60,
+      "bookTitle": "משנה מגילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 12,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 622,
+      "sourceIndicesSHA256": "0caccba1e53a62e913e0ee51176dd08f281de9886b7f51ba3d8ec5bfb15fe41b",
+      "rawMembershipSHA256": "6c51d84c5ffd107c5b9f5353391236d882de573776bba4989bc370b988ff5ae9"
+    },
+    {
+      "unitID": "toc:1144",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "bookID": 60,
+      "bookTitle": "משנה מגילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 13,
+      "unitEndLineIndex": 19,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 469,
+      "sourceIndicesSHA256": "4114d8fa341e6320f695ebb1ab8b9e34732e27e92d525d522fcf55792db55240",
+      "rawMembershipSHA256": "8a9b1c4fe4a31d3a65685e9062da1c903a3244b3d292f6eaa0b3b52e2108d113"
+    },
+    {
+      "unitID": "toc:1145",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "bookID": 60,
+      "bookTitle": "משנה מגילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 20,
+      "unitEndLineIndex": 26,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 378,
+      "sourceIndicesSHA256": "f9b573e44b6c78ee66f1e596e53871f95cd5acfa47eb4c2f58721e200c501b88",
+      "rawMembershipSHA256": "0fe107b8b58f009298022b53a748849b2541d4dc89d0fa0fa5c3b409e3956d4c"
+    },
+    {
+      "unitID": "toc:1146",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "bookID": 60,
+      "bookTitle": "משנה מגילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 27,
+      "unitEndLineIndex": 37,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 661,
+      "sourceIndicesSHA256": "2d79880e77922f51bd379fe4f01f3859c51b3fe812b48b05e8e5d51ce19d9eb1",
+      "rawMembershipSHA256": "8d32876e2e1aa514dbee57f309d592769ea68e8e65b639409c2efb0f154de19d"
+    }
+  ]
+}

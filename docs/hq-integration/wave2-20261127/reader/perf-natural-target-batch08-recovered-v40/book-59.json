@@ -1,0 +1,110 @@
+{
+  "bookID": 59,
+  "bookTitle": "משנה תענית",
+  "declaredTotalLines": 39,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.0338663961738348,
+  "resolvedAnchorRows": 1581,
+  "units": [
+    {
+      "unitID": "toc:1138",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "bookID": 59,
+      "bookTitle": "משנה תענית",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 8,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 325,
+      "sourceIndicesSHA256": "5cfc4211e4918b07c75c1ec51a90d9f5423607c3fb588a14a3bd8d0d415f8886",
+      "rawMembershipSHA256": "88bb6698131c8532a477c6f00b53be42711bbf0220f7194e9fb9392e42b83510"
+    },
+    {
+      "unitID": "toc:1139",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "bookID": 59,
+      "bookTitle": "משנה תענית",
+      "mode": "chapter",
+      "unitStartLineIndex": 9,
+      "unitEndLineIndex": 19,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 423,
+      "sourceIndicesSHA256": "c7901c4388e96695cdefa07915452b6a9b713def95c0b4c95f51c0440cd858d9",
+      "rawMembershipSHA256": "d2da39cc8f04bb03ed697cee8ea5b1284cbf43f0d96ddc2ad6d5d6657b3f8515"
+    },
+    {
+      "unitID": "toc:1140",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "bookID": 59,
+      "bookTitle": "משנה תענית",
+      "mode": "chapter",
+      "unitStartLineIndex": 20,
+      "unitEndLineIndex": 29,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 321,
+      "sourceIndicesSHA256": "0bd484f86a7293d36e411f11bf98cb2b27db77335bcbff222508991626106491",
+      "rawMembershipSHA256": "11b40f4b25bfa5d45ca6ca365500faed6b40506856ab7409be8df7d1ec712cd0"
+    },
+    {
+      "unitID": "toc:1141",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "bookID": 59,
+      "bookTitle": "משנה תענית",
+      "mode": "chapter",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 38,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 493,
+      "sourceIndicesSHA256": "1ab7d069ed5be67a8092a9d607bc77143018d19414e7c818edfbc6b4888ab09f",
+      "rawMembershipSHA256": "454ecef9e1ca228b1cc1e46417371f99e7f1594b8520e4afa58fcc8d0eb761a7"
+    }
+  ]
+}

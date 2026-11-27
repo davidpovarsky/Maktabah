@@ -1,0 +1,1090 @@
+{
+  "bookID": 477,
+  "bookTitle": "רסיסי לילה",
+  "declaredTotalLines": 209,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.02087004017084837,
+  "resolvedAnchorRows": 1764,
+  "units": [
+    {
+      "unitID": "toc:64348",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 3,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "f2f991d74dfbb2edf7f4475dcb7d82989de00a71e44bb11d4a6fbb49442577b6",
+      "rawMembershipSHA256": "7c3b626dbfe62d1cce81bcf86a75d612ab0c1737b27969799d4c6a4d3824c4dc"
+    },
+    {
+      "unitID": "toc:64349",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        4,
+        5
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 4,
+      "unitEndLineIndex": 5,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "d4c7a98da55490b0a5a65cc5057db99aa708a436609b177748505342d569457b",
+      "rawMembershipSHA256": "0fde78e8c89a90153b2ad95d10fd849a353aaba16c5fafd712fce61c0718f6c8"
+    },
+    {
+      "unitID": "toc:64350",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        6,
+        7
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 6,
+      "unitEndLineIndex": 7,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "946ec11a25d8ec678f5b4ed3ceb77c3f2ff2fbabe01e03070c3cc2f60dc619cb",
+      "rawMembershipSHA256": "b5c8c046a50ee5903904830dfe67749785a80079a1ef03e2dbd861132404a7d9"
+    },
+    {
+      "unitID": "toc:64351",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        8,
+        9
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 8,
+      "unitEndLineIndex": 9,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 24,
+      "sourceIndicesSHA256": "02d6e7b63835ccb6bd8c452eba73b83100c5af80bb9c94fafe03f27e1892eb6c",
+      "rawMembershipSHA256": "a83d2b43daf639b51652b8d2652b5936c6a6869ffefafe45cbc40f5f363b659f"
+    },
+    {
+      "unitID": "toc:64352",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        10,
+        11
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 10,
+      "unitEndLineIndex": 11,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "43a2d66e5f850f64677fc2fae986fcdbdf190e6b6f026167f70b21d8860826b3",
+      "rawMembershipSHA256": "27968af17a2ca90e5613456eb0c576361d206b3409727fd9a3674149d477f833"
+    },
+    {
+      "unitID": "toc:64353",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        12,
+        13,
+        14
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 12,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "ec20a2d6fcebd85a400ea4f1e08a4d91e0404990221d02b1f09567a42a50c737",
+      "rawMembershipSHA256": "3e329ed9d66dcc7aa27df6c9fab02fce0c72a5b9c12b6b408c921a38bb94dd4e"
+    },
+    {
+      "unitID": "toc:64354",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        15,
+        16
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 16,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 20,
+      "sourceIndicesSHA256": "1a2d14c94f55b2b79673a42a042dfd095cff4089fb431d7af4ff8f4c7831dc58",
+      "rawMembershipSHA256": "f143ae676e9a34715865311dc82a5c45260b606355279d50afb6ce8e3092bd3e"
+    },
+    {
+      "unitID": "toc:64355",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 17,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "0ac41b5cc71d7d2c17e7398dcaf530aea0baf8c8a3503382952ae9626204a219",
+      "rawMembershipSHA256": "d654089442794495884fe3ce1ab710234ef78cbdd7d625f63ae9ba6e1fd0ee45"
+    },
+    {
+      "unitID": "toc:64356",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        21,
+        22
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 22,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "16f2380a3e0b5e5b1c2d4f701b94a23cff01b0676f32c88b60f22fcd84a26da8",
+      "rawMembershipSHA256": "77e4a85d17a0498515324a10902a4bf462377ec5dd643e9f0859b5cdfca1ff56"
+    },
+    {
+      "unitID": "toc:64357",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        23,
+        24,
+        25
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 23,
+      "unitEndLineIndex": 25,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 29,
+      "sourceIndicesSHA256": "e63a1346afb5ce666696ca9f61f0d4b84a3ff5d61aa4e02a68232dc6c32d8fb7",
+      "rawMembershipSHA256": "4aaca6a1a41bb024303229319b8afe74102cc5b528e58a5958d7bcae45295664"
+    },
+    {
+      "unitID": "toc:64358",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        26,
+        27
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 26,
+      "unitEndLineIndex": 27,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 36,
+      "sourceIndicesSHA256": "032f5277c0a5356608ef005590b59a7b580c4139109ec3646496f659cba4739c",
+      "rawMembershipSHA256": "fa246187f6bb4f88590002e1e9782f4d2501e4a159964ce822dc12cb8de0965d"
+    },
+    {
+      "unitID": "toc:64359",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        28,
+        29
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 28,
+      "unitEndLineIndex": 29,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 28,
+      "sourceIndicesSHA256": "5a2fb92d7208123d8efe010ba391caca153fd5198488a12236b6e436f208369b",
+      "rawMembershipSHA256": "ca205123e8fdf985b18402902095407a39ed50e4fd899e6fa7c571d1d00c1a3f"
+    },
+    {
+      "unitID": "toc:64360",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        30,
+        31
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 31,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "e84efd35b07dc0854dc7ea773ebd9a60bdb1a5f62fdb58a61bcff3b6d18403a3",
+      "rawMembershipSHA256": "b6a0de93c6429af1c84f4d60091aec005218785338d587fa02b58fe63d83d579"
+    },
+    {
+      "unitID": "toc:64361",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        32,
+        33
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 32,
+      "unitEndLineIndex": 33,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "44ca12ff7e811c7f09514d225fdf22043aa0a9e57f40358d2dee37babd14e5ec",
+      "rawMembershipSHA256": "dcdb20b30218e66b810e473ba9b229ef878390053559f0a88bd32a7308e26b28"
+    },
+    {
+      "unitID": "toc:64362",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        34,
+        35
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 34,
+      "unitEndLineIndex": 35,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "69154ec3b3327ccc6c530123ee56527b3e6b702df75bf4cda2e89a6f65b205a3",
+      "rawMembershipSHA256": "bced8bc6b8ce6d89c814b2ac7dd88b7b90f2e5fc2bb7e1693ba6c822e888f65c"
+    },
+    {
+      "unitID": "toc:64363",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        36,
+        37
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 36,
+      "unitEndLineIndex": 37,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "0419710be814ea74d5894c3bc184c565ad771cd958218713ef84edb43dc91e6c",
+      "rawMembershipSHA256": "bf534bd6ee0ac9ee9b0d74b1575da60ec346aa12e082358e0eeb8eee6f114ad9"
+    },
+    {
+      "unitID": "toc:64364",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        38,
+        39
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 38,
+      "unitEndLineIndex": 39,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "44051911f835e863c905fecf91a2d2cbab24ed83d2043a357618949880fb1910",
+      "rawMembershipSHA256": "bba0f161679cab0db4762cb92200ab70681fcb31b4a9d99b8b6b0c2720e47196"
+    },
+    {
+      "unitID": "toc:64365",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        40,
+        41
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 40,
+      "unitEndLineIndex": 41,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "cc2ed1b68368c5bccb02092f73f9687a4b8ff6adec23587e4ff37ebae58897a8",
+      "rawMembershipSHA256": "a536f6d3462eff836b1cce223bc64b872ad29fdefd310fa5cfb5f55ae1ba5322"
+    },
+    {
+      "unitID": "toc:64366",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        42,
+        43
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 42,
+      "unitEndLineIndex": 43,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "15ebe975f8c4a7644923d3b82dee039760a07438f1b021eb90e7edeab8cf6e3e",
+      "rawMembershipSHA256": "eebc3072fda5ae90ac5042462453fd3dcd71e130579544b3d36b0d03b354cb31"
+    },
+    {
+      "unitID": "toc:64367",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        44,
+        45
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 44,
+      "unitEndLineIndex": 45,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 32,
+      "sourceIndicesSHA256": "e115dbf5f2e4cf0f11c8910d1e649a81dc4fd72a84dacdda3ce26d877b8cab8b",
+      "rawMembershipSHA256": "8fa549d98d0bcc920d131907e3b1d20231892a2ae835baa9bd68df3a66fbf814"
+    },
+    {
+      "unitID": "toc:64368",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        46,
+        47
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 46,
+      "unitEndLineIndex": 47,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 34,
+      "sourceIndicesSHA256": "6a1c7b8e447da25dc5caa8739b2fac538e2a2e5c0a756eb2936cd60571622172",
+      "rawMembershipSHA256": "9cfca93f99b54f41af26ac7d78558081089baa2b84f4bae17b9ebeb9b9e15518"
+    },
+    {
+      "unitID": "toc:64369",
+      "rawUnitTitle": "פרק כב",
+      "sourceLineIndices": [
+        48,
+        49
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 48,
+      "unitEndLineIndex": 49,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 14,
+      "sourceIndicesSHA256": "6bd7cf177944cde1440735165106c09f74f6ef1924c3c84ce8ba4478508b04ef",
+      "rawMembershipSHA256": "f9a069dbfa4818a1cd2f701d343f0b652105fbcc0b5fd1ae747cbba0f708cffa"
+    },
+    {
+      "unitID": "toc:64370",
+      "rawUnitTitle": "פרק כג",
+      "sourceLineIndices": [
+        50,
+        51
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 50,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 21,
+      "sourceIndicesSHA256": "468bab6022e018a8bc6b0d5b38ffee186987ce01c9166538a24e83d464ecac03",
+      "rawMembershipSHA256": "7e70aa1da2240d04f42743ca26d09b9051e94bc4172eb187c6e636733c83669d"
+    },
+    {
+      "unitID": "toc:64371",
+      "rawUnitTitle": "פרק כד",
+      "sourceLineIndices": [
+        52,
+        53
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 53,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "64e521936c9b0fe75f82d3d03b33aed044fdce965d7feac2f1bc445e38e73d5f",
+      "rawMembershipSHA256": "e6dcd7b59e1cc3533f378bc7b6ce04c99e468f619c0e7cb41a9b258829f0fc9d"
+    },
+    {
+      "unitID": "toc:64372",
+      "rawUnitTitle": "פרק כה",
+      "sourceLineIndices": [
+        54,
+        55
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 54,
+      "unitEndLineIndex": 55,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "ee0d9ede77c7a137c5467e053a5cf096e66fc01896dc473865fb7b2b35f719f6",
+      "rawMembershipSHA256": "87d881b5b32b572915712ba58b49b9f71cbd6256d8584a8c319a4148e6abe2d8"
+    },
+    {
+      "unitID": "toc:64373",
+      "rawUnitTitle": "פרק כו",
+      "sourceLineIndices": [
+        56,
+        57
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 56,
+      "unitEndLineIndex": 57,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 24,
+      "sourceIndicesSHA256": "1d5a97f9b72ec6f345beaec1dc97854ab8fd54ad8e12e03ed15ea532fd96b097",
+      "rawMembershipSHA256": "dd54efd7d40ea1f2bb88ad2f219b072066dc205234ca95deae5374a061b7ac59"
+    },
+    {
+      "unitID": "toc:64374",
+      "rawUnitTitle": "פרק כז",
+      "sourceLineIndices": [
+        58,
+        59
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 58,
+      "unitEndLineIndex": 59,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "c61af223d3c897245c0a20358552f827ed2ed4bf60223d14419c68c913a00533",
+      "rawMembershipSHA256": "8e97b687438f412b10f6478af00bd49dc8d6c7d953530d98f953313ee8baa0cc"
+    },
+    {
+      "unitID": "toc:64375",
+      "rawUnitTitle": "פרק כח",
+      "sourceLineIndices": [
+        60,
+        61,
+        62
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 60,
+      "unitEndLineIndex": 62,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 21,
+      "sourceIndicesSHA256": "e1f8c6585e46e58a491c74d684740d52ef5a5a372db7505c77fa031685b8cb7f",
+      "rawMembershipSHA256": "5dc18edab0766d14674a05d5301127e5178c8b9134ced6077deb936219fac0c6"
+    },
+    {
+      "unitID": "toc:64376",
+      "rawUnitTitle": "פרק כט",
+      "sourceLineIndices": [
+        63,
+        64
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 63,
+      "unitEndLineIndex": 64,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 10,
+      "sourceIndicesSHA256": "e7812173fe1fd0cc36fa630876e68718ed74d452ad69100aff9948415e2488c8",
+      "rawMembershipSHA256": "52189ad7aabc1d0e373da566dff0a51cc6e1723e4066f594e5cedf1c4e0faee8"
+    },
+    {
+      "unitID": "toc:64377",
+      "rawUnitTitle": "פרק ל",
+      "sourceLineIndices": [
+        65,
+        66
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 65,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "44f65a6052fe627180092b01e155115b4e4cd4764e28c025cae892f3bec835ae",
+      "rawMembershipSHA256": "ef5e08aaa7ffa26ef385262a5342dfe8354666a312d424395269b229604bb440"
+    },
+    {
+      "unitID": "toc:64378",
+      "rawUnitTitle": "פרק לא",
+      "sourceLineIndices": [
+        67,
+        68
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 67,
+      "unitEndLineIndex": 68,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 47,
+      "sourceIndicesSHA256": "0e1b0dfa2323dce336b99189db29844694241142538a04b2377a3b9313d5db0c",
+      "rawMembershipSHA256": "06aa848f0bdc28bab741823889303c353027a522a4882ea4edcf9b8e15b313b1"
+    },
+    {
+      "unitID": "toc:64379",
+      "rawUnitTitle": "פרק לב",
+      "sourceLineIndices": [
+        69,
+        70
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 69,
+      "unitEndLineIndex": 70,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "751f7637240c9ba24c4257cda33ff13f2d55da93d4feb49aceaa62128b1b2222",
+      "rawMembershipSHA256": "67654fcc74f8ee33345a9c89a2b0f654a07c531d2003656540fbfd9342f60672"
+    },
+    {
+      "unitID": "toc:64380",
+      "rawUnitTitle": "פרק לג",
+      "sourceLineIndices": [
+        71,
+        72
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 71,
+      "unitEndLineIndex": 72,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "99513b578cfd6a5375d0eb49d6663a4a03efd1ca97cd11540a463d564391fb34",
+      "rawMembershipSHA256": "8ac10985ae7395a32c254dae4777647421e448a99cfee34ac9fb9b3cd97dfcf3"
+    },
+    {
+      "unitID": "toc:64381",
+      "rawUnitTitle": "פרק לד",
+      "sourceLineIndices": [
+        73,
+        74,
+        75
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 73,
+      "unitEndLineIndex": 75,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 37,
+      "sourceIndicesSHA256": "74ab0dab15a391d412647c6e15630cfaa88f6903a3e1fb83b152b49b0de1cb18",
+      "rawMembershipSHA256": "c3407494079e7fe63db86bd5b41f60bd3bf59f6432eb78dce2c11da9e2f046c2"
+    },
+    {
+      "unitID": "toc:64382",
+      "rawUnitTitle": "פרק לה",
+      "sourceLineIndices": [
+        76,
+        77,
+        78
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 76,
+      "unitEndLineIndex": 78,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "bb615bcfc49cc6ae3effc51446ce4189dd4fb2468e79af6e97523259782f71c3",
+      "rawMembershipSHA256": "8ed06691e0452f40068dc136b20a219f9d71ceac5f38763f3d337531c7cd7d94"
+    },
+    {
+      "unitID": "toc:64383",
+      "rawUnitTitle": "פרק לו",
+      "sourceLineIndices": [
+        79,
+        80
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 79,
+      "unitEndLineIndex": 80,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 21,
+      "sourceIndicesSHA256": "48822fc5c23ad543d016e2db2fcfb2e2a8c61980d957af7b919a953edc802a83",
+      "rawMembershipSHA256": "1aaab1eadf197f48bc52795c7fe2ad67061cd6cf0de61547350fcf43184467ec"
+    },
+    {
+      "unitID": "toc:64384",
+      "rawUnitTitle": "פרק לז",
+      "sourceLineIndices": [
+        81,
+        82
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 81,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 48,
+      "sourceIndicesSHA256": "fd9b3391e05daff42f0a20cf579b049d88b473e7cbb9120b8e36d859eece2e20",
+      "rawMembershipSHA256": "bf70c0c49a3e560c9018523b4b8b4ed039a11f8038cab35d4019b73bbcfbf567"
+    },
+    {
+      "unitID": "toc:64385",
+      "rawUnitTitle": "פרק לח",
+      "sourceLineIndices": [
+        83,
+        84
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 84,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 36,
+      "sourceIndicesSHA256": "d931b7221739c41a0e26e44011f03d4439db9e6647bbeef3e6a3817d23ea0eb5",
+      "rawMembershipSHA256": "ac86b0ab2feda1ba51eb1d8b8d8e49811a03d74e1635245f33e1fecd64930b7f"
+    },
+    {
+      "unitID": "toc:64386",
+      "rawUnitTitle": "פרק לט",
+      "sourceLineIndices": [
+        85,
+        86,
+        87
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 85,
+      "unitEndLineIndex": 87,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 38,
+      "sourceIndicesSHA256": "047900c1cb78736d548ee2765f282021a850e60fd5f7e627e512d5aafdc6c60d",
+      "rawMembershipSHA256": "d2a6707646b9657e8c36e1a378a0c9561bfe8d6e6985a4c5ceed41eb84e12cf0"
+    },
+    {
+      "unitID": "toc:64387",
+      "rawUnitTitle": "פרק מ",
+      "sourceLineIndices": [
+        88,
+        89
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 88,
+      "unitEndLineIndex": 89,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "0d34219d2dc3f6c4466ab54429c09a6f6b15e3ef7a6994f9aa261dcb56ae15a1",
+      "rawMembershipSHA256": "70a265dfe93fd15eb737145b51bba8f42009f3213088f01e024d8d5c00f76ca5"
+    },
+    {
+      "unitID": "toc:64388",
+      "rawUnitTitle": "פרק מא",
+      "sourceLineIndices": [
+        90,
+        91
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 90,
+      "unitEndLineIndex": 91,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "5bc33c52f64ccd5339df9b24980bb20ef3e3ce9b005f10a989f0f6cfb908d93a",
+      "rawMembershipSHA256": "e54c197b3fb22d318209f7782f7a768ba24749999e532ec63c3391f22cffa12d"
+    },
+    {
+      "unitID": "toc:64389",
+      "rawUnitTitle": "פרק מב",
+      "sourceLineIndices": [
+        92,
+        93
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 92,
+      "unitEndLineIndex": 93,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 34,
+      "sourceIndicesSHA256": "2d701ded91fa3564b54734f4b7b0c87e15db458248b21e44b3b5beb2f83a2642",
+      "rawMembershipSHA256": "49c46ca8563e5ff68e5637615ba2a28cf2bb5acd49ac8542b1ca2c14263fb116"
+    },
+    {
+      "unitID": "toc:64390",
+      "rawUnitTitle": "פרק מג",
+      "sourceLineIndices": [
+        94,
+        95,
+        96
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 94,
+      "unitEndLineIndex": 96,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 46,
+      "sourceIndicesSHA256": "48548a65e8de3187556a0a9529f24d74122729cef92c0daf361853c5aa7882eb",
+      "rawMembershipSHA256": "f21afd0b34b691faa8719c7b065b4a5edaaf2e7e5a94c0010f8ee2e092aae700"
+    },
+    {
+      "unitID": "toc:64391",
+      "rawUnitTitle": "פרק מד",
+      "sourceLineIndices": [
+        97,
+        98,
+        99,
+        100,
+        101
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 97,
+      "unitEndLineIndex": 101,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 56,
+      "sourceIndicesSHA256": "c7c3156823a3aabaf3e7afa07f76736cc4f76f44e3a476bb65d323fcab3633dd",
+      "rawMembershipSHA256": "96248fc71ada95c085f82c7c956ab437521cf50ac772ab9613219df6db369bac"
+    },
+    {
+      "unitID": "toc:64392",
+      "rawUnitTitle": "פרק מה",
+      "sourceLineIndices": [
+        102,
+        103
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 102,
+      "unitEndLineIndex": 103,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "49d8ae7cab615ec2266262f5512ea79ff21f1e3a88bcbe03f0df54bddd1f93f1",
+      "rawMembershipSHA256": "f282aac3f78d2575b4f3150b59c63fb752980f95d7a6b340c990e8cbb8d5fef8"
+    },
+    {
+      "unitID": "toc:64393",
+      "rawUnitTitle": "פרק מו",
+      "sourceLineIndices": [
+        104,
+        105,
+        106,
+        107
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 104,
+      "unitEndLineIndex": 107,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 31,
+      "sourceIndicesSHA256": "8c1a71770059e27ad1d17a898a31d57d228ab73904f50b19d781249aa94e66db",
+      "rawMembershipSHA256": "7d478cf8ca0b78b98185493602c3ba47d039b447de393196d0db01f99347093e"
+    },
+    {
+      "unitID": "toc:64394",
+      "rawUnitTitle": "פרק מז",
+      "sourceLineIndices": [
+        108,
+        109,
+        110,
+        111,
+        112
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 108,
+      "unitEndLineIndex": 112,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 40,
+      "sourceIndicesSHA256": "0f9b08aabd878a18056d21865369d63ce9fab3eaa4646f57933835dbdd9ef390",
+      "rawMembershipSHA256": "514d25825b55e58ba967b660228d7a994136f64bbc2b142712460f42cc3339bd"
+    },
+    {
+      "unitID": "toc:64395",
+      "rawUnitTitle": "פרק מח",
+      "sourceLineIndices": [
+        113,
+        114,
+        115,
+        116,
+        117,
+        118
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 113,
+      "unitEndLineIndex": 118,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 48,
+      "sourceIndicesSHA256": "419d74fbc17ed68ece6ef1d1a7463332e6b13b88e8cbf2cbf800b843f5503cee",
+      "rawMembershipSHA256": "9d4dfd3477a68b1660aafdd15c96c26aee6da795c869c52510846eb2ef4746e2"
+    },
+    {
+      "unitID": "toc:64396",
+      "rawUnitTitle": "פרק מט",
+      "sourceLineIndices": [
+        119,
+        120,
+        121
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 119,
+      "unitEndLineIndex": 121,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "675eb4464537290ccd329691ffe5909bb25f15f952902276e2ed995dec2a0a2d",
+      "rawMembershipSHA256": "a2fda6efaba71d31d5ba2e3ac741069ee591d914be159da3981c331e44bed6d3"
+    },
+    {
+      "unitID": "toc:64397",
+      "rawUnitTitle": "פרק נ",
+      "sourceLineIndices": [
+        122,
+        123,
+        124
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 122,
+      "unitEndLineIndex": 124,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "696cf30086ad556931fdd9db0676ff4a1d813d1e6bb0bc74328b09b8d3255c7b",
+      "rawMembershipSHA256": "d1bdfed6cfe96ea15ef1330d10176f35af4669b7a03f7d229567ebd1695d33e6"
+    },
+    {
+      "unitID": "toc:64398",
+      "rawUnitTitle": "פרק נא",
+      "sourceLineIndices": [
+        125,
+        126,
+        127,
+        128
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 125,
+      "unitEndLineIndex": 128,
+      "unitRowCount": 4,
+      "candidateRawRelationshipCount": 47,
+      "sourceIndicesSHA256": "16a599dc9fd8039e434eb4a936a60a64a7e6c17dcbf77f925710659dd986ca42",
+      "rawMembershipSHA256": "c33602bdc71402aed3998b9251a91ad0ca5bdd0313fef64ea557da068ec8f1f9"
+    },
+    {
+      "unitID": "toc:64399",
+      "rawUnitTitle": "פרק נב",
+      "sourceLineIndices": [
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 129,
+      "unitEndLineIndex": 138,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 136,
+      "sourceIndicesSHA256": "1b74581b02a2c2819d1898985d69ed1e06e4a707b9a909075c5dcfeb9332c6f7",
+      "rawMembershipSHA256": "cdd0b5248c1c0b35e06ed27bb7d405b8510e2818587692d78a3af12aa2f424b3"
+    },
+    {
+      "unitID": "toc:64400",
+      "rawUnitTitle": "פרק נג",
+      "sourceLineIndices": [
+        139,
+        140,
+        141,
+        142,
+        143,
+        144
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 139,
+      "unitEndLineIndex": 144,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 44,
+      "sourceIndicesSHA256": "12375f56248b2524df94a102af66c9a1e14a81125b06b3495aa273afcc767ffb",
+      "rawMembershipSHA256": "29c62ce80e4d1f8396f43ed80901a8a4756cd77d34b0941e362f57936bb7b11c"
+    },
+    {
+      "unitID": "toc:64401",
+      "rawUnitTitle": "פרק נד",
+      "sourceLineIndices": [
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 145,
+      "unitEndLineIndex": 157,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 95,
+      "sourceIndicesSHA256": "b25e13e48ba45495d799a3294767de5f18797985da8bee21c0dc1970caeadb1e",
+      "rawMembershipSHA256": "570556e3cd069666ad71b24bef08ff740fafc7f66e407a0d55f5031ded9d296d"
+    },
+    {
+      "unitID": "toc:64402",
+      "rawUnitTitle": "פרק נה",
+      "sourceLineIndices": [
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 158,
+      "unitEndLineIndex": 166,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "37baa517333d219ab6858f1f08e587536575a9867f42bcd83a3f5cf92e8d82bf",
+      "rawMembershipSHA256": "ed094f16104b5e69dfc8ec45b492b7bfdb8c3867a33dbcd6d6c33be2841bc73a"
+    },
+    {
+      "unitID": "toc:64403",
+      "rawUnitTitle": "פרק נו",
+      "sourceLineIndices": [
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 167,
+      "unitEndLineIndex": 195,
+      "unitRowCount": 29,
+      "candidateRawRelationshipCount": 73,
+      "sourceIndicesSHA256": "b77e54c896a9b7cdec0b7bccfe4f2b821cd822e6e8b6da1b5a3efe3842de9046",
+      "rawMembershipSHA256": "9b37ff07a588ef8acd542008380ef5263d3194951348a3e5cbcf9dc776176525"
+    },
+    {
+      "unitID": "toc:64404",
+      "rawUnitTitle": "פרק נז",
+      "sourceLineIndices": [
+        196,
+        197,
+        198,
+        199,
+        200
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 196,
+      "unitEndLineIndex": 200,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 34,
+      "sourceIndicesSHA256": "3a8b49dcf13a9aa0bc4ab88807c49a0bf8ddd4caa93cfbd5193f80c7840bc6c1",
+      "rawMembershipSHA256": "9b7186a443c2d469d73f4c7c01e3aa1d17f8b738a8dbf1ab78b3500aa1a4504b"
+    },
+    {
+      "unitID": "toc:64405",
+      "rawUnitTitle": "פרק נח",
+      "sourceLineIndices": [
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208
+      ],
+      "bookID": 477,
+      "bookTitle": "רסיסי לילה",
+      "mode": "chapter",
+      "unitStartLineIndex": 201,
+      "unitEndLineIndex": 208,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 72,
+      "sourceIndicesSHA256": "5ba031471fc1644929a390fbec621661ae7c949397b757807f0253b62171a06a",
+      "rawMembershipSHA256": "6cc695629e72d4e2df993f4adf6397b4e323ceba3aefbcda039530e3a57b27d5"
+    }
+  ]
+}

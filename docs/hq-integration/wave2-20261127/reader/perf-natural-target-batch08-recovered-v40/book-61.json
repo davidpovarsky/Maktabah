@@ -1,0 +1,84 @@
+{
+  "bookID": 61,
+  "bookTitle": "משנה מועד קטן",
+  "declaredTotalLines": 28,
+  "isBaseBook": 1,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.030575256794691086,
+  "resolvedAnchorRows": 1076,
+  "units": [
+    {
+      "unitID": "toc:1148",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "bookID": 61,
+      "bookTitle": "משנה מועד קטן",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 11,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 481,
+      "sourceIndicesSHA256": "bc04adf5bcefb4d0d6d92548c048867a98e9134d8cedb53ac5ea1010d5016801",
+      "rawMembershipSHA256": "22a834db1c78843b0716035a612dfd7e8bd03e3c6f26a5d4612523a9747b4a36"
+    },
+    {
+      "unitID": "toc:1149",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "bookID": 61,
+      "bookTitle": "משנה מועד קטן",
+      "mode": "chapter",
+      "unitStartLineIndex": 12,
+      "unitEndLineIndex": 17,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 161,
+      "sourceIndicesSHA256": "d30d4c2c656061b18e66d2c2f9d7be3ee5ea53c35227961893b43059143a6005",
+      "rawMembershipSHA256": "b573ea6a13ffeb1e1fa2b6849f4af9fd3ab9fd8e6643200188bb9def3f83aa96"
+    },
+    {
+      "unitID": "toc:1150",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "bookID": 61,
+      "bookTitle": "משנה מועד קטן",
+      "mode": "chapter",
+      "unitStartLineIndex": 18,
+      "unitEndLineIndex": 27,
+      "unitRowCount": 10,
+      "candidateRawRelationshipCount": 424,
+      "sourceIndicesSHA256": "79bf8bdcaa71f8b152e3377f2a812901d299dcd9f340e8053a93382a041b2fa5",
+      "rawMembershipSHA256": "a35d8f1449c6832248d371f723827b16bd2fc5459667fe6112ab9e031c98f0d7"
+    }
+  ]
+}

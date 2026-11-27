@@ -1,0 +1,631 @@
+{
+  "schema": 1,
+  "status": "BOUNDED_SQL_DISCOVERY_RETAINED_ORIGINAL_MINIMUM_WORKLOAD_CONTRACT",
+  "batches": [
+    {
+      "batch": 1,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch01-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "efd18aad0afa12b31355c5b449bc96cec3c2a0249bfa48e6286935859a73c01e",
+      "scriptSHA256": "413ff1e85767b371604acb0fbec6b45525802b0cc5ab0b229c03936431e1697e",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 887,
+      "resolvedAnchorRows": 1023152,
+      "seconds": 18.37942755036056,
+      "exactCandidates": {
+        "100": 0,
+        "500": 1,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 2,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "5ad7a7d05ed0dfce0b8d334f59f80a9dd31ba7ce9ea38cdfbb7cfd4d2b9c548a",
+      "scriptSHA256": "a16dec50aece76b9d4387efca8dfbddcfa079d039984fc4a196b7acf307cecae",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 5161,
+      "resolvedAnchorRows": 1411940,
+      "seconds": 51.55322085600346,
+      "exactCandidates": {
+        "100": 7,
+        "500": 3,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 3,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "fdedbb3db6a1c4d946bd114d0f698bbbeff213fcf6f41fa0f487da0dbef8968e",
+      "scriptSHA256": "27c9fafc9e9af47704d77e43c99627c2a73ae91dc4e289357c706f6ba8908190",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 453,
+      "resolvedAnchorRows": 284774,
+      "seconds": 27.004336370155215,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 4,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "ab5fcb4f2a7f52ed97fa8a05bd421acd8644e33e73624971b7503417e3ab1b8f",
+      "scriptSHA256": "89e82ec1f18a4bd7bd26eff9d8c6c85fb8de2d05a80239c7d24d8833140b59ac",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 1972,
+      "resolvedAnchorRows": 310614,
+      "seconds": 7.56556699052453,
+      "exactCandidates": {
+        "100": 3,
+        "500": 1,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 5,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "a9e5dcc7f4dd95d1e2d2e26763ccb12fb99648a1938bfe7412dbb6897141f112",
+      "scriptSHA256": "a32ec35caec874519e5deed0f355057814c18e0501d37093d65d37046cad0506",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 1396,
+      "resolvedAnchorRows": 272525,
+      "seconds": 5.483335638418794,
+      "exactCandidates": {
+        "100": 5,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 6,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch06-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "08432e54aaff50c70bf6898c7e4b10119a2ab1c6a8db58fa07adb98d717d1cc1",
+      "scriptSHA256": "5687e4bec0beb32e525f9b99f954932faf677835a83471a7e5ca2988f6227029",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 542,
+      "resolvedAnchorRows": 151159,
+      "seconds": 7.2791108237579465,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 7,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch07-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "91e8910fd31fa0e76468b93f2d95e8bfbd2c94cc51c1f853294ebb2521b2a19a",
+      "scriptSHA256": "acd81b25077b9c75f99b65d8161637fa347caa2387825b8c74670d25bb2667b7",
+      "recordedExit": 0,
+      "books": 15,
+      "units": 1890,
+      "resolvedAnchorRows": 511292,
+      "seconds": 8.935764903202653,
+      "exactCandidates": {
+        "100": 7,
+        "500": 3,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 8,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch08-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "26f67dda4a33a48b72a87b53ca5baa87114afa27535a0095f257bd3b50eba440",
+      "scriptSHA256": "e19936b68fbbdebf54241e98b0ffd3f782880c299662610b0a9acf91c7bd13cf",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 226,
+      "resolvedAnchorRows": 104249,
+      "seconds": 6.834147076122463,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 9,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch09-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "d7365647996a591b0c19ecdd75280cf8224d5a6b9d3140abd434d6e466d7714a",
+      "scriptSHA256": "73fe5b4681a56bc2c2e534e6e3002b5189e8f253a253fc2e8671a9846a711212",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 3236,
+      "resolvedAnchorRows": 144922,
+      "seconds": 5.398210761137307,
+      "exactCandidates": {
+        "100": 1,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 10,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch10-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "2b8c7fceeb45180c918a40a8c81060be40eecbe89f918a557cc021f6e9ef14c3",
+      "scriptSHA256": "f5a467691a1a6b134b496a1f6b7eb820e3173a6bc75bb02412dd0b028f6a575b",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 1217,
+      "resolvedAnchorRows": 125986,
+      "seconds": 1.9212924353778362,
+      "exactCandidates": {
+        "100": 2,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 11,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch11-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "295b84aeba2604a79993e5c40245bf4528b8ae9c4d008a03cce67a4fd5a2ea79",
+      "scriptSHA256": "71e7e77a892794383840781eee0805487fe252c02be8e7a0e253d54ac0eabed8",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 718,
+      "resolvedAnchorRows": 23606,
+      "seconds": 1.0113809294998646,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 12,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch12-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "d97e8bac316e499b22777423962352f070fa63c486acd3e5df813bc00dd4ffdd",
+      "scriptSHA256": "39ace2c7a32c109baf4881d300afca99c414b2d2a2511dae0346300e5e5e8d8f",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 370,
+      "resolvedAnchorRows": 11205,
+      "seconds": 0.35188037995249033,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 13,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch13-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "94c637760bc51d632061ef95636e166e478746f4304b94d9d321055092057b2e",
+      "scriptSHA256": "6957f423cb32907e9f4fa5df93fc1a763bad9816b1ddc794ecacb711408b7873",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 332,
+      "resolvedAnchorRows": 22919,
+      "seconds": 0.32545914873480797,
+      "exactCandidates": {
+        "100": 1,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 14,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch14-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "c15c24595727660334e0e7c9ac3131b36ea2390a77f9ba892fa5394a46f810d1",
+      "scriptSHA256": "67837a12cb3604ae7a7fcc0c28cb677492463b26bca53a066df587ac8a12b089",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 360,
+      "resolvedAnchorRows": 25642,
+      "seconds": 0.426621250808239,
+      "exactCandidates": {
+        "100": 2,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 15,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch15-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "263d48113046ae6962dae3bb882cf2dfa6ab84b87666c03ae5a75c0ea270ed0e",
+      "scriptSHA256": "51cb7289e037b58469b7de7e63213e1446a2b88a960b41841570cd88c86f6698",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 433,
+      "resolvedAnchorRows": 13920,
+      "seconds": 0.3866848209872842,
+      "exactCandidates": {
+        "100": 1,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 16,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch16-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "6adbf7cab2e6365cca208d86a655a2750d30938e83d91f6550c11f84943c8b19",
+      "scriptSHA256": "00661bc0af109626e407bd6ccd5dfba07ae6a1020d497b00a149d0d66d7baedb",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 347,
+      "resolvedAnchorRows": 27774,
+      "seconds": 0.6601274311542511,
+      "exactCandidates": {
+        "100": 4,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 17,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch17-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "8af14e90b134f165878f46d60e1117066bbad8c55bf672167244c5c7d43545a2",
+      "scriptSHA256": "42f6a8305c546c668a21b603476df390751d78d66b7e6923aff275d888799569",
+      "recordedExit": 0,
+      "books": 2,
+      "units": 20,
+      "resolvedAnchorRows": 38370,
+      "seconds": 2.3699578968808055,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 18,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch18-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "35e51e117690388905efb93825db9839432c12912520103af5d1a91950c27e9a",
+      "scriptSHA256": "6f83c9fa5576cd27fa46587f3ad46785a6d48392c6aec7b4cb9d4f2645b4a7f0",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 375,
+      "resolvedAnchorRows": 42045,
+      "seconds": 2.3775512780994177,
+      "exactCandidates": {
+        "100": 2,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 19,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch19-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "6312f8caaf3dc1fcbbfb5e926ecd754d78f9a9e293178e6beaa7afe2905e0760",
+      "scriptSHA256": "90be4ab3402dd1d141423c93a9a18e124f19d3de707d628751f132c28e710ae9",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 385,
+      "resolvedAnchorRows": 24727,
+      "seconds": 0.8510435912758112,
+      "exactCandidates": {
+        "100": 5,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 20,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch20-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "784b7d5cd914ec382bcd7339c2dc526e112305ade8ce1af11e7d1004f00af483",
+      "scriptSHA256": "d1b53fe9c80cb03deca9d0b34ce4a8d0d407bd354a528bd700d191be9d376487",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 390,
+      "resolvedAnchorRows": 17561,
+      "seconds": 0.3603470791131258,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 21,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch21-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "835710b6f5f5091933a5fc31d85bc75dae5a95e2e310821b9a85c1ebcb3497b4",
+      "scriptSHA256": "91abfba4ebc5297444b3e1b1258e8ee6af60b37ea0d9610e53f6ba354b673a1d",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 368,
+      "resolvedAnchorRows": 12300,
+      "seconds": 0.19858754519373178,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 22,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch22-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "768527935becebf40aad0f65b2736786e022edc0a3dd5489b80d1e9a260a3a15",
+      "scriptSHA256": "3264097973c9b69456e1f6b810f099e126f5be370d387eca4871a364fef15bf8",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 385,
+      "resolvedAnchorRows": 8771,
+      "seconds": 0.1819119704887271,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 23,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch23-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "ade6ec13cb875ec701259893a428b7696a605b796e67fc75baef7c9e3a9762b1",
+      "scriptSHA256": "364d41a42c8bb77b74eda8fb42ff72357007f438bbfc3e421f4d924deca392b2",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 324,
+      "resolvedAnchorRows": 18157,
+      "seconds": 0.34058868512511253,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 24,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch24-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "120a67570cea1dc3a39a865fd70b9b4da8a56560eca24d6f186ba9917f7eb210",
+      "scriptSHA256": "9a9752540fe92766c44fc6e2c716f738682d6920b3ef7909c6c44adbbfe53038",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 428,
+      "resolvedAnchorRows": 12846,
+      "seconds": 0.23760917037725449,
+      "exactCandidates": {
+        "100": 1,
+        "500": 0,
+        "2000": 0
+      }
+    },
+    {
+      "batch": 25,
+      "receiptPath": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch25-recovered-v40/DISCOVERY.json",
+      "receiptSHA256": "392b81e438f826b218aa986a4c15ed340f3b7f856b8ccda19b30aa86cc99dfbe",
+      "scriptSHA256": "11b62ddcd85bfdceb90be3f7503a324609f46b6d5bb905ae05eca5c3c67cbb61",
+      "recordedExit": 0,
+      "books": 40,
+      "units": 370,
+      "resolvedAnchorRows": 17922,
+      "seconds": 0.42721890565007925,
+      "exactCandidates": {
+        "100": 0,
+        "500": 0,
+        "2000": 0
+      }
+    }
+  ],
+  "totals": {
+    "completeBooks": 937,
+    "completeNaturalUnits": 22585,
+    "resolvedAnchorRows": 4658378,
+    "seconds": 150.86138348840177,
+    "exactCandidates": {
+      "100": 41,
+      "500": 8,
+      "2000": 0
+    }
+  },
+  "nearestTo2000": [
+    {
+      "bookID": 1,
+      "bookTitle": "בראשית",
+      "unitID": "toc:39",
+      "unitStartLineIndex": 1158,
+      "unitEndLineIndex": 1188,
+      "unitRowCount": 31,
+      "candidateRawRelationshipCount": 2006,
+      "rawMembershipSHA256": "66e81fc0c19a813ae5171dc045206898d2be6393be385f5bb6e62ba9966820c2"
+    },
+    {
+      "bookID": 4,
+      "bookTitle": "במדבר",
+      "unitID": "toc:152",
+      "unitStartLineIndex": 1091,
+      "unitEndLineIndex": 1145,
+      "unitRowCount": 55,
+      "candidateRawRelationshipCount": 2009,
+      "rawMembershipSHA256": "05c79a4b8940a8f72fb6b1aa42496a27c0b1bbef82fc68309ccd699ecfb59dd6"
+    },
+    {
+      "bookID": 5,
+      "bookTitle": "דברים",
+      "unitID": "toc:161",
+      "unitStartLineIndex": 86,
+      "unitEndLineIndex": 115,
+      "unitRowCount": 30,
+      "candidateRawRelationshipCount": 1991,
+      "rawMembershipSHA256": "07274616508ed5cc31d66a83635f26fcb901de54fd8ebbdf21775ecf8957052a"
+    },
+    {
+      "bookID": 5,
+      "bookTitle": "דברים",
+      "unitID": "toc:187",
+      "unitStartLineIndex": 814,
+      "unitEndLineIndex": 842,
+      "unitRowCount": 29,
+      "candidateRawRelationshipCount": 1988,
+      "rawMembershipSHA256": "c4eb11da3c131ebb3b957c6d4fd49af9bf4045db1b12f3e53a06276760ccb949"
+    },
+    {
+      "bookID": 141,
+      "bookTitle": "תלמוד ירושלמי פאה",
+      "unitID": "toc:7012",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 86,
+      "unitRowCount": 87,
+      "candidateRawRelationshipCount": 2013,
+      "rawMembershipSHA256": "dbdd97b043d1243d399783a7dc17c4331147cfc19c7fc908ece311608bc2f4ca"
+    },
+    {
+      "bookID": 385,
+      "bookTitle": "שולחן ערוך, חושן משפט",
+      "unitID": "toc:1802740",
+      "unitStartLineIndex": 652,
+      "unitEndLineIndex": 695,
+      "unitRowCount": 44,
+      "candidateRawRelationshipCount": 2013,
+      "rawMembershipSHA256": "bc3d96aa621af8c29c3ba3235c4cb8cc491148b30f65599649dfb7f7de553f00"
+    },
+    {
+      "bookID": 2,
+      "bookTitle": "שמות",
+      "unitID": "toc:59",
+      "unitStartLineIndex": 160,
+      "unitEndLineIndex": 189,
+      "unitRowCount": 30,
+      "candidateRawRelationshipCount": 2014,
+      "rawMembershipSHA256": "71bab7cd864e35a3d4cefe39fd429f0426ae79701969307c392fd33af004fef4"
+    },
+    {
+      "bookID": 2,
+      "bookTitle": "שמות",
+      "unitID": "toc:83",
+      "unitStartLineIndex": 916,
+      "unitEndLineIndex": 934,
+      "unitRowCount": 19,
+      "candidateRawRelationshipCount": 2014,
+      "rawMembershipSHA256": "e6ada7021adf637ed4489563cef1b6f01f534ab5c759f8db2180150a89f56c09"
+    },
+    {
+      "bookID": 30,
+      "bookTitle": "משלי",
+      "unitID": "toc:801",
+      "unitStartLineIndex": 210,
+      "unitEndLineIndex": 246,
+      "unitRowCount": 37,
+      "candidateRawRelationshipCount": 1986,
+      "rawMembershipSHA256": "064170576d4d6bcd454228798711e3c9226bb437a3609f5ec6baf802366442c6"
+    },
+    {
+      "bookID": 245,
+      "bookTitle": "מדרש אגדה",
+      "unitID": "toc:13071",
+      "unitStartLineIndex": 3358,
+      "unitEndLineIndex": 3895,
+      "unitRowCount": 538,
+      "candidateRawRelationshipCount": 2015,
+      "rawMembershipSHA256": "2d2f7f9b281e72e790a24f6472a69491d1e6c7f22319df1a8fffce40307a169f"
+    },
+    {
+      "bookID": 3,
+      "bookTitle": "ויקרא",
+      "unitID": "toc:95",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 35,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 1984,
+      "rawMembershipSHA256": "bec7f88f71697cf25c45b002a03ba76b9874361ae5637fb354eb7245c265f0ae"
+    },
+    {
+      "bookID": 444,
+      "bookTitle": "באר מים חיים",
+      "unitID": "toc:1234378",
+      "unitStartLineIndex": 4847,
+      "unitEndLineIndex": 5585,
+      "unitRowCount": 739,
+      "candidateRawRelationshipCount": 2019,
+      "rawMembershipSHA256": "2b54d778ddcd58604e607685109d9b81b89799e6ab4be8f302bf2f5375265163"
+    },
+    {
+      "bookID": 161,
+      "bookTitle": "תלמוד ירושלמי מועד קטן",
+      "unitID": "toc:8173",
+      "unitStartLineIndex": 88,
+      "unitEndLineIndex": 188,
+      "unitRowCount": 101,
+      "candidateRawRelationshipCount": 1969,
+      "rawMembershipSHA256": "0e8892a2935ecbea4dda6df3b04a7b5a92113ca61e39298058321e11627cc5cc"
+    },
+    {
+      "bookID": 262,
+      "bookTitle": "שיר השירים רבה",
+      "unitID": "toc:19682",
+      "unitStartLineIndex": 90,
+      "unitEndLineIndex": 153,
+      "unitRowCount": 64,
+      "candidateRawRelationshipCount": 1964,
+      "rawMembershipSHA256": "611e782d9ed851f9876dd5d5a26cf9eb7aa6c63f3be015b51a658af799d0808f"
+    },
+    {
+      "bookID": 8,
+      "bookTitle": "שמואל א",
+      "unitID": "toc:242",
+      "unitStartLineIndex": 30,
+      "unitEndLineIndex": 66,
+      "unitRowCount": 37,
+      "candidateRawRelationshipCount": 1962,
+      "rawMembershipSHA256": "813bd32e6aef66556662d9b763b2f66c757067e14d15711c14c3931e6d63328c"
+    },
+    {
+      "bookID": 31,
+      "bookTitle": "שיר השירים",
+      "unitID": "toc:826",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 19,
+      "candidateRawRelationshipCount": 2038,
+      "rawMembershipSHA256": "e7aab8c9612319db05422a3105802a7799365421bcdef2c9131b1a34949341e8"
+    },
+    {
+      "bookID": 257,
+      "bookTitle": "שמות רבה",
+      "unitID": "toc:19541",
+      "unitStartLineIndex": 158,
+      "unitEndLineIndex": 189,
+      "unitRowCount": 32,
+      "candidateRawRelationshipCount": 2046,
+      "rawMembershipSHA256": "b68d8f58ea4d8424ed3854b5d6007474cc7d3504ca788c99b62e663f523951d5"
+    },
+    {
+      "bookID": 262,
+      "bookTitle": "שיר השירים רבה",
+      "unitID": "toc:19709",
+      "unitStartLineIndex": 189,
+      "unitEndLineIndex": 235,
+      "unitRowCount": 47,
+      "candidateRawRelationshipCount": 2050,
+      "rawMembershipSHA256": "8f85320c7bcdcca4589aa9ac1a5ab10044adf3dbc5acd1ad8c5bf4c8dc337176"
+    },
+    {
+      "bookID": 3,
+      "bookTitle": "ויקרא",
+      "unitID": "toc:103",
+      "unitStartLineIndex": 242,
+      "unitEndLineIndex": 262,
+      "unitRowCount": 21,
+      "candidateRawRelationshipCount": 2055,
+      "rawMembershipSHA256": "74fdb97cf56a1a7a6ee86a9a2a82d961ba227acea2c92835ac2bedee1bfc630b"
+    },
+    {
+      "bookID": 4,
+      "bookTitle": "במדבר",
+      "unitID": "toc:131",
+      "unitStartLineIndex": 394,
+      "unitEndLineIndex": 430,
+      "unitRowCount": 37,
+      "candidateRawRelationshipCount": 2055,
+      "rawMembershipSHA256": "757fb25ee0669ffc57d0b3ef871e4b3327b70af0d04b4f7d5dae3f755165a433"
+    }
+  ],
+  "newDatabaseReadsInSummary": 0,
+  "nativeUIExecuted": 0,
+  "originalSwiftAdapterExecuted": false,
+  "notGlobalExhaustion": true,
+  "requirementAudit": {
+    "taskIDs": [
+      "1219603004720175",
+      "1219613714507780"
+    ],
+    "originalSharedHost": "complete_inspector requires natural_at_least_workloads_met; exact_size_criterion_met is separately reported",
+    "correction": "The prior mandatory exact2000 gate was stronger than the original requirements. Root owns a separate documented correction; original strict discovery receipts are retained, not rewritten."
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=1 AND (b.totalLines BETWEEN 1 AND 99 OR b.totalLines BETWEEN 10001 AND 50000)\nAND b.id > 0 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 16,
+      "bookTitle": "יואל",
+      "declaredTotalLines": 78,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 18,
+      "bookTitle": "עובדיה",
+      "declaredTotalLines": 23,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 19,
+      "bookTitle": "יונה",
+      "declaredTotalLines": 53,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 21,
+      "bookTitle": "נחום",
+      "declaredTotalLines": 51,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 22,
+      "bookTitle": "חבקוק",
+      "declaredTotalLines": 60,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 23,
+      "bookTitle": "צפניה",
+      "declaredTotalLines": 57,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 24,
+      "bookTitle": "חגי",
+      "declaredTotalLines": 41,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 26,
+      "bookTitle": "מלאכי",
+      "declaredTotalLines": 59,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 27,
+      "bookTitle": "רות",
+      "declaredTotalLines": 90,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 40,
+      "bookTitle": "משנה ברכות",
+      "declaredTotalLines": 67,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 41,
+      "bookTitle": "משנה פאה",
+      "declaredTotalLines": 78,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 42,
+      "bookTitle": "משנה דמאי",
+      "declaredTotalLines": 61,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 43,
+      "bookTitle": "משנה כלאים",
+      "declaredTotalLines": 87,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 46,
+      "bookTitle": "משנה מעשרות",
+      "declaredTotalLines": 46,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 47,
+      "bookTitle": "משנה מעשר שני",
+      "declaredTotalLines": 63,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 48,
+      "bookTitle": "משנה חלה",
+      "declaredTotalLines": 43,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 49,
+      "bookTitle": "משנה ערלה",
+      "declaredTotalLines": 39,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 50,
+      "bookTitle": "משנה ביכורים",
+      "declaredTotalLines": 44,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 54,
+      "bookTitle": "משנה שקלים",
+      "declaredTotalLines": 61,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 55,
+      "bookTitle": "משנה יומא",
+      "declaredTotalLines": 70,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 56,
+      "bookTitle": "משנה סוכה",
+      "declaredTotalLines": 59,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 57,
+      "bookTitle": "משנה ביצה",
+      "declaredTotalLines": 48,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 58,
+      "bookTitle": "משנה ראש השנה",
+      "declaredTotalLines": 40,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 59,
+      "bookTitle": "משנה תענית",
+      "declaredTotalLines": 39,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 60,
+      "bookTitle": "משנה מגילה",
+      "declaredTotalLines": 38,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 61,
+      "bookTitle": "משנה מועד קטן",
+      "declaredTotalLines": 28,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 62,
+      "bookTitle": "משנה חגיגה",
+      "declaredTotalLines": 27,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 66,
+      "bookTitle": "משנה נזיר",
+      "declaredTotalLines": 70,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 67,
+      "bookTitle": "משנה סוטה",
+      "declaredTotalLines": 77,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 68,
+      "bookTitle": "משנה גיטין",
+      "declaredTotalLines": 85,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 69,
+      "bookTitle": "משנה קידושין",
+      "declaredTotalLines": 52,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 70,
+      "bookTitle": "משנה בבא קמא",
+      "declaredTotalLines": 90,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 72,
+      "bookTitle": "משנה בבא בתרא",
+      "declaredTotalLines": 97,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 73,
+      "bookTitle": "משנה סנהדרין",
+      "declaredTotalLines": 83,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 74,
+      "bookTitle": "משנה מכות",
+      "declaredTotalLines": 38,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 75,
+      "bookTitle": "משנה שבועות",
+      "declaredTotalLines": 71,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 76,
+      "bookTitle": "משנה עדיות",
+      "declaredTotalLines": 83,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 77,
+      "bookTitle": "משנה עבודה זרה",
+      "declaredTotalLines": 56,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 79,
+      "bookTitle": "משנה הוריות",
+      "declaredTotalLines": 24,
+      "isBaseBook": 1
+    },
+    {
+      "bookID": 82,
+      "bookTitle": "משנה חולין",
+      "declaredTotalLines": 87,
+      "isBaseBook": 1
+    }
+  ],
+  "source": {
+    "commit": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 50000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}

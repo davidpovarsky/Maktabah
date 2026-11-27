@@ -1,0 +1,685 @@
+{
+  "bookID": 465,
+  "bookTitle": "דברי סופרים",
+  "declaredTotalLines": 104,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.018066784366965294,
+  "resolvedAnchorRows": 884,
+  "units": [
+    {
+      "unitID": "toc:63552",
+      "rawUnitTitle": "פרק א",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 4,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "7f2c5f390b0c7e30e5a644380decea0554bbb62cfc03eff193d13a8c1a117708",
+      "rawMembershipSHA256": "5186db9e977ecb8cfe945b74f59fce46d011dfa864b0e0c2f814adf5b4da6e29"
+    },
+    {
+      "unitID": "toc:63553",
+      "rawUnitTitle": "פרק ב",
+      "sourceLineIndices": [
+        5,
+        6
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 5,
+      "unitEndLineIndex": 6,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "2f9cf80b937f44b41379ae3765c65668e5e96241d19d2088e76d72d18ea324b2",
+      "rawMembershipSHA256": "ccee99adb20395bfd1dff105fde925079007a55f55a2a112589bdb55c2ffb6e4"
+    },
+    {
+      "unitID": "toc:63554",
+      "rawUnitTitle": "פרק ג",
+      "sourceLineIndices": [
+        7,
+        8
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 7,
+      "unitEndLineIndex": 8,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "def4fe4f74f38325f2f5e330fcb0e51d476035250b64f6158662026485f0e557",
+      "rawMembershipSHA256": "084daf74661e2eb991cda5ecbca983548442f371ace87db05952ca15caed3e59"
+    },
+    {
+      "unitID": "toc:63555",
+      "rawUnitTitle": "פרק ד",
+      "sourceLineIndices": [
+        9,
+        10
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 9,
+      "unitEndLineIndex": 10,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 22,
+      "sourceIndicesSHA256": "11e07e7bb591992307e25655831247578120a67b9436b172b61a4df9ba743557",
+      "rawMembershipSHA256": "d21e482eb0a7da47a7590f3dc5118b924ec42696eb6500c15f148153f588a049"
+    },
+    {
+      "unitID": "toc:63556",
+      "rawUnitTitle": "פרק ה",
+      "sourceLineIndices": [
+        11,
+        12
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 11,
+      "unitEndLineIndex": 12,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 1,
+      "sourceIndicesSHA256": "2e96afc0e9b31d97254a398e034dd89ae673b8958ef903ee31144c9742fd63be",
+      "rawMembershipSHA256": "f1c5dec45dc68f1013ba226b16452a4782c16f1e88561939298145ae8dc3f8ca"
+    },
+    {
+      "unitID": "toc:63557",
+      "rawUnitTitle": "פרק ו",
+      "sourceLineIndices": [
+        13,
+        14
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 13,
+      "unitEndLineIndex": 14,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "eb18eeb3c385eb89930335264dc8ded657169ecd0251918ea0382c465e8975a5",
+      "rawMembershipSHA256": "9b34df6c390c9f570ac20d429a7557b667faee6e26d7d4a54a9ca1733e1a475c"
+    },
+    {
+      "unitID": "toc:63558",
+      "rawUnitTitle": "פרק ז",
+      "sourceLineIndices": [
+        15,
+        16
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 15,
+      "unitEndLineIndex": 16,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "1a2d14c94f55b2b79673a42a042dfd095cff4089fb431d7af4ff8f4c7831dc58",
+      "rawMembershipSHA256": "8d19f6a8afb04dfecd31b02c41626db9311eb91249b4399768d1961e4f418ff4"
+    },
+    {
+      "unitID": "toc:63559",
+      "rawUnitTitle": "פרק ח",
+      "sourceLineIndices": [
+        17,
+        18
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 17,
+      "unitEndLineIndex": 18,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "bdc12f336463816ea4cda690c2d7b45d072350f850982330eebc53463975ac47",
+      "rawMembershipSHA256": "e1e056453e06b3209d42b630eebdb625ec7cba5d42edf5b0e66c9402771a91e9"
+    },
+    {
+      "unitID": "toc:63560",
+      "rawUnitTitle": "פרק ט",
+      "sourceLineIndices": [
+        19,
+        20
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 19,
+      "unitEndLineIndex": 20,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "06fa2ca73c0fa7564b269d43e1658e83660968b8b4178910338a37d64d4f31ec",
+      "rawMembershipSHA256": "d6ccd95663d31acafa885aeabcdeba4ec03d09c955bec4d03a41ce1dfaf33e91"
+    },
+    {
+      "unitID": "toc:63561",
+      "rawUnitTitle": "פרק י",
+      "sourceLineIndices": [
+        21,
+        22,
+        23
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 21,
+      "unitEndLineIndex": 23,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 28,
+      "sourceIndicesSHA256": "a9e21884f5dbdb8d6b78b7e7df3763f14a58d8a672b311f73efcf9fa05cd4b46",
+      "rawMembershipSHA256": "c56370be06121bd710f46dd520422b7ace6d1521764a302e4dcb8b55de2e194d"
+    },
+    {
+      "unitID": "toc:63562",
+      "rawUnitTitle": "פרק יא",
+      "sourceLineIndices": [
+        24,
+        25,
+        26
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 24,
+      "unitEndLineIndex": 26,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 30,
+      "sourceIndicesSHA256": "7a56f5dbe61d684c980b000e009390fbf4e12b6ec52319a0c327c7b9617b0c4c",
+      "rawMembershipSHA256": "ec84db11c088ee18f7b4868a7b32bdf125524df5801da7ae3259dc9db7c0c4d1"
+    },
+    {
+      "unitID": "toc:63563",
+      "rawUnitTitle": "פרק יב",
+      "sourceLineIndices": [
+        27,
+        28
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 27,
+      "unitEndLineIndex": 28,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 32,
+      "sourceIndicesSHA256": "174b4f0e4c4348c546001862b6173cad8da801b308af0497bb80400774e413a9",
+      "rawMembershipSHA256": "fbaca82e7a3c1743bfc226490a05a860359b1510dd6dd77b0b2f69eb23705771"
+    },
+    {
+      "unitID": "toc:63564",
+      "rawUnitTitle": "פרק יג",
+      "sourceLineIndices": [
+        29,
+        30,
+        31
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 29,
+      "unitEndLineIndex": 31,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "883502c789e37b7936eed66684b1d5808107b5bba1ad554c5203c0d46b695ed3",
+      "rawMembershipSHA256": "7fda04fe31f24502bbc189c85d46f7051fe2e865f50de4e6714ff6443b9bc33c"
+    },
+    {
+      "unitID": "toc:63565",
+      "rawUnitTitle": "פרק יד",
+      "sourceLineIndices": [
+        32,
+        33
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 32,
+      "unitEndLineIndex": 33,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "44ca12ff7e811c7f09514d225fdf22043aa0a9e57f40358d2dee37babd14e5ec",
+      "rawMembershipSHA256": "5d5a026bf4afaa27f6dfc83eea60f7c9d14e3b7c3124db76818193d62d221ae2"
+    },
+    {
+      "unitID": "toc:63566",
+      "rawUnitTitle": "פרק טו",
+      "sourceLineIndices": [
+        34,
+        35
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 34,
+      "unitEndLineIndex": 35,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "69154ec3b3327ccc6c530123ee56527b3e6b702df75bf4cda2e89a6f65b205a3",
+      "rawMembershipSHA256": "025c9033b802d53ad4f4c27de32eaabfb7cd43c3eea3b4512d39ce5b44683f94"
+    },
+    {
+      "unitID": "toc:63567",
+      "rawUnitTitle": "פרק טז",
+      "sourceLineIndices": [
+        36,
+        37
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 36,
+      "unitEndLineIndex": 37,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 26,
+      "sourceIndicesSHA256": "0419710be814ea74d5894c3bc184c565ad771cd958218713ef84edb43dc91e6c",
+      "rawMembershipSHA256": "6a7fcae7b49f322af2bdf811ae451cb9e4883ed55670a034a4370849efe5292d"
+    },
+    {
+      "unitID": "toc:63568",
+      "rawUnitTitle": "פרק יז",
+      "sourceLineIndices": [
+        38,
+        39
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 38,
+      "unitEndLineIndex": 39,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 15,
+      "sourceIndicesSHA256": "44051911f835e863c905fecf91a2d2cbab24ed83d2043a357618949880fb1910",
+      "rawMembershipSHA256": "35b19d4960de45d9d55659aff3a1369b01660939f1c51bd5d820ced3fa93dbd7"
+    },
+    {
+      "unitID": "toc:63569",
+      "rawUnitTitle": "פרק יח",
+      "sourceLineIndices": [
+        40,
+        41
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 40,
+      "unitEndLineIndex": 41,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 3,
+      "sourceIndicesSHA256": "cc2ed1b68368c5bccb02092f73f9687a4b8ff6adec23587e4ff37ebae58897a8",
+      "rawMembershipSHA256": "bd9cce131fd295b08fc80fbbc4eaaf453ca9d9641e1fbd01ef152929310470eb"
+    },
+    {
+      "unitID": "toc:63570",
+      "rawUnitTitle": "פרק יט",
+      "sourceLineIndices": [
+        42,
+        43
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 42,
+      "unitEndLineIndex": 43,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 24,
+      "sourceIndicesSHA256": "15ebe975f8c4a7644923d3b82dee039760a07438f1b021eb90e7edeab8cf6e3e",
+      "rawMembershipSHA256": "d4b62facaa4198edbff931394bf9a119139fe2f543ed5dd9cc1e9d2dd8634eea"
+    },
+    {
+      "unitID": "toc:63571",
+      "rawUnitTitle": "פרק כ",
+      "sourceLineIndices": [
+        44,
+        45
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 44,
+      "unitEndLineIndex": 45,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "e115dbf5f2e4cf0f11c8910d1e649a81dc4fd72a84dacdda3ce26d877b8cab8b",
+      "rawMembershipSHA256": "8b5b4b0f4a1e4860ab2032e694003522a9f4f0757ea81e5598a9e471a67a10b0"
+    },
+    {
+      "unitID": "toc:63572",
+      "rawUnitTitle": "פרק כא",
+      "sourceLineIndices": [
+        46,
+        47
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 46,
+      "unitEndLineIndex": 47,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 16,
+      "sourceIndicesSHA256": "6a1c7b8e447da25dc5caa8739b2fac538e2a2e5c0a756eb2936cd60571622172",
+      "rawMembershipSHA256": "1c4795f90f51cf2be8377b3b68413b8b633589d72645d3fd4d3c932ff2036210"
+    },
+    {
+      "unitID": "toc:63573",
+      "rawUnitTitle": "פרק כב",
+      "sourceLineIndices": [
+        48,
+        49
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 48,
+      "unitEndLineIndex": 49,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 7,
+      "sourceIndicesSHA256": "6bd7cf177944cde1440735165106c09f74f6ef1924c3c84ce8ba4478508b04ef",
+      "rawMembershipSHA256": "317abd7e0a5c9f78d52deab7bd59bd8a4fbd065421066eb331793e2e822f61f2"
+    },
+    {
+      "unitID": "toc:63574",
+      "rawUnitTitle": "פרק כג",
+      "sourceLineIndices": [
+        50,
+        51
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 50,
+      "unitEndLineIndex": 51,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 9,
+      "sourceIndicesSHA256": "468bab6022e018a8bc6b0d5b38ffee186987ce01c9166538a24e83d464ecac03",
+      "rawMembershipSHA256": "6197400b55ef21d6c97bda362f95798bcf771eb73d5d02c8d5bfa152c2cef5bd"
+    },
+    {
+      "unitID": "toc:63575",
+      "rawUnitTitle": "פרק כד",
+      "sourceLineIndices": [
+        52,
+        53
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 52,
+      "unitEndLineIndex": 53,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "64e521936c9b0fe75f82d3d03b33aed044fdce965d7feac2f1bc445e38e73d5f",
+      "rawMembershipSHA256": "97f512babf7183b5284327b20512d648ce83b4369e9e1e3ad5323abb952a0e3f"
+    },
+    {
+      "unitID": "toc:63576",
+      "rawUnitTitle": "פרק כה",
+      "sourceLineIndices": [
+        54,
+        55
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 54,
+      "unitEndLineIndex": 55,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "ee0d9ede77c7a137c5467e053a5cf096e66fc01896dc473865fb7b2b35f719f6",
+      "rawMembershipSHA256": "1bc45f391357efb8f14a1298fd30f6af71141e70fe6ae273717c478b44f4d7a8"
+    },
+    {
+      "unitID": "toc:63577",
+      "rawUnitTitle": "פרק כו",
+      "sourceLineIndices": [
+        56,
+        57
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 56,
+      "unitEndLineIndex": 57,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "1d5a97f9b72ec6f345beaec1dc97854ab8fd54ad8e12e03ed15ea532fd96b097",
+      "rawMembershipSHA256": "0773430413c78828581b017b90a94f023c14fe891d3eb4107eef3a1bf739be8f"
+    },
+    {
+      "unitID": "toc:63578",
+      "rawUnitTitle": "פרק כז",
+      "sourceLineIndices": [
+        58,
+        59
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 58,
+      "unitEndLineIndex": 59,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 13,
+      "sourceIndicesSHA256": "c61af223d3c897245c0a20358552f827ed2ed4bf60223d14419c68c913a00533",
+      "rawMembershipSHA256": "298da5f7b037d465cdf8e636795820541fd28be4cdd842b17418eba9c21ec45f"
+    },
+    {
+      "unitID": "toc:63579",
+      "rawUnitTitle": "פרק כח",
+      "sourceLineIndices": [
+        60,
+        61,
+        62
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 60,
+      "unitEndLineIndex": 62,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 37,
+      "sourceIndicesSHA256": "e1f8c6585e46e58a491c74d684740d52ef5a5a372db7505c77fa031685b8cb7f",
+      "rawMembershipSHA256": "536d8a432ed42426c0ff37b6f11d2f384ced0592d49784249b9a8661ed60ccda"
+    },
+    {
+      "unitID": "toc:63580",
+      "rawUnitTitle": "פרק כט",
+      "sourceLineIndices": [
+        63,
+        64,
+        65
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 63,
+      "unitEndLineIndex": 65,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "c4ab48cdefb30f3468b8c4dd1bca7c6cc8a0b4331630144e0e675d5c1a981cc2",
+      "rawMembershipSHA256": "7473691c8d0935237af008decdc5c940a029b6d0cc34773116a4be595bab0fdc"
+    },
+    {
+      "unitID": "toc:63581",
+      "rawUnitTitle": "פרק ל",
+      "sourceLineIndices": [
+        66,
+        67
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 66,
+      "unitEndLineIndex": 67,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 8,
+      "sourceIndicesSHA256": "edfcd0502a531fd4f74233620c0cf89f06f73133e91d75fb0b8c8ff5a07d50cd",
+      "rawMembershipSHA256": "ea33bcd586d56b71ba33222447aaf3ebddc8b45a92bab3d34be8470d9a53dc5c"
+    },
+    {
+      "unitID": "toc:63582",
+      "rawUnitTitle": "פרק לא",
+      "sourceLineIndices": [
+        68,
+        69
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 68,
+      "unitEndLineIndex": 69,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "c035abd52429d24d732bf0ca2282d23dbdd7ab1b79c3f248488bd4fd09d7a2b9",
+      "rawMembershipSHA256": "411d9c45a84dfc496fb4f3a3b1068cd86ce1a60a8ff8a024c6b6dcaf85d9871f"
+    },
+    {
+      "unitID": "toc:63583",
+      "rawUnitTitle": "פרק לב",
+      "sourceLineIndices": [
+        70,
+        71,
+        72
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 70,
+      "unitEndLineIndex": 72,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 46,
+      "sourceIndicesSHA256": "f45c83708eea8dc9e375f9b5535724ac267c32a6620c37fb0254779fbffdf688",
+      "rawMembershipSHA256": "f1db76ca785082a038da27fdc16d18c7bb2770a6644f7664c57d230cbbf34f83"
+    },
+    {
+      "unitID": "toc:63584",
+      "rawUnitTitle": "פרק לג",
+      "sourceLineIndices": [
+        73,
+        74,
+        75,
+        76,
+        77
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 73,
+      "unitEndLineIndex": 77,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 52,
+      "sourceIndicesSHA256": "ea39660ed563f832ac1dcedb29089b8fe849ac87f20c5d06a45bfded14248b1b",
+      "rawMembershipSHA256": "2eba3c9c5d83befd123e05dfec5b1863bdc4864d834bd0503726a15b0e3b78fa"
+    },
+    {
+      "unitID": "toc:63585",
+      "rawUnitTitle": "פרק לד",
+      "sourceLineIndices": [
+        78,
+        79
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 78,
+      "unitEndLineIndex": 79,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 6,
+      "sourceIndicesSHA256": "513f3e868c1665ac948ac5f0a27401a8186019dae7d9363e46e073cefedf7a12",
+      "rawMembershipSHA256": "4cf34c5c4bb198c89c8752effa043b704bfdc419bc03351b0571d45bd47b9bc3"
+    },
+    {
+      "unitID": "toc:63586",
+      "rawUnitTitle": "פרק לה",
+      "sourceLineIndices": [
+        80,
+        81,
+        82
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 80,
+      "unitEndLineIndex": 82,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 23,
+      "sourceIndicesSHA256": "b7543b0d40357ecabe39f6605879eb9dd09b1bad3a2491fe8862ccac49e41af6",
+      "rawMembershipSHA256": "3523841bbfb01010655673a24e1797a7dc6c7b30ad2a0ae2f9517798340862c7"
+    },
+    {
+      "unitID": "toc:63587",
+      "rawUnitTitle": "פרק לו",
+      "sourceLineIndices": [
+        83,
+        84,
+        85,
+        86,
+        87,
+        88
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 83,
+      "unitEndLineIndex": 88,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 81,
+      "sourceIndicesSHA256": "ff592ad1d41144b3d0f9b89cce9468d5107bedbd3d09133323ae73054cd8bd2c",
+      "rawMembershipSHA256": "f613fea6e9f1352e305169764045b1cbdd02fa511d2654268d2e50ed614d2bb1"
+    },
+    {
+      "unitID": "toc:63588",
+      "rawUnitTitle": "פרק לז",
+      "sourceLineIndices": [
+        89,
+        90
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 89,
+      "unitEndLineIndex": 90,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "11a618f72c700daf3be36deb5b88bf957653aef622cbf29b6aedfdd2b8a05167",
+      "rawMembershipSHA256": "b95c59fff5d61a4883f254873102c4bd81ed7a48904eeee9e323e0e563d48a4c"
+    },
+    {
+      "unitID": "toc:63589",
+      "rawUnitTitle": "פרק לח",
+      "sourceLineIndices": [
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103
+      ],
+      "bookID": 465,
+      "bookTitle": "דברי סופרים",
+      "mode": "chapter",
+      "unitStartLineIndex": 91,
+      "unitEndLineIndex": 103,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 187,
+      "sourceIndicesSHA256": "4329a527d9f52f0ca2b04a9a632a9a0383360802c178ff1fbb23d204488ed5d0",
+      "rawMembershipSHA256": "da84d76bf7833a8884f1fe75fb4ee243b3d63cecf6d464b998b5fa1bf1292f9f"
+    }
+  ]
+}

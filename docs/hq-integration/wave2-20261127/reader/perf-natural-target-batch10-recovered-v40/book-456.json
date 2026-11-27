@@ -1,0 +1,2589 @@
+{
+  "bookID": 456,
+  "bookTitle": "אור לשמים",
+  "declaredTotalLines": 704,
+  "isBaseBook": 0,
+  "status": "COMPLETE_BOOK_METADATA_CANDIDATES_ONLY",
+  "seconds": 0.04209672100841999,
+  "resolvedAnchorRows": 3495,
+  "units": [
+    {
+      "unitID": "toc:60286",
+      "rawUnitTitle": "בראשית",
+      "sourceLineIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 0,
+      "unitEndLineIndex": 21,
+      "unitRowCount": 22,
+      "candidateRawRelationshipCount": 74,
+      "sourceIndicesSHA256": "df92c59923ee7d6a55568c4c1891ada28bee0a9a03cef6fbceee9d0fe7ad9bea",
+      "rawMembershipSHA256": "a39e28f8a0ce0d5d66d02641fb08804c0e73a8f18ecd51745b1a6670ff03adbd"
+    },
+    {
+      "unitID": "toc:60287",
+      "rawUnitTitle": "נח",
+      "sourceLineIndices": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 22,
+      "unitEndLineIndex": 42,
+      "unitRowCount": 21,
+      "candidateRawRelationshipCount": 81,
+      "sourceIndicesSHA256": "19865b1a1fb9b8b3f7ab190af67e08284db4e1318b9b8dc70ceb517b3525d1f4",
+      "rawMembershipSHA256": "efeafc179b899e503a5dc896e0aecf1bd34f5a76c956f7033edcd98889b11edf"
+    },
+    {
+      "unitID": "toc:60288",
+      "rawUnitTitle": "לך לך",
+      "sourceLineIndices": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 43,
+      "unitEndLineIndex": 55,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 74,
+      "sourceIndicesSHA256": "e964ce8085c85b335a1d80eaf29d85e182b0beabda79da0c1eccd6489cd2d9a0",
+      "rawMembershipSHA256": "67ec8e488c04b4d304044785df2f3741c98a2fa8d6a58e8dd6c9f6c92df9c529"
+    },
+    {
+      "unitID": "toc:60289",
+      "rawUnitTitle": "וירא",
+      "sourceLineIndices": [
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 56,
+      "unitEndLineIndex": 67,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 47,
+      "sourceIndicesSHA256": "c2972debc5b0b63596bde39c1abdfef4eea02a37dff3f9fc2b2bd53f3010dfc1",
+      "rawMembershipSHA256": "7818333e188372069b5078bfaa9f8802959380e1f304aa643ee64939d9b95ea4"
+    },
+    {
+      "unitID": "toc:60290",
+      "rawUnitTitle": "חיי שרה",
+      "sourceLineIndices": [
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 68,
+      "unitEndLineIndex": 85,
+      "unitRowCount": 18,
+      "candidateRawRelationshipCount": 93,
+      "sourceIndicesSHA256": "904ce0811957f81f42cbe574cd4b540c8b867794b19469d8a4e4366311d8d810",
+      "rawMembershipSHA256": "646637f755eefa2f01702d142dfae445222cfb2cbf12820d67bb325154c58e5d"
+    },
+    {
+      "unitID": "toc:60291",
+      "rawUnitTitle": "תולדות",
+      "sourceLineIndices": [
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 86,
+      "unitEndLineIndex": 98,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 75,
+      "sourceIndicesSHA256": "d75d3dcacd1e77ea8cbe34b0562b01344825b4f18b63f033bd30ed8aacafc441",
+      "rawMembershipSHA256": "20a98bef6f3faaef53da781e25c4991feacc0a96d4ea08dd7b9875633fe43165"
+    },
+    {
+      "unitID": "toc:60292",
+      "rawUnitTitle": "ויצא",
+      "sourceLineIndices": [
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 99,
+      "unitEndLineIndex": 117,
+      "unitRowCount": 19,
+      "candidateRawRelationshipCount": 77,
+      "sourceIndicesSHA256": "94df5a11a955a40144713701b6bb75733ca7b8c91fb4fd75e985daa5fd0b3021",
+      "rawMembershipSHA256": "a3c6be6335153a03b2e3de31ca928f678f88f08e044378f232c06b58db9b5869"
+    },
+    {
+      "unitID": "toc:60293",
+      "rawUnitTitle": "וישלח",
+      "sourceLineIndices": [
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 118,
+      "unitEndLineIndex": 131,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 142,
+      "sourceIndicesSHA256": "c2e6a37647221a9342754da3b707c1c8a416b7680f69f5e8d425b0f7811d2b03",
+      "rawMembershipSHA256": "53003f7109cdecbcb30d93cbb1dc94d40b476f0bc58607fcae0c59359288e754"
+    },
+    {
+      "unitID": "toc:60294",
+      "rawUnitTitle": "וישב",
+      "sourceLineIndices": [
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 132,
+      "unitEndLineIndex": 145,
+      "unitRowCount": 14,
+      "candidateRawRelationshipCount": 97,
+      "sourceIndicesSHA256": "38cd82734299bb4600785f1a8cc86ce6ac2942ad588bb93237b0fc050c1ba59d",
+      "rawMembershipSHA256": "88f11c56b64df70bb34847df151ab83d6da0a709e77e08d0038d406d8914a18c"
+    },
+    {
+      "unitID": "toc:60295",
+      "rawUnitTitle": "מקץ",
+      "sourceLineIndices": [
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 146,
+      "unitEndLineIndex": 154,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 31,
+      "sourceIndicesSHA256": "a1704385be44138c5aab208c17bd74c940b611056b198be8287d4cc8b16e9580",
+      "rawMembershipSHA256": "641ddd1d4581adfc96a4015b719ef4d97313113799d03ea218f6b5b808fd50ce"
+    },
+    {
+      "unitID": "toc:60296",
+      "rawUnitTitle": "ויגש",
+      "sourceLineIndices": [
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 155,
+      "unitEndLineIndex": 167,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 49,
+      "sourceIndicesSHA256": "fc7d26783ca6d8d72a9d1786bb0cff5af402c17151823afa127f35d153caed7f",
+      "rawMembershipSHA256": "569d7c6d6cf086390eefc0018a90e20c12db0cb1bfe4712460ce0a4f101d19f9"
+    },
+    {
+      "unitID": "toc:60297",
+      "rawUnitTitle": "ויחי",
+      "sourceLineIndices": [
+        168,
+        169,
+        170,
+        171,
+        172,
+        173
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 168,
+      "unitEndLineIndex": 173,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 19,
+      "sourceIndicesSHA256": "7c5076658608838e23e61b73548a1feee57e3bd0ec598c079e54a9d38c86e1de",
+      "rawMembershipSHA256": "a97f117eea4958e9fa97a8514bf55d7a9200072e22df108166aed33029692c9b"
+    },
+    {
+      "unitID": "toc:60298",
+      "rawUnitTitle": "שמות",
+      "sourceLineIndices": [
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 174,
+      "unitEndLineIndex": 191,
+      "unitRowCount": 18,
+      "candidateRawRelationshipCount": 100,
+      "sourceIndicesSHA256": "e25a758fb1db309619cbbdaa9076b9b78503cb67f481a1f73b70954dc360abd3",
+      "rawMembershipSHA256": "b149ba099c793e4561135ad8af394ece75436b5300963de41727925df731b7ad",
+      "candidateRawMembership": [
+        [
+          434246,
+          3025,
+          1651808
+        ],
+        [
+          5290164,
+          3025,
+          1651808
+        ],
+        [
+          6109017,
+          2,
+          6174535
+        ],
+        [
+          6115220,
+          4,
+          6177449
+        ],
+        [
+          6149662,
+          12,
+          6183166
+        ],
+        [
+          6418165,
+          103,
+          6200661
+        ],
+        [
+          6490743,
+          13,
+          6184402
+        ],
+        [
+          6547976,
+          256,
+          6303984
+        ],
+        [
+          6581229,
+          31,
+          6192710
+        ],
+        [
+          6581243,
+          28,
+          6190586
+        ],
+        [
+          6581257,
+          3695,
+          6496957
+        ],
+        [
+          6581286,
+          3695,
+          6495833
+        ],
+        [
+          6581300,
+          28,
+          6190432
+        ],
+        [
+          6581317,
+          125,
+          6254342
+        ],
+        [
+          6581333,
+          104,
+          6204960
+        ],
+        [
+          6581350,
+          110,
+          6218999
+        ],
+        [
+          6581365,
+          28,
+          6188145
+        ],
+        [
+          6581381,
+          1920,
+          6973061
+        ],
+        [
+          6581396,
+          28,
+          6189796
+        ],
+        [
+          6581410,
+          28,
+          6190117
+        ],
+        [
+          6581425,
+          28,
+          6189732
+        ],
+        [
+          6581439,
+          104,
+          6206476
+        ],
+        [
+          6581453,
+          30,
+          6191880
+        ],
+        [
+          6581468,
+          30,
+          6192384
+        ],
+        [
+          6581484,
+          1933,
+          6986701
+        ],
+        [
+          6805794,
+          1,
+          6173224
+        ],
+        [
+          6815404,
+          1,
+          6173232
+        ],
+        [
+          6848859,
+          1,
+          6173252
+        ],
+        [
+          7070870,
+          259,
+          6306001
+        ],
+        [
+          7350327,
+          1,
+          6173563
+        ],
+        [
+          7454995,
+          1,
+          6173661
+        ],
+        [
+          7556341,
+          105,
+          6208304
+        ],
+        [
+          7743042,
+          1,
+          6173855
+        ],
+        [
+          7863904,
+          1,
+          6173964
+        ],
+        [
+          7872936,
+          124,
+          6248609
+        ],
+        [
+          7939070,
+          1,
+          6172934
+        ],
+        [
+          8038419,
+          1,
+          6174120
+        ],
+        [
+          8155703,
+          1,
+          6174268
+        ],
+        [
+          8288079,
+          11,
+          6182380
+        ],
+        [
+          8440266,
+          9,
+          6181444
+        ],
+        [
+          8550907,
+          2,
+          6174733
+        ],
+        [
+          9159553,
+          2,
+          6175093
+        ],
+        [
+          9261241,
+          2,
+          6174433
+        ],
+        [
+          9308677,
+          4,
+          6176908
+        ],
+        [
+          9384168,
+          2,
+          6175366
+        ],
+        [
+          9451884,
+          2,
+          6175447
+        ],
+        [
+          9482594,
+          2,
+          6174471
+        ],
+        [
+          9494018,
+          2,
+          6174479
+        ],
+        [
+          9517159,
+          2,
+          6174491
+        ],
+        [
+          9519222,
+          2,
+          6174493
+        ],
+        [
+          9520586,
+          2,
+          6174496
+        ],
+        [
+          9573623,
+          103,
+          6201532
+        ],
+        [
+          9601414,
+          103,
+          6201876
+        ],
+        [
+          10827147,
+          28,
+          6190586
+        ],
+        [
+          10827148,
+          31,
+          6192710
+        ],
+        [
+          10827149,
+          3695,
+          6495832
+        ],
+        [
+          10827150,
+          1,
+          6174268
+        ],
+        [
+          10827151,
+          1,
+          6173252
+        ],
+        [
+          10827152,
+          1,
+          6173964
+        ],
+        [
+          10827153,
+          1,
+          6173563
+        ],
+        [
+          10827154,
+          3695,
+          6496957
+        ],
+        [
+          10827155,
+          1,
+          6173855
+        ],
+        [
+          10827156,
+          1,
+          6173224
+        ],
+        [
+          10827157,
+          12,
+          6183166
+        ],
+        [
+          10827158,
+          1,
+          6173661
+        ],
+        [
+          10827159,
+          4,
+          6177449
+        ],
+        [
+          10827160,
+          28,
+          6189796
+        ],
+        [
+          10827161,
+          2,
+          6174471
+        ],
+        [
+          10827162,
+          105,
+          6208614
+        ],
+        [
+          10827163,
+          2,
+          6174491
+        ],
+        [
+          10827164,
+          256,
+          6303984
+        ],
+        [
+          10827165,
+          2,
+          6174479
+        ],
+        [
+          10827166,
+          28,
+          6190117
+        ],
+        [
+          10827167,
+          1,
+          6173232
+        ],
+        [
+          10827168,
+          124,
+          6248598
+        ],
+        [
+          10827169,
+          2,
+          6174433
+        ],
+        [
+          10827170,
+          4,
+          6176908
+        ],
+        [
+          10827171,
+          4,
+          6176537
+        ],
+        [
+          10827172,
+          30,
+          6191880
+        ],
+        [
+          10827173,
+          103,
+          6201855
+        ],
+        [
+          10827174,
+          30,
+          6192384
+        ],
+        [
+          10827175,
+          2,
+          6175366
+        ],
+        [
+          10827176,
+          2,
+          6175447
+        ],
+        [
+          10827177,
+          103,
+          6201521
+        ],
+        [
+          10827178,
+          28,
+          6190432
+        ],
+        [
+          10827179,
+          2,
+          6174496
+        ],
+        [
+          10827180,
+          1,
+          6174120
+        ],
+        [
+          10827181,
+          2,
+          6175093
+        ],
+        [
+          10827182,
+          125,
+          6254342
+        ],
+        [
+          10827183,
+          259,
+          6306001
+        ],
+        [
+          10827184,
+          1,
+          6172934
+        ],
+        [
+          10827185,
+          2,
+          6174493
+        ],
+        [
+          10827186,
+          104,
+          6204953
+        ],
+        [
+          10827187,
+          2,
+          6174492
+        ],
+        [
+          10827188,
+          110,
+          6218998
+        ],
+        [
+          10827189,
+          105,
+          6208300
+        ],
+        [
+          10827190,
+          103,
+          6200633
+        ],
+        [
+          10827191,
+          11,
+          6182380
+        ],
+        [
+          10827192,
+          11,
+          6182443
+        ],
+        [
+          13644062,
+          105,
+          10588545
+        ]
+      ]
+    },
+    {
+      "unitID": "toc:60299",
+      "rawUnitTitle": "וארא",
+      "sourceLineIndices": [
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 192,
+      "unitEndLineIndex": 200,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 50,
+      "sourceIndicesSHA256": "dd35554d42911833d656dcd4e26eea0010f180286e7720fdbb734f5a00e3d678",
+      "rawMembershipSHA256": "a8ab1ec47953c2419c78cbdf4a5de9c9cfeb19f1f459591f1d75b180ca6d4f3e"
+    },
+    {
+      "unitID": "toc:60300",
+      "rawUnitTitle": "בא",
+      "sourceLineIndices": [
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 201,
+      "unitEndLineIndex": 213,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 84,
+      "sourceIndicesSHA256": "cc7e1186660228afcfe06e97bf8c298886efacbf407f971c271d2d554aa28fd6",
+      "rawMembershipSHA256": "d660a7c3c8dc121e20f967436f4714544917453ebbbf9d8f19cd4848bb87fe5d"
+    },
+    {
+      "unitID": "toc:60301",
+      "rawUnitTitle": "בשלח",
+      "sourceLineIndices": [
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 214,
+      "unitEndLineIndex": 230,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 77,
+      "sourceIndicesSHA256": "7b791b80926522cbcb72c12bac83fd1034bce4a93df3add2a09a447df6332706",
+      "rawMembershipSHA256": "d014ea749f3f7bd0a4499b2b8cc2a5f618aa022d39aa3cb428b943c0c1c8b71b"
+    },
+    {
+      "unitID": "toc:60302",
+      "rawUnitTitle": "יתרו",
+      "sourceLineIndices": [
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 231,
+      "unitEndLineIndex": 243,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 63,
+      "sourceIndicesSHA256": "1035d0064fdb17632b3e1e4898d55d0804a2e831d5a8b9b4b540910ce753de74",
+      "rawMembershipSHA256": "943d7665b7a40f546421dcb7ecedeb3f6e7333cb7b698e8bdd125418f359b9ba"
+    },
+    {
+      "unitID": "toc:60303",
+      "rawUnitTitle": "משפטים",
+      "sourceLineIndices": [
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 244,
+      "unitEndLineIndex": 259,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 78,
+      "sourceIndicesSHA256": "91523d3703595464b7dcd875bd20a42ec72a714b39b722f0164efe970f6ca7ba",
+      "rawMembershipSHA256": "0d52e9d5ee28d9d58ded3dd7c29ba8a4e27369b6859b941a48586fe88a47e3e0"
+    },
+    {
+      "unitID": "toc:60304",
+      "rawUnitTitle": "תרומה",
+      "sourceLineIndices": [
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 260,
+      "unitEndLineIndex": 277,
+      "unitRowCount": 18,
+      "candidateRawRelationshipCount": 100,
+      "sourceIndicesSHA256": "921665e64b0911d649799d0e70ab0f41334f6374eeb7f71b8d6f0a141711eae5",
+      "rawMembershipSHA256": "88feda0f105efdc6ba4c67cb9128042359850b0586b7cd54e002312251eca161",
+      "candidateRawMembership": [
+        [
+          434659,
+          3025,
+          1648116
+        ],
+        [
+          434734,
+          3025,
+          1651125
+        ],
+        [
+          434741,
+          3025,
+          1642051
+        ],
+        [
+          5290392,
+          3025,
+          1642051
+        ],
+        [
+          5290396,
+          3025,
+          1651125
+        ],
+        [
+          6180267,
+          4,
+          6177592
+        ],
+        [
+          6581831,
+          30,
+          6191793
+        ],
+        [
+          6581846,
+          30,
+          6191793
+        ],
+        [
+          6581860,
+          28,
+          6190320
+        ],
+        [
+          6581875,
+          28,
+          6190032
+        ],
+        [
+          6581888,
+          28,
+          6189823
+        ],
+        [
+          6581916,
+          108,
+          6217468
+        ],
+        [
+          6581932,
+          28,
+          6189107
+        ],
+        [
+          6581947,
+          257,
+          6304961
+        ],
+        [
+          6581962,
+          382,
+          6332412
+        ],
+        [
+          6581979,
+          104,
+          6204179
+        ],
+        [
+          6581995,
+          104,
+          6203558
+        ],
+        [
+          6582009,
+          78,
+          6198555
+        ],
+        [
+          6582025,
+          104,
+          6204178
+        ],
+        [
+          6582039,
+          106,
+          6213697
+        ],
+        [
+          6582052,
+          106,
+          6210647
+        ],
+        [
+          6582068,
+          119,
+          6234891
+        ],
+        [
+          6582084,
+          31,
+          6192630
+        ],
+        [
+          6582099,
+          107,
+          6216176
+        ],
+        [
+          6582114,
+          104,
+          6204960
+        ],
+        [
+          6582141,
+          28,
+          6188741
+        ],
+        [
+          6582171,
+          111,
+          6220655
+        ],
+        [
+          6582186,
+          108,
+          6216944
+        ],
+        [
+          6582201,
+          125,
+          6253504
+        ],
+        [
+          6582216,
+          3052,
+          7724538
+        ],
+        [
+          6661396,
+          32,
+          6192740
+        ],
+        [
+          6722057,
+          256,
+          6304198
+        ],
+        [
+          6722072,
+          256,
+          6304198
+        ],
+        [
+          6896112,
+          259,
+          6305813
+        ],
+        [
+          7041107,
+          256,
+          6304621
+        ],
+        [
+          7305263,
+          132,
+          6271408
+        ],
+        [
+          7350343,
+          1,
+          6173563
+        ],
+        [
+          7485393,
+          105,
+          6206815
+        ],
+        [
+          7700979,
+          105,
+          6209253
+        ],
+        [
+          8346795,
+          3,
+          6175734
+        ],
+        [
+          8436163,
+          5,
+          6178086
+        ],
+        [
+          8795486,
+          109,
+          6218327
+        ],
+        [
+          8842201,
+          2,
+          6174411
+        ],
+        [
+          8878720,
+          2,
+          6174940
+        ],
+        [
+          8904758,
+          136,
+          6277723
+        ],
+        [
+          9093932,
+          2,
+          6175044
+        ],
+        [
+          9101401,
+          12,
+          6183329
+        ],
+        [
+          9139054,
+          5,
+          6178659
+        ],
+        [
+          9143460,
+          12,
+          6183059
+        ],
+        [
+          9193931,
+          2,
+          6175119
+        ],
+        [
+          9199769,
+          5,
+          6178700
+        ],
+        [
+          9317475,
+          2,
+          6175292
+        ],
+        [
+          9449803,
+          2,
+          6175470
+        ],
+        [
+          10827355,
+          2,
+          6175119
+        ],
+        [
+          10827356,
+          2,
+          6175072
+        ],
+        [
+          10827357,
+          106,
+          6213686
+        ],
+        [
+          10827358,
+          106,
+          6210630
+        ],
+        [
+          10827359,
+          2,
+          6175044
+        ],
+        [
+          10827360,
+          2,
+          6174953
+        ],
+        [
+          10827361,
+          31,
+          6192630
+        ],
+        [
+          10827362,
+          119,
+          6234891
+        ],
+        [
+          10827363,
+          104,
+          6204953
+        ],
+        [
+          10827364,
+          107,
+          6216161
+        ],
+        [
+          10827366,
+          132,
+          6271408
+        ],
+        [
+          10827367,
+          256,
+          6304621
+        ],
+        [
+          10827368,
+          28,
+          6188741
+        ],
+        [
+          10827369,
+          2,
+          6175470
+        ],
+        [
+          10827370,
+          1,
+          6173563
+        ],
+        [
+          10827371,
+          111,
+          6220648
+        ],
+        [
+          10827372,
+          12,
+          6183059
+        ],
+        [
+          10827373,
+          109,
+          6218321
+        ],
+        [
+          10827374,
+          12,
+          6183329
+        ],
+        [
+          10827375,
+          3,
+          6175734
+        ],
+        [
+          10827376,
+          2,
+          6174940
+        ],
+        [
+          10827377,
+          108,
+          6216935
+        ],
+        [
+          10827378,
+          2,
+          6175292
+        ],
+        [
+          10827379,
+          125,
+          6253486
+        ],
+        [
+          10827380,
+          3052,
+          7724538
+        ],
+        [
+          10827381,
+          5,
+          6178659
+        ],
+        [
+          10827382,
+          136,
+          6277718
+        ],
+        [
+          10827383,
+          5,
+          6178427
+        ],
+        [
+          10827384,
+          105,
+          6206803
+        ],
+        [
+          10827385,
+          5,
+          6178700
+        ],
+        [
+          10827386,
+          256,
+          6304198
+        ],
+        [
+          10827387,
+          30,
+          6191793
+        ],
+        [
+          10827388,
+          28,
+          6190320
+        ],
+        [
+          10827389,
+          28,
+          6190032
+        ],
+        [
+          10827390,
+          30,
+          6191793
+        ],
+        [
+          10827391,
+          256,
+          6304198
+        ],
+        [
+          10827392,
+          3,
+          6176384
+        ],
+        [
+          10827393,
+          28,
+          6189106
+        ],
+        [
+          10827394,
+          257,
+          6304961
+        ],
+        [
+          10827396,
+          104,
+          6203552
+        ],
+        [
+          10827397,
+          104,
+          6204176
+        ],
+        [
+          10827398,
+          2,
+          6174411
+        ],
+        [
+          10827399,
+          78,
+          6198555
+        ],
+        [
+          10827400,
+          105,
+          6209253
+        ],
+        [
+          10827401,
+          5,
+          6178086
+        ],
+        [
+          13410653,
+          256,
+          10350170
+        ],
+        [
+          13533859,
+          256,
+          10350170
+        ]
+      ]
+    },
+    {
+      "unitID": "toc:60305",
+      "rawUnitTitle": "תצוה",
+      "sourceLineIndices": [
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 278,
+      "unitEndLineIndex": 289,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 48,
+      "sourceIndicesSHA256": "a2e106acab6fd40ecf3146320b9f189d38f73f47c61d11131763e004d32c5b31",
+      "rawMembershipSHA256": "3914007ef62a3e1d273f83ca9e8d27813797896da3b1287d269860a7159647ab"
+    },
+    {
+      "unitID": "toc:60306",
+      "rawUnitTitle": "כי תשא",
+      "sourceLineIndices": [
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 290,
+      "unitEndLineIndex": 318,
+      "unitRowCount": 29,
+      "candidateRawRelationshipCount": 115,
+      "sourceIndicesSHA256": "4e44b814812992b2e81db7d5c578ae8b6dcb485da2b78657e01cb65c928cc685",
+      "rawMembershipSHA256": "ca1f0c4bf09a28a9e6c52cc4c8660323134523607411ffa8cb9c12883b8d3d4f"
+    },
+    {
+      "unitID": "toc:60307",
+      "rawUnitTitle": "ויקהל",
+      "sourceLineIndices": [
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 319,
+      "unitEndLineIndex": 327,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "53c508ffec068579575f8f536bc3fdc8cc920a8d30e4c2a0a4488739a81898e4",
+      "rawMembershipSHA256": "f5dadc9a9b8403017dc5155920e2390e0cdca1285e19682124ffc4e232afb8d9"
+    },
+    {
+      "unitID": "toc:60308",
+      "rawUnitTitle": "פקודי",
+      "sourceLineIndices": [
+        328,
+        329
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 328,
+      "unitEndLineIndex": 329,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 5,
+      "sourceIndicesSHA256": "da280c03c5baa6b75ff3609cf1cf50d31ea8c20817d28d450c1d6cb8b280bdc1",
+      "rawMembershipSHA256": "c976c6c35dfbb8ae350dfd997280b15a09c02896fb4cd61028f4faadb0dfe317"
+    },
+    {
+      "unitID": "toc:60309",
+      "rawUnitTitle": "ויקרא",
+      "sourceLineIndices": [
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 330,
+      "unitEndLineIndex": 344,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 63,
+      "sourceIndicesSHA256": "9e58fac4d98ff1b044c08996616ad2e90530f2d488c01025f3fe50a921407bd8",
+      "rawMembershipSHA256": "0a836de209087ca1a99c64a6dfec97fa967789edb9606aabdb9c8eb2498b6301"
+    },
+    {
+      "unitID": "toc:60310",
+      "rawUnitTitle": "צו",
+      "sourceLineIndices": [
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 345,
+      "unitEndLineIndex": 353,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 17,
+      "sourceIndicesSHA256": "b757d521db9bea3612fad2efd6c3b699232b40dc9cf3d318ff90695aae386e7d",
+      "rawMembershipSHA256": "10de803412431dd49b01313172a2324d8ed50ad987d272cc743df619896e02c1"
+    },
+    {
+      "unitID": "toc:60311",
+      "rawUnitTitle": "שמיני",
+      "sourceLineIndices": [
+        354,
+        355,
+        356,
+        357,
+        358
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 354,
+      "unitEndLineIndex": 358,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 25,
+      "sourceIndicesSHA256": "142708ee112c8f3c2207170205b8811002304d001064fc69ac95d0c83c10ad5c",
+      "rawMembershipSHA256": "f95043560453275422eb63ec7e89fbae2a546c27db0681d1f00d1b3aedb94d15"
+    },
+    {
+      "unitID": "toc:60312",
+      "rawUnitTitle": "תזריע",
+      "sourceLineIndices": [
+        359,
+        360,
+        361
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 359,
+      "unitEndLineIndex": 361,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 0,
+      "sourceIndicesSHA256": "447860b99d42712faf5572b3bc224e4a0e8baa2e104e6677c050ea43a45f8aec",
+      "rawMembershipSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "unitID": "toc:60313",
+      "rawUnitTitle": "מצורע",
+      "sourceLineIndices": [
+        362,
+        363,
+        364,
+        365,
+        366
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 362,
+      "unitEndLineIndex": 366,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 11,
+      "sourceIndicesSHA256": "380b8bf0c6a22a4dd4d465d1d23cbe2ed758f9b01283884ef6259727dfe0ac67",
+      "rawMembershipSHA256": "6d4dba53ff56d650b755dada302ec8ca6ee11e9cc2813c716ddcf85736d99e78"
+    },
+    {
+      "unitID": "toc:60314",
+      "rawUnitTitle": "אחרי מות",
+      "sourceLineIndices": [
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 367,
+      "unitEndLineIndex": 374,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 46,
+      "sourceIndicesSHA256": "c77300ec4f3ced5a909dcb9c027b87d96bbbc22c44a14204383f0c2cf06cb456",
+      "rawMembershipSHA256": "c1a123b76467db2c84b14dc97634dd6c7ac468fbe142821131a145b02a138c0e"
+    },
+    {
+      "unitID": "toc:60315",
+      "rawUnitTitle": "קדושים",
+      "sourceLineIndices": [
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 375,
+      "unitEndLineIndex": 383,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 80,
+      "sourceIndicesSHA256": "9c5c7643031590f47f3f28a82e659d76bb44d53e9e95d08d5447489739fdf916",
+      "rawMembershipSHA256": "9209cd194b7f232dc7f984bd5356a838d4fbafff7c1bea17d0f3292acf4582fd"
+    },
+    {
+      "unitID": "toc:60316",
+      "rawUnitTitle": "אמור",
+      "sourceLineIndices": [
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 384,
+      "unitEndLineIndex": 404,
+      "unitRowCount": 21,
+      "candidateRawRelationshipCount": 87,
+      "sourceIndicesSHA256": "4f5deda50d63ed996f47ec85860fe95bc5feb149f5ecace2a9d908a611efb6b5",
+      "rawMembershipSHA256": "430ff5e195e26abcb9b90913584e44f4d8c1dab9863c1ceda59ed4967dd34633"
+    },
+    {
+      "unitID": "toc:60317",
+      "rawUnitTitle": "בהר",
+      "sourceLineIndices": [
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 405,
+      "unitEndLineIndex": 419,
+      "unitRowCount": 15,
+      "candidateRawRelationshipCount": 73,
+      "sourceIndicesSHA256": "ff53bc6fb4d5626541817e24dcd29a87481bfbd728350dd317c6d8c36e3494a5",
+      "rawMembershipSHA256": "107ab62d83213750133fd04e5a94c5b07a679eb52f44ed12a76283908d424563"
+    },
+    {
+      "unitID": "toc:60318",
+      "rawUnitTitle": "בחוקתי",
+      "sourceLineIndices": [
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 420,
+      "unitEndLineIndex": 430,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 67,
+      "sourceIndicesSHA256": "58fdf0779dcfef9d6e26fa4a8a789f75c7379cb10acbbb0981893caf5189de46",
+      "rawMembershipSHA256": "b6c7c38a9f00e7d29ca6b679ff56184c09acaa53185c9162fb5138358d332af8"
+    },
+    {
+      "unitID": "toc:60319",
+      "rawUnitTitle": "במדבר",
+      "sourceLineIndices": [
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 431,
+      "unitEndLineIndex": 442,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 59,
+      "sourceIndicesSHA256": "9a40184f0f0881c34315a3a8393f60c2ed50da55d3675142bd69547b31951160",
+      "rawMembershipSHA256": "9faac8b54a417e86ecf73a3f2749bb5629a46ddd3b1a8a9fc54c49f269eb57ea"
+    },
+    {
+      "unitID": "toc:60320",
+      "rawUnitTitle": "נשא",
+      "sourceLineIndices": [
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 443,
+      "unitEndLineIndex": 451,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 82,
+      "sourceIndicesSHA256": "30a51684e4b455f84684b55749816e718fe4cfb338fd5aceb6e6219fc3f61d0e",
+      "rawMembershipSHA256": "42d8313c2e3f33b3cc817272b91771dbae6749a9d2537ef730fb0ffeaa1ae4bb"
+    },
+    {
+      "unitID": "toc:60321",
+      "rawUnitTitle": "בהעלותך",
+      "sourceLineIndices": [
+        452,
+        453,
+        454,
+        455,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462,
+        463,
+        464,
+        465,
+        466,
+        467
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 452,
+      "unitEndLineIndex": 467,
+      "unitRowCount": 16,
+      "candidateRawRelationshipCount": 67,
+      "sourceIndicesSHA256": "5827646394f83644c9b73e6720e8f3b0834e32791e73e89653dee99c0851dadf",
+      "rawMembershipSHA256": "6873ad93772fccd59cab25cb44dc00ee60651d5fe6ecc1861503822f3defef36"
+    },
+    {
+      "unitID": "toc:60322",
+      "rawUnitTitle": "שלח",
+      "sourceLineIndices": [
+        468,
+        469,
+        470,
+        471,
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480,
+        481,
+        482,
+        483,
+        484
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 468,
+      "unitEndLineIndex": 484,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 90,
+      "sourceIndicesSHA256": "8debdaf87672e7a9c31c1c830bdf3bf05876904f26318db1a1f3d9ff3ac0eeed",
+      "rawMembershipSHA256": "095a1508d9a56e11ff0dbb4b8640757c15bde075d671aea384a642dfa0b68ba3"
+    },
+    {
+      "unitID": "toc:60323",
+      "rawUnitTitle": "קרח",
+      "sourceLineIndices": [
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 485,
+      "unitEndLineIndex": 492,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "fc9d6ae6a59899862fe0e54eb5317e1ca05cc5742b72006b69dc6da42d0924c0",
+      "rawMembershipSHA256": "8c57ce20194ac914976c735356c1b4a46217b339b86bfb46eb157b1ca6205d5f"
+    },
+    {
+      "unitID": "toc:60324",
+      "rawUnitTitle": "חקת",
+      "sourceLineIndices": [
+        493,
+        494,
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 493,
+      "unitEndLineIndex": 511,
+      "unitRowCount": 19,
+      "candidateRawRelationshipCount": 99,
+      "sourceIndicesSHA256": "fe39881a688c971f95b47173a3dc86384b1c5d9fb251c6a23374d66b665fa9ad",
+      "rawMembershipSHA256": "52698664a4cb1ffafe5d0b08c6258be7bfa6ac757e796be4fe4540064aa1f7da"
+    },
+    {
+      "unitID": "toc:60325",
+      "rawUnitTitle": "בלק",
+      "sourceLineIndices": [
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 512,
+      "unitEndLineIndex": 528,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 74,
+      "sourceIndicesSHA256": "9ec6ae6cfde6904b61cd9e445e6042303fadca26ef35c7dac5b8de51afa0ff04",
+      "rawMembershipSHA256": "25fbb10ed10bb59829c3a5bf5059c69fe403388e15f35b70ef6f9402ebf5b4ac"
+    },
+    {
+      "unitID": "toc:60326",
+      "rawUnitTitle": "פנחס",
+      "sourceLineIndices": [
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 529,
+      "unitEndLineIndex": 541,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 115,
+      "sourceIndicesSHA256": "b2d839897b49f861bb5bbcd9824ff98224504af733606a6025cbf1826d637af5",
+      "rawMembershipSHA256": "e98e1c30231d62463b885b037aaccd8c1137f5c652a4301c751e9f49beabbcc0"
+    },
+    {
+      "unitID": "toc:60327",
+      "rawUnitTitle": "מטות",
+      "sourceLineIndices": [
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 542,
+      "unitEndLineIndex": 549,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 41,
+      "sourceIndicesSHA256": "2ee7330540780e4ccbb4888f2cd111e4e5f6d7d71ba18cc4c94ddcca99ab92ab",
+      "rawMembershipSHA256": "7bb777c6a6c8811397cbdeb87ba051fb152a03533f1faa9db077d9a959d2d443"
+    },
+    {
+      "unitID": "toc:60328",
+      "rawUnitTitle": "מסעי",
+      "sourceLineIndices": [
+        550,
+        551,
+        552,
+        553,
+        554
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 550,
+      "unitEndLineIndex": 554,
+      "unitRowCount": 5,
+      "candidateRawRelationshipCount": 12,
+      "sourceIndicesSHA256": "238ef836ebc43fce8db5440c357e069bd3edaa401939fb44c198b9a686c00a57",
+      "rawMembershipSHA256": "5f08f3d1d8a16ab29e35c1f8c76505a85c2d580fea8ea6b38ba9d12a387e6957"
+    },
+    {
+      "unitID": "toc:60329",
+      "rawUnitTitle": "דברים",
+      "sourceLineIndices": [
+        555,
+        556,
+        557,
+        558,
+        559,
+        560
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 555,
+      "unitEndLineIndex": 560,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 38,
+      "sourceIndicesSHA256": "431a3fad9d4f6d247fecdec2ee57894946a3c51db6cf709a6f50db819530e521",
+      "rawMembershipSHA256": "0a3ae91bccec3755e506afa7b5947d952974afacbb83f0cd8966eed4ebd70d25"
+    },
+    {
+      "unitID": "toc:60330",
+      "rawUnitTitle": "ואתחנן",
+      "sourceLineIndices": [
+        561,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 561,
+      "unitEndLineIndex": 567,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 27,
+      "sourceIndicesSHA256": "2bf53d3c81a1f6851801754e793e39f3fa57818a8b488190df8d4473a0fbd76f",
+      "rawMembershipSHA256": "ffb6ca22a5f4010f094b1fa638afb36af689648be632ea7ffb5405c300bf7bbe"
+    },
+    {
+      "unitID": "toc:60331",
+      "rawUnitTitle": "עקב",
+      "sourceLineIndices": [
+        568,
+        569,
+        570,
+        571,
+        572,
+        573,
+        574,
+        575,
+        576,
+        577,
+        578,
+        579,
+        580,
+        581,
+        582,
+        583,
+        584
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 568,
+      "unitEndLineIndex": 584,
+      "unitRowCount": 17,
+      "candidateRawRelationshipCount": 72,
+      "sourceIndicesSHA256": "fcaab4e16a2049ba41313d6191c00755ab491609f594a3ed6c6135fbee113d15",
+      "rawMembershipSHA256": "cf7362c3ecd018bb177344cb3edc965ac2a0abd703f93ab1cf463236b89a8fc6"
+    },
+    {
+      "unitID": "toc:60332",
+      "rawUnitTitle": "ראה",
+      "sourceLineIndices": [
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594,
+        595,
+        596,
+        597
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 585,
+      "unitEndLineIndex": 597,
+      "unitRowCount": 13,
+      "candidateRawRelationshipCount": 59,
+      "sourceIndicesSHA256": "dc0d6e74deda95231410d540a73d0bd63d5316ba618aee4e39ec5a4ac885d020",
+      "rawMembershipSHA256": "d3843bd44bf227a4a30cc07538a0da177f5ad1df88784e4d431ea730f9f3be44"
+    },
+    {
+      "unitID": "toc:60333",
+      "rawUnitTitle": "שופטים",
+      "sourceLineIndices": [
+        598,
+        599,
+        600,
+        601,
+        602,
+        603,
+        604,
+        605,
+        606,
+        607,
+        608,
+        609
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 598,
+      "unitEndLineIndex": 609,
+      "unitRowCount": 12,
+      "candidateRawRelationshipCount": 78,
+      "sourceIndicesSHA256": "f0e13edfb347381b7b58d063e39be6df502a8bc25f96527dcfb21747634fa356",
+      "rawMembershipSHA256": "f1a4b9ff56fcd4b9754d62fcf6998a6062eca3beda2b300efa5a83c1be6e9a67"
+    },
+    {
+      "unitID": "toc:60334",
+      "rawUnitTitle": "כי תצא",
+      "sourceLineIndices": [
+        610,
+        611,
+        612,
+        613,
+        614,
+        615,
+        616,
+        617,
+        618
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 610,
+      "unitEndLineIndex": 618,
+      "unitRowCount": 9,
+      "candidateRawRelationshipCount": 51,
+      "sourceIndicesSHA256": "07b445c91c780d3570662cfec5ffb7b18bd65ea4fa00854d535c8a763fd1f7f3",
+      "rawMembershipSHA256": "34dde141913d03cf3ceeab37b4494022ff2180a6ec29070a6b76a6090489e8c0"
+    },
+    {
+      "unitID": "toc:60335",
+      "rawUnitTitle": "כי תבוא",
+      "sourceLineIndices": [
+        619,
+        620,
+        621,
+        622,
+        623,
+        624,
+        625,
+        626,
+        627,
+        628,
+        629
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 619,
+      "unitEndLineIndex": 629,
+      "unitRowCount": 11,
+      "candidateRawRelationshipCount": 64,
+      "sourceIndicesSHA256": "6397afb241e251fcfc20921e1fd6dd28615f3bfd7e65cfaa6f7157fdfea5e392",
+      "rawMembershipSHA256": "c492440fa5cbf935ed61f83f25e4cc21cfdc172d8d3da26210205e61931dc94a"
+    },
+    {
+      "unitID": "toc:60336",
+      "rawUnitTitle": "נצבים",
+      "sourceLineIndices": [
+        630,
+        631,
+        632,
+        633,
+        634,
+        635,
+        636,
+        637
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 630,
+      "unitEndLineIndex": 637,
+      "unitRowCount": 8,
+      "candidateRawRelationshipCount": 56,
+      "sourceIndicesSHA256": "34f6ae29418cf4848bfb82f653b551c38705ee99079f0812d0ac002397363819",
+      "rawMembershipSHA256": "c6c3075c49d756b85db264c1a541eed3e3e5628d20f5664d766cbfde89cec057"
+    },
+    {
+      "unitID": "toc:60337",
+      "rawUnitTitle": "וילך",
+      "sourceLineIndices": [
+        638,
+        639,
+        640
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 638,
+      "unitEndLineIndex": 640,
+      "unitRowCount": 3,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "745d475b4a5adcdf0b104c4eafe2344c880d016a00b82491575e15a6c582e35f",
+      "rawMembershipSHA256": "0edb8145dd5b60491b5aced487ece6166a415cfe4d28050516a968d794239b48"
+    },
+    {
+      "unitID": "toc:60338",
+      "rawUnitTitle": "האזינו",
+      "sourceLineIndices": [
+        641,
+        642,
+        643,
+        644,
+        645,
+        646
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 641,
+      "unitEndLineIndex": 646,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 29,
+      "sourceIndicesSHA256": "012e677b63b6f20317a9e45b2f4e5816b9e7e09104a955ecb4980dfd2e927055",
+      "rawMembershipSHA256": "03848ba4c3dcf99ce610966b8ef06474161834dd30175c839842ac1446fb54d0"
+    },
+    {
+      "unitID": "toc:60339",
+      "rawUnitTitle": "וזאת הברכה",
+      "sourceLineIndices": [
+        647,
+        648
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 647,
+      "unitEndLineIndex": 648,
+      "unitRowCount": 2,
+      "candidateRawRelationshipCount": 4,
+      "sourceIndicesSHA256": "8375575b123345a25d4b2be7d9f5f4a95eeeedad908de5656d44df69299a1ca4",
+      "rawMembershipSHA256": "26cbed702e20d6e25708c6883ce525a27664cb53c68169021f427071416d6cc8"
+    },
+    {
+      "unitID": "toc:60340",
+      "rawUnitTitle": "סוכות",
+      "sourceLineIndices": [
+        649,
+        650,
+        651,
+        652,
+        653,
+        654
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 649,
+      "unitEndLineIndex": 654,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 24,
+      "sourceIndicesSHA256": "28d90cfc4b60c335fac7553a115f563787d44d8ec8390ba4c2bd4242acea864d",
+      "rawMembershipSHA256": "aae31034e243a1b177fe3b41f5872c7dd7bdc0559cc4152b4a388df326bf1921"
+    },
+    {
+      "unitID": "toc:60341",
+      "rawUnitTitle": "ליקוטים",
+      "sourceLineIndices": [
+        655,
+        656,
+        657,
+        658,
+        659,
+        660,
+        661,
+        662,
+        663,
+        664,
+        665,
+        666,
+        667,
+        668,
+        669,
+        670,
+        671,
+        672,
+        673,
+        674,
+        675,
+        676,
+        677,
+        678,
+        679,
+        680,
+        681,
+        682,
+        683,
+        684,
+        685,
+        686,
+        687,
+        688,
+        689,
+        690
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 655,
+      "unitEndLineIndex": 690,
+      "unitRowCount": 36,
+      "candidateRawRelationshipCount": 175,
+      "sourceIndicesSHA256": "bc5168435c22334d5082fc7bd03837ae1a1b964d179781f304d9e45a6c9e2382",
+      "rawMembershipSHA256": "dbcab893f1161136dbfe77b2a825df3c0daf696d25d07e917d8c1690b63755ab"
+    },
+    {
+      "unitID": "toc:60342",
+      "rawUnitTitle": "חידושי גפ\"ת",
+      "sourceLineIndices": [
+        691,
+        692,
+        693,
+        694,
+        695,
+        696
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 691,
+      "unitEndLineIndex": 696,
+      "unitRowCount": 6,
+      "candidateRawRelationshipCount": 33,
+      "sourceIndicesSHA256": "5a7a455cc8c84bdea3da9b0b36564f417cd5dc21d0c5166d9a609228fdb72be0",
+      "rawMembershipSHA256": "5cfd84b68b0fe5bb4fefa4ef8bc707c5b7cc9ea00fe112c0043a9ad73b328aca"
+    },
+    {
+      "unitID": "toc:60343",
+      "rawUnitTitle": "שו\"ת",
+      "sourceLineIndices": [
+        697,
+        698,
+        699,
+        700,
+        701,
+        702,
+        703
+      ],
+      "bookID": 456,
+      "bookTitle": "אור לשמים",
+      "mode": "chapter",
+      "unitStartLineIndex": 697,
+      "unitEndLineIndex": 703,
+      "unitRowCount": 7,
+      "candidateRawRelationshipCount": 18,
+      "sourceIndicesSHA256": "abddff7aca980c4f3d67f087159981bbc7f9c7c538fd0d90457a2099f6e674d3",
+      "rawMembershipSHA256": "0f46221fc1df463f72afdfb6b5103ffc357827331e07d7f40ae7cd9431291f31"
+    }
+  ]
+}

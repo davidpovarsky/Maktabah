@@ -1,0 +1,275 @@
+{
+  "sql": "SELECT b.id,b.title,b.totalLines,b.isBaseBook\nFROM book b WHERE b.isBaseBook=0 AND b.totalLines BETWEEN 100 AND 10000\nAND b.id > 0 AND b.id NOT IN (103,28,3152)\nAND EXISTS (SELECT 1 FROM tocEntry t WHERE t.bookId=b.id)\nORDER BY b.id LIMIT 40",
+  "books": [
+    {
+      "bookID": 386,
+      "bookTitle": "שיחות הר\"ן",
+      "declaredTotalLines": 2161,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 387,
+      "bookTitle": "ליקוטי תפילות",
+      "declaredTotalLines": 8697,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 388,
+      "bookTitle": "שבחי הר\"ן",
+      "declaredTotalLines": 557,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 389,
+      "bookTitle": "חיי מוהר\"ן",
+      "declaredTotalLines": 1244,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 391,
+      "bookTitle": "ליקוטי עצות",
+      "declaredTotalLines": 1376,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 392,
+      "bookTitle": "סיפורי מעשיות",
+      "declaredTotalLines": 534,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 393,
+      "bookTitle": "ספר המדות",
+      "declaredTotalLines": 2918,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 394,
+      "bookTitle": "ליקוטי מוהר\"ן",
+      "declaredTotalLines": 8878,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 395,
+      "bookTitle": "כתונת פסים",
+      "declaredTotalLines": 1604,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 396,
+      "bookTitle": "צפנת פענח",
+      "declaredTotalLines": 2863,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 397,
+      "bookTitle": "קדושת לוי",
+      "declaredTotalLines": 1576,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 398,
+      "bookTitle": "צוואת הריב\"ש",
+      "declaredTotalLines": 457,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 399,
+      "bookTitle": "בן פורת יוסף",
+      "declaredTotalLines": 3242,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 400,
+      "bookTitle": "נועם אלימלך",
+      "declaredTotalLines": 2140,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 401,
+      "bookTitle": "פרי הארץ",
+      "declaredTotalLines": 304,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 402,
+      "bookTitle": "תולדות יעקב יוסף",
+      "declaredTotalLines": 6880,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 403,
+      "bookTitle": "מאור עינים",
+      "declaredTotalLines": 785,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 404,
+      "bookTitle": "מגיד דבריו ליעקב",
+      "declaredTotalLines": 412,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 405,
+      "bookTitle": "דרך המלך",
+      "declaredTotalLines": 1781,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 406,
+      "bookTitle": "הכשרת האברכים",
+      "declaredTotalLines": 459,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 407,
+      "bookTitle": "אש קודש",
+      "declaredTotalLines": 717,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 408,
+      "bookTitle": "חובת התלמידים",
+      "declaredTotalLines": 384,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 409,
+      "bookTitle": "צו וזרוז",
+      "declaredTotalLines": 242,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 410,
+      "bookTitle": "בני מחשבה טובה",
+      "declaredTotalLines": 397,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 411,
+      "bookTitle": "מבוא השערים",
+      "declaredTotalLines": 421,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 412,
+      "bookTitle": "בית יעקב על התורה",
+      "declaredTotalLines": 1981,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 413,
+      "bookTitle": "תפארת יוסף",
+      "declaredTotalLines": 348,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 414,
+      "bookTitle": "סוד ישרים",
+      "declaredTotalLines": 2034,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 415,
+      "bookTitle": "מי השלוח",
+      "declaredTotalLines": 2191,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 416,
+      "bookTitle": "שער האמונה ויסוד החסידות",
+      "declaredTotalLines": 397,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 417,
+      "bookTitle": "תניא",
+      "declaredTotalLines": 1755,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 418,
+      "bookTitle": "מראי מקומות הערות וציונים על תורה אור",
+      "declaredTotalLines": 7822,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 419,
+      "bookTitle": "לקוטי תורה",
+      "declaredTotalLines": 5479,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 420,
+      "bookTitle": "קונטרס ההתפעלות",
+      "declaredTotalLines": 957,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 421,
+      "bookTitle": "דרך מצותיך",
+      "declaredTotalLines": 570,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 423,
+      "bookTitle": "תורה אור",
+      "declaredTotalLines": 3158,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 424,
+      "bookTitle": "נר מצוה ותורה אור; שער היחוד",
+      "declaredTotalLines": 2769,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 425,
+      "bookTitle": "חיים וחסד",
+      "declaredTotalLines": 1875,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 426,
+      "bookTitle": "שבחי הבעש\"ט",
+      "declaredTotalLines": 555,
+      "isBaseBook": 0
+    },
+    {
+      "bookID": 427,
+      "bookTitle": "בית ישראל (רוזין)",
+      "declaredTotalLines": 671,
+      "isBaseBook": 0
+    }
+  ],
+  "source": {
+    "commit": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+    "sha256": {
+      "Source/Otzaria/Reading/OtzariaReadingUnitService.swift": "867665cb0a4c10b51b688eb73ef880b1e32d65ccaf33a0aadd21e6114ad35902",
+      "Source/Otzaria/Reading/OtzariaLineSourcesService.swift": "1275d24bfb66e1f4463682a4e5d60de05994aef4ad05962734457d2e51d29193",
+      "Source/Otzaria/Reading/OtzariaInspectorRelationshipsProvider.swift": "ec9d9744791bf7909aa390b5ee0c8ea37e40841289132d175dee440599606e2e",
+      "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": "96be0359332277861cc7731c92727fee975c05b838f7464978124801e12ac53e"
+    },
+    "priorSourceReceipt": "/mnt/development/projects/worktrees/Maktabah-wave2-reader-20261127/docs/hq-integration/wave2-20261127/reader/perf-natural-target-review-recovered-v40/DISCOVERY.json",
+    "priorSourceReceiptSHA256": "2a9172d6297fd491cb263179495da1b6b427b50e2e1616d0027e196312735ace",
+    "guideScriptSHA256": "ef881c729c815c93a0c65cb960f000ea38b221d1cd51c8202a1f04f467a956af",
+    "adapterPath": "getLinksMetadataForReadingUnit -> rawSources.map -> remember(links:)",
+    "dedupKey": [
+      "linkId",
+      "linkedBookId",
+      "linkedLineId"
+    ],
+    "genericLineProviderDedupApplied": false
+  },
+  "caps": {
+    "books": 40,
+    "secondsPerBook": 20,
+    "secondsTotal": 300,
+    "rowsPerBook": 500000,
+    "rowsTotal": 3000000,
+    "unitsTotal": 6000,
+    "sourceLinesPerBook": 10000,
+    "processVirtualMemoryBytes": 536870912,
+    "stopAfterCandidatesEach": 2
+  }
+}
