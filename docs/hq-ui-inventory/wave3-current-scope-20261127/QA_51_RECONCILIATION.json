@@ -1,0 +1,771 @@
+{
+  "audited_source": "cbf619cc897e17aae723112ecef31ff65f819eba",
+  "original_contract": {
+    "path": "C:\\Users\\DAVID\\Code\\Codex-Agent-HQ\\docs\\otzaria\\ui-routing\\qa\\requirements.json",
+    "sha256": "5eb5fbdb55bfded61250b7e8db322d2e488dd277fc60a8077abbc402303816da",
+    "source_sha": "2918825be8c5cc8ecee53d57e1f48ca51779cab4",
+    "case_families": 51,
+    "requirements": [
+      {
+        "id": "Q-UI07-001",
+        "group": "surfaces",
+        "title": "Library category/book/info"
+      },
+      {
+        "id": "Q-UI07-002",
+        "group": "surfaces",
+        "title": "Reader complete address"
+      },
+      {
+        "id": "Q-UI07-003",
+        "group": "surfaces",
+        "title": "Selection and focus"
+      },
+      {
+        "id": "Q-UI07-004",
+        "group": "surfaces",
+        "title": "TOC exact item"
+      },
+      {
+        "id": "Q-UI07-005",
+        "group": "surfaces",
+        "title": "Inspector commentary/source"
+      },
+      {
+        "id": "Q-UI07-006",
+        "group": "search",
+        "title": "Global search exact state"
+      },
+      {
+        "id": "Q-UI07-007",
+        "group": "search",
+        "title": "Cursor and selected hit"
+      },
+      {
+        "id": "Q-UI07-008",
+        "group": "search",
+        "title": "Search-in-book and clear"
+      },
+      {
+        "id": "Q-UI07-009",
+        "group": "surfaces",
+        "title": "Notes draft and unsaved state"
+      },
+      {
+        "id": "Q-UI07-010",
+        "group": "surfaces",
+        "title": "Bookmarks and history"
+      },
+      {
+        "id": "Q-UI07-011",
+        "group": "surfaces",
+        "title": "Settings subsection/control"
+      },
+      {
+        "id": "Q-UI07-012",
+        "group": "surfaces",
+        "title": "Tabs/workspace/profile/group"
+      },
+      {
+        "id": "Q-UI07-013",
+        "group": "surfaces",
+        "title": "Sidebar/menu/sheet/popover"
+      },
+      {
+        "id": "Q-UI07-014",
+        "group": "lifecycle",
+        "title": "Cold launch"
+      },
+      {
+        "id": "Q-UI07-015",
+        "group": "lifecycle",
+        "title": "Warm foreground"
+      },
+      {
+        "id": "Q-UI07-016",
+        "group": "lifecycle",
+        "title": "Background and resume"
+      },
+      {
+        "id": "Q-UI07-017",
+        "group": "lifecycle",
+        "title": "Multi-scene and scene choice"
+      },
+      {
+        "id": "Q-UI07-018",
+        "group": "readiness",
+        "title": "Inactive backend"
+      },
+      {
+        "id": "Q-UI07-019",
+        "group": "readiness",
+        "title": "Backend generation race"
+      },
+      {
+        "id": "Q-UI07-020",
+        "group": "readiness",
+        "title": "Hermes ready/reset/absent"
+      },
+      {
+        "id": "Q-UI07-021",
+        "group": "readiness",
+        "title": "Scene revision race"
+      },
+      {
+        "id": "Q-UI07-022",
+        "group": "readiness",
+        "title": "Offline/missing assets"
+      },
+      {
+        "id": "Q-UI07-023",
+        "group": "receipts",
+        "title": "Complete normalized route receipt"
+      },
+      {
+        "id": "Q-UI07-024",
+        "group": "receipts",
+        "title": "Queued/foreground are not completed"
+      },
+      {
+        "id": "Q-UI07-025",
+        "group": "receipts",
+        "title": "Cancellation/deadline commit race"
+      },
+      {
+        "id": "Q-UI07-026",
+        "group": "receipts",
+        "title": "Retry/replay/supersession"
+      },
+      {
+        "id": "Q-UI07-027",
+        "group": "security",
+        "title": "Public GET does not mutate"
+      },
+      {
+        "id": "Q-UI07-028",
+        "group": "security",
+        "title": "Authority never comes from request"
+      },
+      {
+        "id": "Q-UI07-029",
+        "group": "security",
+        "title": "No code/selector/path injection"
+      },
+      {
+        "id": "Q-UI07-030",
+        "group": "security",
+        "title": "Shareable URL privacy"
+      },
+      {
+        "id": "Q-UI07-031",
+        "group": "security",
+        "title": "Discovery is not authorization"
+      },
+      {
+        "id": "Q-UI07-032",
+        "group": "codec",
+        "title": "Unknown/versioned route and migration"
+      },
+      {
+        "id": "Q-UI07-033",
+        "group": "codec",
+        "title": "Strict transport boundaries"
+      },
+      {
+        "id": "Q-UI07-034",
+        "group": "codec",
+        "title": "Numeric identity and ambiguity"
+      },
+      {
+        "id": "Q-UI07-035",
+        "group": "codec",
+        "title": "Limits"
+      },
+      {
+        "id": "Q-UI07-036",
+        "group": "hanlin",
+        "title": "Single existing Chat/Agent"
+      },
+      {
+        "id": "Q-UI07-037",
+        "group": "hanlin",
+        "title": "Live scoped context and tool result"
+      },
+      {
+        "id": "Q-UI07-038",
+        "group": "guides",
+        "title": "Named focus anchor"
+      },
+      {
+        "id": "Q-UI07-039",
+        "group": "guides",
+        "title": "Sequential guide cancellation"
+      },
+      {
+        "id": "Q-UI07-040",
+        "group": "regression",
+        "title": "Old widget history URLs"
+      },
+      {
+        "id": "Q-UI07-041",
+        "group": "regression",
+        "title": "Old widget annotation URLs"
+      },
+      {
+        "id": "Q-UI07-042",
+        "group": "regression",
+        "title": "Expo app delegate/lifecycle"
+      },
+      {
+        "id": "Q-UI07-043",
+        "group": "accessibility",
+        "title": "Hebrew RTL and English"
+      },
+      {
+        "id": "Q-UI07-044",
+        "group": "accessibility",
+        "title": "VoiceOver"
+      },
+      {
+        "id": "Q-UI07-045",
+        "group": "accessibility",
+        "title": "Dynamic Type and iPad layout"
+      },
+      {
+        "id": "Q-UI07-046",
+        "group": "observability",
+        "title": "Correlated redacted trace"
+      },
+      {
+        "id": "Q-UI07-047",
+        "group": "responsiveness",
+        "title": "Bounded wait and MainActor"
+      },
+      {
+        "id": "Q-UI07-048",
+        "group": "responsiveness",
+        "title": "Memory and repetition"
+      },
+      {
+        "id": "Q-UI07-049",
+        "group": "platform",
+        "title": "iOS26"
+      },
+      {
+        "id": "Q-UI07-050",
+        "group": "platform",
+        "title": "iOS27"
+      },
+      {
+        "id": "Q-UI07-051",
+        "group": "platform",
+        "title": "Universal Link domain gate"
+      }
+    ],
+    "original_plan_unchanged": true,
+    "original_checker_not_run_or_represented_as_product_acceptance": true
+  },
+  "rows": [
+    {
+      "id": "Q-UI07-001",
+      "group": "surfaces",
+      "title": "Library category/book/info",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "library",
+      "supplied": "Original LibraryViewModel, iOSLibraryView and UIKit controller remain owners. Four new finite anchors reveal contents, grouping, downloaded filter and options without executing them.",
+      "remaining": "Exact category expansion/selected work/book-info/author/narrator and import/update review targets remain unbound. Reader.open covers opening canonical content, not selecting a Library row. Existing user actions still require original functional acceptance."
+    },
+    {
+      "id": "Q-UI07-002",
+      "group": "surfaces",
+      "title": "Reader complete address",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "reader",
+      "supplied": "Original Reader/Core opens backend-qualified section/focus locators in the existing or a new tab; retained Reader identity and actual native content receipt are implemented. Original TextKit/selection/options/book-search UI is retained.",
+      "remaining": "Independent text-range selection and exact navigation-slider/book-info/view-options/in-book-search target bindings are not established. A focusLocator is not a proof of arbitrary UIKit selection or complete viewport restoration."
+    },
+    {
+      "id": "Q-UI07-003",
+      "group": "surfaces",
+      "title": "Selection and focus",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "reader",
+      "supplied": "Original Reader/Core opens backend-qualified section/focus locators in the existing or a new tab; retained Reader identity and actual native content receipt are implemented. Original TextKit/selection/options/book-search UI is retained.",
+      "remaining": "Independent text-range selection and exact navigation-slider/book-info/view-options/in-book-search target bindings are not established. A focusLocator is not a proof of arbitrary UIKit selection or complete viewport restoration."
+    },
+    {
+      "id": "Q-UI07-004",
+      "group": "surfaces",
+      "title": "TOC exact item",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "toc",
+      "supplied": "Original iOSTOCView owns list, structure selector, search/expansion and ScrollViewReader. Finite contents/structure/currentSelection anchors retain exact node/ancestor/source identities and actual layout/witness. Original phone workspace path and iPad matching fix supplied.",
+      "remaining": "Arbitrary public node/structure-value/query/expansion state is not supplied by the three reveal anchors. Native current-row scrolling, structure-picker and downloaded-filter focused cases remain unexecuted or without a new selector."
+    },
+    {
+      "id": "Q-UI07-005",
+      "group": "surfaces",
+      "title": "Inspector commentary/source",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "inspector",
+      "supplied": "Original TorahInspectorKit and native iPad trailing system sheet remain. reader.openCommentary resolves an actual source relationship and opens canonical commentary in a new Reader tab, preserving base. Root inspector route opens actual tools.",
+      "remaining": "No finite exact tool/tab/commentary-group/note-item selector is installed. Core opening commentary content does not prove that an exact row/group is selected inside Inspector. Actual detents/source navigation/notes/resize/VO remain final acceptance."
+    },
+    {
+      "id": "Q-UI07-006",
+      "group": "search",
+      "title": "Global search exact state",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "search",
+      "supplied": "Original global/in-book search and original CommandPalette are retained. Native query-field focus exists only when its exact field is already visible. Trusted search.openResults uses original engine and native receipt for supported subset.",
+      "remaining": "Cold/warm parent-then-query-focus is missing and is the next assigned implementation. Native results accepts phrase/exact/distance0 only, default first page, Otzaria-only nonempty work scope; no selectedHit/cursor target. No independent ShowSearchResults AppIntent wrapper. Existing 54 native control rows are user controls/states, not automatically authorized public mutations."
+    },
+    {
+      "id": "Q-UI07-007",
+      "group": "search",
+      "title": "Cursor and selected hit",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "search",
+      "supplied": "Original global/in-book search and original CommandPalette are retained. Native query-field focus exists only when its exact field is already visible. Trusted search.openResults uses original engine and native receipt for supported subset.",
+      "remaining": "Cold/warm parent-then-query-focus is missing and is the next assigned implementation. Native results accepts phrase/exact/distance0 only, default first page, Otzaria-only nonempty work scope; no selectedHit/cursor target. No independent ShowSearchResults AppIntent wrapper. Existing 54 native control rows are user controls/states, not automatically authorized public mutations."
+    },
+    {
+      "id": "Q-UI07-008",
+      "group": "search",
+      "title": "Search-in-book and clear",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "search",
+      "supplied": "Original global/in-book search and original CommandPalette are retained. Native query-field focus exists only when its exact field is already visible. Trusted search.openResults uses original engine and native receipt for supported subset.",
+      "remaining": "Cold/warm parent-then-query-focus is missing and is the next assigned implementation. Native results accepts phrase/exact/distance0 only, default first page, Otzaria-only nonempty work scope; no selectedHit/cursor target. No independent ShowSearchResults AppIntent wrapper. Existing 54 native control rows are user controls/states, not automatically authorized public mutations."
+    },
+    {
+      "id": "Q-UI07-009",
+      "group": "surfaces",
+      "title": "Notes draft and unsaved state",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "notes",
+      "supplied": "notes.prepareDraft and optional Reader/commentary intent proposal use original unsaved editor and original approval/Save/Cancel actions.",
+      "remaining": "No finite body/tags/style/editor-control focus binding. Save/delete remain explicit user actions, never GET. Standalone note selection/editor identity and original save/edit/delete/cancel need acceptance; source draft controls are not persistence proof."
+    },
+    {
+      "id": "Q-UI07-010",
+      "group": "surfaces",
+      "title": "Bookmarks and history",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "bookmarks",
+      "supplied": "Original saved-results/bookmark/folder UI and user actions exist; legacy History links are preserved separately.",
+      "remaining": "No native bookmarks/Saved Results parent or stable exact folder/record selection binding. History root does not cover Saved Results. Rename/move/delete/save require original user confirmation rather than URL writes."
+    },
+    {
+      "id": "Q-UI07-011",
+      "group": "surfaces",
+      "title": "Settings subsection/control",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "settings",
+      "supplied": "Original SettingsView is retained. Fifteen finite original section/control anchors and parent-then-reveal/focus use exact retained owner, Observation/backend invalidation, real layout and independent visible witness.",
+      "remaining": "Reveal is not value mutation or successful import/install. Dedicated language/accessibility/data-profile Settings pages were historical NOT_IMPLEMENTED placeholders; parent scopes these 'where existing', so this audit does not invent three new pages. Actual HE/EN/accessibility and production data remain required."
+    },
+    {
+      "id": "Q-UI07-012",
+      "group": "surfaces",
+      "title": "Tabs/workspace/profile/group",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "workspace",
+      "supplied": "Original StudyWorkspaceStore/NavigationAdapter, profiles, groups, DuckDuckGo strip, original overview Grid/List and restoration already exist. Two actual parent presentations and nine fixed component anchors were added using original setters and retained source.",
+      "remaining": "Fixed reveal anchors do not select an arbitrary profile/group/tab or set layout preference. Exact identity/state routes remain missing. Original 3x3/30-tabs, same-book independent locators, mutations, migration, rollback, 100-switch/production restore, multiwindow/rotation and unsaved draft acceptance remain required."
+    },
+    {
+      "id": "Q-UI07-013",
+      "group": "surfaces",
+      "title": "Sidebar/menu/sheet/popover",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "family": "shell",
+      "supplied": "Original iPad/iPhone root tabs, exact scene identity, native Library/Search/Annotations/History/Settings parents and original sidebar owners are present.",
+      "remaining": "Authors, book-info, exact sidebar visibility/palette/menu/popover states have no dedicated finite binding. Library/TOC parent selection covers those pages only. Notes root candidate still needs actual rerun."
+    },
+    {
+      "id": "Q-UI07-014",
+      "group": "lifecycle",
+      "title": "Cold launch",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-015",
+      "group": "lifecycle",
+      "title": "Warm foreground",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-016",
+      "group": "lifecycle",
+      "title": "Background and resume",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-017",
+      "group": "lifecycle",
+      "title": "Multi-scene and scene choice",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-018",
+      "group": "readiness",
+      "title": "Inactive backend",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-019",
+      "group": "readiness",
+      "title": "Backend generation race",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-020",
+      "group": "readiness",
+      "title": "Hermes ready/reset/absent",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-021",
+      "group": "readiness",
+      "title": "Scene revision race",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-022",
+      "group": "readiness",
+      "title": "Offline/missing assets",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-023",
+      "group": "receipts",
+      "title": "Complete normalized route receipt",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-024",
+      "group": "receipts",
+      "title": "Queued/foreground are not completed",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-025",
+      "group": "receipts",
+      "title": "Cancellation/deadline commit race",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-026",
+      "group": "receipts",
+      "title": "Retry/replay/supersession",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-027",
+      "group": "security",
+      "title": "Public GET does not mutate",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-028",
+      "group": "security",
+      "title": "Authority never comes from request",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-029",
+      "group": "security",
+      "title": "No code/selector/path injection",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-030",
+      "group": "security",
+      "title": "Shareable URL privacy",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-031",
+      "group": "security",
+      "title": "Discovery is not authorization",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-032",
+      "group": "codec",
+      "title": "Unknown/versioned route and migration",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-033",
+      "group": "codec",
+      "title": "Strict transport boundaries",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-034",
+      "group": "codec",
+      "title": "Numeric identity and ambiguity",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-035",
+      "group": "codec",
+      "title": "Limits",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-036",
+      "group": "hanlin",
+      "title": "Single existing Chat/Agent",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-037",
+      "group": "hanlin",
+      "title": "Live scoped context and tool result",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-038",
+      "group": "guides",
+      "title": "Named focus anchor",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-039",
+      "group": "guides",
+      "title": "Sequential guide cancellation",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "remaining": "Three actual multistep guide definitions (app/search/study) exist. Four additive native selectors remain NOT_RUN."
+    },
+    {
+      "id": "Q-UI07-040",
+      "group": "regression",
+      "title": "Old widget history URLs",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-041",
+      "group": "regression",
+      "title": "Old widget annotation URLs",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-042",
+      "group": "regression",
+      "title": "Expo app delegate/lifecycle",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-043",
+      "group": "accessibility",
+      "title": "Hebrew RTL and English",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-044",
+      "group": "accessibility",
+      "title": "VoiceOver",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-045",
+      "group": "accessibility",
+      "title": "Dynamic Type and iPad layout",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-046",
+      "group": "observability",
+      "title": "Correlated redacted trace",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-047",
+      "group": "responsiveness",
+      "title": "Bounded wait and MainActor",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-048",
+      "group": "responsiveness",
+      "title": "Memory and repetition",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-049",
+      "group": "platform",
+      "title": "iOS26",
+      "source_state": "SUPERSEDED_BY_OWNER_IOS27_ONLY",
+      "native_on_audited_source": "NOT_APPLICABLE_TO_CURRENT_OWNER_MINIMUM",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "remaining": "Historical iOS26 row retained. Owner tasks 1220542174542004 and 1220636669052920 require iOS/iPadOS 27 only."
+    },
+    {
+      "id": "Q-UI07-050",
+      "group": "platform",
+      "title": "iOS27",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate."
+    },
+    {
+      "id": "Q-UI07-051",
+      "group": "platform",
+      "title": "Universal Link domain gate",
+      "source_state": "SOURCE_CONTRACTS_PRESENT_FINAL_ACCEPTANCE_REQUIRED",
+      "native_on_audited_source": "NOT_RUN",
+      "physical": "NOT_RUN",
+      "boundary": "Prior actual evidence retains its source. This audit neither runs nor aggregates a final gate.",
+      "remaining": "Origin/Apple-CDN AASA configuration is not OS delivery. Two additive actual HTTPS selectors remain NOT_RUN."
+    }
+  ]
+}

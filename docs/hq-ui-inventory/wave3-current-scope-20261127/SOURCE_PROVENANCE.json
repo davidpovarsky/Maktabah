@@ -1,0 +1,1507 @@
+{
+  "audited_source": "cbf619cc897e17aae723112ecef31ff65f819eba",
+  "source_files": [
+    {
+      "path": "Source/UI/iOS/MaktabahApp.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "1954ba44e312863a2a9c82641eb295365c8294ce86330e5c9e9a862780eb2647",
+      "git_blob": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+      "bytes": 14660
+    },
+    {
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "124b45b93116c972894662eede46983929855e9049136e3ac91d812a1b1eed49",
+      "git_blob": "4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7",
+      "bytes": 33352
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "90151e28975fb34952aa5566980847d88dbac1ebf89c9a113c3afecab910a52f",
+      "git_blob": "5df9e71251ea0a2ecf9d838eb7d8ae4268186b4e",
+      "bytes": 24054
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "d8fc333818aaba074a00d8498f7b8f721274ed0db1ea15e47422b4512a9c0a8a",
+      "git_blob": "fb1aa1edf7f52369edbfe999801b70d3fdc6cca3",
+      "bytes": 7315
+    },
+    {
+      "path": "Source/UI/iOS/Views/Bootstrap/BootstrapView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "84ee4b1a8b087e11a168c1016e4bf08584340d0304b2378447a2394ac0f8c24e",
+      "git_blob": "4e83e198c1e60eea59035b8161c0cae089ad15f3",
+      "bytes": 10334
+    },
+    {
+      "path": "Source/UI/iOS/Views/Bootstrap/iOSCoreUpdateProgressOverlayView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "8796c1063148288136ca6dfa90984889f2611eeed9d89485602ba10393f26044",
+      "git_blob": "edb6bf84cc24263d4ce11c352be98506d27d4571",
+      "bytes": 1867
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "3fa74f98c3f2894ad22f3d8eca3b319850450ffc63a9b0affd37a45e59ea7c9c",
+      "git_blob": "c3d3854cc5069e512f6dddfefd47e2d439ef8047",
+      "bytes": 9017
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPager.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "4549047d28085a9c3b3a638bbcffd8eed6b21db779e838a6ad26379cccaef612",
+      "git_blob": "60d0a889fe1e8d8e36e3894f704af65c45540a57",
+      "bytes": 23038
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "f6be0e9682141fd6f5ed2107cabda8495679e5d600a477e2fe80092bb785951a",
+      "git_blob": "3f7bb041252146dc4893d407b44f343646de4f8b",
+      "bytes": 19998
+    },
+    {
+      "path": "Source/Features/Library/iOS/iOSLibraryViewController.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "08b97830305cc4843538be98a83e8aa0d3e65f7629e26b7eba4cbe97873acec2",
+      "git_blob": "5030d1fc30ebcb63e24820c8559c1728f9a7773c",
+      "bytes": 6423
+    },
+    {
+      "path": "Source/Features/Library/Updates/BookImportView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "3d98223a9635402722b6f380fd00b6da3be8c46c723a7c3adc84a065fe1ca6a9",
+      "git_blob": "e8406b418b0ac9ac245dd17366ed171e0de16982",
+      "bytes": 19209
+    },
+    {
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "c7d346a72915374c40709f1089cfc0cdc31429399992a73f351704a60a13f013",
+      "git_blob": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+      "bytes": 12213
+    },
+    {
+      "path": "Source/Features/Library/iOS/AuthorModeView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "71742cab4448ee0b8ff8970bbf92526db74874694f0bfe599d5a1406f088da3e",
+      "git_blob": "d2038859d9b91e9b6eb8db3eda380fdef6b03bc2",
+      "bytes": 3074
+    },
+    {
+      "path": "Source/Features/Narrator/iOS/iOSRowiSidebarView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "b7cfba084546b5fd050e8fe0c828086d1165ecd9f9de04ca56828eca8c84f29b",
+      "git_blob": "fbf1c1ca01ea05ed905c46a6d23150b29fc358f1",
+      "bytes": 1401
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "5e598293fa98f1480926a9ccd6d1ec5fceda9571b61db52d87261a89a4bd682e",
+      "git_blob": "d7df4a7e272ec2d48d2b6b1089410af4c9025fd2",
+      "bytes": 13136
+    },
+    {
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "bc2f3004194727eaf2c7e0f66f4e5055f3b6557d298e1c9f4ae9dec87eda8a2b",
+      "git_blob": "2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e",
+      "bytes": 60088
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad",
+      "git_blob": "6330bfcfabea9d990d8ef8329c593cd8d873b05b",
+      "bytes": 46826
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderRendering/ReaderPullNavigationStateMachine.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "9560a855867ef42a15e0304ca45e770a6ae1c824ec4ba7b598be35760db7bad5",
+      "git_blob": "4840c75a7598da8da4115d232651a4462e663749",
+      "bytes": 4898
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "59212349bc82314c6487248f9b7cbc051ea2f95a44482e665559bbf845f35441",
+      "git_blob": "e7fdeeada1226cf42552b3b4484234e44d478293",
+      "bytes": 10741
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "c79d9fbeddb58c7995645df9b6ca5cf26223990f1d181697a68789855d6cbc8b",
+      "git_blob": "f96646f4b645aaa6e9a2312b3347ba80f162272f",
+      "bytes": 7450
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "685c42f915f7cf92cb0a025c1072eb97b88276c4fb49b08e1768f73e7965435a",
+      "git_blob": "e0f142882d8dc0c4cf88523fb4cffacba23b5c1a",
+      "bytes": 6340
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSBookInfoAnchoredCard.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "e8c716628fac03a9d32272967d5679df9c22e88aaf86652de55676aea20d0d59",
+      "git_blob": "6e6a82550001100fb806a4e1639c4963ccbf72b6",
+      "bytes": 7884
+    },
+    {
+      "path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "0b8977cfe9df88698fd132d1c8a963d66bd2983090015278a2893f76f28a3ef3",
+      "git_blob": "2e1f2118885db8df17d8aaa95e0c5dde6d690ea8",
+      "bytes": 8078
+    },
+    {
+      "path": "Source/LibraryBackend/LibraryBackendModels.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+      "git_blob": "99449ab86273bbf6e9f128bf0f5e64f4bafd0821",
+      "bytes": 32419
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "44bfa60ac7aa6c59d87fe2f9215461574166dd5e77457ab9f6937366266f45bf",
+      "git_blob": "6f56802eef2fba13c9ac82de5a5b5895912eb730",
+      "bytes": 14300
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "3fdf0665d909d769cf31d88f353df7c3aef860fa556e23fa570b79637d7f36e6",
+      "git_blob": "1d17cd321a97758bbb3ef5c2aef7f66bbf2ebec4",
+      "bytes": 4403
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "2fc2eaf83bb56c63be833691a6e8d0df96bde09660f377f2dca06138460a92b7",
+      "git_blob": "2f7726082b02113fa1c8e3a153fe811e99911916",
+      "bytes": 22028
+    },
+    {
+      "path": "Source/Otzaria/Reading/OtzariaLineSourcesInspectorView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "69c67308895908bb5aefab441f12a32100a53344eae99ea581412c49fcf4b5ca",
+      "git_blob": "b0ccc49838265adc3ccc88a74e18e25a9141c6bc",
+      "bytes": 9244
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb",
+      "git_blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+      "bytes": 24610
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "0c2b5829cbaf25d9c4da9631541754e9905d774044cb3172a33a3449a849e996",
+      "git_blob": "e556b0e4a6ac3735ac86797b78c5cc43e457fc76",
+      "bytes": 12578
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "c2e15b55714924aed00c8c93d38ae7cca113c725b9cefc8bb854b93ee2df24a8",
+      "git_blob": "1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28",
+      "bytes": 6060
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "25c1f34a17fd4c565c9c557a21b842275eb5c970858c4c3a11327609dac320fb",
+      "git_blob": "d4f061293e7c8682d41320602da5692d47dce7d9",
+      "bytes": 11558
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/NativeGlobalSearchField.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "6879c1f3cb317c459502f42ebc0d4086579972fffdf90d7fc991eb6f2b83e92d",
+      "git_blob": "4c4481645881ceb012029beec17267eba546dd57",
+      "bytes": 16318
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "61abb04cafb4cd0daaa0aaa99724a93ffad7d5aa0e5f454ddfa5f7318fab2c8b",
+      "git_blob": "505eb9ff52842307b8b800a0cd207e151e6416bf",
+      "bytes": 37364
+    },
+    {
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "e610d23f2870f96743375ca20d0cab04b75bd52dd37172facd7195bb171e695f",
+      "git_blob": "88159e1ce914ed5b081e72223d3fe85b4896c11c",
+      "bytes": 14727
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf",
+      "git_blob": "1f2289e80e0cca6454c2234c456ece75306b3b6f",
+      "bytes": 21809
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchWorkspaceView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "0f2542b10c1f4226f7d9b6a523650c7b6bd1294c39d73e56a1ed241606857e4f",
+      "git_blob": "7dde3a6c74f0689b1d7d3e3139255625a81d4745",
+      "bytes": 39256
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "580ee709da51687a8f8bf6bf44c25db594784985b3e2bb3a3eaeb7367982ab90",
+      "git_blob": "b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56",
+      "bytes": 6004
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "6b3f34897842fed6013030e8d7554f9b2c7f4b67c129d8a1a7ceeb89085fe55a",
+      "git_blob": "f4a56ab8b3cc8aea66f1fbbc21aee3cf27369c5f",
+      "bytes": 16413
+    },
+    {
+      "path": "Source/Features/Bookmarks/iOS/iOSResultWriterView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "d6f09685bbdaa06ac283ab72faef4dd6205caecf19280a0cd175bd6e4b421779",
+      "git_blob": "4d5f9f9821d85af239bcba6f5be32eda9da5fe1a",
+      "bytes": 3548
+    },
+    {
+      "path": "Source/Features/Bookmarks/iOS/iOSSavedResultsView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "92a3f68de6be741d0d123779cd02d069a64b3833c37ee080f2934272095bfdad",
+      "git_blob": "67bbfd7e636e76d9e7ea10a9792a928cba4c8f10",
+      "bytes": 12878
+    },
+    {
+      "path": "Source/Features/Bookmarks/iOS/iOSMoveItemView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "70410b975035e78e2df7899a42fb1825208b01a2a229a7a217699f33f518e66f",
+      "git_blob": "15b0422814b567f1c61931a59ef87a73fbc96e91",
+      "bytes": 2826
+    },
+    {
+      "path": "Source/Features/Bookmarks/iOS/iOSFolderSelectionGroup.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "4672a67dbdbed887907ddd7d94ecffc3fb7595705b91007af2fb1b57bd9c31f9",
+      "git_blob": "0da3021cfbffde24f9be729a04c7c435d408ed78",
+      "bytes": 2790
+    },
+    {
+      "path": "Source/Features/History/iOS/iOSHistoryView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "8709b20177dfcaefb9530cd76b65097617d77fe13b3773a284189295908e5b40",
+      "git_blob": "c73881eec9f6e4bd66c565ffec22ec0139f2f52a",
+      "bytes": 4194
+    },
+    {
+      "path": "Source/Features/History/iOS/HistoryFavoriteSections.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "d2e99d3248ef7026fc704e842486e6c92e96e166d4871c6020d3a72841d0205c",
+      "git_blob": "21022a084704123bdeed259cfa547008c6dddfc2",
+      "bytes": 5532
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "eee8aa3febd604409589dfc0330a59df0100a5aee9ed77d97eeb86b3022ff66e",
+      "git_blob": "705fd35132951a10e101aaa16f4b1d835e392288",
+      "bytes": 2515
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderTabsPopoverView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "8dcd96b7be9d2ffd0c42e3712d299db8ca4750657475b1e1bb3aa8b659222668",
+      "git_blob": "546f817602ca092cca3b3ffcfe8e402e4166878b",
+      "bytes": 4686
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyGroupsOverview.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798",
+      "git_blob": "3dd3c00d5ec6eb844616bfc2da75d60d1ff9806e",
+      "bytes": 13056
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/DocumentTabsHost.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "13b3ada73d2f8de8bdc318ccebf9d6e74449a0530c4d6f5fa38c663f1944c20a",
+      "git_blob": "ce5930b1a2e0267d38196ce3b1609b39f9622f30",
+      "bytes": 3855
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileMenu.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "27781fc022b8cd6e818d147ddafe22bf62f3b046f26e6a013c335c5758290cce",
+      "git_blob": "7082d22a678f0f186ee98f2f1b26be80a3bd0290",
+      "bytes": 2862
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/UI/StudyProfileManagementView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "a1f9d235af9d13bd6c8bb878e28dd93679afc31041a0a2085ec6b086f2a1f994",
+      "git_blob": "7c2820a090a3710421ecb86921b570d2fb52d579",
+      "bytes": 19225
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ReaderSidebarPageCoordinator.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "96421e6063403149324d2b2f4309b5ddb2aaaefc25d7cd7612f2a91b50aafcf2",
+      "git_blob": "bb1288386d12c6bb1f62dc79bd812b593ed68146",
+      "bytes": 16422
+    },
+    {
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "50e06827c91312943351a375ba05853a22ce0de678659f89055e82768383b421",
+      "git_blob": "6de6dc461eb148525e001c7e2ddcf9ba3581b14c",
+      "bytes": 22395
+    },
+    {
+      "path": "Source/Otzaria/DataProfiles/OtzariaDataProfile.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "3ac83a1f548b6ffb5a9a3a42f50cd25780c3162c077a5731ded94154e50f0348",
+      "git_blob": "ca907a0e58b3674950375c8e523293a833d25bf8",
+      "bytes": 3950
+    },
+    {
+      "path": "Source/LibraryBackend/OfflineLibraryManagementView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "4f3263f18091b82f2be1b261fe6a8b6750c1e19d4e303f6452ddf91516f91cea",
+      "git_blob": "87b64bbb9137ab2c4348e763a7b491c6c803f75d",
+      "bytes": 6121
+    },
+    {
+      "path": "Source/Core/Models/WidgetDeepLink.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "328054d86c8c51b8f7f40ba17a592bd3162e9b8dbd9ee6a112dcb405cc126e13",
+      "git_blob": "ed3b743a20ce15cf0455d3dbc4bf3a2515e69db6",
+      "bytes": 2024
+    },
+    {
+      "path": "Source/Features/Widget/History/HistoryProvider.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "89420e0e20e777cf3e4476bfe3b4bc0aeb2cfcbd66e7b93ce08e218e0a14f684",
+      "git_blob": "7b5626ddec998c2a6f4c4c93230e107ee2792c14",
+      "bytes": 3474
+    },
+    {
+      "path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "91d1624692db76605cfa837bd4f5e3ab1710602967e424e378dcf398c6aef6ec",
+      "git_blob": "eec2101e81bc2000900cee55df3a35da6921a99e",
+      "bytes": 22073
+    },
+    {
+      "path": "Source/Otzaria/App/OtzariaRootSplitView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "5c389b37570beee98b6c3771e19bdd9ed51b989955f3ca41343ae9670d0dc404",
+      "git_blob": "b37124cfe4120057a0619cf342b543492f104917",
+      "bytes": 4407
+    },
+    {
+      "path": "Source/Otzaria/App/OtzariaIntegratedLibraryView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "e6c839c3c881abffa3771eb7a5398102311df58f36b5b83974902ff1807d10b1",
+      "git_blob": "9ba8787c2672352ecc121b21640a08324ea0b24a",
+      "bytes": 4011
+    },
+    {
+      "path": "Source/Otzaria/Features/Reader/OtzariaReaderView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "8ca71d5d756ea375edbab030b7b8865b9c3b0ad4aa888d3b3187f00cc0e0e303",
+      "git_blob": "a2992f766c0cef10c4d198cbc4bc585d584c131d",
+      "bytes": 4157
+    },
+    {
+      "path": "Source/Otzaria/Features/Settings/OtzariaReaderSettingsView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "41f40ec2c6c1415703bc58fc989943560a23830472f0b21f0722a2e18be3aa7b",
+      "git_blob": "70471480e83442c56af2f4bb9954c7dbe649fb02",
+      "bytes": 1530
+    },
+    {
+      "path": "Source/Otzaria/Search/OtzariaTextSearchView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "0286f2802bdf7c11f09b0d0f4b7c763d97302f9f157af58f6a77626457827888",
+      "git_blob": "3886b7dd00b44d1954d6f801b80045c2737b14e3",
+      "bytes": 12036
+    },
+    {
+      "path": "Source/SefariaEmbedded/UI/SefariaEmbeddedNativeSurfaceHost.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "c01993a30c3580d8fe0bd34d88797bfd9f21ae101b058577fcb67fc4741ea29b",
+      "git_blob": "a37c1df1138f96ae1ed1a214abfa9339604c60bf",
+      "bytes": 1658
+    },
+    {
+      "path": "Source/SefariaEmbedded/Runtime/SefariaExpoLifecycleAdapter.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "2792d42f3531f7753e6de12ce27fb5cab87ca75be6711b8d99e241e5283e7d83",
+      "git_blob": "5b57b725a661f58bf133812328e36a30fe44c33b",
+      "bytes": 7644
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/chavrusaRPCFacade.js",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "a79d71a3ccd96831818e35625eb28479d8b876b08c67d951cf46f836a47c7a6e",
+      "git_blob": "5faa35d1e28431c40937b26840cb97127ba82dc4",
+      "bytes": 20711
+    },
+    {
+      "path": "Vendor/SefariaMobile/Integration/JS/ChavrusaRoot.js",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "cf839401d7b4a576094a19efe0407d9c10098e907ecdbe8a1c37b6f87284ad8a",
+      "git_blob": "3d736ec0312cf622694e079f45ac31ee9de00941",
+      "bytes": 5774
+    },
+    {
+      "path": "Source/UI/iOS/Theme/ThemeComponents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "ce9187fce4ddc518a62e973f93aa28b4d898be1071a813873b37744188008687",
+      "git_blob": "4e6130513cd141d2712adb0d9d23e94f64838145",
+      "bytes": 6808
+    },
+    {
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "084f8d15e37655bf5ccd42cbdc9e308ecddd9c1cfc399a12d58089737ec8f2b1",
+      "git_blob": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+      "bytes": 8925
+    },
+    {
+      "path": "Source/ChavrusaText/Navigation/ReaderNavigationDisplayPolicy.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "7b03ca345a7527bdb8a32604136a8f88fdbe7fcc82d503557122ea527551c640",
+      "git_blob": "5a0cd0ee4eaf48256d5150aee0516805e5741a2c",
+      "bytes": 5029
+    },
+    {
+      "path": "Source/UI/macOS/Modal+Overlay/DonationSheetView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "061bcfdd377df8394833320f38a0f9eef57c21a828b28b888a825074bd0f3644",
+      "git_blob": "1c0bbdf6a49acca188bc35abe688fc4d9b9210e9",
+      "bytes": 10334
+    },
+    {
+      "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "ff9d0053799a914f7ab14cbe76c0f01d866739fa0d24529b8e9327331579ba5e",
+      "git_blob": "db84e7f6344dfdf3d875b36926e8839080815de9",
+      "bytes": 21459
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchAdvancedOptionsContent.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "ea7d3a6e69234e7d873bc3b1f526e8d59a92a1c53055f8a27a9fc16d8dc6a55a",
+      "git_blob": "a235ee027d35d8832f1a4c0e4d64b9abb94e93b7",
+      "bytes": 7751
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchContent.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "43331ffc115ce6825aeb9a7f1c12ea334ebb7a51449b7994c13b16a65bb6b222",
+      "git_blob": "a19f02c31edfe57eee00ba534ff43fc54f4349b7",
+      "bytes": 5945
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHeader.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "4d8595b82e1d9045fbe30a0f001d8251d9c067447d188f8dbcced6a0128eb11e",
+      "git_blob": "f3955e1945696120f46b1293bf9e067a9e923877",
+      "bytes": 3532
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchHistoryContent.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "9e46465ad6490329db3704e0c33ffb12c3a420bc087f770051d067dd00515dd3",
+      "git_blob": "2fc7554d7bacf3df97e566f45ec32cf597a2362d",
+      "bytes": 3537
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchResultsHeader.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "fc6cd46b1e4254ce085185b4fcd6dec26c3f8bee231935430ce1155012cbf3aa",
+      "git_blob": "f344cd93d59db08421eaef6759d6cfb704eedf4c",
+      "bytes": 4165
+    },
+    {
+      "path": "Source/ChavrusaText/Search/UI/GlobalSearchToolbar.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "8a04ca4583400244a62b9f0c6ee21219cbb6487f97a2fbaa3ab658b2a14efc99",
+      "git_blob": "065cfdd7ed3fb47266c85146740ec0ebdd4fe494",
+      "bytes": 1967
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "2fead2b6584cc8f066dad38c21a68c8a32ca47f34463386c295c5833dd9aae40",
+      "git_blob": "4d799361a07219512cab13a0bff8ec1837d06f22",
+      "bytes": 168555
+    },
+    {
+      "path": "Source/ChavrusaText/StudyWorkspace/StudyWorkspaceNavigationAdapter.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "2ffe663ce8f64a435aaa88f2acab23a8869c6cadbd4af006b4bda6d74cd2db3c",
+      "git_blob": "064193da95e25f119158af13b4999c955edd54fc",
+      "bytes": 34455
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "dd101e73718de3bfeb245d33799fb189bcd3a23b242f542dfdcdfb29cd833514",
+      "git_blob": "a90ab8903a2a6f64bb27cca9b1df56129daa34d0",
+      "bytes": 2463
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "827f1160986abd9b80def9f7fed84e9737f07330beba4f37fffb4eeae351281b",
+      "git_blob": "76037c268d7cf23acc34c59942062c010af7605c",
+      "bytes": 828
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "4da5aa29c60f499593a85ed6eeb5488f421f5b084252f8143d7c452aa9944421",
+      "git_blob": "b2fb1fc070a5d354e5682ce6a835d84dd74f7216",
+      "bytes": 4983
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "e46e498d748d8529ee692d1586bcc625a0082cd762a593de757a1a03c07ebbbc",
+      "git_blob": "ded915d52541c0c38342e16cbc170343f2037768",
+      "bytes": 20726
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "69ad8543ded3642c0eda05e133457abb9b3bf34ae1429d67cb4b13d543293f72",
+      "git_blob": "dd6f04541c0640600bfd49d657076c316cd263cf",
+      "bytes": 21697
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "b157b4a4be79f549640ddddc6e224d8ab345bce51a32ff7faaca25d36f928ef1",
+      "git_blob": "ebe7b5ee0ee908256b9cf50bf6c7ba834063cef1",
+      "bytes": 70432
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "a62f41d6b6af4c63eac3f8e248d2aaa5570bb539714f90d2f8dd47a1aadbf0fb",
+      "git_blob": "98e024194007233a9f55c01d194ee6f07a4734f9",
+      "bytes": 23173
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "c7cd77535a1aa5f89ad4d176a46519d757b4f4f7898ee82d5a567c52f364a0cf",
+      "git_blob": "f07e6a326a92904990d46f88518a3aeec3c49fc2",
+      "bytes": 35228
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074",
+      "git_blob": "4e13442e0ba46912b05da6d28a697e76f2037728",
+      "bytes": 7979
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSettingsComponents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "b5cb9ed17458d57a2f0df87565190140c2f2c93325b2dd663f83aa10ed7ecf45",
+      "git_blob": "19de8347acad04129f66035a471bcaf497cdb2de",
+      "bytes": 6531
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "6b40cc60f6d071ca06a345fa4f3103c52e1d75d9be2e058d7507b3efc1e61b4f",
+      "git_blob": "194eb752d8dec120e38375ee5260793d8239d81b",
+      "bytes": 7115
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "bcd89a1db89cb881cf5b5649e5f04e91c2cef008be4866a6dd7b288bd80cbf24",
+      "git_blob": "08112c20cc85b6d8ce9dcbe76049a71b978854d5",
+      "bytes": 25341
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspaceComponents.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "d0a5edbf6f7bc1b79af45b01cd19a29c6c758ab7ab2e1ea785a82bf76495c423",
+      "git_blob": "6ae60c470909791fb6d78e353058e39d1707a788",
+      "bytes": 10447
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWorkspacePresentationBinding.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "45ac8713b4628593016a0f779b8655acaa60f14f831a3f60ea7f69dee6254f5c",
+      "git_blob": "05bd767754e4509b7b48c8ab2e94f4fc173240ad",
+      "bytes": 35230
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d",
+      "git_blob": "00c74bdb81eb976d86ec4625c85763c3260b3bd1",
+      "bytes": 22872
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "git_blob": "41028d323eaba2d6e3a9f10865aa6c4eed0b6230",
+      "bytes": 5278
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Registry/ActionRegistry.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "eeddfc6f63093138bd7ad537cd1b20fe15d2d8efc6319ec9bb07452de191ac37",
+      "git_blob": "3e117dab91a96fdfffd4836797f4e291ba922092",
+      "bytes": 2110
+    },
+    {
+      "path": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a",
+      "git_blob": "6f8cec48f818179fa3321e7d808127f2d6021b1f",
+      "bytes": 5993
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "9f6d3083c526e3c7a685ea340a11538c2d30efb7778d4a1e8c0e369590d9bd11",
+      "git_blob": "3620c67be1ea001487ab3e57a626b09e0f70ff70",
+      "bytes": 366743
+    },
+    {
+      "path": "docs/otzaria/ui-prototypes/library-search-morph-20261122/MorphingSearchPlaygrounds.swift",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "d8d9e8b41b133ec61375a970e0f2fe8fc821141cc049c68d06a5b124496d84f4",
+      "git_blob": "0bea394e321c7f9c5de355e69e0e58861275e491",
+      "bytes": 14577
+    },
+    {
+      "path": "docs/otzaria/ui-prototypes/library-search-morph-20261122/SafariToolbarSearch-Playgrounds.zip",
+      "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+      "sha256": "f3a657cc1b4e43639bcfbaa210bc9c2cbbcf80f1a610f2b9031d22ab823a784f",
+      "git_blob": "0e1f1e9f093adb5c7e054e07a22713832aba6a1f",
+      "bytes": 9091
+    }
+  ],
+  "original_ports": [
+    {
+      "repo": "ScrollableTabBar",
+      "original": "Sources/ScrollableTabBar/ScrollableTabBar.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+      "sha256": "7f029400d9365eb095a8b32e02b188f0eabd6bd4a85572eb3b8d4771b4d966fc",
+      "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+      "destinationSHA256": "a6db2cc014017eec30fda9991f251f686feadc2b5e454494b73e1f7ba6e27b0f",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBar.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "a6db2cc014017eec30fda9991f251f686feadc2b5e454494b73e1f7ba6e27b0f",
+        "git_blob": "fa2ab28a828749acef29784e76279928a5f241b5",
+        "bytes": 9535
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "ScrollableTabBar",
+      "original": "Sources/ScrollableTabBar/ScrollableTabBarDelegate.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+      "sha256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+      "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+      "destinationSHA256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/ScrollableTabBarDelegate.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "bd1a23fd0e8d9d66d9b20c19d13ebc91bdec04e2003a34bd09ac5f8f806bce38",
+        "git_blob": "16cbd75d5297d1012716455bd9f187b23977c7a1",
+        "bytes": 673
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "ScrollableTabBar",
+      "original": "Sources/ScrollableTabBar/AdaptiveTabContent.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+      "sha256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+      "reason": "Select the original AdaptiveTabContent public fallback unconditionally; exclude private runtime and ABIBridge entirely.",
+      "destinationSHA256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/ScrollableTabBarPort/AdaptiveTabContent.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "9e67d06aaedaddc52ac6661bd69ac542f4d2fa94dc0b06d807ace41404202ed7",
+        "git_blob": "da7556d246681e066bde46066397b5dee3fda281",
+        "bytes": 6437
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Model/Command.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/Command.swift",
+      "sha256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+      "reason": "Identical original source.",
+      "destinationSHA256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/Command.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "6af64c0cb3b9a6899ad6f257beaa782b014ca28dc813036bb1d738ee93b1015b",
+        "git_blob": "279b328f812daf1f71e08cfaf162936327250cde",
+        "bytes": 3265
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Model/CommandShortcut.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/CommandShortcut.swift",
+      "sha256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+      "reason": "Identical original source.",
+      "destinationSHA256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Model/CommandShortcut.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "4fdccf403c5b47f24cbe1ac236c4fa42a23ea935d9fcbceb54cde713002bd959",
+        "git_blob": "ade1be5800ea74b5c090c3f5342083af80fe865b",
+        "bytes": 8352
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Recents/RecentCommands.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Recents/RecentCommands.swift",
+      "sha256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+      "reason": "Identical original source.",
+      "destinationSHA256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Recents/RecentCommands.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "8e8729efccafe3e4e9976d678273a1bcfc0b7f9442a4307115c13fbb793370ec",
+        "git_blob": "4e81cef9e42a5bc13fc93936330fd835a1c19e10",
+        "bytes": 4940
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Search/CommandPaletteResults.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteResults.swift",
+      "sha256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+      "reason": "Identical original source.",
+      "destinationSHA256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteResults.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "e6eed3a0e583f7fa44896345e184263be92837412f2c3c438dcffb7864aa7966",
+        "git_blob": "40bf83540682d187f014561340ac8d2639c13010",
+        "bytes": 7427
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+      "sha256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+      "reason": "Identical original source.",
+      "destinationSHA256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/CommandPaletteSelection.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "90aa8205d15691f97fcb34d8c6690589762d90c7ed27795902c41a1b09613010",
+        "git_blob": "d08a0b2313924ba82c56338dce72daa0ec219154",
+        "bytes": 3809
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Search/FuzzyMatcher.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift",
+      "sha256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+      "reason": "Identical original source.",
+      "destinationSHA256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Search/FuzzyMatcher.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "e1f0531cdc193206982dba04da92af4e9ce43274b3d9255084aa370f34a298cc",
+        "git_blob": "dc1f772c7a17529e0092d487bbf47e639631aed6",
+        "bytes": 7231
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+      "sha256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+      "reason": "Identical original source.",
+      "destinationSHA256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteModifier.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "61e9ccc1546897d91ecc8b1d21b2a9bef367ab6231bebcf6d9a0f93f70be6533",
+        "git_blob": "e68a8e0b817420c8db72065f392844333463243e",
+        "bytes": 5299
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+      "sha256": "d33809cb1628b7418f11625c5107f2510298472ecbef11e28c2c855b48ea5b3c",
+      "reason": "Optional bidirectional queryBinding, default nil; rendered source and original esc KeyCap retained. Escape is handled by the downstream UIKit responder-chain wrapper. No fuzzy-search changes. Native validation pending.",
+      "destinationSHA256": "94db70b71f53045f161954f94dea226dc3a6075ee264050bfe4dadaf63bbf84f",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/CommandPaletteView.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "ff9d0053799a914f7ab14cbe76c0f01d866739fa0d24529b8e9327331579ba5e",
+        "git_blob": "db84e7f6344dfdf3d875b36926e8839080815de9",
+        "bytes": 21459
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Sources/CommandPalette/Views/PaletteComponents.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift",
+      "sha256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+      "reason": "Identical original source.",
+      "destinationSHA256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Sources/CommandPalette/Views/PaletteComponents.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "b24e9f6432ca62949a06171f7a7a52811f8555ba55832ed13fd36ec8ea0a154d",
+        "git_blob": "7dcbed7f823c8a7995cc736aa2e25cf56c4809ea",
+        "bytes": 5595
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "CommandPalette",
+      "original": "Package.swift",
+      "destination": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+      "sha256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+      "reason": "Identical source",
+      "destinationSHA256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/Dependencies/CommandPalette/Package.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "7468d65b495d01e3c06e4c8b508e8999b0c42aba46e57eb27de8cd4f84bad3c6",
+        "git_blob": "29b39d3e69cb0197a099768a7a8dbff793aacfa7",
+        "bytes": 414
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarLayout.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+      "sha256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+      "reason": "Identical source",
+      "destinationSHA256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarLayout.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "75ff308857d9da6de4b1298c7f729851baa2b19513523e15c55d9b3415115a56",
+        "git_blob": "d776f25a840bdfb44d90e8aaab078558bb212d2e",
+        "bytes": 2400
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabFlaredBackgroundView.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+      "sha256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+      "reason": "Identical source",
+      "destinationSHA256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlaredBackgroundView.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "68230658b738a65806af91e0839e94222b2ac6ebe65db8dfc7cbac211ad3ef2f",
+        "git_blob": "00349c05e9f97a037602cbfb8952cb82e64e75a0",
+        "bytes": 5212
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": true,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabFlareBackgroundController.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+      "sha256": "69bdf8e28cc9428f0293f3931e8b6c77c3f67a2acd807339720c0fd2feaf79cd",
+      "reason": "Swift 6 SDK requires UIKit owner/display-link proxy and teardown to remain on MainActor. Only isolation annotations change; all flare geometry, scrolling, animation and lifecycle logic are original.",
+      "destinationSHA256": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabFlareBackgroundController.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "6a7eafe79c6b684b6386f2a112640ffdb18bf980ffa49e7902cb1b90fca2c6d1",
+        "git_blob": "d7840976b9cb031ddcbc29f2838074fd4ee8b02c",
+        "bytes": 12638
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarView.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+      "sha256": "b6445ea87271f769da5948ebc6ad9665f90659452246b91bfc5ba4245eff6cc2",
+      "reason": "Guard section/item existence before section-0 accesses and layout queries; all accordion calculations unchanged. Optional source action visibility collapses the two action insets/width when the Safari toolbar owns both actions; original defaults and accordion unchanged.",
+      "destinationSHA256": "8ae46e5812f2782c0a5a197b62f4ec39d504ae68f75dc9be7779a3b440fbcbf0",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarView.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "de87ae23a776b6fd1ff9575ce52a0510f955dd64731f6da797385f0ecbbcca60",
+        "git_blob": "d74bc74ebc0b865a8a056e200caf01773e063753",
+        "bytes": 12727
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarCell.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+      "sha256": "fd600406b508106fbb2d0297f3ea3ef67926f238de7ff0ddd0217d5769d26c32",
+      "reason": "Replace browser imports/TabObserver with book-domain observer; adapt model/title/favicon/theme and close glyph; preserve layout, separators, pointer/hover, close visibility, drag placeholder, animation and flare geometry.",
+      "destinationSHA256": "8a2162616db8a5ecb15bc81d2fc0f7ac866007377aeb10f855bde79d4e48f503",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarCell.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "0e70441a20ec8e2e6292756daa0013d99d8df7059fa06cf8dae54b4d8ca5087e",
+        "git_blob": "a0a5ac04fb95f8abc1a45f1ce715cc4c176478dc",
+        "bytes": 20177
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+      "destination": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+      "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "reason": "Exact SafariGlass, GlassButtonGroup and original motion equations/gestures/springs. Widen access levels; bypass touch deformation under Reduce Motion. Demo app/state/screens excluded. Strict 10601 BUG-06: native interactive glass only on existing grouped actions; baseline-to-current patch: source-diffs/Strict10601-SafariGlass.diff. No position, geometry, or backing-owner change.",
+      "destinationSHA256": "80651917d8e10fc1ba8ec2a73af060bb61d68e0193dfda85b1c2e0a456470076",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/ToolbarSearch/SafariToolbarSourcePort.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "6feb6c2e6cb963981272a0440e03f17fcd4681247e692ae6e19d68d928a1387a",
+        "git_blob": "6f8cec48f818179fa3321e7d808127f2d6021b1f",
+        "bytes": 5993
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabsBarViewController.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+      "sha256": "2aba6f273860245081a2d88bdd20902acc6099907907989e1d88d7356444ddf3",
+      "reason": "Keep original width policy, accordion selection/reveal, pointer, drag/drop/reorder, context menu, flare lifecycle and cell rendering; remove browser/fire/AI/analytics/app dependencies, route callbacks to book tabs and original library. Add current-membership guards. Optional showsToolbarButtons=false moves source actions to Safari; pass zero button reservation into the unchanged source TabsBarLayout. Default true preserves original controller tests.",
+      "destinationSHA256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabsBarViewController.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "a1b0b8504f4404b4527a62a95fa9a328a156e6dd74e905316a03aef357122e7f",
+        "git_blob": "6c99ea0b60e92398a4edceeae5aa5f54add3d41c",
+        "bytes": 34275
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "SharedPackages/UIComponents/Sources/UIComponents/iOS/FadeOutLabel.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+      "sha256": "25b3e118b3abc5acfe0aea411f371056d219ca344edc204137f41e26fd663aa7",
+      "reason": "Rename only, to avoid host type collisions. Original gradient renderer unchanged.",
+      "destinationSHA256": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/ReaderTabFadeOutLabel.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "d31ad0679e524d537cfcecfb241574d3ada9e8d0dcb010458dbf162186a78042",
+        "git_blob": "d5de76ca2c51cfe37c73163bb5e80b6cfbed1111",
+        "bytes": 2599
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarLayoutTests.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift",
+      "sha256": "8e823b02a50adfd826e852495834e69e984fd75fda34780750be7e0dc5ad5245",
+      "reason": "All original layout/accordion/hover/close/flare assertions retained. Only test module, theme and book-domain model construction adapted.",
+      "destinationSHA256": "ad26afe377a4322056b2c06ede3cca4182fa6f42fbc5f8ad783f651ebd682db8",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarLayoutTests.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "ad26afe377a4322056b2c06ede3cca4182fa6f42fbc5f8ad783f651ebd682db8",
+        "git_blob": "5544c3321b320322232849beaffadb16b4a7e9ed",
+        "bytes": 25353
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGoTests/DuckDuckGo/Tabs/TabsBarViewControllerSizingTests.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
+      "sha256": "04b31e8a5a8b1f8913298674a3435dfeec9776ff0df3849fc177d9d2c2fc9ceb",
+      "reason": "Retain original hierarchy, sizing, reorder, selection, pointer, flare and foreground assertions. Exclude only two AI-chat-only tests for removed browser features. Use a real UIApplication test host, immutable nonisolated Progress, and 340pt narrow fixtures (including the original pointer conditional) to preserve the strict one-to-two-tab viewport after browser controls are removed. No behavioral assertion weakened.",
+      "destinationSHA256": "8b5002462ce45aa379b69e5a7c69afbf4507f93e75f16bd106a8126fad392994",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/Tests/OriginalTabsBarViewControllerSizingTests.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "8b5002462ce45aa379b69e5a7c69afbf4507f93e75f16bd106a8126fad392994",
+        "git_blob": "69975abbdeb0f0be9b13ecf850a33ce92dcab59a",
+        "bytes": 27464
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+      "destination": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+      "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "reason": "Reuse compactSearchField spacing/fonts/padding/height/shape/focus handoff; library icon/text and canonical binding replace browser address state. Actual CommandPaletteView is rendered with the documented optional query binding and iOS native cancel-key adaptation. UIKit hosting background is clear/nonopaque so only the original rounded palette paints its material and shadow.",
+      "destinationSHA256": "d4f5c45680c8cf72001a0a0d83b5e62a97368dbc68b6ea229985028cf86ae66a",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/ToolbarSearch/LibraryCommandPaletteAdapter.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "6b3f34897842fed6013030e8d7554f9b2c7f4b67c129d8a1a7ceeb89085fe55a",
+        "git_blob": "f4a56ab8b3cc8aea66f1fbbc21aee3cf27369c5f",
+        "bytes": 16413
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+      "destination": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+      "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "reason": "Reuse expandedSearch placement/max-width/padding, matched geometry identity and response 0.47/damping 0.84 spring. Native toolbar placement and original library/TOC/reader replace demo page composition. Compact profile padding/visibility follows the original compact branch; Reduce Motion disables morph animation. Actual containing-window identity and original reading-theme backing remain downstream connections; iPadOS27 uses its original native sidebar action; the compact native overflow retains the profile action. Restore safariToolbar(compact:) as one native principal item with original HStack/group spacing and original overview/plus actions; omit browser-only share/download/back; retain required native split sidebar/book-info items. Hide duplicate opaque navigation backing; zero empty document-strip height. Public window-origin bridge restores the original 7pt toolbar/6pt expanded-search placement below native global tabs; close search on disappearance to stop tracking.",
+      "destinationSHA256": "b6d75d5796b2806e563e90ffa526ca6a336213c2d611114b064225a8c2308e25",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/ReaderHost/ChavrusaReaderHost.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "91d1624692db76605cfa837bd4f5e3ab1710602967e424e378dcf398c6aef6ec",
+        "git_blob": "eec2101e81bc2000900cee55df3a35da6921a99e",
+        "bytes": 22073
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabSwitcherPageViewController.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "a12100a4c78e4d32da6df3ea7d137766a3da7a82fad2cdb84d4f371c12a9c8cf",
+      "reason": "Preserve the original UICollectionView list/grid controller, 14pt spacing, adaptive one-to-four-column geometry, 664pt list cap, selection, swipe-close coordination, native context menus, and drag reorder. Replace the browser TabsModel, tracker header, Fire/AI/telemetry services, and browser previews with the stable-ID display callbacks to the canonical ReaderDocumentTab adapter and an honest unavailable-preview state. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
+      "destinationSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+        "git_blob": "e599d0971da3755337cd9c2cbf221752f082585d",
+        "bytes": 34800
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabViewCell.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "6e8bb3fda08c289202c0abec6beeefb57a91bd420111c6f9506e768d97a88c57",
+      "reason": "Preserve the original card/border radii, shadow, close-button spacing animation, one-third-width swipe threshold, alpha and removal/cancel animations. Replace browser favicon, unread, screenshot, theme, analytics and AI state with book-domain title/backend state; mirror the existing horizontal swipe under RTL. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
+      "destinationSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+        "git_blob": "e599d0971da3755337cd9c2cbf221752f082585d",
+        "bytes": 34800
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabViewGridCell.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "3c17cdbf42a3720645a558320f5fb28da29090f040f5d7a3c94745d43f6118ad",
+      "reason": "Preserve the original 44pt header, 16pt leading icon, 12/8pt header padding, 8pt preview inset, 4pt bottom padding and close-container layout. Substitute a semantic book icon and explicit unavailable-preview content because the reader has no browser screenshot service. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
+      "destinationSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+        "git_blob": "e599d0971da3755337cd9c2cbf221752f082585d",
+        "bytes": 34800
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/TabSwitcher/TabViewListCell.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "efcdd9ebba2697b2ef8b7dcbf3f71f27e4b5c26a73d8a5da47123edc28e73ca5",
+      "reason": "Preserve the original list row's 16/12pt horizontal padding, 8pt vertical padding, 24pt icon, 8pt inter-item spacing, 44pt control height, title/subtitle stack and close control. Remove browser URL, unread and multi-select-only presentation while retaining the source cell hierarchy. Match original drop completion ordering; local stable-ID/session/membership guards prevent stale or foreign drops.",
+      "destinationSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+        "git_blob": "e599d0971da3755337cd9c2cbf221752f082585d",
+        "bytes": 34800
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "SharedPackages/Infrastructure/DesignResourcesKit/Sources/DesignResourcesKit/Fonts/Font.swift",
+      "destination": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+      "sha256": "9ca6e76e744090cb10984d40fe770de2051dd3b24d81f5fcefac2adaf7bd4b33",
+      "reason": "Copy exactly daxBodySemibold, daxSubheadSemibold and daxFootnoteSemibold UIFontDescriptor factories; private file scope only. Replace earlier scaledFont approximations without a typeface or size redesign.",
+      "destinationSHA256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/StudyWorkspace/UI/DuckDuckGoTabsPort/TabSwitcherPagePort.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "fa365e4ffdb9c4d97a94a9a9720c30e343a46bfb5b04ce08fb772f2a85c9f765",
+        "git_blob": "e599d0971da3755337cd9c2cbf221752f082585d",
+        "bytes": 34800
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": true
+    },
+    {
+      "repo": "Owner Safari prototype",
+      "original": "01_Original_Safari_Prototype/SafariToolbarSearch-MyApp.swift",
+      "destination": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+      "sha256": "cd07ea2e5eef10a2601e4eaa7ab6cab77213867743170fd1bc1a9311cda3d51d",
+      "reason": "Original sidebar toolbarButton geometry and GlassButtonGroup, with actual split action. Add nonvisual public-UIKit window-origin probes to bridge native toolbar and overlay coordinate graphs; no control drawing or reader mutation.",
+      "destinationSHA256": "b4fbe3a253bea61d95014dcdc85eea9ac0ec47ff199250e8ca4bffeb28bfc3a9",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/ToolbarSearch/ReaderToolbarActionAdapter.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "85e7cffcb6c0c25cf4ee085ec2bad3b3ae896e59985ebbdda9228f4076c6cc8e",
+        "git_blob": "5f92c6f733283cce56a119ed3827df315c03ca87",
+        "bytes": 5165
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    },
+    {
+      "repo": "DuckDuckGo-apple-browsers",
+      "original": "iOS/DuckDuckGo/Main/MainViewController+Segues.swift",
+      "destination": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+      "sha256": "78a3a1b88b49c29d7e5cbb880349c88f42679d4254a4f397b9acbc803f4b0f05",
+      "reason": "Behavioral integration of the pinned segueToTabSwitcher overCurrentContext contract. A nonvisual context-sized UIKit anchor preserves the existing reader hierarchy; original source Grid/List are reused. No sheet, reader rehosting, offset/delegate writes or fabricated WebKit preview/transition. Browser-specific snapshot animation is omitted rather than replaced with invented motion.",
+      "destinationSHA256": "6eed61dc4d43ab7064cc84773b2a09f6a670a8cd4e87b1de12061daaced00c63",
+      "historical_record": "docs/ipad-ui-rebuild/source-provenance.json",
+      "current": {
+        "path": "Source/ChavrusaText/ReaderHost/ReaderOverviewPresentation.swift",
+        "source_ref": "cbf619cc897e17aae723112ecef31ff65f819eba",
+        "sha256": "4a8699f9efacc4d10265618f3d691d97400c48f17492d59650ffba309bce989c",
+        "git_blob": "a4a2e9b480b8f9601705b48e5b2fcb8b2f90b17c",
+        "bytes": 11684
+      },
+      "same_as_prior_crosswalk": true,
+      "same_as_original_bytes": false,
+      "same_as_recorded_port_bytes": false
+    }
+  ],
+  "external_proof_reuse": {
+    "TorahInspectorKit": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+    "SefariaMobile": "2fd173a5a3bd32d94a9ba1222e4e32a37f6bd23c",
+    "boundary": "Immutable external Git proofs retained under independently re-read unchanged consumer pins; no fresh external runtime claim."
+  },
+  "task_reads": [
+    {
+      "gid": "1220036734107652",
+      "name": "[PLANNED][P1][UX][iPad Reader] איחוד עץ הספרים ותוכן העניינים לסיידבאר דו־מסכי (Craft-style)",
+      "modified_at": "2026-11-26T17:35:09.058Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220036734107652",
+      "notes_characters_read": 12542,
+      "comments_returned": 2,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220103384037482",
+      "name": "[PLANNED][P1][UX][MAIN_SESSION] אוצריא — פרופילי לימוד, קבוצות כרטיסיות ו־DuckDuckGo Tab Strip",
+      "modified_at": "2026-11-26T17:23:57.641Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220103384037482",
+      "notes_characters_read": 13639,
+      "comments_returned": 14,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220036884173010",
+      "name": "[PLANNED][P1][UX] אוצריא — Safari Toolbar וחיפוש ספרייה מתרחב עם CommandPalette + Gelatin Motion-Only",
+      "modified_at": "2026-11-26T20:08:40.753Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220036884173010",
+      "notes_characters_read": 13374,
+      "comments_returned": 24,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1219643110971002",
+      "name": "[PLANNED][UX] Maktabah — Native iPadOS 27 Side Sheet ל-TorahInspectorKit בשלושה גבהים",
+      "modified_at": "2026-11-26T21:03:19.154Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219643110971002",
+      "notes_characters_read": 5794,
+      "comments_returned": 22,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542361135050",
+      "name": "[P1][UI-AUTOMATION] חיבור מקיף של מסכים, רכיבים ומצבי ממשק ל־App Intents + Deep/Universal Links + AI",
+      "modified_at": "2026-11-26T23:39:37.833Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1220542361135050",
+      "notes_characters_read": 59904,
+      "comments_returned": 25,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1219848733895424",
+      "name": "[P0][BATCH-B][IN_PROGRESS] Reader/Upstream — iPadOS 27 QA + TestFlight production",
+      "modified_at": "2026-11-26T16:09:57.844Z",
+      "url": "https://app.asana.com/1/1219597879016953/project/1219602719070493/task/1219848733895424",
+      "notes_characters_read": 6142,
+      "comments_returned": 24,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542361203468",
+      "name": "UI-03 | Scene Navigation Orchestrator — פתיחת מסכים, פאנלים ורכיבים במצב מדויק",
+      "modified_at": "2026-11-27T02:52:34.794Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542361203468",
+      "notes_characters_read": 49503,
+      "comments_returned": 24,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542420331748",
+      "name": "UI-04 | App Intents / Shortcuts / Siri — פתיחת DestinationState ורכיבים ספציפיים",
+      "modified_at": "2026-11-26T02:33:15.418Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542420331748",
+      "notes_characters_read": 10358,
+      "comments_returned": 11,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542420330496",
+      "name": "UI-05 | Deep Links + Universal Links — ניווט מדויק, גרסאות ושימור קישורים ישנים",
+      "modified_at": "2026-11-27T01:23:54.735Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542420330496",
+      "notes_characters_read": 25857,
+      "comments_returned": 16,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542467495722",
+      "name": "UI-06 | חיבור AI/MCP/Guided Tours ל־UI Registry ולמיקוד רכיבים",
+      "modified_at": "2026-11-27T02:01:18.839Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542467495722",
+      "notes_characters_read": 28721,
+      "comments_returned": 50,
+      "comment_limit": 50,
+      "latest_notes_read": true,
+      "comment_window_boundary": "The connector returns at most 50 comments; all latest task notes were read, but this is not a claim that every older or later comment is in the returned window."
+    },
+    {
+      "gid": "1220542416158970",
+      "name": "UI-07 | QA: מטריצת כיסוי 3 Backends × מסכים × AppIntent/DeepLink, security, regression",
+      "modified_at": "2026-11-26T15:44:17.664Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542416158970",
+      "notes_characters_read": 16576,
+      "comments_returned": 13,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542479938540",
+      "name": "UI-01 | אינוונטר מלא לכל המסכים, רכיבי UI ומצבי פתיחה — coverage manifest",
+      "modified_at": "2026-11-19T14:47:54.409Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542479938540",
+      "notes_characters_read": 17294,
+      "comments_returned": 8,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    },
+    {
+      "gid": "1220542479938476",
+      "name": "UI-02 | חוזה RouteSpec ו־UI Destination/State Registry משותף עם ActionCore",
+      "modified_at": "2026-11-19T14:47:47.412Z",
+      "url": "https://app.asana.com/1/1219597879016953/task/1220542479938476",
+      "notes_characters_read": 51910,
+      "comments_returned": 6,
+      "comment_limit": 50,
+      "latest_notes_read": true
+    }
+  ],
+  "ui03_07_contracts": {
+    "UI03": {
+      "task": "1220542361203468",
+      "requirements": [
+        "One original @MainActor Core/registry/orchestrator chain from parse/permission/readiness/exact scene/workspace/content through specific control state to actual native View ACK.",
+        "Exact Library/category/work, Reader address/focus, Inspector source, global-search query/filter/mode/selected hit, Settings control, Notes draft, bookmark/history selection, tab/profile/group/sidebar/menu/presentation state.",
+        "Cold/warm/background/premount/multiwindow, backend generation/epoch, cancelled/deadline/replay/readiness; a queued or requested surface is never completed."
+      ]
+    },
+    "UI04": {
+      "task": "1220542420331748",
+      "requirements": [
+        "Meaningful typed AppIntent/AppEntity wrappers over original Core; stable backend-qualified entities, dependencies, foreground execution, ambiguity and honest availability.",
+        "Open book/location, optional commentary and unsaved proposal, search results state, Settings section/control, Reader/TOC and notes/bookmark/history targets as actually supported.",
+        "Actual system Shortcuts/Siri and process/lifecycle/error/native receipt acceptance; WidgetConfigurationIntent does not satisfy action delivery."
+      ]
+    },
+    "UI05": {
+      "task": "1220542420330496",
+      "requirements": [
+        "Versioned allowlisted private custom URLs and authorized HTTPS/AASA/app entitlement; exact original target state where supported.",
+        "Retain original Widget history/annotation and Expo URL/activity lifecycle; no duplicated navigation.",
+        "No private note/query payload in shareable URL, code/selector/path injection or GET writes; malformed/version/size/encoding/replay/multiwindow/offline scenarios and actual OS delivery."
+      ]
+    },
+    "UI06": {
+      "task": "1220542467495722",
+      "requirements": [
+        "Reuse the single original Hanlin SDK/Chat/Composer/tools/store through a thin scoped host; no parallel engine or untrusted authority.",
+        "Same catalog/Core/UI path for AI/MCP/guides with live source/context/cancel/consent and actual native witnesses.",
+        "At least three multistep guides with named targets, bounded readiness/cancellation/resume/replay and meaningful HE/EN/VO/RTL/Dynamic Type."
+      ]
+    },
+    "UI07": {
+      "task": "1220542416158970",
+      "requirements": [
+        "All 51 original semantic/lifecycle/security/ingress/observability families, three distinct backends, actual state and receipt evidence; maintain PASS/FAIL/BLOCKED/NOT_RUN truthfully.",
+        "Original Native116 baseline82/34 and Release114+2 remain original final-candidate gates; focused source tests are not substitutes.",
+        "Production v40/indices/Anytype/Hanlin Live/MiniApps, original regressions, iPad+iPhone, actual physical owner QA. Owner minimum is iOS/iPadOS27 only; historical26 row retained as superseded."
+      ]
+    }
+  },
+  "notes": [
+    "November 22 owner morph references are now recovered byte-identically under docs; the older prototype is preserved.",
+    "Toolbar labels now reuse original scene locale/helper/catalog; EN/HE/VoiceOver runtime still NOT_RUN.",
+    "Adapted original-source ports retain their provenance. Do not call all32 untouched upstream files."
+  ]
+}
