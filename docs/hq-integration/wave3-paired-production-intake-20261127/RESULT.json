@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "integrated": [
+    {
+      "donor": "4a6e7bdc9b9bad42586210ba19fac7ebaa3a47e3",
+      "integrated": "c5dffdea9c9ab9a434397d8adee948b2ad6ad6e9"
+    },
+    {
+      "donor": "50c6a0c4f0d411288d82c2af665803b462ae2d72",
+      "integrated": "8b410d0704e92371e8762fec6b97dd8d6971fd6b"
+    },
+    {
+      "donor": "2f71c9a2995ed1cf7d8d476df4f33919f06da97b",
+      "integrated": "ab297f71746c901acd2018cf151ef9fb4e97892c"
+    },
+    {
+      "donor": "896df5ed3693ac52842579fc1e72de0dd7e78689",
+      "integrated": "73541f7e2a0a7b282f57236e9d71986badd75eaf"
+    },
+    {
+      "donor": "fce87492e2cfec2c01aced4364e43687b7deb165",
+      "integrated": "d2cafb370786f074bf44bf2f904043bb251473ba"
+    },
+    {
+      "donor": "82e74fe2f338d8f66fbbd28d56549ea006f203d5",
+      "integrated": "eb6cb57022bfac9ef98cb4f46fcafb86db8de4cb"
+    },
+    {
+      "donor": "f26f928fd697a5d26ff35c8156c271f0565a5ccb",
+      "integrated": "d68a9e109e10fb2ebde3eab50bd9b4c3274b834b"
+    }
+  ],
+  "losslessStorageCommit": "f4357bcc0157d83c78ea8f2d2e6f766adae58d83",
+  "finalSource": "60c3ea2e04e77a4404fda412fb964fb805c485e3",
+  "planSHA256": "93ce792e4a19b1b33581fa89d6c1016ac48b7fb1467f5c4d817673bbfd19dbe4",
+  "exactPerCommitFiles": 114,
+  "manifestVerifiedFiles": 103,
+  "losslessVerifiedMembers": 36,
+  "originalDependenciesUnchanged": 8,
+  "diffCheckExit": 0,
+  "actualNativeRuns": 0,
+  "sourceControlsReused": {
+    "python": {
+      "passed": 35,
+      "failed": 0,
+      "negativeVariantFailures": [
+        2,
+        1,
+        6
+      ]
+    },
+    "swift": {
+      "passed": 49,
+      "failed": 0,
+      "donorLaunchFailures": 4
+    }
+  },
+  "preservedAttempt1Failure": "All7 cherry-picks completed; following lossless evidence storage stopped because sparse checkout did not materialize docs. No cherry-pick replayed. All7 actual commits and every file were reverified before continuing from Git blobs.",
+  "utc": "2026-11-27T09:55:15.724869+00:00"
+}
