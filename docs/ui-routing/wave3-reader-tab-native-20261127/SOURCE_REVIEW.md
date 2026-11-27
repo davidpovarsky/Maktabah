@@ -13,5 +13,22 @@ This records a source review received through the current agent collaboration
 channel. It is not an owner signature, gate attestation, Apple SDK compilation,
 native result, physical-device acceptance or release approval.
 
-A separate review by release_preflight is pending; no finding or acceptance is
-attributed to that reviewer here.
+
+## Independent release_preflight source review
+
+The release_preflight agent independently read source f5428b47 and all 241
+appended helper lines, reverified the exact old prefix and both final file
+hashes, and inspected the original requireReaderLocator / assertReaderHasText,
+strict eight-field receipt parser, actualSiriReaderDocuments, group prompt and
+Done controls, and UIKit close-menu sources. It found no source-review blocker.
+
+The reviewer confirmed that both refusal cases first prove the SAME cached
+system entity succeeds, then change original UI state and require discovery
+withdrawal and refusal without Store/receipt mutation over the original
+five-second bound. It explicitly preserved three limits: the positive document
+projection excludes documented viewport bookkeeping; the observed/attached
+system error does not assert a particular typed error code; actual API,
+checkpoint and accessibility behavior remain native NOT_RUN.
+
+No test, app, simulator or native run was performed by that review. No source
+edit or owner signature is represented by this note.

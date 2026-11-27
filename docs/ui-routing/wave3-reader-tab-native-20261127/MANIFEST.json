@@ -4,8 +4,13 @@
   "files": [
     {
       "path": "MEMBERSHIP.json",
-      "bytes": 329,
-      "sha256": "5ab6aa703477483a2498e91dbb92f9cc20bcb67c2fb5554321d42ca4480e8d42"
+      "bytes": 704,
+      "sha256": "18c6a1eebfab63f8cf7c906025f9432b7f05ce69e9a4a4d502f89eedad44d26e"
+    },
+    {
+      "path": "MEMBERSHIP_CORRECTION.md",
+      "bytes": 1255,
+      "sha256": "410223f95c71ad27cdfb43c863e19695bc431cdc140efe8ce8fd16b273cda9a1"
     },
     {
       "path": "NATIVE_SELECTORS.json",
@@ -13,9 +18,14 @@
       "sha256": "a223b7d86527d8ed595d36d66271923e36411509f4bb4078dc13afd79b59b4e6"
     },
     {
+      "path": "PROJECT_MEMBERSHIP_PROOF.json",
+      "bytes": 3600,
+      "sha256": "148c7b8d4af1889601c2e605b5cf17aa0450cf5d90270539c661d56d4c74899f"
+    },
+    {
       "path": "README.md",
-      "bytes": 8593,
-      "sha256": "cc7807ee36da906d16a2f0743e73ba5975658b98b9e94c26ca8a4b4f53828bbf"
+      "bytes": 8939,
+      "sha256": "4ecff8eac6219709fefcec71f9a1213fd66c2232a9af479d3a6eece04026b37a"
     },
     {
       "path": "SOURCE_PROVENANCE.json",
@@ -24,8 +34,8 @@
     },
     {
       "path": "SOURCE_REVIEW.md",
-      "bytes": 846,
-      "sha256": "1c377e0e52a4bddcebb818fef136f691c9eed9bae27a390468697c31261c4f1e"
+      "bytes": 1813,
+      "sha256": "7483721deaea4a06cc067b5976e96243e8e3bf5c0aae7e95adbea021b863d3f6"
     },
     {
       "path": "evidence/attempt-1/COMMAND.json",
