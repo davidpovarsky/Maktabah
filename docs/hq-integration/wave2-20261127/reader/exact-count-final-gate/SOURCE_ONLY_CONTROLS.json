@@ -1,0 +1,93 @@
+{
+  "scope": "Python source-only exact-cardinality gate controls; no native test executed",
+  "source_sha256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+  "cases": [
+    {
+      "name": "exact_three_natural_observations",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "at_least_cannot_be_exact",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "declared_exact_flag_cannot_override_actual_count",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "boolean_is_not_integer_count",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "float_is_not_integer_count",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "missing_scale_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "duplicate_observation_cannot_cover_two_scales",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "unobserved_scale_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "host_exact_flag_must_agree",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "each_original_scale_must_be_exact",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "original_ui_failure_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "changed_database_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "changed_source_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "cleanup_failure_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "v32_receipt_cannot_be_relabelled",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "absent_device_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    },
+    {
+      "name": "missing_source_cannot_pass",
+      "passed": true,
+      "scope": "synthetic host-receipt rejection control; not app/native acceptance"
+    }
+  ],
+  "passed": 17,
+  "failed": 0
+}

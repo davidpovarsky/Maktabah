@@ -276,6 +276,70 @@ def load_core():
     core.source_context = source_context
     return core
 
+def require_exact_inspector_scales(core):
+    """Keep authentic at-least observations; separately gate exact v40 sizes.
+
+    Called only by this wrapper's native execute entry point. The shared v32
+    host, its historical results, and other load_core consumers are unchanged.
+    Exact cardinality does not qualify row bodies or any performance metric.
+    """
+    receipt = {
+        "schema": "otzaria.full-v40.exact-inspector-final-gate/1",
+        "status": "NOT_MET",
+        "requested_counts": [100, 500, 2000],
+        "full_performance_acceptance": False,
+        "full_row_rendering_acceptance": False,
+        "scope": "Exact natural cached cardinality of three original native UI observations only",
+    }
+    destination = core.OUT / "v40-exact-inspector-final-gate.json"
+    require(not destination.exists(), "Never overwrite a prior final-gate receipt")
+    failure = None
+    try:
+        report_path = core.OUT / "result.json"
+        scales_path = core.OUT / "original-inspector-scales.json"
+        report = core.bounded_json(report_path, 8_000_000)
+        completion = core.bounded_json(scales_path, 2_000_000)
+        receipt["native_result"] = core.witness(report_path)
+        receipt["original_scales"] = core.witness(scales_path)
+        require(report.get("corpus_profile") == "full-v40"
+                and report.get("status") == "ORIGINAL_UI_OBSERVATIONS_COMPLETE_METRICS_REVIEW_REQUIRED"
+                and report.get("database_bytes_unchanged") is True
+                and report.get("source_and_built_binary_bytes_unchanged") is True
+                and isinstance(report.get("source"), dict) and report["source"]
+                and report.get("cleanup_or_post_verification_failures") == [],
+                "Original full-v40 UI completion and immutable postchecks are required")
+        udid = report.get("reused_external_owned_simulator")
+        require(isinstance(udid, str) and str(uuid.UUID(udid)).upper() == udid,
+                "The native result must bind the explicit retained simulator")
+        scales = completion.get("scales")
+        ids = completion.get("observationIDs")
+        require(isinstance(scales, list) and len(scales) == 3
+                and isinstance(ids, list) and ids and len(ids) == len(set(ids)),
+                "Retain the original complete unique observation set")
+        selected = [row.get("observationID") for row in scales]
+        require(all(isinstance(value, str) and value in ids for value in selected)
+                and len(set(selected)) == 3,
+                "Each exact scale needs its own original native observation")
+        actual = [row.get("actualCount") for row in scales]
+        requested = [row.get("requestedCount") for row in scales]
+        receipt.update(actual_counts=actual, observed_requested_counts=requested,
+                       observation_ids=selected, simulator_udid=udid,
+                       observed_source=report.get("source"))
+        require(all(type(value) is int for value in actual + requested)
+                and requested == actual == [100, 500, 2000]
+                and all(row.get("exactRequestedCount") is True for row in scales)
+                and completion.get("exact_size_criterion_met") is True
+                and completion.get("natural_at_least_workloads_met") is True,
+                "Original at-least workloads do not satisfy exact 100/500/2000 cardinalities")
+        receipt["status"] = "MET"
+    except Exception as error:
+        failure = error
+        receipt.update(error_type=type(error).__name__, error=str(error))
+    core.write(destination, receipt)
+    if failure is not None:
+        raise failure
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("phase", choices=["source-check", "execute"])
@@ -293,6 +357,8 @@ def main():
         core.REUSED_INSTALLATION = RetainedV40Installation(core, args.owned_simulator, args.installation_result)
     sys.argv = [sys.argv[0], args.phase]
     core.main()
+    if args.phase == "execute":
+        require_exact_inspector_scales(core)
 
 if __name__ == "__main__":
     main()
