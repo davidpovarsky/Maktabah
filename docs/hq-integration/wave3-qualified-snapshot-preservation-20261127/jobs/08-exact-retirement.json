@@ -1,0 +1,27 @@
+{
+  "job": {
+    "created_at": 1795764701.6866324,
+    "duration_s": 27.82,
+    "error": null,
+    "exit_code": 0,
+    "finished_at": "2026-11-27T07:32:09.561634+00:00",
+    "host": "host_4b47bdb65d00e49d",
+    "id": "job_bf904cb30c8d",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"RETIRED_ONLY_FULLY_PRESERVED_QUALIFIED6935_SNAPSHOT\", \"utc\": \"2026-11-27T07:32:02.623078+00:00\", \"source_root\": \"/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-qualified-6935f7fd-20261127\", \"manifest_sha256\": \"70a15c1afa2456d9dea9f11191df0561f08d766211360c60a5039feca632d660\", \"reference_plan_sha256\": \"ff591293df6c4c8965f4c085c5f3cd35d5b38751a8dd21a0122ec75cf6644f33\", \"windows_member_verification_sha256\": \"1be15f9c4f63809eaedbadfbabfad49ea3283673e71c31906c50d524f7be5fd9\", \"final_archive_bindings_sha256\": \"f86f3f4784e20b486bf5e578b3b20fa0de0183655e28e0866c09aab3e1e669af\", \"all_four_archives\": [{\"bytes\": 1699905882, \"id\": \"app-generated\", \"identity\": {\"bytes\": 1699905882, \"ctime_ns\": 1795754031374798900, \"device\": 5400942862240111193, \"inode\": 26458647811059226, \"mtime_ns\": 1795754242681846000}, \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-app-generated-caches-20261127\\\\inactive-app-generated-caches.tar.gz\", \"sha256\": \"36b384277403ef416a22150724bd857b65b5d85043c884378630e7f1c6414efb\"}, {\"bytes\": 5238640114, \"id\": \"old-sdk-producer\", \"identity\": {\"bytes\": 5238640114, \"ctime_ns\": 1795755704056118000, \"device\": 5400942862240111193, \"inode\": 21955048183724307, \"mtime_ns\": 1795756294281474100}, \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-interrupted-sdk-work-20261127\\\\interrupted-original-sdk-work.tar.gz\", \"sha256\": \"2755568d177d543ac75f45709d0c7aae8dfa7f99b0bfd1131f3295b710db0bda\"}, {\"bytes\": 944883233, \"id\": \"fresh-sdk-differential\", \"identity\": {\"bytes\": 944883233, \"ctime_ns\": 1795761459251521000, \"device\": 5400942862240111193, \"inode\": 12947848928777298, \"mtime_ns\": 1795761540882596500}, \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-fresh-producer-preservation-20261127\\\\fresh-producer-differential.tar.gz\", \"sha256\": \"3d32de4e4e564f6c606a0daccd9c92582ad1e8e259f7c5cb492ad55622db7fee\"}, {\"bytes\": 1291853917, \"id\": \"qualified-snapshot-differential\", \"identity\": {\"bytes\": 1291853917, \"ctime_ns\": 1795763610781859100, \"device\": 5400942862240111193, \"inode\": 11258999068627783, \"mtime_ns\": 1795763696874289200}, \"path\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-qualified-snapshot-preservation-20261127\\\\qualified-snapshot-differential.tar.gz\", \"sha256\": \"f2dff9300c3b7d429bcaa260fd3f97e1d685c2a1680b0c7dd1e32636b1559e0b\"}], \"entries_rehashed\": 65204, \"parent_before\": {\"device\": 16777232, \"inode\": 61610714, \"mode\": 16832, \"uid\": 501, \"gid\": 20, \"bytes\": 1280, \"mtime_ns\": 1795741432035937560, \"ctime_ns\": 1795741432035937560, \"flags\": 0}, \"open_use_before\": {\"utc\": \"2026-11-27T07:31:42.897968+00:00\", \"lsof_exit_code\": 0, \"lsof_stderr\": \"\", \"open_paths\": [], \"process_references\": []}, \"open_use_after\": {\"utc\": \"2026-11-27T07:32:02.473931+00:00\", \"lsof_exit_code\": 0, \"lsof_stderr\": \"\", \"open_paths\": [], \"process_references\": []}, \"free_before\": 2679382016, \"script_sha256\": \"3a5bcbe99157e29ce95db1df4635375f3835079a9686cad554d7171c8d441aae\", \"authorization\": \"Root explicitly authorized only this exact path after complete preservation.\", \"native_acceptance\": 0, \"new_sdk_qualification\": false, \"sdk_retry\": false, \"removed\": [\"/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-qualified-6935f7fd-20261127\"], \"outside_paths_unchanged\": true, \"parent_after\": {\"device\": 16777232, \"inode\": 61610714, \"mode\": 16832, \"uid\": 501, \"gid\": 20, \"bytes\": 1248, \"mtime_ns\": 1795764729376989062, \"ctime_ns\": 1795764729376989062, \"flags\": 0}, \"parent_identity_retained\": true, \"original_maktabah_retained\": true, \"free_after\": 6969020416, \"observed_free_delta_bytes\": 4289638400, \"delta_caveat\": \"Concurrent df observation; not exclusive APFS reclaimed allocation.\", \"df_after\": \"Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\\n/dev/disk3s5   482797652 430009796   6805684    99% 6731066 68056840    9%   /System/Volumes/Data\\n\", \"finished_at\": \"2026-11-27T07:32:09.476054+00:00\"}",
+    "output_truncated": false,
+    "read": false,
+    "severity": "info",
+    "source": "script_run@host_4b47bdb65d00e49d",
+    "started_at": "2026-11-27T07:31:41.745013+00:00",
+    "status": "succeeded",
+    "timeout_s": 600,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "ok": true
+}

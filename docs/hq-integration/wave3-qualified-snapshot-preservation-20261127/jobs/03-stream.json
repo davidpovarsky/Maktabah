@@ -1,0 +1,27 @@
+{
+  "job": {
+    "created_at": 1795763609.4988844,
+    "duration_s": 88.44,
+    "error": null,
+    "exit_code": 0,
+    "finished_at": "2026-11-27T07:14:58.023374+00:00",
+    "host": "host_7ec8382e82747448",
+    "id": "job_021cc2fffaeb",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output": "{\"status\": \"EXACT_STREAM_RECEIVED_NOT_YET_MEMBER_VERIFIED_NOT_REMOVED\", \"utc\": \"2026-11-27T07:14:57.910395+00:00\", \"archive\": \"C:\\\\Users\\\\DAVID\\\\.codex\\\\artifacts\\\\otzaria-wave3-qualified-snapshot-preservation-20261127\\\\qualified-snapshot-differential.tar.gz\", \"archive_sha256\": \"f2dff9300c3b7d429bcaa260fd3f97e1d685c2a1680b0c7dd1e32636b1559e0b\", \"archive_bytes\": 1291853917, \"manifest_sha256\": \"70a15c1afa2456d9dea9f11191df0561f08d766211360c60a5039feca632d660\", \"source_root\": \"/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/compact-reader-preview-worktree.5hRb5SYt/wave3-qualified-6935f7fd-20261127\", \"mac_evidence\": \"/Users/m1/builds/otzaria-wave3-qualified-snapshot-preservation-20261127.2117vow6\", \"free_before\": 4338712576, \"free_after\": 3044319232, \"minimum_free_before_write\": 3041587200, \"reserve\": 2415919104, \"seconds\": 87.125, \"archive_identity\": {\"bytes\": 1291853917, \"mtime_ns\": 1795763696874289200, \"ctime_ns\": 1795763610781859100, \"device\": 5400942862240111193, \"inode\": 11258999068627783}, \"base_archive_identities\": {\"app-generated\": {\"bytes\": 1699905882, \"ctime_ns\": 1795754031374798900, \"device\": 5400942862240111193, \"inode\": 26458647811059226, \"mtime_ns\": 1795754242681846000}, \"old-sdk-producer\": {\"bytes\": 5238640114, \"ctime_ns\": 1795755704056118000, \"device\": 5400942862240111193, \"inode\": 21955048183724307, \"mtime_ns\": 1795756294281474100}, \"fresh-sdk-differential\": {\"bytes\": 944883233, \"ctime_ns\": 1795761459251521000, \"device\": 5400942862240111193, \"inode\": 12947848928777298, \"mtime_ns\": 1795761540882596500}}, \"mac_stream_result_sha256\": \"34e1d3af5f5374c99306391fc05ca243d79472303ed53b8dcd740962729212ea\", \"native_acceptance\": 0}",
+    "output_truncated": false,
+    "read": false,
+    "severity": "info",
+    "source": "script_run@host_7ec8382e82747448",
+    "started_at": "2026-11-27T07:13:29.579042+00:00",
+    "status": "succeeded",
+    "timeout_s": 1800,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "ok": true
+}
