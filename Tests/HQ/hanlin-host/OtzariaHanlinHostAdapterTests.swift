@@ -899,7 +899,7 @@ private actor CapabilityCompositionFixture: HanlinHostIntegration, HanlinHostCap
         let schema = try HanlinJSONSchemaDocument.decodeCanonicalJSON(schemaBytes, defaultDialect: .draft2020_12)
         let descriptor = try HanlinToolDescriptor(logicalID: logical, descriptorRevision: .init(3),
             owner: .system, title: .init(["en": "Original fixture capability"]),
-            summary: .init(["en": "Explicit component double"]), inputSchema: schema, risk: .read)
+            summary: .init(["en": "Explicit component double"]), inputSchema: schema, risk: .read, presentation: .init())
         tools = [.init(route: .init(alias: "mcp__fixture__echo", logicalToolID: logical, descriptorRevision: .init(3)),
                        descriptor: descriptor, writeGuarantee: .hostManagedMutation, originalInputSchemaJSON: schemaBytes)]
     }
