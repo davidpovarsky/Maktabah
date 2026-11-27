@@ -1,0 +1,31 @@
+diff --git a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+index 2c3643f8..91aa827b 100644
+--- a/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
++++ b/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift
+@@ -614,7 +614,8 @@ struct MaktabahNativeSceneBindings {
+               ActionAppIdentityBridge.actionBackend(BackendCoordinator.shared.activeBackendID) == query.search.backend,
+               session.availableScopes.contains(.exact),
+               !session.showsBookFilterSheet, !session.showsSearchDataSheet, !session.showsAdvancedOptions,
+-              session.cancellationRevision == initialCancellation else {
++              session.cancellationRevision == initialCancellation,
++              session.paginationRevision == initialPagination else {
+             throw UIRouteError(.staleState, "native_search_owner_changed")
+         }
+         if let submissionRevision {
+@@ -633,7 +634,6 @@ struct MaktabahNativeSceneBindings {
+                 throw UIRouteError(.unavailable, "native_search_already_in_progress")
+             }
+             guard session.submissionRevision == initialSubmission,
+-                  session.paginationRevision == initialPagination,
+                   session.requestConfiguration == initialConfiguration,
+                   session.query.utf8.elementsEqual(initialText),
+                   session.selectedBookIds == model.selectedBookIds else {
+@@ -667,7 +667,7 @@ struct MaktabahNativeSceneBindings {
+     }
+     func validateCompleted() throws {
+         try validate()
+-        guard submissionRevision != nil, session.hasSubmitted, !session.isSearching,
++        guard submissionRevision != nil, session.hasSubmitted, !session.isSearching, !session.isLoadingMore,
+               session.errorMessage == nil, !session.resultsAreDirty else {
+             throw UIRouteError(.unavailable, "native_search_results_not_ready")
+         }

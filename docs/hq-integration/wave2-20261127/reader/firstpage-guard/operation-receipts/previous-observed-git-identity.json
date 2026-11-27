@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "git",
+    "-c",
+    "gc.auto=0",
+    "-C",
+    "/mnt/development/projects/worktrees/Maktabah-wave2-reader-perf01-20261127",
+    "show",
+    "-s",
+    "--format=%H%n%an%n%ae%n%cn%n%ce",
+    "HEAD"
+  ],
+  "exit": 0,
+  "stdout": "785cd9e02dfe2f27dbe8d01b92e603f94ea0a6ff\nCodex\ncodex@openai.com\nCodex\ncodex@openai.com\n",
+  "stderr": ""
+}

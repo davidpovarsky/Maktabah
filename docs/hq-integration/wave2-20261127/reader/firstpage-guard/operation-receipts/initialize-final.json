@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "output": "{\"readTreeExit\": 0, \"readTreeStderr\": \"\", \"statusExit\": 0, \"statusBytes\": 0, \"statusPrefix\": \"\", \"sourceExists\": true, \"sourceSHA256\": \"607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079\"}",
+  "duration": 0.18,
+  "returncode": 0
+}

@@ -1,0 +1,3 @@
+# Sparse initialization
+
+The initial `worktree add --no-checkout` and sparse pattern setup succeeded on the exact base, but intentionally left an empty index. The first `status` therefore listed tracked deletions and its large tool output was truncated. No product edit had occurred. An initialization invocation returned Sentinel MCP `-32603`; its readback proved HEAD unchanged, index still empty, and source absent. A second guarded `read-tree -mu HEAD` initialized this owned empty worktree and returned exit 0, clean status, and the exact original source hash. No reset of another worktree or existing user changes occurred. The raw transport error and exact successful readbacks are retained here. The complete oversized status listing is not claimed to be retained.

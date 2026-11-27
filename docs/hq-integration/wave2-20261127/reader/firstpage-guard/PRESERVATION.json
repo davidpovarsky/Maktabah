@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T10:02:28.921158+00:00",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+  "baselineBytes": 36770,
+  "baselineSHA256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+  "candidateBytes": 36790,
+  "candidateSHA256": "70d64d593d22dbfb512b74bd8d6ed9d259c9404b8a47072ced30f5bc18d989a2",
+  "patchSHA256": "c5646f93ae98666d734d8b033bcb47618b04a61f428fb6f86773cb1d4c4c3954",
+  "unchangedPrefixBytes": 30515,
+  "unchangedPrefixSHA256": "c27075be668c1474792c4a613be44bbe1002345b6bd85354f2b3c60e0f074c3e",
+  "reverseReplacementReproducesBaseline": true,
+  "scope": "only three exact textual replacements implementing two guards inside original binding; no behavioral execution"
+}

@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "output": "{\"head\": {\"exit\": 0, \"bytes\": 41, \"sha256\": \"c6363ad8a476f68b486dfa194a4c49dd2bac5bcf72c17b73993a918ad5f801c8\", \"text\": \"15d283aa0ccbbfe6966f26a2c182810cb39fdafa\\n\"}, \"entries\": {\"exit\": 0, \"bytes\": 0, \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"text\": null}, \"status\": {\"exit\": 0, \"bytes\": 1396867, \"sha256\": \"92a27f805076367a995dfa048ca4a2abc6dff4e2c459b9889d4bda95fbd551b6\", \"text\": \"D  .agents/agents/dana.md\\nD  .agents/agents/eitan.md\\nD  .agents/agents/maya.md\\nD  .agents/agents/noam.md\\nD  .agents/agents/roni.md\\nD  .agents/agents/tomer.md\\nD  .agents/agents/yael.md\\nD  .agents/roles/dana.md\\nD  .agents/roles/eitan.md\\nD  .agents/roles/maya.md\\nD  .agents/roles/noam.md\\nD  .agents/role\"}, \"source\": {\"exists\": false}, \"freeBytes\": 1133404160}",
+  "duration": 0.13,
+  "returncode": 0
+}

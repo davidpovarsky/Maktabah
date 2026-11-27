@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "status": "WHOLE_FILE_SWIFT_SYNTAX_PASS",
+  "startedUTC": "2026-11-27T10:08:13.528845+00:00",
+  "endedUTC": "2026-11-27T10:08:13.564802+00:00",
+  "elapsedSeconds": 0.03564728703349829,
+  "host": [
+    "Linux",
+    "torah-social",
+    "6.17.0-1020-oracle",
+    "#20-Ubuntu SMP Sat Jul 25 00:52:17 UTC 2026",
+    "aarch64"
+  ],
+  "compiler": {
+    "path": "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-frontend",
+    "bytes": 208647456,
+    "dev": 2064,
+    "inode": 11196,
+    "mtimeNs": 1795104844000000000,
+    "sha256": "d98470fed50d4efc0075bcbd45ba1f908382dc9222c2b8213d1ff074efaa2083",
+    "ELF": true,
+    "versionExit": 0,
+    "version": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n"
+  },
+  "source": {
+    "path": "/mnt/development/projects/worktrees/Maktabah-wave2-firstpage-guard-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "bytes": 36861,
+    "sha256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f"
+  },
+  "argv": [
+    "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swift-frontend",
+    "-parse",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "/mnt/development/projects/worktrees/Maktabah-wave2-firstpage-guard-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+  ],
+  "returncode": 0,
+  "logs": [
+    {
+      "path": "parse.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "parse.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "version.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "version.stdout.log",
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+    }
+  ],
+  "freeBeforeBytes": 929738752,
+  "freeAfterBytes": 929730560,
+  "scope": "Linux-host Swift frontend syntax parse with Apple target only; no SDK argument, imports/typechecking, app build, Simulator, native test or behavioral execution",
+  "behavioralValidation": "NOT_RUN"
+}
