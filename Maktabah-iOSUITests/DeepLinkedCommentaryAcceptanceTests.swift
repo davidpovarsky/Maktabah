@@ -515,3 +515,330 @@ final class FullV40InspectorSemanticAcceptanceTests: MaktabahUITestBase {
                    "v40-inspector-semantic-completion")
     }
 }
+
+/// Original default Sefaria Reader/Inspector, in one ordinary persisted tab.
+/// The selected-unit Text supplies the complete mapped body to accessibility;
+/// the Kit deliberately limits its visual quote to two lines. There is no
+/// displayed version-title field in this Kit. Editions are qualified by the
+/// retained default API response and exact body equality, not an invented label.
+@MainActor
+final class SefariaInspectorModeAcceptanceTests: MaktabahUITestBase {
+    private struct Rejected: Error { let reason: String }
+    private struct Body: Decodable { let sha256: String; let utf8Bytes: Int }
+    private struct SourceFile: Decodable { let relativePath: String; let bytes: Int; let sha256: String }
+    private struct Mode: Decodable {
+        let displayReferenceInHebrewUI: String
+        let selectedUnitQuote: Body
+        let sourceVersionTitle: String
+        let sourceVersionLanguage: String
+        let versionScope: String
+    }
+    private struct Oracle: Decodable {
+        struct Segment: Decodable { let canonicalRef: String; let locator: String; let bodies: [String: Body] }
+        let schema: Int
+        let status: String
+        let uiExecuted: Bool
+        let kitRevision: String
+        let requestURL: String
+        let canonicalReference: String
+        let hebrewReference: String
+        let canonicalLocator: String
+        let workKey: String
+        let response: SourceFile
+        let responseReceipt: SourceFile
+        let sourceVersionTitle: String
+        let translationVersionTitle: String
+        let segments: [Segment]
+        let modes: [String: Mode]
+    }
+    private struct Workspace: Decodable {
+        struct Locator: Decodable, Equatable {
+            struct Position: Decodable, Equatable { let kind: String; let string: String? }
+            let backend: String; let workKey: String; let position: Position
+        }
+        struct Session: Decodable { let id: UUID; let bookId: Int; let backendLocator: Locator? }
+        struct Document: Decodable { let session: Session }
+        struct Group: Decodable { let id: UUID; let activeTabID: UUID?; let tabs: [Document] }
+        struct Scene: Decodable { let groupID: UUID; let activeTabIDsByGroup: [UUID: UUID]? }
+        let groups: [Group]
+        let scenes: [String: Scene]
+        let lastActiveSceneID: String?
+    }
+    private struct ActiveTab {
+        let owner: URL
+        let metadataSHA256: String
+        let workspaceSHA256: String
+        let sceneID: String
+        let groupID: UUID
+        let session: Workspace.Session
+    }
+    private var ui: OriginalSearchContextUI { .init(app: app, test: self) }
+    private var environment: [String: String] { ProcessInfo.processInfo.environment }
+    private func demand(_ value: Bool, _ reason: String) throws {
+        guard value else { XCTFail(reason); throw Rejected(reason: reason) }
+    }
+    private func hash(_ bytes: Data) -> String {
+        SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
+    }
+    private func bounded(_ url: URL, maximum: Int = 2_000_000) throws -> Data {
+        let path = url.standardizedFileURL
+        let info = try path.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        try demand(info.isRegularFile == true && info.isSymbolicLink == false &&
+                   path.path == path.resolvingSymlinksInPath().path && (info.fileSize ?? maximum + 1) <= maximum,
+                   "Require a bounded original regular file, without symlink traversal")
+        let bytes = try Data(contentsOf: path)
+        try demand(bytes.count <= maximum, "The evidence file grew beyond its admission bound")
+        return bytes
+    }
+    private func attach(_ value: Any, _ name: String) throws {
+        let item = XCTAttachment(data: try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys]),
+                                 uniformTypeIdentifier: "public.json")
+        item.name = name; item.lifetime = .keepAlways; add(item)
+    }
+    private func oracle() throws -> Oracle {
+        _ = try XCTUnwrap(environment["SEFARIA_INSPECTOR_CONTAINER_PARENT"], "Runner must bind the actual Simulator application-container parent")
+        _ = try XCTUnwrap(environment["SIMULATOR_UDID"], "Require XCTest's actual Simulator identity")
+        let path = URL(fileURLWithPath: try XCTUnwrap(environment["SEFARIA_INSPECTOR_MODE_ORACLE"])).standardizedFileURL
+        let bytes = try bounded(path)
+        try demand(hash(bytes) == environment["SEFARIA_INSPECTOR_MODE_ORACLE_SHA256"], "Use the exact sealed default-source oracle")
+        let value = try JSONDecoder().decode(Oracle.self, from: bytes)
+        try demand(value.schema == 1 && value.status == "ACTUAL_DEFAULT_SEFARIA_SOURCE_ORACLE_ONLY_NOT_UI" && !value.uiExecuted,
+                   "A source conversion is not a prior UI acceptance")
+        try demand(value.kitRevision == "23db0f84e88d9ee9c7053c49de86903fc7bb5785" &&
+                   value.canonicalReference == "Psalms 35" && value.hebrewReference == "תהילים ל״ה" &&
+                   value.workKey == "Psalms" && value.canonicalLocator == "sefaria|Psalms|ref:Psalms 35",
+                   "Require this exact actual source and pinned original Kit")
+        let expectedURL = "https://www.sefaria.org/api/v3/texts/Psalms%2035?version=source&version=translation&fill_in_missing_segments=1&return_format=text_only"
+        try demand(value.requestURL == expectedURL, "A selected-preview edition cannot substitute for the ordinary Reader default request")
+        for file in [value.response, value.responseReceipt] {
+            try demand(!file.relativePath.contains("/") && !file.relativePath.contains(".."), "Source evidence must remain beside its oracle")
+            let raw = try bounded(path.deletingLastPathComponent().appendingPathComponent(file.relativePath))
+            try demand(raw.count == file.bytes && hash(raw) == file.sha256, "Retained actual API evidence changed")
+        }
+        let receiptBytes = try bounded(path.deletingLastPathComponent().appendingPathComponent(value.responseReceipt.relativePath))
+        let receipt = try XCTUnwrap(JSONSerialization.jsonObject(with: receiptBytes) as? [String: Any])
+        try demand(receipt["url"] as? String == expectedURL && receipt["finalURL"] as? String == expectedURL &&
+                   receipt["status"] as? Int == 200 && receipt["sha256"] as? String == value.response.sha256,
+                   "Require the real successful original default request receipt")
+        try demand(value.segments.count == 28 && value.segments.map(\.canonicalRef) == (1...28).map { "Psalms 35:\($0)" },
+                   "The independent source must include the complete ordered chapter")
+        try demand(Set(value.modes.keys) == Set(["source", "translation", "both"]) &&
+                   Set(value.modes.values.map { $0.selectedUnitQuote.sha256 }).count == 3,
+                   "The real three bodies must be distinct; a stale body must fail")
+        for (name, mode) in value.modes {
+            try demand(mode.selectedUnitQuote.utf8Bytes > 500 && mode.selectedUnitQuote.sha256.count == 64 &&
+                       mode.displayReferenceInHebrewUI == (name == "translation" ? value.canonicalReference : value.hebrewReference) &&
+                       mode.sourceVersionTitle == (name == "translation" ? value.translationVersionTitle : value.sourceVersionTitle) &&
+                       mode.sourceVersionLanguage == (name == "translation" ? "en" : "he"), "Reject inconsistent source mode metadata")
+        }
+        let evidence = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        evidence.name = "sefaria-inspector-default-source-oracle"; evidence.lifetime = .keepAlways; add(evidence)
+        return value
+    }
+    private func activeTab() throws -> ActiveTab {
+        let parent = URL(fileURLWithPath: try XCTUnwrap(environment["SEFARIA_INSPECTOR_CONTAINER_PARENT"]),
+                         isDirectory: true).standardizedFileURL
+        let dataRoot = parent.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+        let udid = try XCTUnwrap(environment["SIMULATOR_UDID"])
+        try demand(UUID(uuidString: udid) != nil && dataRoot.lastPathComponent == "data" &&
+                   dataRoot.deletingLastPathComponent().lastPathComponent.lowercased() == udid.lowercased() &&
+                   Array(parent.pathComponents.suffix(3)) == ["Containers", "Data", "Application"] &&
+                   parent.path == parent.resolvingSymlinksInPath().path, "Inspect only this owned Simulator's original app container")
+        let children = try FileManager.default.contentsOfDirectory(at: parent,
+            includingPropertiesForKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+        try demand(children.count <= 256, "Bound fresh MCM owner discovery")
+        var owners: [(URL, Data)] = []
+        for child in children {
+            let info = try child.resourceValues(forKeys: [.isDirectoryKey, .isSymbolicLinkKey])
+            guard info.isDirectory == true, info.isSymbolicLink == false,
+                  UUID(uuidString: child.lastPathComponent) != nil else { continue }
+            let metadata = child.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist")
+            guard let data = try? bounded(metadata, maximum: 65_536),
+                  let record = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String: Any],
+                  record["MCMMetadataIdentifier"] as? String == "com.davidpovarsky.chavrusatext" else { continue }
+            owners.append((child, data))
+        }
+        try demand(owners.count == 1, "Require the sole observed original app installation")
+        let owner = try XCTUnwrap(owners.first)
+        let bytes = try bounded(owner.0.appendingPathComponent(
+            "Library/Application Support/ChavrusaText/StudyWorkspace/workspace-v1.json"), maximum: 8 * 1024 * 1024)
+        let state = try JSONDecoder().decode(Workspace.self, from: bytes)
+        guard let sceneID = state.lastActiveSceneID, let scene = state.scenes[sceneID],
+              let group = state.groups.first(where: { $0.id == scene.groupID }),
+              let current = scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID,
+              let session = group.tabs.first(where: { $0.session.id == current })?.session else {
+            // A normal asynchronous workspace save may still be pending. The
+            // enclosing bounded wait must fail if no genuine active tab arrives.
+            throw Rejected(reason: "Ordinary workspace has no current tab yet")
+        }
+        return ActiveTab(owner: owner.0, metadataSHA256: hash(owner.1), workspaceSHA256: hash(bytes),
+                         sceneID: sceneID, groupID: group.id, session: session)
+    }
+    private func tap(_ value: XCUIElement, _ reason: String) throws {
+        try demand(value.waitForExistence(timeout: 30) && value.isHittable && !value.frame.isEmpty &&
+                   value.frame.intersects(app.frame), reason)
+        value.tap()
+    }
+    private func originalToolbar(_ id: String, labels: [String]) throws {
+        let direct = app.buttons.matching(identifier: id)
+        if direct.count == 1 && direct.firstMatch.isHittable { try tap(direct.firstMatch, id); return }
+        let overflow = app.navigationBars.buttons.matching(NSPredicate(format: "identifier IN %@",
+            ["TopOverflowBarButtonItem", "OverflowBarButtonItem"]))
+        try demand(overflow.count == 1, "Require the original toolbar action or its unique native overflow")
+        try tap(overflow.firstMatch, "Original native overflow")
+        let item = app.buttons.matching(NSPredicate(format: "identifier == %@ OR label IN %@", id, labels))
+        try demand(item.count == 1, "The original overflow action must be unique: " + id)
+        try tap(item.firstMatch, id)
+    }
+    private func openOriginalCanonicalReader() throws {
+        for key in ["OTZARIA_SHARED_ROOT_OVERRIDE", "OTZARIA_PRODUCTION_DB_PATH", "SEFARIA_BASE_URL"] {
+            try demand(environment[key] == nil, "No source substitution may enter the original UI: " + key)
+        }
+        XCUIDevice.shared.orientation = .landscapeLeft
+        launchWithTier(.production, backend: "sefaria",
+            extraArgs: ["-lastSelectedTab", "0", "-ChavrusaTextFaithfulReaderUIEnabled", "YES"],
+            language: "he", locale: "he_IL")
+        try demand(!app.launchArguments.contains("-smokeBypassBootstrap") &&
+                   !app.launchArguments.contains("-studyWorkspaceTestingNamespace"), "Require ordinary production bootstrap and workspace")
+        let searchTab = findTabButton(hebrew: "חיפוש", english: "Search")
+        try demand(searchTab.waitForExistence(timeout: 120), "Genuine Sefaria bootstrap must expose the original Search tab")
+        try tap(searchTab, "Original Search tab after genuine Sefaria bootstrap")
+        try ui.require("global-search-screen", timeout: 120)
+        try tap(ui.require("global-search-mode"), "Original search mode")
+        try tap(ui.require("global-search-mode-exact"), "Original exact search")
+        try tap(ui.require("global-search-books"), "Original book filter")
+        if ui.control("global-search-book-clear").exists { try tap(ui.control("global-search-book-clear"), "Clear original book selection") }
+        let books = try ui.require("global-search-book-query", timeout: 60)
+        try tap(books, "Original book query")
+        if let clear = books.buttons.allElementsBoundByIndex.first(where: \.isHittable) { clear.tap() }
+        books.typeText("תהילים\n")
+        try tap(ui.require("search-book-sefaria|Psalms|ref:Psalms", timeout: 60), "Original canonical Psalms book")
+        if ui.control("global-search-book-done").exists { try tap(ui.control("global-search-book-done"), "Apply original book filter") }
+        let query = try ui.require("global-search-query")
+        try tap(query, "Original search query")
+        if let clear = query.buttons.allElementsBoundByIndex.first(where: \.isHittable) { clear.tap() }
+        query.typeText("soul\n")
+        try ui.require("global-search-count", timeout: 120)
+        try tap(ui.require("global-search-sort"), "Original sort menu")
+        try tap(ui.require("global-search-sort-canonical"), "Original canonical sort")
+        try tap(ui.require("global-search-rerun"), "Original query submission")
+        try ui.wait("Actual canonical Search results must load", timeout: 120) { ((try? self.ui.loadedCount()) ?? 0) > 0 }
+        let prefix = "search-result-preview-toggle-sefaria|Psalms|ref:Psalms 35:17|"
+        var found: XCUIElement?
+        for _ in 0..<80 {
+            let matches = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", prefix))
+            if matches.count == 1 && matches.firstMatch.isHittable { found = matches.firstMatch; break }
+            try ui.dragVisible(ui.require("global-search-results"), up: true)
+        }
+        let card = try XCTUnwrap(found, "Reach the actual canonical Psalms 35:17 search card")
+        let stableID = String(card.identifier.dropFirst("search-result-preview-toggle-".count))
+        try ui.expand(stableID)
+        try ui.openCurrentPreview(stableID)
+        try ui.wait("Original Open must display the canonical default reading unit", timeout: 120) {
+            self.ui.control("reader-current-locator").label == "sefaria|Psalms|ref:Psalms 35" &&
+                self.app.textViews["reader-text"].exists && !(self.app.textViews["reader-text"].value as? String ?? "").isEmpty
+        }
+        try attach(["original_search_card": stableID, "canonical_default_locator": "sefaria|Psalms|ref:Psalms 35",
+                    "scope": "canonical Open uses the default Reader edition; selected preview editions are a separate acceptance"],
+                   "sefaria-inspector-original-canonical-open")
+    }
+    private func setMode(_ mode: String) throws {
+        try originalToolbar("reader-more-menu", labels: ["More", "עוד"])
+        try tap(ui.require("reader-text-options"), "Original View Options")
+        for _ in 0..<8 {
+            if ui.control("reader-text-mode").exists && ui.control("reader-text-mode").isHittable { break }
+            let popover = app.popovers.firstMatch
+            try demand(popover.waitForExistence(timeout: 10), "Require the original View Options popover")
+            try ui.dragVisible(popover, up: true)
+        }
+        try tap(ui.require("reader-text-mode"), "Original text mode picker")
+        try tap(ui.require("reader-text-mode-" + mode), "Original requested mode: " + mode)
+        try tap(ui.require("reader-options-close"), "Close original View Options")
+    }
+    private func openInspector() throws {
+        try demand(!ui.control("torah-inspector-panel").exists, "The Inspector must actually be closed before its one open action")
+        try originalToolbar("reader-study-toggle", labels: ["Open Study Tools", "פתיחת כלי לימוד"])
+        try ui.require("torah-inspector-selected-segment", timeout: 90)
+    }
+    private func closeInspector() throws {
+        try tap(ui.require("torah-inspector-close"), "Original Inspector Close")
+        try ui.wait("The genuine Inspector must close without changing the current tab") {
+            !self.ui.control("torah-inspector-panel").exists && !self.ui.control("torah-inspector-selected-segment").exists
+        }
+    }
+    private func assertQuote(_ source: Oracle, mode: String, tab: ActiveTab, phase: String) throws {
+        let expected = try XCTUnwrap(source.modes[mode])
+        let cards = app.descendants(matching: .any).matching(identifier: "torah-inspector-selected-segment")
+        try ui.wait("The original Inspector must publish the complete current-mode quote", timeout: 90) {
+            guard cards.count == 1 else { return false }
+            return cards.firstMatch.staticTexts.allElementsBoundByIndex.contains {
+                let bytes = Data($0.label.utf8)
+                return bytes.count == expected.selectedUnitQuote.utf8Bytes && self.hash(bytes) == expected.selectedUnitQuote.sha256
+            }
+        }
+        let card = cards.firstMatch
+        let labels = card.staticTexts.allElementsBoundByIndex
+        let bodies = labels.filter { hash(Data($0.label.utf8)) == expected.selectedUnitQuote.sha256 }
+        try demand(bodies.count == 1 && bodies[0].frame.intersects(app.frame) && !bodies[0].frame.isEmpty,
+                   "One actual visible quote Text must supply the complete qualified body exactly once")
+        try demand(labels.filter { $0.label == expected.displayReferenceInHebrewUI }.count == 1,
+                   "Original Inspector source reference must match the actual selected mode and Hebrew interface")
+        try demand(ui.control("reader-current-locator").label == source.canonicalLocator,
+                   "Changing Inspector text mode must not navigate the original Reader")
+        let current = try activeTab()
+        try demand(current.owner == tab.owner && current.metadataSHA256 == tab.metadataSHA256 &&
+                   current.sceneID == tab.sceneID && current.groupID == tab.groupID && current.session.id == tab.session.id &&
+                   current.session.bookId == tab.session.bookId && current.session.backendLocator == tab.session.backendLocator,
+                   "The same ordinary persisted scene, group, tab and source locator must own every mode")
+        let originalTab = app.descendants(matching: .any).matching(identifier: "reader-document-tab-" + tab.session.id.uuidString)
+        try demand(originalTab.count == 1, "Bind persisted tab UUID to the original Reader tab control")
+        try attach(["phase": phase, "mode": mode, "tab_uuid": current.session.id.uuidString,
+                    "scene_id": current.sceneID, "group_uuid": current.groupID.uuidString,
+                    "data_container": current.owner.path, "mcm_metadata_sha256": current.metadataSHA256,
+                    "workspace_sha256": current.workspaceSHA256, "canonical_locator": source.canonicalLocator,
+                    "display_reference": expected.displayReferenceInHebrewUI,
+                    "quote_sha256": hash(Data(bodies[0].label.utf8)), "quote_utf8_bytes": bodies[0].label.utf8.count,
+                    "source_response_sha256": source.response.sha256,
+                    "source_version_title": expected.sourceVersionTitle,
+                    "version_scope": expected.versionScope,
+                    "quote_scope": "complete original selected-unit Text accessibility value; visual quote capped at two lines"],
+                   "sefaria-inspector-mode-" + phase)
+        ui.capture("sefaria-inspector-mode-" + phase)
+    }
+    func testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen() throws {
+        let source = try oracle()
+        defer { ui.capture("sefaria-inspector-mode-final") }
+        try openOriginalCanonicalReader()
+        // The original mode action clears search-hit segment focus. From here
+        // the inspected scope is the complete current unit, not the earlier hit.
+        try setMode("source")
+        var observed: ActiveTab?
+        try ui.wait("Original ordinary workspace must persist the canonical Sefaria tab", timeout: 30) {
+            guard let value = try? self.activeTab(), value.session.backendLocator?.backend == "sefaria",
+                  value.session.backendLocator?.workKey == "Psalms" else { return false }
+            observed = value; return true
+        }
+        let tab = try XCTUnwrap(observed)
+        if ui.control("torah-inspector-panel").exists { try closeInspector() }
+        try openInspector()
+        try assertQuote(source, mode: "source", tab: tab, phase: "source-initial-open")
+        for mode in ["translation", "both", "source"] {
+            try demand(ui.control("torah-inspector-panel").exists, "Change mode while the original Inspector is still presented")
+            try setMode(mode)
+            // No second toggle or re-selection is allowed to repair a failed
+            // first mount. The existing visible Inspector must update itself.
+            try assertQuote(source, mode: mode, tab: tab, phase: mode + "-visible-transition")
+        }
+        try closeInspector()
+        try openInspector()
+        try assertQuote(source, mode: "source", tab: tab, phase: "source-matching-reopen")
+        for mode in ["translation", "both", "source"] {
+            try closeInspector()
+            try setMode(mode)
+            try demand(!ui.control("torah-inspector-panel").exists, "A hidden mode change must not open the Inspector by itself")
+            try openInspector()
+            try assertQuote(source, mode: mode, tab: tab, phase: mode + "-changed-while-hidden")
+        }
+    }
+
+}

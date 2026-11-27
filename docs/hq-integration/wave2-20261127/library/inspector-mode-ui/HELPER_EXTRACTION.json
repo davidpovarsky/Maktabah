@@ -1,0 +1,22 @@
+{
+  "blocks": [
+    {
+      "bytes": 278,
+      "sha256": "50aa4395ffc660173f61d6efa02a90d311fad3f881fa01d98ed9a7707b015160"
+    },
+    {
+      "bytes": 202,
+      "sha256": "6d6602f2d74114eb17e8b9e5043f2260c3c95b405e4d9ca2f7c8effc5af6ed9e"
+    },
+    {
+      "bytes": 13102,
+      "sha256": "227afc13ae443d286aef973789d02916594b205c0a4870f28f6fe78f483b99b1"
+    }
+  ],
+  "localCaptureSourceSHA256": "5a7cd2ff1da78e5507e22757038c2aa8b77f6a8be7c0bedcb3a4e2c7f3063131",
+  "scope": "verbatim shared UI-test helper dependency only; no app UI execution",
+  "sourcePath": "Maktabah-iOSUITests/GlobalSearchNativeAcceptanceTests.swift",
+  "verification": "All three extracted blocks have equal bytes and SHA256 in exact Git source; file also contains unrelated tests not included in this dependency.",
+  "verifiedGitSourceRevision": "991526228533d6689c4ad9da8dbd3e9f82a7bea1",
+  "verifiedGitSourceSHA256": "fa4cbfc31a73d0265efc572923b756d7e39aa092c70fbdee36e06f0804a66de9"
+}

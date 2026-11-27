@@ -1,0 +1,18 @@
+{
+  "affectedTestPath": "Maktabah-iOSUITests/DeepLinkedCommentaryAcceptanceTests.swift",
+  "afterSHA256": "e7c993c6b9da1a05640b5791884c0202ad6b6377efa5c9e27bcfcf69da1ea5b7",
+  "beforeSHA256": "489a28190fa171bd5c5b3fdb47fadb48d3733d6f178315266eea5ea314848e7a",
+  "evidenceIndexSHA256": "154343c03293778dceddf5151de2d200064f2e4be475fff7f355553ee11e3cb3",
+  "finalAppleResultSHA256": "2cc2b0f86d436b4cc70707ea0f47cf9ee19f9520e9efd915da0e1a5367545bf6",
+  "nativeUIStatus": "NOT_RUN",
+  "newCaseWarnings": [],
+  "originalKitRevision": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "parentCommit": "b5f4cb26cb7540f47871816bb1d10187792ab605",
+  "priorFilePrefixPreserved": true,
+  "scope": "additive native-test source; actual default API and source/SDK checks only",
+  "selector": "Maktabah-iOSUITests/SefariaInspectorModeAcceptanceTests/testSameTabInspectorHonorsSourceTranslationAndBothAcrossCloseAndReopen",
+  "sourceChanges": [],
+  "sourceOracleSHA256": "288876d0fcb903298bc0b4c9bcfe95047f4f520ea0ce9476fe008650baa3e224",
+  "upstreamPathPresent": false,
+  "upstreamRevision": "4203de5fd77beb119e5826e039be1a61325f7be0"
+}
