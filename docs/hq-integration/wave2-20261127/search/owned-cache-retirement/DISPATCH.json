@@ -1,0 +1,8 @@
+{
+  "status": "AUTHORIZED_EXACT_CACHE_RETIREMENT_STARTING",
+  "sourceSHA256": "1f4b637b6ef3cb4e414dd5d4e949773dd9f57ca4280f6291622e46b2fa9cec1f",
+  "originalInventorySHA256": "2ede05272d7c0876bf4cd8a417a272989ece218ed84a3d8093ffd5fc32368904",
+  "scope": "/Users/m1/builds/otzaria-wave2-search-20261127/post-update-ui-typecheck/module-cache",
+  "approval": "Parent explicitly authorized after fresh identity/member/no-link/no-command/no-FD admission; no other path",
+  "PFOrNetworkMutation": false
+}
