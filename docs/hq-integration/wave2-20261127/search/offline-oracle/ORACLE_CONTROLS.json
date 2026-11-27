@@ -1,0 +1,13 @@
+{
+  "scope": "ORACLE_SYNTHETIC_SOURCE_CONTROLS_ONLY_NO_SSH_MAC_PF_NATIVE",
+  "sourceSHA256": "9ea6eeffd4bef89d6f4c8107bf356b9157484552c8a0744b6893423c46594244",
+  "testsRun": 43,
+  "exit": 0,
+  "newSourceFiles": [
+    "Scripts/CI/study-ui-offline-oracle.py"
+  ],
+  "appSourceChanged": false,
+  "actualSSH": 0,
+  "actualMac": 0,
+  "actualNative": 0
+}
