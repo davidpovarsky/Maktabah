@@ -1,0 +1,142 @@
+{
+  "count" : 19,
+  "failed" : 0,
+  "passed" : 19,
+  "results" : [
+    {
+      "actualAccepted" : true,
+      "expectedAccepted" : true,
+      "name" : "original enabled mini",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : true,
+      "expectedAccepted" : true,
+      "name" : "mini unchanged with extra production flag",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "mini no original flag",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "mini original flag false",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "mini invalid namespace",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "mini missing namespace",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "ordinary production remains silent",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : true,
+      "expectedAccepted" : true,
+      "name" : "production opt-in",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production missing separate flag",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production separate flag false",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production original flag false",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production original flag missing",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production wrong active profile",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production wrong environment profile",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production absent environment",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production invalid namespace",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production empty namespace",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "production missing namespace",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    },
+    {
+      "actualAccepted" : false,
+      "expectedAccepted" : false,
+      "name" : "unrecognized profile",
+      "pass" : true,
+      "returnedOnlyExactNamespace" : true
+    }
+  ],
+  "scope" : "Whole original Swift admission function; compile-only unrelated dependency boundaries; no UI, operation, memory or timing execution",
+  "uiExecuted" : 0
+}

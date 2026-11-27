@@ -1,0 +1,367 @@
+{
+  "scope": "Whole original Swift Debug admission controls, not UI or actual operation/resource acceptance",
+  "uiExecuted": 0,
+  "xcode": "Xcode 27.0\nBuild version 27A266a",
+  "swift": "Apple Swift version 6.4 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)\nTarget: arm64-apple-macosx27.0.0",
+  "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+  "path": "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z",
+  "source_sha256": {
+    "original/StudyGroupSwitchPerformanceObservation.swift": "8153cdc98a1e393f81174de635edf0046e1391f3646afcb5c38a7488eb762fb6",
+    "candidate/StudyGroupSwitchPerformanceObservation.swift": "1a49b1912d449a5f557ead5a81f5f149c72a8351e0fecc2521922cd97d032259",
+    "ProductionGroupsAdmissionControls.swift": "4b93f74951e24c11a46f0e17d6ee51e4ad35192a35f41a542e07626fe93b315c"
+  },
+  "records": {
+    "original": {
+      "compile": {
+        "command": [
+          "xcrun",
+          "swiftc",
+          "-D",
+          "DEBUG",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-sdk",
+          "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+          "-target",
+          "arm64-apple-macos15.0",
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/original/StudyGroupSwitchPerformanceObservation.swift",
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/ProductionGroupsAdmissionControls.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/admission-original"
+        ],
+        "exit_code": 0,
+        "stdout": "original-compile.stdout.log",
+        "stderr": "original-compile.stderr.log"
+      },
+      "run": {
+        "command": [
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/admission-original"
+        ],
+        "exit_code": 1,
+        "stdout": "original-run.stdout.log",
+        "stderr": "original-run.stderr.log"
+      },
+      "controls": {
+        "count": 19,
+        "failed": 1,
+        "passed": 18,
+        "results": [
+          {
+            "actualAccepted": true,
+            "expectedAccepted": true,
+            "name": "original enabled mini",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": true,
+            "expectedAccepted": true,
+            "name": "mini unchanged with extra production flag",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini no original flag",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini original flag false",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini invalid namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini missing namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "ordinary production remains silent",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": true,
+            "name": "production opt-in",
+            "pass": false,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production missing separate flag",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production separate flag false",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production original flag false",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production original flag missing",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production wrong active profile",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production wrong environment profile",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production absent environment",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production invalid namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production empty namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production missing namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "unrecognized profile",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          }
+        ],
+        "scope": "Whole original Swift admission function; compile-only unrelated dependency boundaries; no UI, operation, memory or timing execution",
+        "uiExecuted": 0
+      },
+      "binarySHA256": "bfb0a4b942a059f0cd31ca5b78f5be5f129dbf5290eae0050b7eabba368d5d77"
+    },
+    "candidate": {
+      "compile": {
+        "command": [
+          "xcrun",
+          "swiftc",
+          "-D",
+          "DEBUG",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-sdk",
+          "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+          "-target",
+          "arm64-apple-macos15.0",
+          "-D",
+          "PRODUCTION_GROUP_OBSERVATION_CANDIDATE",
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/candidate/StudyGroupSwitchPerformanceObservation.swift",
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/ProductionGroupsAdmissionControls.swift",
+          "-o",
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/admission-candidate"
+        ],
+        "exit_code": 0,
+        "stdout": "candidate-compile.stdout.log",
+        "stderr": "candidate-compile.stderr.log"
+      },
+      "run": {
+        "command": [
+          "/Users/m1/builds/otzaria-wave2-reader-controls-20261127/groups100-production-admission-20261127T003836Z/admission-candidate"
+        ],
+        "exit_code": 0,
+        "stdout": "candidate-run.stdout.log",
+        "stderr": "candidate-run.stderr.log"
+      },
+      "controls": {
+        "count": 19,
+        "failed": 0,
+        "passed": 19,
+        "results": [
+          {
+            "actualAccepted": true,
+            "expectedAccepted": true,
+            "name": "original enabled mini",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": true,
+            "expectedAccepted": true,
+            "name": "mini unchanged with extra production flag",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini no original flag",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini original flag false",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini invalid namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "mini missing namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "ordinary production remains silent",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": true,
+            "expectedAccepted": true,
+            "name": "production opt-in",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production missing separate flag",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production separate flag false",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production original flag false",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production original flag missing",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production wrong active profile",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production wrong environment profile",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production absent environment",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production invalid namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production empty namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "production missing namespace",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          },
+          {
+            "actualAccepted": false,
+            "expectedAccepted": false,
+            "name": "unrecognized profile",
+            "pass": true,
+            "returnedOnlyExactNamespace": true
+          }
+        ],
+        "scope": "Whole original Swift admission function; compile-only unrelated dependency boundaries; no UI, operation, memory or timing execution",
+        "uiExecuted": 0
+      },
+      "binarySHA256": "0863dd92e6ab6298575a6abae2dd0fdef42ce5c28088da763de8196888cd060c"
+    }
+  }
+}
