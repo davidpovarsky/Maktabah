@@ -738,7 +738,7 @@ extension iOSAnnotationViewController {
     /// This never calls didSelectItemAt, onAnnotationSelected, or an editor/
     /// persistence callback. All effects finish synchronously; later layout
     /// observation is read-only and cannot resume a feature mutation.
-    func nativeRoutingReveal(_ row: NativeRoutingRow, validate: @MainActor () throws -> Void) throws {
+    func nativeRoutingReveal(_ row: NativeRoutingRow, validate: @escaping @MainActor () throws -> Void) throws {
         func requireCurrent() throws {
             try validate()
             guard nativeRoutingMatches(row), isViewLoaded, dataSource != nil, collectionView != nil else {
