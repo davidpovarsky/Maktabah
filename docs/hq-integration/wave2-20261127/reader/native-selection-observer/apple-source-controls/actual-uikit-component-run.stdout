@@ -1,0 +1,58 @@
+{
+  "controls" : [
+    {
+      "name" : "original_UIKit_UTF16_combining_marks_and_surrogate_selection",
+      "passed" : true
+    },
+    {
+      "name" : "original_delta_mapping_keeps_combining_sequence_in_source",
+      "passed" : true
+    },
+    {
+      "name" : "empty_UIKit_selection_is_reported_without_fabricated_text",
+      "passed" : true
+    },
+    {
+      "name" : "invalid_request_id_refused",
+      "passed" : true
+    },
+    {
+      "name" : "actual_request_process_and_reader_identity_preserved",
+      "passed" : true
+    },
+    {
+      "name" : "missing_original_identity_refused",
+      "passed" : true
+    },
+    {
+      "name" : "duplicate_original_identity_refused",
+      "passed" : true
+    },
+    {
+      "name" : "stale_native_text_against_render_result_refused",
+      "passed" : true
+    },
+    {
+      "name" : "oversized_native_selection_refused_without_copying_payload",
+      "passed" : true
+    },
+    {
+      "name" : "invalid_original_mapping_refused",
+      "passed" : true
+    },
+    {
+      "name" : "bounded_JSON_escapes_do_not_escape_report_cap",
+      "passed" : true
+    },
+    {
+      "name" : "original_mapper_rejects_out_of_bounds_and_split_surrogate",
+      "passed" : true
+    }
+  ],
+  "failed" : 0,
+  "passed" : 12,
+  "processID" : 4455,
+  "scope" : "Actual UIKit UITextView and exact original mapping\/report source fragments; seeded component input; no Maktabah UI or full target build",
+  "status" : "APPLE_UIKIT_COMPONENT_CONTROLS_PASS_NOT_APP_UI",
+  "uiExecuted" : 0
+}
