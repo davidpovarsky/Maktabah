@@ -1,0 +1,337 @@
+{
+  "at": "2026-11-27T03:17:00.216682+00:00",
+  "reviewer": "release_preflight",
+  "reviewType": "Read-only donor Git and retained archive review; no execution, extraction mutation, peer edits or app tests",
+  "donor": "326806331b0aad54c4ff45806a9a852dde650751",
+  "parent": "8c073dae8345eaf8c84c413019a8eb6141e4c84e",
+  "conclusion": "No blocking source/evidence-binding or assertion defect found for this scoped checkpoint; recommend selective intake subject to root's separate product/lock-order review and final native acceptance",
+  "exactBindingVerification": {
+    "donor": "326806331b0aad54c4ff45806a9a852dde650751",
+    "baseline": "8c073dae8345eaf8c84c413019a8eb6141e4c84e",
+    "archiveBytes": 88581,
+    "archiveSHA256": "ecd3ff10cc19c12b66212c8ca82f005eca43653b39dd7c84719d4daadc75ccc6",
+    "sameTopSourceReceipt": true,
+    "sameTopCompileReceipt": true,
+    "variants": {
+      "baseline": {
+        "sourceFiles": 11,
+        "compiledFiles": 13,
+        "sourceMismatches": [],
+        "compiledMismatches": [],
+        "extractedBodies": 38,
+        "matchedBodies": 38,
+        "missingBodies": {},
+        "bodiesMissingFromCompiled": [],
+        "caseKeys": [
+          "cases",
+          "failed",
+          "passed",
+          "scope",
+          "total"
+        ],
+        "counts": {
+          "failed": 26,
+          "passed": 11,
+          "scope": "Actual production source bodies, controlled engine/dictionary/UI boundaries; no real corpus, UI or installer acceptance",
+          "total": 37
+        },
+        "verifiedBodyMarkers": [
+          "    func clear()",
+          "    func closeAllEngines(",
+          "    func currentFingerprint(",
+          "    func documentCount(",
+          "    func engine(",
+          "    func handleBackendChanged()",
+          "    func identityURL(",
+          "    func indexURL(",
+          "    func invalidate(",
+          "    func loadNextPage()",
+          "    func recoverTrustedManagedIndex(",
+          "    func resourceObservation(",
+          "    func search(",
+          "    func search()",
+          "    func semanticArtifactURL(",
+          "    func storedIdentity(",
+          "    func trustedManagedReadManifest(",
+          "    func validateCompatibility(",
+          "    func validateCurrentIndex(",
+          "    func writeIdentity(",
+          "    private func advancePublicationRevision(",
+          "    private func atomicWrite<",
+          "    private func configurationStamp(",
+          "    private func configure(",
+          "    private func decode<",
+          "    private func openIndexStamp(",
+          "    private func optionalSmallMetadata(",
+          "    private func readPublicationRevision(",
+          "    private func restore(",
+          "    private func smallMetadata(",
+          "    private func stablePathHash(",
+          "    private func store(",
+          "    private struct OpenIndexStamp:",
+          "    var indexRootURL:",
+          "enum ITorahStorageLock {",
+          "enum ZayitSearchDistributionError:",
+          "enum ZayitSearchPackageState:",
+          "struct ZayitSearchArtifactManifest:"
+        ],
+        "compileCommandNamesExactlyMatchAll13Inputs": true
+      },
+      "candidate": {
+        "sourceFiles": 11,
+        "compiledFiles": 13,
+        "sourceMismatches": [],
+        "compiledMismatches": [],
+        "extractedBodies": 44,
+        "matchedBodies": 44,
+        "missingBodies": {},
+        "bodiesMissingFromCompiled": [],
+        "caseKeys": [
+          "cases",
+          "failed",
+          "passed",
+          "scope",
+          "total"
+        ],
+        "counts": {
+          "failed": 0,
+          "passed": 37,
+          "scope": "Actual production source bodies, controlled engine/dictionary/UI boundaries; no real corpus, UI or installer acceptance",
+          "total": 37
+        },
+        "verifiedBodyMarkers": [
+          "    func clear()",
+          "    func closeAllEngines(",
+          "    func currentFingerprint(",
+          "    func documentCount(",
+          "    func handleBackendChanged()",
+          "    func identityURL(",
+          "    func indexURL(",
+          "    func invalidate(",
+          "    func invalidateSourceReadiness(",
+          "    func loadNextPage()",
+          "    func recoverTrustedManagedIndex(",
+          "    func resourceObservation(",
+          "    func search(",
+          "    func search()",
+          "    func semanticArtifactURL(",
+          "    func storedIdentity(",
+          "    func trustedManagedReadManifest(",
+          "    func validateCompatibility(",
+          "    func validateCurrentIndex(",
+          "    func validateCurrentIndexSource(",
+          "    func writeIdentity(",
+          "    private func advancePublicationRevision(",
+          "    private func applyReadFailureToReadiness(",
+          "    private func atomicWrite<",
+          "    private func configurationStamp(",
+          "    private func configure(",
+          "    private func decode<",
+          "    private func engine(",
+          "    private func managedDatabaseIdentityStamp(",
+          "    private func openIndexStamp(",
+          "    private func optionalSmallMetadata(",
+          "    private func readPublicationRevision(",
+          "    private func readValidationMetadata(",
+          "    private func restore(",
+          "    private func smallMetadata(",
+          "    private func stablePathHash(",
+          "    private func store(",
+          "    private func withSearchReadAccess<",
+          "    private struct OpenIndexStamp:",
+          "    var indexRootURL:",
+          "enum ITorahStorageLock {",
+          "enum ZayitSearchDistributionError:",
+          "enum ZayitSearchPackageState:",
+          "struct ZayitSearchArtifactManifest:"
+        ],
+        "compileCommandNamesExactlyMatchAll13Inputs": true
+      }
+    },
+    "identicalControlsAndBoundary": {
+      "Cases.swift": true,
+      "Boundary.swift": true,
+      "OriginalStorageLock.swift": true
+    }
+  },
+  "actualLogVerification": {
+    "baseline": {
+      "total": 37,
+      "unique": 37,
+      "pass": 11,
+      "fail": 26,
+      "logMatchesEveryCase": true,
+      "compileReceiptSameResult": true,
+      "logSHA256": "f7affcc7562f7465cbc06ffd57d8f0e5341963a4f6726dca00f63361e44d6f79",
+      "runExit": 0
+    },
+    "candidate": {
+      "total": 37,
+      "unique": 37,
+      "pass": 37,
+      "fail": 0,
+      "logMatchesEveryCase": true,
+      "compileReceiptSameResult": true,
+      "logSHA256": "b54c828feda0ed6cc641c29d75dc96a2667b15e6d9e9737c101541b15afc434f",
+      "runExit": 0
+    }
+  },
+  "originalTestPreservation": {
+    "changedTestPaths": [
+      "Tests/HQ/search/IndexReadCompatibilityBoundary.swift"
+    ],
+    "assertionsUnchanged": true,
+    "nativeSelectorsChanged": false,
+    "oldFullExtractionSuiteRerun": false,
+    "boundaryChanges": "Removes two superseded fixture types in favor of entire actual original database-model closure; adds original selection observation and canonical adjacent receipt filename. Existing harness only includes the new actual helpers. Assertion bodies unchanged."
+  },
+  "receiptHashes": {
+    "RESULT.json": "d9279f2fd0fdf5d629e02d9a29968b0c9ae5cc8e319a77a71df2ddc15940b8e3",
+    "SOURCE_RECEIPTS.json": "cf273b724aecb902704d0a859f8f20573c5e1304d5eeab44b371eca5bea54705",
+    "COMPILE_RUN.json": "4781c6a42f6c536dda0625b8cc4608950b661f3ebddd1f9f924ed36453554e5b"
+  },
+  "sourceFileHashes": {
+    "baseline": {
+      "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f",
+      "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift": "bd0615f1375b4d5be8b25ce35259a3d35b454638737f91c870c24e0134a48062",
+      "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": "266d21482cd9aacc3441068937fb3bd4dc292f9b8cb718af9dc384d8802bad35",
+      "Source/Otzaria/Search/OtzariaSearchIndexManager.swift": "d9ca8f6735dd57bcb4f6425f90b9ad76f974212c76be147352b1488b4c15f651",
+      "Source/Otzaria/Search/OtzariaSearchModels.swift": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+      "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift": "a7b495b21cdcad159101ba2665deff191d3451f883ffcbd158758ba752f0cf19",
+      "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "4fdcbec75a5e0c659889cca1ac67dbd339a4c38d50b9f951e94ded3049508995",
+      "Source/Otzaria/Storage/ITorahSharedContainer.swift": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67",
+      "Source/ZayitSearch/UnifiedSearchSessionController.swift": "b403cee7173846aa6101c7d771554304285683ec802fbd1f181f6cc6e4ac3b82",
+      "Source/ZayitSearch/ZayitSearchDistribution.swift": "98429a31f01ba9db5953440cb7c48cb65f1111c8c5923105fe657fb5b49a838d",
+      "Source/ZayitSearch/ZayitSearchSessionController.swift": "529bfbdf62893141cbe77ee9384b5d05479a0429ce0e9f53439f175269078b65"
+    },
+    "candidate": {
+      "Source/Otzaria/Bootstrap/OtzariaDatabaseDownloadModels.swift": "bce1f3d267684384b1235a3d23b05cdcddad2ac9ea0029d55f536f9063192d9f",
+      "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactManifest.swift": "bd0615f1375b4d5be8b25ce35259a3d35b454638737f91c870c24e0134a48062",
+      "Source/Otzaria/Search/Distribution/OtzariaSearchArtifactPolicy.swift": "4aa3f23b6d620005e35168e6f6e8914012246fed455d80eeb265346b695d22f9",
+      "Source/Otzaria/Search/OtzariaSearchIndexManager.swift": "79479fc08ea1e5ee4048a722fea1c0809a51cba545022aef188ccd9d44496924",
+      "Source/Otzaria/Search/OtzariaSearchModels.swift": "e75225c23668dc0470b8d350cf50c9231a999e606a25db283f4e002055b151c9",
+      "Source/Otzaria/Search/OtzariaTantivySearchRepository.swift": "be4e560a8f2482bbf98f59540c40b7ff76872ec7c3adca135fcd3ef68c354d83",
+      "Source/Otzaria/Search/OtzariaTextSearchViewModel.swift": "fc00f83f94d07b966dda4056898e6dd49ee3c4d85866c158c4242955c89362f8",
+      "Source/Otzaria/Storage/ITorahSharedContainer.swift": "d4fc6b5ae5f52d78806448cf5d499f46421fce15734d651c400ab1f08cd0aa67",
+      "Source/ZayitSearch/UnifiedSearchSessionController.swift": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f",
+      "Source/ZayitSearch/ZayitSearchDistribution.swift": "494d54697abc65d6fc9a8342905f3b626278b230701b86932bf2eddd3da13edf",
+      "Source/ZayitSearch/ZayitSearchSessionController.swift": "c52a2fd15c4bc04826d9ff402f3cc794595c63c097d5ee957db9ec3d042f0746"
+    }
+  },
+  "typedExecutionScope": {
+    "completeOriginalFiles": [
+      "OtzariaDatabaseDownloadModels.swift",
+      "OtzariaSearchArtifactManifest.swift",
+      "OtzariaSearchArtifactPolicy.swift",
+      "OtzariaSearchModels.swift"
+    ],
+    "originalStorageLock": "Complete actual ITorahStorageLock enum, identical across variants; compiled and called on Apple Darwin",
+    "exactOriginalBodies": "38 baseline and44 candidate bodies found independently in original Git bytes and compiled Swift inputs",
+    "explicitBoundaries": [
+      "Controlled native engine build/open/count/search; returns one synthetic row and counts entry",
+      "128-byte file database; fixture-v40/fixture-v41 metadata; no SQLite/Tantivy production result",
+      "Profile/selected-source/provider path ownership boundary",
+      "Dictionary and original navigation-item conversion boundary",
+      "MainActor wrapper state and unrelated UI members; no actual SwiftUI app target typecheck",
+      "Controlled Zayit status/configure await boundaries"
+    ],
+    "sameVariantInputs": "Cases.swift, Boundary.swift and original storage lock are byte-identical; all37 case names are the same"
+  },
+  "assertionsReviewed": [
+    "valid cache reuse and exact cold reopen; qualified original producer preserved in production and mini profiles",
+    "missing manifests reject before FFI; invalid retained index files remain byte-identical",
+    "same/different-size replacement and receipt-only preserved-stat replacement reject stale cache",
+    "ordinary query cannot repair missing identity; explicit original readiness recovery still succeeds",
+    "document-count and catalogue mismatch reject before stale result",
+    "source mutation during query and before initial/pagination publication rejects old pages",
+    "ordinary query error leaves valid index identity Ready; source error revokes it",
+    "resource change advances original status/restore generation and clears readiness",
+    "managed Zayit missing receipt, changed release and status/configure await races reject",
+    "legacy explicit external source behavior preserved",
+    "oversized metadata rejected without modifying retained files"
+  ],
+  "processExitCaveat": "Custom run() accumulates all case outcomes and both variants exit0. The independently parsed37/37 with zero candidate failures is the acceptance evidence; exit0 alone is NOT a pass gate.",
+  "retainedEarlierAttempts": {
+    "attempt1": {
+      "baseline": {
+        "compileExit": 1,
+        "runExit": null,
+        "passed": null,
+        "failed": null,
+        "failedCases": []
+      },
+      "candidate": {
+        "compileExit": 1,
+        "runExit": null,
+        "passed": null,
+        "failed": null,
+        "failedCases": []
+      }
+    },
+    "attempt2": {
+      "baseline": {
+        "compileExit": 0,
+        "runExit": 0,
+        "passed": 10,
+        "failed": 24,
+        "failedCases": [
+          {
+            "detail": "same commit and size admitted without trusted source manifest",
+            "name": "exact_build_identity_alone_cannot_admit_managed_source",
+            "passed": false
+          },
+          {
+            "detail": "readiness admitted missing manifest",
+            "name": "readiness_rejects_missing_database_manifest_same_commit",
+            "passed": false
+          }
+        ]
+      },
+      "candidate": {
+        "compileExit": 0,
+        "runExit": 0,
+        "passed": 33,
+        "failed": 1,
+        "failedCases": [
+          {
+            "detail": "fixture metadata unexpectedly differs",
+            "name": "zayit_stamp_changes_for_receipt_bytes_with_preserved_size_mtime",
+            "passed": false
+          }
+        ]
+      }
+    },
+    "attempt3": {
+      "baseline": {
+        "compileExit": 0,
+        "runExit": 0,
+        "passed": 11,
+        "failed": 26,
+        "failedCases": [
+          {
+            "detail": "same commit and size admitted without trusted source manifest",
+            "name": "exact_build_identity_alone_cannot_admit_managed_source",
+            "passed": false
+          },
+          {
+            "detail": "readiness admitted missing manifest",
+            "name": "readiness_rejects_missing_database_manifest_same_commit",
+            "passed": false
+          }
+        ]
+      },
+      "candidate": {
+        "compileExit": 0,
+        "runExit": 0,
+        "passed": 37,
+        "failed": 0,
+        "failedCases": []
+      }
+    }
+  },
+  "nativeUIExecutedByReviewer": 0,
+  "realCorpusQueriedByTheseControls": false,
+  "productionIndexPackagesInstalledByTheseControls": false,
+  "appSDKTypecheckClaimed": false,
+  "remaining": "Full combined app build and real production v40/index/UI/offline/native post-Books-Updates flows remain required. Prior real7,925,185-document/package evidence remains separate; this report does not reuse it as this checkpoint's execution."
+}
