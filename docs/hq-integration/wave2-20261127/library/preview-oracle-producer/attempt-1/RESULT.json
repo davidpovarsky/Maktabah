@@ -1,0 +1,10 @@
+{
+  "status": "FAILED_SOURCE_ONLY",
+  "nativeUIExecuted": 0,
+  "databaseReads": 0,
+  "searchProviderExecuted": false,
+  "startedAtUTC": "2026-11-27T05:21:06.810346+00:00",
+  "errorType": "ValueError",
+  "error": "Original whole-source catalog compilation failed; keep the actual log",
+  "finishedAtUTC": "2026-11-27T05:21:07.165882+00:00"
+}

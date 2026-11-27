@@ -1,0 +1,138 @@
+{
+  "binaryRetainedOnMac": {
+    "bytes": 1112072,
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/original-source-catalog",
+    "sha256": "52b032a352589f5490b36a5fbf7a3bc00ed30399214883d80d73e7cb45c5b46f"
+  },
+  "nativeFiles": [
+    {
+      "bytes": 341,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/RESULT.json",
+      "sha256": "467e5f8c740201d3d2605d9209e97e5dd55c545601e9a152cd965bcefab991dc",
+      "storedPath": "attempt-1/RESULT.json"
+    },
+    {
+      "bytes": 70,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/LAUNCH.json",
+      "sha256": "f4cb2863ff1d19c1dc417e2de6f1310ab49fabab21f99b1bd8a50681f75c9e0f",
+      "storedPath": "attempt-1/LAUNCH.json"
+    },
+    {
+      "bytes": 2343,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/run.py",
+      "sha256": "30b1ad40c2cffae9ed1e0d7d50139f37f27f17f173ee5ebf61da508975d84146",
+      "storedPath": "attempt-1/run.py"
+    },
+    {
+      "bytes": 341,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/run.stdout.log",
+      "sha256": "467e5f8c740201d3d2605d9209e97e5dd55c545601e9a152cd965bcefab991dc",
+      "storedPath": "attempt-1/run.stdout.log"
+    },
+    {
+      "bytes": 953,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/run.stderr.log",
+      "sha256": "613b1776ace98dadc5cbc6574b7d5ca2d7acb5ba96b7dd27c4f0b2679ca276c5",
+      "storedPath": "attempt-1/run.stderr.log"
+    },
+    {
+      "bytes": 87316,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/source-inputs.tar.gz",
+      "sha256": "ec1a792c8689dbbc4a643c3acc1cdec7429149c9e70a362f86598d2b239e8513",
+      "storedPath": "attempt-1/source-inputs.tar.gz"
+    },
+    {
+      "bytes": 3411,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/source/SOURCE_PROVENANCE.json",
+      "sha256": "6616e4afdc23395d33cf3d3325376658d036d6e90239d29d7f0ff948f79ee8bb",
+      "storedPath": "attempt-1/source/SOURCE_PROVENANCE.json"
+    },
+    {
+      "bytes": 13101,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/compiled/compile-inputs.json",
+      "sha256": "c08553dde0e1bb804781344bb73d6cb94129e28f009cb1c705a85c390892760a",
+      "storedPath": "attempt-1/compiled/compile-inputs.json"
+    },
+    {
+      "bytes": 667,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/compiled/compile-result.json",
+      "sha256": "168b19c03d56c852ed4415e41115f1bdc0765f50429eef3d062ef27e4264ddf9",
+      "storedPath": "attempt-1/compiled/compile-result.json"
+    },
+    {
+      "bytes": 196,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-1/compiled/compile.log",
+      "sha256": "5ec899c719c50a73213fb7692d19fc5eb12cb3f44dd65d3d6c008a21b18304c7",
+      "storedPath": "attempt-1/compiled/compile.log"
+    },
+    {
+      "bytes": 3015,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/RESULT.json",
+      "sha256": "6b0665b9b501b5f1b860b2c7cb2d041145d8827dd66c9dd420b84c05888208be",
+      "storedPath": "attempt-2/RESULT.json"
+    },
+    {
+      "bytes": 70,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/LAUNCH.json",
+      "sha256": "91cd50b4bd04e8b59527b3e22306b1d87753740d853b501ace8c58a8aa31e2c2",
+      "storedPath": "attempt-2/LAUNCH.json"
+    },
+    {
+      "bytes": 2343,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/run.py",
+      "sha256": "30b1ad40c2cffae9ed1e0d7d50139f37f27f17f173ee5ebf61da508975d84146",
+      "storedPath": "attempt-2/run.py"
+    },
+    {
+      "bytes": 3015,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/run.stdout.log",
+      "sha256": "6b0665b9b501b5f1b860b2c7cb2d041145d8827dd66c9dd420b84c05888208be",
+      "storedPath": "attempt-2/run.stdout.log"
+    },
+    {
+      "bytes": 0,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/run.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedPath": "attempt-2/run.stderr.log"
+    },
+    {
+      "bytes": 87423,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/source-inputs.tar.gz",
+      "sha256": "54a7e359c5339144cb654a8914ebdc1541f40ca1895dc65436c4a71c9a9432e3",
+      "storedPath": "attempt-2/source-inputs.tar.gz"
+    },
+    {
+      "bytes": 3411,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/source/SOURCE_PROVENANCE.json",
+      "sha256": "68b26a5e2c994a84529f954a4c94075265c6d487778ad6d409d7c9175f67dc99",
+      "storedPath": "attempt-2/source/SOURCE_PROVENANCE.json"
+    },
+    {
+      "bytes": 13212,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/compile-inputs.json",
+      "sha256": "dc51a2d9049fa13e640f2ef5049e4820fe5e9258a468fe9f9c132c262a67da7e",
+      "storedPath": "attempt-2/compiled/compile-inputs.json"
+    },
+    {
+      "bytes": 667,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/compile-result.json",
+      "sha256": "3fbcde7447be1135a0c81d931aed655b61db3070e368140b0c821f302964e6c3",
+      "storedPath": "attempt-2/compiled/compile-result.json"
+    },
+    {
+      "bytes": 0,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storedPath": "attempt-2/compiled/compile.log"
+    },
+    {
+      "bytes": 2051,
+      "nativePath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/native-executable.json",
+      "sha256": "ab4e49dee78451188f5c992736d8baf108e61c34aa6e3c1319b7441506cc576c",
+      "storedPath": "attempt-2/compiled/native-executable.json"
+    }
+  ],
+  "nativeUIExecuted": 0,
+  "productionCorpusReads": 0,
+  "scope": "Actual original Apple source compile attempts; no source binary/corpus/provider/app/UI execution"
+}

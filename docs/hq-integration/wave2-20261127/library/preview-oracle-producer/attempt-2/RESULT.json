@@ -1,0 +1,25 @@
+{
+  "status": "ACTUAL_APPLE_ORIGINAL_SOURCE_COMPILE_PASS_ONLY",
+  "nativeUIExecuted": 0,
+  "databaseReads": 0,
+  "searchProviderExecuted": false,
+  "startedAtUTC": "2026-11-27T05:23:55.509510+00:00",
+  "compileInputs": {
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/compile-inputs.json",
+    "bytes": 13212,
+    "sha256": "dc51a2d9049fa13e640f2ef5049e4820fe5e9258a468fe9f9c132c262a67da7e"
+  },
+  "nativeExecutable": {
+    "binary": {
+      "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/original-source-catalog",
+      "bytes": 1112072,
+      "sha256": "52b032a352589f5490b36a5fbf7a3bc00ed30399214883d80d73e7cb45c5b46f"
+    },
+    "linkage": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/preview-oracle-source-attempt-2/compiled/original-source-catalog:\n\t/opt/homebrew/opt/zstd/lib/libzstd.1.dylib (compatibility version 1.0.0, current version 1.5.7)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)\n\t/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 5027.0.69)\n\t/System/Library/Frameworks/CryptoKit.framework/Versions/A/CryptoKit (compatibility version 1.0.0, current version 1.0.0)\n\t/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (compatibility version 300.0.0, current version 5027.0.69)\n\t/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)\n\t/usr/lib/libsqlite3.dylib (compatibility version 9.0.0, current version 406.0.0)\n\t/usr/lib/swift/libswiftCore.dylib (compatibility version 0.0.0, current version 0.0.0)\n\t/usr/lib/swift/libswiftCoreFoundation.dylib (compatibility version 1.0.0, current version 120.100.0, weak)\n\t/usr/lib/swift/libswiftDispatch.dylib (compatibility version 1.0.0, current version 1605.0.2, weak)\n\t/usr/lib/swift/libswiftIOKit.dylib (compatibility version 1.0.0, current version 1.0.0, weak)\n\t/usr/lib/swift/libswiftObjectiveC.dylib (compatibility version 1.0.0, current version 973.1.0, weak)\n\t/usr/lib/swift/libswiftXPC.dylib (compatibility version 1.0.0, current version 167.0.2, weak)\n\t/usr/lib/swift/libswift_Builtin_float.dylib (compatibility version 0.0.0, current version 0.0.0, weak)\n\t/usr/lib/swift/libswift_Concurrency.dylib (compatibility version 0.0.0, current version 0.0.0)\n\t/usr/lib/swift/libswiftos.dylib (compatibility version 1.0.0, current version 1090.0.0, weak)"
+  },
+  "sourceCheckout": "1fc951485216935abfe0977f37376a5d3f155476",
+  "producerSHA256": "df18479cc17098cb15251d664fac5064d036170104aab09cfada0ea94e0bd940",
+  "sourceProvenanceSHA256": "68b26a5e2c994a84529f954a4c94075265c6d487778ad6d409d7c9175f67dc99",
+  "scope": "Original whole Swift catalog/service/presentation compiled via candidate host compiler function; binary NOT executed, no corpus, provider, app or UI",
+  "finishedAtUTC": "2026-11-27T05:24:10.143159+00:00"
+}

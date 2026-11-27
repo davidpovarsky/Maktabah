@@ -1,0 +1,24 @@
+{
+  "actualAppleArchive": {
+    "bytes": 188982,
+    "path": "apple-inputs-and-logs.tar.gz",
+    "sha256": "66850621d9fd2f5a08ff64e01b9ba538983d18fe3b16256a75c03b91a69ef28d"
+  },
+  "actualAppleSourceCheckout": "1fc951485216935abfe0977f37376a5d3f155476",
+  "affectedApplicationSourcePaths": [],
+  "docsArchiveSHA256": "a4e8fb4affdf9e5a559bc170b87fa0adfd5901a498cd2a5be6d702fe52e836be",
+  "integrationOwnerMustAddToStudyExecutionClosure": "Scripts/CI/prepare-production-search-preview-oracle.py",
+  "nativeUIExecuted": 0,
+  "newScript": {
+    "absentAtExactUpstream": true,
+    "bytes": 38536,
+    "path": "Scripts/CI/prepare-production-search-preview-oracle.py",
+    "sha256": "df18479cc17098cb15251d664fac5064d036170104aab09cfada0ea94e0bd940"
+  },
+  "parentCommit": "4d5c4cae5c4bc95f9f8e2580885b74fdcb981dbf",
+  "preservedOtherWork": "Four prior untracked raw Settings compiler logs unchanged; root controller and original source/UI files untouched",
+  "productionCorpusReads": 0,
+  "scope": "New source-qualified host oracle producer; actual final-source compile and synthetic admission controls only. Genuine first-page UI/source generation remains required.",
+  "sourceBinaryExecuted": false,
+  "upstreamCommitInspected": "4203de5fd77beb119e5826e039be1a61325f7be0"
+}
