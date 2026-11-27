@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-27T03:06:17.561038+00:00",
+  "reviewer": "release_preflight",
+  "reviewType": "Read-only source seams plus existing exact evidence; no app/SDK/native rerun",
+  "dependentOriginalParentCommit": "095ce34b3f0d5b5c60a61faa573ff4b9d99bb585",
+  "reviewedSharedSourceHashes": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift": "69ad8543ded3642c0eda05e133457abb9b3bf34ae1429d67cb4b13d543293f72",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": "2fead2b6584cc8f066dad38c21a68c8a32ca47f34463386c295c5833dd9aae40",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift": "c7cd77535a1aa5f89ad4d176a46519d757b4f4f7898ee82d5a567c52f364a0cf",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift": "a62f41d6b6af4c63eac3f8e248d2aaa5570bb539714f90d2f8dd47a1aadbf0fb",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": "b157b4a4be79f549640ddddc6e224d8ab345bce51a32ff7faaca25d36f928ef1"
+  },
+  "conclusion": "No blocking defect found for selective shared-source intake; actual cold/warm phone presentation and native ACK remain pending",
+  "seamsReviewed": [
+    "original parent retained before component and before first await",
+    "existing context/admission/Core orchestrator remains canonical authority",
+    "v1 forwards original request UUID and original deadline through v2 binding; direct legacy phone prepares reject",
+    "canonical same-tab/book/Reader setter declares exact zero-or-one selectedBook revision before mutation; Settings protected",
+    "only same pending request may await its own committed original Reader push using read-only facet, no Session recursion",
+    "actual tocColumn witness plus exact currentTab state remains required for ACK",
+    "finish/unmount/source replacement retire owned request and original parent proof"
+  ],
+  "evidenceVerification": {
+    "sourceFiles": 3,
+    "harnessFiles": 9,
+    "logs": 2,
+    "mismatches": [],
+    "combined": 0,
+    "negative": 1
+  },
+  "originalControls": "Original26 scenario bodies unchanged; Harness now delegates to verbatim production shared setter. Three extra shared-seam cases appended.",
+  "negativeControl": "Only !showSettings.wrappedValue removed from actual setter; combined29PASS/0 vs negative28PASS/1 exit1",
+  "evidenceScope": "Actual phone class/shared setter/original selectedBook and switchToMode/portable Observation compiled with explicit app-domain/Binding/root-capability/Core-validator boundaries on Apple macOS; not UIKit/app SDK/native execution",
+  "sourceReceiptSHA256": "5a09a99220965befcbcdbced27a712eddf9ed565f7da55ad29b62b91066e6bd8",
+  "macReceiptSHA256": "c1460345ea40b6d2b9066effd3d08ea3c6750a8364b9ed9a794ba0f6bd87fca4",
+  "nativeUIExecutedByReviewer": 0
+}
