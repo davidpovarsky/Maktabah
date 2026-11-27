@@ -1,0 +1,398 @@
+{
+  "schema": "otzaria.wave3.annotation-selection-intake.v1",
+  "base": "3bee41830fa4b1dce355d7e09a2a6c4c2ec36a44",
+  "picked": [
+    {
+      "donor": "8f7142bba6efb8f4a93c4e325ee6cdb835041bb5",
+      "intake": "59b053caf7e12cdb387b3bc63134860fcd8ce791"
+    },
+    {
+      "donor": "fd1407823dc346ea800cfba20523b56b98de8f08",
+      "intake": "2a5d2e09cceaa0c105a346a7279e2cb523d22f46"
+    },
+    {
+      "donor": "947f6f531b5a927919d60e365f806286ce564ca4",
+      "intake": "dace2ebe6f0a88c2cc2a209242a008fa684f659e"
+    }
+  ],
+  "sharedCommit": "59e62dd547bd65973e601352ad9b65aa9d045641",
+  "sourceTree": "b2fbefa18f2a1b02c64248731994be3f0b7e56c2",
+  "vendorTree": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "productPaths": 8,
+  "docsPaths": 181,
+  "manifests": [
+    {
+      "commit": "fd1407823dc346ea800cfba20523b56b98de8f08",
+      "path": "docs/hq-ui-inventory/wave3-annotation-selection-20261127/MANIFEST.json",
+      "rows": 164,
+      "sha256": "e5a5d4f8eed256c71c79a0d74a6b5a4005cdaca300ddc40bbdb876928f5a3711"
+    },
+    {
+      "commit": "947f6f531b5a927919d60e365f806286ce564ca4",
+      "path": "docs/ui-routing/wave3-sefaria-annotation-source-20261127/ARTIFACTS.json",
+      "rows": 15,
+      "sha256": "61ffd26fdcdfcc7ccfe483b8039a231200a58d28ccac7086a92e906b36bc21d1"
+    }
+  ],
+  "originalInputFiles": 16,
+  "originalEditsInverseVerified": 47,
+  "annotationSharedHunks": 37,
+  "rnFollowupHunks": 6,
+  "sharedFiles": 5,
+  "registration": {
+    "newAppSources": [
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+    ],
+    "target": "Maktabah-iOS",
+    "newObjects": [
+      "F9AC1E79C7089D5C5C1E9F75",
+      "E1BAF39B27EDD22092C3AF8B",
+      "14AB4D488C859AA1B15DCBE6",
+      "1B5357D0B0EE878AA66F722D"
+    ],
+    "projectInsertions": [
+      {
+        "offset": 242463,
+        "text": "\t\tE1BAF39B27EDD22092C3AF8B /* MaktabahNativeAnnotationListPublication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */; };\n"
+      },
+      {
+        "offset": 407740,
+        "text": "\t\tF9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift\"; sourceTree = \"<group>\"; };\n"
+      },
+      {
+        "offset": 411739,
+        "text": "\t\t\t\tF9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */,\n"
+      },
+      {
+        "offset": 552998,
+        "text": "\t\t\t\tE1BAF39B27EDD22092C3AF8B /* MaktabahNativeAnnotationListPublication.swift in Sources */,\n"
+      },
+      {
+        "offset": 242667,
+        "text": "\t\t1B5357D0B0EE878AA66F722D /* MaktabahNativeAnnotationSelectionBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */; };\n"
+      },
+      {
+        "offset": 408199,
+        "text": "\t\t14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift\"; sourceTree = \"<group>\"; };\n"
+      },
+      {
+        "offset": 412200,
+        "text": "\t\t\t\t14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */,\n"
+      },
+      {
+        "offset": 553542,
+        "text": "\t\t\t\t1B5357D0B0EE878AA66F722D /* MaktabahNativeAnnotationSelectionBinding.swift in Sources */,\n"
+      }
+    ],
+    "catalogInsertion": {
+      "anchor": "  \"strings\": {\n",
+      "block": "    \"Annotation record\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Annotation record\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"רשומת הערה\"\n          }\n        }\n      }\n    },\n    \"Show an annotation\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Show an annotation\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"הצגת הערה\"\n          }\n        }\n      }\n    },\n    \"Annotations window\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Annotations window\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"חלון הערות\"\n          }\n        }\n      }\n    },\n    \"Select an existing annotation in its original list.\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Select an existing annotation in its original list.\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"בחירת הערה קיימת ברשימה המקורית שלה.\"\n          }\n        }\n      }\n    },\n"
+    },
+    "curatedShortcutsUnchanged": 10
+  },
+  "rootHunkJoin": {
+    "annotationHunks": 37,
+    "rnFollowupHunks": 6,
+    "rows": [
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "beforeFollowSHA256": "65f6525f0f4cb3a58d4b23259d56f0013f47fa7659d1c347e60437d549b78f82",
+        "followupHunks": 6
+      }
+    ],
+    "readerToolsAndGroupCommutative": true
+  },
+  "rawAnnotationFilesVerified": 52,
+  "rawRNArchiveMembers": 33,
+  "sourceControls": {
+    "portable_service": {
+      "passed": 11,
+      "failed": 0
+    },
+    "publication": {
+      "passed": 10,
+      "failed": 0
+    },
+    "owner": {
+      "passed": 24,
+      "failed": 0
+    },
+    "modal_and_actual_history_caller": {
+      "passed": 24,
+      "failed": 0
+    },
+    "historical_caller_new_facet_counterexample": {
+      "passed": 0,
+      "failed": 2,
+      "expected": true
+    }
+  },
+  "rnRootControls": {
+    "scope": "ACTUAL_COMPLETE_RN_ROOT_SOURCE_AND_ANNOTATION_FACET_WITH_DECLARED_BOUNDARIES",
+    "results": [
+      {
+        "name": "original-baseline",
+        "source_sha256": "d7874fcce6515226583f8cc555f4bdfd6785db100a841a4dca13b44c627cd069",
+        "compile_argv": [
+          "/usr/local/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/module-cache",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/prepared-controls/original-baseline.swift",
+          "-o",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/original-baseline/controls"
+        ],
+        "compile_exit": 0,
+        "seconds": 1.4979221820831299,
+        "run_exit": 1,
+        "passed": 2,
+        "failed": 8,
+        "executable_sha256": "eb079b84ff9985dbdbf15450416906947d2acb795b2198f173abd784c7eef7aa"
+      },
+      {
+        "name": "candidate",
+        "source_sha256": "26e066c3162862c84eeea840ee3dcbf8a211ed3d162152c0e4e400d65d0cea84",
+        "compile_argv": [
+          "/usr/local/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/module-cache",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/prepared-controls/candidate.swift",
+          "-o",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/candidate/controls"
+        ],
+        "compile_exit": 0,
+        "seconds": 1.3909227848052979,
+        "run_exit": 0,
+        "passed": 10,
+        "failed": 0,
+        "executable_sha256": "ec31e403b413b9810574e9ef7390fe48c51457be9e0e3ac54729d1fc11ffb6d9"
+      },
+      {
+        "name": "omit-annotation-publication-registration",
+        "source_sha256": "abe1090fe4044c5afaaf9820b05b5890d90b9d399bf94bbc681b30178578790e",
+        "compile_argv": [
+          "/usr/local/bin/swiftc",
+          "-swift-version",
+          "6",
+          "-strict-concurrency=complete",
+          "-parse-as-library",
+          "-module-cache-path",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/module-cache",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/transferred/prepared-controls/omit-annotation-publication-registration.swift",
+          "-o",
+          "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-source-controls-20261127/annotation-root-attempt-2/omit-annotation-publication-registration/controls"
+        ],
+        "compile_exit": 0,
+        "seconds": 1.4460484981536865,
+        "run_exit": 1,
+        "passed": 5,
+        "failed": 5,
+        "executable_sha256": "1d0e3b03314c2ae27a84657bc60a65c04c60e01c4c38c1f34690a586a60e8745"
+      }
+    ],
+    "sdk": "NOT_RUN",
+    "native": "NOT_RUN"
+  },
+  "actualCurrentHostFiles": 41,
+  "actualSyntaxFilesBothModes": 11,
+  "compileEvidenceReusedFrom": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2",
+  "newCompileRunsThisAttempt": 0,
+  "artifactWhitespaceDiagnosticSHA256": "aeab4abe73317590de5bd933576841b722418b6fd0aadb0caef3ee4599cd6143",
+  "steps": [
+    {
+      "name": "compile-current-host",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "-module-cache-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/module-cache",
+        "-I",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-L",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-lOtzariaUIRouting",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output",
+        "-I",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-L",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-lOtzariaActionCore",
+        "-Xlinker",
+        "-rpath",
+        "-Xlinker",
+        "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output",
+        "-emit-module",
+        "-emit-library",
+        "-module-name",
+        "ChavrusaUIRoutingHost",
+        "-emit-module-path",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeBindingSourceObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentRevealOwner.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeDestinationIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeFeatureIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryReaderIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeHistoryRecordIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentOutcome.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeNavigationAuthority.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeObservationDeadline.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeParentSelectionSceneDriver.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePresentationObserver.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativePublicNavigationURLV2.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderPlanBudget.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderTabIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeReaderToolIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteInbox.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeRouteURL.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSavedResultIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneIdentity.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneNavigationOrchestrator.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchContinuationService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceState.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSurfaceWitness.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeWorkspaceSelectionIntents.swift"
+      ],
+      "started": 1795805562.280405,
+      "pid": 1916665,
+      "startTicks": "733263411",
+      "exit": 0,
+      "finished": 1795805581.8726296,
+      "logs": {
+        ".stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "full-ios-syntax-release",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/iOS/AnnotationListView.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "started": 1795805581.9361947,
+      "pid": 1919032,
+      "startTicks": "733265376",
+      "exit": 0,
+      "finished": 1795805582.4386601,
+      "logs": {
+        ".stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "name": "full-ios-syntax-debug",
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "-D",
+        "DEBUG",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/ViewModel/AnnotationViewModel.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/iOS/AnnotationListView.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/iOS/AnnotationViewControllerWrapper.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+      ],
+      "started": 1795805582.4415367,
+      "pid": 1919153,
+      "startTicks": "733265427",
+      "exit": 0,
+      "finished": 1795805582.944294,
+      "logs": {
+        ".stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        ".stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "protectedTrees": {
+    "Source/Otzaria/Actions": "0c9b1ca50eb9d9583567c4277a3506fe3d4b5679",
+    "Source/Otzaria/UIRouting": "2e6d89e3b682f835d243f8ca37845a9242be32fd",
+    "Vendor": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+    "Scripts": "3b08c2291bc87d99bca1f6056328bc3362a66a7f",
+    ".github": "9c2a99bc3b2da6ce1e7fdda492ef2360b236597f",
+    "docs/architecture": "21a7c123f53d14a97c1cce9af94db026597bfa0d",
+    "Maktabah-iOSUITests": "4552423087037f21f3957b6dc9cef3ad8ecc096b",
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeIntents.swift": "adb2f1d767e5a827f9d49ae7e025267d9c8e29aa"
+  },
+  "AppleSDK": "NOT_RUN",
+  "nativeRuns": 0,
+  "open": [
+    "Separate original expansion helper callback fence",
+    "Original editor body/tags/style and actual filter controls",
+    "Cold/foreign-root annotation entry",
+    "Actual system metadata and native selectors",
+    "Final production/owner/target merge/TestFlight"
+  ]
+}
