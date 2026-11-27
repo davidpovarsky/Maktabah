@@ -1,0 +1,9 @@
+{
+  "combined_bytes": 405958,
+  "combined_sha256": "af4a991de2ba39f6e9efc7fc2b58ca7cb41e052cccbd133f2eb18ac251c42f74",
+  "prefix_bytes": 375434,
+  "prefix_sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e",
+  "suffix_bytes": 30524,
+  "suffix_sha256": "291a454142fdf36bcd8e6ecc5dc64a62586a475d3f4fd0abd96cb332733bbb8f",
+  "state": "Initial authored draft only; not compiled or executed; preserved before setup-cleanup and strict-text refinements."
+}

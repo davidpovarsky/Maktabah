@@ -1,0 +1,157 @@
+[
+  {
+    "bytes": 1490,
+    "path": "MEMBERSHIP.json",
+    "sha256": "82cfe6d1ed543c9810c2869b11973f2496be61eeb0ff315dc6201ca7addd6cd4"
+  },
+  {
+    "bytes": 31681,
+    "path": "NATIVE_HELPER_ADDITION.swift",
+    "sha256": "9f6af6530cd8ead9d2747a9a6c3a5b1f7f33e95fc2d29781eff8523116be8dc0"
+  },
+  {
+    "bytes": 6389,
+    "path": "ORIGINAL_SOURCE_JOIN.json",
+    "sha256": "8965f12569c29736515332f3c398cd9f3568b5c5955931f4648b39d48012bb81"
+  },
+  {
+    "bytes": 90679,
+    "path": "PAYLOAD.json",
+    "sha256": "01f2fa6c68d02b446c9f745eba6c81f337ae54c815e518dfeedc51d3b413cf65"
+  },
+  {
+    "bytes": 3700,
+    "path": "RESULT.json",
+    "sha256": "4ec69e698fb83f2c070ce8d4040fcaf390ba03b5df9d63c0dfb1c5ab7e672fe3"
+  },
+  {
+    "bytes": 1664,
+    "path": "candidate/Maktabah-iOSUITests/NativeAnnotationSelectionAcceptanceTests.swift",
+    "sha256": "2f7e720a2cd85112158553816d3fa1ac5ffb12861d9475767eefecc46bd472d2"
+  },
+  {
+    "bytes": 407115,
+    "path": "candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "sha256": "93fade04cfeb99c75870f886d211d7144fc20e952ac0c8b56eb385cabc24b01f"
+  },
+  {
+    "bytes": 371699,
+    "path": "original/Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec"
+  },
+  {
+    "bytes": 4123,
+    "path": "original/Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+    "sha256": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd"
+  },
+  {
+    "bytes": 9357,
+    "path": "original/Maktabah-iOSUITests/MaktabahUITestBase.swift",
+    "sha256": "7d92066ce4ec3f38b0ff0042ca43a736f5eae21ce7339666e418ed8df0827424"
+  },
+  {
+    "bytes": 375434,
+    "path": "original/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+  },
+  {
+    "bytes": 118047,
+    "path": "original/Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+    "sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1"
+  },
+  {
+    "bytes": 25322,
+    "path": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+    "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+  },
+  {
+    "bytes": 10885,
+    "path": "original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+    "sha256": "e94b1c3ef3c87dc4d07030486661fcc33de7e7375e171d64c1c8c45132c93842"
+  },
+  {
+    "bytes": 3105,
+    "path": "original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+    "sha256": "a329141587fea8e0b044c4baf141a17e5e6622e76f2da60e26992476b684e16c"
+  },
+  {
+    "bytes": 25258,
+    "path": "original/Source/Core/Configuration/AppConfig.swift",
+    "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a"
+  },
+  {
+    "bytes": 46094,
+    "path": "original/Source/Features/Annotations/Database/AnnotationRepository.swift",
+    "sha256": "0e5f39c024d79eda212650cdc22b44209aa7d323966dc38106b77e8604739f6f"
+  },
+  {
+    "bytes": 36680,
+    "path": "original/Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+    "sha256": "a7d64c575cc7e1ec6c59e81dc2ad7e8aca7dd10e2c7c52aa587146cbefa3e14e"
+  },
+  {
+    "bytes": 6351,
+    "path": "original/Source/Features/Annotations/Models/Annotation.swift",
+    "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+  },
+  {
+    "bytes": 8334,
+    "path": "original/Source/Features/Annotations/iOS/AnnotationContentView.swift",
+    "sha256": "6a495476ea1de42d304b4d5ccddc10a41f5eb73ca255bdccd69c7fe0fca634f9"
+  },
+  {
+    "bytes": 14696,
+    "path": "original/Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+  },
+  {
+    "bytes": 31823,
+    "path": "original/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+    "sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714"
+  },
+  {
+    "bytes": 24610,
+    "path": "original/Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+    "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+  },
+  {
+    "bytes": 8925,
+    "path": "original/Source/UI/iOS/Views/Common/ListContentView.swift",
+    "sha256": "084f8d15e37655bf5ccd42cbdc9e308ecddd9c1cfc399a12d58089737ec8f2b1"
+  },
+  {
+    "bytes": 34750,
+    "path": "original/Source/UI/iOS/Views/iOSMainView.swift",
+    "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a"
+  },
+  {
+    "bytes": 24340,
+    "path": "original/Source/UI/iOS/Views/iPadLayout.swift",
+    "sha256": "e22b6668a3a8c2c821405634b20c53d4359039f9bbc8f519a34937cdc913844b"
+  },
+  {
+    "bytes": 7677,
+    "path": "original/Source/UI/iOS/Views/iPhoneLayout.swift",
+    "sha256": "cc16c184c60025148ada26dd8f15758da908caaf4bd73b84f6e7e04daad35e6e"
+  },
+  {
+    "bytes": 474,
+    "path": "preserved/INITIAL_AUTHORED_SOURCE.json",
+    "sha256": "13f3986c0b73bdff817fc1c5d81af538d8e63c9b83caf484864b035e2dbff10c"
+  },
+  {
+    "bytes": 30524,
+    "path": "preserved/INITIAL_AUTHORED_SUFFIX.swift",
+    "sha256": "291a454142fdf36bcd8e6ecc5dc64a62586a475d3f4fd0abd96cb332733bbb8f"
+  },
+  {
+    "bytes": 0,
+    "path": "syntax.stderr",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "bytes": 0,
+    "path": "syntax.stdout",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

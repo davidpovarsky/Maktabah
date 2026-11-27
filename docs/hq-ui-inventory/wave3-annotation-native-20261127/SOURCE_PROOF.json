@@ -1,0 +1,36 @@
+{
+  "schema": "otzaria.original.annotation-native-source.v1",
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "original_prefix": {
+    "path": "annotations-native-acceptance/baseline/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "bytes": 375434,
+    "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+  },
+  "suffix": {
+    "path": "annotations-native-acceptance/NATIVE_HELPER_ADDITION.swift",
+    "bytes": 31681,
+    "sha256": "9f6af6530cd8ead9d2747a9a6c3a5b1f7f33e95fc2d29781eff8523116be8dc0"
+  },
+  "combined": {
+    "path": "annotations-native-acceptance/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+    "bytes": 407115,
+    "sha256": "93fade04cfeb99c75870f886d211d7144fc20e952ac0c8b56eb385cabc24b01f"
+  },
+  "selector": {
+    "path": "annotations-native-acceptance/candidate/Maktabah-iOSUITests/NativeAnnotationSelectionAcceptanceTests.swift",
+    "bytes": 1664,
+    "sha256": "2f7e720a2cd85112158553816d3fa1ac5ffb12861d9475767eefecc46bd472d2"
+  },
+  "original_prefix_exact": true,
+  "existing_method_collisions": [],
+  "new_tests": [
+    "testOriginalIPadAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+    "testOriginalIPadAnnotationRecordForegroundsSameOriginalList",
+    "testOriginalIPhoneAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+    "testOriginalIPhoneAnnotationRecordForegroundsSameOriginalList",
+    "testOriginalIPadCachedAnnotationRefusesOriginalSearchABAWithoutMutation",
+    "testOriginalIPhoneCachedAnnotationRefusesSearchABAFromBackgroundWithoutMutation"
+  ],
+  "method_count_is_not_execution": true,
+  "native": "NOT_RUN"
+}

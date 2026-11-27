@@ -1,0 +1,5601 @@
+import XCTest
+import AppIntentsTesting
+import CryptoKit
+import UIKit
+
+/// Actual system URL entry + existing UI. These require the manager-applied
+/// native registration packet. No smoke bypass or synthetic scene receipt.
+class NativeRoutingAcceptanceTests: FaithfulReaderUIBase {
+    private enum SystemURLConfirmationError: Error {
+        case unexpectedOrAmbiguousDialog
+        case missingOpenAction
+        case dialogDidNotDismiss
+    }
+
+    private static let expectedSpringBoardOpenTitles: Set<String> = [
+        "Open in \u{201C}ChavrusaText\u{201D}?",
+        "Open in \"ChavrusaText\"?",
+    ]
+
+    // The original iOSHistoryView owns this localized navigation title
+    // (Library.xcstrings/historyAndFavorites), including on the iPad History tab.
+    @MainActor private var history: XCUIElement { app.navigationBars["History & Favorites"] }
+
+    private func captureSystemDialogEvidence(_ name: String, springboard: XCUIApplication) {
+        let appDescription = app?.debugDescription ?? "app=nil"
+        let tree = XCTAttachment(string: "APP\n\(appDescription)\nSPRINGBOARD\n\(springboard.debugDescription)")
+        tree.name = name + "-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+        let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        screen.name = name + "-screen"; screen.lifetime = .keepAlways; add(screen)
+    }
+
+    private static func matchesExpectedSpringBoardOpenTitle(_ alert: XCUIElement) -> Bool {
+        expectedSpringBoardOpenTitles.contains(alert.label)
+            || expectedSpringBoardOpenTitles.contains { alert.staticTexts[$0].exists }
+    }
+
+    private func cleanupLeftoverSpringBoardOpenAlertsInTeardown() {
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let initialCount = springboard.alerts.count
+        guard initialCount > 0 else { return }
+        captureSystemDialogEvidence("native-route-teardown-springboard", springboard: springboard)
+        var cancelledCount = 0
+        for _ in 0..<8 {
+            let alerts = springboard.alerts.allElementsBoundByIndex
+            let beforeCount = alerts.count
+            guard let alert = alerts.first, Self.matchesExpectedSpringBoardOpenTitle(alert) else { break }
+            let cancelMatches = alert.buttons.matching(NSPredicate(format: "label == %@", "Cancel")).allElementsBoundByIndex
+            guard cancelMatches.count == 1, let cancelButton = cancelMatches.first,
+                  cancelButton.exists, cancelButton.isHittable else { break }
+            cancelButton.tap()
+            let reduced = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "count < %d", beforeCount),
+                object: springboard.alerts
+            )
+            guard XCTWaiter.wait(for: [reduced], timeout: 5) == .completed else { break }
+            cancelledCount += 1
+            if springboard.alerts.count == 0 {
+                let nextAppeared = XCTNSPredicateExpectation(
+                    predicate: NSPredicate(format: "count > 0"),
+                    object: springboard.alerts
+                )
+                _ = XCTWaiter.wait(for: [nextAppeared], timeout: 0.5)
+            }
+        }
+        let remainingCount = springboard.alerts.count
+        XCTFail("Leftover SpringBoard alert(s) remained at teardown (initialCount=\(initialCount), cancelledChavrusaPrompts=\(cancelledCount), remainingCount=\(remainingCount))")
+    }
+
+    override func tearDownWithError() throws {
+        // XCTest teardown is nonisolated. Retain its standard thread-safe
+        // diagnostics directly, as the existing Search teardown does.
+        if let app {
+            let tree = XCTAttachment(string: app.debugDescription)
+            tree.name = "native-route-final-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+            let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            screen.name = "native-route-final-screen"; screen.lifetime = .keepAlways; add(screen)
+        }
+        cleanupLeftoverSpringBoardOpenAlertsInTeardown()
+        try super.tearDownWithError()
+    }
+    @MainActor private func configure(_ backend: String) {
+        app.launchArguments = ["-OtzariaDataProfile", "miniTest10", "-preferredBackend", backend,
+            "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-studyWorkspaceTestingNamespace", workspaceNamespace,
+            "-lastSelectedTab", "0", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
+        app.launchEnvironment["OTZARIA_DATA_PROFILE"] = "miniTest10"
+    }
+    private func historyURL(_ backend: String, request: UUID = UUID()) throws -> URL {
+        let bytes = try JSONSerialization.data(withJSONObject: ["version": 1, "requestId": request.uuidString,
+            "destination": "native.history", "backend": backend, "presentation": "currentTab"], options: [.sortedKeys])
+        let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v1/native.history?route=" + token))
+    }
+    @MainActor private func capture(_ name: String) {
+        let tree = XCTAttachment(string: app.debugDescription); tree.name = name + "-hierarchy"; tree.lifetime = .keepAlways; add(tree)
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); image.name = name + "-screen"; image.lifetime = .keepAlways; add(image)
+    }
+    @MainActor private func targetProcessIdentifier() throws -> String {
+        let first = app.debugDescription.split(separator: "\n").first.map(String.init) ?? ""
+        let marker = try XCTUnwrap(first.range(of: "pid: "))
+        let value = String(first[marker.upperBound...].prefix(while: { $0.isNumber }))
+        XCTAssertFalse(value.isEmpty, "Require the actual native target process identity")
+        return value
+    }
+    @MainActor private func confirmSpringBoardOpenDialog(springboard: XCUIApplication) throws {
+        // Allow SpringBoard's presentation transition to settle briefly before failing
+        // closed on transient !isHittable, without approving unexpected or ambiguous alerts.
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let sb = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                let alerts = sb.alerts.allElementsBoundByIndex
+                guard alerts.count == 1, let alert = alerts.first,
+                      Self.matchesExpectedSpringBoardOpenTitle(alert) else {
+                    return false
+                }
+                let openMatches = alert.buttons.matching(NSPredicate(format: "label == %@", "Open")).allElementsBoundByIndex
+                guard openMatches.count == 1, let openButton = openMatches.first else {
+                    return false
+                }
+                return openButton.exists && openButton.isHittable
+            }
+        }, object: nil)
+        _ = XCTWaiter.wait(for: [settled], timeout: 2)
+
+        let alerts = springboard.alerts.allElementsBoundByIndex
+        guard alerts.count == 1, let alert = alerts.first else {
+            captureSystemDialogEvidence("ambiguous-springboard-alerts", springboard: springboard)
+            XCTFail("Expected exactly one SpringBoard Open-in confirmation alert, found \(alerts.count)")
+            throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog
+        }
+        let alertTitle = alert.label
+        guard Self.matchesExpectedSpringBoardOpenTitle(alert) else {
+            captureSystemDialogEvidence("unexpected-springboard-alert", springboard: springboard)
+            XCTFail("Unexpected SpringBoard alert '\(alertTitle)' during system URL delivery")
+            throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog
+        }
+        let openMatches = alert.buttons.matching(NSPredicate(format: "label == %@", "Open")).allElementsBoundByIndex
+        guard openMatches.count == 1, let openButton = openMatches.first,
+              openButton.exists, openButton.isHittable else {
+            captureSystemDialogEvidence("missing-springboard-open-button", springboard: springboard)
+            XCTFail("Expected unique hittable 'Open' action on SpringBoard confirmation alert")
+            throw SystemURLConfirmationError.missingOpenAction
+        }
+        openButton.tap()
+        let dismissed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "count == 0"),
+            object: springboard.alerts
+        )
+        let dismissResult = XCTWaiter.wait(for: [dismissed], timeout: 10)
+        if dismissResult != .completed {
+            captureSystemDialogEvidence("springboard-open-alert-stuck", springboard: springboard)
+            XCTFail("SpringBoard Open-in confirmation remained visible after tapping Open")
+            throw SystemURLConfirmationError.dialogDidNotDismiss
+        }
+        let confirmed = XCTAttachment(string: "confirmedAlert=\(alertTitle) action=Open")
+        confirmed.name = "actual-system-open-confirmation"; confirmed.lifetime = .keepAlways; add(confirmed)
+    }
+    @MainActor private func openInExistingProcess(_ url: URL) throws {
+        // Xcode27.1's XCUIApplication.open actually launched a NEW target PID
+        // on every call in43844345630. The background Runner's UIApplication
+        // open was rejected in43863125434. Ask the owned host to run real
+        // simctl openurl; its ACK proves transport only, never UI completion.
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let originalPID = try targetProcessIdentifier()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        if springboard.alerts.count > 0 {
+            captureSystemDialogEvidence("preexisting-springboard-alert", springboard: springboard)
+            XCTFail("Unexpected SpringBoard alert present before system URL delivery")
+            throw SystemURLConfirmationError.unexpectedOrAmbiguousDialog
+        }
+        let hadHistoryBefore = history.exists
+        let token = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_TOKEN"])
+        let udid = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_URL_UDID"])
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let nonce = UUID().uuidString
+        let prefix = parent.appendingPathComponent(container).appendingPathComponent("Documents/r27-url-\(token)-\(nonce)")
+        let request = URL(fileURLWithPath: prefix.path + ".request.json")
+        let ack = URL(fileURLWithPath: prefix.path + ".ack.json")
+        do {
+            let payload = ["token": token, "nonce": nonce, "udid": udid, "url": url.absoluteString]
+            try JSONSerialization.data(withJSONObject: payload).write(to: request, options: .atomic)
+        } catch {
+            XCTFail("Could not write owned system URL request")
+            return
+        }
+        let delivered = XCTWaiter.wait(for: [XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in FileManager.default.fileExists(atPath: ack.path) }, object: nil
+        )], timeout: 20)
+        XCTAssertEqual(delivered, .completed, "Owned system URL transport must acknowledge the exact request")
+        enum SystemURLAcknowledgementError: Error {
+            case invalidAcknowledgement
+            case transportFailed
+        }
+        guard delivered == .completed, let bytes = try? Data(contentsOf: ack),
+              let response = (try? JSONSerialization.jsonObject(with: bytes)) as? [String: Any],
+              response["nonce"] as? String == nonce,
+              response["udid"] as? String == udid,
+              response["transport"] as? String == "simctl-system-openurl",
+              String(decoding: bytes, as: UTF8.self).range(of: token, options: .caseInsensitive) == nil else {
+            XCTFail("System URL acknowledgement must have the exact credential-free identity")
+            throw SystemURLAcknowledgementError.invalidAcknowledgement
+        }
+        let successKeys: Set<String> = ["udid", "transport", "delivered", "nonce", "time"]
+        if response["delivered"] as? Bool == false {
+            // Recognize only these fixed host messages after request validation.
+            // Do not relay arbitrary error text or continue to UI acceptance.
+            let knownErrors: Set<String> = [
+                "System URL transport timed out",
+                "System URL transport could not start",
+                "System URL transport failed"
+            ]
+            guard Set(response.keys) == successKeys.union(["error"]),
+                  let failure = response["error"] as? String, knownErrors.contains(failure),
+                  let timestamp = response["time"] as? Double, timestamp.isFinite else {
+                XCTFail("System URL failure acknowledgement must have the exact credential-free schema and known error")
+                throw SystemURLAcknowledgementError.invalidAcknowledgement
+            }
+            let sanitized: [String: Any] = [
+                "udid": udid, "transport": "simctl-system-openurl", "delivered": false,
+                "nonce": nonce, "time": timestamp, "error": failure
+            ]
+            let evidence = XCTAttachment(
+                data: try JSONSerialization.data(withJSONObject: sanitized, options: .sortedKeys),
+                uniformTypeIdentifier: "public.json"
+            )
+            evidence.name = "actual-system-url-transport-failure"
+            evidence.lifetime = .keepAlways; add(evidence)
+            XCTFail(failure)
+            throw SystemURLAcknowledgementError.transportFailed
+        }
+        guard Set(response.keys) == successKeys, response["delivered"] as? Bool == true else {
+            XCTFail("System URL acknowledgement must have the exact credential-free success schema")
+            throw SystemURLAcknowledgementError.invalidAcknowledgement
+        }
+        XCTAssertEqual(response["nonce"] as? String, nonce)
+        XCTAssertEqual(response["udid"] as? String, udid)
+        XCTAssertEqual(response["transport"] as? String, "simctl-system-openurl")
+        XCTAssertEqual(response["delivered"] as? Bool, true)
+        let transport = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        transport.name = "actual-system-url-transport-only"; transport.lifetime = .keepAlways; add(transport)
+        let dialogOrDirectDelivery = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                let sb = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+                let targetApp = XCUIApplication(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+                return sb.alerts.count > 0
+                    || targetApp.alerts["Unable to open link"].exists
+                    || (!hadHistoryBefore && targetApp.navigationBars["History & Favorites"].exists)
+            }
+        }, object: nil)
+        _ = XCTWaiter.wait(for: [dialogOrDirectDelivery], timeout: 10)
+        if springboard.alerts.count > 0 {
+            try confirmSpringBoardOpenDialog(springboard: springboard)
+        }
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let actualPID = try targetProcessIdentifier()
+        XCTAssertEqual(actualPID, originalPID, "A warm URL must not restart the target app")
+        let proof = XCTAttachment(string: "beforePID=\(originalPID) afterPID=\(actualPID)")
+        proof.name = "actual-warm-system-url-process-identity"; proof.lifetime = .keepAlways; add(proof)
+    }
+    private func invocation(_ request: UUID, backend: String, mode: String) throws {
+        let data = try JSONSerialization.data(withJSONObject: ["request": request.uuidString, "backend": backend,
+            "mode": mode, "workspaceNamespace": workspaceNamespace, "destination": "native.history"], options: [.sortedKeys])
+        let value = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+        value.name = "native-route-invocation-" + request.uuidString; value.lifetime = .keepAlways; add(value)
+    }
+    private nonisolated static func receiptFields(_ line: String, request: UUID, backend: String) -> [String: String]? {
+        let parts = line.split(separator: " ", maxSplits: 2)
+        guard parts.count == 3, parts[1] == "[NativeNavigationReceipt]" else { return nil }
+        var fields: [String: String] = [:]
+        for item in parts[2].split(separator: " ") {
+            let pair = item.split(separator: "=", maxSplits: 1)
+            guard pair.count == 2, fields[String(pair[0])] == nil else { return nil }
+            fields[String(pair[0])] = String(pair[1])
+        }
+        guard Set(fields.keys) == ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"],
+              fields["request"].flatMap(UUID.init(uuidString:)) == request, fields["backend"] == backend,
+              fields["destination"] == "native.history", fields["presentation"] == "currentTab",
+              fields["generation"].flatMap(UInt64.init) != nil, fields["scene"]?.isEmpty == false,
+              let revisions = fields["revision"]?.components(separatedBy: "->"), revisions.count == 2,
+              let before = UInt64(revisions[0]), let after = UInt64(revisions[1]), after > before else { return nil }
+        if backend == "sefariaEmbedded" { guard fields["epoch"].flatMap(UInt64.init) != nil else { return nil } }
+        else { guard fields["epoch"] == "none" else { return nil } }
+        return fields
+    }
+    @MainActor private func requireNativeReceipt(_ request: UUID, backend: String) throws {
+        // Reuse the existing exact-namespace sidecar oracle to find the CURRENT
+        // XCTest-installed app container, never the stale pre-install UUID.
+        let sidecar = try workspaceSidecarURL().standardizedFileURL, parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let actualContainer = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(actualContainer).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let written = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let text = try? String(contentsOf: log, encoding: .utf8) else { return false }
+            return text.split(separator: "\n").filter { Self.receiptFields(String($0), request: request, backend: backend) != nil }.count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [written], timeout: 15), .completed, "Actual canonical native receipt did not reach the app's real reader log")
+        let bytes = try Data(contentsOf: log), text = try XCTUnwrap(String(data: bytes, encoding: .utf8))
+        let lines = text.split(separator: "\n").filter { Self.receiptFields(String($0), request: request, backend: backend) != nil }
+        XCTAssertEqual(lines.count, 1)
+        let fields = try XCTUnwrap(Self.receiptFields(String(try XCTUnwrap(lines.first)), request: request, backend: backend))
+        let snapshot = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: sidecar)) as? [String: Any])
+        let scenes = try XCTUnwrap(snapshot["scenes"] as? [String: Any])
+        XCTAssertNotNil(scenes[try XCTUnwrap(fields["scene"])], "Receipt must name a real scene in this test's actual workspace")
+        let raw = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.plain-text")
+        raw.name = "actual-native-reader-log-" + request.uuidString; raw.lifetime = .keepAlways; add(raw)
+        let receipt = XCTAttachment(string: String(try XCTUnwrap(lines.first)))
+        receipt.name = "actual-native-canonical-receipt-" + request.uuidString; receipt.lifetime = .keepAlways; add(receipt)
+        try attachWorkspaceSnapshot("native-receipt-workspace-" + request.uuidString)
+    }
+    @MainActor private func warm(_ backend: String) throws {
+        configure(backend); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40), "Real library/scene did not mount")
+        XCTAssertFalse(history.exists, "History must be absent before the URL entry")
+        capture("native-route-before-" + backend)
+        let request = UUID()
+        try invocation(request, backend: backend, mode: "warm")
+        try openInExistingProcess(historyURL(backend, request: request))
+        XCTAssertTrue(history.waitForExistence(timeout: 20), "Exact History surface was not displayed")
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireNativeReceipt(request, backend: backend)
+        capture("native-route-after-" + backend)
+    }
+    @MainActor
+    func testWarmHistoryURLUsesOtzariaNativeScene() throws { try warm("otzaria") }
+    @MainActor
+    func testWarmHistoryURLUsesLegacyNativeScene() throws { try warm("sefaria") }
+    @MainActor
+    func testWarmHistoryURLUsesEmbeddedNativeScene() throws { try warm("sefariaEmbedded") }
+    @MainActor
+    func testColdHistoryURLWaitsForActualSceneMount() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        XCTAssertFalse(history.exists)
+        capture("native-cold-before")
+        app.terminate()
+        let request = UUID(); try invocation(request, backend: "otzaria", mode: "cold")
+        app.open(try historyURL("otzaria", request: request))
+        XCTAssertTrue(history.waitForExistence(timeout: 40), "Cold URL did not await the real mounted native scene")
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireNativeReceipt(request, backend: "otzaria")
+        capture("native-cold-after")
+    }
+    @MainActor
+    func testUnknownURLVersionShowsErrorWithoutNavigatingToHistory() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        XCTAssertFalse(history.exists)
+        capture("native-invalid-before")
+        let request = UUID(); try invocation(request, backend: "otzaria", mode: "invalid_version")
+        let valid = try historyURL("otzaria", request: request)
+        try openInExistingProcess(XCTUnwrap(URL(string: valid.absoluteString.replacingOccurrences(of: "/v1/", with: "/v2/"))))
+        XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
+        XCTAssertFalse(history.exists)
+        capture("native-invalid-after")
+    }
+
+    @MainActor
+    func testHistoryURLAfterBackgroundRequiresActualVisibleReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        XCUIDevice.shared.press(.home)
+        app.activate()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        XCTAssertFalse(history.exists)
+        let request = UUID()
+        try invocation(request, backend: "otzaria", mode: "post_background")
+        try openInExistingProcess(historyURL("otzaria", request: request))
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireNativeReceipt(request, backend: "otzaria")
+    }
+
+    @MainActor
+    func testWrongBackendURLCannotNavigateOrIssueNativeReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID()
+        try invocation(request, backend: "sefaria", mode: "backend_denied")
+        try openInExistingProcess(historyURL("sefaria", request: request))
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15))
+        XCTAssertTrue(alert.staticTexts["Select the requested library in Maktabah before continuing."].exists)
+        XCTAssertFalse(history.exists)
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let text = try String(contentsOf: log, encoding: .utf8)
+        XCTAssertFalse(text.contains("[NativeNavigationReceipt] request=" + request.uuidString),
+                       "A refused backend must never produce a completion receipt")
+        alert.buttons.firstMatch.tap()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 20))
+    }
+
+    @MainActor
+    func testReplayCannotIssueSecondNativeReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID(), url = try historyURL("otzaria", request: request)
+        try invocation(request, backend: "otzaria", mode: "replay")
+        try openInExistingProcess(url)
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        try requireNativeReceipt(request, backend: "otzaria")
+        try openInExistingProcess(url)
+        XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
+        XCTAssertTrue(history.exists)
+        // The original exact-one receipt oracle also rejects a second ACK.
+        try requireNativeReceipt(request, backend: "otzaria")
+    }
+}
+
+
+// Reuse the full system-entry, same-process, real visible-surface and canonical
+// receipt/refusal oracles. No phone-specific shortcut bypasses scene validation.
+final class NativeRoutingPhoneAcceptanceTests: NativeRoutingAcceptanceTests {
+    @MainActor
+    func testPhoneWarmHistoryUsesActualForegroundScene() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runHistoryOnPhone(cold: false, rejectedBackend: false)
+    }
+
+    @MainActor
+    func testPhoneColdHistoryWaitsForActualSceneMount() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runHistoryOnPhone(cold: true, rejectedBackend: false)
+    }
+
+    @MainActor
+    func testPhoneWrongBackendCannotNavigateOrIssueReceipt() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runHistoryOnPhone(cold: false, rejectedBackend: true)
+    }
+}
+
+
+extension NativeRoutingAcceptanceTests {
+    private struct ReaderSourceMetadata: Decodable {
+        let profileID: String
+        let profileVersion: Int
+        let databaseSHA256: String
+        let books: [String: String]
+        let rows: [[Int]]
+    }
+
+    private func readerSourceMetadata() throws -> ReaderSourceMetadata {
+        let url = try XCTUnwrap(Bundle(for: NativeRoutingAcceptanceTests.self)
+            .url(forResource: "canonical-miniTest10-metadata", withExtension: "json"))
+        let bytes = try Data(contentsOf: url)
+        let hash = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(hash, "c6ca39044f6a62728f8f7e40e86d4080c89dc8927ced5ae6d724079efb5f896b")
+        let metadata = try JSONDecoder().decode(ReaderSourceMetadata.self, from: bytes)
+        XCTAssertEqual(metadata.profileID, "miniTest10")
+        XCTAssertEqual(metadata.profileVersion, 6)
+        XCTAssertEqual(metadata.databaseSHA256, "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef")
+        XCTAssertEqual(metadata.rows.count, 18_879)
+        let proof = XCTAttachment(string: "Installed UITest bundle resource: \(url.absoluteString)\nActual SHA256: \(hash)")
+        proof.name = "native-reader-independent-source-metadata"; proof.lifetime = .keepAlways; add(proof)
+        return metadata
+    }
+
+    @MainActor private func launchCurrentCanonicalReader(expectedPad: Bool = true, extraArgs: [String] = []) throws -> String {
+        XCTAssertEqual(isPad, expectedPad, "Require the declared actual form factor and its original workspace; never skip")
+        launchWithTier(.realUI, scenario: "reader", backend: "otzaria",
+            extraArgs: ["-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
+                        "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-otzaria_reader_unit_mode", "line",
+                        "-studyWorkspaceTestingNamespace", workspaceNamespace, "-lastSelectedTab", "0"] + extraArgs,
+            language: "en", locale: "en_US")
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        dismissAlertsIfNeeded()
+        let work = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"])
+        let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        try requireReaderLocator("otzaria|\(work)|line:\(initial.lineIndex)", timeout: 60)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(title))
+        return work
+    }
+
+    private func readerURL(bookID: Int, lineIndex: Int, newTab: Bool = false) throws -> URL {
+        let ref: [String: Any] = ["backend": "otzaria", "workKey": "book:\(bookID)",
+                                  "position": ["kind": "legacyLine", "value": lineIndex]]
+        let bytes = try JSONSerialization.data(withJSONObject: ["version": 2, "destination": "native.reader",
+            "backend": "otzaria", "presentation": newTab ? "newTab" : "currentTab",
+            "content": ["sectionLocator": ref, "focusLocator": ref,
+                        "presentationMode": newTab ? "newTab" : "sameTab"]], options: [.sortedKeys])
+        let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/native.reader?route=" + token))
+    }
+
+    private func actualReaderLogURL() throws -> URL {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL, parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        return parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+    }
+
+    private func readerReceiptLines() throws -> [String] {
+        let log = try actualReaderLogURL()
+        if !FileManager.default.fileExists(atPath: log.path) { return [] }
+        return try String(contentsOf: log, encoding: .utf8).split(separator: "\n")
+            .map(String.init).filter { $0.contains("[NativeNavigationReceipt]") && $0.contains("destination=native.reader ") }
+    }
+
+    @MainActor private func requireNewReaderReceipt(after before: [String], presentation: String = "currentTab") throws {
+        let observed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let actual = (try? self.readerReceiptLines()) ?? []
+            return actual.count == before.count + 1 && Array(actual.prefix(before.count)) == before
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [observed], timeout: 15), .completed,
+                       "Only a full canonical Core result may produce the one new native receipt")
+        let lines = try readerReceiptLines()
+        XCTAssertEqual(lines.count, before.count + 1)
+        XCTAssertEqual(Array(lines.prefix(before.count)), before, "Prior receipt evidence must remain unchanged")
+        let line = try XCTUnwrap(lines.last), parts = line.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        var fields: [String: String] = [:]
+        for item in parts[2].split(separator: " ") {
+            let pair = item.split(separator: "=", maxSplits: 1)
+            XCTAssertEqual(pair.count, 2); XCTAssertNil(fields[String(pair[0])])
+            fields[String(pair[0])] = String(pair[1])
+        }
+        XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
+        XCTAssertNotNil(fields["request"].flatMap(UUID.init(uuidString:)))
+        XCTAssertEqual(fields["backend"], "otzaria"); XCTAssertEqual(fields["epoch"], "none")
+        XCTAssertEqual(fields["destination"], "native.reader"); XCTAssertEqual(fields["presentation"], presentation)
+        XCTAssertNotNil(fields["generation"].flatMap(UInt64.init))
+        let revisions = try XCTUnwrap(fields["revision"]).components(separatedBy: "->")
+        XCTAssertEqual(revisions.count, 2)
+        XCTAssertGreaterThan(try XCTUnwrap(UInt64(revisions[1])), try XCTUnwrap(UInt64(revisions[0])))
+        let snapshot = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: workspaceSidecarURL())) as? [String: Any])
+        let scenes = try XCTUnwrap(snapshot["scenes"] as? [String: Any])
+        XCTAssertNotNil(scenes[try XCTUnwrap(fields["scene"])])
+        let receipt = XCTAttachment(string: line); receipt.name = "actual-current-reader-core-receipt"
+        receipt.lifetime = .keepAlways; add(receipt)
+        try attachWorkspaceSnapshot("native-current-reader-receipt")
+    }
+
+    @MainActor
+    func testPublicV2CurrentReaderShowsTwoCanonicalSourceLines() throws {
+        try runCurrentReaderSourceLines(expectedPad: true)
+    }
+    @MainActor func runCurrentReaderSourceLines(expectedPad: Bool) throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let bookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
+        let rows = metadata.rows.filter { $0.count == 3 && $0[1] == bookID && $0[2] > 0 }
+        XCTAssertGreaterThan(rows.count, 10, "Require two independently known nonzero source lines")
+        let targets = [rows[0], rows[9]]
+        XCTAssertNotEqual(targets[0][2], targets[1][2])
+        for target in targets {
+            let before = try readerReceiptLines()
+            try openInExistingProcess(readerURL(bookID: bookID, lineIndex: target[2]))
+            XCTAssertFalse(app.alerts["Unable to open link"].exists)
+            let expected = "otzaria|book:\(bookID)|line:\(target[2])"
+            try requireReaderLocator(expected)
+            XCTAssertEqual(app.staticTexts["reader-current-locator"].label, expected)
+            let rendered = try XCTUnwrap(getRenderedHighlightSnapshot(), "Actual original TextKit diagnostic required")
+            XCTAssertEqual(rendered.locator, expected)
+            XCTAssertGreaterThan(rendered.segmentSelectionCount, 0, "Requested segment must be highlighted by the original renderer")
+            XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books[String(bookID)])))
+            try requireNewReaderReceipt(after: before)
+            capture("native-core-reader-source-line-\(target[2])")
+        }
+    }
+
+    @MainActor
+    func testPublicV2OtherBookCannotReplaceCurrentReaderOrAcknowledge() throws {
+        try runCurrentReaderOtherBookRefusal(expectedPad: true)
+    }
+    @MainActor func runCurrentReaderOtherBookRefusal(expectedPad: Bool) throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let bookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
+        let other = try XCTUnwrap(metadata.rows.first { $0.count == 3 && $0[1] != bookID && $0[2] > 0 })
+        let before = try readerReceiptLines(), locator = app.staticTexts["reader-current-locator"].label
+        let rendered = try XCTUnwrap(getRenderedHighlightSnapshot())
+        try openInExistingProcess(readerURL(bookID: other[1], lineIndex: other[2]))
+        XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 15))
+        XCTAssertEqual(try readerReceiptLines(), before, "Unsupported cross-book binding must never produce an ACK")
+        app.alerts["Unable to open link"].buttons.firstMatch.tap()
+        try requireReaderLocator(locator)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, rendered.locator)
+        capture("native-core-reader-cross-book-refusal")
+    }
+
+    private struct ReaderWorkspaceSnapshot: Decodable {
+        struct Document: Decodable {
+            struct Session: Decodable { let id: UUID; let bookId: Int }
+            let backend: String
+            let session: Session
+        }
+        struct Group: Decodable {
+            let id: UUID; let profileID: UUID
+            let activeTabID: UUID?; let tabs: [Document]
+        }
+        struct Scene: Decodable {
+            let profileID: UUID; let groupID: UUID
+            let activeTabIDsByGroup: [UUID: UUID]?
+        }
+        let groups: [Group]; let scenes: [String: Scene]
+        let lastActiveSceneID: String?
+        func current() throws -> (Group, UUID) {
+            let scene = try XCTUnwrap(scenes[try XCTUnwrap(lastActiveSceneID)])
+            let group = try XCTUnwrap(groups.first { $0.id == scene.groupID && $0.profileID == scene.profileID })
+            return (group, try XCTUnwrap(scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID))
+        }
+    }
+    private func actualReaderWorkspace() throws -> ReaderWorkspaceSnapshot {
+        try JSONDecoder().decode(ReaderWorkspaceSnapshot.self, from: Data(contentsOf: workspaceSidecarURL()))
+    }
+    @MainActor private func requireReaderLocator(_ expected: String, timeout: TimeInterval = 15) throws {
+        let fields = expected.components(separatedBy: "|")
+        XCTAssertEqual(fields.count, 3)
+        guard fields.count == 3 else { XCTFail("Require an independent canonical source locator"); return }
+        XCTAssertEqual(fields[0], "otzaria")
+        XCTAssertTrue(fields[1].hasPrefix("book:")); XCTAssertTrue(fields[2].hasPrefix("line:"))
+        let bookID = try XCTUnwrap(Int(fields[1].dropFirst("book:".count)))
+        let lineIndex = try XCTUnwrap(Int(fields[2].dropFirst("line:".count)))
+        let oracle = try systemReaderOracleDocument()
+        let rows = oracle.rows.filter { $0.bookId == bookID && $0.lineIndex == lineIndex }
+        XCTAssertEqual(rows.count, 1, "Exact source text must come from the sealed original SQL fixture")
+        let source = try XCTUnwrap(rows.first)
+        let observation = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let locator = self.app.staticTexts["reader-current-locator"]
+            return locator.exists && locator.label == expected
+                && self.getRenderedHighlightSnapshot()?.locator == expected
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [observation], timeout: timeout), .completed)
+        assertReaderHasText(expectedSourceText: source.plainText)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, expected)
+        XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, expected)
+    }
+    @MainActor func runNewTabReader(sameBook: Bool, expectedPad: Bool = true) throws {
+        let metadata = try readerSourceMetadata(), work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let currentBookID = try XCTUnwrap(Int(work.replacingOccurrences(of: "book:", with: "")))
+        let source = try XCTUnwrap(metadata.rows.first {
+            $0.count == 3 && $0[2] > 0 && (sameBook ? $0[1] == currentBookID : $0[1] != currentBookID)
+        })
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let (beforeGroup, originalTabID) = try actualReaderWorkspace().current()
+        XCTAssertEqual(try XCTUnwrap(beforeGroup.tabs.first { $0.session.id == originalTabID }).session.bookId, currentBookID)
+        let beforeReceipts = try readerReceiptLines()
+        try attachWorkspaceSnapshot("native-new-tab-before")
+        try openInExistingProcess(readerURL(bookID: source[1], lineIndex: source[2], newTab: true))
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        let expected = "otzaria|book:\(source[1])|line:\(source[2])"
+        try requireReaderLocator(expected)
+        XCTAssertGreaterThan(try XCTUnwrap(getRenderedHighlightSnapshot()).segmentSelectionCount, 0)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books[String(source[1])])))
+        try requireNewReaderReceipt(after: beforeReceipts, presentation: "newTab")
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let (group, selected) = try? self.actualReaderWorkspace().current() else { return false }
+            return group.tabs.count == beforeGroup.tabs.count + 1 && selected != originalTabID
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 15), .completed)
+        let (afterGroup, newTabID) = try actualReaderWorkspace().current()
+        XCTAssertEqual(afterGroup.id, beforeGroup.id); XCTAssertEqual(afterGroup.profileID, beforeGroup.profileID)
+        XCTAssertEqual(afterGroup.tabs.count, beforeGroup.tabs.count + 1)
+        XCTAssertNotEqual(newTabID, originalTabID)
+        XCTAssertEqual(try XCTUnwrap(afterGroup.tabs.first { $0.session.id == newTabID }).session.bookId, source[1])
+        for original in beforeGroup.tabs {
+            let preserved = try XCTUnwrap(afterGroup.tabs.first { $0.session.id == original.session.id })
+            XCTAssertEqual(preserved.backend, original.backend)
+            XCTAssertEqual(preserved.session.bookId, original.session.bookId)
+        }
+        capture(sameBook ? "native-new-tab-same-book-distinct-owner" : "native-new-tab-other-book")
+        // Return through the original native tab control. No debug navigation
+        // or direct model mutation can stand in for the old reading state.
+        if expectedPad {
+            returnToOriginalIPadReaderTab(originalTabID)
+        } else {
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + originalTabID.uuidString }
+            let originals = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(originals.firstMatch.waitForExistence(timeout: 10))
+            XCTAssertEqual(originals.count, 1); XCTAssertTrue(originals.firstMatch.isHittable)
+            originals.firstMatch.tap()
+        }
+        try requireReaderLocator(originalLocator)
+        XCTAssertEqual(try readerReceiptLines().count, beforeReceipts.count + 1)
+        try attachWorkspaceSnapshot("native-new-tab-returned-to-original")
+        capture("native-new-tab-original-reader-restored")
+    }
+
+    @MainActor private func returnToOriginalIPadReaderTab(_ originalTabID: UUID) {
+        let originalTab = app.descendants(matching: .any)
+            .matching(identifier: "reader-document-tab-" + originalTabID.uuidString).firstMatch
+        let strip = app.descendants(matching: .any)
+            .matching(identifier: "reader-document-tabs").firstMatch
+        XCTAssertTrue(strip.waitForExistence(timeout: 10))
+        // The original UUID can be outside this narrow native scroll view
+        // after newTab scrolls to the new selection. Reveal it with real
+        // gestures; a visible but occluded control must still fail below.
+        for attempt in 0..<8 {
+            if originalTab.exists {
+                if originalTab.isHittable { break }
+                if originalTab.frame.maxX <= strip.frame.minX {
+                    strip.swipeRight()
+                } else if originalTab.frame.minX >= strip.frame.maxX {
+                    strip.swipeLeft()
+                } else {
+                    break
+                }
+            } else if attempt < 4 {
+                strip.swipeRight()
+            } else {
+                // A nonmaterialized cell has no screen geometry. Search
+                // both directions so the fallback does not assume LTR.
+                strip.swipeLeft()
+            }
+        }
+        XCTAssertTrue(originalTab.waitForExistence(timeout: 10)); XCTAssertTrue(originalTab.isHittable)
+        originalTab.tap()
+    }
+
+    @MainActor func testPublicV2NewTabOpensOtherBookAndPreservesOriginalReader() throws {
+        try runNewTabReader(sameBook: false)
+    }
+    @MainActor func testPublicV2NewTabSameBookCreatesDistinctOriginalReaderTab() throws {
+        try runNewTabReader(sameBook: true)
+    }
+
+}
+
+
+extension NativeRoutingAcceptanceTests {
+    private func publicRootURL(_ destination: String, request: UUID) throws -> URL {
+        XCTAssertTrue(["native.search", "native.annotations"].contains(destination))
+        let bytes = try JSONSerialization.data(withJSONObject: [
+            "version": 1, "requestId": request.uuidString, "destination": destination,
+            "backend": "otzaria", "presentation": "currentTab"
+        ], options: [.sortedKeys])
+        let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v1/\(destination)?route=\(token)"))
+    }
+
+    private nonisolated static func rootReceiptFields(_ text: String, request: UUID, destination: String) -> [[String: String]] {
+        text.split(separator: "\n").compactMap { line in
+            let parts = line.split(separator: " ", maxSplits: 2)
+            guard parts.count == 3, parts[1] == "[NativeNavigationReceipt]" else { return nil }
+            var fields: [String: String] = [:]
+            for item in parts[2].split(separator: " ") {
+                let pair = item.split(separator: "=", maxSplits: 1)
+                guard pair.count == 2, fields[String(pair[0])] == nil else { return nil }
+                fields[String(pair[0])] = String(pair[1])
+            }
+            guard Set(fields.keys) == ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"],
+                  fields["request"].flatMap(UUID.init(uuidString:)) == request,
+                  fields["destination"] == destination, fields["presentation"] == "currentTab",
+                  fields["backend"] == "otzaria", fields["epoch"] == "none",
+                  fields["generation"].flatMap(UInt64.init) != nil,
+                  let revisions = fields["revision"]?.components(separatedBy: "->"), revisions.count == 2,
+                  let before = UInt64(revisions[0]), let after = UInt64(revisions[1]), after > before else { return nil }
+            return fields
+        }
+    }
+
+    @MainActor
+    private func requireRootReceipt(_ request: UUID, destination: String) throws {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let appeared = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let text = try? String(contentsOf: log, encoding: .utf8) else { return false }
+            return Self.rootReceiptFields(text, request: request, destination: destination).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [appeared], timeout: 15), .completed,
+                       "Root opening needs one canonical actual visible receipt")
+        let text = try String(contentsOf: log, encoding: .utf8), receipts = Self.rootReceiptFields(text, request: request, destination: destination)
+        XCTAssertEqual(receipts.count, 1)
+        let receipt = try XCTUnwrap(receipts.first)
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: sidecar)) as? [String: Any])
+        let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
+        XCTAssertNotNil(scenes[try XCTUnwrap(receipt["scene"])])
+        let attachment = XCTAttachment(string: text)
+        attachment.name = "actual-root-native-receipt-\(destination)-\(request)"
+        attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @MainActor
+    func testGuidedPracticeRequiresOriginalNativeNavigationBeforeCoaching() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        menu.tap()
+        let practice = app.buttons["Practice"]
+        XCTAssertTrue(practice.waitForExistence(timeout: 10))
+        practice.tap()
+        let open = app.buttons["Open"]
+        XCTAssertTrue(open.waitForExistence(timeout: 10))
+        let beforeLibrary = try actualNativeReceiptLines()
+        open.tap()
+        let next = app.buttons["Next"]
+        XCTAssertTrue(next.waitForExistence(timeout: 20))
+        try requireNewSystemIntentReceipt(destination: "native.library", presentation: "currentTab", before: beforeLibrary, receiptSource: "guided-tour")
+        XCTAssertTrue(app.staticTexts["Browse the library by topic or collection."].exists)
+        next.tap()
+        XCTAssertTrue(open.waitForExistence(timeout: 10))
+        XCTAssertFalse(app.otherElements["global-search-screen"].exists)
+        let beforeSearch = try actualNativeReceiptLines()
+        open.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        XCTAssertTrue(next.waitForExistence(timeout: 20))
+        try requireNewSystemIntentReceipt(destination: "native.search", presentation: "currentTab", before: beforeSearch, receiptSource: "guided-tour")
+        capture("guided-tour-after-real-search-receipt")
+        app.buttons["Stop"].tap()
+        XCTAssertTrue(next.waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor
+    func testGuidedAutomaticJourneyCompletesExploresResumesAndReplays() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        try requireGuideStep("native.library", coaching: "Browse the library by topic or collection.") {
+            menu.tap(); app.buttons["Automatic"].tap()
+        }
+        try requireGuideStep("native.search", coaching: "Search for a title or words within a text.") {
+            app.buttons["Next"].tap()
+        }
+        app.buttons["Explore"].tap()
+        XCTAssertTrue(app.buttons["Next"].waitForNonExistence(timeout: 10))
+        try requireGuideStep("native.search", coaching: "Search for a title or words within a text.") {
+            menu.tap(); app.buttons["Resume"].tap()
+        }
+        try requireGuideStep("native.history", coaching: "Return to recently opened texts from the history.") {
+            app.buttons["Next"].tap()
+        }
+        app.buttons["Finish"].tap()
+        XCTAssertTrue(app.buttons["Finish"].waitForNonExistence(timeout: 10))
+        try requireGuideStep("native.library", coaching: "Browse the library by topic or collection.") {
+            menu.tap(); app.buttons["Replay"].tap()
+        }
+        capture("guided-tour-complete-resume-replay-original-receipts")
+        app.buttons["Stop"].tap()
+        XCTAssertTrue(app.buttons["Next"].waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor
+    func testGuidedSearchJourneyUsesOriginalFocusedSearchControl() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        try requireGuideStep("native.library", coaching: "Start with a topic or collection in the library.") {
+            menu.tap(); app.buttons["Find a text"].tap(); app.buttons["Automatic"].tap()
+        }
+        try requireGuideStep("native.search", coaching: "The search field is focused. Enter a title or phrase; Explore lets you try it.") {
+            app.buttons["Next"].tap()
+        }
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch.exists)
+        try requireGuideStep("native.history", coaching: "History keeps the texts you opened, so you can return to them.") {
+            app.buttons["Next"].tap()
+        }
+        capture("guided-search-focused-control-original-receipt")
+        app.buttons["Finish"].tap()
+        XCTAssertTrue(app.buttons["Finish"].waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor
+    func testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPad() throws {
+        try requireGuidedStudyJourney(expectedPad: true)
+    }
+
+    @MainActor
+    func testGuidedStudyJourneyKeepsControlsInOriginalInspectorOnIPhone() throws {
+        try requireGuidedStudyJourney(expectedPad: false)
+    }
+
+    @MainActor private func requireGuidedStudyJourney(expectedPad: Bool) throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let menu = app.buttons["otzaria-guided-tour"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 20))
+        try requireGuideStep("native.reader", coaching: "Continue from the current text and position.") {
+            menu.tap()
+            let study = app.buttons["Study the current text"]
+            XCTAssertTrue(study.waitForExistence(timeout: 10))
+            XCTAssertTrue(study.isEnabled)
+            study.tap(); app.buttons["Automatic"].tap()
+        }
+        try requireGuideStep("native.reader.inspector", presentation: "inspector",
+                             coaching: "The original study tools show sources and commentary for this text.") {
+            app.buttons["Next"].tap()
+        }
+        XCTAssertTrue(app.otherElements["torah-inspector-panel"].exists)
+        XCTAssertTrue(app.buttons["Next"].isHittable,
+                      "Guide controls must be in the actual compact inspector presentation")
+        try requireGuideStep("native.reader", coaching: "Return to the same text after reviewing its study tools.") {
+            app.buttons["Next"].tap()
+        }
+        capture("guided-study-original-inspector-and-reader")
+        app.buttons["Finish"].tap()
+        XCTAssertTrue(app.buttons["Finish"].waitForNonExistence(timeout: 10))
+    }
+
+    @MainActor private func requireGuideStep(_ destination: String, presentation: String = "currentTab",
+                                            coaching: String, action: () -> Void) throws {
+        let before = try actualNativeReceiptLines()
+        action()
+        XCTAssertTrue(app.staticTexts[coaching].waitForExistence(timeout: 20))
+        try requireNewSystemIntentReceipt(destination: destination, presentation: presentation,
+                                          before: before, receiptSource: "guided-tour")
+    }
+
+    @MainActor
+    func testGlobalSearchPublicRootPreservesOriginalPrivateQuery() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let first = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: first))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        XCTAssertTrue(field.elementType == .textField || field.elementType == .searchField)
+        try requireRootReceipt(first, destination: "native.search")
+        let privateQuery = "בראשית"
+        field.tap(); field.typeText(privateQuery)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        let historyRequest = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        try requireNativeReceipt(historyRequest, backend: "otzaria")
+        let second = UUID(), url = try publicRootURL("native.search", request: second)
+        XCTAssertFalse(url.absoluteString.contains(privateQuery))
+        try openInExistingProcess(url)
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        XCTAssertEqual(field.value as? String, privateQuery, "Original unsubmitted query must survive root navigation")
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireRootReceipt(second, destination: "native.search")
+        capture("native-search-root-private-query-preserved")
+    }
+
+    @MainActor
+    func testAnnotationsPublicRootShowsOriginalScreenAndNativeReceipt() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID()
+        try openInExistingProcess(publicRootURL("native.annotations", request: request))
+        XCTAssertTrue(app.navigationBars["Annotations"].waitForExistence(timeout: 20),
+                      "Original annotation root must actually appear")
+        XCTAssertFalse(history.exists)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try requireRootReceipt(request, destination: "native.annotations")
+        capture("native-original-annotations-root")
+    }
+}
+
+
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func prepareOriginalPhoneLibrary() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        let library = app.navigationBars["Library"]
+        let back = app.navigationBars.buttons.matching(identifier: "BackButton")
+            .matching(NSPredicate(format: "label == %@", "Library"))
+        // A prior case can leave the durable original Reader restored on launch.
+        // Return through its real native Back button before starting this case;
+        // never clear app data or repair the screen after a route under test.
+        let mounted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            library.exists || (back.count == 1 && back.firstMatch.isHittable
+                              && self.app.staticTexts["reader-current-locator"].exists)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [mounted], timeout: 40), .completed,
+                       "Bootstrap must mount the original Library or its restored Reader")
+        if !library.exists {
+            let original = try actualReaderWorkspace().current()
+            XCTAssertEqual(back.count, 1, "Use the original Reader's unique Library Back button")
+            let button = try XCTUnwrap(back.allElementsBoundByIndex.first)
+            XCTAssertTrue(button.isHittable)
+            capture("native-phone-restored-reader-before-library-setup")
+            button.tap()
+            requireOriginalPhoneLibrary(timeout: 20)
+            try requirePreservedOriginalWorkspace(original)
+        } else {
+            requireOriginalPhoneLibrary(timeout: 20)
+        }
+    }
+
+    @MainActor
+    private func requireOriginalPhoneLibrary(timeout: TimeInterval = 40) {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        // iPhoneLayout owns a NavigationStack titled Library. The ipad-only
+        // library-column wrapper is absent on this real form factor.
+        XCTAssertTrue(app.navigationBars["Library"].waitForExistence(timeout: timeout),
+                      "Actual phone Library NavigationStack must be mounted")
+        XCTAssertTrue(findTabButton(hebrew: "חיפוש", english: "Search").exists,
+                      "Original phone TabView must be present after normal bootstrap")
+        XCTAssertFalse(history.exists)
+    }
+
+    @MainActor
+    func runHistoryOnPhone(cold: Bool, rejectedBackend: Bool) throws {
+        configure("otzaria"); app.launch()
+        try prepareOriginalPhoneLibrary()
+        capture("native-phone-library-before")
+        let request = UUID(), backend = rejectedBackend ? "sefaria" : "otzaria"
+        try invocation(request, backend: backend, mode: rejectedBackend ? "phone_backend_denied" : (cold ? "phone_cold" : "phone_warm"))
+        let url = try historyURL(backend, request: request)
+        if cold { app.terminate(); app.open(url) }
+        else { try openInExistingProcess(url) }
+        if rejectedBackend {
+            let alert = app.alerts["Unable to open link"]
+            XCTAssertTrue(alert.waitForExistence(timeout: 15))
+            XCTAssertTrue(alert.staticTexts["Select the requested library in Maktabah before continuing."].exists)
+            XCTAssertFalse(history.exists)
+            let sidecar = try workspaceSidecarURL().standardizedFileURL
+            let parent = try workspaceContainerParent().standardizedFileURL
+            XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+            let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+            let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+            let text = try String(contentsOf: log, encoding: .utf8)
+            XCTAssertFalse(text.contains("[NativeNavigationReceipt] request=" + request.uuidString),
+                           "Refused backend must never produce a completion receipt")
+            alert.buttons.firstMatch.tap()
+            requireOriginalPhoneLibrary(timeout: 20)
+        } else {
+            XCTAssertTrue(history.waitForExistence(timeout: cold ? 40 : 20))
+            XCTAssertFalse(app.alerts["Unable to open link"].exists)
+            try requireNativeReceipt(request, backend: backend)
+        }
+        capture("native-phone-route-after")
+    }
+}
+
+
+// These use Apple's iOS27 out-of-process App Intents infrastructure. They do
+// not call perform() directly, import app internals or add a testing-only intent.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func actualNativeReceiptLines() throws -> Set<String> {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        guard FileManager.default.fileExists(atPath: log.path) else { return [] }
+        return Set(try String(contentsOf: log, encoding: .utf8).split(separator: "\n")
+            .filter { $0.contains(" [NativeNavigationReceipt] ") }.map(String.init))
+    }
+
+    @MainActor
+    private func requireNewSystemIntentReceipt(destination: String, presentation: String, before: Set<String>,
+                                               receiptSource: String = "system-intent") throws {
+        let after = try actualNativeReceiptLines(), added = after.subtracting(before)
+        XCTAssertTrue(before.isSubset(of: after), "Original receipt evidence must not be replaced")
+        XCTAssertEqual(added.count, 1, "One navigation invocation must produce exactly one new native receipt")
+        let line = try XCTUnwrap(added.first), parts = line.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        guard parts.count == 3 else { return }
+        XCTAssertEqual(parts[1], "[NativeNavigationReceipt]")
+        var fields: [String: String] = [:]
+        for item in parts[2].split(separator: " ") {
+            let pair = item.split(separator: "=", maxSplits: 1)
+            XCTAssertEqual(pair.count, 2)
+            guard pair.count == 2 else { return }
+            XCTAssertNil(fields[String(pair[0])], "No duplicate receipt field is accepted")
+            fields[String(pair[0])] = String(pair[1])
+        }
+        XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
+        XCTAssertNotNil(fields["request"].flatMap(UUID.init(uuidString:)))
+        XCTAssertEqual(fields["destination"], destination)
+        XCTAssertEqual(fields["presentation"], presentation)
+        XCTAssertEqual(fields["backend"], "otzaria")
+        XCTAssertEqual(fields["epoch"], "none")
+        XCTAssertNotNil(fields["generation"].flatMap(UInt64.init))
+        let revisions = try XCTUnwrap(fields["revision"]?.components(separatedBy: "->"))
+        XCTAssertEqual(revisions.count, 2)
+        guard revisions.count == 2 else { return }
+        XCTAssertGreaterThan(try XCTUnwrap(UInt64(revisions[1])), try XCTUnwrap(UInt64(revisions[0])))
+        let sidecar = try workspaceSidecarURL()
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: sidecar)) as? [String: Any])
+        let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
+        XCTAssertNotNil(scenes[try XCTUnwrap(fields["scene"])], "Receipt must name this app's actual scene")
+        let attachment = XCTAttachment(string: line)
+        attachment.name = "actual-\(receiptSource)-native-receipt-\(destination)"
+        attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @MainActor
+    func testSystemAppIntentSettingsShowsOriginalSheetAndReceipt() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let matches = try await system.entities["NativeDestinationEntity"].entities(matching: "Settings")
+        XCTAssertEqual(matches.count, 1, "Real entity query must resolve one eligible exact current scene")
+        let destination = try XCTUnwrap(matches.first), before = try actualNativeReceiptLines()
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: destination).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertTrue(app.navigationBars["Settings"].waitForExistence(timeout: 15))
+        try requireNewSystemIntentReceipt(destination: "native.settings", presentation: "sheet", before: before)
+        capture("system-intent-original-settings-sheet")
+    }
+
+    @MainActor
+    func testSystemAppIntentSearchReturnsFromBackgroundToOriginalScreen() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let matches = try await system.entities["NativeDestinationEntity"].entities(matching: "Search")
+        XCTAssertEqual(matches.count, 1)
+        let destination = try XCTUnwrap(matches.first), before = try actualNativeReceiptLines()
+        XCUIDevice.shared.press(.home)
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: destination).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 15))
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.exists && (field.elementType == .searchField || field.elementType == .textField))
+        try requireNewSystemIntentReceipt(destination: "native.search", presentation: "currentTab", before: before)
+        capture("system-intent-search-after-background")
+    }
+
+    @MainActor
+    func testSystemAppIntentRejectsUnknownEntityWithoutNativeAcknowledgement() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let invalid = system.entities["NativeDestinationEntity"].makeReference(identifier: "not-a-registered-native-entity")
+        let before = try actualNativeReceiptLines()
+        var rejected = false
+        do {
+            _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: invalid).run()
+        } catch {
+            rejected = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "actual-system-intent-unknown-entity-error"
+            evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(rejected, "An unknown system entity must never complete")
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        XCTAssertTrue(app.otherElements["library-column"].exists)
+        XCTAssertFalse(history.exists)
+        capture("system-intent-unknown-entity-refusal")
+    }
+}
+
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhonePublicV2CurrentReaderShowsCanonicalSourceLines() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runCurrentReaderSourceLines(expectedPad: false)
+    }
+    @MainActor func testPhonePublicV2NewTabPreservesOriginalReader() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runNewTabReader(sameBook: false, expectedPad: false)
+    }
+    @MainActor func testPhonePublicV2OtherBookCannotReplaceCurrentReader() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try runCurrentReaderOtherBookRefusal(expectedPad: false)
+    }
+}
+
+
+// Real existing Library / TOC surfaces, entered through the original public
+// parser and Core authorization. No input query or private owner IDs are in URLs.
+extension NativeRoutingAcceptanceTests {
+    private func publicSidebarRootURL(_ destination: String) throws -> URL {
+        XCTAssertTrue(["native.library", "native.reader.toc"].contains(destination))
+        let payload: [String: Any] = ["version": 2, "destination": destination,
+                                     "backend": "otzaria", "presentation": "currentTab"]
+        let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/\(destination)?route=\(token)"))
+    }
+
+    @MainActor
+    private func requirePublicRootReceipt(_ destination: String, before: Set<String>) throws {
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 15), .completed,
+                       "The actual original UIKit surface must acknowledge through Core")
+        try requireNewSystemIntentReceipt(destination: destination, presentation: "currentTab", before: before)
+    }
+
+    private func requirePreservedOriginalWorkspace(_ original: (ReaderWorkspaceSnapshot.Group, UUID)) throws {
+        let current = try actualReaderWorkspace().current()
+        XCTAssertEqual(current.0.id, original.0.id)
+        XCTAssertEqual(current.0.profileID, original.0.profileID)
+        XCTAssertEqual(current.1, original.1, "Opening a root must not replace the selected original Reader owner")
+        XCTAssertEqual(current.0.tabs.map(\.session.id), original.0.tabs.map(\.session.id))
+        XCTAssertEqual(current.0.tabs.map(\.backend), original.0.tabs.map(\.backend))
+        XCTAssertEqual(current.0.tabs.map(\.session.bookId), original.0.tabs.map(\.session.bookId))
+    }
+
+    @MainActor private func originalVisibleSidebarSearch() throws -> XCUIElement {
+        let pager = app.descendants(matching: .any).matching(identifier: "reader-sidebar-pager").firstMatch
+        XCTAssertTrue(pager.waitForExistence(timeout: 10))
+        let column = CGRect(x: pager.frame.minX, y: app.windows.firstMatch.frame.minY,
+                            width: pager.frame.width, height: app.windows.firstMatch.frame.height)
+        let fields = app.searchFields.allElementsBoundByIndex.filter {
+            !$0.frame.isEmpty && column.insetBy(dx: -1, dy: 0).contains($0.frame) && $0.isHittable
+        }
+        XCTAssertEqual(fields.count, 1, "Use the original native field belonging to the actual sidebar")
+        return try XCTUnwrap(fields.first)
+    }
+
+    @MainActor func testPublicV2LibraryPreservesPrivateQueryAndOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        var before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.library"))
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.library", before: before)
+        let field = try originalVisibleSidebarSearch(), privateQuery = "בראשית"
+        field.tap(); field.typeText(privateQuery)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        let historyRequest = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+        XCTAssertTrue(history.waitForExistence(timeout: 15))
+        try requireNativeReceipt(historyRequest, backend: "otzaria")
+        before = try actualNativeReceiptLines()
+        let root = try publicSidebarRootURL("native.library")
+        XCTAssertFalse(root.absoluteString.contains(privateQuery))
+        try openInExistingProcess(root)
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.library", before: before)
+        XCTAssertEqual(try originalVisibleSidebarSearch().value as? String, privateQuery)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(locator)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("native-library-root-original-reader-and-private-query")
+    }
+
+    @MainActor func testPublicV2TOCPreservesPrivateFilterAndOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        var before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.reader.toc"))
+        let toc = app.descendants(matching: .any).matching(identifier: "toc-column").firstMatch
+        XCTAssertTrue(toc.waitForExistence(timeout: 15))
+        let row = toc.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "toc-row-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 15))
+        XCTAssertTrue(row.isHittable, "An actual original TOC row must be rendered")
+        try requirePublicRootReceipt("native.reader.toc", before: before)
+        let privateFilter = row.label
+        XCTAssertFalse(privateFilter.isEmpty)
+        let field = try originalVisibleSidebarSearch()
+        field.tap(); field.typeText(privateFilter)
+        XCTAssertEqual(field.value as? String, privateFilter)
+        before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.library"))
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.library", before: before)
+        before = try actualNativeReceiptLines()
+        let root = try publicSidebarRootURL("native.reader.toc")
+        XCTAssertFalse(root.absoluteString.contains(privateFilter))
+        try openInExistingProcess(root)
+        XCTAssertTrue(toc.waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.reader.toc", before: before)
+        XCTAssertEqual(try originalVisibleSidebarSearch().value as? String, privateFilter)
+        XCTAssertTrue(toc.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "toc-row-")).firstMatch.exists)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(locator)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("native-toc-root-original-reader-and-private-filter")
+    }
+
+    @MainActor func testPublicV2TOCWithoutOriginalReaderCannotAcknowledge() throws {
+        XCTAssertTrue(isPad)
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        // A fresh sidecar namespace must not erase the original restored tabs.
+        // Establish the empty-reader precondition through the real profile UI.
+        let originalWorkspace = try actualReaderWorkspace()
+        let emptyProfile = "TOC without an open reader"
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons["Manage Study Profiles"])
+        tap(app.buttons["New Study Profile"])
+        let name = app.textFields["Profile name"]
+        tap(name); name.typeText(emptyProfile)
+        tap(app.buttons["Save"])
+        XCTAssertTrue(app.staticTexts[emptyProfile].waitForExistence(timeout: 10))
+        tap(app.buttons["Done"])
+        tap(app.buttons["study-profile-menu"])
+        tap(app.buttons[emptyProfile])
+        let emptyReader = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard !self.app.staticTexts["reader-current-locator"].exists,
+                  let snapshot = try? self.actualReaderWorkspace(),
+                  let sceneID = snapshot.lastActiveSceneID,
+                  let scene = snapshot.scenes[sceneID],
+                  let group = snapshot.groups.first(where: { $0.id == scene.groupID && $0.profileID == scene.profileID })
+            else { return false }
+            return group.tabs.isEmpty && group.activeTabID == nil
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [emptyReader], timeout: 15), .completed)
+        XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+        let preservedWorkspace = try actualReaderWorkspace()
+        for original in originalWorkspace.groups {
+            let preserved = try XCTUnwrap(preservedWorkspace.groups.first { $0.id == original.id })
+            XCTAssertEqual(preserved.profileID, original.profileID)
+            XCTAssertEqual(Set(preserved.tabs.map(\.session.id)), Set(original.tabs.map(\.session.id)))
+            for tab in original.tabs {
+                let kept = try XCTUnwrap(preserved.tabs.first { $0.session.id == tab.session.id })
+                XCTAssertEqual(kept.backend, tab.backend); XCTAssertEqual(kept.session.bookId, tab.session.bookId)
+            }
+        }
+        try attachWorkspaceSnapshot("native-toc-empty-profile-original-tabs-preserved")
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.reader.toc"))
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15), "No original selected Reader/TOC must be an explicit refusal")
+        XCTAssertEqual(try actualNativeReceiptLines(), before, "An unavailable TOC cannot produce a visible receipt")
+        alert.buttons.firstMatch.tap()
+        XCTAssertTrue(app.otherElements["library-column"].exists)
+        XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+        capture("native-toc-without-original-reader-refused")
+    }
+
+    @MainActor func runPhoneLibraryRootPreservesOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: false)
+        let original = try actualReaderWorkspace().current()
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSidebarRootURL("native.library"))
+        requireOriginalPhoneLibrary(timeout: 15)
+        XCTAssertFalse(app.staticTexts["reader-current-locator"].exists,
+                       "The original phone NavigationStack must pop its visible Reader")
+        try requirePublicRootReceipt("native.library", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try attachWorkspaceSnapshot("native-phone-library-preserved-original-reader-owner")
+        capture("native-phone-original-library-root")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhonePublicV2LibraryPreservesOriginalReaderOwner() throws {
+        try runPhoneLibraryRootPreservesOriginalReader()
+    }
+}
+
+
+// Real Apple system invocation, source-owned Core entities, original Reader owner.
+// These cases never invoke perform directly or replace a source/scene/receipt.
+extension NativeRoutingAcceptanceTests {
+    private struct SystemReaderOracle: Decodable {
+        struct Row: Decodable {
+            let id: Int; let bookId: Int; let lineIndex: Int
+            let plainText: String; let plainSHA256: String
+        }
+        let profileID: String; let profileVersion: Int; let databaseSHA256: String
+        let bootstrapRowID: Int
+        let rows: [Row]
+    }
+    private func systemReaderOracleDocument() throws -> SystemReaderOracle {
+        let url = try XCTUnwrap(Bundle(for: NativeRoutingAcceptanceTests.self)
+            .url(forResource: "canonical-miniTest10-reader-lines", withExtension: "json"))
+        let data = try Data(contentsOf: url)
+        let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(digest, "51632762100689aa2da6a6d360a6434d4fa4caf5e57971f4ad8e327ab6e173dc")
+        let original = try JSONDecoder().decode(SystemReaderOracle.self, from: data)
+        XCTAssertEqual(original.profileID, "miniTest10"); XCTAssertEqual(original.profileVersion, 6)
+        XCTAssertEqual(original.databaseSHA256, "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef")
+        XCTAssertEqual(Set(original.rows.map(\.id)).count, original.rows.count)
+        XCTAssertTrue(original.rows.contains { $0.id == original.bootstrapRowID })
+        for row in original.rows {
+            XCTAssertFalse(row.plainText.isEmpty)
+            XCTAssertEqual(SHA256.hash(data: Data(row.plainText.utf8)).map { String(format: "%02x", $0) }.joined(), row.plainSHA256)
+        }
+        let evidence = XCTAttachment(string: "Installed original SQL oracle: \(url.absoluteString)\nSHA256: \(digest)\nBootstrap row: \(original.bootstrapRowID)\nSealed source rows: \(original.rows.map(\.id))")
+        evidence.name = "native-reader-independent-text-source"; evidence.lifetime = .keepAlways; add(evidence)
+        return original
+    }
+    private func systemReaderOracle(lineID: Int) throws -> SystemReaderOracle.Row {
+        try XCTUnwrap(systemReaderOracleDocument().rows.first { $0.id == lineID })
+    }
+    private func systemEntityIdentifier(_ fields: [String: Any], kind: String) throws -> String {
+        let data = try JSONSerialization.data(withJSONObject: fields, options: [.sortedKeys])
+        return "maktabah.\(kind).v1." + data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+    }
+    @MainActor private func requireSystemReaderSource(_ row: SystemReaderOracle.Row) throws {
+        let expected = "otzaria|book:\(row.bookId)|line:\(row.lineIndex)"
+        let text = app.textViews["reader-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 45))
+        let controls: Set<UInt32> = [0x200E, 0x200F, 0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068, 0x2069]
+        let rendered = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = text.value as? String else { return false }
+            let plain = actual.unicodeScalars.filter { !controls.contains($0.value) }.map(String.init)
+                .joined().trimmingCharacters(in: .whitespacesAndNewlines)
+            return plain == row.plainText
+                && self.app.staticTexts["reader-current-locator"].label == expected
+                && self.getRenderedHighlightSnapshot()?.locator == expected
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [rendered], timeout: 30), .completed,
+                       "The original TextKit text and exact source locator must both match independent SQL")
+        XCTAssertGreaterThan(text.frame.width, 80); XCTAssertGreaterThan(text.frame.height, 80)
+        XCTAssertGreaterThan(try XCTUnwrap(getRenderedHighlightSnapshot()).segmentSelectionCount, 0)
+    }
+    @MainActor func runSystemBookIntent(namedChapter: Bool, expectedPad: Bool = true) async throws {
+        let row = try systemReaderOracle(lineID: namedChapter ? 2 : 2634912)
+        let metadata = try readerSourceMetadata()
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let original = try actualReaderWorkspace().current()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let books = try await system.entities["NativeBookEntity"].entities(matching: try XCTUnwrap(metadata.books[String(row.bookId)]))
+        XCTAssertEqual(books.count, 1, "Book must resolve through original Core and the installed actual catalog")
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "Library")
+        XCTAssertEqual(windows.count, 1)
+        let book = try XCTUnwrap(books.first), window = try XCTUnwrap(windows.first)
+        let before = try actualNativeReceiptLines()
+        if namedChapter {
+            // Apple resolves the typed source name using the location entity's
+            // dependency on this selected book. This exercises the original TOC.
+            XCTAssertEqual(row.bookId, 1); XCTAssertEqual(row.lineIndex, 1); XCTAssertEqual(row.plainText, "פרק א")
+            _ = try await system.intents["OpenBookAtLocationIntent"]
+                .makeIntent(book: book, location: row.plainText, window: window, newTab: true).run()
+        } else {
+            let id = try systemEntityIdentifier(["backend": "otzaria", "workKey": "book:\(row.bookId)",
+                "position": ["kind": "legacyLine", "value": row.lineIndex]], kind: "location")
+            let location = system.entities["NativeBookLocationEntity"].makeReference(identifier: id)
+            XCUIDevice.shared.press(.home)
+            _ = try await system.intents["OpenBookAtLocationIntent"]
+                .makeIntent(book: book, location: location, window: window, newTab: true).run()
+        }
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        try requireSystemReaderSource(row)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books[String(row.bookId)])))
+        try requireNewSystemIntentReceipt(destination: "native.reader", presentation: "newTab", before: before)
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace().current() else { return false }
+            return current.0.tabs.count == original.0.tabs.count + 1 && current.1 != original.1
+        }, object: nil)
+        let savedResult = await XCTWaiter.fulfillment(of: [saved], timeout: 15)
+        XCTAssertEqual(savedResult, .completed)
+        let current = try actualReaderWorkspace().current()
+        XCTAssertEqual(current.0.id, original.0.id); XCTAssertEqual(current.0.profileID, original.0.profileID)
+        XCTAssertEqual(try XCTUnwrap(current.0.tabs.first { $0.session.id == current.1 }).session.bookId, row.bookId)
+        for old in original.0.tabs {
+            let retained = try XCTUnwrap(current.0.tabs.first { $0.session.id == old.session.id })
+            XCTAssertEqual(retained.session.bookId, old.session.bookId); XCTAssertEqual(retained.backend, old.backend)
+        }
+        capture(namedChapter ? "system-book-intent-original-named-chapter" : "system-book-intent-original-source-after-background")
+        if expectedPad {
+            returnToOriginalIPadReaderTab(original.1)
+        } else {
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
+            let cell = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(cell.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(cell.count, 1)
+            XCTAssertTrue(cell.firstMatch.isHittable); cell.firstMatch.tap()
+        }
+        try requireReaderLocator(originalLocator)
+        XCTAssertEqual(try actualNativeReceiptLines().count, before.count + 1)
+        try attachWorkspaceSnapshot("system-book-intent-original-reader-returned")
+    }
+    @MainActor func testSystemBookIntentResolvesNamedChapterThroughOriginalCore() async throws {
+        try await runSystemBookIntent(namedChapter: true)
+    }
+    @MainActor func testSystemBookIntentCachedSourceReturnsFromBackgroundAndPreservesReader() async throws {
+        try await runSystemBookIntent(namedChapter: false)
+    }
+    @MainActor private func refuseSystemBookIntent(stale: Bool) async throws {
+        let row = try systemReaderOracle(lineID: 2634912)
+        _ = try launchCurrentCanonicalReader()
+        let originalLocator = app.staticTexts["reader-current-locator"].label
+        let original = try actualReaderWorkspace().current(), before = try actualNativeReceiptLines()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let id = try systemEntityIdentifier(["backend": "otzaria", "workKey": "book:\(stale ? row.bookId : 1)"], kind: "work")
+        let book = system.entities["NativeBookEntity"].makeReference(identifier: id)
+        let sourceID = try systemEntityIdentifier(["backend": "otzaria", "workKey": "book:\(row.bookId)",
+            "position": ["kind": "legacyLine", "value": stale ? 999_999_999 : row.lineIndex]], kind: "location")
+        let location = system.entities["NativeBookLocationEntity"].makeReference(identifier: sourceID)
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "Library")
+        XCTAssertEqual(windows.count, 1)
+        let window = try XCTUnwrap(windows.first)
+        var refused = false
+        do {
+            _ = try await system.intents["OpenBookAtLocationIntent"]
+                .makeIntent(book: book, location: location, window: window, newTab: true).run()
+        } catch {
+            refused = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "system-book-intent-explicit-source-refusal"; evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(refused, "A stale or different-book source entity must not execute")
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(originalLocator)
+    }
+    @MainActor func testSystemBookIntentRejectsDifferentBookLocationWithoutMutation() async throws {
+        try await refuseSystemBookIntent(stale: false)
+    }
+    @MainActor func testSystemBookIntentRejectsMissingSourceWithoutMutation() async throws {
+        try await refuseSystemBookIntent(stale: true)
+    }
+}
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhoneSystemBookIntentUsesOriginalReaderOwner() async throws {
+        try await runSystemBookIntent(namedChapter: false, expectedPad: false)
+    }
+}
+
+
+// The component borrows the already visible, scene-owned UISearchTextField.
+// Actual keyboard input without another tap proves responder ownership;
+// the canonical receipt alone is not the acceptance oracle.
+extension NativeRoutingAcceptanceTests {
+    private func publicSearchComponentURL(_ component: String = "native.search.query") throws -> URL {
+        let payload: [String: Any] = [
+            "version": 2, "destination": "native.search", "backend": "otzaria",
+            "presentation": "currentTab", "component": component
+        ]
+        let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/native.search?route=\(token)"))
+    }
+
+    @MainActor
+    private func requireSearchComponentReceipt(before: Set<String>) throws {
+        try requirePublicRootReceipt("native.search", before: before)
+        let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        // The original helper above validates every field and duplicate.
+        // Extract only the two correlation fields without trapping on a broken
+        // diagnostic line after an XCTest assertion has already failed.
+        let fields = native.split(separator: " ")
+        let request = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("request=") })).dropFirst(8))
+        let scene = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("scene=") })).dropFirst(6))
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let text = try String(contentsOf: log, encoding: .utf8)
+        let exact = "[NativeFocusReceipt] request=\(request) scene=\(scene) component=native.search.query"
+        XCTAssertEqual(text.split(separator: "\n").filter { $0.hasSuffix(exact) }.count, 1,
+                       "The same original Core receipt must include the verified component")
+        let evidence = XCTAttachment(string: text)
+        evidence.name = "actual-search-first-responder-receipt"; evidence.lifetime = .keepAlways; add(evidence)
+    }
+
+    @MainActor
+    fileprivate func runOriginalSearchComponentFocus(expectedPad: Bool) throws {
+        configure("otzaria"); app.launch()
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom == .pad, expectedPad)
+        if expectedPad { XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40)) }
+        else { try prepareOriginalPhoneLibrary() }
+        let first = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: first))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(first, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let originalQuery = "בראשית"
+        field.tap(); field.typeText(originalQuery)
+        XCTAssertEqual(field.value as? String, originalQuery)
+        let historyRequest = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+        XCTAssertTrue(history.waitForExistence(timeout: 20))
+        try requireNativeReceipt(historyRequest, backend: "otzaria")
+        let returnRequest = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: returnRequest))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(returnRequest, destination: "native.search")
+        XCTAssertEqual(field.value as? String, originalQuery)
+        let keyboardGone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+                                                     object: app.keyboards.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [keyboardGone], timeout: 10), .completed,
+                       "The test must start with the actual field unfocused")
+        let before = try actualNativeReceiptLines(), url = try publicSearchComponentURL()
+        XCTAssertFalse(url.absoluteString.contains(originalQuery))
+        try openInExistingProcess(url)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10))
+        XCTAssertEqual(field.value as? String, originalQuery, "Focusing must not change or submit private input")
+        try requireSearchComponentReceipt(before: before)
+        // Do not tap the field here. Type through the system's current responder.
+        app.typeText(" בדיקה")
+        XCTAssertEqual(field.value as? String, originalQuery + " בדיקה")
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+        capture("native-search-component-actual-keyboard")
+    }
+
+    @MainActor
+    func testSystemAppIntentFocusesOriginalSearchComponent() async throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let request = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: request))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(request, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let entities = try await system.entities["NativeDestinationEntity"].entities(matching: "Search field")
+        XCTAssertEqual(entities.count, 1, "Only the live field in this exact original scene may be discovered")
+        let entity = try XCTUnwrap(entities.first), before = try actualNativeReceiptLines()
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10))
+        try requireSearchComponentReceipt(before: before)
+        app.typeText("בראשית")
+        XCTAssertEqual(field.value as? String, "בראשית")
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+        capture("system-intent-original-search-first-responder")
+    }
+
+    @MainActor
+    func testPublicV2SearchQueryFocusUsesOriginalFirstResponder() throws {
+        try runOriginalSearchComponentFocus(expectedPad: true)
+    }
+
+    @MainActor
+    func testPublicV2SearchComponentRequiresAlreadyVisibleOriginalField() throws {
+        _ = try launchCurrentCanonicalReader()
+        let title = app.staticTexts["reader-header-title"].label
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSearchComponentURL())
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15))
+        XCTAssertEqual(try actualNativeReceiptLines(), before, "An absent field cannot acknowledge focus")
+        alert.buttons.firstMatch.tap()
+        XCTAssertEqual(app.staticTexts["reader-header-title"].label, title)
+        XCTAssertEqual(app.staticTexts["reader-current-locator"].label, locator)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.otherElements["global-search-screen"].exists)
+        capture("native-search-component-unavailable-preserves-reader")
+    }
+
+    @MainActor
+    func testPublicV2UnknownSearchComponentCannotFocusOrSubmit() throws {
+        configure("otzaria"); app.launch()
+        XCTAssertTrue(app.otherElements["library-column"].waitForExistence(timeout: 40))
+        let root = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: root))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(root, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let originalValue = field.value as? String
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicSearchComponentURL("native.search.unregistered"))
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15))
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        alert.buttons.firstMatch.tap()
+        XCTAssertEqual(field.value as? String, originalValue)
+        XCTAssertFalse(app.keyboards.firstMatch.exists)
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+        capture("native-search-component-unknown-denied")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor
+    func testPhonePublicV2SearchQueryFocusUsesOriginalFirstResponder() throws {
+        try runOriginalSearchComponentFocus(expectedPad: false)
+    }
+}
+
+
+// The existing Inspector is opened through public-v2/Core/Registry only. These
+// tests neither instantiate an Inspector nor call an App Intent perform method.
+extension NativeRoutingAcceptanceTests {
+    private func publicInspectorURL() throws -> URL {
+        let destination = "native.reader.inspector"
+        let payload: [String: Any] = ["version": 2, "destination": destination,
+                                     "backend": "otzaria", "presentation": "inspector"]
+        let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = data.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string: "maktabah-debug://action/v2/\(destination)?route=\(token)"))
+    }
+
+    @MainActor private func requireOriginalInspectorReceipt(before: Set<String>) throws {
+        let panel = app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch
+        XCTAssertTrue(panel.waitForExistence(timeout: 30), "The original TorahInspectorKit panel must actually mount")
+        XCTAssertTrue(panel.isHittable, "A hidden panel or model flag is not visible presentation")
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "torah-inspector-tools").firstMatch.exists)
+        let receipt = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [receipt], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.reader.inspector", presentation: "inspector", before: before)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+    }
+
+    @MainActor private func closeOriginalInspectorAndRequireReader(_ locator: String) throws {
+        tap(app.buttons["torah-inspector-close"])
+        let panel = app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: panel)
+        XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 10), .completed)
+        try requireReaderLocator(locator)
+    }
+
+    @MainActor func runOriginalInspectorPublic(expectedPad: Bool) throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch.exists)
+        var before = try actualNativeReceiptLines()
+        let url = try publicInspectorURL()
+        XCTAssertFalse(url.absoluteString.contains(locator), "Public panel navigation must not serialize private Reader state")
+        try openInExistingProcess(url)
+        try requireOriginalInspectorReceipt(before: before)
+        try requirePreservedOriginalWorkspace(original)
+        // Reopening an already displayed original panel is a separate exact
+        // request, with one receipt and no replacement Reader/tab or selection.
+        before = try actualNativeReceiptLines()
+        try openInExistingProcess(url)
+        try requireOriginalInspectorReceipt(before: before)
+        try requirePreservedOriginalWorkspace(original)
+        capture("native-inspector-original-current-reader")
+        try closeOriginalInspectorAndRequireReader(locator)
+        try requirePreservedOriginalWorkspace(original)
+    }
+
+    @MainActor func runOriginalInspectorSystemIntent(expectedPad: Bool) async throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let entities = try await system.entities["NativeDestinationEntity"].entities(matching: "Study Tools")
+        XCTAssertEqual(entities.count, 1, "Only the actual visible original Reader in this window may advertise its panel")
+        let entity = try XCTUnwrap(entities.first), before = try actualNativeReceiptLines()
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        try requireOriginalInspectorReceipt(before: before)
+        try requirePreservedOriginalWorkspace(original)
+        capture("system-intent-original-inspector")
+        try closeOriginalInspectorAndRequireReader(locator)
+        try requirePreservedOriginalWorkspace(original)
+    }
+
+    @MainActor func testPublicV2InspectorPreservesOriginalReaderAndWorkspace() throws {
+        try runOriginalInspectorPublic(expectedPad: true)
+    }
+
+    @MainActor func testSystemAppIntentShowsOriginalReaderInspector() async throws {
+        try await runOriginalInspectorSystemIntent(expectedPad: true)
+    }
+
+    @MainActor func testPublicV2InspectorRequiresVisibleOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let request = UUID()
+        try openInExistingProcess(publicRootURL("native.search", request: request))
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        try requireRootReceipt(request, destination: "native.search")
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let privateQuery = "בדיקת מפרשים ללא מעבר"
+        field.tap(); field.typeText(privateQuery)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        let before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicInspectorURL())
+        let alert = app.alerts["Unable to open link"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15), "A background Reader owner must not authorize presentation")
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        alert.buttons.firstMatch.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].exists)
+        XCTAssertEqual(field.value as? String, privateQuery)
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch.exists)
+        try requirePreservedOriginalWorkspace(original)
+        capture("native-inspector-hidden-reader-refused")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testPhonePublicV2InspectorPreservesOriginalReaderAndWorkspace() throws {
+        try runOriginalInspectorPublic(expectedPad: false)
+    }
+
+    @MainActor func testPhoneSystemAppIntentShowsOriginalReaderInspector() async throws {
+        try await runOriginalInspectorSystemIntent(expectedPad: false)
+    }
+}
+
+
+// Typed actions use the SAME production Core and native owners. The explicit
+// DEBUG trigger supplies a request only; it cannot install source data, draw a
+// result, synthesize an acknowledgement, or bypass the normal bootstrap.
+extension NativeRoutingAcceptanceTests {
+    private func actionProbeURL(kind: String, token: UUID, phase: String) throws -> URL {
+        XCTAssertTrue(["notes", "search", "commentary", "count", "journey-count-results",
+                       "journey-commentary-draft", "journey-catalog-stop"].contains(kind))
+        XCTAssertTrue(["trigger.txt", "result.json", "closed.json"].contains(phase))
+        let documents = try actualReaderLogURL().deletingLastPathComponent().deletingLastPathComponent()
+        XCTAssertEqual(documents.lastPathComponent, "Documents")
+        return documents.appendingPathComponent("native-action-\(kind)-\(token.uuidString)-\(phase)")
+    }
+    private func triggerOriginalAction(_ kind: String, token: UUID) throws {
+        let url = try actionProbeURL(kind: kind, token: token, phase: "trigger.txt")
+        XCTAssertFalse(FileManager.default.fileExists(atPath: url.path))
+        XCTAssertFalse(FileManager.default.fileExists(atPath:
+            try actionProbeURL(kind: kind, token: token, phase: "result.json").path))
+        try Data(token.uuidString.utf8).write(to: url, options: .atomic)
+    }
+    @MainActor private func readOriginalActionProof(_ kind: String, token: UUID,
+                                                    phase: String = "result.json") throws -> [String: Any] {
+        let url = try actionProbeURL(kind: kind, token: token, phase: phase)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: url.path)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 45), .completed,
+                       "Require observed production action outcome, never the trigger or an echoed request")
+        let bytes = try Data(contentsOf: url)
+        XCTAssertLessThan(bytes.count, 128 * 1_024)
+        let proof = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        XCTAssertNil(proof["probeError"], String(describing: proof))
+        let evidence = XCTAttachment(data: bytes, uniformTypeIdentifier: "public.json")
+        evidence.name = "native-core-\(kind)-\(phase)"; evidence.lifetime = .keepAlways; add(evidence)
+        return proof
+    }
+    private func requireCompletedOriginalAction(_ proof: [String: Any], action: String,
+                                                effect: String) throws -> [String: Any] {
+        let result = try XCTUnwrap(proof["coreResult"] as? [String: Any])
+        XCTAssertEqual(result["apiVersion"] as? Int, 1)
+        XCTAssertEqual(result["action"] as? String, action)
+        XCTAssertEqual(result["status"] as? String, "completed")
+        XCTAssertEqual(result["backend"] as? String, "otzaria")
+        XCTAssertNotNil(result["backendGeneration"] as? NSNumber)
+        XCTAssertEqual(result["effects"] as? [String], [effect])
+        XCTAssertNil(result["error"]); XCTAssertNil(result["candidates"])
+        XCTAssertNotNil((result["requestId"] as? String).flatMap(UUID.init(uuidString:)))
+        return result
+    }
+    private func requireOriginalActionRef(_ ref: [String: Any], bookID: Int, lineIndex: Int) throws {
+        XCTAssertEqual(ref["backend"] as? String, "otzaria")
+        XCTAssertEqual(ref["workKey"] as? String, "book:\(bookID)")
+        let position = try XCTUnwrap(ref["position"] as? [String: Any])
+        XCTAssertEqual(position["kind"] as? String, "legacyLine")
+        XCTAssertEqual(position["value"] as? Int, lineIndex)
+    }
+    @MainActor private func requireActionReceipt(_ result: [String: Any], destination: String,
+                                                 presentation: String, before: Set<String>) throws {
+        try requireNewSystemIntentReceipt(destination: destination, presentation: presentation, before: before)
+        let added = try actualNativeReceiptLines().subtracting(before)
+        let line = try XCTUnwrap(added.first)
+        let request = try XCTUnwrap(result["requestId"] as? String)
+        XCTAssertTrue(line.contains("request=\(request) "), "Receipt must belong to this exact Core request")
+    }
+
+    @MainActor fileprivate func runCoreOriginalNoteDraft(expectedPad: Bool) throws {
+        let token = UUID()
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", "notes", "-nativeActionAcceptanceToken", token.uuidString])
+        let oracle = try systemReaderOracleDocument()
+        let source = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        try requireSystemReaderSource(source)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction("notes", token: token)
+        let proof = try readOriginalActionProof("notes", token: token)
+        let result = try requireCompletedOriginalAction(proof, action: "notes.prepareDraft", effect: "note_draft_opened")
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertEqual(proof["originalStoreUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalUnsavedEditor"] as? Bool, true)
+        XCTAssertEqual(proof["originalEditorOwnsProposal"] as? Bool, true)
+        let data = try XCTUnwrap(result["data"] as? [String: Any])
+        XCTAssertEqual(data["saved"] as? Bool, false)
+        try requireOriginalActionRef(try XCTUnwrap(data["locator"] as? [String: Any]),
+                                     bookID: source.bookId, lineIndex: source.lineIndex)
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalDraftLocator"] as? [String: Any]),
+                                     bookID: source.bookId, lineIndex: source.lineIndex)
+        let text = app.textViews["annotation-note-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 10)); XCTAssertTrue(text.isHittable)
+        XCTAssertEqual(text.value as? String, "טיוטה ללא שמירה \(token.uuidString)")
+        XCTAssertTrue(app.buttons["annotation-save"].exists)
+        XCTAssertFalse(app.buttons["annotation-delete"].exists, "The original editor must hold a new unsaved draft")
+        try requireActionReceipt(result, destination: "native.reader.noteDraft", presentation: "sheet", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        capture("native-core-original-unsaved-note-editor")
+        let cancel = app.buttons["annotation-cancel"]
+        XCTAssertTrue(cancel.exists); XCTAssertTrue(cancel.isHittable); cancel.tap()
+        let closed = try readOriginalActionProof("notes", token: token, phase: "closed.json")
+        XCTAssertEqual(closed["originalStoreUnchanged"] as? Bool, true)
+        XCTAssertEqual(closed["originalEditorDismissed"] as? Bool, true)
+        XCTAssertEqual(closed["originalSceneReady"] as? Bool, true)
+        XCTAssertFalse(text.exists, "The real editor must disappear after its original onDismiss")
+        try requireSystemReaderSource(source)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        capture("native-core-note-cancel-preserves-source-and-store")
+    }
+    @MainActor func testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPad() throws {
+        try runCoreOriginalNoteDraft(expectedPad: true)
+    }
+
+    @MainActor fileprivate func runCoreOriginalSearchResults(expectedPad: Bool) throws {
+        let token = UUID()
+        // Runner derives this from canonical-miniTest10-query-candidates.json,
+        // SHA da066b440d54ca6015fc7387c00d36d7df0648e3f25f4d95be98750ba38cc5a3.
+        // Those are lexical source candidates, never engine ranking/count proof.
+        let query = try XCTUnwrap(ProcessInfo.processInfo.environment["GLOBAL_SEARCH_TEST_QUERY"])
+        XCTAssertEqual(query, "בראשית")
+        let metadata = try readerSourceMetadata()
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", "search", "-nativeActionAcceptanceToken", token.uuidString,
+            "-nativeActionAcceptanceQuery", query])
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+        let search = findTabButton(hebrew: "חיפוש", english: "Search")
+        XCTAssertTrue(search.waitForExistence(timeout: 10)); XCTAssertTrue(search.isHittable); search.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.otherElements["global-search-header"].exists)
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction("search", token: token)
+        let proof = try readOriginalActionProof("search", token: token)
+        let result = try requireCompletedOriginalAction(proof, action: "search.openResults", effect: "search_results_opened")
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertEqual(proof["originalQuery"] as? String, query)
+        XCTAssertEqual(try XCTUnwrap(proof["originalSubmissionAfter"] as? Int),
+                       try XCTUnwrap(proof["originalSubmissionBefore"] as? Int) + 1)
+        XCTAssertEqual(proof["originalHasSubmitted"] as? Bool, true)
+        XCTAssertEqual(proof["originalIsSearching"] as? Bool, false)
+        XCTAssertEqual(proof["originalResultsAreDirty"] as? Bool, false)
+        XCTAssertNil(proof["originalError"])
+        XCTAssertEqual(proof["originalBookIDs"] as? [Int], [])
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        XCTAssertTrue(field.exists); XCTAssertTrue(field.isHittable)
+        XCTAssertEqual(field.value as? String, query)
+        let row = app.buttons.matching(NSPredicate(format:
+            "identifier BEGINSWITH %@", "search-result-preview-toggle-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 15)); XCTAssertTrue(row.isHittable)
+        let stableID = String(row.identifier.dropFirst("search-result-preview-toggle-".count))
+        let rows = try XCTUnwrap(proof["originalRows"] as? [[String: Any]])
+        let visible = try XCTUnwrap(rows.first { $0["stableID"] as? String == stableID },
+                                   "A real visible original row must belong to the completed original submission")
+        let ref = try XCTUnwrap(visible["locator"] as? [String: Any])
+        let workKey = try XCTUnwrap(ref["workKey"] as? String)
+        let bookID = try XCTUnwrap(Int(workKey.replacingOccurrences(of: "book:", with: "")))
+        let position = try XCTUnwrap(ref["position"] as? [String: Any])
+        let lineIndex = try XCTUnwrap(position["value"] as? Int)
+        try requireOriginalActionRef(ref, bookID: bookID, lineIndex: lineIndex)
+        XCTAssertTrue(metadata.rows.contains { $0.count == 3 && $0[1] == bookID && $0[2] == lineIndex },
+                      "The actual hit must resolve to this independent canonical source")
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "global-search-loading").firstMatch.exists)
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "global-search-dirty").firstMatch.exists)
+        try requireActionReceipt(result, destination: "native.search.results", presentation: "currentTab", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        capture("native-core-original-completed-search-results")
+    }
+    @MainActor func testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPad() throws {
+        try runCoreOriginalSearchResults(expectedPad: true)
+    }
+
+
+    // Independent all-18,879-row SQLite/Zstandard oracle, never search hit totals:
+    // docs/hq-integration/occurrence-app-20261120/whole-app-acceptance/unqualified/
+    // INDEPENDENT_MINI_SQL_ORACLE.json
+    // SHA d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8.
+    // book:1 / אברהם has 109 distinct token positions in 98 source rows.
+    @MainActor fileprivate func runCoreOriginalExactTokenCount(expectedPad: Bool) throws {
+        let token = UUID(), query = "אברהם"
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", "count", "-nativeActionAcceptanceToken", token.uuidString])
+        let oracle = try systemReaderOracleDocument()
+        let source = try XCTUnwrap(oracle.rows.first { $0.bookId == 1 && $0.lineIndex == 0 })
+        // This is the existing public Reader route, before the count baseline.
+        // It binds the disposable caller's allowed work to the actual Reader.
+        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex, newTab: true))
+        try requireSystemReaderSource(source)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+
+        // Warm ONLY through an actual original user submission. No DEBUG helper
+        // creates an engine, fills its cache, installs data or overrides readiness.
+        let search = findTabButton(hebrew: "חיפוש", english: "Search")
+        XCTAssertTrue(search.waitForExistence(timeout: 10)); XCTAssertTrue(search.isHittable); search.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        let field = fields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 20)); XCTAssertEqual(fields.count, 1)
+        XCTAssertTrue(field.isHittable); field.tap(); field.typeText(query + "\n")
+        XCTAssertEqual(field.value as? String, query)
+        let row = app.buttons.matching(NSPredicate(format:
+            "identifier BEGINSWITH %@", "search-result-preview-toggle-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 90)); XCTAssertTrue(row.isHittable)
+        let application = app!
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !application.descendants(matching: .any).matching(identifier: "global-search-loading").firstMatch.exists
+                    && !application.descendants(matching: .any).matching(identifier: "global-search-dirty").firstMatch.exists
+                    && !application.buttons["global-search-cancel"].exists
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
+        let visibleRowID = String(row.identifier.dropFirst("search-result-preview-toggle-".count))
+        XCTAssertFalse(visibleRowID.isEmpty)
+        capture("native-core-count-original-search-warmup")
+        let library = findTabButton(hebrew: "ספרייה", english: "Library")
+        XCTAssertTrue(library.waitForExistence(timeout: 10)); XCTAssertTrue(library.isHittable); library.tap()
+        try requireSystemReaderSource(source)
+        try requirePreservedOriginalWorkspace(original)
+        let before = try actualNativeReceiptLines()
+
+        try triggerOriginalAction("count", token: token)
+        let proof = try readOriginalActionProof("count", token: token)
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertEqual(proof["originalSourceUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalSearchUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalSearchQuery"] as? String, query)
+        XCTAssertGreaterThan(try XCTUnwrap(proof["originalSearchSubmission"] as? Int), 0)
+        XCTAssertEqual(proof["originalSearchHasSubmitted"] as? Bool, true)
+        XCTAssertEqual(proof["originalSearchIsSearching"] as? Bool, false)
+        XCTAssertEqual(proof["originalSearchResultsAreDirty"] as? Bool, false)
+        XCTAssertEqual(proof["originalSearchBookIDs"] as? [Int], [])
+        XCTAssertTrue(try XCTUnwrap(proof["originalSearchRowIDs"] as? [String]).contains(visibleRowID))
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalReaderLocator"] as? [String: Any]),
+                                     bookID: source.bookId, lineIndex: source.lineIndex)
+        let request = try XCTUnwrap(proof["coreRequest"] as? [String: Any])
+        XCTAssertEqual(request["requestId"] as? String, token.uuidString)
+        XCTAssertEqual(request["requestedPresentation"] as? String, "headless")
+        let result = try XCTUnwrap(proof["coreResult"] as? [String: Any])
+        XCTAssertEqual(result["apiVersion"] as? Int, 1)
+        XCTAssertEqual(result["requestId"] as? String, token.uuidString)
+        XCTAssertEqual(result["action"] as? String, "search.countOccurrences")
+        XCTAssertEqual(result["status"] as? String, "completed")
+        XCTAssertEqual(result["backend"] as? String, "otzaria")
+        XCTAssertEqual(try XCTUnwrap(result["backendGeneration"] as? NSNumber),
+                       try XCTUnwrap(proof["originalBackendGeneration"] as? NSNumber))
+        XCTAssertNil(result["effects"]); XCTAssertNil(result["error"])
+        XCTAssertNil(result["candidates"]); XCTAssertNil(result["next"])
+        let data = try XCTUnwrap(result["data"] as? [String: Any])
+        XCTAssertEqual(data["count"] as? Int, 109)
+        XCTAssertEqual(data["matchingDocuments"] as? Int, 98)
+        XCTAssertNotEqual(data["count"] as? Int, data["matchingDocuments"] as? Int,
+                          "A search hit/document total must never substitute for occurrence positions")
+        XCTAssertEqual(data["countUnit"] as? String, "matching_occurrences")
+        XCTAssertEqual(data["precision"] as? String, "exact")
+        XCTAssertEqual(data["normalizedToken"] as? String, query)
+        let counted = try XCTUnwrap(data["query"] as? [String: Any])
+        XCTAssertEqual(counted["backend"] as? String, "otzaria")
+        XCTAssertEqual(counted["text"] as? String, query)
+        XCTAssertEqual(counted["matchMode"] as? String, "exact")
+        XCTAssertEqual(counted["countUnit"] as? String, "matching_occurrences")
+        let refs = try XCTUnwrap(counted["scopeWorkRefs"] as? [[String: Any]])
+        XCTAssertEqual(refs.count, 1)
+        let ref = try XCTUnwrap(refs.first)
+        XCTAssertEqual(ref["backend"] as? String, "otzaria"); XCTAssertEqual(ref["workKey"] as? String, "book:1")
+        let requestArguments = try XCTUnwrap(request["arguments"] as? [String: Any])
+        for key in ["text", "matchMode", "countUnit"] {
+            XCTAssertEqual(requestArguments[key] as? String, counted[key] as? String)
+        }
+        XCTAssertEqual(try JSONSerialization.data(withJSONObject: try XCTUnwrap(requestArguments["scopeWorkRefs"]), options: .sortedKeys),
+                       try JSONSerialization.data(withJSONObject: refs, options: .sortedKeys))
+        let permissionQuery = try XCTUnwrap(data["searchQuery"] as? [String: Any])
+        XCTAssertEqual(permissionQuery["backend"] as? String, "otzaria")
+        XCTAssertEqual(permissionQuery["text"] as? String, query)
+        XCTAssertEqual(permissionQuery["matchMode"] as? String, "exact")
+        XCTAssertEqual(try JSONSerialization.data(withJSONObject: try XCTUnwrap(permissionQuery["scopeWorkRefs"]), options: .sortedKeys),
+                       try JSONSerialization.data(withJSONObject: refs, options: .sortedKeys))
+
+        let evidence = try XCTUnwrap(data["evidence"] as? [String: Any])
+        XCTAssertEqual(evidence["contract"] as? String, "otzaria-exact-token-positions-v1")
+        XCTAssertEqual(evidence["engineRevision"] as? String, "d5d59d1269bdf87fb0a6901cf31941726a0c699b")
+        XCTAssertEqual(evidence["artifactIdentity"] as? String, "08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83")
+        XCTAssertEqual(evidence["databaseSHA256"] as? String, oracle.databaseSHA256)
+        XCTAssertEqual(evidence["expectedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["observedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["completeManagedArtifact"] as? Bool, true)
+        let snapshot = try XCTUnwrap(evidence["engineSnapshotSHA256"] as? String)
+        XCTAssertNotNil(snapshot.range(of: "^[0-9a-f]{64}$", options: .regularExpression))
+        let visitedDocuments = try XCTUnwrap(evidence["visitedDocuments"] as? Int)
+        let visitedPositions = try XCTUnwrap(evidence["visitedPositions"] as? Int)
+        XCTAssertGreaterThanOrEqual(visitedDocuments, 98); XCTAssertLessThanOrEqual(visitedDocuments, 1_000_000)
+        XCTAssertGreaterThanOrEqual(visitedPositions, 109); XCTAssertLessThanOrEqual(visitedPositions, 10_000_000)
+
+        try requireOriginalCountRefusal(proof, prefix: "unsupported",
+                                        status: "not_supported", code: "occurrence_query_unavailable")
+        try requireOriginalCountRefusal(proof, prefix: "preCancelled", status: "cancelled", code: "cancelled")
+        let requestIDs = try ["coreRequest", "unsupportedRequest", "preCancelledRequest"].map { key in
+            try XCTUnwrap((proof[key] as? [String: Any])?["requestId"] as? String)
+        }
+        XCTAssertEqual(Set(requestIDs).count, 3)
+        XCTAssertEqual(try actualNativeReceiptLines(), before,
+                       "Headless count/refusals must not queue any native navigation effect")
+        try requireSystemReaderSource(source)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertFalse(app.otherElements["global-search-screen"].exists)
+        XCTAssertFalse(app.textViews["annotation-note-text"].exists)
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "torah-inspector-panel").firstMatch.exists)
+        let independent: [String: Any] = [
+            "oracleSHA256": "d5879e40e597963616499fbc181eedba3c5c09745d460b03b2e57077f41c5be8",
+            "databaseSHA256": oracle.databaseSHA256, "rowsScanned": 18_879,
+            "query": query, "workKey": "book:1", "occurrences": 109, "matchingDocuments": 98,
+            "countSource": "Independent original SQLite/Zstandard rows, not engine search hit totals",
+            "cancellationScope": "Core pre-cancelled admission; in-flight behavior is a separate bridge gate",
+        ]
+        let attachment = XCTAttachment(data: try JSONSerialization.data(withJSONObject: independent, options: .sortedKeys),
+                                       uniformTypeIdentifier: "public.json")
+        attachment.name = "native-count-independent-sql-expectation"; attachment.lifetime = .keepAlways; add(attachment)
+        capture("native-core-count-exact-positions-preserves-original-reader")
+    }
+    private func requireOriginalCountRefusal(_ proof: [String: Any], prefix: String,
+                                             status: String, code: String) throws {
+        let request = try XCTUnwrap(proof[prefix + "Request"] as? [String: Any])
+        let result = try XCTUnwrap(proof[prefix + "Result"] as? [String: Any])
+        XCTAssertNotNil((request["requestId"] as? String).flatMap(UUID.init(uuidString:)))
+        XCTAssertEqual(result["apiVersion"] as? Int, 1)
+        XCTAssertEqual(result["requestId"] as? String, request["requestId"] as? String)
+        XCTAssertEqual(result["action"] as? String, "search.countOccurrences")
+        XCTAssertEqual(result["status"] as? String, status)
+        XCTAssertEqual(result["backend"] as? String, "otzaria")
+        let failure = try XCTUnwrap(result["error"] as? [String: Any])
+        XCTAssertEqual(failure["code"] as? String, code)
+        XCTAssertEqual(failure["retryable"] as? Bool, false)
+        XCTAssertNil(result["data"], "A refusal must carry no numeric partial or fallback hit count")
+        XCTAssertNil(result["effects"]); XCTAssertNil(result["candidates"]); XCTAssertNil(result["next"])
+    }
+    @MainActor func testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPad() throws {
+        try runCoreOriginalExactTokenCount(expectedPad: true)
+    }
+
+    // Independently extracted from exact miniTest10 v6 DB d3d9bfcc...5a9edef.
+    // Original link 6529212, type COMMENTARY side0, no suppressed side/coverage;
+    // exactly one related destination for this base and commentary work.
+    // Full read-only SQL/decompression evidence lives in actions-native-20261120.
+    private func originalCommentaryRows() throws -> (SystemReaderOracle.Row, SystemReaderOracle.Row) {
+        let base = SystemReaderOracle.Row(id: 6188105, bookId: 28, lineIndex: 2,
+            plainText: "(א) אַ֥שְֽׁרֵי־הָאִ֗ישׁ אֲשֶׁ֤ר ׀ לֹ֥א הָלַךְ֮ בַּעֲצַ֢ת רְשָׁ֫עִ֥ים וּבְדֶ֣רֶךְ חַ֭טָּאִים לֹ֥א עָמָ֑ד וּבְמוֹשַׁ֥ב לֵ֝צִ֗ים לֹ֣א יָשָֽׁב׃", plainSHA256: "fb2e82003d0c6074169020011cdf92c1b36671ca8eaacef2295488db14a22c15")
+        let target = SystemReaderOracle.Row(id: 6609893, bookId: 3276, lineIndex: 4,
+            plainText: "אשרי האיש. אפשר להסמיך רמז שאם חטא אפילו בשוגג תכף יכנע וישפוך נפשו לפני ה' שימחול לו ובזה לא יבא לחטא אחר או למזיד. וזהו ראשי תיבות אשרי האיש. אם שגג רחמים יבקש ה' אלהים יסלח שגגתו:", plainSHA256: "c6268174b7b68e32832c7beee72f7cf4932bb5607896a510d635c52ca79b5fd9")
+        for row in [base, target] {
+            XCTAssertEqual(SHA256.hash(data: Data(row.plainText.utf8)).map { String(format: "%02x", $0) }.joined(),
+                           row.plainSHA256)
+        }
+        return (base, target)
+    }
+    @MainActor fileprivate func runCoreSourceCommentary(expectedPad: Bool) throws {
+        let token = UUID(), rows = try originalCommentaryRows(), metadata = try readerSourceMetadata()
+        for row in [rows.0, rows.1] {
+            XCTAssertTrue(metadata.rows.contains { $0 == [row.id, row.bookId, row.lineIndex] })
+        }
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", "commentary", "-nativeActionAcceptanceToken", token.uuidString,
+            "-nativeActionAcceptanceTargetWorkKey", "book:3276"])
+        try openInExistingProcess(readerURL(bookID: rows.0.bookId, lineIndex: rows.0.lineIndex, newTab: true))
+        try requireSystemReaderSource(rows.0)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction("commentary", token: token)
+        let proof = try readOriginalActionProof("commentary", token: token)
+        let result = try requireCompletedOriginalAction(proof, action: "reader.openCommentary", effect: "reader_opened")
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalBaseLocator"] as? [String: Any]),
+                                     bookID: rows.0.bookId, lineIndex: rows.0.lineIndex)
+        try requireSystemReaderSource(rows.1)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books["3276"])))
+        try requireActionReceipt(result, destination: "native.reader", presentation: "newTab", before: before)
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let (group, selected) = try? self.actualReaderWorkspace().current() else { return false }
+            return group.tabs.count == original.0.tabs.count + 1 && selected != original.1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 15), .completed)
+        let after = try actualReaderWorkspace().current()
+        XCTAssertEqual(after.0.id, original.0.id); XCTAssertEqual(after.0.profileID, original.0.profileID)
+        XCTAssertEqual(try XCTUnwrap(after.0.tabs.first { $0.session.id == after.1 }).session.bookId, rows.1.bookId)
+        for old in original.0.tabs {
+            let retained = try XCTUnwrap(after.0.tabs.first { $0.session.id == old.session.id })
+            XCTAssertEqual(retained.backend, old.backend); XCTAssertEqual(retained.session.bookId, old.session.bookId)
+        }
+        capture("native-core-source-commentary-new-tab")
+        if expectedPad {
+            let old = app.descendants(matching: .any)
+                .matching(identifier: "reader-document-tab-" + original.1.uuidString).firstMatch
+            XCTAssertTrue(old.waitForExistence(timeout: 10)); XCTAssertTrue(old.isHittable); old.tap()
+        } else {
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
+            let old = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(old.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(old.count, 1)
+            XCTAssertTrue(old.firstMatch.isHittable); old.firstMatch.tap()
+        }
+        try requireSystemReaderSource(rows.0)
+        XCTAssertEqual(try actualReaderWorkspace().current().1, original.1)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        capture("native-core-commentary-base-reader-preserved")
+    }
+    @MainActor func testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPad() throws {
+        try runCoreSourceCommentary(expectedPad: true)
+    }
+}
+
+// The original harness routes this subclass to the actual compact iPhone.
+// Keep the explicit form-factor assertion in each shared original-owner oracle.
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testCoreNoteDraftUsesOriginalUnsavedEditorAndCancelOnPhone() throws {
+        try runCoreOriginalNoteDraft(expectedPad: false)
+    }
+    @MainActor func testCoreSearchOpenResultsUsesOriginalCompletedEngineOnPhone() throws {
+        try runCoreOriginalSearchResults(expectedPad: false)
+    }
+    @MainActor func testCoreCommentaryOpensVerifiedSourceLinkAndPreservesBaseOnPhone() throws {
+        try runCoreSourceCommentary(expectedPad: false)
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testCoreExactTokenCountUsesOriginalManagedCorpusWithoutNavigationOnPhone() throws {
+        try runCoreOriginalExactTokenCount(expectedPad: false)
+    }
+}
+
+
+// Compound probes are separate Native cases. Primitive PASS results are not
+// counted as completion of these journeys, and no oracle below is a mock ACK.
+extension NativeRoutingAcceptanceTests {
+    private func requireSemanticStep(_ step: [String: Any], action: String) throws {
+        XCTAssertEqual(step["apiVersion"] as? Int, 1)
+        XCTAssertEqual(step["action"] as? String, action)
+        XCTAssertEqual(step["status"] as? String, "completed")
+        XCTAssertEqual(step["backend"] as? String, "otzaria")
+        XCTAssertNotNil(step["backendGeneration"] as? NSNumber)
+        XCTAssertNotNil((step["requestId"] as? String).flatMap(UUID.init(uuidString:)))
+        XCTAssertNil(step["error"]); XCTAssertNil(step["candidates"]); XCTAssertNil(step["next"])
+    }
+
+    @MainActor private func requireSemanticReceipts(
+        _ expected: [(result: [String: Any], destination: String, presentation: String)],
+        before: Set<String>
+    ) throws {
+        let after = try actualNativeReceiptLines(), added = after.subtracting(before)
+        XCTAssertTrue(before.isSubset(of: after), "Keep every original receipt")
+        XCTAssertEqual(added.count, expected.count, "Exactly one actual receipt per completed native step")
+        var priorEnd: UInt64 = 0
+        var priorScene: String?
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(contentsOf: workspaceSidecarURL())) as? [String: Any])
+        let scenes = try XCTUnwrap(workspace["scenes"] as? [String: Any])
+        var requestIDs = Set<String>()
+        for step in expected {
+            let request = try XCTUnwrap(step.result["requestId"] as? String)
+            XCTAssertTrue(requestIDs.insert(request).inserted)
+            let matches = added.filter { $0.contains("request=\(request) ") }
+            XCTAssertEqual(matches.count, 1)
+            let line = try XCTUnwrap(matches.first), parts = line.split(separator: " ", maxSplits: 2)
+            XCTAssertEqual(parts.count, 3)
+            guard parts.count == 3 else { throw SemanticProbeFailure.receipt }
+            XCTAssertEqual(parts[1], "[NativeNavigationReceipt]")
+            var fields: [String: String] = [:]
+            for field in parts[2].split(separator: " ") {
+                let pair = field.split(separator: "=", maxSplits: 1)
+                XCTAssertEqual(pair.count, 2)
+                guard pair.count == 2 else { throw SemanticProbeFailure.receipt }
+                XCTAssertNil(fields[String(pair[0])])
+                fields[String(pair[0])] = String(pair[1])
+            }
+            XCTAssertEqual(Set(fields.keys), ["request", "scene", "backend", "generation", "epoch", "revision", "destination", "presentation"])
+            XCTAssertEqual(fields["request"], request)
+            XCTAssertEqual(fields["destination"], step.destination)
+            XCTAssertEqual(fields["presentation"], step.presentation)
+            XCTAssertEqual(fields["backend"], "otzaria"); XCTAssertEqual(fields["epoch"], "none")
+            XCTAssertEqual(fields["generation"], (step.result["backendGeneration"] as? NSNumber)?.stringValue)
+            let scene = try XCTUnwrap(fields["scene"])
+            XCTAssertNotNil(scenes[scene])
+            if let priorScene { XCTAssertEqual(scene, priorScene) }
+            priorScene = scene
+            let revisions = try XCTUnwrap(fields["revision"]?.components(separatedBy: "->"))
+            XCTAssertEqual(revisions.count, 2)
+            guard revisions.count == 2 else { throw SemanticProbeFailure.receipt }
+            let start = try XCTUnwrap(UInt64(revisions[0])), end = try XCTUnwrap(UInt64(revisions[1]))
+            XCTAssertGreaterThan(end, start); XCTAssertGreaterThanOrEqual(start, priorEnd)
+            priorEnd = end
+            let attachment = XCTAttachment(string: line)
+            attachment.name = "actual-semantic-native-receipt-\(step.destination)"
+            attachment.lifetime = .keepAlways; add(attachment)
+        }
+    }
+    private enum SemanticProbeFailure: Error { case receipt }
+
+    @MainActor fileprivate func runSemanticCountThenResults(expectedPad: Bool) throws {
+        let kind = "journey-count-results", token = UUID(), query = "אברהם"
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString])
+        let oracle = try systemReaderOracleDocument(), metadata = try readerSourceMetadata()
+        let source = try XCTUnwrap(oracle.rows.first { $0.bookId == 1 && $0.lineIndex == 0 })
+        try openInExistingProcess(try readerURL(bookID: source.bookId, lineIndex: source.lineIndex, newTab: true))
+        try requireSystemReaderSource(source)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+
+        // The original Search Return is the only engine warm-up, exactly as in
+        // the existing headless count case. No fixture opens or populates it.
+        let search = findTabButton(hebrew: "חיפוש", english: "Search")
+        XCTAssertTrue(search.waitForExistence(timeout: 10)); XCTAssertTrue(search.isHittable); search.tap()
+        XCTAssertTrue(app.otherElements["global-search-screen"].waitForExistence(timeout: 20))
+        let fields = app.descendants(matching: .any).matching(identifier: "global-search-query")
+        let field = fields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 20)); XCTAssertEqual(fields.count, 1)
+        XCTAssertTrue(field.isHittable); field.tap(); field.typeText(query + "\n")
+        XCTAssertEqual(field.value as? String, query)
+        let row = app.buttons.matching(NSPredicate(format:
+            "identifier BEGINSWITH %@", "search-result-preview-toggle-")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 90)); XCTAssertTrue(row.isHittable)
+        let application = app!
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            MainActor.assumeIsolated {
+                !application.descendants(matching: .any).matching(identifier: "global-search-loading").firstMatch.exists
+                    && !application.descendants(matching: .any).matching(identifier: "global-search-dirty").firstMatch.exists
+                    && !application.buttons["global-search-cancel"].exists
+            }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 90), .completed)
+        let library = findTabButton(hebrew: "ספרייה", english: "Library")
+        XCTAssertTrue(library.waitForExistence(timeout: 10)); XCTAssertTrue(library.isHittable); library.tap()
+        try requireSystemReaderSource(source); try requirePreservedOriginalWorkspace(original)
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction(kind, token: token)
+        let proof = try readOriginalActionProof(kind, token: token)
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertEqual(proof["plannedActions"] as? [String], ["search.countOccurrences", "search.openResults"])
+        XCTAssertEqual(proof["journeyComplete"] as? Bool, true)
+        let steps = try XCTUnwrap(proof["steps"] as? [[String: Any]])
+        XCTAssertEqual(steps.count, 2)
+        guard steps.count == 2 else { throw SemanticProbeFailure.receipt }
+        let counted = steps[0]
+        try requireSemanticStep(counted, action: "search.countOccurrences")
+        XCTAssertNil(counted["effects"])
+        let opened = try requireCompletedOriginalAction(["coreResult": steps[1]],
+            action: "search.openResults", effect: "search_results_opened")
+        XCTAssertNotEqual(counted["requestId"] as? String, opened["requestId"] as? String)
+        XCTAssertEqual(counted["backendGeneration"] as? NSNumber, opened["backendGeneration"] as? NSNumber)
+        XCTAssertEqual(counted["backendGeneration"] as? NSNumber, proof["originalBackendGeneration"] as? NSNumber)
+        let data = try XCTUnwrap(counted["data"] as? [String: Any])
+        // Same sealed independent all-row SQLite/Zstandard expectation used by
+        // the original count case; 109 occurrences are not 98 matching rows.
+        XCTAssertEqual(data["count"] as? Int, 109)
+        XCTAssertEqual(data["matchingDocuments"] as? Int, 98)
+        XCTAssertNotEqual(data["count"] as? Int, data["matchingDocuments"] as? Int)
+        XCTAssertEqual(data["countUnit"] as? String, "matching_occurrences")
+        XCTAssertEqual(data["precision"] as? String, "exact")
+        XCTAssertEqual(data["normalizedToken"] as? String, query)
+        let countQuery = try XCTUnwrap(data["query"] as? [String: Any])
+        let permissionQuery = try XCTUnwrap(data["searchQuery"] as? [String: Any])
+        for actual in [countQuery, permissionQuery] {
+            XCTAssertEqual(actual["backend"] as? String, "otzaria")
+            XCTAssertEqual(Data(try XCTUnwrap(actual["text"] as? String).utf8), Data(query.utf8))
+            XCTAssertEqual(actual["matchMode"] as? String, "exact")
+            let refs = try XCTUnwrap(actual["scopeWorkRefs"] as? [[String: Any]])
+            XCTAssertEqual(refs.count, 1)
+            let scoped = try XCTUnwrap(refs.first)
+            XCTAssertEqual(scoped["backend"] as? String, "otzaria")
+            XCTAssertEqual(scoped["workKey"] as? String, "book:1")
+            XCTAssertNil(scoped["catalogRevision"])
+        }
+        let evidence = try XCTUnwrap(data["evidence"] as? [String: Any])
+        XCTAssertEqual(evidence["contract"] as? String, "otzaria-exact-token-positions-v1")
+        XCTAssertEqual(evidence["engineRevision"] as? String, "d5d59d1269bdf87fb0a6901cf31941726a0c699b")
+        XCTAssertEqual(evidence["artifactIdentity"] as? String, "08a5ddf76ae187e3ca29c1b483637f1dc8e2a2dcb7001cdb7fe3327236234e83")
+        XCTAssertEqual(evidence["databaseSHA256"] as? String, oracle.databaseSHA256)
+        XCTAssertEqual(evidence["expectedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["observedIndexedDocuments"] as? Int, 18_879)
+        XCTAssertEqual(evidence["completeManagedArtifact"] as? Bool, true)
+        XCTAssertNotNil(try XCTUnwrap(evidence["engineSnapshotSHA256"] as? String)
+            .range(of: "^[0-9a-f]{64}$", options: .regularExpression))
+        XCTAssertGreaterThanOrEqual(try XCTUnwrap(evidence["visitedDocuments"] as? Int), 98)
+        XCTAssertLessThanOrEqual(try XCTUnwrap(evidence["visitedDocuments"] as? Int), 1_000_000)
+        XCTAssertGreaterThanOrEqual(try XCTUnwrap(evidence["visitedPositions"] as? Int), 109)
+        XCTAssertLessThanOrEqual(try XCTUnwrap(evidence["visitedPositions"] as? Int), 10_000_000)
+        XCTAssertGreaterThanOrEqual(try XCTUnwrap(proof["readAuthorityObservations"] as? Int), 5)
+        XCTAssertGreaterThan(try XCTUnwrap(proof["readAuthorityAfterSearch"] as? Int), 0)
+        XCTAssertEqual(Data(try XCTUnwrap(proof["originalQuery"] as? String).utf8), Data(query.utf8))
+        XCTAssertEqual(proof["originalExactScope"] as? Bool, true)
+        XCTAssertEqual(proof["originalSort"] as? String, permissionQuery["sortOrder"] as? String)
+        XCTAssertEqual(proof["originalBookIDs"] as? [Int], [1])
+        XCTAssertEqual(proof["originalModelBookIDs"] as? [Int], [1])
+        XCTAssertEqual(try XCTUnwrap(proof["originalSubmissionAfter"] as? Int),
+            try XCTUnwrap(proof["originalSubmissionBefore"] as? Int) + 1)
+        XCTAssertEqual(proof["originalHasSubmitted"] as? Bool, true)
+        XCTAssertEqual(proof["originalIsSearching"] as? Bool, false)
+        XCTAssertEqual(proof["originalResultsAreDirty"] as? Bool, false)
+        XCTAssertNil(proof["originalError"])
+        XCTAssertTrue(app.otherElements["global-search-screen"].exists)
+        XCTAssertTrue(field.exists); XCTAssertTrue(field.isHittable)
+        XCTAssertEqual(field.value as? String, query)
+        XCTAssertTrue(row.waitForExistence(timeout: 15)); XCTAssertTrue(row.isHittable)
+        let stableID = String(row.identifier.dropFirst("search-result-preview-toggle-".count))
+        let rows = try XCTUnwrap(proof["originalRows"] as? [[String: Any]])
+        XCTAssertFalse(rows.isEmpty)
+        for item in rows {
+            let ref = try XCTUnwrap(item["locator"] as? [String: Any])
+            XCTAssertEqual(ref["backend"] as? String, "otzaria")
+            XCTAssertEqual(ref["workKey"] as? String, "book:1")
+        }
+        let visible = try XCTUnwrap(rows.first { $0["stableID"] as? String == stableID })
+        let visibleRef = try XCTUnwrap(visible["locator"] as? [String: Any])
+        let position = try XCTUnwrap(visibleRef["position"] as? [String: Any])
+        let lineIndex = try XCTUnwrap(position["value"] as? Int)
+        try requireOriginalActionRef(visibleRef, bookID: 1, lineIndex: lineIndex)
+        XCTAssertTrue(metadata.rows.contains { $0.count == 3 && $0[1] == 1 && $0[2] == lineIndex })
+        try requireSemanticReceipts([(result: opened, destination: "native.search.results", presentation: "currentTab")], before: before)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertFalse(app.textViews["annotation-note-text"].exists)
+        capture("native-semantic-count-then-same-scoped-original-results")
+    }
+
+    @MainActor fileprivate func runSemanticCommentaryThenDraft(expectedPad: Bool) throws {
+        let kind = "journey-commentary-draft", token = UUID(), rows = try originalCommentaryRows()
+        let metadata = try readerSourceMetadata()
+        for row in [rows.0, rows.1] {
+            XCTAssertTrue(metadata.rows.contains { $0 == [row.id, row.bookId, row.lineIndex] })
+        }
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString,
+            "-nativeActionAcceptanceTargetWorkKey", "book:3276"])
+        try openInExistingProcess(readerURL(bookID: rows.0.bookId, lineIndex: rows.0.lineIndex, newTab: true))
+        try requireSystemReaderSource(rows.0)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction(kind, token: token)
+        let proof = try readOriginalActionProof(kind, token: token)
+        XCTAssertEqual(proof["plannedActions"] as? [String], ["reader.openCommentary", "notes.prepareDraft"])
+        XCTAssertEqual(proof["journeyComplete"] as? Bool, true)
+        XCTAssertEqual(proof["productionConsumer"] as? String, "NativeReaderIntentService.open")
+        XCTAssertEqual(proof["appIntentsSystemExecution"] as? String, "NOT_RUN")
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        let steps = try XCTUnwrap(proof["steps"] as? [[String: Any]])
+        XCTAssertEqual(steps.count, 2)
+        guard steps.count == 2 else { throw SemanticProbeFailure.receipt }
+        let opened = try requireCompletedOriginalAction(["coreResult": steps[0]], action: "reader.openCommentary", effect: "reader_opened")
+        let drafted = try requireCompletedOriginalAction(["coreResult": steps[1]], action: "notes.prepareDraft", effect: "note_draft_opened")
+        XCTAssertEqual(opened["backendGeneration"] as? NSNumber, drafted["backendGeneration"] as? NSNumber)
+        let receiptIDs = try XCTUnwrap(proof["nativeReceiptRequestIDs"] as? [String])
+        XCTAssertEqual(receiptIDs, try steps.map { try XCTUnwrap($0["requestId"] as? String) })
+        let receiptScenes = try XCTUnwrap(proof["nativeReceiptSceneIDs"] as? [String])
+        XCTAssertEqual(receiptScenes.count, 2); XCTAssertEqual(Set(receiptScenes).count, 1)
+        let openedData = try XCTUnwrap(opened["data"] as? [String: Any])
+        let draftData = try XCTUnwrap(drafted["data"] as? [String: Any])
+        let locator = try XCTUnwrap(openedData["locator"] as? [String: Any])
+        let draftLocator = try XCTUnwrap(draftData["locator"] as? [String: Any])
+        XCTAssertEqual(try JSONSerialization.data(withJSONObject: locator, options: .sortedKeys),
+            try JSONSerialization.data(withJSONObject: draftLocator, options: .sortedKeys))
+        try requireOriginalActionRef(locator, bookID: rows.1.bookId, lineIndex: rows.1.lineIndex)
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalDraftLocator"] as? [String: Any]),
+            bookID: rows.1.bookId, lineIndex: rows.1.lineIndex)
+        try requireOriginalActionRef(try XCTUnwrap(proof["originalBaseLocator"] as? [String: Any]),
+            bookID: rows.0.bookId, lineIndex: rows.0.lineIndex)
+        XCTAssertEqual(draftData["saved"] as? Bool, false)
+        XCTAssertEqual(proof["originalStoreUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalEditorOwnerObserved"] as? Bool, true)
+        XCTAssertEqual(proof["originalUnsavedEditor"] as? Bool, true)
+        XCTAssertEqual(proof["originalEditorOwnsProposal"] as? Bool, true)
+        XCTAssertEqual(proof["originalEditorPresentationActive"] as? Bool, true)
+        let text = app.textViews["annotation-note-text"]
+        XCTAssertTrue(text.waitForExistence(timeout: 10)); XCTAssertTrue(text.isHittable)
+        XCTAssertEqual(text.value as? String, "טיוטת מסע \(token.uuidString)")
+        XCTAssertTrue(app.buttons["annotation-save"].exists)
+        XCTAssertFalse(app.buttons["annotation-delete"].exists)
+        try requireSemanticReceipts([
+            (result: opened, destination: "native.reader", presentation: "newTab"),
+            (result: drafted, destination: "native.reader.noteDraft", presentation: "sheet")
+        ], before: before)
+        capture("native-semantic-commentary-original-unsaved-editor")
+
+        let cancel = app.buttons["annotation-cancel"]
+        XCTAssertTrue(cancel.exists); XCTAssertTrue(cancel.isHittable); cancel.tap()
+        let closed = try readOriginalActionProof(kind, token: token, phase: "closed.json")
+        for key in ["originalStoreUnchanged", "originalEditorDismissed", "originalSceneReady", "originalEditorOwnerUnchanged"] {
+            XCTAssertEqual(closed[key] as? Bool, true)
+        }
+        XCTAssertFalse(text.exists)
+        try requireSystemReaderSource(rows.1)
+        XCTAssertTrue(app.staticTexts["reader-header-title"].label.contains(try XCTUnwrap(metadata.books["3276"])))
+        // File-only readiness captures no XCTest instance or live UI across a
+        // concurrency boundary. The real original workspace stays authoritative.
+        let sidecar = try workspaceSidecarURL(), groupID = original.0.id
+        let profileID = original.0.profileID, oldID = original.1, expectedCount = original.0.tabs.count + 1
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let data = try? Data(contentsOf: sidecar),
+                  let snapshot = try? JSONDecoder().decode(ReaderWorkspaceSnapshot.self, from: data),
+                  let (group, selected) = try? snapshot.current() else { return false }
+            return group.id == groupID && group.profileID == profileID
+                && group.tabs.count == expectedCount && selected != oldID
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 15), .completed)
+        let after = try actualReaderWorkspace().current()
+        XCTAssertEqual(after.0.id, original.0.id); XCTAssertEqual(after.0.profileID, original.0.profileID)
+        XCTAssertEqual(try XCTUnwrap(after.0.tabs.first { $0.session.id == after.1 }).session.bookId, rows.1.bookId)
+        for old in original.0.tabs {
+            let retained = try XCTUnwrap(after.0.tabs.first { $0.session.id == old.session.id })
+            XCTAssertEqual(retained.backend, old.backend); XCTAssertEqual(retained.session.bookId, old.session.bookId)
+        }
+        if expectedPad {
+            returnToOriginalIPadReaderTab(original.1)
+        } else {
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + original.1.uuidString }
+            let old = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(old.firstMatch.waitForExistence(timeout: 10)); XCTAssertEqual(old.count, 1)
+            XCTAssertTrue(old.firstMatch.isHittable); old.firstMatch.tap()
+        }
+        try requireSystemReaderSource(rows.0)
+        XCTAssertEqual(try actualReaderWorkspace().current().1, original.1)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 2)
+        capture("native-semantic-commentary-draft-cancel-preserves-base")
+    }
+
+    @MainActor fileprivate func runSemanticCatalogHeadingStops(expectedPad: Bool) throws {
+        let kind = "journey-catalog-stop", token = UUID(), rows = try originalCommentaryRows()
+        let metadata = try readerSourceMetadata()
+        let baseTitle = try XCTUnwrap(metadata.books["28"]), commentaryTitle = try XCTUnwrap(metadata.books["3276"])
+        XCTAssertEqual(baseTitle, "תהילים"); XCTAssertEqual(commentaryTitle, "חומת אנך על תהלים")
+        // Original mini DB: toc600 "פרק א" -> heading lineIndex1, not verse2.
+        // That heading has no outgoing/incoming/coverage link. Never substitute
+        // the source verse merely to manufacture a four-step positive result.
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: [
+            "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString,
+            "-nativeActionAcceptanceBaseWorkQuery", baseTitle,
+            "-nativeActionAcceptanceSection", "פרק א",
+            "-nativeActionAcceptanceCommentaryQuery", commentaryTitle])
+        try openInExistingProcess(readerURL(bookID: rows.0.bookId, lineIndex: rows.0.lineIndex, newTab: true))
+        try requireSystemReaderSource(rows.0)
+        let original = try actualReaderWorkspace().current(), pid = try targetProcessIdentifier()
+        let before = try actualNativeReceiptLines()
+        try triggerOriginalAction(kind, token: token)
+        let proof = try readOriginalActionProof(kind, token: token)
+        XCTAssertEqual(proof["plannedActions"] as? [String],
+            ["catalog.resolveWork", "catalog.resolveReference", "reader.openCommentary", "notes.prepareDraft"])
+        XCTAssertEqual(proof["journeyComplete"] as? Bool, false)
+        let steps = try XCTUnwrap(proof["steps"] as? [[String: Any]])
+        XCTAssertEqual(steps.count, 3, "No note action follows an unresolved source link")
+        guard steps.count == 3 else { throw SemanticProbeFailure.receipt }
+        try requireSemanticStep(steps[0], action: "catalog.resolveWork")
+        try requireSemanticStep(steps[1], action: "catalog.resolveReference")
+        XCTAssertNil(steps[0]["effects"]); XCTAssertNil(steps[1]["effects"])
+        let work = try XCTUnwrap((steps[0]["data"] as? [String: Any])?["workRef"] as? [String: Any])
+        XCTAssertEqual(work["backend"] as? String, "otzaria"); XCTAssertEqual(work["workKey"] as? String, "book:28")
+        let locator = try XCTUnwrap((steps[1]["data"] as? [String: Any])?["locator"] as? [String: Any])
+        try requireOriginalActionRef(locator, bookID: 28, lineIndex: 1)
+        XCTAssertEqual(steps[2]["action"] as? String, "reader.openCommentary")
+        XCTAssertEqual(steps[2]["status"] as? String, "failed")
+        XCTAssertEqual((steps[2]["error"] as? [String: Any])?["code"] as? String, "not_found")
+        XCTAssertEqual((steps[2]["error"] as? [String: Any])?["retryable"] as? Bool, false)
+        XCTAssertNil(steps[2]["data"]); XCTAssertNil(steps[2]["effects"]); XCTAssertNil(steps[2]["candidates"])
+        let ids = try steps.map { try XCTUnwrap($0["requestId"] as? String) }
+        XCTAssertEqual(Set(ids).count, 3)
+        XCTAssertEqual(proof["originalStoreUnchanged"] as? Bool, true)
+        XCTAssertEqual(proof["originalUnsavedEditor"] as? Bool, false)
+        XCTAssertEqual(proof["originalEditorPresentationActive"] as? Bool, false)
+        XCTAssertEqual(String(try XCTUnwrap(proof["processID"] as? Int)), pid)
+        XCTAssertFalse(app.textViews["annotation-note-text"].exists)
+        XCTAssertEqual(try actualNativeReceiptLines(), before)
+        try requireSystemReaderSource(rows.0); try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        capture("native-semantic-source-catalog-heading-refusal")
+    }
+
+    @MainActor func testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPad() throws {
+        try runSemanticCountThenResults(expectedPad: true)
+    }
+    @MainActor func testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPad() throws {
+        try runSemanticCommentaryThenDraft(expectedPad: true)
+    }
+    @MainActor func testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPad() throws {
+        try runSemanticCatalogHeadingStops(expectedPad: true)
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor func testSemanticCountThenOpenResultsKeepsExactWorkScopeOnPhone() throws {
+        try runSemanticCountThenResults(expectedPad: false)
+    }
+    @MainActor func testSemanticCommentaryThenDraftPreservesLocatorAndBaseOnPhone() throws {
+        try runSemanticCommentaryThenDraft(expectedPad: false)
+    }
+    @MainActor func testSemanticCatalogChapterWithoutCommentaryStopsBeforeDraftOnPhone() throws {
+        try runSemanticCatalogHeadingStops(expectedPad: false)
+    }
+}
+
+
+// Separate UI-05 system acceptance. These cases supplement the original
+// Native116 / Release114+2 selections; they do not replace any original case.
+extension NativeRoutingAcceptanceTests {
+    private func publicHTTPSRootURL(_ destination: String) throws -> URL {
+        XCTAssertTrue(["native.history", "native.library"].contains(destination))
+        let payload: [String: Any] = [
+            "version": 2, "destination": destination,
+            "backend": "otzaria", "presentation": "currentTab"
+        ]
+        let bytes = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+        let token = bytes.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        return try XCTUnwrap(URL(string:
+            "https://davidpovarsky.github.io/chavrusatext/action/v2/\(destination)?route=\(token)"))
+    }
+
+    @MainActor
+    func testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader() throws {
+        _ = try launchCurrentCanonicalReader()
+        let original = try actualReaderWorkspace().current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(locator.isEmpty)
+        var before = try actualNativeReceiptLines()
+        let historyLink = try publicHTTPSRootURL("native.history")
+        let input = XCTAttachment(string: historyLink.absoluteString)
+        input.name = "actual-production-https-system-input"
+        input.lifetime = .keepAlways; add(input)
+
+        // The owned driver invokes simctl openurl with the exact HTTPS URL.
+        // No scheme rewrite, app decoder call, synthetic receipt or fallback
+        // is used. Safari staying foreground must fail this original oracle.
+        try openInExistingProcess(historyLink)
+        XCTAssertTrue(history.waitForExistence(timeout: 15))
+        try requirePublicRootReceipt("native.history", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("universal-https-original-history-visible-receipt")
+
+        before = try actualNativeReceiptLines()
+        try openInExistingProcess(publicHTTPSRootURL("native.library"))
+        try requirePublicRootReceipt("native.library", before: before)
+        try requirePreservedOriginalWorkspace(original)
+        try requireReaderLocator(locator)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("universal-https-original-library-reader-return")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor
+    func testPhoneUniversalHTTPSHistoryAndLibraryPreserveOriginalReader() throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .phone)
+        try testUniversalHTTPSHistoryAndLibraryPreserveOriginalReader()
+    }
+}
+
+
+// Exact original component acceptance stays separate from the historical
+// Native116 / Release114 selectors. This helper uses real App Intents system
+// discovery/execution, the actual original control, and the canonical receipt.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    func runOriginalComponentSystemIntent(expectedPad: Bool, destination: String,
+                                         title: String, anchor: String, identifier: String,
+                                         presentation: String = "currentTab",
+                                         fromBackground: Bool = false,
+                                         launchArgs: [String] = [], expectedValue: String? = nil,
+                                         useCurrentOriginalSurface: Bool = false,
+                                         originalTarget: (@MainActor (XCUIApplication) -> XCUIElement)? = nil) async throws {
+        if useCurrentOriginalSurface {
+            XCTAssertEqual(isPad, expectedPad)
+            XCTAssertTrue(launchArgs.isEmpty, "A warm original surface does not relaunch with new state")
+            XCTAssertEqual(app.state, .runningForeground)
+        } else {
+            _ = try launchCurrentCanonicalReader(expectedPad: expectedPad, extraArgs: launchArgs)
+        }
+        let original = try actualReaderWorkspace().current()
+        if !useCurrentOriginalSurface {
+            // Cold cases start on another original page. Warm cases explicitly
+            // retain the original surface reached by their preceding real action.
+            let historyRequest = UUID()
+            try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+            XCTAssertTrue(history.waitForExistence(timeout: 15))
+            try requireRootReceipt(historyRequest, destination: "native.history")
+        }
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let entities = try await system.entities["NativeDestinationEntity"].entities(matching: title)
+        XCTAssertEqual(entities.count, 1, "Resolve one exact original component in this window")
+        let entity = try XCTUnwrap(entities.first), before = try actualNativeReceiptLines()
+        if fromBackground { XCUIDevice.shared.press(.home) }
+        _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let control = originalTarget?(app)
+            ?? app.descendants(matching: .any).matching(identifier: identifier).firstMatch
+        let revealed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            control.exists && control.isHittable && !control.frame.isEmpty
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [revealed], timeout: 15), .completed,
+                       "The original target must be visible and accessible, not only its parent")
+        if let expectedValue { XCTAssertEqual(control.value as? String, expectedValue, "Revealing a control must not change its value") }
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: destination, presentation: presentation, before: before)
+        let line = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let fields = line.split(separator: " ")
+        let request = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("request=") })).dropFirst(8))
+        let scene = String(try XCTUnwrap(fields.first(where: { $0.hasPrefix("scene=") })).dropFirst(6))
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        XCTAssertTrue(sidecar.pathComponents.starts(with: parent.pathComponents))
+        let container = try XCTUnwrap(sidecar.pathComponents.dropFirst(parent.pathComponents.count).first)
+        let log = parent.appendingPathComponent(container).appendingPathComponent("Documents/OtzariaLogs/otzaria-reader.log")
+        let exact = "[NativeFocusReceipt] request=\(request) scene=\(scene) component=\(anchor)"
+        let componentLines = try String(contentsOf: log, encoding: .utf8).split(separator: "\n").filter { $0.hasSuffix(exact) }
+        XCTAssertEqual(componentLines.count, 1, "Exactly the requested original target must belong to the same canonical receipt")
+        let evidence = XCTAttachment(string: componentLines.joined(separator: "\n"))
+        evidence.name = "actual-component-receipt-\(anchor)"; evidence.lifetime = .keepAlways; add(evidence)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("original-component-\(anchor)")
+        if destination == "native.settings", presentation == "sheet" {
+            let done = app.buttons["settings-done-button"]
+            XCTAssertTrue(done.isHittable); done.tap()
+            XCTAssertTrue(history.waitForExistence(timeout: 10), "The original underlying page remains selected")
+        }
+    }
+
+    /// Both original layouts are exercised through the actual original toggle.
+    /// Each Intent keeps its own exact system receipt; no layout preference is
+    /// injected and no coordinate-only tap or app-private decoder is used.
+    @MainActor
+    func runOriginalWorkspaceLayoutSystemIntents(expectedPad: Bool) async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: expectedPad,
+            destination: "native.workspace.overview", title: "Tab layout",
+            anchor: "native.workspace.overview.layout", identifier: "study-tabs-layout-toggle",
+            presentation: "sheet")
+        let original = try actualReaderWorkspace().current()
+        let toggle = app.buttons["study-tabs-layout-toggle"]
+        XCTAssertTrue(toggle.isHittable)
+        XCTAssertTrue(["List view", "Grid view"].contains(toggle.label))
+        let initialMode = toggle.label == "List view" ? "grid" : "list"
+        let secondMode = initialMode == "grid" ? "list" : "grid"
+        func currentCells(_ mode: String) -> XCUIElementQuery {
+            app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH %@",
+                "tab-switcher-\(mode)-cell-"))
+        }
+        XCTAssertTrue(currentCells(initialMode).firstMatch.waitForExistence(timeout: 10))
+        try await runOriginalComponentSystemIntent(expectedPad: expectedPad,
+            destination: "native.workspace.overview",
+            title: initialMode == "grid" ? "Grid view" : "List view",
+            anchor: "native.workspace.overview." + initialMode, identifier: "",
+            presentation: "sheet", useCurrentOriginalSurface: true,
+            originalTarget: { _ in currentCells(initialMode).firstMatch })
+        XCTAssertTrue(toggle.isHittable)
+        toggle.tap()
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            currentCells(secondMode).firstMatch.exists
+                && currentCells(secondMode).firstMatch.isHittable
+                && !currentCells(initialMode).firstMatch.exists
+                && toggle.label == (secondMode == "grid" ? "List view" : "Grid view")
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 15), .completed,
+                       "The original native collection must actually change layout")
+        try await runOriginalComponentSystemIntent(expectedPad: expectedPad,
+            destination: "native.workspace.overview",
+            title: secondMode == "grid" ? "Grid view" : "List view",
+            anchor: "native.workspace.overview." + secondMode, identifier: "",
+            presentation: "sheet", useCurrentOriginalSurface: true,
+            originalTarget: { _ in currentCells(secondMode).firstMatch })
+        try requirePreservedOriginalWorkspace(original)
+    }
+
+    @MainActor
+    func testSystemAppIntentSettingsAppearanceFromHistoryDoesNotMutateValue() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: true, destination: "native.settings",
+            title: "Appearance", anchor: "native.settings.appearance", identifier: "settings-component-appearance",
+            presentation: "sheet", launchArgs: ["-useDefaultTheme", "YES"], expectedValue: "1")
+    }
+
+    @MainActor
+    func testSystemAppIntentSettingsSearchDataRevealsOriginalLink() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: true, destination: "native.settings",
+            title: "Search Data", anchor: "native.settings.searchData", identifier: "settings-component-search-data",
+            presentation: "sheet")
+    }
+}
+
+extension NativeRoutingPhoneAcceptanceTests {
+    @MainActor
+    func testPhoneSystemAppIntentSettingsAppearanceFromBackgroundDoesNotMutateValue() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: false, destination: "native.settings",
+            title: "Appearance", anchor: "native.settings.appearance", identifier: "settings-component-appearance",
+            presentation: "sheet", fromBackground: true, launchArgs: ["-useDefaultTheme", "YES"], expectedValue: "1")
+    }
+
+    @MainActor
+    func testPhoneSystemAppIntentSettingsSearchDataRevealsOriginalLink() async throws {
+        try await runOriginalComponentSystemIntent(expectedPad: false, destination: "native.settings",
+            title: "Search Data", anchor: "native.settings.searchData", identifier: "settings-component-search-data",
+            presentation: "sheet")
+    }
+}
+
+
+// UI-04 Siri delivery is separate from direct system Intent execution and the
+// historical Native116 / Release114 selections. No product route is added.
+extension NativeRoutingAcceptanceTests {
+    /// Read original persisted document semantics. Geometry checkpoints and the
+    /// workspace revision are not reading-state identities; all retained tabs'
+    /// source, location, search and highlight state must stay unchanged.
+    private func actualSiriReaderDocuments(groupID: UUID) throws -> Data {
+        let bytes = try Data(contentsOf: workspaceSidecarURL())
+        let workspace = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        let groups = try XCTUnwrap(workspace["groups"] as? [[String: Any]])
+        let matches = groups.filter { ($0["id"] as? String).flatMap(UUID.init(uuidString:)) == groupID }
+        XCTAssertEqual(matches.count, 1)
+        let group = try XCTUnwrap(matches.first)
+        let tabs = try XCTUnwrap(group["tabs"] as? [[String: Any]])
+        XCTAssertFalse(tabs.isEmpty)
+        let fields: Set<String> = [
+            "id", "bookId", "bookTitle", "backendLocator", "locator", "contentId",
+            "page", "part", "searchText", "searchModeRaw", "nearDistance", "highlightTerms"
+        ]
+        let documents: [[String: Any]] = try tabs.map { tab in
+            let backend = try XCTUnwrap(tab["backend"] as? String)
+            let session = try XCTUnwrap(tab["session"] as? [String: Any])
+            _ = try XCTUnwrap((session["id"] as? String).flatMap(UUID.init(uuidString:)))
+            _ = try XCTUnwrap(session["bookId"] as? Int)
+            return ["backend": backend, "session": session.filter { fields.contains($0.key) }]
+        }
+        return try JSONSerialization.data(withJSONObject: documents, options: [.sortedKeys])
+    }
+
+    @MainActor
+    func runOriginalSiriHistory(expectedPad: Bool, fromBackground: Bool) throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let originalWorkspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(originalWorkspace.lastActiveSceneID)
+        let original = try originalWorkspace.current()
+        let locator = app.staticTexts["reader-current-locator"].label
+        XCTAssertFalse(locator.isEmpty)
+        XCTAssertFalse(history.exists && history.isHittable,
+                       "Siri must navigate from the original Reader to another original page")
+        let originalDocuments = try actualSiriReaderDocuments(groupID: original.0.id)
+        let before = try actualNativeReceiptLines()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let evidenceName = expectedPad ? "siri-ipad-history" : "siri-phone-history"
+        defer {
+            let siriTree = XCTAttachment(string: XCUIDevice.shared.siriService.debugDescription)
+            siriTree.name = evidenceName + "-actual-siri-hierarchy"
+            siriTree.lifetime = .keepAlways; add(siriTree)
+            captureSystemDialogEvidence(evidenceName + "-outcome", springboard: springboard)
+        }
+
+        // This is the existing AppShortcut phrase from MaktabahNativeShortcuts,
+        // using the actual English root title and iOS CFBundleDisplayName.
+        let phrase = "Open History in ChavrusaText"
+        let input: [String: Any] = [
+            "api": "XCUIDevice.shared.siriService.activate(voiceRecognitionText:)",
+            "phrase": phrase, "background": fromBackground,
+            "formFactor": expectedPad ? "iPad" : "iPhone",
+            "originalLocator": locator, "originalNativeReceiptCount": before.count,
+            "expectedDestination": "native.history", "expectedPresentation": "currentTab"
+        ]
+        let inputEvidence = XCTAttachment(
+            data: try JSONSerialization.data(withJSONObject: input, options: [.sortedKeys]),
+            uniformTypeIdentifier: "public.json")
+        inputEvidence.name = evidenceName + "-actual-siri-input"
+        inputEvidence.lifetime = .keepAlways; add(inputEvidence)
+        let savedBefore = XCTAttachment(data: originalDocuments, uniformTypeIdentifier: "public.json")
+        savedBefore.name = evidenceName + "-original-reading-state"
+        savedBefore.lifetime = .keepAlways; add(savedBefore)
+        captureSystemDialogEvidence(evidenceName + "-before", springboard: springboard)
+
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let background = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [background], timeout: 15), .completed)
+            XCTAssertEqual(try actualNativeReceiptLines(), before,
+                           "Backgrounding alone cannot acknowledge native navigation")
+        } else {
+            XCTAssertEqual(app.state, .runningForeground)
+        }
+        XCTContext.runActivity(named: "Invoke existing History App Shortcut through real Siri") { _ in
+            XCUIDevice.shared.siriService.activate(voiceRecognitionText: phrase)
+        }
+        // No activate(), direct perform()/run(), URL, decoder, confirmation
+        // bypass or skip follows Siri. A setup/disambiguation failure remains a failure.
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            self.history.exists && self.history.isHittable && !self.history.frame.isEmpty
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                       "Siri must reveal the original History & Favorites screen")
+        let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let actual = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: actual) && actual.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [acknowledged], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.history", presentation: "currentTab",
+                                          before: before, receiptSource: "siri")
+        let receipt = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let receiptScene = receipt.split(separator: " ").first { $0.hasPrefix("scene=") }.map(String.init)
+        XCTAssertEqual(receiptScene, "scene=" + originalScene,
+                       "Siri must acknowledge this exact original scene")
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        try requirePreservedOriginalWorkspace(original)
+        let currentDocuments = try actualSiriReaderDocuments(groupID: original.0.id)
+        XCTAssertEqual(currentDocuments, originalDocuments,
+                       "Siri root navigation must preserve every original document's reading state")
+        let savedAfter = XCTAttachment(data: currentDocuments, uniformTypeIdentifier: "public.json")
+        savedAfter.name = evidenceName + "-retained-reading-state"
+        savedAfter.lifetime = .keepAlways; add(savedAfter)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        capture(evidenceName + "-original-history-and-receipt")
+    }
+}
+
+
+// Explicit additive parent-then-focus acceptance. The historical
+// native.search.query unavailable-parent case and all prior bytes stay intact.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    func runOriginalSearchEntry(expectedPad: Bool, warmPrivateQuery: Bool) async throws {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let workspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(workspace.lastActiveSceneID)
+        let original = try workspace.current()
+        let field = app.descendants(matching: .any).matching(identifier: "global-search-query").firstMatch
+        let mode = app.descendants(matching: .any).matching(identifier: "global-search-mode").firstMatch
+        let books = app.buttons["global-search-books"]
+        var expectedMode: String?, expectedBooks: String?
+        let privateQuery = "בראשית"
+
+        if warmPrivateQuery {
+            let first = UUID()
+            try openInExistingProcess(publicRootURL("native.search", request: first))
+            try requireRootReceipt(first, destination: "native.search")
+            XCTAssertTrue(field.waitForExistence(timeout: 15) && field.isHittable)
+            field.tap(); field.typeText(privateQuery)
+            XCTAssertEqual(field.value as? String, privateQuery)
+            XCTAssertTrue(mode.exists && books.exists)
+            expectedMode = try XCTUnwrap(mode.value as? String)
+            expectedBooks = books.label
+            let historyRequest = UUID()
+            try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+            XCTAssertTrue(history.waitForExistence(timeout: 15) && history.isHittable)
+            try requireRootReceipt(historyRequest, destination: "native.history")
+        }
+        XCTAssertFalse(field.exists && field.isHittable,
+                       "The additive command must open its original parent from another page")
+
+        @MainActor func requireActualFocus(before: Set<String>, query: String?) throws {
+            XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+            let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard field.exists, field.isHittable, !field.frame.isEmpty,
+                      self.app.otherElements["global-search-screen"].exists,
+                      self.app.keyboards.firstMatch.exists else { return false }
+                let frame = field.frame, clipped = frame.intersection(self.app.windows.firstMatch.frame)
+                return !clipped.isNull && clipped.width * clipped.height >= frame.width * frame.height * 0.98
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                           "The original input and actual keyboard must be visible together")
+            try requirePublicRootReceipt("native.search", before: before)
+            let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+            let fields = native.split(separator: " ")
+            let request = String(try XCTUnwrap(fields.first { $0.hasPrefix("request=") }).dropFirst(8))
+            let scene = String(try XCTUnwrap(fields.first { $0.hasPrefix("scene=") }).dropFirst(6))
+            XCTAssertEqual(scene, originalScene, "The focus must belong to the original window")
+            let exact = "[NativeFocusReceipt] request=\(request) scene=\(scene) component=native.search.queryEntry"
+            let lines = try String(contentsOf: actualReaderLogURL(), encoding: .utf8)
+                .split(separator: "\n").filter { $0.hasSuffix(exact) }
+            XCTAssertEqual(lines.count, 1, "One fresh canonical receipt must prove the new fixed original target")
+            let evidence = XCTAttachment(string: lines.joined(separator: "\n"))
+            evidence.name = "search-entry-original-focus-receipt"; evidence.lifetime = .keepAlways; add(evidence)
+            if let query { XCTAssertEqual(field.value as? String, query, "Opening and focusing must preserve the private query") }
+            if let expectedMode { XCTAssertEqual(mode.value as? String, expectedMode) }
+            if let expectedBooks { XCTAssertEqual(books.label, expectedBooks) }
+            XCTAssertTrue(app.collectionViews["global-search-history"].exists)
+            XCTAssertFalse(app.otherElements["global-search-loading"].exists,
+                           "A navigation-only component must not submit Search")
+            XCTAssertFalse(app.alerts["Unable to open link"].exists)
+            XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+            try requirePreservedOriginalWorkspace(original)
+        }
+
+        let before = try actualNativeReceiptLines()
+        if warmPrivateQuery {
+            let url = try publicSearchComponentURL("native.search.queryEntry")
+            XCTAssertFalse(url.absoluteString.contains(privateQuery))
+            try openInExistingProcess(url)
+        } else {
+            let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+            let entities = try await system.entities["NativeDestinationEntity"].entities(matching: "Open query input")
+            XCTAssertEqual(entities.count, 1, "Resolve the distinct additive target in the exact original scene")
+            let entity = try XCTUnwrap(entities.first)
+            _ = try await system.intents["OpenNativeDestinationIntent"].makeIntent(destination: entity).run()
+        }
+        try requireActualFocus(before: before, query: warmPrivateQuery ? privateQuery : nil)
+        // No field tap follows delivery. Typing via the system's current
+        // responder is the independent first-responder oracle.
+        let suffix = warmPrivateQuery ? " בדיקה" : privateQuery
+        app.typeText(suffix)
+        let resultingQuery = warmPrivateQuery ? privateQuery + suffix : privateQuery
+        XCTAssertEqual(field.value as? String, resultingQuery)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        XCTAssertTrue(app.collectionViews["global-search-history"].exists)
+        XCTAssertFalse(app.otherElements["global-search-loading"].exists)
+
+        if warmPrivateQuery {
+            // The already-selected original Search parent takes the +0 path;
+            // the second independent URL still needs its own strict receipt.
+            let focusedBefore = try actualNativeReceiptLines()
+            try openInExistingProcess(publicSearchComponentURL("native.search.queryEntry"))
+            try requireActualFocus(before: focusedBefore, query: resultingQuery)
+            app.typeText(" נוסף")
+            XCTAssertEqual(field.value as? String, resultingQuery + " נוסף")
+            XCTAssertEqual(try actualNativeReceiptLines().subtracting(focusedBefore).count, 1)
+        }
+        try requirePreservedOriginalWorkspace(original)
+        capture("search-entry-\(expectedPad ? "ipad" : "phone")-\(warmPrivateQuery ? "warm" : "cold")")
+    }
+}
+
+// Additive record acceptance. The source oracle is the ORIGINAL persisted
+// QualifiedLocatorStore plus the sealed original Reader fixture, not an app
+// acceptance endpoint or a copied card supplied by the routing implementation.
+extension NativeRoutingAcceptanceTests {
+    private struct OriginalHistoryRecordSource {
+        let title: String
+        let persistenceKey: String
+        let entityID: String
+        let itemID: String
+        let isFavorite: Bool
+        let rawStore: Data
+        let semanticStore: Data
+        var accessibilityID: String { "native-history-record-" + itemID }
+    }
+    private enum OriginalHistoryRecordError: Error { case source, identity, receipt }
+
+    private func originalQualifiedHistoryURL() throws -> URL {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let parent = try workspaceContainerParent().standardizedFileURL
+        guard sidecar.pathComponents.starts(with: parent.pathComponents),
+              let container = sidecar.pathComponents.dropFirst(parent.pathComponents.count).first else {
+            throw OriginalHistoryRecordError.source
+        }
+        return parent.appendingPathComponent(container)
+            .appendingPathComponent("Library/Application Support/Maktabah/qualified-locators-v1.json")
+    }
+
+    private func originalQualifiedHistoryRecord(kind: String, work: String, line: Int,
+                                                title: String, favorite: Bool? = nil) throws -> OriginalHistoryRecordSource {
+        guard ["history", "favorite"].contains(kind), line >= 0 else { throw OriginalHistoryRecordError.identity }
+        let bytes = try Data(contentsOf: originalQualifiedHistoryURL())
+        guard let state = try JSONSerialization.jsonObject(with: bytes) as? [String: Any],
+              state["schemaVersion"] as? Int == 1,
+              let entries = state["history"] as? [[String: Any]],
+              let favorites = state["favorites"] as? [String: Any] else { throw OriginalHistoryRecordError.source }
+        let matches = entries.filter { entry in
+            guard let locator = entry["locator"] as? [String: Any],
+                  let position = locator["position"] as? [String: Any] else { return false }
+            return locator["backend"] as? String == "otzaria" && locator["workKey"] as? String == work
+                && position["kind"] as? String == "legacyLine" && position["integer"] as? Int == line
+        }
+        guard matches.count == 1, let entry = matches.first,
+              entry["title"] as? String == title, let isFavorite = entry["isFavorite"] as? Bool,
+              let locator = entry["locator"] as? [String: Any],
+              Set(locator.keys) == ["backend", "workKey", "position"],
+              let position = locator["position"] as? [String: Any], Set(position.keys) == ["kind", "integer"] else {
+            throw OriginalHistoryRecordError.source
+        }
+        let key = "otzaria|\(work)|line:\(line)"
+        if let favorite, favorite != isFavorite { throw OriginalHistoryRecordError.source }
+        guard (favorites[key] != nil) == isFavorite else { throw OriginalHistoryRecordError.source }
+        if isFavorite {
+            guard let saved = favorites[key] as? [String: Any],
+                  try JSONSerialization.data(withJSONObject: saved, options: [.sortedKeys])
+                    == JSONSerialization.data(withJSONObject: locator, options: [.sortedKeys]) else {
+                throw OriginalHistoryRecordError.source
+            }
+        }
+        // Independent conversion of the ORIGINAL persistence schema into the
+        // public ActionTextRef schema. No app entity codec or adapter is called.
+        let reference: [String: Any] = ["kind": kind, "locator": [
+            "backend": "otzaria", "workKey": work,
+            "position": ["kind": "legacyLine", "value": line]
+        ]]
+        let encoded = try JSONSerialization.data(withJSONObject: reference, options: [.sortedKeys])
+        let token = encoded.base64EncodedString().replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_").replacingOccurrences(of: "=", with: "")
+        let digest = SHA256.hash(data: encoded).map { String(format: "%02x", $0) }.joined()
+        return .init(title: title, persistenceKey: key, entityID: "maktabah.history-record.v1." + token,
+            itemID: "history." + kind + "." + digest, isFavorite: isFavorite, rawStore: bytes,
+            semanticStore: try JSONSerialization.data(withJSONObject: state, options: [.sortedKeys]))
+    }
+
+    @MainActor private func requireOriginalQualifiedHistoryRecord(kind: String, work: String, line: Int,
+                                                                  title: String, favorite: Bool? = nil) throws -> OriginalHistoryRecordSource {
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            (try? self.originalQualifiedHistoryRecord(kind: kind, work: work, line: line, title: title, favorite: favorite)) != nil
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 15), .completed,
+                       "Require an actual unique qualified persisted record, never a numeric-card guess")
+        let source = try originalQualifiedHistoryRecord(kind: kind, work: work, line: line, title: title, favorite: favorite)
+        let raw = XCTAttachment(data: source.rawStore, uniformTypeIdentifier: "public.json")
+        raw.name = "original-qualified-history-store-\(kind)"; raw.lifetime = .keepAlways; add(raw)
+        let hash = SHA256.hash(data: source.rawStore).map { String(format: "%02x", $0) }.joined()
+        let identity = XCTAttachment(string: "storeSHA256=\(hash)\nsource=\(source.persistenceKey)\nentity=\(source.entityID)\nitem=\(source.itemID)")
+        identity.name = "independent-qualified-record-identity"; identity.lifetime = .keepAlways; add(identity)
+        return source
+    }
+
+    @MainActor private func requireOriginalHistoryCard(_ source: OriginalHistoryRecordSource) throws -> XCUIElement {
+        let matches = app.buttons.matching(identifier: source.accessibilityID)
+        let card = matches.firstMatch
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            card.exists && card.isHittable && !card.frame.isEmpty
+                && card.label.contains(source.title)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                       "The exact ORIGINAL BookCard must be hittable, not just the History root")
+        XCTAssertEqual(matches.count, 1, "The qualified row must have exactly one original card identity")
+        XCTAssertTrue(card.label.contains(source.title))
+        let visibleFrame = card.frame.intersection(app.frame)
+        XCTAssertGreaterThanOrEqual(visibleFrame.width * visibleFrame.height,
+                                    card.frame.width * card.frame.height * 0.98)
+        return card
+    }
+
+    @MainActor private func originalHistoryRecordReceiptLines() throws -> Set<String> {
+        let log = try actualReaderLogURL()
+        guard FileManager.default.fileExists(atPath: log.path) else { return [] }
+        return Set(try String(contentsOf: log, encoding: .utf8).split(separator: "\n")
+            .filter { $0.contains(" [NativeHistoryRecordReceipt] ") }.map(String.init))
+    }
+
+    @MainActor func runOriginalHistoryRecordSystemIntent(expectedPad: Bool, favorite: Bool,
+                                                         warm: Bool, fromBackground: Bool,
+                                                         removeCachedFavorite: Bool = false) async throws {
+        XCTAssertFalse(removeCachedFavorite && !favorite)
+        let work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        let original = try actualReaderWorkspace().current()
+        let originalScene = try XCTUnwrap(actualReaderWorkspace().lastActiveSceneID)
+        let pid = try targetProcessIdentifier()
+        let historySetup = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: historySetup))
+        XCTAssertTrue(history.waitForExistence(timeout: 15))
+        try requireRootReceipt(historySetup, destination: "native.history")
+        let historySource = try requireOriginalQualifiedHistoryRecord(kind: "history", work: work,
+            line: initial.lineIndex, title: title)
+        if favorite {
+            // Only the existing nested original star control sets up favorites.
+            // Even an already-favorite fixture is removed and re-added through it.
+            if historySource.isFavorite {
+                let card = try requireOriginalHistoryCard(historySource)
+                let remove = card.buttons["Remove Favorite"]
+                XCTAssertTrue(remove.isHittable); remove.tap()
+                _ = try requireOriginalQualifiedHistoryRecord(kind: "history", work: work,
+                    line: initial.lineIndex, title: title, favorite: false)
+            }
+            let card = try requireOriginalHistoryCard(historySource)
+            let addFavorite = card.buttons["Add Favorite"]
+            XCTAssertTrue(addFavorite.isHittable); addFavorite.tap()
+        }
+        let kind = favorite ? "favorite" : "history"
+        let source = try requireOriginalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil)
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let type = favorite ? "NativeFavoriteRecordEntity" : "NativeHistoryRecordEntity"
+        let entities = try await system.entities[type].entities(matching: title)
+        XCTAssertEqual(entities.count, 1, "The original qualified source title must resolve one live record")
+        _ = try XCTUnwrap(entities.first)
+        let cached = system.entities[type].makeReference(identifier: source.entityID)
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "History")
+        XCTAssertEqual(windows.count, 1, "Retain one actual History window, without choosing an arbitrary scene")
+        let window = try XCTUnwrap(windows.first)
+
+        if removeCachedFavorite {
+            let card = try requireOriginalHistoryCard(historySource)
+            let remove = card.buttons["Remove Favorite"]
+            XCTAssertTrue(remove.isHittable); remove.tap()
+            let removed = try requireOriginalQualifiedHistoryRecord(kind: "history", work: work,
+                line: initial.lineIndex, title: title, favorite: false)
+            let current = try await system.entities["NativeFavoriteRecordEntity"].entities(matching: title)
+            XCTAssertTrue(current.isEmpty, "Removal must disappear from the actual favorite entity query")
+            let before = try actualNativeReceiptLines(), recordBefore = try originalHistoryRecordReceiptLines()
+            let documentsBefore = try actualSiriReaderDocuments(groupID: original.0.id)
+            var refused = false
+            do {
+                _ = try await system.intents["RevealFavoriteRecordIntent"].makeIntent(favorite: cached, window: window).run()
+            } catch {
+                refused = true
+                let errorProof = XCTAttachment(string: String(reflecting: error))
+                errorProof.name = "actual-cached-favorite-system-refusal"; errorProof.lifetime = .keepAlways; add(errorProof)
+            }
+            XCTAssertTrue(refused, "A cached removed favorite cannot succeed or receive a root-only fallback")
+            XCTAssertEqual(try actualNativeReceiptLines(), before)
+            XCTAssertEqual(try originalHistoryRecordReceiptLines(), recordBefore)
+            XCTAssertEqual(try originalQualifiedHistoryRecord(kind: "history", work: work,
+                line: initial.lineIndex, title: title, favorite: false).semanticStore, removed.semanticStore)
+            XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documentsBefore)
+            XCTAssertTrue(history.exists && history.isHittable)
+            try requirePreservedOriginalWorkspace(original)
+            XCTAssertEqual(try targetProcessIdentifier(), pid)
+            capture("original-cached-favorite-refused")
+            return
+        }
+
+        if !warm {
+            let librarySetup = UUID()
+            try openInExistingProcess(publicRootURL("native.library", request: librarySetup))
+            try requireRootReceipt(librarySetup, destination: "native.library")
+            XCTAssertFalse(history.exists && history.isHittable,
+                           "The record intent must open its original parent from another page")
+        }
+        let before = try actualNativeReceiptLines(), recordBefore = try originalHistoryRecordReceiptLines()
+        let documentsBefore = try actualSiriReaderDocuments(groupID: original.0.id)
+        let storeBefore = try originalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil).semanticStore
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let backgrounded = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [backgrounded], timeout: 15), .completed)
+        }
+        // This real system invocation is the ONLY record-delivery path.
+        // Root URLs above are setup, and cannot provide the selectedItem proof.
+        if favorite {
+            _ = try await system.intents["RevealFavoriteRecordIntent"].makeIntent(favorite: cached, window: window).run()
+        } else {
+            _ = try await system.intents["RevealHistoryEntryIntent"].makeIntent(entry: cached, window: window).run()
+        }
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertTrue(history.waitForExistence(timeout: 15))
+        let card = try requireOriginalHistoryCard(source)
+        let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let native = try? self.actualNativeReceiptLines(),
+                  let record = try? self.originalHistoryRecordReceiptLines() else { return false }
+            return before.isSubset(of: native) && native.subtracting(before).count == 1
+                && recordBefore.isSubset(of: record) && record.subtracting(recordBefore).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [acknowledged], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.history", presentation: "currentTab", before: before)
+        let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let nativeFields = native.split(separator: " ")
+        let request = String(try XCTUnwrap(nativeFields.first { $0.hasPrefix("request=") }).dropFirst(8))
+        let scene = String(try XCTUnwrap(nativeFields.first { $0.hasPrefix("scene=") }).dropFirst(6))
+        XCTAssertEqual(scene, originalScene)
+        let actualRecord = try XCTUnwrap(originalHistoryRecordReceiptLines().subtracting(recordBefore).first)
+        let parts = actualRecord.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        guard parts.count == 3 else { throw OriginalHistoryRecordError.receipt }
+        XCTAssertEqual(parts[1], "[NativeHistoryRecordReceipt]")
+        XCTAssertEqual(parts[2], "request=\(request) scene=\(scene) item=\(source.itemID)",
+                       "The independently derived item must belong to this exact canonical request and scene")
+        let proof = XCTAttachment(string: actualRecord)
+        proof.name = "actual-record-selected-item-receipt"; proof.lifetime = .keepAlways; add(proof)
+
+        // The original UIKit row's queued RTL alignment must not displace a
+        // supposedly completed precise reveal after the canonical ACK.
+        let frame = card.frame
+        let displaced = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            !card.exists || !card.isHittable || card.frame != frame || !card.label.contains(title)
+        }, object: nil)
+        displaced.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [displaced], timeout: 2), .completed,
+                       "The actual original row must stay visible after acknowledgement")
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        XCTAssertEqual(try originalHistoryRecordReceiptLines().subtracting(recordBefore).count, 1)
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documentsBefore)
+        XCTAssertEqual(try originalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil).semanticStore, storeBefore)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("original-\(kind)-record-system-intent")
+    }
+}
+
+// Typed record-window metadata with the ORIGINAL History query left intact.
+// Separate selectors preserve every previously declared record/native case.
+extension NativeRoutingAcceptanceTests {
+    @MainActor func runOriginalFilteredHistoryRecordSystemIntent(expectedPad: Bool, favorite: Bool,
+                                                                 fromBackground: Bool) async throws {
+        let work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let title = try XCTUnwrap(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_BOOK_TITLE"])
+        XCTAssertFalse(title.isEmpty)
+        let original = try actualReaderWorkspace().current()
+        let originalScene = try XCTUnwrap(actualReaderWorkspace().lastActiveSceneID)
+        let pid = try targetProcessIdentifier()
+        let setup = UUID()
+        try openInExistingProcess(historyURL("otzaria", request: setup))
+        try requireRootReceipt(setup, destination: "native.history")
+        let historySource = try requireOriginalQualifiedHistoryRecord(kind: "history", work: work,
+            line: initial.lineIndex, title: title)
+        if favorite && !historySource.isFavorite {
+            let originalCard = try requireOriginalHistoryCard(historySource)
+            let addFavorite = originalCard.buttons["Add Favorite"]
+            XCTAssertTrue(addFavorite.isHittable); addFavorite.tap()
+        }
+        let kind = favorite ? "favorite" : "history"
+        let source = try requireOriginalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil)
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        // Cache a real original window before filtering. Execution must resolve
+        // it afresh through the record-specific query; no window is fabricated.
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "History")
+        XCTAssertEqual(windows.count, 1)
+        let window = try XCTUnwrap(windows.first)
+        let filter = app.searchFields["Search History & Favorites"]
+        XCTAssertTrue(filter.waitForExistence(timeout: 15), "Require the original History search control")
+        XCTAssertTrue(filter.isHittable); filter.tap(); filter.typeText(title)
+        let queryChanged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            filter.value as? String == title
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [queryChanged], timeout: 10), .completed)
+        let submit = app.keyboards.buttons["Search"]
+        XCTAssertTrue(submit.isHittable); submit.tap()
+        let keyboardGone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+                                                     object: app.keyboards.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [keyboardGone], timeout: 10), .completed)
+        XCTAssertEqual(filter.value as? String, title)
+        let genericWindows = try await system.entities["NativeDestinationEntity"].entities(matching: "History")
+        XCTAssertTrue(genericWindows.isEmpty, "The original generic History root keeps its empty-query contract")
+        let type = favorite ? "NativeFavoriteRecordEntity" : "NativeHistoryRecordEntity"
+        let records = try await system.entities[type].entities(matching: title)
+        XCTAssertEqual(records.count, 1, "Resolve an actual qualified card under the existing filter")
+        let reference = system.entities[type].makeReference(identifier: source.entityID)
+        if !favorite {
+            let librarySetup = UUID()
+            try openInExistingProcess(publicRootURL("native.library", request: librarySetup))
+            try requireRootReceipt(librarySetup, destination: "native.library")
+            XCTAssertFalse(history.exists && history.isHittable)
+        }
+        let before = try actualNativeReceiptLines(), recordBefore = try originalHistoryRecordReceiptLines()
+        let documentsBefore = try actualSiriReaderDocuments(groupID: original.0.id)
+        let storeBefore = try originalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil).semanticStore
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let backgrounded = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [backgrounded], timeout: 15), .completed)
+        }
+        // Sole target delivery: the real system intent. No decoder/direct
+        // perform(), query clearing, synthetic ACK or root fallback follows.
+        if favorite {
+            _ = try await system.intents["RevealFavoriteRecordIntent"].makeIntent(favorite: reference, window: window).run()
+        } else {
+            _ = try await system.intents["RevealHistoryEntryIntent"].makeIntent(entry: reference, window: window).run()
+        }
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        let card = try requireOriginalHistoryCard(source)
+        XCTAssertTrue(filter.waitForExistence(timeout: 15))
+        XCTAssertEqual(filter.value as? String, title, "The original query must survive the parent/card reveal")
+        let acknowledged = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let native = try? self.actualNativeReceiptLines(),
+                  let record = try? self.originalHistoryRecordReceiptLines() else { return false }
+            return before.isSubset(of: native) && native.subtracting(before).count == 1
+                && recordBefore.isSubset(of: record) && record.subtracting(recordBefore).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [acknowledged], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.history", presentation: "currentTab", before: before)
+        let native = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        let nativeFields = native.split(separator: " ")
+        let request = String(try XCTUnwrap(nativeFields.first { $0.hasPrefix("request=") }).dropFirst(8))
+        let scene = String(try XCTUnwrap(nativeFields.first { $0.hasPrefix("scene=") }).dropFirst(6))
+        XCTAssertEqual(scene, originalScene)
+        let actualRecord = try XCTUnwrap(originalHistoryRecordReceiptLines().subtracting(recordBefore).first)
+        let parts = actualRecord.split(separator: " ", maxSplits: 2)
+        XCTAssertEqual(parts.count, 3)
+        guard parts.count == 3 else { throw OriginalHistoryRecordError.receipt }
+        XCTAssertEqual(parts[1], "[NativeHistoryRecordReceipt]")
+        XCTAssertEqual(parts[2], "request=\(request) scene=\(scene) item=\(source.itemID)")
+        let proof = XCTAttachment(string: actualRecord)
+        proof.name = "actual-filtered-record-selected-item-receipt"; proof.lifetime = .keepAlways; add(proof)
+        let frame = card.frame
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            !card.exists || !card.isHittable || card.frame != frame || !card.label.contains(title)
+                || filter.value as? String != title
+        }, object: nil)
+        changed.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 2), .completed)
+        XCTAssertEqual(try actualNativeReceiptLines().subtracting(before).count, 1)
+        XCTAssertEqual(try originalHistoryRecordReceiptLines().subtracting(recordBefore).count, 1)
+        let genericAfter = try await system.entities["NativeDestinationEntity"].entities(matching: "History")
+        XCTAssertTrue(genericAfter.isEmpty)
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documentsBefore)
+        XCTAssertEqual(try originalQualifiedHistoryRecord(kind: kind, work: work,
+            line: initial.lineIndex, title: title, favorite: favorite ? true : nil).semanticStore, storeBefore)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        capture("original-filtered-\(kind)-record-system-intent")
+    }
+}
+
+
+// Reader-tab selection is tested through Apple's real out-of-process system
+// Intent API. The existing helpers above remain byte-exact. URL delivery and
+// ordinary controls below are setup only; neither can satisfy the target ACK.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func selectOriginalReaderTabForSetup(_ tabID: UUID, expectedPad: Bool,
+                                                 locator: String) throws {
+        if expectedPad {
+            returnToOriginalIPadReaderTab(tabID)
+        } else {
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
+            let ids = ["tab-switcher-grid-cell-", "tab-switcher-list-cell-"].map { $0 + tabID.uuidString }
+            let cells = app.descendants(matching: .cell).matching(NSPredicate(format: "identifier IN %@", ids))
+            XCTAssertTrue(cells.firstMatch.waitForExistence(timeout: 10))
+            XCTAssertEqual(cells.count, 1)
+            XCTAssertTrue(cells.firstMatch.isHittable)
+            cells.firstMatch.tap()
+        }
+        try requireReaderLocator(locator)
+        let persisted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            (try? self.actualReaderWorkspace().current().1) == tabID
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [persisted], timeout: 15), .completed,
+                       "Require the original UI selection's actual Store checkpoint")
+    }
+
+    /// A refused cached entity may not alter any persisted workspace semantic.
+    /// The Store's monotonically increasing checkpoint revision is bookkeeping;
+    /// all other actual JSON fields, including reading state, stay compared.
+    private func originalReaderTabWorkspaceSemantics() throws -> Data {
+        let bytes = try Data(contentsOf: workspaceSidecarURL())
+        var original = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        _ = try XCTUnwrap(original["revision"] as? NSNumber)
+        original.removeValue(forKey: "revision")
+        return try JSONSerialization.data(withJSONObject: original, options: [.sortedKeys])
+    }
+
+    @MainActor
+    func runOriginalReaderTabSystemIntent(expectedPad: Bool, duplicateBook: Bool = false,
+                                          fromBackground: Bool = false,
+                                          refusal: OriginalReaderTabRefusal? = nil) async throws {
+        let work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let title = try XCTUnwrap(readerSourceMetadata().books[String(initial.bookId)])
+        XCTAssertFalse(title.isEmpty)
+        let originalLocator = "otzaria|\(work)|line:\(initial.lineIndex)"
+        let originalWorkspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(originalWorkspace.lastActiveSceneID)
+        let original = try originalWorkspace.current()
+        XCTAssertEqual(original.0.tabs.count, 1, "Require the original fresh single-Reader fixture")
+        XCTAssertEqual(try XCTUnwrap(original.0.tabs.first).session.id, original.1)
+        XCTAssertEqual(try XCTUnwrap(original.0.tabs.first).session.bookId, initial.bookId)
+        let pid = try targetProcessIdentifier()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+
+        // Retain the actual query result while exactly this original tab exists.
+        // No generated identifier, makeReference(), direct perform(), or product
+        // service import supplies the entity used by the target system invocation.
+        let initialMatches = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        guard initialMatches.count == 1 else {
+            XCTFail("Real Reader-tab discovery must resolve exactly the initial original tab")
+            return
+        }
+        let cachedTab = try XCTUnwrap(initialMatches.first)
+        let other = try XCTUnwrap(oracle.rows.first {
+            $0.lineIndex > 0 && (duplicateBook
+                ? $0.bookId == initial.bookId && $0.lineIndex != initial.lineIndex
+                : $0.bookId != initial.bookId)
+        })
+        let otherLocator = "otzaria|book:\(other.bookId)|line:\(other.lineIndex)"
+        let setupReceipts = try readerReceiptLines()
+        try openInExistingProcess(readerURL(bookID: other.bookId, lineIndex: other.lineIndex, newTab: true))
+        try requireReaderLocator(otherLocator)
+        XCTAssertGreaterThan(try XCTUnwrap(getRenderedHighlightSnapshot()).segmentSelectionCount, 0)
+        try requireNewReaderReceipt(after: setupReceipts, presentation: "newTab")
+        let added = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace().current() else { return false }
+            return current.0.id == original.0.id && current.0.profileID == original.0.profileID
+                && current.0.tabs.count == original.0.tabs.count + 1 && current.1 != original.1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [added], timeout: 15), .completed)
+        let second = try actualReaderWorkspace().current()
+        let otherTabID = second.1
+        XCTAssertEqual(try XCTUnwrap(second.0.tabs.first { $0.session.id == otherTabID }).session.bookId, other.bookId)
+        XCTAssertTrue(second.0.tabs.contains { $0.session.id == original.1 && $0.session.bookId == initial.bookId })
+        XCTAssertNotEqual(otherTabID, original.1)
+
+        // Both live Readers take their ordinary original selection/checkpoint
+        // path before the measured system action. This does not manufacture an
+        // ACK; it settles legitimate source/geometry persistence from setup.
+        let beforeOrdinarySelection = try actualNativeReceiptLines()
+        try selectOriginalReaderTabForSetup(original.1, expectedPad: expectedPad, locator: originalLocator)
+        try selectOriginalReaderTabForSetup(otherTabID, expectedPad: expectedPad, locator: otherLocator)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeOrdinarySelection)
+        let available = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertEqual(available.count, duplicateBook ? 2 : 1,
+                       "Duplicate books are distinct original tab entities, not one title-based identity")
+        let documents = try actualSiriReaderDocuments(groupID: original.0.id)
+        let before = try actualNativeReceiptLines()
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let backgrounded = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [backgrounded], timeout: 15), .completed)
+        }
+
+        // Sole tested positive delivery. This exact real entity is reused again
+        // after the original UI closes it or leaves its group in negative cases.
+        _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertEqual(try targetProcessIdentifier(), pid, "Selection must reuse the actual original process")
+        try requireReaderLocator(originalLocator)
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace().current() else { return false }
+            return current.0.id == original.0.id && current.0.profileID == original.0.profileID
+                && current.1 == original.1 && current.0.tabs.count == second.0.tabs.count
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed)
+        let completed = try actualReaderWorkspace().current()
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        XCTAssertEqual(completed.0.tabs.map { $0.session.id }, second.0.tabs.map { $0.session.id })
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents,
+                       "Selecting an original tab must preserve every retained document's source and location")
+        try requireNewSystemIntentReceipt(destination: "native.reader.tab", presentation: "currentTab", before: before)
+        let completedReceipt = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        XCTAssertTrue(completedReceipt.split(separator: " ").contains(Substring("scene=" + originalScene)))
+        try attachWorkspaceSnapshot("system-reader-tab-selected-original")
+        capture("system-reader-tab-selected-original")
+
+        guard let refusal else { return }
+        XCTAssertTrue(expectedPad, "These original close/group controls are the declared iPad negative setup")
+        XCTAssertFalse(duplicateBook)
+        let successfulReceipts = try actualNativeReceiptLines()
+        let expectedLocatorAfterRefusal: String?
+        switch refusal {
+        case .closed:
+            let originalControl = app.descendants(matching: .any)
+                .matching(identifier: "reader-document-tab-" + original.1.uuidString).firstMatch
+            XCTAssertTrue(originalControl.exists && originalControl.isHittable)
+            originalControl.press(forDuration: 1)
+            // This exact caption belongs to the original UIKit tab context menu.
+            let close = app.buttons.matching(NSPredicate(format: "label == %@", "סגור כרטיסייה"))
+            XCTAssertTrue(close.firstMatch.waitForExistence(timeout: 10))
+            XCTAssertEqual(close.count, 1); XCTAssertTrue(close.firstMatch.isHittable)
+            close.firstMatch.tap()
+            let removed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard let current = try? self.actualReaderWorkspace().current() else { return false }
+                return current.0.id == original.0.id && current.1 == otherTabID
+                    && current.0.tabs.count == second.0.tabs.count - 1
+                    && !current.0.tabs.contains { $0.session.id == original.1 }
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 15), .completed)
+            try requireReaderLocator(otherLocator)
+            expectedLocatorAfterRefusal = otherLocator
+        case .previousGroup:
+            try originalTopBarActionInWindow(identifier: "reader-tabs-overview", labels: ["All Tabs"]).tap()
+            let overview = app.descendants(matching: .any).matching(identifier: "study-groups-overview").firstMatch
+            XCTAssertTrue(overview.waitForExistence(timeout: 15))
+            let actions = app.buttons["study-group-actions-menu"]
+            XCTAssertTrue(actions.exists && actions.isHittable); actions.tap()
+            let create = app.buttons["New empty group"]
+            XCTAssertTrue(create.waitForExistence(timeout: 10)); XCTAssertTrue(create.isHittable); create.tap()
+            let prompt = app.alerts["Tab group name"]
+            XCTAssertTrue(prompt.waitForExistence(timeout: 10))
+            let name = prompt.textFields["Name"]
+            XCTAssertTrue(name.isHittable); name.tap(); name.typeText("Reader tab intent " + UUID().uuidString)
+            let save = prompt.buttons["Save"]
+            XCTAssertTrue(save.isHittable); save.tap()
+            let changed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                guard let workspace = try? self.actualReaderWorkspace(),
+                      let sceneID = workspace.lastActiveSceneID, sceneID == originalScene,
+                      let scene = workspace.scenes[sceneID],
+                      let group = workspace.groups.first(where: { $0.id == scene.groupID }) else { return false }
+                return scene.profileID == original.0.profileID && group.profileID == original.0.profileID
+                    && group.id != original.0.id && group.tabs.isEmpty
+                    && scene.activeTabIDsByGroup?[group.id] == nil && group.activeTabID == nil
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 15), .completed)
+            XCTAssertTrue(app.staticTexts["No tabs in this group"].waitForExistence(timeout: 15))
+            let done = app.buttons["Done"]
+            XCTAssertTrue(done.isHittable); done.tap()
+            let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: overview)
+            XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 15), .completed)
+            let emptyReader = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"),
+                                                         object: app.staticTexts["reader-current-locator"])
+            XCTAssertEqual(XCTWaiter.wait(for: [emptyReader], timeout: 15), .completed)
+            let oldGroup = try XCTUnwrap(actualReaderWorkspace().groups.first { $0.id == original.0.id })
+            XCTAssertTrue(oldGroup.tabs.contains { $0.session.id == original.1 },
+                          "The cached entity is foreign to the current group, not deleted from storage")
+            expectedLocatorAfterRefusal = nil
+        }
+        XCTAssertEqual(try actualNativeReceiptLines(), successfulReceipts,
+                       "Ordinary close/group controls must not manufacture a canonical native receipt")
+        let noLongerAvailable = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertTrue(noLongerAvailable.isEmpty)
+        let stableWorkspace = try originalReaderTabWorkspaceSemantics()
+        let beforeRefusal = try actualNativeReceiptLines()
+        try attachWorkspaceSnapshot("system-reader-tab-" + refusal.rawValue + "-before-refusal")
+        var rejected = false
+        do {
+            _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        } catch {
+            rejected = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "system-reader-tab-" + refusal.rawValue + "-actual-error"
+            evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(rejected, "The same previously successful cached entity must now be refused")
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeRefusal)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+
+        // The canonical operation has one five-second deadline. Observe for
+        // that whole bound so a deferred stale mutation/ACK cannot pass after
+        // the system returned an error. No retry, delay-based success or regrant.
+        let staleEffect = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let receipts = try? self.actualNativeReceiptLines(),
+                  let state = try? self.originalReaderTabWorkspaceSemantics() else { return true }
+            return receipts != beforeRefusal || state != stableWorkspace
+        }, object: nil)
+        staleEffect.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [staleEffect], timeout: 5), .completed,
+                       "Refusal must leave the original workspace and native receipt log unchanged")
+        if let expectedLocatorAfterRefusal {
+            try requireReaderLocator(expectedLocatorAfterRefusal)
+        } else {
+            XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+        }
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        try attachWorkspaceSnapshot("system-reader-tab-" + refusal.rawValue + "-refused")
+        capture("system-reader-tab-" + refusal.rawValue + "-refused")
+    }
+}
+
+
+// Typed Profile/Group selection is measured through the actual OS Intent API.
+// Ordinary original controls below create setup state; they cannot satisfy the
+// tested private route's canonical receipt or its exact persisted selection.
+extension NativeRoutingAcceptanceTests {
+    private struct OriginalWorkspaceSelectionSnapshot: Decodable {
+        struct Profile: Decodable { let id: UUID; let name: String; let order: Int }
+        struct Group: Decodable {
+            let id: UUID; let profileID: UUID; let name: String; let order: Int
+            let activeTabID: UUID?; let tabs: [ReaderWorkspaceSnapshot.Document]
+        }
+        let profiles: [Profile]
+        let groups: [Group]
+        let scenes: [String: ReaderWorkspaceSnapshot.Scene]
+        let lastActiveSceneID: String?
+
+        func selected() throws -> (String, Profile, Group, UUID?) {
+            let sceneID = try XCTUnwrap(lastActiveSceneID)
+            let scene = try XCTUnwrap(scenes[sceneID])
+            let profile = try XCTUnwrap(profiles.first { $0.id == scene.profileID })
+            let group = try XCTUnwrap(groups.first { $0.id == scene.groupID && $0.profileID == profile.id })
+            let selected = scene.activeTabIDsByGroup?[group.id] ?? group.activeTabID
+            return (sceneID, profile, group, selected)
+        }
+    }
+
+    private func originalWorkspaceSelectionSnapshot() throws -> OriginalWorkspaceSelectionSnapshot {
+        try JSONDecoder().decode(OriginalWorkspaceSelectionSnapshot.self,
+            from: Data(contentsOf: workspaceSidecarURL()))
+    }
+
+    /// Compare all original group membership and saved source/location/search
+    /// semantics. Viewport/selection/TOC restoration remains the original full
+    /// Reader suite's separate obligation, not a claim of this focused route.
+    private func originalWorkspaceSelectionDocuments() throws -> Data {
+        let raw = try XCTUnwrap(JSONSerialization.jsonObject(
+            with: Data(contentsOf: workspaceSidecarURL())) as? [String: Any])
+        let profiles = try XCTUnwrap(raw["profiles"] as? [[String: Any]])
+        let snapshot = try originalWorkspaceSelectionSnapshot()
+        let groups: [[String: Any]] = try snapshot.groups.map { group in
+            let documents: Data
+            if group.tabs.isEmpty { documents = Data("[]".utf8) }
+            else { documents = try actualSiriReaderDocuments(groupID: group.id) }
+            return ["id": group.id.uuidString, "profileID": group.profileID.uuidString,
+                    "name": group.name, "order": group.order,
+                    "documents": try JSONSerialization.jsonObject(with: documents)]
+        }
+        return try JSONSerialization.data(withJSONObject: ["profiles": profiles, "groups": groups],
+                                          options: [.sortedKeys])
+    }
+
+    @MainActor
+    private func originalSelectionButton(_ label: String) throws -> XCUIElement {
+        let query = app.buttons.matching(NSPredicate(format: "label == %@", label))
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            query.allElementsBoundByIndex.filter { $0.exists && $0.isHittable && !$0.frame.isEmpty }.count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed)
+        let visible = query.allElementsBoundByIndex.filter { $0.exists && $0.isHittable && !$0.frame.isEmpty }
+        XCTAssertEqual(visible.count, 1, "Use one actual visible original control, without coordinate fallback")
+        return try XCTUnwrap(visible.count == 1 ? visible.first : nil)
+    }
+
+    @MainActor
+    private func openOriginalSelectionOverview(expectedPad: Bool) throws {
+        let overview = app.descendants(matching: .any).matching(identifier: "study-groups-overview").firstMatch
+        XCTAssertFalse(overview.exists, "Setup must open the real original overview exactly once")
+        if expectedPad {
+            try originalTopBarActionInWindow(identifier: "reader-tabs-overview", labels: ["All Tabs"]).tap()
+        } else {
+            let title = app.staticTexts["reader-header-title"].label
+            XCTAssertFalse(title.isEmpty)
+            try originalTopBarActionInWindow(identifier: "reader-open-tabs-button", labels: [title]).tap()
+        }
+        XCTAssertTrue(overview.waitForExistence(timeout: 15))
+        XCTAssertTrue(overview.isHittable && !overview.frame.isEmpty)
+    }
+
+    @MainActor
+    private func closeOriginalSelectionSheet(_ identifier: String) throws {
+        let sheet = app.descendants(matching: .any).matching(identifier: identifier).firstMatch
+        XCTAssertTrue(sheet.exists)
+        try originalSelectionButton("Done").tap()
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: sheet)
+        XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 15), .completed)
+    }
+
+    @MainActor
+    private func createOriginalEmptySelectionGroup(name: String, profileID: UUID) throws -> UUID {
+        let before = try originalWorkspaceSelectionSnapshot()
+        let priorIDs = Set(before.groups.map(\.id))
+        let actions = app.buttons["study-group-actions-menu"]
+        XCTAssertTrue(actions.exists && actions.isHittable); actions.tap()
+        try originalSelectionButton("New empty group").tap()
+        let prompt = app.alerts["Tab group name"]
+        XCTAssertTrue(prompt.waitForExistence(timeout: 10))
+        let field = prompt.textFields["Name"]
+        XCTAssertTrue(field.isHittable); field.tap(); field.typeText(name)
+        let save = prompt.buttons["Save"]
+        XCTAssertTrue(save.isHittable); save.tap()
+        let stored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let selected = try? self.originalWorkspaceSelectionSnapshot().selected() else { return false }
+            return selected.1.id == profileID && selected.2.profileID == profileID
+                && selected.2.name == name && !priorIDs.contains(selected.2.id)
+                && selected.2.tabs.isEmpty && selected.3 == nil
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [stored], timeout: 15), .completed)
+        XCTAssertTrue(app.staticTexts["No tabs in this group"].waitForExistence(timeout: 15))
+        let selected = try originalWorkspaceSelectionSnapshot().selected()
+        XCTAssertEqual(selected.1.id, profileID); XCTAssertEqual(selected.2.name, name)
+        XCTAssertTrue(selected.2.tabs.isEmpty); XCTAssertNil(selected.3)
+        return selected.2.id
+    }
+
+    @MainActor
+    private func selectOriginalProfileForSetup(_ profileID: UUID) throws {
+        let before = try originalWorkspaceSelectionSnapshot()
+        let profile = try XCTUnwrap(before.profiles.first { $0.id == profileID })
+        let first = try XCTUnwrap(before.groups.filter { $0.profileID == profileID }.sorted { $0.order < $1.order }.first)
+        try originalTopBarActionInWindow(identifier: "study-profile-menu", labels: ["Study Profile"]).tap()
+        try originalSelectionButton(profile.name).tap()
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.originalWorkspaceSelectionSnapshot().selected() else { return false }
+            return current.1.id == profileID && current.2.id == first.id
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed)
+    }
+
+    @MainActor
+    private func requireOriginalSelectionEmptySurface(expectedPad: Bool) throws -> XCUIElement {
+        let empty: XCUIElement
+        if expectedPad {
+            // The actual original Library.xcstrings/selectBookToRead English
+            // translation, rather than a testing-only placeholder or marker.
+            empty = app.staticTexts["Select a book to read"]
+        } else {
+            requireOriginalPhoneLibrary(timeout: 15)
+            empty = app.descendants(matching: .any).matching(identifier: "library-contents-list").firstMatch
+        }
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            empty.exists && empty.isHittable && !empty.frame.isEmpty
+                && self.app.windows.firstMatch.frame.intersects(empty.frame)
+                && !self.app.staticTexts["reader-current-locator"].exists
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                       "An empty original group requires its actual empty Reader or original phone Library")
+        return empty
+    }
+
+    @MainActor
+    func runOriginalWorkspaceSelectionSystemIntent(expectedPad: Bool,
+        selectionCase: OriginalWorkspaceSelectionCase, fromBackground: Bool = false,
+        rejectDeletedGroup: Bool = false) async throws {
+        let work = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let locator = "otzaria|\(work)|line:\(initial.lineIndex)"
+        let start = try originalWorkspaceSelectionSnapshot().selected()
+        XCTAssertEqual(start.2.tabs.count, 1)
+        XCTAssertEqual(start.2.tabs.first?.session.bookId, initial.bookId)
+        let pid = try targetProcessIdentifier()
+        let setupReceipts = try actualNativeReceiptLines()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let targetProfile: UUID
+        let targetGroup: UUID
+        let entityTitle: String
+        let isProfile = selectionCase == .firstProfileGroup
+
+        if isProfile {
+            if !expectedPad { try openOriginalSelectionOverview(expectedPad: false) }
+            try originalTopBarActionInWindow(identifier: "study-profile-menu", labels: ["Study Profile"]).tap()
+            try originalSelectionButton("Manage Study Profiles").tap()
+            let profiles = app.descendants(matching: .any).matching(identifier: "study-profile-management").firstMatch
+            XCTAssertTrue(profiles.waitForExistence(timeout: 15))
+            let create = app.buttons["study-profile-create"]
+            XCTAssertTrue(create.exists && create.isHittable); create.tap()
+            let name = "System profile " + UUID().uuidString
+            let field = app.textFields["Profile name"]
+            XCTAssertTrue(field.waitForExistence(timeout: 15)); XCTAssertTrue(field.isHittable)
+            field.tap(); field.typeText(name)
+            try originalSelectionButton("Save").tap()
+            let created = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                (try? self.originalWorkspaceSelectionSnapshot().profiles.filter { $0.name == name }.count) == 1
+                    && !self.app.textFields["Profile name"].exists
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [created], timeout: 15), .completed)
+            let saved = try originalWorkspaceSelectionSnapshot()
+            let profile = try XCTUnwrap(saved.profiles.first { $0.name == name })
+            let first = try XCTUnwrap(saved.groups.filter { $0.profileID == profile.id }.sorted { $0.order < $1.order }.first)
+            XCTAssertTrue(first.tabs.isEmpty); XCTAssertNil(first.activeTabID)
+            try closeOriginalSelectionSheet("study-profile-management")
+            // Select the actual newly created profile through its original menu,
+            // then add a second group. The tested profile intent must later pick
+            // the original FIRST group, not that profile's most recently used one.
+            try selectOriginalProfileForSetup(profile.id)
+            if expectedPad { try openOriginalSelectionOverview(expectedPad: true) }
+            let second = try createOriginalEmptySelectionGroup(name: "Second group " + UUID().uuidString,
+                                                               profileID: profile.id)
+            XCTAssertNotEqual(second, first.id)
+            if expectedPad { try closeOriginalSelectionSheet("study-groups-overview") }
+            try selectOriginalProfileForSetup(start.1.id)
+            if !expectedPad { try closeOriginalSelectionSheet("study-groups-overview") }
+            try requireReaderLocator(locator)
+            targetProfile = profile.id; targetGroup = first.id; entityTitle = profile.name
+        } else {
+            try openOriginalSelectionOverview(expectedPad: expectedPad)
+            let name = "System group " + UUID().uuidString
+            let emptyID = try createOriginalEmptySelectionGroup(name: name, profileID: start.1.id)
+            if expectedPad { try closeOriginalSelectionSheet("study-groups-overview") }
+            if selectionCase == .emptyGroup {
+                try selectOriginalProfileForSetup(start.1.id)
+                if !expectedPad { try closeOriginalSelectionSheet("study-groups-overview") }
+                try requireReaderLocator(locator)
+                targetGroup = emptyID; entityTitle = name
+            } else {
+                if !expectedPad { try closeOriginalSelectionSheet("study-groups-overview") }
+                _ = try requireOriginalSelectionEmptySurface(expectedPad: expectedPad)
+                targetGroup = start.2.id; entityTitle = start.2.name
+            }
+            targetProfile = start.1.id
+        }
+        XCTAssertEqual(try actualNativeReceiptLines(), setupReceipts,
+                       "Only ordinary original controls create the setup; they produce no canonical target ACK")
+        let beforeState = try originalWorkspaceSelectionSnapshot()
+        let beforeSelected = try beforeState.selected()
+        XCTAssertEqual(beforeSelected.0, start.0)
+        XCTAssertNotEqual(beforeSelected.2.id, targetGroup, "Require a genuine selection, not a root/no-op proxy")
+        let target = try XCTUnwrap(beforeState.groups.first { $0.id == targetGroup && $0.profileID == targetProfile })
+        let expectedTab = beforeState.scenes[start.0]?.activeTabIDsByGroup?[targetGroup]
+            ?? target.activeTabID ?? target.tabs.first?.session.id
+        let savedDocuments = try originalWorkspaceSelectionDocuments()
+        let entityName = isProfile ? "NativeStudyProfileEntity" : "NativeStudyTabGroupEntity"
+        let intentName = isProfile ? "OpenStudyProfileIntent" : "OpenStudyTabGroupIntent"
+        let matches = try await system.entities[entityName].entities(matching: entityTitle)
+        XCTAssertEqual(matches.count, 1, "Retain one actual system-discovered source entity in the exact original window")
+        let cached = try XCTUnwrap(matches.count == 1 ? matches.first : nil)
+        let before = try actualNativeReceiptLines()
+        try attachWorkspaceSnapshot("system-workspace-selection-before")
+        if fromBackground {
+            XCUIDevice.shared.press(.home)
+            let background = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+            }, object: nil)
+            XCTAssertEqual(XCTWaiter.wait(for: [background], timeout: 15), .completed)
+        }
+
+        // Sole measured delivery. There is no URL, makeReference(), direct
+        // perform(), app.activate() fallback or testing-only product route.
+        _ = try await system.intents[intentName].makeIntent(selection: cached).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.originalWorkspaceSelectionSnapshot().selected() else { return false }
+            return current.0 == start.0 && current.1.id == targetProfile && current.2.id == targetGroup
+                && current.3 == expectedTab && current.2.tabs.map { $0.session.id } == target.tabs.map { $0.session.id }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed)
+        let visible: XCUIElement
+        if target.tabs.isEmpty {
+            XCTAssertNil(expectedTab)
+            visible = try requireOriginalSelectionEmptySurface(expectedPad: expectedPad)
+        } else {
+            XCTAssertEqual(target.id, start.2.id)
+            try requireReaderLocator(locator)
+            XCTAssertEqual(try XCTUnwrap(getRenderedHighlightSnapshot()).locator, locator)
+            visible = app.staticTexts["reader-header-title"]
+            XCTAssertTrue(visible.exists && visible.isHittable && !visible.frame.isEmpty)
+        }
+        let receipted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let lines = try? self.actualNativeReceiptLines() else { return false }
+            return before.isSubset(of: lines) && lines.subtracting(before).count == 1
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [receipted], timeout: 15), .completed)
+        try requireNewSystemIntentReceipt(destination: "native.workspace.selection", presentation: "currentTab", before: before)
+        let line = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        XCTAssertTrue(line.split(separator: " ").contains(Substring("scene=" + start.0)))
+        XCTAssertEqual(try originalWorkspaceSelectionDocuments(), savedDocuments,
+                       "Selection preserves every original profile/group and saved document's source semantics")
+        XCTAssertFalse(app.alerts["Unable to change the study workspace"].exists)
+        let stableReceipts = try actualNativeReceiptLines(), frame = visible.frame
+        let drift = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.originalWorkspaceSelectionSnapshot().selected(),
+                  let documents = try? self.originalWorkspaceSelectionDocuments(),
+                  let receipts = try? self.actualNativeReceiptLines() else { return true }
+            return current.0 != start.0 || current.1.id != targetProfile || current.2.id != targetGroup
+                || current.3 != expectedTab || documents != savedDocuments || receipts != stableReceipts
+                || !visible.exists || !visible.isHittable || visible.frame != frame
+        }, object: nil)
+        drift.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [drift], timeout: 2), .completed)
+        try attachWorkspaceSnapshot("system-workspace-selection-after")
+        capture("system-workspace-selection-" + selectionCase.rawValue)
+
+        guard rejectDeletedGroup else { return }
+        XCTAssertTrue(expectedPad); XCTAssertEqual(selectionCase, .warmGroup)
+        try openOriginalSelectionOverview(expectedPad: true)
+        let actions = app.buttons["study-group-actions-menu"]
+        XCTAssertTrue(actions.exists && actions.isHittable); actions.tap()
+        try originalSelectionButton("Delete group").tap()
+        let question = app.staticTexts["Delete this group and its tabs?"]
+        XCTAssertTrue(question.waitForExistence(timeout: 10))
+        try originalSelectionButton("Delete group").tap()
+        let deleted = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let value = try? self.originalWorkspaceSelectionSnapshot(),
+                  let current = try? value.selected() else { return false }
+            return !value.groups.contains { $0.id == targetGroup }
+                && current.1.id == start.1.id && current.2.id != targetGroup
+                && current.2.tabs.isEmpty && current.3 == nil
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [deleted], timeout: 15), .completed)
+        try closeOriginalSelectionSheet("study-groups-overview")
+        _ = try requireOriginalSelectionEmptySurface(expectedPad: true)
+        XCTAssertEqual(try actualNativeReceiptLines(), stableReceipts)
+        let unavailable = try await system.entities[entityName].entities(matching: entityTitle)
+        XCTAssertTrue(unavailable.isEmpty)
+        let stableState = try originalReaderTabWorkspaceSemantics()
+        let beforeRefusal = try actualNativeReceiptLines()
+        var rejected = false
+        do { _ = try await system.intents[intentName].makeIntent(selection: cached).run() }
+        catch {
+            rejected = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "system-workspace-deleted-group-actual-refusal"; evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(rejected, "The same actually successful cached entity must now be refused")
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeRefusal)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableState)
+        let lateEffect = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let receipts = try? self.actualNativeReceiptLines(),
+                  let state = try? self.originalReaderTabWorkspaceSemantics() else { return true }
+            return receipts != beforeRefusal || state != stableState
+        }, object: nil)
+        lateEffect.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [lateEffect], timeout: 5), .completed,
+                       "The full original command bound must produce no late stale selection or ACK")
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        _ = try requireOriginalSelectionEmptySurface(expectedPad: true)
+        try attachWorkspaceSnapshot("system-workspace-deleted-group-refused")
+        capture("system-workspace-deleted-group-refused")
+    }
+}
+
+
+// Hidden-active phone Reader selection uses the original Back/Library and
+// workspace controls. Only the cached, real system entity delivers the measured
+// Reader-tab action; neither setup UI nor a parent-only receipt can satisfy it.
+extension NativeRoutingAcceptanceTests {
+    @MainActor
+    private func requireOriginalHiddenPhoneReaderLibrary() throws {
+        requireOriginalPhoneLibrary(timeout: 15)
+        let library = app.descendants(matching: .any)
+            .matching(identifier: "library-contents-list").firstMatch
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            library.exists && library.isHittable && !library.frame.isEmpty
+                && self.app.windows.firstMatch.frame.intersects(library.frame)
+                && !self.app.staticTexts["reader-current-locator"].exists
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed,
+                       "The real Library must replace the visible Reader after its original Back action")
+    }
+
+    @MainActor
+    private func backgroundOriginalHiddenPhoneReader() {
+        XCUIDevice.shared.press(.home)
+        let background = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            self.app.state == .runningBackground || self.app.state == .runningBackgroundSuspended
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [background], timeout: 15), .completed,
+                       "Require an observed background state before the actual system invocation")
+    }
+
+    @MainActor
+    func runOriginalHiddenActivePhoneReaderTabSystemIntent(
+        entry: OriginalHiddenPhoneReaderTabEntry,
+        rejectPreviousGroupFromBackground: Bool? = nil
+    ) async throws {
+        let work = try launchCurrentCanonicalReader(expectedPad: false)
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(work, "book:\(initial.bookId)")
+        let locator = "otzaria|\(work)|line:\(initial.lineIndex)"
+        let title = try XCTUnwrap(readerSourceMetadata().books[String(initial.bookId)])
+        XCTAssertFalse(title.isEmpty)
+        let workspace = try actualReaderWorkspace()
+        let originalScene = try XCTUnwrap(workspace.lastActiveSceneID)
+        let original = try workspace.current()
+        XCTAssertEqual(original.0.tabs.count, 1,
+                       "This hidden-active case starts with exactly one original live Reader")
+        XCTAssertEqual(original.0.tabs.first?.session.id, original.1)
+        XCTAssertEqual(original.0.tabs.first?.session.bookId, initial.bookId)
+        XCTAssertEqual(original.0.tabs.first?.backend, "otzaria")
+        let documents = try actualSiriReaderDocuments(groupID: original.0.id)
+        let pid = try targetProcessIdentifier()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let matches = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertEqual(matches.count, 1)
+        let cachedTab = try XCTUnwrap(matches.count == 1 ? matches.first : nil,
+                                     "Retain the actual system-discovered entity while its Reader is visible")
+
+        // Require an actual visible Reader BEFORE the same original Back action
+        // used by prepareOriginalPhoneLibrary. An already visible Library cannot
+        // stand in for hiding the still-active original tab.
+        try requireReaderLocator(locator)
+        let beforeBack = try actualNativeReceiptLines()
+        let back = app.navigationBars.buttons.matching(identifier: "BackButton")
+            .matching(NSPredicate(format: "label == %@", "Library"))
+        XCTAssertEqual(back.count, 1)
+        let originalBack = try XCTUnwrap(back.count == 1 ? back.allElementsBoundByIndex.first : nil)
+        XCTAssertTrue(originalBack.exists && originalBack.isHittable && !originalBack.frame.isEmpty)
+        capture("hidden-active-phone-reader-before-original-back")
+        originalBack.tap()
+        try requireOriginalHiddenPhoneReaderLibrary()
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeBack,
+                       "Original Back may hide the Reader but must not manufacture a canonical ACK")
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+
+        let hiddenMatches = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertEqual(hiddenMatches.count, 1,
+                       "The actual still-active hidden tab must remain discoverable in this original window")
+        if entry == .history {
+            let historyRequest = UUID()
+            // Use the existing dedicated History transport. publicRootURL has
+            // a narrower original search/annotations assertion and is unchanged.
+            try openInExistingProcess(historyURL("otzaria", request: historyRequest))
+            XCTAssertTrue(history.waitForExistence(timeout: 15))
+            XCTAssertTrue(history.isHittable && !history.frame.isEmpty)
+            try requireRootReceipt(historyRequest, destination: "native.history")
+            XCTAssertFalse(app.staticTexts["reader-current-locator"].exists)
+            try requirePreservedOriginalWorkspace(original)
+            XCTAssertEqual(try actualReaderWorkspace().lastActiveSceneID, originalScene)
+            XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents)
+        }
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(entry.rawValue)-before-system-intent")
+        capture("hidden-active-phone-reader-\(entry.rawValue)-before-system-intent")
+        let before = try actualNativeReceiptLines()
+        if entry == .background { backgroundOriginalHiddenPhoneReader() }
+
+        // Sole measured successful delivery: the same cached actual entity.
+        // No direct perform(), constructed reference, activate() fallback, source
+        // mutation, or second Core request is used to reveal the Reader.
+        _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 15))
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        try requireReaderLocator(locator)
+        let restored = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let current = try? self.actualReaderWorkspace(),
+                  let selected = try? current.current() else { return false }
+            return current.lastActiveSceneID == originalScene
+                && selected.0.id == original.0.id && selected.0.profileID == original.0.profileID
+                && selected.1 == original.1
+                && selected.0.tabs.map { $0.session.id } == original.0.tabs.map { $0.session.id }
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 15), .completed,
+                       "Restore the same original active tab without opening or replacing a document")
+        try requirePreservedOriginalWorkspace(original)
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents)
+        try requireNewSystemIntentReceipt(destination: "native.reader.tab", presentation: "currentTab", before: before)
+        let receipt = try XCTUnwrap(actualNativeReceiptLines().subtracting(before).first)
+        XCTAssertTrue(receipt.split(separator: " ").contains(Substring("scene=" + originalScene)),
+                      "The final Reader receipt must belong to the captured original scene")
+        XCTAssertFalse(history.exists)
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(entry.rawValue)-restored")
+        capture("hidden-active-phone-reader-\(entry.rawValue)-restored")
+
+        guard let refusalFromBackground = rejectPreviousGroupFromBackground else { return }
+        XCTAssertEqual(entry, .library,
+                       "Each stale case first proves this SAME cached entity restored the hidden Reader")
+        let successfulReceipts = try actualNativeReceiptLines()
+        try openOriginalSelectionOverview(expectedPad: false)
+        let emptyID = try createOriginalEmptySelectionGroup(
+            name: "Hidden reader refusal " + UUID().uuidString, profileID: original.0.profileID)
+        XCTAssertNotEqual(emptyID, original.0.id)
+        try closeOriginalSelectionSheet("study-groups-overview")
+        _ = try requireOriginalSelectionEmptySurface(expectedPad: false)
+        let changed = try originalWorkspaceSelectionSnapshot().selected()
+        XCTAssertEqual(changed.0, originalScene)
+        XCTAssertEqual(changed.1.id, original.0.profileID)
+        XCTAssertEqual(changed.2.id, emptyID)
+        XCTAssertTrue(changed.2.tabs.isEmpty); XCTAssertNil(changed.3)
+        let oldGroup = try XCTUnwrap(actualReaderWorkspace().groups.first { $0.id == original.0.id })
+        XCTAssertEqual(oldGroup.tabs.map(\.session.id), original.0.tabs.map(\.session.id))
+        XCTAssertEqual(try actualSiriReaderDocuments(groupID: original.0.id), documents,
+                       "The cached Reader remains stored in its old group; it is foreign, not a fabricated ID")
+        XCTAssertEqual(try actualNativeReceiptLines(), successfulReceipts)
+        let unavailable = try await system.entities["NativeReaderTabEntity"].entities(matching: title)
+        XCTAssertTrue(unavailable.isEmpty,
+                      "The actual query must withdraw the old group's entity before the measured refusal")
+        let refusalLabel = refusalFromBackground ? "background" : "foreground"
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(refusalLabel)-before-refusal")
+        capture("hidden-active-phone-reader-\(refusalLabel)-before-refusal")
+        if refusalFromBackground { backgroundOriginalHiddenPhoneReader() }
+        // Read the exact stable original state after any ordinary background
+        // checkpoint. The measured cached invocation may change none of it.
+        let stableWorkspace = try originalReaderTabWorkspaceSemantics()
+        let beforeRefusal = try actualNativeReceiptLines()
+        XCTAssertEqual(beforeRefusal, successfulReceipts)
+        var rejected = false
+        do {
+            _ = try await system.intents["OpenReaderTabIntent"].makeIntent(tab: cachedTab).run()
+        } catch {
+            rejected = true
+            let errorEvidence = XCTAttachment(string: String(describing: error))
+            errorEvidence.name = "hidden-active-phone-reader-\(refusalLabel)-actual-system-refusal"
+            errorEvidence.lifetime = .keepAlways; add(errorEvidence)
+        }
+        XCTAssertTrue(rejected, "The previously successful cached original entity must now be refused")
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeRefusal)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+        let staleEffect = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let receipts = try? self.actualNativeReceiptLines(),
+                  let state = try? self.originalReaderTabWorkspaceSemantics() else { return true }
+            return receipts != beforeRefusal || state != stableWorkspace
+        }, object: nil)
+        staleEffect.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [staleEffect], timeout: 5), .completed,
+                       "A refused cached invocation cannot defer a mutation or ACK beyond the original Core bound")
+        // A system parameter-resolution refusal may leave the app in the
+        // background. Do not activate it to manufacture a foreground journey.
+        // If the system foregrounded it, its actual original empty Library must
+        // remain visible; otherwise preserve the witnessed background state.
+        if app.state == .runningForeground {
+            _ = try requireOriginalSelectionEmptySurface(expectedPad: false)
+        } else {
+            XCTAssertTrue(refusalFromBackground)
+            XCTAssertTrue(app.state == .runningBackground || app.state == .runningBackgroundSuspended)
+        }
+        let stateEvidence = XCTAttachment(string: "Actual post-refusal app state: \(app.state.rawValue)")
+        stateEvidence.name = "hidden-active-phone-reader-\(refusalLabel)-post-refusal-process-state"
+        stateEvidence.lifetime = .keepAlways; add(stateEvidence)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+        XCTAssertEqual(try actualNativeReceiptLines(), beforeRefusal)
+        try attachWorkspaceSnapshot("hidden-active-phone-reader-\(refusalLabel)-refused")
+        capture("hidden-active-phone-reader-\(refusalLabel)-refused")
+    }
+}
+
+
+// Focused DEBUG continuation acceptance. The original UI submits the search;
+// the only probe input is a nonce. No query, offset, hit ID, receipt, or source
+// answer is injected into the production continuation operation.
+extension NativeRoutingAcceptanceTests {
+    private func continuationJSON(_ value: Any) throws -> Data {
+        try JSONSerialization.data(withJSONObject: value, options: [.sortedKeys])
+    }
+
+    private func continuationDigest(_ data: Data) -> String {
+        SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+    }
+
+    private func continuationUUID(_ value: Any?, _ name: String) throws -> String {
+        let raw = try XCTUnwrap(value as? String, "Require typed original UUID: " + name)
+        _ = try XCTUnwrap(UUID(uuidString: raw), "Require valid original UUID: " + name)
+        return raw
+    }
+
+    private func continuationDocuments() throws -> URL {
+        let value = try actualReaderLogURL().deletingLastPathComponent().deletingLastPathComponent()
+        XCTAssertEqual(value.lastPathComponent, "Documents")
+        return value
+    }
+
+    private func continuationFile(kind: String, token: UUID, suffix: String) throws -> URL {
+        XCTAssertTrue(["search-continuation-hit", "search-continuation-page"].contains(kind))
+        XCTAssertTrue(["trigger.txt", "result.json", "outcome.json"].contains(suffix))
+        return try continuationDocuments().appendingPathComponent("native-action-\(kind)-\(token.uuidString)-\(suffix)")
+    }
+
+    private func continuationRead(_ url: URL, maximum: Int, allowEmpty: Bool = false) throws -> Data {
+        let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        XCTAssertEqual(values.isRegularFile, true); XCTAssertEqual(values.isSymbolicLink, false)
+        let size = try XCTUnwrap(values.fileSize)
+        XCTAssertGreaterThanOrEqual(size, allowEmpty ? 0 : 1); XCTAssertLessThanOrEqual(size, maximum)
+        guard size >= (allowEmpty ? 0 : 1), size <= maximum, values.isRegularFile == true, values.isSymbolicLink == false else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        let bytes = try Data(contentsOf: url)
+        XCTAssertEqual(bytes.count, size)
+        return bytes
+    }
+
+    private func continuationAttach(_ data: Data, name: String, json: Bool = true) {
+        let attachment = XCTAttachment(data: data, uniformTypeIdentifier: json ? "public.json" : "public.data")
+        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    private func continuationBlob(_ reference: Any?, kind: String, token: UUID) throws -> Data {
+        let ref = try XCTUnwrap(reference as? [String: Any])
+        let hash = try XCTUnwrap(ref["sha256"] as? String), count = try XCTUnwrap(ref["bytes"] as? Int)
+        XCTAssertEqual(hash.count, 64)
+        XCTAssertTrue(hash.utf8.allSatisfy { (48...57).contains($0) || (97...102).contains($0) })
+        let filename = "native-action-\(kind)-\(token.uuidString)-data-\(hash).bin"
+        XCTAssertEqual(ref["file"] as? String, filename)
+        guard ref["file"] as? String == filename, hash.count == 64,
+              hash.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }) else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        let data = try continuationRead(continuationDocuments().appendingPathComponent(filename), maximum: 4 * 1024 * 1024, allowEmpty: true)
+        XCTAssertEqual(data.count, count); XCTAssertEqual(continuationDigest(data), hash)
+        return data
+    }
+
+    // Attach every lossless source/effect byte even when the actual return was
+    // refused/unqualified or observation-envelope reporting failed afterward.
+    private func continuationAttachBlobs(_ objects: [Any], kind: String, token: UUID) throws {
+        var references: [String: [String: Any]] = [:]
+        func visit(_ value: Any, depth: Int = 0) throws {
+            guard depth < 96 else { throw CocoaError(.fileReadCorruptFile) }
+            if let dictionary = value as? [String: Any] {
+                if let filename = dictionary["file"] as? String, filename.hasSuffix(".bin") {
+                    if let old = references[filename] {
+                        XCTAssertEqual(try continuationJSON(old), try continuationJSON(dictionary))
+                    }
+                    references[filename] = dictionary
+                } else { for child in dictionary.values { try visit(child, depth: depth + 1) } }
+            } else if let array = value as? [Any] {
+                for child in array { try visit(child, depth: depth + 1) }
+            }
+        }
+        for object in objects { try visit(object) }
+        XCTAssertLessThanOrEqual(references.count, 512)
+        guard references.count <= 512 else { throw CocoaError(.fileReadCorruptFile) }
+        var bytes = 0
+        for key in references.keys.sorted() {
+            let data = try continuationBlob(references[key], kind: kind, token: token)
+            bytes += data.count
+            XCTAssertLessThanOrEqual(bytes, 8 * 1024 * 1024)
+            guard bytes <= 8 * 1024 * 1024 else { throw CocoaError(.fileReadCorruptFile) }
+            continuationAttach(data, name: key, json: false)
+        }
+    }
+
+    @MainActor private func continuationProof(kind: String, token: UUID) throws -> ([String: Any], [String: Any]) {
+        let url = try continuationFile(kind: kind, token: token, suffix: "result.json")
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: url.path)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 45), .completed,
+            "Diagnostic wait cannot renew the production operation's original five-second deadline")
+        let data = try continuationRead(url, maximum: 128 * 1024)
+        continuationAttach(data, name: "original-continuation-envelope-\(kind)-\(token)")
+        let proof = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        let checkpointURL = try continuationFile(kind: kind, token: token, suffix: "outcome.json")
+        // Inspect the deterministic original checkpoint even when the later
+        // result envelope reports an error. Missing/invalid evidence fails.
+        let checkpointData = try continuationRead(checkpointURL, maximum: 128 * 1024)
+        continuationAttach(checkpointData, name: "original-continuation-return-\(kind)-\(token)")
+        let checkpoint = try XCTUnwrap(JSONSerialization.jsonObject(with: checkpointData) as? [String: Any])
+        try continuationAttachBlobs([checkpoint, proof], kind: kind, token: token)
+        let reference = try XCTUnwrap(proof["outcomeCheckpoint"] as? [String: Any])
+        XCTAssertEqual(reference["file"] as? String, checkpointURL.lastPathComponent)
+        XCTAssertEqual(reference["bytes"] as? Int, checkpointData.count)
+        XCTAssertEqual(reference["sha256"] as? String, continuationDigest(checkpointData))
+        for value in [proof, checkpoint] {
+            XCTAssertEqual(value["schemaVersion"] as? Int, 1)
+            XCTAssertEqual(value["triggerToken"] as? String, token.uuidString)
+            XCTAssertEqual(value["probeKind"] as? String, kind)
+            XCTAssertEqual(String(try XCTUnwrap(value["processID"] as? Int)), try targetProcessIdentifier())
+        }
+        XCTAssertEqual(proof["actualReturnRetained"] as? Bool, true)
+        XCTAssertNil(proof["probeError"], "Reporting failure is not a successful continuation: \(proof)")
+        let outcome = try XCTUnwrap(checkpoint["outcome"] as? [String: Any])
+        XCTAssertEqual(outcome["kind"] as? String, "acknowledged", "Retain the original refusal/partial return; never replace it")
+        return (proof, try XCTUnwrap(outcome["receipt"] as? [String: Any]))
+    }
+
+    private func continuationTraceURL(_ namespace: String) throws -> URL {
+        try actualReaderLogURL().deletingLastPathComponent().appendingPathComponent("search-native-\(namespace).jsonl")
+    }
+
+    private func continuationTrace(_ namespace: String) throws -> (Data, [[String: Any]]) {
+        let data = try continuationRead(continuationTraceURL(namespace), maximum: 8 * 1024 * 1024)
+        let text = try XCTUnwrap(String(data: data, encoding: .utf8))
+        XCTAssertTrue(text.hasSuffix("\n"), "A partial original trace is not a complete observation")
+        return (data, try text.split(separator: "\n").map {
+            try XCTUnwrap(JSONSerialization.jsonObject(with: Data($0.utf8)) as? [String: Any])
+        })
+    }
+
+    // The sealed SQL resource proves exact book/line/title identity. Original
+    // provider text and every metadata field are retained separately; this does
+    // not claim that the six-row Reader text oracle contains all search text.
+    private func continuationValidatePages(_ events: [[String: Any]], namespace: String,
+                                            process: String, expectedPages: Int) throws -> [[String: Any]] {
+        let metadata = try readerSourceMetadata(), positions = Set(metadata.rows.map { "\($0[1]):\($0[2])" })
+        let selected = events.filter { $0["engine"] as? String == "otzaria" }
+        let pages = selected.filter { $0["event"] as? String == "provider" }
+        XCTAssertEqual(pages.count, expectedPages)
+        XCTAssertEqual(Set(selected.compactMap { $0["sessionID"] as? String }).count, 1)
+        XCTAssertEqual(Set(selected.compactMap { ($0["searchGeneration"] as? NSNumber)?.uint64Value }).count, 1)
+        for event in selected {
+            XCTAssertEqual(event["namespace"] as? String, namespace)
+            XCTAssertEqual(event["schemaVersion"] as? Int, 1)
+            XCTAssertEqual(event["profileID"] as? String, "miniTest10")
+            XCTAssertEqual(String(try XCTUnwrap(event["processID"] as? Int)), process)
+        }
+        var consumed = 0, order: [String] = [], originals: [String: [String: Any]] = [:]
+        var previousRecords: [[String: Any]] = []
+        for event in pages {
+            let request = try XCTUnwrap(event["request"] as? [String: Any])
+            XCTAssertNil(request["query"])
+            XCTAssertEqual(request["querySHA256"] as? String, continuationDigest(Data("אמר".utf8)))
+            XCTAssertEqual(request["offset"] as? Int, consumed); XCTAssertEqual(request["limit"] as? Int, 100)
+            let page = try XCTUnwrap(event["page"] as? [String: Any])
+            let rows = try XCTUnwrap(page["results"] as? [[String: Any]])
+            XCTAssertFalse(rows.isEmpty); XCTAssertLessThanOrEqual(rows.count, 100)
+            for row in rows {
+                let path = try XCTUnwrap(row["filePath"] as? String)
+                XCTAssertTrue(path.hasPrefix("otzaria-book:"))
+                let book = try XCTUnwrap(Int(path.dropFirst("otzaria-book:".count)))
+                let line = try XCTUnwrap(row["segment"] as? Int)
+                let rawID = try XCTUnwrap((row["id"] as? NSNumber)?.uint64Value)
+                let id = "otzaria:\(path):\(rawID):\(line)"
+                XCTAssertTrue(positions.contains("\(book):\(line)"))
+                XCTAssertEqual(row["title"] as? String, try XCTUnwrap(metadata.books[String(book)]))
+                if let old = originals[id] { XCTAssertEqual(try continuationJSON(old), try continuationJSON(row)) }
+                else { originals[id] = row; order.append(id) }
+            }
+            consumed += rows.count
+            XCTAssertEqual(event["nextOffset"] as? Int, consumed)
+            let records = try XCTUnwrap(event["retainedRecords"] as? [[String: Any]])
+            XCTAssertEqual(records.count, order.count)
+            XCTAssertEqual(try continuationJSON(Array(records.prefix(previousRecords.count))), try continuationJSON(previousRecords))
+            for (id, record) in zip(order, records) {
+                XCTAssertEqual(try continuationJSON(try XCTUnwrap(record["metadata"])),
+                               try continuationJSON(try XCTUnwrap(originals[id])))
+                let item = try XCTUnwrap(record["item"] as? [String: Any])
+                let book = try XCTUnwrap(item["bookID"] as? Int), line = try XCTUnwrap(item["lineIndex"] as? Int)
+                XCTAssertEqual(item["id"] as? String, id)
+                XCTAssertTrue(positions.contains("\(book):\(line)"))
+                XCTAssertEqual(item["bookTitle"] as? String, try XCTUnwrap(metadata.books[String(book)]))
+                XCTAssertEqual(item["locator"] as? String, "otzaria|book:\(book)|line:\(line)")
+            }
+            previousRecords = records
+        }
+        let publication = try XCTUnwrap(selected.last { $0["event"] as? String == "published" })
+        let items = try XCTUnwrap(publication["items"] as? [[String: Any]])
+        XCTAssertEqual(items.compactMap { $0["id"] as? String }, order)
+        XCTAssertEqual(try continuationJSON(items), try continuationJSON(try previousRecords.map {
+            try XCTUnwrap($0["item"] as? [String: Any])
+        }))
+        return items
+    }
+
+    @MainActor private func continuationVisible(_ element: XCUIElement, list: XCUIElement, keyboard: Bool) -> Bool {
+        guard element.exists, element.isHittable, !element.frame.isEmpty, list.exists,
+              list.isHittable, !list.frame.isEmpty else { return false }
+        var viewport = list.frame.intersection(app.frame)
+        if keyboard {
+            guard app.keyboards.count == 1, app.keyboards.firstMatch.exists else { return false }
+            let top = app.keyboards.firstMatch.frame.minY
+            viewport.size.height = max(0, min(viewport.maxY, top) - viewport.minY)
+        }
+        let intersection = element.frame.intersection(viewport)
+        return !intersection.isNull && intersection.width * intersection.height >= element.frame.width * element.frame.height * 0.98
+    }
+
+    @MainActor private func continuationVoiceOver(expectedTitle: String, expectedSnippet: String,
+                                                  ui: OriginalSearchContextUI) throws {
+        let service = XCUIDevice.shared.voiceOverService
+        XCTAssertFalse(service.isEnabled, "The test owns enabling and restoring the real service")
+        try service.enable()
+        defer { do { try service.disable() } catch { XCTFail("Could not restore VoiceOver: \(error)") } }
+        XCTAssertTrue(service.isEnabled)
+        func normalized(_ text: String) -> String { text.split(whereSeparator: { $0.isWhitespace }).joined(separator: " ") }
+        let title = normalized(expectedTitle)
+        let snippet = normalized(expectedSnippet).split(separator: " ").prefix(6).joined(separator: " ")
+        XCTAssertGreaterThan(snippet.count, 12); XCTAssertFalse(title.isEmpty)
+        var speech = [try service.currentSpeech().utterance]
+        var sawTitle = false, sawText = false
+        defer {
+            let attachment = XCTAttachment(string: speech.enumerated().map { "\($0.offset): \($0.element)" }.joined(separator: "\n"))
+            attachment.name = "actual-system-VoiceOver-continuation-speech"; attachment.lifetime = .keepAlways; add(attachment)
+            ui.capture("actual-system-VoiceOver-continuation")
+        }
+        for _ in 0..<64 {
+            let utterance = normalized(try XCTUnwrap(speech.last))
+            sawTitle = sawTitle || utterance.contains(title)
+            sawText = sawText || utterance.contains(snippet)
+            if sawTitle && sawText { break }
+            speech.append(try service.moveForward().utterance)
+        }
+        // Output exposes utterance, not focused-row identity. These are two
+        // reachability checks on the original Search surface; they do not
+        // uniquely attest traversal of this expanded row or its full context.
+        XCTAssertTrue(sawTitle, "A retained original source title must be reachable in real VoiceOver speech")
+        XCTAssertTrue(sawText, "A retained original provider snippet must be reachable on the original Search surface")
+    }
+
+    @MainActor
+    func runOriginalSearchContinuation(expectedPad: Bool, page: Bool, keyboard: Bool = false,
+                                       voiceOver: Bool = false) throws {
+        let kind = page ? "search-continuation-page" : "search-continuation-hit"
+        let priorOrientation = XCUIDevice.shared.orientation
+        let service = XCUIDevice.shared.voiceOverService, priorVoiceOver = service.isEnabled
+        if priorVoiceOver { try service.disable() }
+        defer {
+            XCUIDevice.shared.orientation = priorOrientation
+            do {
+                if priorVoiceOver && !service.isEnabled { try service.enable() }
+                if !priorVoiceOver && service.isEnabled { try service.disable() }
+            } catch { XCTFail("Could not restore actual accessibility service state: \(error)") }
+        }
+        for (iteration, language) in ["en", "he"].enumerated() {
+            let token = UUID(), traceNamespace = workspaceNamespace
+            if iteration > 0 {
+                // miniTest10's ORIGINAL trace uses the workspace namespace.
+                // Preserve the complete preceding launch before starting a
+                // fresh one-process trace; never filter away unexpected events.
+                app.terminate()
+                let trace = try continuationTraceURL(traceNamespace)
+                let originalBytes = try continuationRead(trace, maximum: 8 * 1024 * 1024)
+                let preserved = trace.deletingLastPathComponent().appendingPathComponent(
+                    "search-native-\(traceNamespace)-before-relaunch-\(token.uuidString).jsonl")
+                XCTAssertFalse(FileManager.default.fileExists(atPath: preserved.path))
+                try FileManager.default.moveItem(at: trace, to: preserved)
+                XCTAssertEqual(try continuationRead(preserved, maximum: 8 * 1024 * 1024), originalBytes,
+                    "The complete previous original trace must remain byte-identical")
+                XCTAssertFalse(FileManager.default.fileExists(atPath: trace.path))
+            }
+            XCTAssertEqual(isPad, expectedPad)
+            XCUIDevice.shared.orientation = .portrait
+            launchWithTier(.realUI, scenario: "reader", backend: "otzaria",
+                extraArgs: ["-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
+                    "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-otzaria_reader_unit_mode", "line",
+                    "-studyWorkspaceTestingNamespace", workspaceNamespace, "-lastSelectedTab", "0",
+                    "-GlobalSearchNativeTraceEnabled", "YES", "-GlobalSearchNativeTraceNamespace", traceNamespace,
+                    "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString],
+                language: language, locale: language == "he" ? "he_IL" : "en_US")
+            XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+            dismissAlertsIfNeeded()
+            let oracle = try systemReaderOracleDocument()
+            let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+            XCTAssertEqual(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"], "book:\(initial.bookId)")
+            try requireReaderLocator("otzaria|book:\(initial.bookId)|line:\(initial.lineIndex)", timeout: 60)
+            let ui = OriginalSearchContextUI(app: app, test: self)
+            try ui.returnToOriginalSearch()
+            try ui.require("global-search-mode").tap()
+            try ui.require("global-search-mode-advanced").tap()
+            let field = try ui.require("global-search-query")
+            XCTAssertTrue(field.elementType == .searchField || field.elementType == .textField)
+            XCTAssertEqual(app.descendants(matching: .any).matching(identifier: "global-search-query").count, 1)
+            field.tap()
+            let old = (field.value as? String) ?? ""
+            if !old.isEmpty && old != field.placeholderValue {
+                field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count))
+            }
+            field.typeText("אמר\n")
+            try ui.wait("Require one real original submitted first page before granting a continuation", timeout: 90) {
+                guard !ui.control("global-search-loading").exists, !ui.control("global-search-cancel").exists,
+                      !ui.control("global-search-error").exists, !ui.control("global-search-dirty").exists,
+                      let events = try? self.continuationTrace(traceNamespace).1,
+                      let last = events.last(where: { $0["event"] as? String == "published" }),
+                      let items = last["items"] as? [[String: Any]], items.count > 20,
+                      let count = try? ui.loadedCount() else { return false }
+                return items.count == count
+            }
+            let process = try targetProcessIdentifier()
+            let initialTrace = try continuationTrace(traceNamespace)
+            let firstItems = try continuationValidatePages(initialTrace.1, namespace: traceNamespace, process: process, expectedPages: 1)
+            let firstID = try XCTUnwrap(firstItems.first?["id"] as? String)
+            let lastItem = try XCTUnwrap(firstItems.last), lastID = try XCTUnwrap(lastItem["id"] as? String)
+            try ui.assertOriginalSearchResize(rtl: language == "he", query: "אמר", firstStableID: firstID)
+            if keyboard {
+                field.tap()
+                XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10))
+                XCTAssertEqual(field.value as? String, "אמר", "Focusing the original field must not edit or resubmit")
+            }
+            let list = try ui.require("global-search-results")
+            if !page {
+                XCTAssertFalse(continuationVisible(ui.control("search-result-preview-toggle-" + lastID), list: list, keyboard: keyboard),
+                    "Require a genuinely offscreen loaded target; an already visible proxy cannot prove reveal")
+            }
+            let beforeTrace = try continuationTrace(traceNamespace)
+            XCTAssertEqual(beforeTrace.0, initialTrace.0, "Resize/focus setup must not secretly fetch another page")
+            let workspace = try actualReaderWorkspace(), current = try workspace.current()
+            let sceneID = try XCTUnwrap(workspace.lastActiveSceneID)
+            let savedDocuments = try originalWorkspaceSelectionDocuments()
+            let rootReceipts = try actualNativeReceiptLines()
+            let mode = try XCTUnwrap(ui.require("global-search-mode").value as? String)
+            let books = try ui.require("global-search-books").label
+            let trigger = try continuationFile(kind: kind, token: token, suffix: "trigger.txt")
+            XCTAssertFalse(FileManager.default.fileExists(atPath: trigger.path))
+            XCTAssertFalse(FileManager.default.fileExists(atPath: try continuationFile(kind: kind, token: token, suffix: "result.json").path))
+            try Data(token.uuidString.utf8).write(to: trigger, options: [.withoutOverwriting])
+            let (proof, receipt) = try continuationProof(kind: kind, token: token)
+            let before = try XCTUnwrap(receipt["before"] as? [String: Any])
+            let after = try XCTUnwrap(receipt["after"] as? [String: Any])
+            let observation = try XCTUnwrap(proof["observation"] as? [String: Any])
+            XCTAssertEqual(try continuationJSON(try XCTUnwrap(observation["source"])), try continuationJSON(before))
+            _ = try continuationUUID(receipt["requestID"], "requestID")
+            XCTAssertEqual(before["sceneID"] as? String, sceneID)
+            let backend = try XCTUnwrap(before["snapshot"] as? [String: Any])
+            XCTAssertEqual(backend["backend"] as? String, "otzaria")
+            let originalPublication = try XCTUnwrap(beforeTrace.1.last { $0["event"] as? String == "published" })
+            XCTAssertEqual(try XCTUnwrap(backend["generation"] as? NSNumber),
+                           try XCTUnwrap(originalPublication["backendGeneration"] as? NSNumber))
+            XCTAssertEqual(try XCTUnwrap(before["submissionRevision"] as? Int),
+                           try XCTUnwrap(originalPublication["submissionRevision"] as? Int))
+            for value in [before, after] {
+                for key in ["observationID", "sessionID", "modelID"] { _ = try continuationUUID(value[key], key) }
+                for key in ["generation", "sourceRevision", "pageRevision"] {
+                    _ = try XCTUnwrap((value[key] as? NSNumber).flatMap { UInt64($0.stringValue) }, key)
+                }
+                for key in ["submissionRevision", "cancellationRevision", "paginationRevision"] {
+                    _ = try XCTUnwrap(value[key] as? Int, key)
+                }
+            }
+            for key in ["observationID", "sceneID", "snapshot", "sessionID", "modelID", "generation", "sourceRevision", "submissionRevision", "cancellationRevision", "configuration"] {
+                XCTAssertEqual(try continuationJSON([key: try XCTUnwrap(before[key])]),
+                               try continuationJSON([key: try XCTUnwrap(after[key])]), "Exact original source field: " + key)
+            }
+            let operation = try XCTUnwrap(receipt["operation"] as? [String: Any])
+            XCTAssertEqual(try continuationJSON(operation), try continuationJSON(try XCTUnwrap(proof["selectedOperation"])))
+            XCTAssertEqual(operation["kind"] as? String, page ? "nextOriginalPage" : "revealLoadedHit")
+            let effects = try XCTUnwrap(receipt["effects"] as? [[String: Any]])
+            let visible = try XCTUnwrap(receipt["visible"] as? [String: Any])
+            for key in ["witnessID", "listID"] { _ = try continuationUUID(visible[key], key) }
+            XCTAssertGreaterThan(try XCTUnwrap((visible["layoutRevision"] as? NSNumber)?.uint64Value), 0)
+            let loaded = try XCTUnwrap(observation["loadedHits"] as? [[String: Any]])
+            XCTAssertEqual(loaded.compactMap { $0["stableID"] as? String }, firstItems.compactMap { $0["id"] as? String })
+            var speechIdentity: [String: Any]?
+            let measuredRow: XCUIElement
+            if page {
+                XCTAssertEqual(try continuationUUID(operation["token"], "operation token"),
+                               try continuationUUID(observation["nextPageToken"], "original next-page token"))
+                XCTAssertEqual(effects.compactMap { $0["kind"] as? String }, ["pageRequested", "pageCommitted"])
+                let committed = try XCTUnwrap(effects.last?["page"] as? [String: Any])
+                XCTAssertEqual(try continuationUUID(effects.first?["attemptID"], "requested attempt"),
+                               try continuationUUID(committed["attemptID"], "committed attempt"))
+                XCTAssertEqual(try continuationUUID(committed["modelID"], "page model"),
+                               try continuationUUID(before["modelID"], "source model"))
+                XCTAssertEqual(try XCTUnwrap(committed["generation"] as? NSNumber), try XCTUnwrap(before["generation"] as? NSNumber))
+                XCTAssertTrue(committed["sourceEvidence"] is NSNull, "Original Otzaria page does not provide a separate provider-evidence Data value")
+                let request = try XCTUnwrap(JSONSerialization.jsonObject(with: continuationBlob(committed["request"], kind: kind, token: token)) as? [String: Any])
+                XCTAssertEqual(request["query"] as? String, "אמר")
+                XCTAssertEqual(try XCTUnwrap(request["offset"] as? Int), try XCTUnwrap(committed["requestOffset"] as? Int))
+                XCTAssertEqual(request["limit"] as? Int, 100)
+                XCTAssertEqual(committed["requestLimit"] as? Int, 100)
+                let rawBefore = try XCTUnwrap((beforeTrace.1.last { $0["event"] as? String == "provider" })?["nextOffset"] as? Int)
+                XCTAssertEqual(committed["requestOffset"] as? Int, rawBefore)
+                XCTAssertEqual(committed["consumedBefore"] as? Int, rawBefore)
+                XCTAssertEqual(committed["cursorBefore"] as? Int, rawBefore)
+                let now = try continuationTrace(traceNamespace)
+                let provider = try XCTUnwrap(now.1.last { $0["event"] as? String == "provider" })
+                let raw = try XCTUnwrap((provider["page"] as? [String: Any])?["results"] as? [[String: Any]])
+                XCTAssertEqual(committed["rawRowCount"] as? Int, raw.count)
+                XCTAssertEqual(committed["consumedAfter"] as? Int, rawBefore + raw.count)
+                XCTAssertEqual(try XCTUnwrap(committed["rawNextOffset"] as? Int), try XCTUnwrap(provider["nextOffset"] as? Int))
+                XCTAssertEqual(committed["mappedRowCount"] as? Int, raw.count,
+                    "This original Otzaria adapter maps each raw row before retained-result deduplication")
+                let hasMore = try XCTUnwrap(committed["hasMore"] as? Bool)
+                if hasMore { XCTAssertEqual(committed["normalizedNextOffset"] as? Int, rawBefore + raw.count) }
+                else { XCTAssertTrue(committed["normalizedNextOffset"] is NSNull) }
+                XCTAssertEqual(try XCTUnwrap(committed["pageRevision"] as? NSNumber), try XCTUnwrap(after["pageRevision"] as? NSNumber))
+                XCTAssertEqual(try XCTUnwrap(after["paginationRevision"] as? Int), try XCTUnwrap(before["paginationRevision"] as? Int) + 1)
+                XCTAssertTrue(visible["rowID"] is NSNull); XCTAssertTrue(visible["identity"] is NSNull)
+                measuredRow = ui.control("search-result-preview-toggle-" + firstID)
+            } else {
+                let hit = try XCTUnwrap(loaded.last)
+                XCTAssertEqual(try continuationUUID(operation["token"], "operation token"),
+                               try continuationUUID(hit["token"], "loaded hit token"))
+                XCTAssertEqual(hit["stableID"] as? String, lastID)
+                XCTAssertEqual(try XCTUnwrap(hit["locator"] as? String), try XCTUnwrap(lastItem["locator"] as? String))
+                XCTAssertEqual(effects.compactMap { $0["kind"] as? String }, ["hitSelectionApplied"])
+                XCTAssertEqual(try continuationJSON(try XCTUnwrap(effects.first?["hit"])), try continuationJSON(hit))
+                let identityBytes = try continuationBlob(hit["identity"], kind: kind, token: token)
+                let identity = try XCTUnwrap(JSONSerialization.jsonObject(with: identityBytes) as? [String: Any])
+                speechIdentity = identity
+                XCTAssertEqual(identity["stableID"] as? String, lastID)
+                XCTAssertEqual(try XCTUnwrap(identity["book"] as? Int), try XCTUnwrap(lastItem["bookID"] as? Int))
+                XCTAssertEqual(try XCTUnwrap(identity["page"] as? Int), try XCTUnwrap(lastItem["lineIndex"] as? Int))
+                XCTAssertEqual(try XCTUnwrap(identity["title"] as? String), try XCTUnwrap(lastItem["bookTitle"] as? String))
+                XCTAssertEqual(continuationDigest(Data(try XCTUnwrap(identity["text"] as? String).utf8)), lastItem["snippetSHA256"] as? String)
+                XCTAssertEqual(try continuationBlob(visible["identity"], kind: kind, token: token), identityBytes)
+                _ = try continuationUUID(visible["rowID"], "visible original row")
+                XCTAssertEqual(try XCTUnwrap(before["pageRevision"] as? NSNumber), try XCTUnwrap(after["pageRevision"] as? NSNumber))
+                XCTAssertEqual(try XCTUnwrap(before["paginationRevision"] as? Int), try XCTUnwrap(after["paginationRevision"] as? Int))
+                measuredRow = ui.control("search-result-preview-toggle-" + lastID)
+                XCTAssertEqual(measuredRow.value as? String, "Expanded")
+                let preview = app.scrollViews.matching(identifier: "search-result-expanded-preview-" + lastID).firstMatch
+                XCTAssertTrue(preview.waitForExistence(timeout: 45), "Require the original full-context scroll owner, not its small overlay marker")
+                XCTAssertTrue(preview.isHittable && !preview.frame.isEmpty)
+            }
+            XCTAssertTrue(continuationVisible(measuredRow, list: list, keyboard: keyboard))
+            let finalTrace = try continuationTrace(traceNamespace)
+            XCTAssertEqual(finalTrace.0.prefix(beforeTrace.0.count), beforeTrace.0)
+            let finalItems = try continuationValidatePages(finalTrace.1, namespace: traceNamespace,
+                                                           process: process, expectedPages: page ? 2 : 1)
+            XCTAssertEqual(proof["originalBeforeRowIDs"] as? [String], firstItems.compactMap { $0["id"] as? String })
+            XCTAssertEqual(proof["originalAfterRowIDs"] as? [String], finalItems.compactMap { $0["id"] as? String })
+            XCTAssertEqual(try ui.loadedCount(), finalItems.count)
+            XCTAssertEqual(proof["originalQuery"] as? String, "אמר")
+            for (name, key) in [("Submission", "submissionRevision"), ("Cancellation", "cancellationRevision"),
+                                ("Pagination", "paginationRevision")] {
+                XCTAssertEqual(try XCTUnwrap(proof["original\(name)Before"] as? Int), try XCTUnwrap(before[key] as? Int))
+                XCTAssertEqual(try XCTUnwrap(proof["original\(name)After"] as? Int), try XCTUnwrap(after[key] as? Int))
+            }
+            XCTAssertEqual(proof["originalBookIDs"] as? [Int], [])
+            XCTAssertEqual(proof["originalHasSubmitted"] as? Bool, true)
+            for key in ["originalIsSearching", "originalIsLoadingMore", "originalResultsAreDirty"] {
+                XCTAssertEqual(proof[key] as? Bool, false)
+            }
+            let stableFrame = measuredRow.frame
+            let drift = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                MainActor.assumeIsolated {
+                    !self.continuationVisible(measuredRow, list: list, keyboard: keyboard)
+                        || abs(measuredRow.frame.minX - stableFrame.minX) > 1
+                        || abs(measuredRow.frame.minY - stableFrame.minY) > 1
+                        || field.value as? String != "אמר" || ui.control("global-search-loading").exists
+                        || ui.control("global-search-error").exists || ui.control("global-search-dirty").exists
+                        || (try? ui.loadedCount()) != finalItems.count
+                        || (try? self.continuationTrace(traceNamespace).0) != finalTrace.0
+                        || (try? self.actualNativeReceiptLines()) != rootReceipts
+                        || (try? self.targetProcessIdentifier()) != process
+                }
+            }, object: nil)
+            drift.isInverted = true
+            XCTAssertEqual(XCTWaiter.wait(for: [drift], timeout: 2), .completed,
+                "Require stable original post-ACK row/list and no queued automatic extra page")
+            continuationAttach(finalTrace.0, name: "original-continuation-provider-trace-\(language)", json: false)
+            XCTAssertEqual(try actualNativeReceiptLines(), rootReceipts, "A generic Search root receipt cannot replace continuation evidence")
+            XCTAssertEqual(try targetProcessIdentifier(), process)
+            XCTAssertEqual(field.value as? String, "אמר")
+            XCTAssertEqual(ui.control("global-search-mode").value as? String, mode)
+            XCTAssertEqual(ui.control("global-search-books").label, books)
+            try requirePreservedOriginalWorkspace(current)
+            XCTAssertEqual(try originalWorkspaceSelectionDocuments(), savedDocuments)
+            ui.capture("original-continuation-\(kind)-\(language)-\(keyboard ? "keyboard" : "viewport")")
+            if voiceOver {
+                let identity = try XCTUnwrap(speechIdentity)
+                try continuationVoiceOver(expectedTitle: XCTUnwrap(identity["title"] as? String),
+                    expectedSnippet: XCTUnwrap(identity["text"] as? String), ui: ui)
+                XCTAssertEqual(field.value as? String, "אמר")
+                try requirePreservedOriginalWorkspace(current)
+                XCTAssertEqual(try originalWorkspaceSelectionDocuments(), savedDocuments)
+            }
+        }
+    }
+}
+
+// Actual public App Intents / system URL continuation acceptance. The DEBUG
+// observer only retains the immutable return from that production caller.
+// It has no executable trigger, source token, chooser or alternate executor.
+extension NativeRoutingAcceptanceTests {
+    private func publicSearchEvidenceFile(kind: String, token: UUID, suffix: String) throws -> URL {
+        guard ["search-public-hit", "search-public-page"].contains(kind),
+              ["result.json", "outcome.json", "trigger.txt"].contains(suffix) else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        return try continuationDocuments().appendingPathComponent("native-action-\(kind)-\(token.uuidString)-\(suffix)")
+    }
+
+    @MainActor private func publicSearchReturn(kind: String, token: UUID)
+        throws -> (request: [String: Any], command: [String: Any], receipt: [String: Any], raw: Data) {
+        let resultURL = try publicSearchEvidenceFile(kind: kind, token: token, suffix: "result.json")
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            FileManager.default.fileExists(atPath: resultURL.path)
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 45), .completed,
+            "The evidence wait cannot renew the public command's original five-second deadline")
+        let raw = try continuationRead(resultURL, maximum: 128 * 1024)
+        continuationAttach(raw, name: "actual-public-search-envelope-\(kind)-\(token)")
+        let envelope = try XCTUnwrap(JSONSerialization.jsonObject(with: raw) as? [String: Any])
+        let checkpointURL = try publicSearchEvidenceFile(kind: kind, token: token, suffix: "outcome.json")
+        // Preserve the real returned failure/partial effects before requiring
+        // an ACK, including when the later envelope reports an encoding error.
+        let bytes = try continuationRead(checkpointURL, maximum: 128 * 1024)
+        continuationAttach(bytes, name: "actual-public-search-return-\(kind)-\(token)")
+        let checkpoint = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        try continuationAttachBlobs([envelope, checkpoint], kind: kind, token: token)
+        let reference = try XCTUnwrap(envelope["outcomeCheckpoint"] as? [String: Any])
+        XCTAssertEqual(reference["file"] as? String, checkpointURL.lastPathComponent)
+        XCTAssertEqual(reference["bytes"] as? Int, bytes.count)
+        XCTAssertEqual(reference["sha256"] as? String, continuationDigest(bytes))
+        for value in [envelope, checkpoint] {
+            XCTAssertEqual(value["schemaVersion"] as? Int, 1)
+            XCTAssertEqual(value["diagnosticToken"] as? String, token.uuidString)
+            XCTAssertEqual(value["probeKind"] as? String, kind)
+            XCTAssertEqual(String(try XCTUnwrap(value["processID"] as? Int)), try targetProcessIdentifier())
+        }
+        XCTAssertEqual(envelope["actualExecutionRetained"] as? Bool, true)
+        XCTAssertEqual(envelope["triggerConsumed"] as? Bool, false)
+        XCTAssertEqual(envelope["delivery"] as? String, "original-public-entry-return")
+        XCTAssertNil(envelope["probeError"], "A diagnostic serialization failure is not successful public acceptance")
+        let execution = try XCTUnwrap(checkpoint["execution"] as? [String: Any])
+        let outcome = try XCTUnwrap(execution["outcome"] as? [String: Any])
+        XCTAssertEqual(outcome["kind"] as? String, "acknowledged", "Keep the actual refused/unqualified result attached")
+        return (try XCTUnwrap(checkpoint["publicRequest"] as? [String: Any]),
+            try XCTUnwrap(execution["command"] as? [String: Any]),
+            try XCTUnwrap(outcome["receipt"] as? [String: Any]), raw)
+    }
+
+    private func publicSearchReference(_ id: String, page: Bool) throws -> String {
+        let fields = id.split(separator: ".", omittingEmptySubsequences: false).map(String.init)
+        XCTAssertEqual(fields.count, 6)
+        guard fields.count == 6 else { throw CocoaError(.fileReadCorruptFile) }
+        XCTAssertEqual(Array(fields.prefix(5)), ["maktabah", "search", page ? "nextPage" : "result", "v1", "otzaria"])
+        let uuid = try XCTUnwrap(UUID(uuidString: fields[5]))
+        XCTAssertEqual(uuid.uuidString.lowercased(), fields[5])
+        return fields[5]
+    }
+
+    // This checks the real Get Link return without invoking an app decoder.
+    // The opaque reference is metadata only; the system must deliver the URL.
+    private func publicSearchLink(_ returned: URL, entityID: String, page: Bool, https: Bool) throws -> URL {
+        let component = try XCTUnwrap(URLComponents(url: returned, resolvingAgainstBaseURL: false))
+        let destination = page ? "native.search.nextPage" : "native.search.result"
+        XCTAssertEqual(component.scheme, "maktabah-debug"); XCTAssertEqual(component.host, "action")
+        XCTAssertNil(component.user); XCTAssertNil(component.password); XCTAssertNil(component.port); XCTAssertNil(component.fragment)
+        XCTAssertEqual(component.percentEncodedPath, "/v2/" + destination)
+        let queries = try XCTUnwrap(component.queryItems)
+        XCTAssertEqual(queries.count, 1); XCTAssertEqual(queries.first?.name, "route")
+        let encoded = try XCTUnwrap(queries.first?.value)
+        XCTAssertLessThanOrEqual(encoded.utf8.count, 4096)
+        var base64 = encoded.replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/")
+        base64 += String(repeating: "=", count: (4 - base64.count % 4) % 4)
+        let bytes = try XCTUnwrap(Data(base64Encoded: base64))
+        let payload = try XCTUnwrap(JSONSerialization.jsonObject(with: bytes) as? [String: Any])
+        XCTAssertEqual(Set(payload.keys), Set(["version", "destination", "backend", "presentation", "searchReference"]))
+        XCTAssertEqual(payload["version"] as? Int, 2); XCTAssertEqual(payload["destination"] as? String, destination)
+        XCTAssertEqual(payload["backend"] as? String, "otzaria"); XCTAssertEqual(payload["presentation"] as? String, "currentTab")
+        XCTAssertEqual(payload["searchReference"] as? String, try publicSearchReference(entityID, page: page))
+        XCTAssertFalse(String(decoding: bytes, as: UTF8.self).contains("אמר"))
+        if !https { return returned }
+        var universal = URLComponents()
+        universal.scheme = "https"; universal.host = "davidpovarsky.github.io"
+        universal.percentEncodedPath = "/chavrusatext/action" + component.percentEncodedPath
+        universal.percentEncodedQuery = component.percentEncodedQuery
+        return try XCTUnwrap(universal.url)
+    }
+
+    @MainActor private func actualPublicSearchTarget(_ system: IntentDefinitions,
+        firstItems: [[String: Any]], ui: OriginalSearchContextUI, page: Bool, language: String)
+        async throws -> (AnyAppEntity, [String: Any]?) {
+        if page {
+            let results = try await system.entities["NativeSearchContinuationEntity"].entities(
+                matching: language == "he" ? "עמוד החיפוש הבא" : "Next search page")
+            XCTAssertEqual(results.count, 1, "Require one real original next-page entity in the actual window")
+            let entity = try XCTUnwrap(results.first)
+            _ = try publicSearchReference(entity.identifier.instanceIdentifier, page: true)
+            return (entity, nil)
+        }
+        let list = try ui.require("global-search-results")
+        func prefix(_ item: [String: Any]) throws -> String {
+            let title = try XCTUnwrap(item["bookTitle"] as? String)
+            let reference = try XCTUnwrap(item["reference"] as? String)
+            return [title, reference].filter { !$0.isEmpty }.joined(separator: " — ")
+        }
+        let prefixes = try firstItems.map(prefix)
+        // A unique title/reference prefix only chooses an actual returned
+        // system entity. Full opaque-ID -> original hit/source/SQL equality is
+        // still checked independently after the real operation returns.
+        for (index, item) in firstItems.enumerated().reversed() {
+            let query = prefixes[index]
+            guard !query.isEmpty,
+                  prefixes.filter({ $0.localizedCaseInsensitiveContains(query) }).count == 1 else { continue }
+            let id = try XCTUnwrap(item["id"] as? String)
+            guard !continuationVisible(ui.control("search-result-preview-toggle-" + id), list: list, keyboard: false) else { continue }
+            let entities = try await system.entities["NativeSearchContinuationEntity"].entities(matching: query)
+            guard entities.count == 1 else { continue }
+            let entity = try XCTUnwrap(entities.first)
+            _ = try publicSearchReference(entity.identifier.instanceIdentifier, page: false)
+            return (entity, item)
+        }
+        XCTFail("The original fixture must expose a unique genuinely offscreen qualified loaded result; no fabricated ID/order fallback")
+        throw CocoaError(.fileReadCorruptFile)
+    }
+
+    @MainActor
+    func runPublicSearchContinuation(expectedPad: Bool, page: Bool, delivery: String, language: String) async throws {
+        XCTAssertTrue(["intent", "customURL", "https"].contains(delivery))
+        XCTAssertTrue(["en", "he"].contains(language)); XCTAssertEqual(isPad, expectedPad)
+        // ONE launch per selector: miniTest10's original writer uses the
+        // original workspace namespace and appends to its exact trace file.
+        let token = UUID(), traceNamespace = workspaceNamespace
+        let kind = page ? "search-public-page" : "search-public-hit"
+        let orientation = XCUIDevice.shared.orientation
+        defer { XCUIDevice.shared.orientation = orientation }
+        XCUIDevice.shared.orientation = .portrait
+        launchWithTier(.realUI, scenario: "reader", backend: "otzaria",
+            extraArgs: ["-preferredBackend", "otzaria", "-smokeBackend", "otzaria",
+                "-ChavrusaTextFaithfulReaderUIEnabled", "YES", "-otzaria_reader_unit_mode", "line",
+                "-studyWorkspaceTestingNamespace", workspaceNamespace, "-lastSelectedTab", "0",
+                "-GlobalSearchNativeTraceEnabled", "YES", "-GlobalSearchNativeTraceNamespace", traceNamespace,
+                "-nativeActionAcceptanceKind", kind, "-nativeActionAcceptanceToken", token.uuidString],
+            language: language, locale: language == "he" ? "he_IL" : "en_US")
+        XCTAssertFalse(app.launchArguments.contains("-smokeBypassBootstrap"))
+        dismissAlertsIfNeeded()
+        defer { capture("actual-public-search-\(delivery)-\(kind)-\(language)-final") }
+        let oracle = try systemReaderOracleDocument()
+        let initial = try XCTUnwrap(oracle.rows.first { $0.id == oracle.bootstrapRowID })
+        XCTAssertEqual(ProcessInfo.processInfo.environment["R27_EXPECTED_OTZARIA_WORK_KEY"], "book:\(initial.bookId)")
+        try requireReaderLocator("otzaria|book:\(initial.bookId)|line:\(initial.lineIndex)", timeout: 60)
+        let ui = OriginalSearchContextUI(app: app, test: self)
+        try ui.returnToOriginalSearch()
+        try ui.require("global-search-mode").tap(); try ui.require("global-search-mode-advanced").tap()
+        let field = try ui.require("global-search-query")
+        XCTAssertTrue(field.elementType == .searchField || field.elementType == .textField)
+        XCTAssertEqual(app.descendants(matching: .any).matching(identifier: "global-search-query").count, 1)
+        field.tap()
+        let prior = (field.value as? String) ?? ""
+        if !prior.isEmpty && prior != field.placeholderValue { field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: prior.count)) }
+        field.typeText("אמר\n")
+        try ui.wait("Require the genuine original first page before public discovery", timeout: 90) {
+            guard !ui.control("global-search-loading").exists, !ui.control("global-search-cancel").exists,
+                  !ui.control("global-search-error").exists, !ui.control("global-search-dirty").exists,
+                  let events = try? self.continuationTrace(traceNamespace).1,
+                  let last = events.last(where: { $0["event"] as? String == "published" }),
+                  let items = last["items"] as? [[String: Any]], items.count > 20,
+                  let count = try? ui.loadedCount() else { return false }
+            return count == items.count
+        }
+        let process = try targetProcessIdentifier(), initialTrace = try continuationTrace(traceNamespace)
+        let firstItems = try continuationValidatePages(initialTrace.1, namespace: traceNamespace, process: process, expectedPages: 1)
+        let firstID = try XCTUnwrap(firstItems.first?["id"] as? String)
+        try ui.assertOriginalSearchResize(rtl: language == "he", query: "אמר", firstStableID: firstID)
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let (entity, expectedItem) = try await actualPublicSearchTarget(system, firstItems: firstItems, ui: ui, page: page, language: language)
+        let entityID = entity.identifier.instanceIdentifier
+        let opaqueReference = try publicSearchReference(entityID, page: page)
+        let workspace = try actualReaderWorkspace(), current = try workspace.current()
+        let sceneID = try XCTUnwrap(workspace.lastActiveSceneID)
+        let documents = try originalWorkspaceSelectionDocuments(), rootReceipts = try actualNativeReceiptLines()
+        let mode = try XCTUnwrap(ui.require("global-search-mode").value as? String)
+        let books = try ui.require("global-search-books").label
+        var deliveredURL: URL?
+        if delivery != "intent" {
+            let linkResult = try await system.intents["GetOriginalSearchLinkIntent"].makeIntent(target: entity).run()
+            let originalURL: URL = try linkResult.value
+            deliveredURL = try publicSearchLink(originalURL, entityID: entityID, page: page, https: delivery == "https")
+            continuationAttach(Data(try XCTUnwrap(deliveredURL).absoluteString.utf8), name: "actual-system-public-search-URL", json: false)
+        }
+        let beforeTrace = try continuationTrace(traceNamespace)
+        XCTAssertEqual(beforeTrace.0, initialTrace.0, "Metadata/Link discovery and geometry setup must not execute a page or result")
+        XCTAssertEqual(try actualNativeReceiptLines(), rootReceipts)
+        for suffix in ["trigger.txt", "result.json", "outcome.json"] {
+            XCTAssertFalse(FileManager.default.fileExists(atPath: try publicSearchEvidenceFile(kind: kind, token: token, suffix: suffix).path))
+        }
+        // The only measured delivery: actual out-of-process App Intents or
+        // exact owned simctl system-openurl. No direct perform/decoder call.
+        var deliveryFailure: Error?
+        do {
+            if let deliveredURL { try openInExistingProcess(deliveredURL) }
+            else if page { _ = try await system.intents["LoadNextOriginalSearchPageIntent"].makeIntent(page: entity).run() }
+            else { _ = try await system.intents["RevealLoadedSearchResultIntent"].makeIntent(result: entity).run() }
+        } catch { deliveryFailure = error }
+        let returned = try publicSearchReturn(kind: kind, token: token)
+        XCTAssertNil(deliveryFailure, "Real system delivery must also succeed after the actual caller returns: \(String(describing: deliveryFailure))")
+        if let deliveryFailure { throw deliveryFailure }
+        XCTAssertFalse(app.alerts["Unable to open link"].exists)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: try publicSearchEvidenceFile(kind: kind, token: token, suffix: "trigger.txt").path))
+        let request = returned.request, command = returned.command, receipt = returned.receipt
+        XCTAssertEqual(request["referenceID"] as? String, entityID)
+        XCTAssertEqual(request["kind"] as? String, page ? "nextPage" : "result")
+        XCTAssertFalse(try XCTUnwrap(request["title"] as? String).isEmpty)
+        let origin = try XCTUnwrap(request["origin"] as? [String: Any])
+        XCTAssertEqual(origin["kind"] as? String, delivery == "intent" ? "appIntent" : "deepLink")
+        if delivery != "intent" { XCTAssertEqual(origin["receivingSceneID"] as? String, sceneID) }
+        let invocation = try XCTUnwrap(request["invocation"] as? [String: Any])
+        XCTAssertEqual(try continuationJSON(invocation), try continuationJSON(try XCTUnwrap(command["invocation"])))
+        XCTAssertEqual(try continuationUUID(invocation["requestID"], "public invocation"),
+                       try continuationUUID(receipt["requestID"], "actual receipt"))
+        XCTAssertGreaterThan(try XCTUnwrap((invocation["deadlineUptimeNanoseconds"] as? NSNumber).flatMap { UInt64($0.stringValue) }), 0)
+        let source = try XCTUnwrap(command["source"] as? [String: Any])
+        let before = try XCTUnwrap(receipt["before"] as? [String: Any]), after = try XCTUnwrap(receipt["after"] as? [String: Any])
+        XCTAssertEqual(try continuationJSON(source), try continuationJSON(before))
+        let metadataSource = try XCTUnwrap(request["source"] as? [String: Any])
+        for key in ["sceneID", "snapshot", "sessionID", "modelID", "generation", "sourceRevision", "submissionRevision", "cancellationRevision", "paginationRevision", "pageRevision", "configuration"] {
+            XCTAssertEqual(try continuationJSON([key: try XCTUnwrap(metadataSource[key])]),
+                           try continuationJSON([key: try XCTUnwrap(before[key])]), "Actual discovered source: " + key)
+        }
+        let originalPublication = try XCTUnwrap(beforeTrace.1.last { $0["event"] as? String == "published" })
+        for value in [before, after] {
+            XCTAssertEqual(value["sceneID"] as? String, sceneID)
+            for key in ["observationID", "sessionID", "modelID"] { _ = try continuationUUID(value[key], key) }
+            for key in ["generation", "sourceRevision", "pageRevision"] { _ = try XCTUnwrap((value[key] as? NSNumber).flatMap { UInt64($0.stringValue) }, key) }
+            for key in ["submissionRevision", "cancellationRevision", "paginationRevision"] { _ = try XCTUnwrap(value[key] as? Int, key) }
+        }
+        let snapshot = try XCTUnwrap(before["snapshot"] as? [String: Any])
+        XCTAssertEqual(snapshot["backend"] as? String, "otzaria")
+        XCTAssertEqual(try XCTUnwrap(snapshot["generation"] as? NSNumber), try XCTUnwrap(originalPublication["backendGeneration"] as? NSNumber))
+        XCTAssertEqual(try XCTUnwrap(before["submissionRevision"] as? Int), try XCTUnwrap(originalPublication["submissionRevision"] as? Int))
+        for key in ["observationID", "sceneID", "snapshot", "sessionID", "modelID", "generation", "sourceRevision", "submissionRevision", "cancellationRevision", "configuration"] {
+            XCTAssertEqual(try continuationJSON([key: try XCTUnwrap(before[key])]),
+                           try continuationJSON([key: try XCTUnwrap(after[key])]), "Same retained source: " + key)
+        }
+        let operation = try XCTUnwrap(receipt["operation"] as? [String: Any])
+        XCTAssertEqual(try continuationJSON(operation), try continuationJSON(try XCTUnwrap(command["operation"])))
+        XCTAssertEqual(operation["kind"] as? String, page ? "nextOriginalPage" : "revealLoadedHit")
+        XCTAssertNotEqual(try continuationUUID(operation["token"], "fresh original operation token").lowercased(), opaqueReference,
+                          "An opaque public reference must never be reused as original execution authority")
+        let effects = try XCTUnwrap(receipt["effects"] as? [[String: Any]])
+        let visible = try XCTUnwrap(receipt["visible"] as? [String: Any])
+        for key in ["witnessID", "listID"] { _ = try continuationUUID(visible[key], key) }
+        XCTAssertGreaterThan(try XCTUnwrap((visible["layoutRevision"] as? NSNumber)?.uint64Value), 0)
+        let list = try ui.require("global-search-results"), measuredRow: XCUIElement
+        if page {
+            XCTAssertTrue(request["hit"] is NSNull)
+            XCTAssertEqual(effects.compactMap { $0["kind"] as? String }, ["pageRequested", "pageCommitted"])
+            let committed = try XCTUnwrap(effects.last?["page"] as? [String: Any])
+            XCTAssertEqual(try continuationUUID(effects.first?["attemptID"], "requested attempt"), try continuationUUID(committed["attemptID"], "committed attempt"))
+            XCTAssertEqual(try continuationUUID(committed["modelID"], "committed model"), try continuationUUID(before["modelID"], "source model"))
+            XCTAssertEqual(try XCTUnwrap(committed["generation"] as? NSNumber), try XCTUnwrap(before["generation"] as? NSNumber))
+            let originalRequest = try XCTUnwrap(JSONSerialization.jsonObject(with: continuationBlob(committed["request"], kind: kind, token: token)) as? [String: Any])
+            XCTAssertEqual(originalRequest["query"] as? String, "אמר"); XCTAssertEqual(originalRequest["limit"] as? Int, 100)
+            let consumed = try XCTUnwrap((beforeTrace.1.last { $0["event"] as? String == "provider" })?["nextOffset"] as? Int)
+            for key in ["requestOffset", "consumedBefore", "cursorBefore"] { XCTAssertEqual(committed[key] as? Int, consumed) }
+            XCTAssertEqual(originalRequest["offset"] as? Int, consumed); XCTAssertEqual(committed["requestLimit"] as? Int, 100)
+            let now = try continuationTrace(traceNamespace)
+            let provider = try XCTUnwrap(now.1.last { $0["event"] as? String == "provider" })
+            let rows = try XCTUnwrap((provider["page"] as? [String: Any])?["results"] as? [[String: Any]])
+            XCTAssertEqual(committed["rawRowCount"] as? Int, rows.count); XCTAssertEqual(committed["mappedRowCount"] as? Int, rows.count)
+            XCTAssertEqual(committed["consumedAfter"] as? Int, consumed + rows.count)
+            XCTAssertEqual(try XCTUnwrap(committed["rawNextOffset"] as? Int), try XCTUnwrap(provider["nextOffset"] as? Int))
+            if try XCTUnwrap(committed["hasMore"] as? Bool) { XCTAssertEqual(committed["normalizedNextOffset"] as? Int, consumed + rows.count) }
+            else { XCTAssertTrue(committed["normalizedNextOffset"] is NSNull) }
+            XCTAssertEqual(try XCTUnwrap(committed["pageRevision"] as? NSNumber), try XCTUnwrap(after["pageRevision"] as? NSNumber))
+            XCTAssertEqual(try XCTUnwrap(after["paginationRevision"] as? Int), try XCTUnwrap(before["paginationRevision"] as? Int) + 1)
+            XCTAssertTrue(visible["rowID"] is NSNull); XCTAssertTrue(visible["identity"] is NSNull)
+            measuredRow = ui.control("search-result-preview-toggle-" + firstID)
+        } else {
+            let expected = try XCTUnwrap(expectedItem), hit = try XCTUnwrap(request["hit"] as? [String: Any])
+            let id = try XCTUnwrap(expected["id"] as? String)
+            XCTAssertEqual(hit["stableID"] as? String, id)
+            XCTAssertEqual(try XCTUnwrap(hit["locator"] as? String), try XCTUnwrap(expected["locator"] as? String))
+            XCTAssertEqual(effects.compactMap { $0["kind"] as? String }, ["hitSelectionApplied"])
+            let applied = try XCTUnwrap(effects.first?["hit"] as? [String: Any])
+            XCTAssertEqual(try continuationUUID(applied["token"], "applied original hit"), try continuationUUID(operation["token"], "operation"))
+            for key in ["stableID", "locator", "versionTitle", "language", "identity"] {
+                XCTAssertEqual(try continuationJSON([key: try XCTUnwrap(hit[key])]), try continuationJSON([key: try XCTUnwrap(applied[key])]))
+            }
+            let identityBytes = try continuationBlob(hit["identity"], kind: kind, token: token)
+            let identity = try XCTUnwrap(JSONSerialization.jsonObject(with: identityBytes) as? [String: Any])
+            XCTAssertEqual(identity["stableID"] as? String, id)
+            XCTAssertEqual(try XCTUnwrap(identity["book"] as? Int), try XCTUnwrap(expected["bookID"] as? Int))
+            XCTAssertEqual(try XCTUnwrap(identity["page"] as? Int), try XCTUnwrap(expected["lineIndex"] as? Int))
+            XCTAssertEqual(try XCTUnwrap(identity["title"] as? String), try XCTUnwrap(expected["bookTitle"] as? String))
+            XCTAssertEqual(continuationDigest(Data(try XCTUnwrap(identity["text"] as? String).utf8)), try XCTUnwrap(expected["snippetSHA256"] as? String))
+            XCTAssertEqual(try continuationBlob(visible["identity"], kind: kind, token: token), identityBytes)
+            _ = try continuationUUID(visible["rowID"], "actual original row")
+            XCTAssertEqual(try XCTUnwrap(before["pageRevision"] as? NSNumber), try XCTUnwrap(after["pageRevision"] as? NSNumber))
+            XCTAssertEqual(try XCTUnwrap(before["paginationRevision"] as? Int), try XCTUnwrap(after["paginationRevision"] as? Int))
+            measuredRow = ui.control("search-result-preview-toggle-" + id)
+            XCTAssertEqual(measuredRow.value as? String, "Expanded")
+            let preview = app.scrollViews.matching(identifier: "search-result-expanded-preview-" + id).firstMatch
+            XCTAssertTrue(preview.waitForExistence(timeout: 45)); XCTAssertTrue(preview.isHittable && !preview.frame.isEmpty)
+        }
+        let keyboard = app.keyboards.firstMatch.exists
+        XCTAssertTrue(continuationVisible(measuredRow, list: list, keyboard: keyboard))
+        let finalTrace = try continuationTrace(traceNamespace)
+        XCTAssertEqual(finalTrace.0.prefix(beforeTrace.0.count), beforeTrace.0)
+        let finalItems = try continuationValidatePages(finalTrace.1, namespace: traceNamespace, process: process, expectedPages: page ? 2 : 1)
+        XCTAssertEqual(try ui.loadedCount(), finalItems.count)
+        let stableFrame = measuredRow.frame
+        let drift = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+            !self.continuationVisible(measuredRow, list: list, keyboard: keyboard)
+                || abs(measuredRow.frame.minX - stableFrame.minX) > 1 || abs(measuredRow.frame.minY - stableFrame.minY) > 1
+                || field.value as? String != "אמר" || ui.control("global-search-loading").exists
+                || ui.control("global-search-cancel").exists || ui.control("global-search-error").exists
+                || ui.control("global-search-dirty").exists || (try? ui.loadedCount()) != finalItems.count
+                || (try? self.continuationTrace(traceNamespace).0) != finalTrace.0
+                || (try? self.actualNativeReceiptLines()) != rootReceipts || (try? self.targetProcessIdentifier()) != process
+        } }, object: nil)
+        drift.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [drift], timeout: 2), .completed, "Require real post-ACK geometry and no queued extra page")
+        continuationAttach(finalTrace.0, name: "actual-public-search-original-provider-trace", json: false)
+        XCTAssertEqual(ui.control("global-search-mode").value as? String, mode); XCTAssertEqual(ui.control("global-search-books").label, books)
+        try requirePreservedOriginalWorkspace(current); XCTAssertEqual(try originalWorkspaceSelectionDocuments(), documents)
+        XCTAssertEqual(try actualNativeReceiptLines(), rootReceipts, "A generic Search root ACK cannot replace a typed result/page receipt")
+
+        // A genuine successful cached reference must be one-use. It is not
+        // replaced with a fabricated unknown entity for the refusal case.
+        if let deliveredURL {
+            try openInExistingProcess(deliveredURL)
+            XCTAssertTrue(app.alerts["Unable to open link"].waitForExistence(timeout: 10), "Require explicit original public replay refusal")
+        } else {
+            var refused = false
+            do {
+                if page { _ = try await system.intents["LoadNextOriginalSearchPageIntent"].makeIntent(page: entity).run() }
+                else { _ = try await system.intents["RevealLoadedSearchResultIntent"].makeIntent(result: entity).run() }
+            } catch {
+                refused = true
+                continuationAttach(Data(String(describing: type(of: error)).utf8), name: "actual-cached-search-reference-refusal-type", json: false)
+            }
+            XCTAssertTrue(refused, "The same previously successful reference cannot be replayed")
+        }
+        let refusalDrift = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in MainActor.assumeIsolated {
+            (try? self.continuationTrace(traceNamespace).0) != finalTrace.0
+                || (try? self.actualNativeReceiptLines()) != rootReceipts
+                || (try? self.originalWorkspaceSelectionDocuments()) != documents
+                || (try? self.targetProcessIdentifier()) != process
+                || (try? self.continuationRead(self.publicSearchEvidenceFile(kind: kind, token: token, suffix: "result.json"), maximum: 128 * 1024)) != returned.raw
+        } }, object: nil)
+        refusalDrift.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [refusalDrift], timeout: 5), .completed, "No late state/evidence/receipt after the full original command budget")
+        try requirePreservedOriginalWorkspace(current)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: try publicSearchEvidenceFile(kind: kind, token: token, suffix: "trigger.txt").path))
+    }
+}
+
+
+// Saved Results acceptance uses the ORIGINAL Search/Save/Folder controls.
+// Its only measured navigation delivery is a cached system AppEntity. SQLite
+// is opened read-only; no fixture database, result ID, query route or ACK is
+// injected into the app. All six journeys require an already mounted tree.
+import SQLite3
+
+extension NativeRoutingAcceptanceTests {
+    enum OriginalSavedResultsJourney: Equatable {
+        case folder, result, resultAfterReload, folderAfterDeletion
+        var isFolder: Bool { self == .folder || self == .folderAfterDeletion }
+        var refusesStale: Bool { self == .resultAfterReload || self == .folderAfterDeletion }
+    }
+
+    private enum OriginalSavedResultsFixtureError: Error {
+        case rejected(String)
+    }
+    private struct OriginalSavedResultsCell: Codable, Equatable {
+        let type: Int32
+        let value: String
+    }
+    private typealias OriginalSavedResultsRow = [String: OriginalSavedResultsCell]
+    private struct OriginalSavedResultsDatabase: Codable, Equatable {
+        let folders: [OriginalSavedResultsRow]
+        let results: [OriginalSavedResultsRow]
+        var canonical: Data {
+            get throws { try JSONEncoder.sortedSavedResults.encode(self) }
+        }
+    }
+    private struct OriginalSavedResultsOwner {
+        let container: URL
+        let metadata: Data
+        let bookmark: Data?
+        let database: URL
+    }
+    private struct OriginalSavedResultsFixture {
+        let parent: String
+        let child: String
+        let result: String
+        let query: String
+        let owner: OriginalSavedResultsOwner
+        let parentID: String
+        let childID: String
+        let mode: String
+        let books: String
+    }
+
+    private func requireOriginalSavedCondition(_ value: Bool, _ reason: String) throws {
+        guard value else { throw OriginalSavedResultsFixtureError.rejected(reason) }
+    }
+
+    /// Preserve SQLite NULL, integer, floating point, text and blob identity.
+    /// Both original tables are read in ONE read transaction, including their
+    /// sync metadata. No expected result is supplied by the app under test.
+    private func readOriginalSavedDatabase(_ url: URL) throws -> OriginalSavedResultsDatabase {
+        var database: OpaquePointer?
+        let opened = sqlite3_open_v2(url.path, &database,
+            SQLITE_OPEN_READONLY | SQLITE_OPEN_FULLMUTEX, nil)
+        guard opened == SQLITE_OK, let database else {
+            if let database { sqlite3_close(database) }
+            throw OriginalSavedResultsFixtureError.rejected("Cannot open the original Saved Results database read-only")
+        }
+        defer { sqlite3_close(database) }
+        sqlite3_busy_timeout(database, 1_000)
+        try requireOriginalSavedCondition(sqlite3_db_readonly(database, "main") == 1,
+                                         "The Saved Results oracle must be read-only")
+        try requireOriginalSavedCondition(sqlite3_exec(database, "BEGIN DEFERRED TRANSACTION", nil, nil, nil) == SQLITE_OK,
+                                         "Could not begin one original database read snapshot")
+        defer { sqlite3_exec(database, "ROLLBACK", nil, nil, nil) }
+        func rows(_ sql: String) throws -> [OriginalSavedResultsRow] {
+            var statement: OpaquePointer?
+            try requireOriginalSavedCondition(sqlite3_prepare_v2(database, sql, -1, &statement, nil) == SQLITE_OK,
+                                             "The original Saved Results schema is unavailable")
+            guard let statement else { throw OriginalSavedResultsFixtureError.rejected("Missing original read statement") }
+            defer { sqlite3_finalize(statement) }
+            var values: [OriginalSavedResultsRow] = []
+            while true {
+                let status = sqlite3_step(statement)
+                if status == SQLITE_DONE { return values }
+                try requireOriginalSavedCondition(status == SQLITE_ROW, "Original Saved Results read did not complete")
+                var row: OriginalSavedResultsRow = [:]
+                for column in 0..<sqlite3_column_count(statement) {
+                    guard let name = sqlite3_column_name(statement, column) else {
+                        throw OriginalSavedResultsFixtureError.rejected("Original SQL column has no name")
+                    }
+                    let key = String(cString: name), type = sqlite3_column_type(statement, column)
+                    let value: String
+                    switch type {
+                    case SQLITE_NULL: value = ""
+                    case SQLITE_INTEGER: value = String(sqlite3_column_int64(statement, column))
+                    case SQLITE_FLOAT: value = String(sqlite3_column_double(statement, column).bitPattern)
+                    case SQLITE_TEXT:
+                        guard let text = sqlite3_column_text(statement, column) else {
+                            throw OriginalSavedResultsFixtureError.rejected("Original SQL text is unreadable")
+                        }
+                        value = String(decoding: UnsafeBufferPointer(start: text,
+                            count: Int(sqlite3_column_bytes(statement, column))), as: UTF8.self)
+                    case SQLITE_BLOB:
+                        let count = Int(sqlite3_column_bytes(statement, column))
+                        if count == 0 { value = "" }
+                        else {
+                            guard let bytes = sqlite3_column_blob(statement, column) else {
+                                throw OriginalSavedResultsFixtureError.rejected("Original SQL blob is unreadable")
+                            }
+                            value = Data(bytes: bytes, count: count).base64EncodedString()
+                        }
+                    default: throw OriginalSavedResultsFixtureError.rejected("Unknown original SQLite value type")
+                    }
+                    try requireOriginalSavedCondition(row[key] == nil, "Duplicate original SQL column")
+                    row[key] = .init(type: type, value: value)
+                }
+                values.append(row)
+            }
+        }
+        return try .init(folders: rows("SELECT * FROM folders ORDER BY id"),
+                         results: rows("SELECT * FROM results ORDER BY id"))
+    }
+
+    private func originalSavedBookmark(in container: URL) throws -> Data? {
+        let preferences = container.appendingPathComponent("Library/Preferences/com.davidpovarsky.chavrusatext.plist")
+        guard FileManager.default.fileExists(atPath: preferences.path) else { return nil }
+        let dictionary = try XCTUnwrap(PropertyListSerialization.propertyList(
+            from: Data(contentsOf: preferences), format: nil) as? [String: Any])
+        guard let value = dictionary["annotations_FolderPath"] else { return nil }
+        return try XCTUnwrap(value as? Data, "The original AppConfig bookmark must retain its actual stored type")
+    }
+
+    @MainActor private func resolveOriginalSavedOwner(parentName: String, childName: String,
+                                                     resultName: String) throws -> OriginalSavedResultsOwner {
+        let sidecar = try workspaceSidecarURL().standardizedFileURL
+        let suffix = ["Library", "Application Support", "ChavrusaText", "StudyWorkspace", "UITests", workspaceNamespace + ".json"]
+        try requireOriginalSavedCondition(Array(sidecar.pathComponents.suffix(suffix.count)) == suffix,
+                                         "Require this test's actual original workspace path")
+        var container = sidecar
+        for _ in suffix { container.deleteLastPathComponent() }
+        try requireOriginalSavedCondition(container.deletingLastPathComponent() == workspaceContainerParent().standardizedFileURL,
+                                         "Original workspace must belong to the actual simulator data-container parent")
+        try requireOriginalSavedCondition(UUID(uuidString: container.lastPathComponent) != nil,
+                                         "Require the actual MCM container identity")
+        let metadata = try Data(contentsOf: container.appendingPathComponent(".com.apple.mobile_container_manager.metadata.plist"))
+        let identity = try XCTUnwrap(PropertyListSerialization.propertyList(from: metadata, format: nil) as? [String: Any])
+        try requireOriginalSavedCondition(identity["MCMMetadataIdentifier"] as? String == "com.davidpovarsky.chavrusatext",
+                                         "The Saved Results oracle must use the actual target app owner")
+        try requireOriginalSavedCondition(!app.launchArguments.contains("-annotations_FolderPath"),
+                                         "No launch-domain Saved Results storage override is allowed")
+        let bookmark = try originalSavedBookmark(in: container)
+        let candidates: [URL]
+        if let bookmark, !bookmark.isEmpty {
+            var stale = false
+            let original = try URL(resolvingBookmarkData: bookmark, options: [],
+                                   relativeTo: nil, bookmarkDataIsStale: &stale)
+            try requireOriginalSavedCondition(!stale, "Do not repair or rewrite a stale original folder bookmark in the test")
+            candidates = [original.appendingPathComponent("SearchResults.sqlite").standardizedFileURL]
+        } else {
+            // These are the two exact AppConfig.appSupportDir compile branches.
+            // The unique UI-created rows, not a guessed build configuration,
+            // select the one actual database. Ambiguity is a fixture failure.
+            candidates = ["Maktabah-Debug", "Maktabah"].map {
+                container.appendingPathComponent("Library/Application Support/" + $0 + "/SearchResults.sqlite")
+            }
+        }
+        var matches: [URL] = []
+        for candidate in candidates where FileManager.default.fileExists(atPath: candidate.path) {
+            let resource = try candidate.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey])
+            try requireOriginalSavedCondition(resource.isRegularFile == true && resource.isSymbolicLink != true,
+                                             "Require an original regular database, not a test redirect")
+            let data = try readOriginalSavedDatabase(candidate)
+            if data.folders.filter({ $0["name"]?.value == parentName }).count == 1,
+               data.folders.filter({ $0["name"]?.value == childName }).count == 1,
+               !data.results.filter({ $0["name"]?.value == resultName }).isEmpty { matches.append(candidate) }
+        }
+        try requireOriginalSavedCondition(matches.count == 1,
+                                         "Exactly one original AppConfig location must contain the rows created through UI")
+        return .init(container: container, metadata: metadata, bookmark: bookmark, database: try XCTUnwrap(matches.first))
+    }
+
+    private func validateOriginalSavedOwner(_ owner: OriginalSavedResultsOwner) throws {
+        try requireOriginalSavedCondition(try Data(contentsOf: owner.container.appendingPathComponent(
+            ".com.apple.mobile_container_manager.metadata.plist")) == owner.metadata,
+            "Actual Saved Results container owner changed")
+        try requireOriginalSavedCondition(originalSavedBookmark(in: owner.container) == owner.bookmark,
+                                         "Original Saved Results folder selection changed")
+    }
+
+    @MainActor private func requireOriginalSavedButton(_ name: String) throws -> XCUIElement {
+        let candidates = app.buttons.matching(NSPredicate(format: "label CONTAINS %@", name))
+        try requireOriginalSavedCondition(candidates.firstMatch.waitForExistence(timeout: 15),
+                                         "The uniquely named original Saved Results control is absent")
+        try requireOriginalSavedCondition(candidates.count == 1,
+                                         "Require one exact original control for the unique UI-created name")
+        let button = candidates.element(boundBy: 0)
+        try requireOriginalSavedVisible(button)
+        return button
+    }
+
+    @MainActor private func requireOriginalSavedVisible(_ element: XCUIElement) throws {
+        let frame = element.frame, visible = frame.intersection(app.windows.firstMatch.frame)
+        try requireOriginalSavedCondition(element.exists && element.isHittable && !frame.isEmpty
+            && !visible.isNull && visible.width * visible.height >= frame.width * frame.height * 0.9,
+            "Require the actual original control inside its visible native window")
+    }
+
+    @MainActor private func replaceOriginalSavedText(_ field: XCUIElement, with value: String) throws {
+        try requireOriginalSavedVisible(field)
+        field.tap()
+        let current = (field.value as? String) ?? ""
+        if !current.isEmpty && current != field.placeholderValue {
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: current.count))
+        }
+        field.typeText(value)
+        try requireOriginalSavedCondition(field.value as? String == value, "Original field did not receive the complete fixture input")
+    }
+
+    @MainActor private func createOriginalSavedFolderInWriter(_ name: String) throws {
+        let writer = app.navigationBars["Save Results"]
+        try requireOriginalSavedCondition(writer.exists, "Only the original result writer may create this fixture")
+        let buttons = app.buttons.matching(NSPredicate(format: "label == %@", "New Folder"))
+        try requireOriginalSavedCondition(buttons.count == 1, "Require the original writer's single New Folder action")
+        try requireOriginalSavedVisible(buttons.element(boundBy: 0)); buttons.element(boundBy: 0).tap()
+        let alert = app.alerts["Create Folder"]
+        try requireOriginalSavedCondition(alert.waitForExistence(timeout: 10) && alert.textFields.count == 1,
+                                         "Require the original Create Folder prompt")
+        try replaceOriginalSavedText(alert.textFields.element(boundBy: 0), with: name)
+        alert.buttons["Create"].tap()
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: alert)
+        try requireOriginalSavedCondition(XCTWaiter.wait(for: [gone], timeout: 10) == .completed,
+                                         "The original folder creation must finish")
+        try requireOriginalSavedButton(name).tap()
+    }
+
+    @MainActor private func openOriginalSavedResults() throws {
+        let ui = OriginalSearchContextUI(app: app, test: self)
+        try ui.require("global-search-saved").tap()
+        try requireOriginalSavedCondition(app.navigationBars["Saved Results"].waitForExistence(timeout: 20),
+                                         "Require the original Saved Results sheet")
+    }
+
+    @MainActor private func closeOriginalSavedResults() throws {
+        let close = app.navigationBars.buttons.matching(NSPredicate(format: "label == %@", "Close"))
+        try requireOriginalSavedCondition(close.count == 1, "Require the original Saved Results Close control")
+        try requireOriginalSavedVisible(close.element(boundBy: 0)); close.element(boundBy: 0).tap()
+        let ui = OriginalSearchContextUI(app: app, test: self)
+        try ui.wait("The original Saved Results sheet must dismiss to its same Search parent") {
+            ui.control("global-search-query").isHittable && !close.firstMatch.exists
+        }
+    }
+
+    @MainActor private func requireOriginalSavedSearchUnchanged(_ fixture: OriginalSavedResultsFixture) throws {
+        let ui = OriginalSearchContextUI(app: app, test: self)
+        try requireOriginalSavedCondition(try ui.require("global-search-query").value as? String == fixture.query,
+                                         "Revealing a saved node must not execute or replace the original query")
+        try requireOriginalSavedCondition(try ui.require("global-search-mode").value as? String == fixture.mode,
+                                         "Saved node reveal must preserve original search mode")
+        try requireOriginalSavedCondition(try ui.require("global-search-books").label == fixture.books,
+                                         "Saved node reveal must preserve original book filter")
+        try requireOriginalSavedCondition(!ui.control("global-search-loading").exists
+            && !ui.control("global-search-error").exists && !ui.control("global-search-dirty").exists,
+            "Saved node reveal must not start or invalidate the original search")
+    }
+
+    @MainActor private func createOriginalSavedFixture(expectedPad: Bool) throws -> OriginalSavedResultsFixture {
+        _ = try launchCurrentCanonicalReader(expectedPad: expectedPad)
+        let receipts = try actualNativeReceiptLines()
+        let ui = OriginalSearchContextUI(app: app, test: self)
+        try ui.returnToOriginalSearch()
+        let query = try XCTUnwrap(ProcessInfo.processInfo.environment["GLOBAL_SEARCH_TEST_QUERY"],
+                                 "Use the original runner's query derived from its installed search fixture")
+        try requireOriginalSavedCondition(!query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+                                         "The original search fixture query cannot be empty")
+        try ui.require("global-search-mode").tap(); try ui.require("global-search-mode-advanced").tap()
+        let field = try ui.require("global-search-query")
+        try requireOriginalSavedCondition(app.descendants(matching: .any).matching(identifier: "global-search-query").count == 1,
+                                         "Require the actual single original query field")
+        try replaceOriginalSavedText(field, with: query); field.typeText("\n")
+        try ui.wait("The real original search must finish with saveable rows", timeout: 90) {
+            let rows = self.app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "search-result-preview-toggle-"))
+            return rows.count > 0 && !ui.control("global-search-loading").exists
+                && !ui.control("global-search-cancel").exists && !ui.control("global-search-error").exists
+                && !ui.control("global-search-dirty").exists
+        }
+        let mode = try XCTUnwrap(ui.require("global-search-mode").value as? String)
+        let books = try ui.require("global-search-books").label
+        let token = UUID().uuidString.lowercased()
+        let parent = "Saved parent " + token, child = "Saved child " + token, result = "Saved result " + token
+        try ui.require("global-search-more").tap(); try ui.require("global-search-save").tap()
+        let writer = app.navigationBars["Save Results"]
+        try requireOriginalSavedCondition(writer.waitForExistence(timeout: 15), "Require the original result writer")
+        try createOriginalSavedFolderInWriter(parent)
+        try createOriginalSavedFolderInWriter(child)
+        let name = app.textFields["Name"]
+        try replaceOriginalSavedText(name, with: result)
+        let save = writer.buttons["Save"]
+        try requireOriginalSavedVisible(save); save.tap()
+        try ui.wait("The original save must return to Search") {
+            !writer.exists && ui.control("global-search-saved").isHittable
+        }
+        let owner = try resolveOriginalSavedOwner(parentName: parent, childName: child, resultName: result)
+        let data = try readOriginalSavedDatabase(owner.database)
+        let parentRow = try XCTUnwrap(data.folders.first { $0["name"]?.value == parent })
+        let childRow = try XCTUnwrap(data.folders.first { $0["name"]?.value == child })
+        let parentID = try XCTUnwrap(parentRow["id"]?.value), childID = try XCTUnwrap(childRow["id"]?.value)
+        try requireOriginalSavedCondition(parentRow["parent"]?.type == SQLITE_NULL
+            && childRow["parent"]?.value == parentID, "Require the exact original nested folder relationship")
+        let saved = data.results.filter { $0["name"]?.value == result }
+        try requireOriginalSavedCondition(!saved.isEmpty && saved.allSatisfy {
+            $0["folder_id"]?.value == childID && $0["query"]?.value == query
+                && $0["archives"]?.type == SQLITE_INTEGER && $0["bkId"]?.type == SQLITE_INTEGER
+                && !($0["contentId"]?.value ?? "").isEmpty
+        }, "Require original persisted search rows, without assuming one SQL row per grouped result")
+        try requireOriginalSavedCondition(actualNativeReceiptLines() == receipts,
+                                         "Original fixture UI must not fabricate a measured navigation receipt")
+        let fixture = OriginalSavedResultsFixture(parent: parent, child: child, result: result, query: query,
+            owner: owner, parentID: parentID, childID: childID, mode: mode, books: books)
+        try requireOriginalSavedSearchUnchanged(fixture)
+        try openOriginalSavedResults()
+        try requireOriginalSavedButton(parent).tap()
+        try requireOriginalSavedCondition(app.navigationBars[parent].waitForExistence(timeout: 15),
+                                         "The original parent folder must be mounted before entity discovery")
+        try requireOriginalSavedVisible(requireOriginalSavedButton(child))
+        return fixture
+    }
+
+    @MainActor private func requireOriginalSavedTarget(_ fixture: OriginalSavedResultsFixture) throws {
+        let page = app.navigationBars[fixture.child]
+        try requireOriginalSavedCondition(page.waitForExistence(timeout: 15),
+                                         "A root-only Saved Results receipt cannot satisfy the exact original folder")
+        try requireOriginalSavedVisible(page.staticTexts[fixture.child])
+        let row = try requireOriginalSavedButton(fixture.result)
+        try requireOriginalSavedCondition(row.label.contains(fixture.result), "Require the actual saved result row")
+        // Do NOT tap this original row: its legitimate action executes the search.
+    }
+
+    @MainActor private func deleteOriginalSavedChild(_ fixture: OriginalSavedResultsFixture) throws {
+        try requireOriginalSavedCondition(app.navigationBars[fixture.parent].exists,
+                                         "Delete only from the already visible original parent page")
+        let before = try readOriginalSavedDatabase(fixture.owner.database)
+        let child = try requireOriginalSavedButton(fixture.child)
+        child.swipeLeft()
+        let deletes = app.buttons.matching(NSPredicate(format: "label == %@", "Delete"))
+        try requireOriginalSavedCondition(deletes.count == 1, "Require the original swiped child's sole Delete action")
+        try requireOriginalSavedVisible(deletes.element(boundBy: 0)); deletes.element(boundBy: 0).tap()
+        let alert = app.alerts["Delete Folder"]
+        try requireOriginalSavedCondition(alert.waitForExistence(timeout: 10)
+            && alert.staticTexts.allElementsBoundByIndex.contains(where: { $0.label.contains(fixture.child) }),
+            "Deletion must explicitly identify only the test-owned child")
+        alert.buttons["Delete"].tap()
+        let gone = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard !alert.exists, let data = try? self.readOriginalSavedDatabase(fixture.owner.database) else { return false }
+            return !data.folders.contains { $0["id"]?.value == fixture.childID }
+                && !data.results.contains { $0["folder_id"]?.value == fixture.childID }
+                && data.folders.contains { $0["id"]?.value == fixture.parentID && $0["name"]?.value == fixture.parent }
+        }, object: nil)
+        try requireOriginalSavedCondition(XCTWaiter.wait(for: [gone], timeout: 15) == .completed,
+                                         "Require the original committed delete and its surviving parent")
+        let after = try readOriginalSavedDatabase(fixture.owner.database)
+        XCTAssertEqual(after.folders, before.folders.filter { $0["id"]?.value != fixture.childID },
+                       "The original destructive setup may remove only the exact test-owned child")
+        XCTAssertEqual(after.results, before.results.filter { $0["folder_id"]?.value != fixture.childID })
+    }
+
+    @MainActor private func cleanupOriginalSavedFixture(_ fixture: OriginalSavedResultsFixture) throws {
+        // Cleanup starts ONLY after the measured proof/refusal window. An
+        // explicit cleanup activation never counts as system foreground ACK.
+        if app.state == .runningBackground || app.state == .runningBackgroundSuspended { app.activate() }
+        try requireOriginalSavedCondition(app.state == .runningForeground && app.alerts.count == 0,
+                                         "Cleanup will not dismiss an unknown original alert")
+        try validateOriginalSavedOwner(fixture.owner)
+        if app.navigationBars.buttons.matching(NSPredicate(format: "label == %@", "Close")).count == 1 {
+            try closeOriginalSavedResults()
+        }
+        try requireOriginalSavedSearchUnchanged(fixture)
+        try openOriginalSavedResults()
+        let data = try readOriginalSavedDatabase(fixture.owner.database)
+        let parents = data.folders.filter { $0["name"]?.value == fixture.parent }
+        try requireOriginalSavedCondition(parents.count == 1 && parents[0]["id"]?.value == fixture.parentID
+            && parents[0]["parent"]?.type == SQLITE_NULL, "Cleanup may delete only this exact original owned folder")
+        let parent = try requireOriginalSavedButton(fixture.parent); parent.swipeLeft()
+        let deletes = app.buttons.matching(NSPredicate(format: "label == %@", "Delete"))
+        try requireOriginalSavedCondition(deletes.count == 1, "Require one original cleanup Delete action")
+        try requireOriginalSavedVisible(deletes.element(boundBy: 0)); deletes.element(boundBy: 0).tap()
+        let alert = app.alerts["Delete Folder"]
+        try requireOriginalSavedCondition(alert.waitForExistence(timeout: 10)
+            && alert.staticTexts.allElementsBoundByIndex.contains(where: { $0.label.contains(fixture.parent) }),
+            "Original cleanup prompt must name only the test-owned parent")
+        alert.buttons["Delete"].tap()
+        let removed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard !alert.exists, let after = try? self.readOriginalSavedDatabase(fixture.owner.database) else { return false }
+            return !after.folders.contains { $0["name"]?.value == fixture.parent || $0["name"]?.value == fixture.child }
+                && !after.results.contains { $0["name"]?.value == fixture.result }
+        }, object: nil)
+        try requireOriginalSavedCondition(XCTWaiter.wait(for: [removed], timeout: 15) == .completed,
+                                         "Original cleanup must remove all test-owned saved nodes")
+        try closeOriginalSavedResults()
+    }
+
+    @MainActor
+    func runOriginalSavedResultsSystemIntent(expectedPad: Bool, journey: OriginalSavedResultsJourney,
+                                             fromBackground: Bool = false) async throws {
+        let fixture = try createOriginalSavedFixture(expectedPad: expectedPad)
+        defer {
+            capture("original-saved-results-before-owned-cleanup")
+            do { try cleanupOriginalSavedFixture(fixture) }
+            catch { XCTFail("Original test-owned Saved Results cleanup failed: \(error)") }
+        }
+        let pid = try targetProcessIdentifier(), workspace = try actualReaderWorkspace().current()
+        let system = IntentDefinitions(bundleIdentifier: "com.davidpovarsky.chavrusatext")
+        let entityType = journey.isFolder ? "NativeSavedResultFolderEntity" : "NativeSavedResultEntity"
+        let title = journey.isFolder ? fixture.child : fixture.result
+        let matches = try await system.entities[entityType].entities(matching: title)
+        try requireOriginalSavedCondition(matches.count == 1, "Require one actual system-discovered saved node")
+        let cached = try XCTUnwrap(matches.first), cachedID = cached.identifier.instanceIdentifier
+        let windows = try await system.entities["NativeDestinationEntity"].entities(matching: "Saved Results")
+        try requireOriginalSavedCondition(windows.count == 1, "Require the actual current Saved Results window entity")
+        let window = try XCTUnwrap(windows.first)
+        try requireOriginalSavedCondition(!app.navigationBars[fixture.child].exists,
+                                         "The exact target page must be hidden before the measured reveal")
+        let positiveBackground = fromBackground && !journey.refusesStale
+        if positiveBackground { backgroundOriginalHiddenPhoneReader() }
+        let before = try actualNativeReceiptLines(), database = try readOriginalSavedDatabase(fixture.owner.database)
+        let stableWorkspace = try originalReaderTabWorkspaceSemantics()
+        try validateOriginalSavedOwner(fixture.owner)
+        // Sole measured positive delivery: real system entity, real window,
+        // original AppIntent. No direct perform(), service call, probe or URL.
+        if journey.isFolder {
+            _ = try await system.intents["RevealSavedResultsFolderIntent"].makeIntent(folder: cached, window: window).run()
+        } else {
+            _ = try await system.intents["RevealSavedResultIntent"].makeIntent(result: cached, window: window).run()
+        }
+        try requireOriginalSavedCondition(app.wait(for: .runningForeground, timeout: 15),
+                                         "The actual system intent must foreground its original app")
+        try requireOriginalSavedTarget(fixture)
+        try requireNewSystemIntentReceipt(destination: "native.savedResults", presentation: "sheet", before: before)
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        try requirePreservedOriginalWorkspace(workspace)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+        try validateOriginalSavedOwner(fixture.owner)
+        XCTAssertEqual(try readOriginalSavedDatabase(fixture.owner.database), database,
+                       "Reveal must preserve every original folders/results row and sync field")
+        var successful = try actualNativeReceiptLines()
+        let recordEvidence: [String: Any] = ["entity": cachedID, "kind": journey.isFolder ? "folder" : "result",
+            "parentSQLID": fixture.parentID, "folderSQLID": fixture.childID,
+            "folders": database.folders.count, "resultRows": database.results.count,
+            "databaseSnapshotSHA256": SHA256.hash(data: try database.canonical).map { String(format: "%02x", $0) }.joined(),
+            "scope": "warm mounted original tree; result revealed without activation"]
+        let attachment = XCTAttachment(data: try JSONSerialization.data(withJSONObject: recordEvidence, options: [.sortedKeys]),
+                                       uniformTypeIdentifier: "public.json")
+        attachment.name = "actual-original-saved-node-system-selection"; attachment.lifetime = .keepAlways; add(attachment)
+        capture("original-saved-results-exact-target")
+        guard journey.refusesStale else {
+            try closeOriginalSavedResults(); try requireOriginalSavedSearchUnchanged(fixture)
+            XCTAssertEqual(try actualNativeReceiptLines(), successful)
+            return
+        }
+
+        if journey == .resultAfterReload {
+            try closeOriginalSavedResults(); try requireOriginalSavedSearchUnchanged(fixture)
+            try openOriginalSavedResults()
+            try requireOriginalSavedButton(fixture.parent).tap()
+            let refreshed = try await system.entities[entityType].entities(matching: title)
+            try requireOriginalSavedCondition(refreshed.count == 1
+                && refreshed[0].identifier.instanceIdentifier != cachedID,
+                "The original reload must publish a real new entity, not merely make all discovery unavailable")
+        } else {
+            // Ordinary Back correctly retires the catalog. It would therefore
+            // confound the deletion counterexample. Return through one OTHER
+            // real system folder action and prove the original cached child
+            // is still current before the original UI deletes it.
+            let parents = try await system.entities["NativeSavedResultFolderEntity"].entities(matching: fixture.parent)
+            try requireOriginalSavedCondition(parents.count == 1, "Require the actual parent folder entity for setup")
+            let parent = try XCTUnwrap(parents.first), beforeParent = try actualNativeReceiptLines()
+            _ = try await system.intents["RevealSavedResultsFolderIntent"].makeIntent(folder: parent, window: window).run()
+            try requireOriginalSavedCondition(app.navigationBars[fixture.parent].waitForExistence(timeout: 15),
+                                             "The separately observed real parent action must show its original page")
+            try requireNewSystemIntentReceipt(destination: "native.savedResults", presentation: "sheet", before: beforeParent)
+            let stillCurrent = try await system.entities[entityType].entities(matching: title)
+            try requireOriginalSavedCondition(stillCurrent.count == 1
+                && stillCurrent[0].identifier.instanceIdentifier == cachedID,
+                "The SAME previously successful child must remain current immediately before deletion")
+            XCTAssertEqual(try readOriginalSavedDatabase(fixture.owner.database), database)
+            XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), stableWorkspace)
+            successful = try actualNativeReceiptLines()
+            try deleteOriginalSavedChild(fixture)
+            let withdrawn = try await system.entities[entityType].entities(matching: title)
+            try requireOriginalSavedCondition(withdrawn.isEmpty, "The original deletion must withdraw the cached folder")
+            let surviving = try await system.entities["NativeSavedResultFolderEntity"].entities(matching: fixture.parent)
+            try requireOriginalSavedCondition(surviving.count == 1,
+                                             "The actual surviving original tree must still support discovery")
+        }
+        XCTAssertEqual(try actualNativeReceiptLines(), successful,
+                       "Original reload/delete may not manufacture a canonical navigation receipt")
+        if fromBackground { backgroundOriginalHiddenPhoneReader() }
+        let refusedDatabase = try readOriginalSavedDatabase(fixture.owner.database)
+        let refusedWorkspace = try originalReaderTabWorkspaceSemantics()
+        let refusedReceipts = try actualNativeReceiptLines()
+        var rejected = false
+        do {
+            // Reuse the SAME system entity and window that just succeeded.
+            if journey.isFolder {
+                _ = try await system.intents["RevealSavedResultsFolderIntent"].makeIntent(folder: cached, window: window).run()
+            } else {
+                _ = try await system.intents["RevealSavedResultIntent"].makeIntent(result: cached, window: window).run()
+            }
+        } catch {
+            rejected = true
+            let evidence = XCTAttachment(string: String(describing: error))
+            evidence.name = "actual-stale-saved-node-system-refusal"; evidence.lifetime = .keepAlways; add(evidence)
+        }
+        XCTAssertTrue(rejected, "The previously successful stale original entity must now be refused")
+        let mutation = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard (try? self.validateOriginalSavedOwner(fixture.owner)) != nil,
+                  let actualReceipts = try? self.actualNativeReceiptLines(),
+                  let actualWorkspace = try? self.originalReaderTabWorkspaceSemantics(),
+                  let actualDatabase = try? self.readOriginalSavedDatabase(fixture.owner.database) else { return true }
+            return actualReceipts != refusedReceipts || actualWorkspace != refusedWorkspace || actualDatabase != refusedDatabase
+        }, object: nil)
+        mutation.isInverted = true
+        XCTAssertEqual(XCTWaiter.wait(for: [mutation], timeout: 5), .completed,
+                       "A refused cached node must produce neither a receipt nor a deferred mutation across the original five-second bound")
+        XCTAssertEqual(try targetProcessIdentifier(), pid)
+        XCTAssertEqual(try actualNativeReceiptLines(), refusedReceipts)
+        XCTAssertEqual(try originalReaderTabWorkspaceSemantics(), refusedWorkspace)
+        XCTAssertEqual(try readOriginalSavedDatabase(fixture.owner.database), refusedDatabase)
+        try validateOriginalSavedOwner(fixture.owner)
+        if app.state == .runningForeground {
+            try requireOriginalSavedCondition(app.navigationBars[fixture.parent].exists
+                && !app.navigationBars[fixture.child].exists, "Refusal must leave the actual original parent page unchanged")
+        } else {
+            XCTAssertTrue(fromBackground)
+            XCTAssertTrue(app.state == .runningBackground || app.state == .runningBackgroundSuspended,
+                          "A real system refusal may leave the app background; no activation can satisfy the measured journey")
+        }
+        let state = XCTAttachment(string: "Actual post-refusal app state: \(app.state.rawValue)")
+        state.name = "actual-stale-saved-node-process-state"; state.lifetime = .keepAlways; add(state)
+    }
+}
+
+private extension JSONEncoder {
+    static var sortedSavedResults: JSONEncoder {
+        let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]; return encoder
+    }
+}
