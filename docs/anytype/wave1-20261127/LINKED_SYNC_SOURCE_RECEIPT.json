@@ -1,0 +1,184 @@
+{
+  "schema": "otzaria.original.linked-sync.source-receipt.v1",
+  "observed_at": "2026-11-27T02:07:05.505392+00:00",
+  "source_sha": "cde7879e46b780a21337bf9df2628e53fe33c26f",
+  "base_sha": "dc66f6de67ad9af9916b982e6cd5bc432f2361bb",
+  "product_commits": [
+    "0d0c4c116ae06bb14f45df1dc597485dca06abba",
+    "f0d2f9b2973289600cd279143880bf79bac778eb",
+    "ad9d987f171e55f1f759c1119b01f50dc75203bc",
+    "50e3288a64078035773524d12a237053518c21a0"
+  ],
+  "test_commits": [
+    "4671202cb51de5470e60cd79e9c13343a97b5675",
+    "5424480455807cc32d7d1aba6c5e4e3f0ba3cd3a",
+    "cde7879e46b780a21337bf9df2628e53fe33c26f"
+  ],
+  "product_files": {
+    "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeLedger.swift": {
+      "git_blob": "4cd69e06ccc37ed4794713ff501647a7b7eb8ee2",
+      "sha256": "52b56f4cef4d330510a5f4b70cfdc671cae456d12772284ccd6a5dfbb827ff32",
+      "bytes": 102733
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorPersistence.swift": {
+      "git_blob": "f358bf7280aaf34a816ceb94603f365d90adac51",
+      "sha256": "b234ca69eedb780b2b256bac2f976890a652a1226afabbda3cb6d15d074de1eb",
+      "bytes": 92037
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationLocalEditorSession.swift": {
+      "git_blob": "a962bc4b0f8ae5e181e96680589b8789726aa4a2",
+      "sha256": "e7e92a3edf2f001ead1a5d47dd812e899e0b458acbb86233c2d03751a4d9f9f1",
+      "bytes": 24897
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorProductionUI.swift": {
+      "git_blob": "969758fc0a8de953d8628710e8ccd321722ba5fa",
+      "sha256": "9a6de11e0969386e004291c0c5acf7ce4f527a75bd0ad608cb492c61e4a8f535",
+      "bytes": 44779
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift": {
+      "git_blob": "dfe787f5c9e55a8e35105bc473a726dcb9064f7d",
+      "sha256": "a93058b096ab9e0b234b5b1485fc19d10a332bda879999d3cc311996c1b00dda",
+      "bytes": 41214
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorRevision.swift": {
+      "git_blob": "51b492c3ff625a7b4dfd0404191cf4d6c7a690de",
+      "sha256": "2daff6e1d21d053a53b396f7121039ee20416ecb92afd1caddc80ae78bfe4f98",
+      "bytes": 30421
+    },
+    "Source/ChavrusaText/Annotations/LocalEditor/OriginalAnnotationEditor.xcstrings": {
+      "git_blob": "b69beff60286d77cb8591e92bb1d1f254283c5dd",
+      "sha256": "5b6497053a3ec4db16980333201bda89269ea93d89cd4057bff8aa542ee5c365",
+      "bytes": 59966
+    }
+  },
+  "dependencies": {
+    "host_peer": "2433d032d3f8025ccd2e5fe66b8a95356014ba51",
+    "host_original_json_accessibility": "50fca60f0a773f4e415d6729b9417ff3a27c8834",
+    "original_sdk_product_base": "bfc80e5e85eabaa52f914e872f2da6c6888ca88c",
+    "original_sdk_peer_discovery": "f145d6205b3ca7c8eb947779c6a1fa130246b93b",
+    "original_sdk_network_accessibility": "6dbc89d6f8d19a884de849fd4232e97a682d519e",
+    "original_heart": "b18e6733605deb4086ee95aa4cf755404746cf51",
+    "bootstrap_recovery_expected_in_new_candidate": "5abd4d64cacaae6e891d8fb055925c5c7a7a3de7"
+  },
+  "behavior": [
+    "Opt-in link only from the actual closed original read; exact received origin and consent commit with the same original SQLite Save.",
+    "Immutable local versions retain destinationsJSON=[]; only active opted-in links append original outbox intentions in the same transaction. Unlinked/backfill saves acquire no transport destination.",
+    "Original selected-account/source ownership and actual read/CAS gate every dispatch. Persistent pre-dispatch backoff never retries a possibly-dispatched request automatically.",
+    "A reviewed original CAS has its own durable restart fence even when an incoming local version created no outgoing echo.",
+    "A shared per-link durable dispatch sequence prevents same-revision late callbacks from clearing later fences or regressing the confirmed root. Original attempt identities and late genuine receipts remain separate history.",
+    "Unlink stops future queueing without deleting notes, native copies or history. A local native handoff receipt never claims a remote device ACK.",
+    "Current automatic resume covers the unchanged saved visible rich note on entry and foreground. Global foreground drain and CloudKit rich-body transport are subsequent open product work."
+  ],
+  "actual_component_acceptance": {
+    "retained-ledger-37": {
+      "path": "docs/anytype/wave1-20261127/retained-ledger-37-RESULT.json",
+      "sha256": "263999b9641d8678a1845803c6132f6aeee1cd237a80055f0dec0f425ee32425",
+      "source_sha": "f0d2f9b2973289600cd279143880bf79bac778eb",
+      "status": "PASS_ACTUAL_SQLITE_COMPONENT",
+      "passed": 37,
+      "failed": 0
+    },
+    "linked-ledger-15": {
+      "path": "docs/anytype/wave1-20261127/linked-ledger-15-RESULT.json",
+      "sha256": "c6e7992b4c8868637c59de8bfb714cb731c99545fa5cd4fa237c0a45d51f8a51",
+      "source_sha": "cde7879e46b780a21337bf9df2628e53fe33c26f",
+      "status": "PASS_LINKED_SQLITE_COMPONENT",
+      "passed": 15,
+      "failed": 0
+    },
+    "local-owner-43": {
+      "path": "docs/anytype/wave1-20261127/local-owner-43-RESULT.json",
+      "sha256": "d79cd5a0286a5f153698e1072cce58d241596820becd9af0be01eae59d37a3ef",
+      "source_sha": "cde7879e46b780a21337bf9df2628e53fe33c26f",
+      "status": "PASS_APPLE_FOUNDATION_COMPONENT",
+      "passed": 43,
+      "failed": 0
+    }
+  },
+  "apple_job": "job_e2b44df8c254",
+  "evidence_archive": {
+    "oracle": "/mnt/development/projects/evidence/otzaria-wave1-anytype-20261127/linked-components/linked-native-ledger-component-evidence-cde7879e.tar.gz",
+    "mac": "/Users/m1/builds/otzaria-wave1-anytype-20261127/linked-components/linked-native-ledger-component-evidence-cde7879e.tar.gz",
+    "sha256": "923f3bab51fade1d05d3675795eb8f96d0b2b384cf07601af589379d95a529e0",
+    "members": 41
+  },
+  "source_archive": {
+    "sha256": "cf6c62779d298654bc1ae801c88f5cbdf3a29c28fbdb62266a2032516a27eac7",
+    "manifest_sha256": "7d76db5a40ae40ba3720f150c85cd7fe9c7c6b0a3022d79ebd921098efdf4c37",
+    "git_blob_files": 172
+  },
+  "independent_review": {
+    "reviewer": "ChatGPT MiniApps agent",
+    "delta": "50e3288a64078035773524d12a237053518c21a0",
+    "result": "No remaining blocking source finding in the reviewed delta; no duplicate test run; no native/UI acceptance credit."
+  },
+  "retained_5000": {
+    "prior_receipt": "docs/anytype/wave1-20261127/RETAINED_5000_EQUIVALENCE.json",
+    "unchanged_bulk_files": {
+      "Source/ChavrusaText/Annotations/Backfill/AnnotationBackfillPlanner.swift": {
+        "baseline": {
+          "git_blob": "0a1a8684f901841e898741b216416c135c504b97",
+          "sha256": "e062dab9c5f18ea76f6417fe65b8d48c2df9efc49b1d4f38d2f89b81f081914f",
+          "bytes": 13239
+        },
+        "current": {
+          "git_blob": "0a1a8684f901841e898741b216416c135c504b97",
+          "sha256": "e062dab9c5f18ea76f6417fe65b8d48c2df9efc49b1d4f38d2f89b81f081914f",
+          "bytes": 13239
+        }
+      },
+      "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillCatalog.swift": {
+        "baseline": {
+          "git_blob": "ff6c906a5afaac474bede61a376bb1feed14322b",
+          "sha256": "8c0f9789e9f7b66309497898d2578d71844d057f6552a8da3e4a60a32aef70d9",
+          "bytes": 13677
+        },
+        "current": {
+          "git_blob": "ff6c906a5afaac474bede61a376bb1feed14322b",
+          "sha256": "8c0f9789e9f7b66309497898d2578d71844d057f6552a8da3e4a60a32aef70d9",
+          "bytes": 13677
+        }
+      },
+      "Source/ChavrusaText/Annotations/Backfill/AnnotationNativeBackfillModel.swift": {
+        "baseline": {
+          "git_blob": "5ee2605d98b09e9f0c234ebcfb9785e976941141",
+          "sha256": "d3c7d41bbd1f33277a58c5a3ff8bc67a85688c20a6b56dac3ef40891f2706b22",
+          "bytes": 19463
+        },
+        "current": {
+          "git_blob": "5ee2605d98b09e9f0c234ebcfb9785e976941141",
+          "sha256": "d3c7d41bbd1f33277a58c5a3ff8bc67a85688c20a6b56dac3ef40891f2706b22",
+          "bytes": 19463
+        }
+      },
+      "Source/ChavrusaText/Annotations/Exchange/AnnotationExchangeIdentity.swift": {
+        "baseline": {
+          "git_blob": "cf5bfd0062da1dcbf413bed5ed036c403aa12289",
+          "sha256": "e847f6836a01685f4a8f13f58811975da37ea029c4bb0f2c116a5f96bf4a1eb9",
+          "bytes": 15331
+        },
+        "current": {
+          "git_blob": "cf5bfd0062da1dcbf413bed5ed036c403aa12289",
+          "sha256": "e847f6836a01685f4a8f13f58811975da37ea029c4bb0f2c116a5f96bf4a1eb9",
+          "bytes": 15331
+        }
+      }
+    },
+    "changed_closure": "AnnotationLocalEditorPersistence adds a read-only link-schema check after local Save. AnnotationExchangeLedger's existing commit code changes only local replay when extra linked deliveries exist; empty-destination/unlinked replay follows the original path. The new link extension is never installed by unlinked Save. 15 linked and43 local-owner tests cover this storage change, including real cold-process revision/UUID/payload preservation. No new claim of5000-scale performance or current native UI is inferred."
+  },
+  "preserved_failed_attempt": {
+    "source_sha": "f0d2f9b2973289600cd279143880bf79bac778eb",
+    "local_cases": "42 PASS /1 stale-event observer failure",
+    "repair": "Test subscribes to the existing localEditorCommitted(sessionID) event; no product event semantics changed. Original failed RESULT/logs remain in the evidence archive."
+  },
+  "open_acceptance": [
+    "New integrated App/XCTest build and typecheck of these actual iOS+SDK branches",
+    "Five-phase two complete Otzaria replicas using real original AnySync account/network",
+    "Ordinary Share/Update/Receive/Archive/Restore/Promotion acceptance and broad remaining C-F conditions",
+    "Actual linked queue/receive/CAS/unlink UI journeys; component origins are explicit test data",
+    "Historical intermittent manifest cause and current full-product regression",
+    "Global foreground queue drain for closed notes and CloudKit rich-body/import",
+    "Physical iPad, broader accessibility/offline/multiwindow/ACL/concurrency conditions"
+  ],
+  "release_merge_performed": false
+}
