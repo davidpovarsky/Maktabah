@@ -30,6 +30,8 @@ struct iOSBookInfoView: View {
     @State private var selectedSegment: BookInfoSegment = .bithoqoh
     @State private var fullBookInfo: BooksData?
     @State private var author: Muallif?
+    @State private var bookInfoTask: Task<Void, Never>?
+    @State private var bookInfoLoadID: UUID?
     @Environment(\.dismiss) private var dismiss
 
     private var isUnified: Bool {
@@ -124,29 +126,71 @@ struct iOSBookInfoView: View {
             .onAppear {
                 loadBookInfo()
             }
+            .onChange(of: ObjectIdentifier(book)) { _, _ in
+                loadBookInfo()
+            }
+            .onDisappear {
+                cancelBookInfoLoad()
+            }
         }
         .themeTint()
     }
 
+    private func cancelBookInfoLoad() {
+        // Retire this exact presentation before cancelling its original task.
+        bookInfoLoadID = nil
+        let previous = bookInfoTask
+        bookInfoTask = nil
+        previous?.cancel()
+    }
+
     private func loadBookInfo() {
+        cancelBookInfoLoad()
+        let loadID = UUID()
+        bookInfoLoadID = loadID
+        let sourceBook = book
+        let sourceLocator = book.backendLocator
+        let sourceBackend = BackendCoordinator.shared.activeBackendID
+        let sourceGeneration = BackendCoordinator.shared.generation
         let workKey = book.backendLocator?.workKey ?? "book:\(book.id)"
-        Task {
+        let isCurrent: @MainActor () -> Bool = {
+            bookInfoLoadID == loadID && !Task.isCancelled
+                && book === sourceBook && book.backendLocator == sourceLocator
+                && BackendCoordinator.shared.activeBackendID == sourceBackend
+                && BackendCoordinator.shared.generation == sourceGeneration
+        }
+        bookInfoTask = Task {
+            guard isCurrent() else { return }
             if let meta = try? await BackendCoordinator.shared.workMetadata(for: workKey) {
                 await MainActor.run {
+                    guard isCurrent() else { return }
                     self.workMetadata = meta
                 }
                 return
             }
+            // The original provider may finish with a stale/cancelled error.
+            // Such a result cannot fall through into another backend's DB.
+            guard isCurrent() else { return }
             if book.backendLocator == nil {
                 await MainActor.run {
+                    guard isCurrent() else { return }
                     let dm = LibraryDataManager.shared
-                    author = DatabaseManager.shared.getAuthor(book.muallif)
-                    fullBookInfo = dm.getBook([book.id]).first ?? book
+                    let loadedAuthor = DatabaseManager.shared.getAuthor(book.muallif)
+                    guard isCurrent() else { return }
+                    author = loadedAuthor
+                    guard isCurrent() else { return }
+                    let loadedBook = dm.getBook([book.id]).first ?? book
+                    guard isCurrent() else { return }
+                    fullBookInfo = loadedBook
+                    guard isCurrent() else { return }
 
                     dm.loadBookInfo(book.id) {
+                        guard isCurrent() else { return nil }
                         if let updatedBook = dm.getBook([book.id]).first {
+                            guard isCurrent() else { return nil }
                             fullBookInfo = updatedBook
                         }
+                        return ()
                     }
                 }
             }
