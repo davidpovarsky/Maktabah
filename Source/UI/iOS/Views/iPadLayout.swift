@@ -22,6 +22,7 @@ struct iPadLayout: View {
     @State private var searchPresentation = GlobalSearchPresentationCoordinator()
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Environment(\.exact9401Workspace) private var workspace
+    @Environment(\.maktabahNativeRoutingSession) private var routingSession
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -270,6 +271,7 @@ struct iPadLayout: View {
                     },
                     onClose: { sidebar.overview.requestClose(id) }
                 )
+                .environment(\.maktabahNativeRoutingSession, routingSession)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()

@@ -1,0 +1,48 @@
+{
+  "scope": "SYNTAX_ONLY_NOT_SDK_TYPECHECK_OR_NATIVE_ACCEPTANCE",
+  "source_base": "0c93d1de3b4ba9734c3341e3b088ca41818fb619",
+  "dependencies": [
+    "49e334a96cdd336e331650ad755e607908256e84",
+    "26ebcfe9f264a7513b46049417bc2dd1bf510848"
+  ],
+  "source_sha256": {
+    "CompactStudyWorkspaceHostModifier.swift": "494cb9ae8088f02d6e619350c00d67c46c19fa9dc424fd8faeb765673f803da8",
+    "iPadLayout.swift": "02cce381c0015638836a788515b44b4aa64f2c7b90c884762a4ba5b6b022bb78",
+    "MaktabahNativeWorkspacePresentationBinding.swift": "57fd95a2d3038e630c2b0b5cb1cb2852ebaf65cdb972def772d3d0c592d17ce4",
+    "ReaderSidebarPageCoordinator.swift": "c2dd78e4f6a7e75a6d622cd86ba09e32189455a071399ffbedfff3fe4e7d04c5",
+    "StudyProfileManagementView.swift": "a1f9d235af9d13bd6c8bb878e28dd93679afc31041a0a2085ec6b086f2a1f994",
+    "MaktabahNativeWorkspaceComponents.swift": "d0a5edbf6f7bc1b79af45b01cd19a29c6c758ab7ab2e1ea785a82bf76495c423",
+    "StudyGroupsOverview.swift": "218f7d1cbfdff230ac5305e3e5394dbdaf42460e194ef393f6960641997d5798"
+  },
+  "syntax_receipts": [
+    {
+      "path": "/Users/m1/builds/otzaria-wave3-workspace-bindings-controls-20261127/attempt-1/syntax-result.json",
+      "sha256": "55e5949e80ff39bed5d452cb77376b707165a3745013f29da585ed42ac972ca6",
+      "current_inputs": [
+        "CompactStudyWorkspaceHostModifier.swift",
+        "iPadLayout.swift",
+        "ReaderSidebarPageCoordinator.swift",
+        "StudyGroupsOverview.swift"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave3-workspace-bindings-controls-20261127/attempt-2/syntax-result.json",
+      "sha256": "fa3504f49951cfc259167b4aa37d5b96c491a7973c63f683519b02cc9b01c5e6",
+      "current_inputs": [
+        "MaktabahNativeWorkspaceComponents.swift",
+        "StudyProfileManagementView.swift"
+      ]
+    },
+    {
+      "path": "/Users/m1/builds/otzaria-wave3-workspace-bindings-controls-20261127/attempt-3/syntax-result.json",
+      "sha256": "72fca0dddb88a47ef5795560dee1fbfeeb3abdcf1f6b080d37d5cf9bc6ec6df8",
+      "current_inputs": [
+        "MaktabahNativeWorkspacePresentationBinding.swift"
+      ]
+    }
+  ],
+  "native_tests_run": 0,
+  "device_tests_run": 0,
+  "owner_signatures_added": 0,
+  "full_build_status": "PENDING_AUTHENTIC_SDK_RETAINED_INPUT_RESTORATION"
+}
