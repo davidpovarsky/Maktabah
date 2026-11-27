@@ -40,6 +40,7 @@ private func sha(_ data: Data) -> String {
         let databaseSHA256: String
         let v40Targets: Targets
         let previewTargets: [PreviewTarget]?
+        let readerNavigationOracle: Bool?
         let sourceService: ServiceIdentity?
         let presentationSource: ServiceIdentity?
     }
@@ -59,6 +60,58 @@ private func sha(_ data: Data) -> String {
         let service = OtzariaReadingUnitService(database: database)
         var targets: [[String: Any]] = []
         var writtenUnits = Set<String>()
+        var tocRowsByBook: [Int: [[String: Any]]] = [:]
+
+        func tocSelection(bookID: Int, unitStart: Int) throws -> [String: Any] {
+            let rows: [[String: Any]]
+            if let cached = tocRowsByBook[bookID] { rows = cached }
+            else {
+                // Independent immutable schema-7 SQL. IDs below are actual
+                // tocEntry IDs, never the app's process/persistence surrogates.
+                rows = try database.fetch(query: """
+                    SELECT te.id,te.parentId,te.level,COALESCE(ln.lineIndex,0),tt.text
+                    FROM tocEntry te JOIN tocText tt ON tt.id=te.textId
+                    LEFT JOIN line ln ON ln.id=te.lineId
+                    WHERE te.bookId=? ORDER BY COALESCE(ln.lineIndex,0),te.id
+                    """, parameters: [bookID]) { row -> [String: Any] in
+                        let originalTitle = row.string(at: 4) ?? ""
+                        return ["entryID": row.int(at: 0),
+                            "parentID": row.isNull(at: 1) ? NSNull() : row.int(at: 1) as Any,
+                            "level": row.int(at: 2), "sourceLineIndex": row.int(at: 3),
+                            "rawTitle": originalTitle, "title": originalTitle.otsariaPlainText]
+                    }
+                try require(!rows.isEmpty && rows.count <= 200_000, "Bound the actual complete book TOC oracle")
+                let ids = Set(rows.compactMap { $0["entryID"] as? Int })
+                try require(ids.count == rows.count, "Actual SQL TOC entry identities must be unique")
+                var children: [Int: [Int]] = [:]
+                var roots: [Int] = []
+                for row in rows {
+                    let id = row["entryID"] as! Int
+                    if let parent = row["parentID"] as? Int, ids.contains(parent) {
+                        children[parent, default: []].append(id)
+                    } else { roots.append(id) }
+                }
+                var visited = Set<Int>()
+                var pending = roots
+                while let id = pending.popLast() {
+                    try require(visited.insert(id).inserted, "TOC SQL must not contain a cycle or repeated tree entry")
+                    pending.append(contentsOf: children[id] ?? [])
+                }
+                try require(visited == ids, "Every queried SQL heading must belong to the original reachable TOC tree")
+                tocRowsByBook[bookID] = rows
+            }
+            // Exact matches and the original closest/deepest fallback all
+            // select this canonical line. Multiple headings on that line share
+            // one LegacyIdentityRegistry locator; retain every original title.
+            guard let line = rows.compactMap({ $0["sourceLineIndex"] as? Int })
+                .filter({ $0 <= unitStart }).max() else {
+                throw CatalogError(message: "No actual TOC ancestor for the requested complete reading unit")
+            }
+            let headings = rows.filter { $0["sourceLineIndex"] as? Int == line }
+            return ["schema": 1, "canonicalLocator": "otzaria|book:\(bookID)|line:\(line)",
+                "sourceLineIndex": line, "headings": headings, "allTOCRowsChecked": rows.count,
+                "tocSQLRowsSHA256": sha(try JSONSerialization.data(withJSONObject: rows, options: [.sortedKeys]))]
+        }
 
         func target(bookID: Int, focus: Int, position: String, expectedCount: Int?,
                     mode: OtzariaUnitMode = .chapter, includeAnchorDetails: Bool = false,
@@ -127,6 +180,9 @@ private func sha(_ data: Data) -> String {
                 "focusLocator": "otzaria|book:\(bookID)|line:\(focus)"
             ]
             if includeAnchorDetails {
+                if input.readerNavigationOracle == true {
+                    result["tocSelection"] = try tocSelection(bookID: bookID, unitStart: unit.startLineIndex)
+                }
                 result["sourceUTF8"] = unit.plainText
                 result["anchors"] = unit.lineAnchors.map { anchor -> [String: Any] in
                     // OtzariaInspectorDocumentMapper supplies anchor.text unchanged

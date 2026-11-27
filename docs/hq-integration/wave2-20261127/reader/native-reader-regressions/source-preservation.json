@@ -1,0 +1,21 @@
+{
+  "registeredTestFile": {
+    "baselineSHA256": "9584de9a1edafa0af14c4f70c5983afcb6521d3a550ae02f10b45367868ad7e1",
+    "candidateSHA256": "aa7077b3ba994c3d35aa25c71e8f9986057b140f748774c866af426074da3bf2",
+    "oldFileRecoveredByteForByte": true,
+    "additions": [
+      "optional TOCSelection Decodable schema",
+      "optional Target.tocSelection field",
+      "appended selection/backend and pull/TOC helpers plus two cases"
+    ],
+    "originalSourceBytes": 42026
+  },
+  "catalog": {
+    "baselineSHA256": "8fcb34306110043eb58a5f87adf2bbd3ac5ef97ce452fa21a84036ead179d093",
+    "candidateSHA256": "1e1ec453615432f7ec933e6468c01887726bcd2a6528e6bbb8c8cdce203c9992",
+    "oldFileRecoveredByteForByte": true,
+    "optionalFlag": "readerNavigationOracle",
+    "defaultFlagAbsentOrFalsePreservesOriginalOutputBody": true,
+    "originalV32Modified": false
+  }
+}
