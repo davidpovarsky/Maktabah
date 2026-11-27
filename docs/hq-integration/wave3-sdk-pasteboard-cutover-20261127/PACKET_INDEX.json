@@ -1,0 +1,307 @@
+{
+  "files": [
+    {
+      "bytes": 2420,
+      "path": "plan/COMPLETE_PLAN.json",
+      "sha256": "91d40e6672d3af5931b359f16c545a959deb2ae3a31a1daa8dfa67287251508c",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/COMPLETE_PLAN.json"
+    },
+    {
+      "bytes": 4426,
+      "path": "plan/PROPOSAL.json",
+      "sha256": "5bd7596fa9042100eb64ce5105c46be36b5fe827865b46ff5fda4489cf102e3b",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/PROPOSAL.json"
+    },
+    {
+      "bytes": 7566,
+      "path": "plan/FRESH_RUN_COMMANDS.json",
+      "sha256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/FRESH_RUN_COMMANDS.json"
+    },
+    {
+      "bytes": 5109,
+      "path": "plan/UNCHANGED_ORIGINAL_GUARDS.json",
+      "sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/UNCHANGED_ORIGINAL_GUARDS.json"
+    },
+    {
+      "bytes": 2058,
+      "path": "plan/CUTOVER_READONLY.json",
+      "sha256": "c2eaac368dc1424ce554fee2ffc0e897f2ea575eb4fc69bb7c17344af03d93ef",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/CUTOVER_READONLY.json"
+    },
+    {
+      "bytes": 22660,
+      "path": "plan/CAPACITY_READONLY.json",
+      "sha256": "d6efc054a0d43e18e6db94245b8b8cbc493cb0ae137bb7059da5e67244cf01d1",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/CAPACITY_READONLY.json"
+    },
+    {
+      "bytes": 1092,
+      "path": "plan/RUN_ARGV_CLARIFICATION.json",
+      "sha256": "5e825da9b6e6bb14aa12f60e63a5b66abc44b02714e06cc6638b60980d20ee2e",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/RUN_ARGV_CLARIFICATION.json"
+    },
+    {
+      "bytes": 7696,
+      "encoding": "lossless-gzip",
+      "path": "raw/supervisor.py.gz",
+      "raw_bytes": 26860,
+      "raw_sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b",
+      "sha256": "64a6e7bbd6b4b0e98032912eee30c9f53740889fd7cc3f39b61c37bb027fa97f",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/supervisor.py"
+    },
+    {
+      "bytes": 3944,
+      "encoding": "lossless-gzip",
+      "path": "raw/cutover_source.py.gz",
+      "raw_bytes": 10442,
+      "raw_sha256": "01c047b138ceed49e107dacbbf627a1b0929510b654c35e9f64d02dadfe4623e",
+      "sha256": "02a2d2f49fda092e7a90c56014c8995fb2ebb5fa71499248e424bae211d8d43c",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/cutover_source.py"
+    },
+    {
+      "bytes": 7549,
+      "encoding": "lossless-gzip",
+      "path": "raw/reviewed-supervisor-30cb.py.gz",
+      "raw_bytes": 26573,
+      "raw_sha256": "30cb3a7d41201271c53b08494d2bf2dbd027e8dba61f86538f1c75e969dc2416",
+      "sha256": "9bb1fe14659219996aceb438e8224acacaf08b6cbda7bb159f50dcfa9e6a8a85",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/reviewed-supervisor-30cb.py"
+    },
+    {
+      "bytes": 2383,
+      "encoding": "lossless-gzip",
+      "path": "raw/HISTORICAL_OBSERVED_CONTRACT.json.gz",
+      "raw_bytes": 6235,
+      "raw_sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2",
+      "sha256": "f5077c2538c77cb39f876b45f8e472f0c5366e74ef3aa4982d627f2175736450",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/HISTORICAL_OBSERVED_CONTRACT.json"
+    },
+    {
+      "bytes": 6472,
+      "encoding": "lossless-gzip",
+      "path": "raw/SUPERVISOR_CONFIGURATION.diff.gz",
+      "raw_bytes": 36781,
+      "raw_sha256": "208bcc0f61776a8e9544650a94cee7a0e271750a0b6d917d0247b3b2506b5428",
+      "sha256": "1221bc1a5cd0814ec4354211106c4fdf65709993ed3cf2a67003d7aed41b1ecd",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/SUPERVISOR_CONFIGURATION.diff"
+    },
+    {
+      "bytes": 3813,
+      "encoding": "lossless-gzip",
+      "path": "raw/generate_plan.py.gz",
+      "raw_bytes": 9708,
+      "raw_sha256": "b19332b2e7509319a89ffd324bb266dfed9f4bbf00392f7583f5ff55c0f4bf60",
+      "sha256": "bfcf79f74f8f8e3cca38d3bee6f671e9dcaec798bd21ab2e8735c06fa22b0765",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/generate_plan.py"
+    },
+    {
+      "bytes": 2425,
+      "encoding": "lossless-gzip",
+      "path": "raw/prepare_launch_envelope.py.gz",
+      "raw_bytes": 5622,
+      "raw_sha256": "3d571015b257ef4e6703419cf6f8b9a6c863566c5e094614ff19ba1de85477e9",
+      "sha256": "16ae6565a81208fe78d412ffcf2550ea254a501be1991524c1ae45f75235f36f",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/prepare_launch_envelope.py"
+    },
+    {
+      "bytes": 20,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_1.stderr.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_1.stderr.log"
+    },
+    {
+      "bytes": 20,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_1.stdout.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_1.stdout.log"
+    },
+    {
+      "bytes": 156,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_2.stderr.log.gz",
+      "raw_bytes": 214,
+      "raw_sha256": "6707cff1c3255147efc6df3f049bd5141629e9abb3fb79b617f1b9153d1833ea",
+      "sha256": "3af1a1915f8ed978107168597b502b474914912b596b1c109d6b48b5eb7349b0",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_2.stderr.log"
+    },
+    {
+      "bytes": 20,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_2.stdout.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_2.stdout.log"
+    },
+    {
+      "bytes": 20,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_3.stderr.log.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_3.stderr.log"
+    },
+    {
+      "bytes": 360,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_3.stdout.log.gz",
+      "raw_bytes": 881,
+      "raw_sha256": "7ce3868f2a5999d3325f79fe3c30b5235416165183c11bd2f8a4c0d9131d8baa",
+      "sha256": "0868a46f64290af926413dd8bd9604698c888d946673fc5de85a6d5524c0e234",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_3.stdout.log"
+    },
+    {
+      "bytes": 109,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_CONTROLLER.stderr.log.gz",
+      "raw_bytes": 89,
+      "raw_sha256": "5f84030b22a07af5f51dd98e09d137e992e7cb347416c33bd4aef831aa3c514a",
+      "sha256": "7ebc2d25f8046fe5198f9e2c3426edc816d837cc09bd5f57fdfdc4889aabf839",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_CONTROLLER.stderr.log"
+    },
+    {
+      "bytes": 338,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/CUTOVER_CONTROLLER.stdout.log.gz",
+      "raw_bytes": 431,
+      "raw_sha256": "40a78b34eeadceb90a4620613273b464952482b6407bcc458f33577a478dd29d",
+      "sha256": "93a30faf837d2d6e53e144b30cf5df9174fac63658ea5f8e3440d74238535c77",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_CONTROLLER.stdout.log"
+    },
+    {
+      "bytes": 1669,
+      "path": "actual-cutover/CUTOVER_CONTROLLER_RESULT.json",
+      "sha256": "194c3cbe66199e9d0ff1f01dee291769111e6fc9202dbdb5805298b954ec0b45",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_CONTROLLER_RESULT.json"
+    },
+    {
+      "bytes": 3051,
+      "path": "actual-cutover/CUTOVER_PRECHECK.json",
+      "sha256": "9014944513989a12862e9f43fc1c0437814eb09736997f1462da5e473440a88f",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_PRECHECK.json"
+    },
+    {
+      "bytes": 2058,
+      "path": "actual-cutover/CUTOVER_READONLY.json",
+      "sha256": "c2eaac368dc1424ce554fee2ffc0e897f2ea575eb4fc69bb7c17344af03d93ef",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_READONLY.json"
+    },
+    {
+      "bytes": 4248,
+      "path": "actual-cutover/CUTOVER_RESULT.json",
+      "sha256": "277a572634499e1498614d9c7a313a2853cea0884f881e3b81edfe6934176e88",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/CUTOVER_RESULT.json"
+    },
+    {
+      "bytes": 2869,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/completion_watcher.py.gz",
+      "raw_bytes": 8105,
+      "raw_sha256": "d3dbbf9b6258d6818e4c58e6026446cf5995f28ddffbeaa7c6e9d9d31437ec23",
+      "sha256": "9bff825d055adff2839180ea65ab7882e28b2da38cb1e932042f5e92059ad3d4",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/completion_watcher.py"
+    },
+    {
+      "bytes": 2177,
+      "encoding": "lossless-gzip",
+      "path": "raw/actual-cutover/launch_owned.py.gz",
+      "raw_bytes": 5167,
+      "raw_sha256": "583e599ab0a226d3d5be3a070fadae0dd8d895645b2d17706ee8e387cd59448e",
+      "sha256": "bcfe1cd5fe704e27651e70bc36b796f0f415eb5c437ebbc390625787d45b6cce",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/actual-cutover/launch_owned.py"
+    },
+    {
+      "bytes": 2420,
+      "path": "launch-envelope/COMPLETE_PLAN.json",
+      "sha256": "91d40e6672d3af5931b359f16c545a959deb2ae3a31a1daa8dfa67287251508c",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/COMPLETE_PLAN.json"
+    },
+    {
+      "bytes": 4248,
+      "path": "launch-envelope/CUTOVER_RESULT.json",
+      "sha256": "277a572634499e1498614d9c7a313a2853cea0884f881e3b81edfe6934176e88",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/CUTOVER_RESULT.json"
+    },
+    {
+      "bytes": 645,
+      "path": "launch-envelope/ENVELOPE_PREPARATION.json",
+      "sha256": "bda704267df408271ac18d91b07d1fbaf2bd048075fb4f4fad375aef569579aa",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/ENVELOPE_PREPARATION.json"
+    },
+    {
+      "bytes": 7566,
+      "path": "launch-envelope/FRESH_RUN_COMMANDS.json",
+      "sha256": "677c18318f52912e188c8c48501333462932a330ef7584160adb2f8fb2566490",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/FRESH_RUN_COMMANDS.json"
+    },
+    {
+      "bytes": 6235,
+      "path": "launch-envelope/HISTORICAL_OBSERVED_CONTRACT.json",
+      "sha256": "6fbe86627b91ee7d052b83cef489f4c2dee9875932f539ae44c3e30262d042f2",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/HISTORICAL_OBSERVED_CONTRACT.json"
+    },
+    {
+      "bytes": 2440,
+      "path": "launch-envelope/LAUNCH_INPUTS.json",
+      "sha256": "4d69b38000090f59e0fc3f12b4a46acfe36e55b7759a30c04df80833576ff317",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/LAUNCH_INPUTS.json"
+    },
+    {
+      "bytes": 4426,
+      "path": "launch-envelope/PROPOSAL.json",
+      "sha256": "5bd7596fa9042100eb64ce5105c46be36b5fe827865b46ff5fda4489cf102e3b",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/PROPOSAL.json"
+    },
+    {
+      "bytes": 5109,
+      "path": "launch-envelope/UNCHANGED_ORIGINAL_GUARDS.json",
+      "sha256": "0094fe3ec56924a9181863c47cf6664f87c7d38797dd62155aa8c04288ff3171",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/UNCHANGED_ORIGINAL_GUARDS.json"
+    },
+    {
+      "bytes": 2880,
+      "encoding": "lossless-gzip",
+      "path": "raw/launch-envelope/completion_watcher.py.gz",
+      "raw_bytes": 8119,
+      "raw_sha256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be",
+      "sha256": "175d5c9bd2d305b47994b0b24da043f942e3971fe815a3aaf4d233afda2d0427",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/completion_watcher.py"
+    },
+    {
+      "bytes": 2391,
+      "encoding": "lossless-gzip",
+      "path": "raw/launch-envelope/launch_owned.py.gz",
+      "raw_bytes": 5891,
+      "raw_sha256": "35ac0d3392b0f0ec923ce1db745683e6e640a716f5d977a7da52776abb968c72",
+      "sha256": "7db1acb22647da5257f1e318467e1154972daa168e1cd8e82c3d1a1f549cf74e",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/launch_owned.py"
+    },
+    {
+      "bytes": 7696,
+      "encoding": "lossless-gzip",
+      "path": "raw/launch-envelope/supervisor.py.gz",
+      "raw_bytes": 26860,
+      "raw_sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b",
+      "sha256": "64a6e7bbd6b4b0e98032912eee30c9f53740889fd7cc3f39b61c37bb027fa97f",
+      "source": "/workspace/scratch/c1c70cc48453/sdk-pasteboard-fresh-run/launch-envelope/supervisor.py"
+    },
+    {
+      "bytes": 5543,
+      "path": "README.md",
+      "sha256": "0508252059bff5beebc238a80b9082b80bba06cdbd3836a6fd535896fa2e21f7"
+    }
+  ],
+  "native_runs": 0,
+  "new_sdk_builds": 0,
+  "schema": "otzaria.exact-sdk-cutover-evidence-index/1",
+  "source_edits_in_this_git_packet": 0
+}

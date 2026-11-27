@@ -1,0 +1,16 @@
+{
+  "builds_run": 0,
+  "command": [
+    "/opt/homebrew/opt/python@3.12/libexec/bin/python3",
+    "-B",
+    "launch_owned.py",
+    "--execute-root-authorized-attempt"
+  ],
+  "launcher_sha256": "35ac0d3392b0f0ec923ce1db745683e6e640a716f5d977a7da52776abb968c72",
+  "manifest_sha256": "4d69b38000090f59e0fc3f12b4a46acfe36e55b7759a30c04df80833576ff317",
+  "minimum_free_bytes": 15032385536,
+  "native_runs": 0,
+  "status": "OWNED_LAUNCH_ENVELOPE_PREPARED_NOT_EXECUTED",
+  "supervisor_sha256": "4720728f67862a003ed527a56ef1164eae6e063509eb3b619f7a26b346f6be2b",
+  "watcher_sha256": "7dfd497283295d5e7babd9d7675fa18aeda9b94f09ed127083ccbabd6b9935be"
+}
