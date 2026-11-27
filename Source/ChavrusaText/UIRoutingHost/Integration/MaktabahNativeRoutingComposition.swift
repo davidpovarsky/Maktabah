@@ -1165,6 +1165,39 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
 
     private func openSearchResults(query: ActionSearchResultsQuery, manager: iOSNavigationManager,
                                    continuing: SemanticJourneyInvocation?) async throws -> ActionResult {
+        try await performSearchResults(query: query, manager: manager, continuing: continuing).result
+    }
+
+    /// System entities identify an existing original window; they do not grant
+    /// authority or authorize creation/selection of some other scene.
+    private func openSearchIntent(_ request: NativeSearchIntentService.OpenRequest) async throws
+        -> NativeSearchIntentService.Observation {
+        let identities = try intentRootEntities().filter {
+            $0.id == request.window.id && $0.destination.rawValue == "native.search" && $0.component == nil
+        }
+        guard identities.count == 1, let selected = identities.first,
+              selected.sceneID == request.window.sceneID,
+              let entry = scenes[selected.sceneID], let manager = entry.manager,
+              entry.session.mounted, entry.managerID == ObjectIdentifier(manager) else {
+            throw UIRouteError(.staleState, "intent_window_no_longer_available")
+        }
+        guard selected.backend == request.query.search.backend,
+              request.expectedSnapshot.backend == selected.backend,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "intent_source_generation_changed")
+        }
+        return try await performSearchResults(query: request.query, manager: manager, continuing: nil,
+            intent: request, selectedRegistration: entry)
+    }
+
+    /// The in-app, semantic journey and system entries share the SAME original
+    /// pending owner, scope resolver, Core grant, native submission and receipt.
+    /// Foreground preflight is bounded before that single Core admission exists.
+    private func performSearchResults(query: ActionSearchResultsQuery, manager: iOSNavigationManager,
+                                      continuing: SemanticJourneyInvocation?,
+                                      intent: NativeSearchIntentService.OpenRequest? = nil,
+                                      selectedRegistration: Registration? = nil) async throws
+        -> NativeSearchIntentService.Observation {
         let end = deadline(), managerID = ObjectIdentifier(manager)
         let sceneID = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
             try await waitForMount(managerID: managerID)
@@ -1174,9 +1207,20 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
               !searchResultsInvocations.values.contains(where: { $0.sceneID == sceneID }) else {
             throw UIRouteError(.unavailable, "native_scene_busy")
         }
+        if let intent {
+            guard continuing == nil, let selectedRegistration,
+                  entry.session === selectedRegistration.session,
+                  entry.managerID == selectedRegistration.managerID,
+                  sceneID == intent.window.sceneID, entry.session.mounted, entry.session.foreground,
+                  entry.session.isRootAvailable(intent.window.destination),
+                  try backend.currentBackendSnapshot() == intent.expectedSnapshot else {
+                throw UIRouteError(.staleState, "intent_window_changed_during_activation")
+            }
+        }
         let observed = try hanlinSource(sceneID: sceneID, entry: entry)
-        let localContext = context(sceneID: sceneID, origin: .inApp, snapshot: observed.backend)
-        let localRequest = ActionRequest(action: "search.openResults", arguments: try query.actionArguments(),
+        let localContext = context(sceneID: sceneID, origin: intent == nil ? .inApp : .appIntent, snapshot: observed.backend)
+        let localRequest = ActionRequest(requestId: intent?.requestId ?? UUID(),
+            action: "search.openResults", arguments: try query.actionArguments(),
             expectedBackend: query.search.backend, expectedGeneration: observed.backend.generation,
             requestedPresentation: .foreground)
         let (request, context) = try semanticJourneyInvocation(continuing, fallback: localRequest,
@@ -1189,14 +1233,38 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
         }
         let result = await core.execute(request, context: context)
         if result.status == .completed {
-            guard let receipt = pending.receipt else { throw ActionPortError.invalidResponse }
+            guard let receipt = pending.receipt else {
+                if intent != nil {
+                    throw NativeSearchIntentService.Failure(.init(result: result, receipt: nil),
+                        status: .failed, code: "native_effect_uncertain")
+                }
+                throw ActionPortError.invalidResponse
+            }
+            if let intent {
+                // Re-read actual original visibility after Core returns, while
+                // its original retained binding still exists. No fresh grant.
+                do {
+                    try Task.checkCancellation()
+                    guard let current = scenes[sceneID], current.session === entry.session,
+                          current.managerID == managerID,
+                          searchResultsInvocations[request.requestId] === pending,
+                          contexts[sceneID] == context,
+                          try backend.currentBackendSnapshot() == intent.expectedSnapshot else {
+                        throw ActionPortError.staleState
+                    }
+                    try current.session.validateSearchResultsCompletion(requestID: request.requestId)
+                } catch {
+                    throw NativeSearchIntentService.Failure(.init(result: result, receipt: receipt),
+                        status: .failed, code: "native_effect_uncertain")
+                }
+            }
             record(.acknowledged(receipt))
             if let continuing {
                 do { try advanceSemanticSearchJourney(continuing.owner, receipt: receipt) }
                 catch { throw Self.uncertainNativeEffect(error) }
             }
         }
-        return result
+        return .init(result: result, receipt: pending.receipt)
     }
 
     private func prepareSearchResults(_ query: ActionSearchResultsQuery, context: ActionExecutionContext,
@@ -1838,6 +1906,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "reader_navigation"); throw error }
         })
         AppDependencyManager.shared.add(dependency: readerService)
+        let searchService = NativeSearchIntentService(snapshot: { [self] in
+            try backend.currentBackendSnapshot()
+        }, windows: { [self] in
+            try intentRootEntities()
+        }, reader: readerService, navigate: { [self] in
+            do { return try await openSearchIntent($0) }
+            catch { logIntentFailure(error, stage: "search_navigation"); throw error }
+        })
+        AppDependencyManager.shared.add(dependency: searchService)
         #if DEBUG
         acceptanceReaderIntentService = readerService
         #endif
