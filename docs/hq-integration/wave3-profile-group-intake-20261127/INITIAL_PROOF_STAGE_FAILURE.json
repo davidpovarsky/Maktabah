@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "job": {
+    "id": "job_5f92d2306861",
+    "type": "job_result",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "severity": "warning",
+    "tool": "script_run",
+    "host": "host_299cf75f6b338ecd",
+    "status": "failed",
+    "exit_code": 1,
+    "created_at": 1795784071.869212,
+    "started_at": "2026-11-27T12:54:31.949546+00:00",
+    "finished_at": "2026-11-27T12:54:36.750742+00:00",
+    "duration_s": 4.8,
+    "error": null,
+    "output_truncated": false,
+    "timeout_s": 180,
+    "read": false,
+    "notified": {
+      "telegram": null,
+      "resend": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 55, in <module>\n  File \"<stdin>\", line 11, in git\nRuntimeError: {\"git\": [\"add\", \"--\", \"docs/hq-integration/wave3-profile-group-intake-20261127\"], \"exit\": 1, \"out\": \"\", \"err\": \"The following paths and/or pathspecs matched paths that exist\\noutside of your sparse-checkout definition, so will not be\\nupdated in the index:\\ndocs/hq-integration/wave3-profile-group-intake-20261127/INTAKE_PLAN.json\\ndocs/hq-integration/wave3-profile-group-intake-20261127/RESULT.json\\nhint: If you intend to update such entries, try one of the following:\\nhint: * Use the --sparse option.\\nhint: * Disable or modify the sparsity rules.\\nhint: Disable this message with \\\"git config advice.updateSparsePath false\\\"\\n\"}"
+  }
+}

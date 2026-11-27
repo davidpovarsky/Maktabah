@@ -1,0 +1,20 @@
+{
+  "schema": "otzaria.scoped-intake.v1",
+  "base": "362f3883a16ed96dd6a08c6556534721de28253e",
+  "donor": "2966054d46a2610b7a4fe53eb8ac1323710f25ae",
+  "applied": "0bef0f2a8327aa5aafca381d04769ff717868320",
+  "Source": "792021040db39de5b2c95504ca33e34b528fb78e",
+  "Vendor": "9e4f188c5bedeef55ce95d97943f5e5046b6f3d6",
+  "productFiles": 14,
+  "changedFiles": 95,
+  "checks": "Exact original and new product SHA256; exact donor parent/manifests; no Vendor change; normal inherited hooks/signing",
+  "sourceControls": {
+    "binding": 56,
+    "service": 46,
+    "appleSDK": "NOT_RUN",
+    "native": "NOT_RUN"
+  },
+  "remaining": "Root-owned Composition, PBX memberships, localizations, shortcuts, explicit Nav Session hunk merge and Search continuation wiring; final native/owner/release gates remain open",
+  "at": "2026-11-27T12:54:36.429451+00:00",
+  "proofStagingRecovery": "Initial ordinary git add refused new out-of-cone docs only; selective cherry-pick already succeeded. Exact new evidence paths added with --sparse; sparse configuration, hooks and gates unchanged."
+}
