@@ -106,13 +106,18 @@ visibility or rewriting their implementation. The original UI, stores,
 navigation owners, Core, protocols, SDK bytes, pins, source gates, owner
 signatures, and Release assertions are unchanged.
 
-Root must add the one new test file to the **Maktabah-iOSUITests Sources phase**.
-No product-target membership, resource, catalog, entitlement or package change
-is required. MEMBERSHIP.json records that exact requirement.
+The new test file inherits the existing **Maktabah-iOSUITests synchronized
+target inclusion**. PBXFileSystemSynchronizedRootGroup F30578032FA46222005732C6
+is already attached to target F30578012FA46222005732C6. No manual PBX entry,
+product-target membership, resource, catalog, entitlement or package change is
+required. Actual Apple discovery/build remains NOT_RUN. MEMBERSHIP.json and
+PROJECT_MEMBERSHIP_PROOF.json record the exact original blocks; see
+MEMBERSHIP_CORRECTION.md for the preserved historical documentation error.
 
-An independent read-only review was requested from release_preflight against
-the immutable source commit. Its final findings are not implied by this
-packet's source checks. Root retains integration and native-run ownership.
+Independent read-only reviews by root and release_preflight found no source
+blocker against the immutable test source. SOURCE_REVIEW.md records their exact
+scope and limits; neither review is native acceptance. Root retains integration
+and native-run ownership.
 
 ## Remaining risks and next proof
 

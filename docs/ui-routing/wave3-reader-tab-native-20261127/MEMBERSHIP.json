@@ -3,12 +3,16 @@
     {
       "path": "Maktabah-iOSUITests/NativeReaderTabAcceptanceTests.swift",
       "target": "Maktabah-iOSUITests",
-      "phase": "Sources",
-      "platform": "iOS XCTest target",
-      "status": "PENDING_ROOT_INTEGRATION"
+      "target_id": "F30578012FA46222005732C6",
+      "synchronized_root_group_id": "F30578032FA46222005732C6",
+      "source_phase_id": "F30578042FA46222005732C6",
+      "membership": "inherited through existing PBXFileSystemSynchronizedRootGroup and fileSystemSynchronizedGroups",
+      "manual_pbx_edit_required": false,
+      "status": "SOURCE_STRUCTURE_VERIFIED_APPLE_DISCOVERY_BUILD_NOT_RUN"
     }
   ],
   "product_sources": [],
   "resources": [],
-  "catalog_changes": []
+  "catalog_changes": [],
+  "supersedes_membership_instruction_in": "be3ed07f476de5127bab2a70da5d32086d9a30d2"
 }
