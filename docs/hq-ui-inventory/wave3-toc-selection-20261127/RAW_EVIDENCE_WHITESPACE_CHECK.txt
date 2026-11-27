@@ -1,0 +1,33 @@
+Raw source snapshots intentionally retain exact original bytes, including historical trailing whitespace and extraction boundaries.
+The product/test diff passes whitespace checking. Raw evidence is not reformatted.
+
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/attempt-1/ActualLayoutState.swift:85: new blank line at EOF.
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/attempt-1/ControlOwnerBoundary.swift:10: new blank line at EOF.
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-1/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift:36: trailing whitespace.
++                
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-1/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift:70: trailing whitespace.
++            
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-1/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift:109: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-1/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:282: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-1/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:285: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-1/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:287: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-1/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:289: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-2/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift:36: trailing whitespace.
++                
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-2/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift:70: trailing whitespace.
++            
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-2/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift:109: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-2/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:282: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-2/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:285: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-2/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:287: trailing whitespace.
++    
+docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/syntax-attempt-2/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift:289: trailing whitespace.
++    

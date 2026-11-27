@@ -1,0 +1,21 @@
+{
+  "source_sha256": "ff1a1ce408be8628c5325b8d38db0ad11c07b17b32fa0a82ef343c528a3435fe",
+  "verbatim_extract_sha256": "01f4e6657db34fb7da69d41d2b48f009cc648ee095a268f537a9269fd211726d",
+  "command": [
+    "/usr/local/bin/swiftc",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-Xfrontend",
+    "-strict-concurrency=complete",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-toc-source-binding-20261127/docs/hq-ui-inventory/wave3-toc-selection-20261127/validation/attempt-1/Combined.swift",
+    "-o",
+    "/mnt/development/projects/diagnostics/otzaria-wave3-toc-selection-20261127/layout-publication-controls"
+  ],
+  "toolchain": "Swift version 6.4.3 (swift-6.4.3-RELEASE)\nTarget: aarch64-unknown-linux-gnu\n",
+  "compile_exit": 0,
+  "execution_exit": 0,
+  "started_at": "2026-11-27T00:59:28.882657+00:00",
+  "native_ui_executed": 0,
+  "scope": "Actual downstream layout-state unit controls with explicitly synthetic owner boundary; no UIKit/app execution"
+}
