@@ -13,15 +13,15 @@ typealias MaktabahNativeComponentOwner = NativeComponentRevealOwner
 /// @Observable feature fields. The portable one-shot latch never changes a
 /// coordinator, feature value, canonical route, grant or source generation.
 @MainActor final class MaktabahNativeComponentSourceObservation {
-    private let observation: NativeComponentSourceObservation
+    nonisolated private let observation: NativeComponentSourceObservation
     private let coordinator: BackendCoordinator
     private let backend: BackendID
     private let generation: UInt64
     private let backendChanges: AnyCancellable
 
-    init(read: @MainActor () -> Void) {
+    init(publications: [NativeComponentSourcePublication] = [], read: @MainActor () -> Void) {
         let coordinator = BackendCoordinator.shared
-        let observation = NativeComponentSourceObservation(read: read)
+        let observation = NativeComponentSourceObservation(publications: publications, read: read)
         self.coordinator = coordinator
         self.observation = observation
         backend = coordinator.activeBackendID
@@ -38,6 +38,11 @@ typealias MaktabahNativeComponentOwner = NativeComponentRevealOwner
             throw UIRouteError(.staleState, "native_component_backend_changed")
         }
     }
+
+    /// The exact pre-await latch, including its ORIGINAL backend publisher.
+    /// Returning it neither captures a new source nor grants an operation.
+    nonisolated var retainedClaimObservation: NativeComponentSourceObservation { observation }
+    nonisolated func invalidate() { observation.invalidate() }
 }
 
 /// A passive view inside the real original control. UIKit computes clipping in

@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import ChavrusaUIRoutingHost
 
 @MainActor protocol MaktabahNativeWorkspaceOwnerObserver: AnyObject {
     func workspaceOwnerWillChange()
@@ -9,6 +10,7 @@ import Observation
 /// owner-file proposal replaces its old @State reference, rather than copying
 /// that reference into a second selection/permission model.
 @MainActor @Observable final class MaktabahNativeWorkspaceOwner {
+    @ObservationIgnored let nativePublication = NativeComponentSourcePublication()
     private var workspace: StudyWorkspaceNavigationAdapter?
     @ObservationIgnored private var changing = false
     @ObservationIgnored private weak var observer: (any MaktabahNativeWorkspaceOwnerObserver)?
@@ -39,6 +41,7 @@ import Observation
     func replace(with next: StudyWorkspaceNavigationAdapter?) throws {
         guard !changing else { throw WorkspaceOwnerError.reentrantPublication }
         guard workspace !== next else { return }
+        nativePublication.invalidateRetainedSources()
         changing = true
         // Binding reads fail closed before the reference assignment itself.
         observer?.workspaceOwnerWillChange()
@@ -54,7 +57,10 @@ import Observation
         guard self.token == token else { return }
         self.token = nil; observer = nil
     }
-    isolated deinit { observer?.workspaceOwnerWillChange() }
+    isolated deinit {
+        nativePublication.invalidateRetainedSources()
+        observer?.workspaceOwnerWillChange()
+    }
     enum WorkspaceOwnerError: Error { case reentrantPublication, observerAlreadyInstalled, nativeRoutingOwnerMismatch }
 }
 
@@ -68,6 +74,14 @@ import Observation
     var isAuthoritative: Bool { authoritative }
     init(owner: MaktabahNativeWorkspaceOwner?, legacyWorkspace: StudyWorkspaceNavigationAdapter?) {
         self.owner = owner; legacy = legacyWorkspace; authoritative = owner != nil
+    }
+    /// The same original owner supplies only a passive publication latch.
+    /// Legacy or currently publishing sources cannot issue a new observation.
+    func originalPublication() throws -> NativeComponentSourcePublication {
+        guard authoritative, let owner, !owner.isPublishing else {
+            throw MaktabahNativeWorkspaceOwner.WorkspaceOwnerError.reentrantPublication
+        }
+        return owner.nativePublication
     }
     func read() throws -> StudyWorkspaceNavigationAdapter? {
         guard authoritative else { return legacy }

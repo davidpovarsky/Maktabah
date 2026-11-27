@@ -33,7 +33,9 @@ public struct UIGuideDefinition: Sendable {
     public init(steps: [Step]) throws {
         let destinations: Set<String> = [
             "native.library", "native.history", "native.search", "native.reader", "native.reader.toc",
-            "native.reader.inspector", "native.settings"
+            "native.reader.inspector", "native.settings",
+            "native.sefariaEmbedded.library", "native.sefariaEmbedded.topics",
+            "native.sefariaEmbedded.learningSchedules", "native.sefariaEmbedded.dedication"
         ]
         guard (1...12).contains(steps.count), steps.allSatisfy({ step in
             let route = step.destination

@@ -23,7 +23,8 @@ struct MaktabahNativePublicPresentation {
     func ready(for destination: UIDestinationID) -> Bool {
         switch destination.rawValue {
         case "native.reader.toc": return readyTableOfContents
-        case "native.sefariaEmbedded": return readySefariaSurface
+        case "native.sefariaEmbedded", "native.sefariaEmbedded.library", "native.sefariaEmbedded.topics",
+             "native.sefariaEmbedded.learningSchedules": return readySefariaSurface
         case "native.savedResults": return readySavedResults
         case "native.workspace.profiles", "native.workspace.overview":
             return readyWorkspaceParents.contains(destination)
@@ -66,7 +67,7 @@ struct MaktabahNativePublicPresentation {
          presentation: @escaping @MainActor () throws -> MaktabahNativePublicPresentation,
          validateParentSource: @escaping @MainActor (UIDestinationID, UUID) throws -> Void = { destination, _ in
              guard MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.rawValue) == nil,
-                   destination != MaktabahNativeSefariaSurfaceBinding.destination,
+                   !MaktabahNativeSefariaSurfaceBinding.accepts(destination),
                    destination != MaktabahNativeSavedResultsBinding.destination,
                    MaktabahApp.isIpad || destination != MaktabahNativeTOCComponents.destination else {
                  throw UIRouteError(.unavailable, "native_parent_source_missing")
@@ -156,7 +157,8 @@ struct MaktabahNativePublicPresentation {
         case ("native.settings", .sheet, false): return .settings
         case ("native.workspace.profiles", .sheet, false): return .workspaceProfiles
         case ("native.workspace.overview", .sheet, false): return .workspaceOverview
-        case ("native.sefariaEmbedded", .sheet, false): return .sefariaEmbedded
+        case ("native.sefariaEmbedded", .sheet, false), ("native.sefariaEmbedded.library", .sheet, false),
+             ("native.sefariaEmbedded.topics", .sheet, false), ("native.sefariaEmbedded.learningSchedules", .sheet, false): return .sefariaEmbedded
         case ("native.savedResults", .sheet, false): return .savedResults
         case ("native.reader.inspector", .inspector, false): return .inspector
         case ("native.reader", .currentTab, true), ("native.reader", .newTab, true): return .reader

@@ -84,11 +84,11 @@ struct MaktabahNativeSceneProjection {
                   binding.owns(workspace, manager: manager), binding.isAvailable else { return nil }
             let actual = binding.presentationFacets
             guard actual.requested, actual.mounted, actual.visible, actual.ready,
-                  !actual.transitioning else { return nil }
+                  !actual.transitioning, let destination = binding.observedDestination else { return nil }
             // The feature proves the ORIGINAL React mount/epoch/layout. This
             // state is still not an ACK: the separate native marker must be
             // visible in this same window and its final report is source-locked.
-            return .init(destination: MaktabahNativeSefariaSurfaceBinding.destination,
+            return .init(destination: destination,
                          presentation: .init(kind: .sheet), content: nil, state: state, focus: nil)
         case .workspaceProfiles, .workspaceOverview:
             let parent: MaktabahNativeWorkspacePresentationBinding.Parent =

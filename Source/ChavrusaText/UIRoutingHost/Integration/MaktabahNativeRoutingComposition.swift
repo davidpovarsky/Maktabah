@@ -275,6 +275,19 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                   title: String(localized: "bootstrap.source.sefaria.title"), implementation: .implemented,
                   supportedBackends: [.sefariaEmbedded], presentations: [.sheet], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
+            .init(id: id("native.sefariaEmbedded.library"), title: workspaceText("Sefaria Library", "ספריית ספריא"),
+                  implementation: .implemented, supportedBackends: [.sefariaEmbedded], presentations: [.sheet],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
+            .init(id: id("native.sefariaEmbedded.topics"), title: workspaceText("Sefaria Topics", "נושאים בספריא"),
+                  implementation: .implemented, supportedBackends: [.sefariaEmbedded], presentations: [.sheet],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
+            .init(id: id("native.sefariaEmbedded.learningSchedules"), title: workspaceText("Sefaria Learning Schedules", "לוח הלימוד של ספריא"),
+                  implementation: .implemented, supportedBackends: [.sefariaEmbedded], presentations: [.sheet],
+                  publicNavigationV2: .init(rules: [.init(presentation: .sheet)])),
+            // Original inventory: guide-only semantic target. No public v1/v2
+            // URL policy, system entity or current Hanlin public-URL exposure.
+            .init(id: id("native.sefariaEmbedded.dedication"), title: workspaceText("Sefaria Dedication", "הקדשת ספריא"),
+                  implementation: .implemented, supportedBackends: [.sefariaEmbedded], presentations: [.sheet]),
             .init(id: id("native.reader.inspector"), title: "Study Tools".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.inspector], requiredCoreActions: [],
                   publicNavigationV2: .init(rules: [.init(presentation: .inspector)])),
@@ -814,12 +827,15 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
     }
 
     func open(destination: NativeIntentService.Destination) async throws -> UISceneAcknowledgement {
+        guard MaktabahNativeSefariaSurfaceBinding.semanticTarget(for: destination.destination)?.isPublicNavigation != false else {
+            throw UIRouteError(.notSupported, "native_sefaria_guide_only")
+        }
         guard let entry = scenes[destination.sceneID], entry.session.foreground else { return .requiresForeground }
         let snapshot = try backend.currentBackendSnapshot()
         guard snapshot.backend == destination.backend else { return .requiresBackendSwitch(destination.backend) }
         if destination.component != nil || destination.destination.rawValue == "native.reader.inspector"
             || (!MaktabahApp.isIpad && destination.destination == MaktabahNativeTOCComponents.destination)
-            || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination
+            || MaktabahNativeSefariaSurfaceBinding.accepts(destination.destination)
             || destination.destination == MaktabahNativeSavedResultsBinding.destination
             || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil {
             // The same live system entity uses the same public binder and
@@ -829,7 +845,7 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
                 presentation: destination.destination.rawValue == "native.reader.inspector" ? .inspector
                     : (destination.destination.rawValue == "native.settings"
                     || MaktabahNativeWorkspacePresentationBinding.Parent(rawValue: destination.destination.rawValue) != nil
-                    || destination.destination == MaktabahNativeSefariaSurfaceBinding.destination
+                    || MaktabahNativeSefariaSurfaceBinding.accepts(destination.destination)
                     || destination.destination == MaktabahNativeSavedResultsBinding.destination) ? .sheet : .currentTab,
                 component: destination.component), sceneID: destination.sceneID,
                 managerID: entry.managerID, expectedSnapshot: snapshot, origin: .appIntent, until: deadline())
@@ -1022,9 +1038,49 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             guard let self, let session, scenes[sceneID]?.session === session, before.sceneID == sceneID else {
                 throw UIRouteError(.staleState, "guide_scene_lifetime_changed")
             }
+            if MaktabahNativeSefariaSurfaceBinding.semanticTarget(for: intent.destination) == .dedication {
+                guard intent.presentation == .sheet, intent.content == nil, intent.component == nil,
+                      intent.backend == nil || intent.backend == before.backendSnapshot.backend else {
+                    throw UIRouteError(.notSupported, "native_sefaria_guide_shape_invalid")
+                }
+                return try await openOriginalSefariaGuide(sceneID: sceneID, managerID: managerID,
+                    expectedSnapshot: before.backendSnapshot, until: deadline)
+            }
             return try await open(public: intent, sceneID: sceneID, managerID: managerID,
                                   expectedSnapshot: before.backendSnapshot, origin: .guide, until: deadline)
         }
+    }
+
+    /// The finite original dedication target is deliberately absent from all
+    /// public URL policies/entities. This private Guide continuation retains its
+    /// parent BEFORE the first await and uses the existing canonical Core commit.
+    private func openOriginalSefariaGuide(sceneID: UIStableID, managerID: ObjectIdentifier,
+        expectedSnapshot: ActionBackendSnapshot, until end: UInt64) async throws -> UISceneAcknowledgement {
+        try Task.checkCancellation()
+        guard let entry = scenes[sceneID], entry.managerID == managerID,
+              entry.session.foreground, contexts[sceneID] == nil,
+              expectedSnapshot.backend == .sefariaEmbedded,
+              try backend.currentBackendSnapshot() == expectedSnapshot,
+              SystemActionClock().now() < end else {
+            throw UIRouteError(.unavailable, "native_sefaria_guide_source_unavailable")
+        }
+        let destination = UIDestinationID(rawValue: SefariaEmbeddedSemanticTarget.dedication.destinationID)!
+        let invocation = ActionPortInvocation(requestId: UUID(), snapshot: expectedSnapshot,
+                                               deadlineUptimeNanoseconds: end)
+        try entry.session.retainParentSource(destination: destination, requestID: invocation.requestId)
+        defer { entry.session.releaseParentSource(destination: destination, requestID: invocation.requestId) }
+        let context = context(sceneID: sceneID, origin: .guide, snapshot: expectedSnapshot)
+        try issue(context, sceneID: sceneID)
+        defer { finish(context, sceneID: sceneID) }
+        let scene = try await directory.currentScene(sceneID: sceneID, context: context, invocation: invocation)
+        guard scenes[sceneID]?.session === entry.session, entry.managerID == managerID else {
+            throw UIRouteError(.staleState, "native_sefaria_guide_owner_changed")
+        }
+        let route = try entry.session.prepareOriginalSefariaGuide(invocation: invocation, scene: scene)
+        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+        let result = try await orchestrator.commit(command, context: context)
+        record(result)
+        return result
     }
 
     /// Public content uses the original current Reader or R's exact new-tab
@@ -2230,7 +2286,9 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             let scene = try await directory.currentScene(sceneID: id, context: context, invocation: invocation)
             let descriptors = try await registry.discover(scene: scene, context: context, invocation: invocation, core: core, host: self)
             let windowLabel = entry.session.windowLabel(number: entry.windowNumber)
-            values += descriptors.map { .init(backend: snapshot.backend, destination: $0.id, title: $0.title + " — " + windowLabel, sceneID: id) }
+            values += descriptors.filter {
+                MaktabahNativeSefariaSurfaceBinding.semanticTarget(for: $0.id)?.isPublicNavigation != false
+            }.map { .init(backend: snapshot.backend, destination: $0.id, title: $0.title + " — " + windowLabel, sceneID: id) }
             if let binding = entry.publicBinding {
                 let variants = try await registry.discoverPublicV2(scene: scene, context: context, invocation: invocation,
                                                                   core: core, host: binding)
@@ -2262,7 +2320,8 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             for descriptor in registry.descriptors where descriptor.implementation == .implemented
                 && descriptor.supportedBackends.contains(snapshot.backend)
                 && descriptor.requiredCoreActions.isEmpty && !descriptor.requiresContent
-                && !descriptor.mutatesUserData && !descriptor.allowsPrivateState {
+                && !descriptor.mutatesUserData && !descriptor.allowsPrivateState
+                && MaktabahNativeSefariaSurfaceBinding.semanticTarget(for: descriptor.id)?.isPublicNavigation != false {
                 guard descriptor.id.rawValue == "native.settings" || entry.session.isRootAvailable(descriptor.id) else { continue }
                 values.append(.init(backend: snapshot.backend, destination: descriptor.id,
                     title: descriptor.title + " — " + windowLabel, sceneID: id))

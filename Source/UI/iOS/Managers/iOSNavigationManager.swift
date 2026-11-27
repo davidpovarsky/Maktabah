@@ -2,6 +2,7 @@ import Foundation
 import OSLog
 import SwiftUI
 import UIKit
+import ChavrusaUIRoutingHost
 
 /// Manages the navigation and current mode for the iOS application.
 @MainActor
@@ -24,8 +25,10 @@ class iOSNavigationManager: BackendSwitchParticipant {
         }
     }
 
+    @ObservationIgnored let nativeModePresentationPublication = NativeComponentSourcePublication()
     var currentMode: AppMode = .viewer {
         willSet {
+            nativeModePresentationPublication.invalidateRetainedSources()
             // Observe every original mode publication, including equal writes.
             // This metadata neither selects a mode nor replaces TabView's owner.
             if let revision = nativeModePresentationRevision, revision < .max {

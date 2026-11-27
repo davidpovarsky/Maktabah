@@ -1479,6 +1479,9 @@
 		1B7E2C9E2359B85FA50FB448 /* MaktabahNativeSavedResultsBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */; };
 		49C8885F86E592D87D813F15 /* MaktabahNativeSavedResultsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */; };
 		D39C8A156976C56FA1E16C38 /* MaktabahNativeReaderToolSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */; };
+		3AF217E9C4FDFAEBFB8D8E24 /* SefariaEmbeddedSemanticNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */; };
+		BAF90592723AA4B89CEB6BEC /* SefariaEmbeddedSemanticNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */; };
+		A72ECD20FEEDD8F6A7302D31 /* SefariaEmbeddedSemanticNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2339,6 +2342,7 @@
 		52E52F68408674BB622991E3 /* MaktabahNativeSavedResultsBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSavedResultsBinding.swift"; sourceTree = "<group>"; };
 		D1FE202D154D5837019E5976 /* MaktabahNativeSavedResultsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeSavedResultsViews.swift"; sourceTree = "<group>"; };
 		6CE1F0B3427A9C3611E2DF3F /* MaktabahNativeReaderToolSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeReaderToolSource.swift"; sourceTree = "<group>"; };
+		30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI/SefariaEmbeddedSemanticNavigation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -2591,6 +2595,7 @@
 		CEEE00000000000000000003 /* SefariaEmbedded */ = {
 			isa = PBXGroup;
 			children = (
+				30482ED2463F3E3D1D0DA9B2 /* SefariaEmbeddedSemanticNavigation.swift */,
 				CE000000000000000000002A /* SefariaRPCModels.swift */,
 				CE000000000000000000002B /* SefariaJSRPCBridge.swift */,
 				CE000000000000000000002C /* SefariaRuntimeManager.swift */,
@@ -4563,6 +4568,7 @@
 		4B3202242EDAFE85003B95D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				3AF217E9C4FDFAEBFB8D8E24 /* SefariaEmbeddedSemanticNavigation.swift in Sources */,
 				87665F06D696E3919AB2B708 /* OriginalSavedResultsLoadLifetime.swift in Sources */,
 				AF6BB4B0292A5855233D351E /* MaktabahNativeSettingsComponents.swift in Sources */,
 				9E22D6A1FD6AA0272AD19518 /* AnnotationExchangeIdentity.swift in Sources */,
@@ -4928,6 +4934,7 @@
 		4B7C90A52F83494200454BE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				BAF90592723AA4B89CEB6BEC /* SefariaEmbeddedSemanticNavigation.swift in Sources */,
 				F74DC3696387CBB309D0CAE0 /* OriginalSavedResultsLoadLifetime.swift in Sources */,
 				A238FAACB059319BEE1D808C /* MaktabahNativeSettingsComponents.swift in Sources */,
 				1A6FD5E39DE86FB5FCEDDD56 /* AnnotationExchangeIdentity.swift in Sources */,
@@ -5298,6 +5305,7 @@
 		F30576E22FA46222005732C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				A72ECD20FEEDD8F6A7302D31 /* SefariaEmbeddedSemanticNavigation.swift in Sources */,
 				D39C8A156976C56FA1E16C38 /* MaktabahNativeReaderToolSource.swift in Sources */,
 				480A37811754BC6F9614551B /* OriginalSavedResultsLoadLifetime.swift in Sources */,
 				99CFFF6DD16372CBBAF602C4 /* MaktabahNativeSavedResultsSource.swift in Sources */,
