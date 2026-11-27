@@ -43,6 +43,8 @@ private func sha(_ data: Data) -> String {
         let readerNavigationOracle: Bool?
         let sourceService: ServiceIdentity?
         let presentationSource: ServiceIdentity?
+        let readerModeMatrix: Bool?
+        let pendingSQLModes: Bool?
     }
     static func main() throws {
         let input = try JSONDecoder().decode(Input.self, from: Data(contentsOf:
@@ -246,6 +248,106 @@ private func sha(_ data: Data) -> String {
                 }
             }
             return result
+        }
+        // Independent measurement selections are never represented as Search
+        // provider hits. These optional branches leave both original outputs
+        // below unchanged and write only their separately named source oracle.
+        if input.readerModeMatrix != nil || input.pendingSQLModes != nil {
+            try require(input.previewTargets == nil
+                        && ((input.readerModeMatrix == true && input.pendingSQLModes == nil)
+                            || (input.pendingSQLModes == true && input.readerModeMatrix == nil)),
+                        "Select exactly one explicit measurement catalog; no preview or false-flag fallback")
+            guard let identity = input.sourceService, let presentation = input.presentationSource else {
+                throw CatalogError(message: "Actual complete compiled service and presentation source identities are required")
+            }
+            let compileURL = URL(fileURLWithPath: identity.compileInputsPath)
+            let compileBytes = try Data(contentsOf: compileURL)
+            guard let compile = try JSONSerialization.jsonObject(with: compileBytes) as? [String: Any],
+                  let hashes = compile["source_sha256"] as? [String: String],
+                  let command = compile["command"] as? [String]
+            else { throw CatalogError(message: "Actual retained measurement catalog compiler inputs are required") }
+            for (source, relative) in [
+                (identity, "Source/Otzaria/Reading/OtzariaReadingUnitService.swift"),
+                (presentation, "Source/LibraryBackend/LibraryBackendModels.swift")
+            ] {
+                let url = URL(fileURLWithPath: source.path)
+                let actualBytes = try Data(contentsOf: url)
+                try require(url.lastPathComponent == URL(fileURLWithPath: relative).lastPathComponent
+                            && source.compileInputsPath == identity.compileInputsPath
+                            && source.sha256.count == 64 && hashes[relative] == source.sha256
+                            && sha(actualBytes) == source.sha256 && command.contains(source.path),
+                            "The original measurement source must match its actual compiler input bytes")
+            }
+            let modes: [(String, OtzariaUnitMode)] = [("line", .line), ("paragraph", .paragraph), ("chapter", .chapter)]
+            let outputName: String
+            let status: String
+            let scope: String
+            if input.readerModeMatrix == true {
+                for book in input.v40Targets.books {
+                    let titles = try database.fetch(query: "SELECT title FROM book WHERE id=?",
+                        parameters: [book.bookID]) { $0.string(at: 0) }
+                    let indices = try database.fetch(query: "SELECT lineIndex FROM line WHERE bookId=? ORDER BY lineIndex",
+                        parameters: [book.bookID]) { $0.int(at: 0) }
+                    try require(titles.count == 1 && titles[0] == book.title
+                                && indices.count == book.lineCount && Set(indices).count == book.lineCount,
+                                "Exact independent full-v40 book title and complete source positions are required")
+                    for (name, mode) in modes {
+                        for (position, offset) in [("first", 0), ("middle", indices.count / 2), ("last", indices.count - 1)] {
+                            var value = try target(bookID: book.bookID, focus: indices[offset],
+                                position: "perf01-\(name)-\(position)", expectedCount: book.lineCount, mode: mode)
+                            value["matrixPosition"] = position
+                            value["bookLineCount"] = book.lineCount
+                            value["tocSelection"] = try tocSelection(bookID: book.bookID,
+                                unitStart: value["unitStartLineIndex"] as! Int)
+                            targets.append(value)
+                        }
+                    }
+                }
+                try require(targets.count == 27 && Set(targets.compactMap { $0["key"] as? String }).count == 27,
+                            "Exactly three modes at three actual source positions in each of the three original books are required")
+                outputName = "reader-mode-matrix.json"
+                status = "ORIGINAL_SOURCE_READER_MODE_MATRIX_ONLY_NOT_UI_OR_PERFORMANCE"
+                scope = "Full original units at independent first/middle/last SQL source positions; no search result or performance observation is manufactured"
+            } else {
+                let retained = input.v40Targets.retainedChapter
+                try require(retained.bookID == 8042 && retained.focusLineIndex == 26166
+                            && retained.unitID == "toc:1948815" && retained.unitRowCount == 52332
+                            && retained.unitStartLineIndex == 0 && retained.unitEndLineIndex == 52331
+                            && retained.sourceUTF16Length == 8307947,
+                            "Pending-SQL modes require the independently retained actual large-chapter identity")
+                for (name, mode) in modes {
+                    var value = try target(bookID: retained.bookID, focus: retained.focusLineIndex,
+                        position: "pending-sql-\(name)", expectedCount: 118905, mode: mode)
+                    value["tocSelection"] = try tocSelection(bookID: retained.bookID,
+                        unitStart: value["unitStartLineIndex"] as! Int)
+                    if name == "chapter" {
+                        try require(value["unitID"] as? String == retained.unitID
+                                    && value["unitRowCount"] as? Int == retained.unitRowCount
+                                    && value["unitStartLineIndex"] as? Int == retained.unitStartLineIndex
+                                    && value["unitEndLineIndex"] as? Int == retained.unitEndLineIndex
+                                    && value["sourceUTF16Length"] as? Int == retained.sourceUTF16Length,
+                                    "Actual original pending-SQL chapter differs from the independently retained identity")
+                    }
+                    targets.append(value)
+                }
+                try require(targets.count == 3 && Set(targets.compactMap { $0["key"] as? String }).count == 3,
+                            "All three complete original pending-SQL modes are required")
+                outputName = "pending-sql-modes.json"
+                status = "ORIGINAL_SOURCE_PENDING_SQL_MODES_ONLY_NOT_UI_OR_PERFORMANCE"
+                scope = "Complete original Line/Paragraph/Chapter units at actual book8042/line26166; no synthetic pending operation or truncated content"
+            }
+            let measurement: [String: Any] = [
+                "schema": 1, "status": status, "corpusProfile": "full-v40",
+                "databaseSHA256": input.databaseSHA256, "targets": targets,
+                "sourceServiceSHA256": identity.sha256, "presentationSourceSHA256": presentation.sha256,
+                "catalogCompileInputsSHA256": sha(compileBytes), "uiExecuted": 0,
+                "searchProviderExecuted": false, "performanceObserved": false,
+                "independentSQL": "SELECT id,lineIndex,heRef FROM line WHERE bookId = ? ORDER BY lineIndex",
+                "sqliteRuntimeVersion": String(cString: sqlite3_libversion()), "scope": scope
+            ]
+            try JSONSerialization.data(withJSONObject: measurement, options: [.prettyPrinted, .sortedKeys])
+                .write(to: output.appendingPathComponent(outputName), options: .atomic)
+            return
         }
         if let requests = input.previewTargets {
             // Selected hit identities must come from an actual original provider

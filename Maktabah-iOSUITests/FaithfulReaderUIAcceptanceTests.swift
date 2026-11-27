@@ -5707,3 +5707,304 @@ extension FaithfulProductionReleaseTests {
 
 }
 // END ADDITIVE FULL-V40 NATURAL INSPECTOR TARGETS
+
+// BEGIN ADDITIVE FULL-V40 PER-BOOK / MODE MEASUREMENTS
+// These nine cases measure a separate, explicitly repeated workload. They do
+// not rename, call or change the original ten-target / twenty-open cases.
+private struct FullV40Perf01TOC: Decodable {
+    struct Heading: Decodable { let sourceLineIndex: Int; let title: String }
+    let schema: Int
+    let canonicalLocator: String
+    let sourceLineIndex: Int
+    let headings: [Heading]
+    let allTOCRowsChecked: Int
+    let tocSQLRowsSHA256: String
+}
+private struct FullV40Perf01Target: Decodable {
+    let unit: FullV32ReaderTarget
+    let matrixPosition: String
+    let bookLineCount: Int
+    let tocSelection: FullV40Perf01TOC
+    private enum CodingKeys: String, CodingKey { case matrixPosition, bookLineCount, tocSelection }
+    init(from decoder: Decoder) throws {
+        unit = try FullV32ReaderTarget(from: decoder)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        matrixPosition = try values.decode(String.self, forKey: .matrixPosition)
+        bookLineCount = try values.decode(Int.self, forKey: .bookLineCount)
+        tocSelection = try values.decode(FullV40Perf01TOC.self, forKey: .tocSelection)
+    }
+}
+private struct FullV40Perf01Catalog: Decodable {
+    let schema: Int
+    let status: String
+    let corpusProfile: String
+    let databaseSHA256: String
+    let catalogCompileInputsSHA256: String
+    let sourceServiceSHA256: String
+    let presentationSourceSHA256: String
+    let uiExecuted: Int
+    let performanceObserved: Bool
+    let targets: [FullV40Perf01Target]
+}
+
+extension FaithfulProductionReleaseTests {
+    @MainActor func testFullV40BerakhotLineColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 103, unitMode: "line")
+    }
+    @MainActor func testFullV40BerakhotParagraphColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 103, unitMode: "paragraph")
+    }
+    @MainActor func testFullV40BerakhotChapterColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 103, unitMode: "chapter")
+    }
+    @MainActor func testFullV40TehillimLineColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 28, unitMode: "line")
+    }
+    @MainActor func testFullV40TehillimParagraphColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 28, unitMode: "paragraph")
+    }
+    @MainActor func testFullV40TehillimChapterColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 28, unitMode: "chapter")
+    }
+    @MainActor func testFullV40DerashotHaRanLineColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 3152, unitMode: "line")
+    }
+    @MainActor func testFullV40DerashotHaRanParagraphColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 3152, unitMode: "paragraph")
+    }
+    @MainActor func testFullV40DerashotHaRanChapterColdWarmMeasurements() throws {
+        try measureOriginalFullV40ReaderCell(bookID: 3152, unitMode: "chapter")
+    }
+
+    @MainActor private func perf01Wait(_ message: String, timeout: TimeInterval = 20,
+                                       _ condition: @escaping @MainActor () -> Bool) throws {
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            NativeCaptureMainActorEntry.run { condition() }
+        }, object: nil)
+        try fullV32Require(XCTWaiter.wait(for: [ready], timeout: timeout) == .completed, message)
+    }
+
+    @MainActor private func perf01Control(_ identifier: String) throws -> XCUIElement {
+        let rows = app.buttons.matching(identifier: identifier)
+        try perf01Wait("The unique original control must be visible: " + identifier) {
+            rows.count == 1 && rows.firstMatch.isHittable && !rows.firstMatch.frame.isEmpty
+        }
+        return rows.firstMatch
+    }
+
+    @MainActor private func perf01Catalog(bookID: Int, mode: String) throws -> (FullV40Perf01Catalog, String) {
+        let env = ProcessInfo.processInfo.environment
+        let path = try XCTUnwrap(env["PERF01_READER_CATALOG_FILE"])
+        let expected = try XCTUnwrap(env["PERF01_READER_CATALOG_SHA256"])
+        let data = try fullV32BoundedData(URL(fileURLWithPath: path), limit: 1024 * 1024)
+        let actual = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        let catalog = try JSONDecoder().decode(FullV40Perf01Catalog.self, from: data)
+        let counts = [103: 2875, 28: 2678, 3152: 528]
+        try fullV32Require(actual == expected && expected.count == 64
+            && env["PERF01_CELL"] == "\(bookID)-\(mode)" && env["READER_OBSERVATION_CORPUS"] == "full-v40"
+            && catalog.schema == 1 && catalog.corpusProfile == "full-v40"
+            && catalog.status == "ORIGINAL_SOURCE_READER_MODE_MATRIX_ONLY_NOT_UI_OR_PERFORMANCE"
+            && catalog.databaseSHA256 == FullReaderObservationCorpus.v40.databaseSHA256
+            && catalog.catalogCompileInputsSHA256.count == 64 && catalog.sourceServiceSHA256.count == 64
+            && catalog.presentationSourceSHA256.count == 64 && catalog.uiExecuted == 0 && !catalog.performanceObserved
+            && catalog.targets.count == 27 && Set(catalog.targets.map { $0.unit.key }).count == 27,
+            "Use only this current source-qualified full-v40 mode matrix; no preview-hit or mini-fixture substitution")
+        for (book, count) in counts {
+            for unitMode in ["line", "paragraph", "chapter"] {
+                let targets = catalog.targets.filter { $0.unit.bookID == book && $0.unit.unitMode == unitMode }
+                try fullV32Require(targets.count == 3 && targets.map(\.matrixPosition) == ["first", "middle", "last"]
+                    && targets.allSatisfy { $0.bookLineCount == count
+                        && $0.unit.key == "\(book)-perf01-\(unitMode)-\($0.matrixPosition)"
+                        && $0.unit.sourceUTF16Length > 0 && $0.unit.unitRowCount > 0
+                        && $0.unit.unitStartLineIndex <= $0.unit.focusLineIndex
+                        && $0.unit.focusLineIndex <= $0.unit.unitEndLineIndex },
+                    "Every cell must retain three actual complete source positions and the requested original mode")
+            }
+        }
+        return (catalog, actual)
+    }
+
+    @MainActor private func perf01OpenInitialBook(_ title: String) throws {
+        tap(readerLibraryPaletteLauncher())
+        let palette = app.descendants(matching: .any)["reader-library-command-palette"]
+        try fullV32Require(palette.waitForExistence(timeout: 30), "Open the original Library palette")
+        let input = palette.textFields.firstMatch
+        try fullV32Require(input.waitForExistence(timeout: 15) && input.isHittable, "Use its original query field")
+        tap(input); input.typeKey(XCUIKeyboardKey(rawValue: "a"), modifierFlags: .command); input.typeText(title)
+        try perf01Wait("Wait for the exact actual Hebrew input value") { input.value as? String == title }
+        let rows = palette.buttons.matching(NSPredicate(format: "label == %@", title))
+        try perf01Wait("One actual full-v40 book must be selectable", timeout: 60) {
+            rows.allElementsBoundByIndex.filter { $0.isHittable }.count == 1
+        }
+        tap(try XCTUnwrap(rows.allElementsBoundByIndex.first { $0.isHittable }))
+        try perf01Wait("Original Reader must show the independently selected initial book", timeout: 60) {
+            self.app.textViews["reader-text"].exists && self.app.staticTexts["reader-header-title"].label == title
+        }
+    }
+
+    @MainActor private func perf01ModeProof(_ mode: String, context: FullV32ProductionContext,
+                                           stage: String) throws -> [String: Any] {
+        // This reads the original writer after the real menu action. No launch
+        // argument, defaults write, fake menu state or private app API is used.
+        let path = context.container.appendingPathComponent("Library/Preferences/com.davidpovarsky.chavrusatext.plist")
+        try perf01Wait("The actual original reading-unit preference must persist as " + mode, timeout: 30) {
+            guard let data = try? self.fullV32BoundedData(path, limit: 8 * 1024 * 1024),
+                  let values = (try? PropertyListSerialization.propertyList(from: data, format: nil)) as? [String: Any]
+            else { return false }
+            return values["otzaria_reader_unit_mode"] as? String == mode
+        }
+        return try fullV32Host("observe_perf01_mode", context: context,
+            fields: ["unitMode": mode, "stage": stage])
+    }
+
+    @MainActor private func perf01TOC(_ target: FullV40Perf01Target) throws -> [String: Any] {
+        let expected = target.tocSelection
+        try fullV32Require(expected.schema == 1 && !expected.headings.isEmpty
+            && expected.allTOCRowsChecked > 0 && expected.tocSQLRowsSHA256.count == 64
+            && expected.headings.allSatisfy { $0.sourceLineIndex == expected.sourceLineIndex }
+            && expected.canonicalLocator == "otzaria|book:\(target.unit.bookID)|line:\(expected.sourceLineIndex)",
+            "Use the independent complete actual SQL TOC identity")
+        let list = app.descendants(matching: .any)["toc-content-list"]
+        if !list.exists || list.frame.isEmpty || !list.frame.intersects(app.windows.firstMatch.frame) {
+            tap(try perf01Control("reader-more-menu")); tap(try perf01Control("reader-toc-toggle"))
+        }
+        try perf01Wait("Original Contents must be mounted", timeout: 60) {
+            list.exists && !list.frame.isEmpty && list.frame.intersects(self.app.windows.firstMatch.frame)
+        }
+        // The native unit route uses the original OtzariaAppContainer TOC.id
+        // (= resolved source line index), not the backend-renderer's registry
+        // surrogate. Keep these two source paths and identity contracts apart.
+        let identifier = "toc-row-" + String(expected.sourceLineIndex)
+        let allowed = Set(expected.headings.map(\.title))
+        let rows = list.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "toc-row-"))
+        var selected: [XCUIElement] = []
+        try perf01Wait("The original selected TOC must agree with this native unit", timeout: 30) {
+            selected = rows.allElementsBoundByIndex.filter { !$0.frame.isEmpty && $0.frame.intersects(list.frame)
+                && $0.frame.intersects(self.app.windows.firstMatch.frame)
+                && ($0.isSelected || $0.value as? String == "selected") }
+            return !selected.isEmpty && selected.allSatisfy { $0.identifier == identifier && $0.isHittable
+                && $0.isSelected && $0.value as? String == "selected" && allowed.contains($0.label) }
+        }
+        let proof: [String: Any] = ["canonicalLocator": expected.canonicalLocator,
+            "sourceLineIndex": expected.sourceLineIndex, "tocSQLRowsSHA256": expected.tocSQLRowsSHA256,
+            "originalSelectedRows": selected.map { ["identifier": $0.identifier, "label": $0.label,
+                "selected": $0.isSelected, "value": $0.value as? String ?? ""] as [String: Any] }]
+        let close = app.buttons["toc-close"]
+        if close.exists && close.isHittable { tap(close) }
+        else {
+            let candidates = [app.buttons["reader-host-sidebar-toggle"]]
+                + app.navigationBars.buttons.matching(NSPredicate(format: "label == %@", "Hide Sidebar")).allElementsBoundByIndex
+            let visible = candidates.filter { $0.exists && $0.isHittable }
+            try fullV32Require(visible.count == 1, "Close the unique actual original Contents owner")
+            tap(try XCTUnwrap(visible.first))
+        }
+        try perf01Wait("Original Contents must close without navigation") {
+            !list.exists || list.frame.isEmpty || !list.frame.intersects(self.app.windows.firstMatch.frame)
+        }
+        try fullV32Require(app.staticTexts["reader-current-locator"].label == target.unit.sectionLocator
+            && app.staticTexts["reader-header-title"].label == target.unit.bookTitle,
+            "Post-epoch TOC inspection must preserve the measured original unit")
+        return proof
+    }
+
+    @MainActor private func perf01SampleID(_ sample: [String: Any]) throws -> String {
+        let viewport = try XCTUnwrap(sample["viewport"] as? [String: Any])
+        return try XCTUnwrap(viewport["requestID"] as? String)
+    }
+
+    @MainActor private func measureOriginalFullV40ReaderCell(bookID: Int, unitMode: String) throws {
+        let deadline = ProcessInfo.processInfo.systemUptime + 600
+        let (catalog, catalogSHA) = try perf01Catalog(bookID: bookID, mode: unitMode)
+        let selected = catalog.targets.filter { $0.unit.bookID == bookID && $0.unit.unitMode == unitMode }
+        let away = try XCTUnwrap(catalog.targets.first {
+            $0.unit.bookID != bookID && $0.unit.unitMode == unitMode && $0.matrixPosition == "first"
+        })
+        let basename = "full-v32-reader-" + UUID().uuidString
+        XCUIDevice.shared.orientation = .landscapeLeft
+        fullV32Launch(basename)
+        try fullV32Require(!app.launchArguments.contains("-otzaria_reader_unit_mode"),
+            "Mode changes must use the original controls and survive ordinary process relaunch")
+        dismissAlertsIfNeeded()
+        tap(findTabButton(hebrew: "ספר", english: "Library"))
+        try perf01OpenInitialBook(away.unit.bookTitle)
+        tap(try perf01Control("reader-more-menu")); tap(try perf01Control("reader-display-unit-menu"))
+        tap(try perf01Control("reader-display-unit-" + unitMode))
+        var context = try fullV32Locate(basename)
+        _ = try perf01ModeProof(unitMode, context: context, stage: "selected")
+        var rows: [[String: Any]] = [], pairs: [[String: Any]] = []
+        var coldPIDs = Set<Int>()
+        let order = [0, 1, 2, 2, 1, 0]
+        for (index, position) in order.enumerated() {
+            let target = selected[position], pair = index + 1
+            let awayRoute = try fullV32Open(away.unit, context: context, deadline: deadline)
+            context = try fullV32Locate(basename)
+            let before = try fullV32PostSample(away.unit, context: context, epoch: nil, receipt: awayRoute)
+            let beforeMode = try perf01ModeProof(unitMode, context: context, stage: "before-cold")
+            let beforePID = try XCTUnwrap(beforeMode["processID"] as? Int)
+            let document = context.documentID, group = context.groupID
+            app.terminate()
+            try fullV32Require(app.wait(for: .notRunning, timeout: 30), "Process-cold requires actual termination")
+            fullV32Launch(basename)
+            context = try fullV32Locate(basename)
+            try fullV32Require(context.documentID == document && context.groupID == group,
+                "Ordinary relaunch must retain the actual away document and group")
+            let afterMode = try perf01ModeProof(unitMode, context: context, stage: "after-cold")
+            let coldPID = try XCTUnwrap(afterMode["processID"] as? Int)
+            try fullV32Require(coldPID != beforePID && coldPIDs.insert(coldPID).inserted,
+                "Each pair requires a fresh actual app PID; disk and OS caches are not called cold")
+            let after = try fullV32PostSample(away.unit, context: context, epoch: nil, receipt: nil)
+            var pairRecord: [String: Any] = ["pairIndex": pair, "targetKey": target.unit.key,
+                "awayTargetKey": away.unit.key, "beforeProcessID": beforePID, "afterProcessID": coldPID,
+                "workspaceDocumentID": document.uuidString, "workspaceGroupID": group.uuidString,
+                "beforeColdSourceID": try perf01SampleID(before), "afterColdSourceID": try perf01SampleID(after),
+                "beforeModeProofID": try XCTUnwrap(beforeMode["proofID"] as? String),
+                "afterModeProofID": try XCTUnwrap(afterMode["proofID"] as? String)]
+            for temperature in ["process-cold", "warm"] {
+                if temperature == "warm" {
+                    let warmAway = try fullV32Open(away.unit, context: context, deadline: deadline)
+                    context = try fullV32Locate(basename)
+                    let sample = try fullV32PostSample(away.unit, context: context, epoch: nil, receipt: warmAway)
+                    let mode = try perf01ModeProof(unitMode, context: context, stage: "warm-ready")
+                    try fullV32Require(mode["processID"] as? Int == coldPID,
+                        "Warm return must remain in the actual same process after a real away navigation")
+                    pairRecord["warmAwaySourceID"] = try perf01SampleID(sample)
+                    pairRecord["warmModeProofID"] = try XCTUnwrap(mode["proofID"] as? String)
+                }
+                let epoch = UUID().uuidString
+                let started = try fullV32Host("begin", context: context,
+                    fields: ["epoch": epoch, "targetKey": target.unit.key, "mode": temperature, "kind": "reader-open"])
+                try fullV32Require(started["processID"] as? Int == coldPID, "Measure the admitted actual pair PID")
+                let route = try fullV32Open(target.unit, context: context, deadline: deadline)
+                let ended = try fullV32Host("end", context: context, fields: ["epoch": epoch])
+                let endACK = ProcessInfo.processInfo.systemUptime
+                try fullV32Require(ended["processID"] as? Int == coldPID, "Original route must preserve the pair PID")
+                let overview = UUID().uuidString
+                _ = try fullV32Host("begin", context: context,
+                    fields: ["epoch": overview, "targetKey": target.unit.key, "mode": temperature, "kind": "reader-overview"])
+                context = try fullV32Locate(basename, interactionEpoch: overview, resourceContext: context)
+                let interaction = try XCTUnwrap(context.interactionEvidence)
+                let sample = try fullV32PostSample(target.unit, context: context, epoch: epoch,
+                    receipt: route, resourceEndAcknowledgedUptime: endACK)
+                let mode = try perf01ModeProof(unitMode, context: context, stage: "post-open")
+                let toc = try perf01TOC(target)
+                let row: [String: Any] = ["pairIndex": pair, "targetKey": target.unit.key,
+                    "matrixPosition": target.matrixPosition, "unitMode": unitMode, "bookID": bookID,
+                    "mode": temperature, "processID": coldPID, "epoch": epoch, "route": route,
+                    "firstInteraction": interaction, "sourceObservationID": try perf01SampleID(sample),
+                    "modeProofID": try XCTUnwrap(mode["proofID"] as? String), "tocEvidence": toc]
+                rows.append(row)
+                try fullV32Attach(row, "full-v40-perf01-\(bookID)-\(unitMode)-\(pair)-\(temperature)")
+            }
+            pairs.append(pairRecord)
+        }
+        try fullV32Require(rows.count == 12 && pairs.count == 6 && coldPIDs.count == 6,
+            "Retain every real open in all six actual cold/warm pairs")
+        let completion = try fullV32Host("complete_perf01_cell", context: context, fields: [
+            "bookID": bookID, "unitMode": unitMode, "catalogSHA256": catalogSHA,
+            "observations": rows, "pairs": pairs])
+        try fullV32Attach(completion, "full-v40-perf01-cell-\(bookID)-\(unitMode)")
+        let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        image.name = "full-v40-perf01-final-\(bookID)-\(unitMode)"; image.lifetime = .keepAlways; add(image)
+    }
+}
+// END ADDITIVE FULL-V40 PER-BOOK / MODE MEASUREMENTS
