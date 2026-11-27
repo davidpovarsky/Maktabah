@@ -67,7 +67,17 @@ class ReaderViewModel: ViewModelBase {
     var selectedSegmentLocator: TextLocator?
     var otzariaSelectedLineAnchor: OtzariaLineAnchor?
     var otzariaLinkedSources: [OtzariaLinkedSource] = []
-    var readerInspectorVisible: Bool = false
+    @ObservationIgnored
+    private(set) var nativeInspectorPresentationRevision: UInt64? = 0
+    var readerInspectorVisible: Bool = false {
+        willSet {
+            // Passive original publication metadata. Equal writes count too;
+            // exhaustion is permanent and no observer callback is invoked.
+            if let revision = nativeInspectorPresentationRevision {
+                nativeInspectorPresentationRevision = revision == .max ? nil : revision + 1
+            }
+        }
+    }
     var otzariaSourcesIsLoading: Bool = false
     var otzariaSourcesError: String?
     var otzariaSourcesSelectedGroupID: String?
