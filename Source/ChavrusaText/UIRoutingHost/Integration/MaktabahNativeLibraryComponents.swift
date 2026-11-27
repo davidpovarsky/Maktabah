@@ -74,6 +74,32 @@ import OtzariaUIRouting
             throw UIRouteError(.unavailable, "native_library_component_unavailable")
         }
         let model = manager.libraryViewModel
+        // One-shot original Observation detects a change even if values return
+        // to their captured state before Core resumes. It never refreshes source.
+        let observation = MaktabahNativeComponentSourceObservation {
+            _ = manager.libraryViewModel
+            _ = model.state
+            _ = model.hasLoadedLibrary
+            _ = model.loadedBackendID
+            _ = model.loadedBackendGeneration
+            _ = model.updateTrigger
+            _ = model.searchQuery
+            _ = model.viewMode
+            _ = model.showOnlyDownloaded
+            _ = model.filterMode
+            _ = model.isFlatMode
+            _ = model.selectedAuthorId
+            _ = model.displayedCategories
+            _ = model.isSelectionMode
+            _ = model.selectedBookIds
+            _ = model.showingImportSheet
+            _ = model.showingUpdateSheet
+            _ = model.showingDeleteConfirmation
+            _ = model.singleBookToDelete
+            _ = model.importErrorMessage
+            _ = model.showImportSuccessAlert
+            _ = model.isDownloadModal
+        }
         let backend = BackendCoordinator.shared.activeBackendID
         let generation = BackendCoordinator.shared.generation
         let update = model.updateTrigger
@@ -84,6 +110,7 @@ import OtzariaUIRouting
         let selectedBooks = model.selectedBookIds
 
         return { [weak manager, weak model] in
+            try observation.validate()
             guard let manager, let model, owns(model, manager: manager),
                   BackendCoordinator.shared.activeBackendID == backend,
                   BackendCoordinator.shared.generation == generation,

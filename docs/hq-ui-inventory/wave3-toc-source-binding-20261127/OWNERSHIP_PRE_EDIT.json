@@ -1,0 +1,48 @@
+{
+  "base": "1557749e0587b7e895e7d22c7c43486a9f44bd28",
+  "branch": "codex/otzaria-wave3-toc-source-binding-20261127",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave3-toc-source-binding-20261127",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "checked_at": "2026-11-27T00:29:51.818653+00:00",
+  "prior_frozen_commit": "94e5b08c012f538393af5153783768df61376508",
+  "ownership": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "base_blob": "7fef368e3ad7fbc01344ee4aae22c5efc2b06f2d",
+      "upstream_blob": null,
+      "initial_aba_edit": "original Observation read-set only",
+      "scope": "Root-authorized Wave3 UI-03 source-bound component navigation",
+      "shared_files": "Root/ui_acceptance own shared contract, registry, catalog and PBX"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryComponents.swift",
+      "ownership": "DOWNSTREAM_OWNED",
+      "base_blob": "75a632e978503ac50a653dae0a52e5709fe2fa7a",
+      "upstream_blob": null,
+      "initial_aba_edit": "original Observation read-set only",
+      "scope": "Root-authorized Wave3 UI-03 source-bound component navigation",
+      "shared_files": "Root/ui_acceptance own shared contract, registry, catalog and PBX"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "base_blob": "89f8797780bdd62e54b5ba12fbc25c21369b8731",
+      "upstream_blob": "823c616083095ea89a2c5d90cc88ee58cfe64c57",
+      "initial_aba_edit": "unchanged until bounded-layout follow-up",
+      "scope": "Root-authorized Wave3 UI-03 source-bound component navigation",
+      "shared_files": "Root/ui_acceptance own shared contract, registry, catalog and PBX"
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "ownership": "UPSTREAM_OWNED",
+      "base_blob": "850dcefe3c8726da93cd3a73414bbced244aea4d",
+      "upstream_blob": "6bd384431b52e40083545d7e6dcf5e374209e2f7",
+      "initial_aba_edit": "unchanged until bounded-layout follow-up",
+      "scope": "Root-authorized Wave3 UI-03 source-bound component navigation",
+      "shared_files": "Root/ui_acceptance own shared contract, registry, catalog and PBX"
+    }
+  ],
+  "original_workspace_clean_before_edits": true
+}
