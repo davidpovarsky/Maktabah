@@ -1,0 +1,5 @@
+{
+  "status": "READ_ONLY_RESPONSE_TRUNCATED",
+  "base": "db764d51080102504ee296d43aebe261793b8163",
+  "error": "Combined compressed source JSON truncated before parse at character74251; no source mutation or native work. Retry uses one immutable owned archive and bounded verified chunks."
+}

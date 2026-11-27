@@ -1,0 +1,79 @@
+{
+  "apple_sdk_typecheck": "NOT_RUN",
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "collisions": [],
+  "data_free": 7311650816,
+  "finished": 1795807075.0387442,
+  "immutable_prefix_exact": true,
+  "native": "NOT_RUN",
+  "original_dependencies": 20,
+  "root_free": 2356019200,
+  "schema": "otzaria.original.annotation-native-source-check.v1",
+  "scope": "Two complete Swift files parsed for iOS only. Original Git/UI/store/AppIntent dependencies rejoined; no Apple SDK typecheck, actual system Intent, UIKit, SQLite instance or native execution.",
+  "selector_declarations": [
+    "testOriginalIPadAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+    "testOriginalIPadAnnotationRecordForegroundsSameOriginalList",
+    "testOriginalIPhoneAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+    "testOriginalIPhoneAnnotationRecordForegroundsSameOriginalList",
+    "testOriginalIPadCachedAnnotationRefusesOriginalSearchABAWithoutMutation",
+    "testOriginalIPhoneCachedAnnotationRefusesSearchABAFromBackgroundWithoutMutation"
+  ],
+  "source_proof": {
+    "base": "b463ffd03a76026cea06c79c608df97d00094152",
+    "combined": {
+      "bytes": 407115,
+      "path": "annotations-native-acceptance/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "93fade04cfeb99c75870f886d211d7144fc20e952ac0c8b56eb385cabc24b01f"
+    },
+    "existing_method_collisions": [],
+    "method_count_is_not_execution": true,
+    "native": "NOT_RUN",
+    "new_tests": [
+      "testOriginalIPadAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+      "testOriginalIPadAnnotationRecordForegroundsSameOriginalList",
+      "testOriginalIPhoneAnnotationRecordUsesActualSystemEntityAndSelectedCell",
+      "testOriginalIPhoneAnnotationRecordForegroundsSameOriginalList",
+      "testOriginalIPadCachedAnnotationRefusesOriginalSearchABAWithoutMutation",
+      "testOriginalIPhoneCachedAnnotationRefusesSearchABAFromBackgroundWithoutMutation"
+    ],
+    "original_prefix": {
+      "bytes": 375434,
+      "path": "annotations-native-acceptance/baseline/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+    },
+    "original_prefix_exact": true,
+    "schema": "otzaria.original.annotation-native-source.v1",
+    "selector": {
+      "bytes": 1664,
+      "path": "annotations-native-acceptance/candidate/Maktabah-iOSUITests/NativeAnnotationSelectionAcceptanceTests.swift",
+      "sha256": "2f7e720a2cd85112158553816d3fa1ac5ffb12861d9475767eefecc46bd472d2"
+    },
+    "suffix": {
+      "bytes": 31681,
+      "path": "annotations-native-acceptance/NATIVE_HELPER_ADDITION.swift",
+      "sha256": "9f6af6530cd8ead9d2747a9a6c3a5b1f7f33e95fc2d29781eff8523116be8dc0"
+    }
+  },
+  "started": 1795807074.6807334,
+  "status": "PASS_SOURCE_JOIN_AND_SYNTAX_ONLY",
+  "steps": [
+    {
+      "argv": [
+        "/mnt/development/tooling/swiftly/toolchains/6.4.3/usr/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/native-selectors-attempt-1/candidate/Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-annotations-selection-20261127/native-selectors-attempt-1/candidate/Maktabah-iOSUITests/NativeAnnotationSelectionAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "finished": 1795807075.0286913,
+      "name": "two-complete-native-source-files-syntax-only",
+      "pid": 2096316,
+      "start_ticks": "733414674",
+      "started": 1795807074.9143038
+    }
+  ],
+  "test_execution_count": 0
+}

@@ -1,0 +1,145 @@
+{
+  "base": "b463ffd03a76026cea06c79c608df97d00094152",
+  "files": [
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 4123,
+      "git_blob": "0f5f2400477d173bad1079d6c5cca0f3fe508963",
+      "path": "Maktabah-iOSUITests/HighlightAnnotationAcceptanceTests.swift",
+      "sha256": "59fc8f100d87efcc3012b8b86f50b0d4e9a88ef60b9b99d7ee8ec4d4ce74f6dd"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 371699,
+      "git_blob": "2af4fa40f528b1811884731a68d1ba0b10e96211",
+      "path": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+      "sha256": "0cd1b1dd35ba522adc813e1e2d06cd2ee232a38afabed2869e98a06c81b343ec"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 118047,
+      "git_blob": "d468e40ca180746d446932f35ee208e2b5f0f89a",
+      "path": "Maktabah-iOSUITests/ProductionAnnotationEditorAcceptanceTests.swift",
+      "sha256": "0a7cd74eb830cd94296e0fac7584edb0d19560b0fd31bcba35d7d5b46298d9b1"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 9357,
+      "git_blob": "9d4caa5c64bdb0230e95f5110f7b1a4547d3aa5f",
+      "path": "Maktabah-iOSUITests/MaktabahUITestBase.swift",
+      "sha256": "7d92066ce4ec3f38b0ff0042ca43a736f5eae21ce7339666e418ed8df0827424"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 375434,
+      "git_blob": "b51ed06ee55db59021681f2933db26bf9efa227d",
+      "path": "Maktabah-iOSUITests/NativeRoutingAcceptanceTests.swift",
+      "sha256": "2157fe667fc215e3ac46e8115a1b1731dc96874cf06bb8d4ee880e5d35f9b74e"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 46094,
+      "git_blob": "96fb9890aab0804090247c9b9f8f8700c56de892",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "sha256": "0e5f39c024d79eda212650cdc22b44209aa7d323966dc38106b77e8604739f6f"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 36680,
+      "git_blob": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+      "path": "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+      "sha256": "a7d64c575cc7e1ec6c59e81dc2ad7e8aca7dd10e2c7c52aa587146cbefa3e14e"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 8334,
+      "git_blob": "d286384cb248184d851884fb637de054be587e25",
+      "path": "Source/Features/Annotations/iOS/AnnotationContentView.swift",
+      "sha256": "6a495476ea1de42d304b4d5ccddc10a41f5eb73ca255bdccd69c7fe0fca634f9"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 8925,
+      "git_blob": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "sha256": "084f8d15e37655bf5ccd42cbdc9e308ecddd9c1cfc399a12d58089737ec8f2b1"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 25258,
+      "git_blob": "bc1029dfe8b08a5acbe9e4a131da19fb10f98c94",
+      "path": "Source/Core/Configuration/AppConfig.swift",
+      "sha256": "2af554f74d3a0900a94e1ac9129b9518190b7b88742929e8c18b5b5bfb79079a"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 34750,
+      "git_blob": "f0efb094d1009116b498fee07bf89c25a8d49366",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 7677,
+      "git_blob": "737d991d089e6663b71e2150953da7a46a0d7b4c",
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "sha256": "cc16c184c60025148ada26dd8f15758da908caaf4bd73b84f6e7e04daad35e6e"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 24340,
+      "git_blob": "c8dfca5f276c595974048001876b16ec08c7657a",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "sha256": "e22b6668a3a8c2c821405634b20c53d4359039f9bbc8f519a34937cdc913844b"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 24610,
+      "git_blob": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "sha256": "c703986dcfcdcf12de6e406192c9be2d2a65c70842b7d51928670f222db9fabb"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 6351,
+      "git_blob": "e88cffe612ba294d9b818fbb09fc05d5b86a3991",
+      "path": "Source/Features/Annotations/Models/Annotation.swift",
+      "sha256": "6065e6a842016a982aec22cbf8f35600e2493ed2e1df09e379a3294ba6fe345d"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 14696,
+      "git_blob": "e2259e0a2fcd14e3a0e778b7e557f8fe2af2282b",
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "sha256": "6443ca30d90c915d879e420ea859594df0dd2e9e0c2a9254b8548f4e4b5cb447"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 31823,
+      "git_blob": "2c6ddc2861911593f93359420c749cec086e7329",
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "sha256": "bf7bc1ea1bb559e02a7904dad3508fab1c265ecd07e1592365cab045aecbc714"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 10885,
+      "git_blob": "0890f35cd113b950d18f12115dae943a01869435",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntentService.swift",
+      "sha256": "e94b1c3ef3c87dc4d07030486661fcc33de7e7375e171d64c1c8c45132c93842"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 3105,
+      "git_blob": "ab1ed57b91c61af24790323dddefe616bf56a6c8",
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationSelectionIntents.swift",
+      "sha256": "a329141587fea8e0b044c4baf141a17e5e6622e76f2da60e26992476b684e16c"
+    },
+    {
+      "base": "b463ffd03a76026cea06c79c608df97d00094152",
+      "bytes": 25322,
+      "git_blob": "b1c601ef2282e084b2aa920b065a7fb33186fca2",
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+      "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+    }
+  ]
+}
