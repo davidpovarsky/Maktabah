@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "rootReference": "2c2a8683de38c60c31888c3baf6f67047536d183",
+  "groupsCommit": "2b00b948616f64f7e7ae19c1c1b8b2114bbf2bf7",
+  "exactCountCommit": "9f38664e4e7e4e7760d1df5172b576410bca9d4b",
+  "reviewExecutedTests": 0,
+  "changes": {
+    "2b00b948616f64f7e7ae19c1c1b8b2114bbf2bf7": [],
+    "9f38664e4e7e4e7760d1df5172b576410bca9d4b": []
+  },
+  "groups": {
+    "driverSHA256": "c6e3b0dc5b8aab6dfbfec3cf3621b58bc8bc91407f8184ac30372dcd421bd5e3",
+    "controlSHA256": "0f6df21c2ca86dfa12c9774d0bd7bc72b517a322124590501d306cff89bf4da7",
+    "oracleReceiptSHA256": "699185a09bbac1fbd02e89fe0ec4dea22fa77205d7b59daf4f9cfc09bf94ca2b",
+    "localReceiptSHA256": "2a6912fb7b2d55440a805ad10937a47a9ca0048543b64c8096fd286e54fff7ad",
+    "oracleOriginalCoreSHA256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49",
+    "localOriginalCoreSHA256": "6bd11a7ed0dea926cb39fd7f07debd6d6824043e1447efe145c19bc1d1bb3ca6",
+    "localCoreEqualsDonorCore": false,
+    "oracleCases": 37,
+    "allOracleCasesPassed": true,
+    "nativeUIExecuted": 0,
+    "actualRSSMeasured": 0,
+    "actualColdProved": 0
+  },
+  "exact": {
+    "beforeSHA256": "42d3ae8d6738fe6987622bdfc1ff844929ec7a0fb088e24d096ebec02a6ec74c",
+    "afterSHA256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10",
+    "oldWrapperRecoveredExactly": true,
+    "insertionRanges": [
+      [
+        279,
+        342
+      ],
+      [
+        360,
+        361
+      ]
+    ],
+    "originalCoreUnchanged": true,
+    "sourceControlReceiptSHA256": "a8fa3c8a800262a675c72126868ca8b085b7a37c02c3278a8f4432a50fbb28b3",
+    "sourceControlCases": 17,
+    "allPassed": true,
+    "sourceControlProgramSHA256": "1a9d625b6d530c52f2756eec68e1019c1aca779c1970d6acca5fda2aeb6360d9"
+  },
+  "sourceAdmissions": {
+    "groups": {
+      "status": "SOURCE_ONLY_NOT_UI",
+      "checkout": "cce695b38e801c1121524ed8776d6606604d7778",
+      "applicationSource": "UNFINALIZED",
+      "inputsFileSHA256": "cb717a46b8b9f8f9fa643f9cf4b04e233c971779b3d9a75b090c2db659c66962",
+      "exactExecutionInputCount": 50,
+      "inputMismatches": [],
+      "profileIsUnfinalized": true
+    },
+    "exact": {
+      "status": "SOURCE_ONLY_UNFINALIZED",
+      "checkout": "a1899e8eecdea96a482df5d34ed8d988197ac82b",
+      "applicationSource": "UNFINALIZED",
+      "inputsFileSHA256": "cb717a46b8b9f8f9fa643f9cf4b04e233c971779b3d9a75b090c2db659c66962",
+      "exactExecutionInputCount": 50,
+      "inputMismatches": [],
+      "profileIsUnfinalized": true
+    }
+  },
+  "nativeTest": {
+    "file": "Maktabah-iOSUITests/FaithfulReaderUIAcceptanceTests.swift",
+    "groupSelectorPresentAtRoot": true,
+    "rootSHA256": "d7e91bc888062006d0976135d58daa7eab694174ea1c3c229f13c835a639bc9a",
+    "groupsDonorSHA256": "36e4b5bb0e244484cd152de8ae92823838772d5f90cc780aa85efbf7e6b4af66",
+    "unchangedByBothControllers": true
+  },
+  "retainedSourceCheckFailure": {
+    "exit": 1,
+    "stderrSHA256": "6df9037cf367d95602f21ac3df07c4093a42bdfd420a39089774bb4eb7854d16",
+    "lastLine": "ValueError: Missing exact execution input: .github/workflows/otzaria-reader-groups-full-v32.yml"
+  },
+  "currentRootProfileApplicationSource": "64c1e74a5888f807e127e43611c3aab8fa702755",
+  "review": {
+    "reviewer": "/root/release_preflight",
+    "recommendation": "No blocking defect identified in the two controller deltas. Selectively intake the Groups100 controller and exact-count wrapper gate with their immutable original evidence. This is source/admission readiness, not native execution or final performance acceptance.",
+    "nativeExecutionByThisReview": 0,
+    "sourceChangesByThisReview": 0,
+    "groups100": {
+      "selector": "Maktabah-iOSUITests/StudyGroupStressNativeAcceptanceTests/testOneHundredOriginalFullV40GroupSwitchesPreserveDocumentsAndColdRestore",
+      "installation": "Only an explicit retained successful original v40 installer result and the same owned shut-down iPadOS27 simulator are admitted. Original installation receipts remain source-bound; current app/test/SDK images are independently checked before and after.",
+      "sourceBinding": "Frozen original source context plus exact current tracked Groups100 driver blob, current same-checkout qualified Debug images, and before/after source/build comparisons remain required.",
+      "actualRSS": "The host resolves the installed app executable and unique PID, then asks Darwin ps for actual RSS at each operation boundary. Each begin/end pair is identity-bound; 100 completed records and 200 distinct acknowledged nonces are mandatory.",
+      "originalMetrics": "Each end must match exactly one original NativeGroupSwitchPerformance row by owner/scene/group/document/revision interval and actual PID. Operation UUIDs are unique, sequences contiguous and launchID unchanged. Original elapsedSeconds and phys_footprint bytes stay separate from host RSS and automation delay.",
+      "coldProof": "Exactly one attachment from the selected case and owned device must bind namespace, corpus/catalog/installation hashes and current container. Pre-cold PID equals the operation cohort; post-cold PID differs and request UUID is fresh; profile/group/document/canonical locator survive, revision never retreats. Cold scene identity may legitimately change.",
+      "failureBehavior": "Missing/ambiguous metrics, partial cohort, wrong native case/device, skips, failed export, active/failed observer, changed source/images/database/receipts or failed retained shutdown prevents acceptance. The observer must stop before simulator shutdown.",
+      "controlBoundary": "The37 Oracle controls exercise actual operation matching, cold-field validation and exported-attachment admission using explicit synthetic records plus the original bounded-file reader. They do not run GroupRSSHost against a real process, measure RSS, execute a UI operation or prove cold restoration. LOCAL37 is preserved under its older common-core hash; it is not relabelled as the newer core run.",
+      "metricLimit": "These are boundary RSS/footprint observations, not continuous peak RSS, a performance SLA, final Native116/Release114 or physical-device acceptance."
+    },
+    "exactCount": {
+      "scope": "The new gate runs only after the v40 execute entry point's original controller completes. Source-check and reusable load_core consumers retain their previous separate scopes.",
+      "requirements": "Exactly3 scales, requested and actual values are true integers and exactly [100,500,2000], each scale has its own distinct observationID contained in the full original observation set, per-scale/global exact flags and original at-least flag all agree.",
+      "originalObservationAuthority": "The unchanged common controller first binds the complete observation-ID set to its actual Inspector records, verifies all9 original exploration outcomes, and derives cached counts/exact flags from original recorded UI/cache observations. The new gate does not manufacture those observations.",
+      "receiptBehavior": "Original full-v40 successful UI status, explicit owned simulator UUID, nonempty source attribution, unchanged database/source/images and successful cleanup are required. A separate nonoverwritable MET/NOT_MET receipt binds original receipt hashes and the observed source/UDID; NOT_MET raises failure. Original result/scales bytes remain intact.",
+      "preservation": "The64-line function and2-line execute hook are insertion-only. Removing them recovers the old wrapper byte for byte. Common v32 source, original native test files and strict zero-skip/declaration verifiers are untouched.",
+      "controlBoundary": "All17 source-only controls bind the exact wrapper hash and check rejection plus original input-byte preservation; their host receipt data is explicitly synthetic. No natural exact100/500/2000 target, rendered row-body coverage, latency/RSS SLA or native app result is established by those controls."
+    },
+    "finalCandidateRebinding": {
+      "historicalProfiles": "Both reviewed historical source-admission receipts explicitly say application_source_sha=UNFINALIZED. The exact-count source report also explicitly says dispatch_authorized_by_this_check=false.",
+      "currentRootProfile": "At reviewed root2c2a8683de38c60c31888c3baf6f67047536d183, the current profile points to older product64c1e74a5888f807e127e43611c3aab8fa702755. This is distinct from the donor receipts and does not qualify the final changed candidate.",
+      "required": "Rebind the exact final application/test trees, execution-input bytes and independently verified v40 catalog targets via the original driver/freeze procedure, then require the actual same-checkout qualified Debug app/test/SDK image closure and genuine retained production installation. Do not copy historical pins or convert UNFINALIZED into a success claim.",
+      "pending": [
+        "Original full-v40 Groups100 native execution with200 actual RSS observations,100 original operations and cold process proof",
+        "Original Reader/Inspector UI execution with3 distinct natural exact100/500/2000 observations",
+        "Final source/app/image postchecks and retained owned-simulator shutdown",
+        "Original release/device/physical acceptance"
+      ]
+    },
+    "failuresRetained": "The initial source-check failure for a sparse missing workflow input remains recorded. The later source-only report is preserved from the successful original command; its empty stdout and collector parsing mishap were not relabelled as a native pass. This review reran neither source controls nor native execution.",
+    "resources": "Read-only Git/blob/hash inspection only. No new checkout, dependency/cache bulk or download was created; brief Sentinel disconnect/timeouts did not produce a claimed successful result. The final cached Git batch returned and verified all100 execution-input comparisons."
+  }
+}
