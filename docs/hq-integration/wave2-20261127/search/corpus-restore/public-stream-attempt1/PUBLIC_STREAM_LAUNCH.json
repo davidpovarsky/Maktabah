@@ -1,0 +1,6 @@
+{
+  "pid": 3072689,
+  "startedAt": "2026-11-27T03:36:44.910108+00:00",
+  "sourceSHA256": "c3071569ed8ab086606fa78e731e637a83295d2be9105cc9affc4ecb853f2542",
+  "scope": "single sequential public compressed-byte/SHA and decoded-byte/SHA verifier; no payload disk writes or cleanup"
+}

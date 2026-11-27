@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "status": "PUBLIC_PART_DOWNLOADED_SHA_VERIFIED",
+  "startedAt": "2026-11-27T04:08:24.665754+00:00",
+  "completedAt": "2026-11-27T04:14:20.028238+00:00",
+  "index": 0,
+  "assetID": 782942221,
+  "assetName": "seforim-schema7.db.zst.part-000",
+  "originalURL": "https://github.com/Otzaria/SeforimLibrary/releases/download/v40-20261123094345/seforim-schema7.db.zst.part-000",
+  "path": "/mnt/development/projects/artifacts/Maktabah-wave2-search-20261127/corpus-v40-recovery-20261127/seforim-schema7.db.zst.part-000.verified",
+  "bytes": 1992294400,
+  "sha256": "91a9985084e5217b661664c3b53c357aaf354498752bf9f7c55d93581dcc9c33",
+  "fileIdentity": {
+    "device": 2064,
+    "inode": 5946337,
+    "bytes": 1992294400,
+    "allocatedBytes": 1992298496,
+    "nlink": 1,
+    "mtimeNs": 1795752857844099411,
+    "ctimeNs": 1795752860027112422
+  },
+  "requests": [
+    {
+      "attempt": 1,
+      "requestedOffset": 0,
+      "startedAt": "2026-11-27T04:08:24.665801+00:00",
+      "httpStatus": 200,
+      "redirectHost": "release-assets.githubusercontent.com",
+      "completedAt": "2026-11-27T04:14:20.017429+00:00",
+      "receivedThrough": 1992294400,
+      "status": "VERIFIED"
+    }
+  ]
+}

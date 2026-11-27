@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "status": "APPROVED_PUBLIC_DUPLICATE_PAYLOADS_REMOVED_METADATA_PRESERVED",
+  "completedAt": "2026-11-27T04:01:03.177937+00:00",
+  "inventorySHA256": "6459030b79350a22a2def6b85d25daed64de03fb4db2d1bdb3d1f578bdd83cd4",
+  "publicStreamSHA256": "a4562c412c5fe823a2dcf5becc67d51de2b9652256ad94051d55dddd7afc2efc",
+  "cleanupSourceSHA256": "c00f1c3a8e31f3344da1eaf45599dbb070e603a1f25396e4737122f04058b419",
+  "removedPaths": 144,
+  "removedUniqueInodes": 72,
+  "uniquePayloadLogicalBytes": 4108851123,
+  "expectedReclaimableAllocatedBytes": 4109066240,
+  "freeBytesBefore": 3810340864,
+  "freeBytesAfter": 7919267840,
+  "observedFreeBytesDelta": 4108926976,
+  "preservedMetadata": [
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/full-index-v40/.managed.json",
+      "device": 2064,
+      "inode": 6574479,
+      "bytes": 2942,
+      "allocatedBytes": 4096,
+      "nlink": 1,
+      "mtimeNs": 1795656074646157952,
+      "ctimeNs": 1795656262464255680,
+      "sha256": "cbf43646ea880fd5631afed50451fc0fdd0aa2270b6ba2832512ff34c78a2f18"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/full-index-v40/.tantivy-meta.lock",
+      "device": 2064,
+      "inode": 6608882,
+      "bytes": 0,
+      "allocatedBytes": 0,
+      "nlink": 2,
+      "mtimeNs": 1795652741748646230,
+      "ctimeNs": 1795656202510905261,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/full-index-v40/.tantivy-writer.lock",
+      "device": 2064,
+      "inode": 6608883,
+      "bytes": 0,
+      "allocatedBytes": 0,
+      "nlink": 2,
+      "mtimeNs": 1795652730387578543,
+      "ctimeNs": 1795656202510905261,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/full-index-v40/meta.json",
+      "device": 2064,
+      "inode": 6574480,
+      "bytes": 4348,
+      "allocatedBytes": 8192,
+      "nlink": 2,
+      "mtimeNs": 1795656076743170208,
+      "ctimeNs": 1795656202510905261,
+      "sha256": "610f958932300b92fc3d256260915f3dc2953051c8b5ee6744676613668abea2"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/full-index-v40/zayit-index-metadata.json",
+      "device": 2064,
+      "inode": 6574474,
+      "bytes": 976,
+      "allocatedBytes": 4096,
+      "nlink": 1,
+      "mtimeNs": 1795656164552683407,
+      "ctimeNs": 1795656202512816272,
+      "sha256": "de424710eab0f4cdd87b0b8c909925cada16de4753e5faa97ed4f4374c658217"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/qualified-index-v40/.tantivy-meta.lock",
+      "device": 2064,
+      "inode": 6608882,
+      "bytes": 0,
+      "allocatedBytes": 0,
+      "nlink": 2,
+      "mtimeNs": 1795652741748646230,
+      "ctimeNs": 1795656202510905261,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/qualified-index-v40/.tantivy-writer.lock",
+      "device": 2064,
+      "inode": 6608883,
+      "bytes": 0,
+      "allocatedBytes": 0,
+      "nlink": 2,
+      "mtimeNs": 1795652730387578543,
+      "ctimeNs": 1795656202510905261,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/qualified-index-v40/meta.json",
+      "device": 2064,
+      "inode": 6574480,
+      "bytes": 4348,
+      "allocatedBytes": 8192,
+      "nlink": 2,
+      "mtimeNs": 1795656076743170208,
+      "ctimeNs": 1795656202510905261,
+      "sha256": "610f958932300b92fc3d256260915f3dc2953051c8b5ee6744676613668abea2"
+    },
+    {
+      "path": "/mnt/development/projects/worktrees/Maktabah-core-final-20261126/build/zayit-v40-source/qualified-index-v40/zayit-index-metadata.json",
+      "device": 2064,
+      "inode": 6301005,
+      "bytes": 977,
+      "allocatedBytes": 4096,
+      "nlink": 1,
+      "mtimeNs": 1795656202512816272,
+      "ctimeNs": 1795656202512816272,
+      "sha256": "1f8e3a4fff75ea2ffeca79b8e19cea6aafdc10ba9f666a9b6c45515d675d927e"
+    }
+  ],
+  "allOtherPathsUntouchedByThisScript": true,
+  "corpusDownloadStarted": false,
+  "corpusReservationStarted": false,
+  "requiredRestoreCompressedPlusDatabaseBytes": 6484966444,
+  "requiredResidualReserveBytes": 1073741824,
+  "restoreBudgetAdmittedAtObservation": true
+}

@@ -1,0 +1,21 @@
+{
+  "observedAt": "2026-11-27T03:36:45.990431+00:00",
+  "ordinal": 1,
+  "assetName": "zayit-index-0000.zst",
+  "compressedExpected": 3104199,
+  "decodedExpected": 11754165,
+  "decodedBytes": 0,
+  "transport": {
+    "bytes": 0,
+    "sha256": null,
+    "status": 200,
+    "finalHost": "release-assets.githubusercontent.com",
+    "error": {
+      "type": "BrokenPipeError",
+      "httpStatus": null
+    }
+  },
+  "errorType": "AssertionError",
+  "decoderError": "zstd: error 11 : Parameter is out of bound \n",
+  "payloadDiskBytesWritten": 0
+}

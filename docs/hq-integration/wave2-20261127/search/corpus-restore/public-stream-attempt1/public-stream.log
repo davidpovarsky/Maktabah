@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/corpus-restore/verify-v40-public-index-stream.py", line 246, in <module>
+    main()
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/corpus-restore/verify-v40-public-index-stream.py", line 220, in main
+    row = verify_part(part, current[item['destinationPath']], ordinal, len(manifest['parts']), job_started)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/corpus-restore/verify-v40-public-index-stream.py", line 157, in verify_part
+    assert not abort.is_set() and transport['error'] is None, 'Public stream failed; see bounded transport fields'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Public stream failed; see bounded transport fields

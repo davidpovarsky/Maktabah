@@ -1,0 +1,6 @@
+{
+  "pid": 3052246,
+  "startedAt": "2026-11-27T03:31:11.303405+00:00",
+  "sourceSHA256": "193f829e88421d089d5751b29adeb811942adfa70a7b197a49d322da9c4ce70e",
+  "scope": "read-only index bytes plus bounded metadata evidence; no cleanup or corpus/index payload download"
+}

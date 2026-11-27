@@ -1,0 +1,7 @@
+{
+  "pid": 3088048,
+  "startedAt": "2026-11-27T03:41:19.010689+00:00",
+  "sourceSHA256": "a100dd8cc2b42492557ec7554b7e0d7598f78b2fd896dcfdc171497f92b439b1",
+  "scope": "single sequential public stream, explicit128MiB decoder limit; no payload disk writes or cleanup",
+  "priorAttempt": "public-stream-attempt1"
+}

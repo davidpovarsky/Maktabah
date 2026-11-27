@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/corpus-restore/restore-official-v40-reserved.py", line 354, in <module>
+    main()
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/corpus-restore/restore-official-v40-reserved.py", line 291, in main
+    verify_reserved(reservation)
+  File "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/corpus-restore/restore-official-v40-reserved.py", line 105, in verify_reserved
+    assert stamp(path.lstat()) == {key: row[key] for key in stamp(path.lstat())}
+                                        ~~~^^^^^
+KeyError: 'nlink'
