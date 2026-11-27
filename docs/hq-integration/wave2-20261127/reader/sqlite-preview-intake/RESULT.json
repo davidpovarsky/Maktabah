@@ -1,0 +1,1754 @@
+{
+  "schema": 1,
+  "scope": "PASSIVE_SQLITE_AND_ACTUAL_PREVIEW_PRODUCER_SOURCE_INTAKE_NOT_NATIVE_ACCEPTANCE",
+  "before": "9fc87f2a78d84a8323022a83889931c50e44a95e",
+  "afterPicks": "0af653e482c21a6b4c85f6ac9ff51880950e4269",
+  "mapping": [
+    {
+      "donor": "0b445db8a8ee5bc53a1a729c9b65693b51cc88fe",
+      "root": "a77b9a5e777474933e626f7cfa84ad15141e2c82"
+    },
+    {
+      "donor": "019bda89d5d107aabd09dcb6ffbb1edf367c4fe8",
+      "root": "145a478b1e2fdeb53acdaf9e10f174f3992f88c1"
+    },
+    {
+      "donor": "0ce3747d24dd70eb874a0efc9e0e42f5bb349f98",
+      "root": "0af653e482c21a6b4c85f6ac9ff51880950e4269"
+    }
+  ],
+  "sourceTree": "7d87a5e03b9e4661bbcbc5df9f4bd957a837c7a1",
+  "productSHA256": {
+    "Source/Core/Database/SQLiteDatabase.swift": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661",
+    "Source/ChavrusaText/Testing/ReaderViewportAcceptanceObserver.swift": "3d85e2a11b80234d28fc0d8423e73030cc424a3aeaaee1bd7be8d78f1d54517b",
+    "Scripts/CI/prepare-production-search-preview-oracle.py": "df18479cc17098cb15251d664fac5064d036170104aab09cfada0ea94e0bd940"
+  },
+  "studyControllerSHA256": "ce7a88497818eb828592c205be2ca8500522ef1e97d8b3da8dadbca77d69e248",
+  "sourceChecks": [
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "-u",
+        "ubuntu",
+        "python3",
+        "Scripts/CI/prepare-production-search-preview-oracle.py",
+        "source-check"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "4fb8634cecfa73ac03db6fbaf98c58d25f9da71013ad7d23d4d4702a5b3f7747",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "-u",
+        "ubuntu",
+        "python3",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "preview-hit"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "7c3879ffa9ffd5656b3dbe9f7752dc6bbb3e20df4120da4681c1666ab443c8c3",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "-u",
+        "ubuntu",
+        "python3",
+        "Scripts/CI/production-study-v40-ui.py",
+        "source-check",
+        "preview-reader"
+      ],
+      "exit": 0,
+      "stdoutSHA256": "173e15befaf6aeddc0b8b080211da204f04d27d8716dde5edbbdbddb8117316d",
+      "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "materializedCanonicalInputs": [
+    {
+      "path": ".github/workflows/otzaria-reader-groups-full-v32.yml",
+      "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c"
+    },
+    {
+      "path": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+      "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea"
+    }
+  ],
+  "donorEvidenceFilesMatched": [
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/PASSIVE_SCHEMA.md",
+      "bytes": 3924,
+      "sha256": "950c0c480e6476ee1aee76f81aa498052179583737c1d89d20415ff6287f3e34"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/README.md",
+      "bytes": 7536,
+      "sha256": "cec924db136b84fbd729c58006771324932497efe725c2ad4a6480372e56de14"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/SOURCE_PROVENANCE.json",
+      "bytes": 1013,
+      "sha256": "57872d277d4dd4bec5937e0ab94622380cea155d1cbcab98ecc49c8e1c2b7c74"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/collect-apple-controls.py",
+      "bytes": 3815,
+      "sha256": "8dd4ba961192b198db2a612c7db9cbdbffdb1be11069d9b4c7e5b2278b5f0ee7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/REMOTE_RESPONSE.json",
+      "bytes": 13185,
+      "sha256": "e4c2641bc6aac9023554991c6c7ab50070621f69c0d4a2feff7ac2f7ae316eb3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/TRANSPORT_RESULT.json",
+      "bytes": 95,
+      "sha256": "332fc3db7b3554c954fec15b917cdd5302cc924b87ee14f7174930b2a05e1be3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/AppTypeBoundaries.swift",
+      "bytes": 745,
+      "sha256": "fdb3f11840870db015a594024f347bab87b9ffcdf9907b8bee396cb2aa9aaf2f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/CandidateObserver.swift",
+      "bytes": 17268,
+      "sha256": "3d85e2a11b80234d28fc0d8423e73030cc424a3aeaaee1bd7be8d78f1d54517b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/CandidateSQLiteDatabase.swift",
+      "bytes": 28139,
+      "sha256": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/INPUT.json",
+      "bytes": 131872,
+      "sha256": "c0f5bbc3ba6eb2ffe224cad1be10486fd7445ddcb4a97fcf35194a2cb0c0bbdd"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/OriginalArabicRenderResult.swift",
+      "bytes": 3982,
+      "sha256": "3d5470ca7dfa34ebebc5fdf83065eb337649b757ea1952890f4bd4993eb95c01"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/OriginalHighlightSnapshot.swift",
+      "bytes": 1986,
+      "sha256": "669b84059048ffd2088d8cc45dd5cad06ab7e0263a4471504d74255190c82546"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/OriginalSQLiteDatabase.swift",
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/OriginalTextDeltaEvent.swift",
+      "bytes": 1690,
+      "sha256": "8919ea1f148c37b7004b904b2c8fbfdbd1bc14f1518dac0f3983495fd496bb5d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/RESULT.json",
+      "bytes": 8280,
+      "sha256": "b4e28dbca8e6da702bb31b759dde339e738dc0e782048ac11fdc4bdce492bda1"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/ReaderSelectionRangeMapper.swift",
+      "bytes": 8095,
+      "sha256": "97f05de4dcb3ce774b3ac6f881ab352501695793f861bb0efdcb42f5b54cf8af"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/SQLiteFetchWaitControls.swift",
+      "bytes": 19570,
+      "sha256": "4980d0e7412bbb068e2cf3d31fc0e67eec69d3a05d7fef20f391876ea90b2a37"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/TRANSFER.json",
+      "bytes": 3669,
+      "sha256": "90cfe81f7e500f0db50451fec386ff125a48ddf9962a9d2d8970ba32876a35b7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/UnusedZstdBoundary.swift",
+      "bytes": 443,
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/baseline-compile.stderr",
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/baseline-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/candidate-compile.stderr",
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/candidate-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/release-compile.stderr",
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/release-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/whole-observer-catalyst-compile.stderr",
+      "bytes": 1475,
+      "sha256": "263e3cbe7510eca64ab688d1605c7a44da323c24514643999628ad0d18a9ecd3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/whole-observer-catalyst-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/whole-observer-ios-sdk-typecheck.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/actual-apple-files/whole-observer-ios-sdk-typecheck.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/oracle-transport.py",
+      "bytes": 799,
+      "sha256": "a9638a750328782e4ce35304c33a2ba19ed138c81528e663d37cb75af3681bb6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/payload.zlib",
+      "bytes": 35091,
+      "sha256": "9fada5f0748857f8fbc540f212627c269fc8996a0d89a6c9f3edcd6f9de285be"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/run-apple-controls.py",
+      "bytes": 6340,
+      "sha256": "1d1fca96b0f103093e220367477833c7ca9447a9ca092fe2792f3759844a86d5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run01/transport.stderr",
+      "bytes": 30,
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/REMOTE_RESPONSE.json",
+      "bytes": 24227,
+      "sha256": "326dcfae5c2dbf033402d6e7b2a7d676c5b0158daa9c399056013238769fe949"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/TRANSPORT_RESULT.json",
+      "bytes": 95,
+      "sha256": "05bedccb20ec683dbf54a8dae86e4bbd80f2bf7f977ce1ddda7b84ef7a29a5b9"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/AppTypeBoundaries.swift",
+      "bytes": 745,
+      "sha256": "fdb3f11840870db015a594024f347bab87b9ffcdf9907b8bee396cb2aa9aaf2f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/CandidateObserver.swift",
+      "bytes": 17268,
+      "sha256": "3d85e2a11b80234d28fc0d8423e73030cc424a3aeaaee1bd7be8d78f1d54517b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/CandidateSQLiteDatabase.swift",
+      "bytes": 28139,
+      "sha256": "fb61c989bdb8698bbbc3c6aeac282fed3192488102d49a53e1137b3136918661"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/INPUT.json",
+      "bytes": 131952,
+      "sha256": "b7b131ae7a75ec7a38e0ff69adaed902f711604958b9fea5c3d274631d20e59a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/OriginalArabicRenderResult.swift",
+      "bytes": 3982,
+      "sha256": "3d5470ca7dfa34ebebc5fdf83065eb337649b757ea1952890f4bd4993eb95c01"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/OriginalHighlightSnapshot.swift",
+      "bytes": 1986,
+      "sha256": "669b84059048ffd2088d8cc45dd5cad06ab7e0263a4471504d74255190c82546"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/OriginalSQLiteDatabase.swift",
+      "bytes": 14916,
+      "sha256": "05889b3166b046c6204e216c6ff27464c3dd3cc7cc3749f8242323a07043c1a3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/OriginalTextDeltaEvent.swift",
+      "bytes": 1690,
+      "sha256": "8919ea1f148c37b7004b904b2c8fbfdbd1bc14f1518dac0f3983495fd496bb5d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/RESULT.json",
+      "bytes": 28767,
+      "sha256": "00a7e67662d7b3a92511be1a85d99dfad665e69f02acb80e9ece83391c37a7ee"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/ReaderSelectionRangeMapper.swift",
+      "bytes": 8095,
+      "sha256": "97f05de4dcb3ce774b3ac6f881ab352501695793f861bb0efdcb42f5b54cf8af"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/SQLiteFetchWaitControls.swift",
+      "bytes": 19632,
+      "sha256": "45e7b87f2b442827160e6e451306457214e2b0368fe3490dfeac62f953c99170"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/TRANSFER.json",
+      "bytes": 13107,
+      "sha256": "e5895635c78df590e616cb315240f3930fef208e083e11950bfc0e5a4c150219"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/UnusedZstdBoundary.swift",
+      "bytes": 443,
+      "sha256": "5812d8159c2c67a8a824bf49667c6701d81933bfe6b5667e9909f7284dfffab6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-basic.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-basic.stdout",
+      "bytes": 267,
+      "sha256": "c9395c3abe7ade4c6321bdc483ae3250251d741e241db430ad6b430b8b00ab72"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-cancel-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-cancel-before.stdout",
+      "bytes": 293,
+      "sha256": "b70ce80a215cddd206815b3c8dd17bac1e3d79970e3ef6b1fdcd54458755ed4c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-cancel-wait.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-cancel-wait.stdout",
+      "bytes": 302,
+      "sha256": "af7252a44f244319489c1be1f1a4053b243220f2396ac612b052d3db1175fcee"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-errors.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-errors.stdout",
+      "bytes": 315,
+      "sha256": "5a0c77dc3a9aef44e1dd681b5129d58eab863503603e8fb582ed165ec558ab76"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-held-wait.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-held-wait.stdout",
+      "bytes": 282,
+      "sha256": "2136caea4025016e2a6f9f08c7f5832c00355a1311740f5703bf79c8da2f3c66"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-recursive.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/baseline-run-recursive.stdout",
+      "bytes": 347,
+      "sha256": "cfdeca93f1af887b18bd36113d54ed03c6df5984111d7730313634175dd975ec"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-active-bound/synthetic-recorder-active-bound-snapshot.json",
+      "bytes": 14218,
+      "sha256": "a94db4dfa5efb04fa1e538ff3fd6206349c1bb700df10f3f98fcd9fdabf258c4"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-basic/actual-basic-snapshot.json",
+      "bytes": 1713,
+      "sha256": "2999341146a6b3b09fc6ea9dddf7b8f1053a2a30e5e8faea1ac86ee07dc8678e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-cancel-before/actual-cancel-before-snapshot.json",
+      "bytes": 1648,
+      "sha256": "e64136bbcce9e9f556fc7d33f510cd16264013f0fef22dfff83c2abcf71e9fce"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-cancel-wait/actual-active-snapshot.json",
+      "bytes": 1700,
+      "sha256": "59edf52c79926d6a5e6c6f1797eb1d508d6aa82ce78f303c48b5a81fffefa3ca"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-cancel-wait/actual-wait-terminal-snapshot.json",
+      "bytes": 2141,
+      "sha256": "91477e39ace9858c9a13a382ba41eb887d07810ebf1cbf1bc16bb0072c3e6ef6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-connection-bound/actual-connection-bound-snapshot.json",
+      "bytes": 56125,
+      "sha256": "f14ad64ad9f0b8aeafb218e23183c9b97871e7e13f6a28e1479cca016001ec68"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-errors/actual-error-snapshot.json",
+      "bytes": 2140,
+      "sha256": "919662dee198334eee1be8e479bf6848c85dc35eb0114be2b21e8a660318fd42"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-held-wait/actual-active-snapshot.json",
+      "bytes": 1698,
+      "sha256": "9b597322bd107320be3bd6c78ec52e710429d81f48160ad4d91ccd9f8dc94a2c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-held-wait/actual-wait-terminal-snapshot.json",
+      "bytes": 2132,
+      "sha256": "cc44d2d23576f0df652dd11e2d61b3718e8279e784720b1a59cc42d65d151eac"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-non-file-identity/actual-memory-snapshot.json",
+      "bytes": 1439,
+      "sha256": "e051ccdf9efc758fee3f0fa02427043c88285510577ea8c63df2f4739906ed0e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-recursive/actual-recursive-snapshot.json",
+      "bytes": 3830,
+      "sha256": "f95cb58d96bb60380114cc5630ef36d646fb7dae3b98f63c0cd3b996bea5c2d8"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-fixture-ring-bound/actual-ring-snapshot.json",
+      "bytes": 436758,
+      "sha256": "a957da0fb464798bcdad668716e9aa82b20dbda42be9935bced4cdfc67cb6ec2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-active-bound.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-active-bound.stdout",
+      "bytes": 298,
+      "sha256": "befeb1fc9407b76577a7fc1146c93e41bcedba384bc8394939ee62db9a13d1e0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-basic.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-basic.stdout",
+      "bytes": 339,
+      "sha256": "05669965efb51441c5f87866f2a91300ad7f799f3e6a370e35421a9f1b091de9"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-cancel-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-cancel-before.stdout",
+      "bytes": 293,
+      "sha256": "0cefb21b379795712f0204af6110ac6daa6cf932bfeb91e796a071ac49f46922"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-cancel-wait.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-cancel-wait.stdout",
+      "bytes": 302,
+      "sha256": "49f1d29e17181034f58a538e943f294cb0e351121102eba66e1311d584e810be"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-connection-bound.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-connection-bound.stdout",
+      "bytes": 292,
+      "sha256": "ccfe23cb66c5215d624180259645b8ecfe1ee31afb238793d736d6cf45452eca"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-disabled-absent.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-disabled-absent.stdout",
+      "bytes": 293,
+      "sha256": "8305f9246e8b28bac9389fb8c00105c14728dbcbdc5f39111834ab9428bc900f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-disabled-false.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-disabled-false.stdout",
+      "bytes": 293,
+      "sha256": "ca33240dd65e2f2d4c4a1c99d63cfeef5208e82aec47622f58726f909a7a8218"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-errors.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-errors.stdout",
+      "bytes": 340,
+      "sha256": "a291afe3d0d2b12eeaa2f740cda9297704337e8cdb26eacb588aa913550697c1"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-held-wait.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-held-wait.stdout",
+      "bytes": 282,
+      "sha256": "59ed1cd3062a0bea853b075c23850fab89877a695fe14a31dd8d3dfa1b9e3112"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-non-file-identity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-non-file-identity.stdout",
+      "bytes": 300,
+      "sha256": "cbeccd4dec0368a7de4525db2595d3b23ebc95999740e534041bead29f282601"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-recursive.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-recursive.stdout",
+      "bytes": 347,
+      "sha256": "d7ecca6098360c2e8e284cb469ae8fd34adf6a5f256d9d82f926706c8e9c0360"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-ring-bound.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/candidate-run-ring-bound.stdout",
+      "bytes": 290,
+      "sha256": "5b36338cc245979bc9caecfa137ff666ee13ca01f8a86c67951cb3b8ea0e6921"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/catalyst-companion-fixture/source-request.sqlite-fetch-wait.json",
+      "bytes": 1703,
+      "sha256": "22a3e9f700ab1c141853be3afd8d260eb9292b2135f7f38a8005cef6eef54be0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/catalyst-run-companion-export.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/catalyst-run-companion-export.stdout",
+      "bytes": 354,
+      "sha256": "dcbd6420a6a5027ef8e77f828eb7c2910d182791fbed0debfbac1e3b2763cd98"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/release-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/release-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/release-run-opt-in-ignored.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/release-run-opt-in-ignored.stdout",
+      "bytes": 269,
+      "sha256": "2b748e567a326a477ec63954b6438e491ae4c2ae4503475f29927fa2d0194d88"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/whole-observer-catalyst-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/whole-observer-catalyst-compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/whole-observer-ios-sdk-typecheck.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/actual-apple-files/whole-observer-ios-sdk-typecheck.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/launcher.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/oracle-transport.py",
+      "bytes": 799,
+      "sha256": "586333660a9b9a97d56485574e27efc8dd61b020826b3f8b4b542132880f3bf2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/payload.zlib",
+      "bytes": 35200,
+      "sha256": "a5c228426674371fa1a4f8adddb3e15b5485b8bad35dee02077f5fdf347c50cd"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/run-apple-controls.py",
+      "bytes": 6340,
+      "sha256": "1d1fca96b0f103093e220367477833c7ca9447a9ca092fe2792f3759844a86d5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/sqlite-fetch-wait-controls/run02/transport.stderr",
+      "bytes": 30,
+      "sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/DISCOVERY.json",
+      "bytes": 4865018,
+      "sha256": "5ad7a7d05ed0dfce0b8d334f59f80a9dd31ba7ce9ea38cdfbb7cfd4d2b9c548a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/README.md",
+      "bytes": 1456,
+      "sha256": "ea3359fb2e54b50543f98e452f98674158262d01df26ca9fe8ddc1903d2f8e72"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/RUN_RESULT.json",
+      "bytes": 145,
+      "sha256": "46d696738bd6660b8d4ee1ff765b46ef2f96634cd8d27c0ee73113a20f47da06"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/SELECTED_BOOKS.json",
+      "bytes": 6790,
+      "sha256": "9ea50b4d999075e97bef680bcfe640e404a8d97b31861783c78d8f39d325672d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-104.json",
+      "bytes": 217817,
+      "sha256": "9930563670675eae2ae2473cf59e4ae56c8dfec94aa8760003a6e2c1a1bba116"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-105.json",
+      "bytes": 161766,
+      "sha256": "1635d72dfb05ffa8d398ec8825c44c88cb72287fd5a759677e6c5ac9c5b5adce"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-106.json",
+      "bytes": 176840,
+      "sha256": "3bcd49fe3e65384a6b8149b3e02a56a0531b9bd18046cc256141d5e81d09d5fa"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-107.json",
+      "bytes": 130453,
+      "sha256": "35f8fc069bc5973b75da5118a2e5f8c5a85efca167a52676167abf5d56f82bcd"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-108.json",
+      "bytes": 76701,
+      "sha256": "e3656c438f1aef63cd0bb805f08d94e81b36ee3ce27b64d9cfa5c3b692ff8e30"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-109.json",
+      "bytes": 56709,
+      "sha256": "566cd55af4b2bc54e5e002ac62a3d39f4e2ad2fb9d8f852991029cb77c6d5502"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-110.json",
+      "bytes": 49552,
+      "sha256": "c759facd26e285447916ca14a48285a14165f4652985c704e39e9c8144d9fd50"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-111.json",
+      "bytes": 43159,
+      "sha256": "26ef510074557eee3daf0979bd582aa187bfab1490e14a89cdee2d6d9273f013"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-112.json",
+      "bytes": 48665,
+      "sha256": "22276d6e487eaea38b8ca0beb58b33b8a8922c03129e118dd05ace78954a2912"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-113.json",
+      "bytes": 43105,
+      "sha256": "24b3d1ab5416a8fe34fa7e08d6339754dc9e30b7544262223eb03be8146b2a37"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-114.json",
+      "bytes": 36811,
+      "sha256": "3d85e0385a8809c0cf5cc48f4a05d6a073261a6941024ec48a42eea8b7d2a586"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-115.json",
+      "bytes": 182840,
+      "sha256": "a3887d39efb3b55db0fb3df2e3a3fbc566fcb870426b40f4677e6abde8124f2d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-116.json",
+      "bytes": 168315,
+      "sha256": "81be5ab783ddc48eaed88a8c098da939235e589ccad558c7f593b35895b0c0a2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-117.json",
+      "bytes": 116344,
+      "sha256": "5ed5536741cbd9ce1a43f5c8574389d8c7c3277a7a8913799bdc3a336be2f0a5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-118.json",
+      "bytes": 93357,
+      "sha256": "b660f3fdf9875a8638fd9e7654880bc267aba3fe4f083712ec22b1c08d76ec1b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-119.json",
+      "bytes": 73111,
+      "sha256": "3e6c13be3bf1143fd645129290167dd35e91da526f05b9e335f3d5ff94e4face"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-120.json",
+      "bytes": 173259,
+      "sha256": "1537c1f3f2f46d5d558579aaab902b58bcc98c3a00ae7ff8b08b98f97ec77c48"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-121.json",
+      "bytes": 120093,
+      "sha256": "bdc7a61a42719d6ba5cfb77c48b781df9bacd256d7ac3bf26b9e5e4647350f1f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-122.json",
+      "bytes": 186582,
+      "sha256": "6386e8a39e3d4328000d6e5ad5fca4538cd45883f515d7543255e06ba66fba51"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-123.json",
+      "bytes": 251972,
+      "sha256": "ce7bfd416d64d65a514a43c83b9c2a2484b463cb46417b70b67b249b0573ad76"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-124.json",
+      "bytes": 249102,
+      "sha256": "e1737119547f421cf1ca6a9b2cb7b0a87b1e9d67fd65bb5cda29b83b0d5da434"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-125.json",
+      "bytes": 178305,
+      "sha256": "51f7898b5f4f82221fd6bcd350c6c1056f6b96a9739a50527fbbc1e7662f4e5c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-126.json",
+      "bytes": 33716,
+      "sha256": "46d42a8b604b9deb3d1f292043eac94834477d1df7356a023a824c25e2a15c40"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-127.json",
+      "bytes": 72365,
+      "sha256": "95f3b2e30b41c70436a898bf1718e294cb34b2b892f0aaf0ed8f1bd942e4d43a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-128.json",
+      "bytes": 110202,
+      "sha256": "a584a13ac6b480cbb025da0990ba746636971c4f1b9780e5b9ed1b84eb4d430a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-129.json",
+      "bytes": 19328,
+      "sha256": "9c07d396d19bee2c7f854adee3c82e14a44f44a7f9c618d0278f8a78de633e35"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-130.json",
+      "bytes": 187375,
+      "sha256": "37de9c4a128670c4cb2f9dea8bac8febb349a881456464d85dca7a00168e9b7c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-131.json",
+      "bytes": 168195,
+      "sha256": "ac1b2883599a39ee455210e72ff2974df60412fa22a48e5ab6810b8a6f8a4d16"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-132.json",
+      "bytes": 211131,
+      "sha256": "113d2f923e3626a1520e0bdb02b98c178e8705414f1a330825e12dea612ec3f6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-133.json",
+      "bytes": 90363,
+      "sha256": "73344b7e566b2e0c31026dd30e5ec2c0bbfbadba070cf8ee40035a7bee420173"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-134.json",
+      "bytes": 50373,
+      "sha256": "09d26b06cb3916988a70791140f49d8ab2e94a058b156a9cd41cc2fdb0f7de1e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-135.json",
+      "bytes": 49908,
+      "sha256": "153325d15086c6a32d7a35c4e2171fb477c0b0bcb3ec5d1123e3dd03323e8b9f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-136.json",
+      "bytes": 45009,
+      "sha256": "6a6a7b31abc74ea7c19900dcf8dc9a3e0dc132da4e6195a1aa7364894a26dde4"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-137.json",
+      "bytes": 43523,
+      "sha256": "243bce9b68176988929a57233aac34efa9a812a503887d7c5701f282471f5dce"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-81.json",
+      "bytes": 8340,
+      "sha256": "8067774d4f4cd4ba0ba0af6dbefb15473c2e423f9a2a1a4f75b21510413f4316"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-91.json",
+      "bytes": 19578,
+      "sha256": "b6f1e7d97556ff58c10d81fb9ce798c8ed4c37a22c85c4b86b649dd60beb6b40"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-92.json",
+      "bytes": 11582,
+      "sha256": "039545bcc48fbde64d4463fb650591060f3ff882a2a652105bdc9e1cb9327543"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-93.json",
+      "bytes": 9171,
+      "sha256": "53273910bc43f2fd2f173d401540bf0a41ff002d4b8ab63be811337b6d160653"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-94.json",
+      "bytes": 7791,
+      "sha256": "4ac469162070be103c88d211cff6f267b7093b308bf7bde3487065f7dab75070"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/book-95.json",
+      "bytes": 6715,
+      "sha256": "a2d3f7d35dc039a553d76ab7de85d387fce74e9d753e8b5ba0841df7e70f1a9e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/discover-natural-inspector-batch02.py",
+      "bytes": 10545,
+      "sha256": "a16dec50aece76b9d4387efca8dfbddcfa079d039984fc4a196b7acf307cecae"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/relationships.sql",
+      "bytes": 2339,
+      "sha256": "fe63c0822221128463ff13b375653b32b95a2f391d91da7549a11999cf67e48a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/selection.sql",
+      "bytes": 243,
+      "sha256": "7087fc6eb1289421a3498afb42b270e98496f1e0a3a81b2bd7d0367ab2a226b9"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch02-recovered-v40/stdout.log",
+      "bytes": 8207,
+      "sha256": "e8a9892d5569cf049eee1f234c9e390f3d68451d9d557637332ce85deece4941"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/DISCOVERY.json",
+      "bytes": 589543,
+      "sha256": "fdedbb3db6a1c4d946bd114d0f698bbbeff213fcf6f41fa0f487da0dbef8968e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/README.md",
+      "bytes": 1452,
+      "sha256": "1a0e6efa4b63212043590961c80f3a3af102f39e0988edecb1ce9750e0db9fa3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/RUN_RESULT.json",
+      "bytes": 155,
+      "sha256": "20de8a642c0244f4550a762854b196574d8bb6aafa566e8246d6445507b49c82"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/SELECTED_BOOKS.json",
+      "bytes": 7700,
+      "sha256": "21e78857e04342d71b9b244b1e44976bef26ba23d5b308c43f1e7bb96557d2a2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-138.json",
+      "bytes": 11826,
+      "sha256": "25a2f0d1520d1cdf213aba004498e5a11f8a2df1eba9a11e29f8df48ed11c396"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-139.json",
+      "bytes": 112335,
+      "sha256": "a017510789b9c518e05245cf8cf8cb6d74826cea15ee0135e310b7f6060ffef6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-140.json",
+      "bytes": 14455,
+      "sha256": "16130c19666493bc8da49eb0bf2f1e9a87b4b6d6ddfeeb54c509e22f35150390"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-141.json",
+      "bytes": 10526,
+      "sha256": "6d97ac8c32e021d1eb1602a3035aca4cf2c851d20241a467c2c70e207b1ad45e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-142.json",
+      "bytes": 8520,
+      "sha256": "8635c738d796ba1d915a6cb843c05f9812458ed703ddb95bf9c047af820a8d52"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-143.json",
+      "bytes": 10093,
+      "sha256": "c788c3225b423d70628566b44cd3768d7958bf45ef71e214f84c0a5d11c66041"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-144.json",
+      "bytes": 11555,
+      "sha256": "967b1e824b227f912ac18ed1382df76d2d990bd797c3ec809d3c0d144856f530"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-145.json",
+      "bytes": 12379,
+      "sha256": "5d441da2c643330a6f93cee1adfe4e22b7be896df512d84b2e6ed2edc4df2a1b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-146.json",
+      "bytes": 5636,
+      "sha256": "cc62c94d37a0520573e214a47e3cb220872499b9d101bdeb4d7eb94aabfea415"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-147.json",
+      "bytes": 6422,
+      "sha256": "a249ee32c3cd384b05a132f23430f3cb221f05b4debf389e4eeefed8692c2f47"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-148.json",
+      "bytes": 4944,
+      "sha256": "d0fea423665fd19d35c68f124be97500a320557d21ae19c207eaaf4db16e1399"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-149.json",
+      "bytes": 4386,
+      "sha256": "845fb81d72bc0709ddea01a599677354924533ea489b11de0e87f2d9971c6515"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-150.json",
+      "bytes": 3971,
+      "sha256": "6d7cbb6495bd4479791767f0057b6b0ca2570220d8b057c93198f75b8e7c2a3d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-151.json",
+      "bytes": 25347,
+      "sha256": "736c6d7a90491a6fbfd4e291d2f366134d5ef057fed20e8925ca09248c911cee"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-152.json",
+      "bytes": 12400,
+      "sha256": "2a7831d5f6099b461f74da20fbca82b72d2d7f7b7ff86a17e18c12d46e357899"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-153.json",
+      "bytes": 13555,
+      "sha256": "93da0df1d8e7700ff537ff169e16ec07e9c2e7cc48b1af5272547560eed05fa7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-154.json",
+      "bytes": 7975,
+      "sha256": "1560f6a9e835f9a4fbcda0330342711bcc1c08bc122a6e23d90cb4e2b829eb2f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-155.json",
+      "bytes": 9975,
+      "sha256": "6403ddd87361026e7710e81070279ff9aef40a8b9b5a3f31f6d89394f148d1f8"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-156.json",
+      "bytes": 6238,
+      "sha256": "0aa3ca216f5eec1f0f056b4f9bc9fb959582003e87e612b42d569de5a94f3e3d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-157.json",
+      "bytes": 6070,
+      "sha256": "b1a20e439c2abf735df9b1730e2cb006225d65fbda8023136142b0c44edc0fe0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-158.json",
+      "bytes": 4963,
+      "sha256": "7968fea728cf7461824b8b5c22b1a700a849158ba518f94af4429447f72f7825"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-159.json",
+      "bytes": 6097,
+      "sha256": "92d887e087b6c2764431a85560f46cbee70eff2933bf627f32d543c735f3a7a2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-160.json",
+      "bytes": 5904,
+      "sha256": "7b8ebb514063c40b6174dfd9a7f6da8d15e2b7904673da67b9c37a2372c9371a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-161.json",
+      "bytes": 4256,
+      "sha256": "b74e21210804c4570f2fd4baa555a692975e109814933e836737cd79f41a2337"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-162.json",
+      "bytes": 4070,
+      "sha256": "329fa9b0320d57e63fef2ddbc8f2e994424cc071e58ec0cacd83e82b1b9f77ab"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-163.json",
+      "bytes": 19255,
+      "sha256": "c3ba8a40ac063d419bdeaf8d659b72b11147d0516b9f1d0575d097d91264e2bf"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-164.json",
+      "bytes": 15719,
+      "sha256": "af3f565b754f1fb736e76774d3927a39c7c0d3d0c20e1755eefeb6881e53ea66"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-165.json",
+      "bytes": 12015,
+      "sha256": "64a4417fcb9ffc83802e261a0a3be3d7e8ff2c9ac3ed1c57fa4871fcd7f805b3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-166.json",
+      "bytes": 9840,
+      "sha256": "68891fd548ef18a8dba8bffe96550bc96db8582e7730fe55d01d8fd3741d379a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-167.json",
+      "bytes": 11065,
+      "sha256": "d17b62afb89658df3a934b8667a9e867ac7eaadf2685bf4b22502d765f415904"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-168.json",
+      "bytes": 10691,
+      "sha256": "4fc1c1f05aaec42a4c92fe0b77c83d223414da501542836622c7d52494d32f92"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-169.json",
+      "bytes": 7252,
+      "sha256": "b411a008bbe667f0509bdb4fd69e9e3ff9432fac20bf3021c7d0b0d4103c7d69"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-170.json",
+      "bytes": 10448,
+      "sha256": "87751e1446b3c9a30a4d97cd84bad83e24b04b69a00b508cc8c9a8a00f4d2d7b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-171.json",
+      "bytes": 10453,
+      "sha256": "22051d2a1ed730e86d1ff2d2f2e6c6d3c851624a8f942827d37c9de30a9e9b01"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-172.json",
+      "bytes": 10158,
+      "sha256": "5c4b0cfbc076a7464a41d46d7b393654e2d0915a38ad301335ecfb6bed85f063"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-173.json",
+      "bytes": 15141,
+      "sha256": "4ea8c09035b5fb7b22430b86ed952c5b91f97805465c998b522be2f1e94d5d9b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-174.json",
+      "bytes": 3160,
+      "sha256": "75d28ffeb4684d9948b4e8dad2976ddb8958262313b5bcaf4c92443056009bd2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-175.json",
+      "bytes": 9175,
+      "sha256": "82c7c19dce1db5ccceaa06364a2b71c4f5baa52c99d73e094d631cf96684c4b7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-176.json",
+      "bytes": 8347,
+      "sha256": "f9862b710d6f3b76ffd5c34ba0f424b981b11c8207ec70e05e84e3d588c4e3ee"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/book-177.json",
+      "bytes": 3684,
+      "sha256": "e3d78a54390e4ce48cf8f494a0bf9dee9ae28280a1c3fa92b3e56ff278018931"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/discover-natural-inspector-batch03.py",
+      "bytes": 10647,
+      "sha256": "27c9fafc9e9af47704d77e43c99627c2a73ae91dc4e289357c706f6ba8908190"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/relationships.sql",
+      "bytes": 2339,
+      "sha256": "fe63c0822221128463ff13b375653b32b95a2f391d91da7549a11999cf67e48a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/selection.sql",
+      "bytes": 244,
+      "sha256": "e0cf4b6a6617ad32aa37e0a491abf66778fffc19492ccb05b9a96537b2e41f57"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch03-recovered-v40/stdout.log",
+      "bytes": 8190,
+      "sha256": "7e7589e1a9e71abe469c5fed0ebbfe3058582f9b4cdbd2ac5f6fed2fa678e949"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/DISCOVERY.json",
+      "bytes": 2043247,
+      "sha256": "ab5fcb4f2a7f52ed97fa8a05bd421acd8644e33e73624971b7503417e3ab1b8f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/README.md",
+      "bytes": 1453,
+      "sha256": "da528b9b80b12e9960057e2bdab5a25852d8e2b64701aed871cdec7c57c41ae8"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/RUN_RESULT.json",
+      "bytes": 153,
+      "sha256": "67d5de7ba901db1a181260f6a1fa2492b469269a1e5ba9288ac0b5752e1a4296"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/SELECTED_BOOKS.json",
+      "bytes": 7401,
+      "sha256": "3b184bf72d87d81d9a0b37b17a293b88ddfedb3efb48c86a24ec2b880a57485c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-178.json",
+      "bytes": 4043,
+      "sha256": "13cbf34fdfbd5f8a661d62a5890a0a82fa74fdb8083348c75a28cc69f16e38f3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-179.json",
+      "bytes": 5368,
+      "sha256": "26b693d60b89be9a7668bae21ffc8b0a8355478ff3d293d4b42848fe9cff9eb6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-181.json",
+      "bytes": 6436,
+      "sha256": "ef5d60933e40e1d09fd5d01fdaf8d01191256b02888ebce313d4f7eb1c4682be"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-183.json",
+      "bytes": 6065,
+      "sha256": "d7b497f15174d7af1642d8e7b768a352c563fa20e614bc9058b0cd6404015506"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-184.json",
+      "bytes": 7784,
+      "sha256": "e0c7f4f6b4fce0fa5cbb130ab84fe2e8db8d11809ffce00bd9f4e9562f2c588a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-190.json",
+      "bytes": 12890,
+      "sha256": "2c513154e67e9c245ea56c6d307937c3003857dfa5b924338ff9f7e4c88b824c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-191.json",
+      "bytes": 6042,
+      "sha256": "7a13bcb8cdd372887aac91bb0750aefa0c7d9c93a2260c7e7cdeed5a77103519"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-192.json",
+      "bytes": 7001,
+      "sha256": "a0686c1460b6a8949cbb721314ddad825b8e6995f88e8aa66c7e5b3ba7fbef22"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-201.json",
+      "bytes": 9073,
+      "sha256": "e605c54a86790812c5ad2eda864cdc91e46f5bd10c39ab1456026e5dc6fe832e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-202.json",
+      "bytes": 8308,
+      "sha256": "70ae5a611dda387a9cfecf2c69bf93cc768db6cb9c7a70a6de7559cf5b65bcf2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-205.json",
+      "bytes": 9563,
+      "sha256": "d0d8714335452e85416fea011fbf84543a6f9197ee76241a4ea2b840cc7e9261"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-208.json",
+      "bytes": 7444,
+      "sha256": "1f9623b0a3d99f082b484ac6979df20af3059fa9f437efbe7fbad6f619f4fe9a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-209.json",
+      "bytes": 7732,
+      "sha256": "a4f30f2da6a5522ab0583937b0c9439321b98b7bdab6c14e22673718844c9420"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-217.json",
+      "bytes": 15751,
+      "sha256": "241c5409c839055782d8f5f9dc13e820c5f64e0d666b9ca4f4de5b150bb5f6d5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-218.json",
+      "bytes": 8659,
+      "sha256": "f6380bf309cff7b59cb9f597e75bea3f48fcaf44b586234b07119addec24a778"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-228.json",
+      "bytes": 11802,
+      "sha256": "13761e5098acfdc8375c468330d5fa23ef3da3a63c9c8614b979a5e90c49f3c3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-229.json",
+      "bytes": 6296,
+      "sha256": "abbf13b2d6cf9ffa3b20e471192425f5eb98e2a4b2daa6e06e0160fa996f3901"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-239.json",
+      "bytes": 48604,
+      "sha256": "d730949ea0d58cda0e85934db1eb4aca0e09574d9c3039e5049c42bf29019a36"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-240.json",
+      "bytes": 258198,
+      "sha256": "0438f3eca2add90fd03a070b0f054fd2c89cc8bd4fa5522a86cb9d9cd3ddc1a7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-241.json",
+      "bytes": 15005,
+      "sha256": "8d7e8123c05ea06db28dc3043f4846b308728a82a164be63ad8282ce8ac5647a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-243.json",
+      "bytes": 51978,
+      "sha256": "0c53e41f7689643b1d8457aef918deaa96e62d7653aa22d8da7de34ee43bbc28"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-244.json",
+      "bytes": 620655,
+      "sha256": "534abd6992001e96cf64273d3584e73fdda256308e7aa0ed463a7be0f296b007"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-245.json",
+      "bytes": 84474,
+      "sha256": "c0700dcb07a0d1bd2cf466e679a23e5a6e1f64749e5d7391a0bdd617d626d5ba"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-246.json",
+      "bytes": 114761,
+      "sha256": "0454f6a612402176f46506cca4d0e897d39a75abe076591dfef46c839e273e96"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-248.json",
+      "bytes": 7650,
+      "sha256": "21fae1b0ae17603a28efc678aff87a8c0f9a6773c4f4da2288d8ec44b96a52da"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-249.json",
+      "bytes": 11803,
+      "sha256": "4dab604ab4e4b0a4fcdd25d8361eb2057107b09dd059d485d6dae3997c802447"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-250.json",
+      "bytes": 13179,
+      "sha256": "7e6bcb7064595d415fb28bdf5c73e67e3fddd04701f8171d2c44df8ca7634157"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-251.json",
+      "bytes": 5767,
+      "sha256": "f6ea9a5551c5a5b3944911b2a3d1d4ba26640c4c4ec7ded1b383bcb1937e80b1"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-252.json",
+      "bytes": 11043,
+      "sha256": "3687e7230ea4a9dfd441001d8b85767e06bbf52ab3c58246e73964193f75a18a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-253.json",
+      "bytes": 84993,
+      "sha256": "3e6fcf1f37be90de1945b0006a50ac1d176ace19bbdbe689de4922da7dd3a1af"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-254.json",
+      "bytes": 9410,
+      "sha256": "cf14c7ffbecc720181337000ae2ff8874c438e8f943ecb674a06d4470146cc4e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-255.json",
+      "bytes": 18643,
+      "sha256": "0ccea4ff650d318760dc533c13e20b44b3d4cadb217e432b30d77ab5754b536a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-256.json",
+      "bytes": 68088,
+      "sha256": "60e7b45ee2f760f50dfe2f1191fcbd1e8e202b22d5e992aecb96643a168ba267"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-257.json",
+      "bytes": 34182,
+      "sha256": "cef62d46ead6337d570c5d410e419923579d4b1f6db8247ab87068bb17ebd2e9"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-258.json",
+      "bytes": 24424,
+      "sha256": "336d3c74af030d0004a864965cdb25db5f994e1231a5d6b3cb602ca16b791030"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-259.json",
+      "bytes": 18355,
+      "sha256": "903d285918fa4bfa3c27e19a57d7ef13938880f38969f3da1230a025c986892a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-260.json",
+      "bytes": 8153,
+      "sha256": "d6c7cb9bba1a70970ada5749433b49ae4daca98faa8c2a54ddcb0c0e6ce40229"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-262.json",
+      "bytes": 9359,
+      "sha256": "38320a91f038e28dcf8f1b3463cea6ce90be8b455e2d4bb236c5d9f2869e1fde"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-263.json",
+      "bytes": 5786,
+      "sha256": "30484898fead19fab985b9611fc852b405213b5bcfb2ca1d5615b038c9e5ec3d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/book-264.json",
+      "bytes": 7811,
+      "sha256": "4b0430c0170db8ddb1316e83c5be1b79dddb34a732955375f3b1310315ee031e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/discover-natural-inspector-batch04.py",
+      "bytes": 10647,
+      "sha256": "89e82ec1f18a4bd7bd26eff9d8c6c85fb8de2d05a80239c7d24d8833140b59ac"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/relationships.sql",
+      "bytes": 2339,
+      "sha256": "fe63c0822221128463ff13b375653b32b95a2f391d91da7549a11999cf67e48a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/selection.sql",
+      "bytes": 244,
+      "sha256": "7af2c6bf3ab65d0746f006f7ce0974153e4bfbc845b95cb55cc6f2343bab2747"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch04-recovered-v40/stdout.log",
+      "bytes": 8182,
+      "sha256": "a1b3883334203e64ea5cb6653b0d90795f39c93d4824954f9fab0072e4f00d19"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/DISCOVERY.json",
+      "bytes": 1713873,
+      "sha256": "a9e5dcc7f4dd95d1e2d2e26763ccb12fb99648a1938bfe7412dbb6897141f112"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/README.md",
+      "bytes": 1453,
+      "sha256": "2e877e172f28360bbe601f9f6ec50d081c3b140420351c981cc1faaef4b09cb6"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/RUN_RESULT.json",
+      "bytes": 155,
+      "sha256": "f9b3c85a51a6f7ded9f8d6c4566b99fe78313b56777763fe79eb6b9dca02cb36"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/SELECTED_BOOKS.json",
+      "bytes": 7802,
+      "sha256": "9ba382c871970118b85680ff2d1965601ecfce926fbdf2ad98525e5159311703"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-265.json",
+      "bytes": 120051,
+      "sha256": "67fb30ba383c581cc4c5d1cbfdff13ead9a2074d8c6fe332275528b561603cc3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-266.json",
+      "bytes": 20204,
+      "sha256": "eb68b2b94735a63c8d063e3ba519add4ebff4dc38799e6faf1f2301a2caff6c7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-267.json",
+      "bytes": 103618,
+      "sha256": "7c302472838d0402bf79651de196a772f4c645d42355347541560af272db012f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-268.json",
+      "bytes": 69119,
+      "sha256": "608d6919835c67fc9a3b1996c14cd0099cb008d3f726a9d9d1da29e58e32556e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-269.json",
+      "bytes": 18838,
+      "sha256": "a0b72e6d89d74def2525b0c798c1634363af1bd47ce05ef086f3753e38292762"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-272.json",
+      "bytes": 23252,
+      "sha256": "01ae048285b9d5d873a041f522a20082f8c6db0a28fef88db221b91b64a8bd15"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-273.json",
+      "bytes": 8744,
+      "sha256": "0d0526e12038d4233113cca9e19601dcd4e8ae3a2205fbe5016cdac0f5d1f36d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-274.json",
+      "bytes": 4126,
+      "sha256": "308ba00ec477d779639b7c106cc683875d37087b276e13f930ecc0298409c56e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-275.json",
+      "bytes": 72622,
+      "sha256": "475f9b632b830cc4489d9238577916f370e53f603dbee2c1459db797bb94868b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-276.json",
+      "bytes": 48142,
+      "sha256": "a39ebc152ea9ae5d871bab23c1cd0d10a8bea1f307f2430a66c49d99433c3bec"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-277.json",
+      "bytes": 19591,
+      "sha256": "2b82af725bee55da7ba0d7f2dc988d5d6de02cb1a55df2af9d263c88f561ee45"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-278.json",
+      "bytes": 35040,
+      "sha256": "da3665bc1d1fd3f3027301594092ecc3e111e7c966801809d8d4e2d485e93ab0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-279.json",
+      "bytes": 38582,
+      "sha256": "bb5aca0bd120d0c3807970c67d74e1c8255e7ed046c522376a0f62328fd66d57"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-281.json",
+      "bytes": 10549,
+      "sha256": "5ec6264178bd2cc6d1d58e1908c09d5642191bd051d6c425d8e95ebcfd9ed272"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-282.json",
+      "bytes": 75263,
+      "sha256": "1166f307470561d74cb4aad017ad6024431c828fcc5485efb8d9fa8d1e83e6c3"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-284.json",
+      "bytes": 77209,
+      "sha256": "dc7d413e8b18b09d2155af4d754cf31de0caea8ba0dc88e00f881134044a19af"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-285.json",
+      "bytes": 34277,
+      "sha256": "a24458792b642f4b5e2700f18cd47e47d388b36a1a6c4745382c1281845cfe09"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-286.json",
+      "bytes": 23344,
+      "sha256": "232be39ef670d75b99bc16a2ae5f6a0d910804cc0afa3903788eb70e4f537417"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-288.json",
+      "bytes": 49349,
+      "sha256": "ae3acc2f2f258f433bc9cedef12b3ee59fba3d585dd53c00eb4c0838f8935c2d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-289.json",
+      "bytes": 91494,
+      "sha256": "c964abcabe655cf34f85a13ad543a752bcdf4bd7174e1e457f9a4e118cc7a4ab"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-290.json",
+      "bytes": 234773,
+      "sha256": "aebf6b7197bcd7adb2c8a28120be9ac80dcd06b498dea22e5e0ae833f1957f0d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-291.json",
+      "bytes": 22467,
+      "sha256": "6b3f499ad03b25839c8b7a0b673704b9c3af917f6b99c347c0eb7bae2b3748f2"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-293.json",
+      "bytes": 5579,
+      "sha256": "e294c8b5669cfe3e45277d4eb3c63149cfd4617ca90b42dbce2915d8eeaf70e5"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-294.json",
+      "bytes": 3972,
+      "sha256": "a5c6a58a97ab8ec7dbd62b5f78b237c507885a0ab9cfcbfde8d0997dc4212ff4"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-295.json",
+      "bytes": 9869,
+      "sha256": "e3b29d5f27eb43b58d2278205814c173f90a21415c69c870e3531d1a89f2a5c4"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-296.json",
+      "bytes": 7047,
+      "sha256": "4aca0dbbaa79f4fb5fc9e1c20d70c18e090dd749ab54b46d0dd376d29dd7a60b"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-299.json",
+      "bytes": 9272,
+      "sha256": "5d0ffe378931319e4cf544423d8299bdca1084a6eefaab85790775412261a221"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-302.json",
+      "bytes": 12091,
+      "sha256": "3ad0b681d4227e6902adbd482dd9f6f18cb14f7ff16fccaa49e3270de066fcb0"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-303.json",
+      "bytes": 8055,
+      "sha256": "5b688f05d3f0fe128a72ad9666a7f23679360d7ddf1a35eca87cdd03c9e47010"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-305.json",
+      "bytes": 8675,
+      "sha256": "580ba978ee3f8247319ab93980425421eaa6ff57a58ac5210e189f62cad593ed"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-308.json",
+      "bytes": 25536,
+      "sha256": "33301eafead02af2ed9e971c457224d23c9602bf5e0815262e7a492c0e337530"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-309.json",
+      "bytes": 6827,
+      "sha256": "eda8ab5ead97d6a895a7d006886e71fa918fb71a8eb16bdd0633c120032c10db"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-311.json",
+      "bytes": 14133,
+      "sha256": "adc1f76dd3a79a44602a7518bf200e1c12c17f5ee8d0ac2b31e14bf318efd964"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-314.json",
+      "bytes": 6538,
+      "sha256": "45f252ee01696532618007b45b8d3cb0eaa215d654e9cc205ba4fe82b4332598"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-315.json",
+      "bytes": 7072,
+      "sha256": "19c9695b9c53c29eb565213c1006cff70b6f2e5e8325ea78efa01563b4d87a0a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-317.json",
+      "bytes": 7335,
+      "sha256": "f3bb055795f71b5656ed5e941429a1d153239c258e5c3a0c6c7fe7ef7144e263"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-318.json",
+      "bytes": 21225,
+      "sha256": "7c5d7dbac4e0700dea59abcf1cd24dc2dabcaf753f8045fcd934f8db791cce7c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-319.json",
+      "bytes": 11878,
+      "sha256": "5d2f96e4006148372f6f8e5ff00cffd063f0682cec9ead62b1308812f70fcdab"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-320.json",
+      "bytes": 7294,
+      "sha256": "aa65c47d0e1b8a949fbe61c261bbe5b69388fed24e707ee21b186852e87fd50e"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/book-323.json",
+      "bytes": 15536,
+      "sha256": "b814b069aee862f418de60713be7241e29bc4acb758c2f39ada763dcf1a5885c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/discover-natural-inspector-batch05.py",
+      "bytes": 10647,
+      "sha256": "a32ec35caec874519e5deed0f355057814c18e0501d37093d65d37046cad0506"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/relationships.sql",
+      "bytes": 2339,
+      "sha256": "fe63c0822221128463ff13b375653b32b95a2f391d91da7549a11999cf67e48a"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/selection.sql",
+      "bytes": 244,
+      "sha256": "eb1ebb05cddd5d6f77a0d5c0700da6edf7466878f2724132291f31fd994bd1dc"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batch05-recovered-v40/stdout.log",
+      "bytes": 8214,
+      "sha256": "5d64cba58eeb5056b4c03fbd5c9b123a1f26844c2aec2b2d1f1973ff1f5b9d68"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batches02-05-summary/README.md",
+      "bytes": 533,
+      "sha256": "5ad04b06c8598ecccd2a380ec2abeb7b8048403796ef3616d2ba9595b5a5ef01"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/reader/perf-natural-target-batches02-05-summary/SUMMARY.json",
+      "bytes": 11632,
+      "sha256": "abdd600d18fe6a9904d52c6b000614443eb51088be0769eb11c59bad8e41237c"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/HOST.json",
+      "bytes": 212,
+      "sha256": "9b8050e91a2f256d00e65866f6b414ebaf4f59fabf079ec94c06c3450a3ce949"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/NATIVE_EVIDENCE.json",
+      "bytes": 6782,
+      "sha256": "37f6b6c99443a1ed7386213b541f5262d582aa9d8a12eb9ba78934ab0f532420"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/PROVENANCE.json",
+      "bytes": 1270,
+      "sha256": "6f4ac3ee0dfa95f0064b057bdcb0e6b9d923c5a65d9461f3ac88930bc51b6d20"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/README.md",
+      "bytes": 11039,
+      "sha256": "ee0a59664af86beaead067dcfac3b255450cefe32fa47033231da3d3d3086eba"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/apple-inputs-and-logs.tar.gz",
+      "bytes": 188982,
+      "sha256": "66850621d9fd2f5a08ff64e01b9ba538983d18fe3b16256a75c03b91a69ef28d"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/attempt-1/RESULT.json",
+      "bytes": 341,
+      "sha256": "467e5f8c740201d3d2605d9209e97e5dd55c545601e9a152cd965bcefab991dc"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/attempt-2/RESULT.json",
+      "bytes": 3015,
+      "sha256": "6b0665b9b501b5f1b860b2c7cb2d041145d8827dd66c9dd420b84c05888208be"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-1/RESULT.json",
+      "bytes": 1054,
+      "sha256": "7a07900ece995a6663b7e132b59d445f266cd1f253bcb921bee1ee0257909956"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-1/candidate.py.gz",
+      "bytes": 11327,
+      "sha256": "7f6e56ca068ad6165b495edf3a43be2346f604cd872da8dcada8dce852224c11"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-1/controls.log",
+      "bytes": 4649,
+      "sha256": "66e16792dfacb3a5cfd4b1bb8346f13c711d0e91d7b9c40414a858f7fcd54f93"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-2/RESULT.json",
+      "bytes": 1055,
+      "sha256": "b15491b94ebc6ad185e89dae153a7ea59b7fabdffd4de2aec437a4cb3e0b12a7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-2/candidate.py.gz",
+      "bytes": 11408,
+      "sha256": "71604c35e95af5350702d75ffa7c0c7a15edebbece71efb710046f80095a0db7"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-2/controls.log",
+      "bytes": 4649,
+      "sha256": "d77841a06e3a9235ebcb7156b77ee5fe9726a69da236433d613f68376fabf2d9"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-3/RESULT.json",
+      "bytes": 1056,
+      "sha256": "2cc9ffd57bf390e3e99972b8621d2c260198e7d97a14ecdf50f14aafcf452227"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-3/candidate.py.gz",
+      "bytes": 11507,
+      "sha256": "b146e7d177ba2831656e05fa3738131f78cdd52755ca785ce5e03d8754d2d23f"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source-controls-attempt-3/controls.log",
+      "bytes": 4649,
+      "sha256": "99e941696405421e9190751787d6dd296c4a7b4e5b14d4e56339b68a49bcd4da"
+    },
+    {
+      "path": "docs/hq-integration/wave2-20261127/library/preview-oracle-producer/source_controls.py",
+      "bytes": 15525,
+      "sha256": "423fd126ecea08f1bef57d3028217ab9f44c5f0d0de04e4cf67f6199f7a38b08"
+    }
+  ],
+  "liveAppleReadOnlyMatches": {
+    "sqlite": {
+      "filesMatched": 61,
+      "inputs": 10,
+      "rawStreams": 50,
+      "receiptSHA256": "00a7e67662d7b3a92511be1a85d99dfad665e69f02acb80e9ece83391c37a7ee"
+    },
+    "preview": {
+      "filesMatched": 25,
+      "sourceInputs": 19,
+      "receiptSHA256": "6b0665b9b501b5f1b860b2c7cb2d041145d8827dd66c9dd420b84c05888208be",
+      "compileInputsSHA256": "dc51a2d9049fa13e640f2ef5049e4820fe5e9258a468fe9f9c132c262a67da7e"
+    },
+    "scope": "Fresh root read-only checks of every named original receipt input and raw stream; matches retained in current session; no rerun."
+  },
+  "peerReview": {
+    "reviewer": "library_v40",
+    "sqliteSourceNoBlocker": true,
+    "limits": "Original cancellation-after-acquire race not deterministically forced; active-capacity control synthetic; open-time identity only; native PERF still requires complete epoch proof."
+  },
+  "historicalSQLiteCommands": 25,
+  "historicalSQLiteComponentRuns": 20,
+  "historicalPreviewSourceControls": 44,
+  "historicalPreviewCompileSourceCheckout": "1fc951485216935abfe0977f37376a5d3f155476",
+  "previewBinaryExecuted": false,
+  "nativeUIRuns": 0,
+  "newProductionCorpusReads": 0,
+  "newAppleBuilds": 0,
+  "finishedAtUnix": 1795758548.8271508
+}
