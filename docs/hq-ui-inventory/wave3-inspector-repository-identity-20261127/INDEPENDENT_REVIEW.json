@@ -1,0 +1,202 @@
+{
+  "schema": 1,
+  "source": "f000c095cea53945eba3859eb8a25c0f60906970",
+  "aggregate": "555b54b8eea3441e767e66e4f95de1db81dd8324",
+  "rootReference": "460a098912d6b9ebd29e99330a76644937d2b570",
+  "all25ChangedFilesEqualAggregate": true,
+  "productDiff": {
+    "Source/Otzaria/Reading/MaktabahTorahInspectorAdapter.swift": {
+      "before": "b9b64795eee6afdb204fde4f31d96e38a2513c8caf4929dee1acfd03410e4c4b",
+      "after": "722c3e6dae328a217944d5298f60a2d6afc5125fdced02821cf34f2621d3b9e4",
+      "rootEqualsBefore": true,
+      "rootEqualsAfter": false
+    },
+    "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift": {
+      "before": "2fc2eaf83bb56c63be833691a6e8d0df96bde09660f377f2dca06138460a92b7",
+      "after": "b5166743145329783d5650aed8caffeb6fc755b599987ae7629cb75893a6d006",
+      "rootEqualsBefore": true,
+      "rootEqualsAfter": false
+    }
+  },
+  "workspace": {
+    "currentRootSHA256": "38c1143e488411cd71e3be02935ee6eba67d74943a87a06e344dba5475d730ad",
+    "sameWholeFile": false,
+    "relevantStatements": {
+      "@State private var inspectorSession: MaktabahTorahInspectorSession": true,
+      ".id(\"\\(BackendCoordinator.shared.generation):\\(viewModel.currentReaderTextMode.rawValue):\\(inspectorContentID)\")": true,
+      "self._inspectorSession = State(initialValue: MaktabahTorahInspectorSession(viewModel: viewModel))": true,
+      "inspectorSession: $inspectorSession,": true
+    },
+    "currentRootWorkspaceCompiledInReceipt": false,
+    "oldStructuralWitnessSHA256": "fa5c00a3544b2543e1e482d6f1fb97b8a2a12f87c8cae6bd67c536c1b8d7fb38",
+    "oldWorkspaceWasOnlyAStructuralWitness": true
+  },
+  "cases": [
+    "matching-mode-keeps-session-cache-selection-and-open-state",
+    "mode-admission-replaces-both-cache-owner-and-language-mapping",
+    "matching-mode-close-and-reopen-do-not-discard-current-cache",
+    "translation-both-source-roundtrip-keeps-distinct-original-mappings",
+    "generation-plus-mode-generation-first",
+    "generation-plus-mode-mode-first",
+    "remount-admission-can-replace-retained-hidden-mode",
+    "old-mode-completion-cannot-populate-the-new-repository"
+  ],
+  "priorReceiptSHA256": "949a8d016e0b0937887e5eeed6405655768bebb5ebfc4f9d2b95b087d43188ad",
+  "originalModels": {
+    "Source/LibraryBackend/LibraryBackendModels.swift": "b05a2e40eca5577441992d6fa1648ec7ae9ef617a23d52ef8a7f1e46e2c9d14d",
+    "Source/Otzaria/Reading/OtzariaLineAnchor.swift": "46c7282330eba729c77ddfbf732582bdcbfef2fcc7473b455cc5061bdd3931a6",
+    "Source/Otzaria/Reading/OtzariaReadingUnit.swift": "a7468b783f530958641918c23e3d654a31938446f9de0bdbb7211dfc5ab39cfb",
+    "Source/Otzaria/Reading/OtzariaReadingUnitDescriptor.swift": "9c01b971ef6093fc7f9a2ea9680353aa9ad9f6b3bb87f7eefd4ac9a6780a4b02"
+  },
+  "pinnedKitSources": {
+    "kit/Sources/TorahInspectorCore/Models.swift": "59a0c8639c8c778c67ff9c60db4b979e3ba7a39dff4c3fb669a54ae23dc113a0",
+    "kit/Sources/TorahInspectorUI/TorahInspectorView.swift": "92295e1d372d393309fc03d15ea2cd2ea51997acf22a065ec865dea72ed89c33",
+    "kit/Sources/TorahInspectorUI/TorahSegmentDetailView.swift": "cf23dec33df1df00d85e3fd333a838a60befa7a22a6ea2daed53dc86158df823"
+  },
+  "newReceiptSHA256": "8cc3ca48d5399d1696155d28cf980a8d74aad6559eb59694528a2f4bb0e41c9e",
+  "recordedCommandsExit": {
+    "compiler-version": 0,
+    "candidate-whole-host-typecheck": 0,
+    "candidate-compile": 0,
+    "candidate-run": 0
+  },
+  "logs": {
+    "storedAndDecodedChecks": {
+      "JOB.json": {
+        "bytes": 258,
+        "decoded_bytes": 258,
+        "decoded_sha256": "3221337d9276bcef80ab9ffc85cbee9f7099b6a0aa3e23781af346b922712d9f",
+        "sha256": "3221337d9276bcef80ab9ffc85cbee9f7099b6a0aa3e23781af346b922712d9f"
+      },
+      "RESULT.json": {
+        "bytes": 10001,
+        "decoded_bytes": 10001,
+        "decoded_sha256": "8cc3ca48d5399d1696155d28cf980a8d74aad6559eb59694528a2f4bb0e41c9e",
+        "sha256": "8cc3ca48d5399d1696155d28cf980a8d74aad6559eb59694528a2f4bb0e41c9e"
+      },
+      "candidate-cases.json": {
+        "bytes": 2133,
+        "decoded_bytes": 2133,
+        "decoded_sha256": "b819241f307ed33be32ec4a6948d140ae14cf1733c7cba6a0dbd7d9d23c3cae3",
+        "sha256": "b819241f307ed33be32ec4a6948d140ae14cf1733c7cba6a0dbd7d9d23c3cae3"
+      },
+      "candidate-compile.stderr.log.gz": {
+        "bytes": 20,
+        "decoded_bytes": 0,
+        "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "candidate-compile.stdout.log.gz": {
+        "bytes": 20,
+        "decoded_bytes": 0,
+        "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "candidate-run.stderr.log.gz": {
+        "bytes": 20,
+        "decoded_bytes": 0,
+        "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "candidate-run.stdout.log.gz": {
+        "bytes": 669,
+        "decoded_bytes": 2134,
+        "decoded_sha256": "42b3db75289512ccb3c9ba2769d97195fe22057769f0ec8f24ee1ae9d650930e",
+        "sha256": "1d228ac20093f1eec52714557e65fa9ad26c986e9adee961eb0ef6a669b89b16"
+      },
+      "candidate-whole-host-typecheck.stderr.log.gz": {
+        "bytes": 20,
+        "decoded_bytes": 0,
+        "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "candidate-whole-host-typecheck.stdout.log.gz": {
+        "bytes": 20,
+        "decoded_bytes": 0,
+        "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "compiler-version.stderr.log.gz": {
+        "bytes": 48,
+        "decoded_bytes": 30,
+        "decoded_sha256": "bbc8b176d3c74d4c5a7fd00b40280f98168e116d5272273bfe8e71407625540e",
+        "sha256": "12919eb3b241936fe8b140e777c7e67f606c0c293f0d89edb13a52cd5e1e85be"
+      },
+      "compiler-version.stdout.log.gz": {
+        "bytes": 104,
+        "decoded_bytes": 98,
+        "decoded_sha256": "04630ab8fa201f57c63c59730e638135e32584a97e16e004a417eb8ed283dc83",
+        "sha256": "0934835c29031c4d993fb5c03c679104e862d89d770e67dcc336593d9d2cd8ce"
+      },
+      "runner.stderr.log.gz": {
+        "bytes": 20,
+        "decoded_bytes": 0,
+        "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      },
+      "runner.stdout.log.gz": {
+        "bytes": 20,
+        "decoded_bytes": 0,
+        "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    },
+    "runStdoutEqualsCasesAndReceipt": true,
+    "allRecordedStepsExitedZero": true,
+    "candidateCount": 8,
+    "allCandidateCasesPassed": true,
+    "reviewExecutedTests": 0
+  },
+  "review": {
+    "reviewer": "/root/release_preflight",
+    "status": "SOURCE_AND_RECORDED_COMPONENT_EVIDENCE_REVIEWED_WITH_NARROW_HOST_IDENTITY_FOLLOWUP",
+    "existingFix": "The actual Session API preserves a matching mode and its repository/cache, and replaces a changed mode using the same coordinator/bridge and current Reader. The generation admission callback is unchanged.",
+    "caseBoundary": "The eight actual cases use the full candidate adapter and pinned Kit Core with declared synthetic provider, Reader, annotations and routing boundaries. They check mode/cache mapping, hidden admission, both generation/mode orders and late old repository completion; they do not mount SwiftUI.",
+    "originalAcceptance": "The existing receipt is an actual Catalyst target17 / SDK27 component run and whole-host typecheck. It is supplemental evidence, not native iOS/iPadOS27 acceptance. This review ran no tests.",
+    "discoveredSeam": {
+      "kind": "source-visible subtree lifetime seam, not reproduced native failure",
+      "actualKitViewPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorUI/TorahInspectorView.swift",
+      "actualKitViewSHA256": "92295e1d372d393309fc03d15ea2cd2ea51997acf22a065ec865dea72ed89c33",
+      "viewLines": {
+        "focusState": 432,
+        "task": 492,
+        "loadAndFocus": [
+          560,
+          588
+        ]
+      },
+      "actualModelsPath": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-generation-attempt-2/kit/Sources/TorahInspectorCore/Models.swift",
+      "actualModelsSHA256": "59a0c8639c8c778c67ff9c60db4b979e3ba7a39dff4c3fb669a54ae23dc113a0",
+      "selectionIDLines": [
+        290,
+        293
+      ],
+      "finding": "The Kit relationship entry retains @State focus and loads through the captured repository with .task(id: selection.id). The selection ID excludes mode/repository. Initial host admission can replace Session after a body has already formed a Kit subtree whose task identity remains unchanged.",
+      "sourceAuthority": "Read the exact retained Mac Kit files and matched hashes to original receipt949a; the older docs/native-study-sheet copy has a different hash and was not used as the final authority."
+    },
+    "followup": {
+      "authorization": "Root Asana decision1220943162484768",
+      "base": "f000c095cea53945eba3859eb8a25c0f60906970",
+      "file": "Source/Otzaria/Reading/OtzariaReaderSourcesInspectorHost.swift",
+      "change": ".id(ObjectIdentifier(repository)) on the original TorahInspectorUI.TorahInspectorView before DEBUG background; one product line only",
+      "beforeSHA256": "b5166743145329783d5650aed8caffeb6fc755b599987ae7629cb75893a6d006",
+      "afterSHA256": "1fb9c8c8db81b50f86541dd970e22bca8da934434c4c4990d47926f0f710ebb2",
+      "sameRepository": "The existing local repository variable is reused; same Session/matching mode keeps its cached repository identity and Kit state.",
+      "changedRepository": "A distinct repository changes the actual Kit subtree identity. Its new first-mount task owns the new repository and separate focus state. A noncooperative old task may finish only into its retired subtree; no cancellation success is invented.",
+      "noChanges": [
+        "Pinned Kit source",
+        "Session replacement API",
+        "Original eight controls or their receipt",
+        "Outer mode/generation/contentID identity",
+        "Workspace, toolbar, Notes or routing source"
+      ]
+    },
+    "nativeAcceptancePending": [
+      "Original visible Inspector source → translation → source in the same tab, actual displayed body/reference/version",
+      "Original close/reopen with a mode change while hidden",
+      "Combined backend/resource-generation and text-mode change",
+      "Original late old request vs current visible subtree"
+    ],
+    "reviewModuleReadback": "Existing Mac Kit module/dylib hashes were read and matched before the follow-up typecheck; unchanged after."
+  }
+}
