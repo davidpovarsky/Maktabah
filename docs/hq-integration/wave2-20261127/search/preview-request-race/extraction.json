@@ -1,0 +1,18 @@
+[
+  {
+    "variant": "baseline",
+    "sourceSHA256": "f2e04982fed6c3f6fa83fa57255c693ae7b96ad1a1c11f46b9053e4af01f0ec7",
+    "taskBodySHA256": "7e48531a9ccbf2f2f3d5633e6006e274ec7af9a4edcde229c1bc6a393fcb8155",
+    "compiledFileSHA256": "78b6d14473acb99e544c675fa0dcaca8ba8e59095609a8064c32abfb05fcbac3",
+    "sourcePath": "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/docs/hq-integration/wave2-20261127/search/preview-request-race/baseline-source.txt",
+    "compiledFile": "baseline.swift"
+  },
+  {
+    "variant": "candidate",
+    "sourceSHA256": "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf",
+    "taskBodySHA256": "1aaeb58f405f1bd0d8f9b8dc988680dadc569ee2f8323582411ca74eaa16ad13",
+    "compiledFileSHA256": "ddd4cfbe9af08bcc6e41503554a6f21c595b92568d39de282b9bfb9ed657c750",
+    "sourcePath": "/mnt/development/projects/worktrees/Maktabah-wave2-search-20261127/Source/Features/Search/iOS/SearchResultsListView.swift",
+    "compiledFile": "candidate.swift"
+  }
+]

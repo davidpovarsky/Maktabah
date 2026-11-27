@@ -1,0 +1,344 @@
+{
+  "failed" : 0,
+  "observations" : [
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled ordinary error while current waits: stale completion cannot publish an error",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled ordinary error while current waits: stale completion cannot change current loading",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled ordinary error while current waits: stale completion cannot replace current segments",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Cancelled ordinary error while current waits: current completion still publishes its complete state",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Cancelled ordinary error after current success: stale completion cannot publish an error",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Cancelled ordinary error after current success: stale completion cannot change current loading",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Cancelled ordinary error after current success: stale completion cannot replace current segments",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Cancelled ordinary error after current success: current completion still publishes its complete state",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Superseded ordinary error without cancellation: stale completion cannot publish an error",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Superseded ordinary error without cancellation: stale completion cannot change current loading",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Superseded ordinary error without cancellation: stale completion cannot replace current segments",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Superseded ordinary error without cancellation: current completion still publishes its complete state",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Superseded success while current waits: stale completion cannot publish an error",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Superseded success while current waits: stale completion cannot change current loading",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Superseded success while current waits: stale completion cannot replace current segments",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Superseded success while current waits: current completion still publishes its complete state",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Superseded success after current success: stale completion cannot publish an error",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Superseded success after current success: stale completion cannot change current loading",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Superseded success after current success: stale completion cannot replace current segments",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Superseded success after current success: current completion still publishes its complete state",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled CancellationError while current waits: stale completion cannot publish an error",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled CancellationError while current waits: stale completion cannot change current loading",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled CancellationError while current waits: stale completion cannot replace current segments",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Cancelled CancellationError while current waits: current completion still publishes its complete state",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled successful provider while current waits: stale completion cannot publish an error",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled successful provider while current waits: stale completion cannot change current loading",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Cancelled successful provider while current waits: stale completion cannot replace current segments",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Cancelled successful provider while current waits: current completion still publishes its complete state",
+      "passed" : true,
+      "segments" : [
+        "current body"
+      ]
+    },
+    {
+      "error" : "current-provider-failure",
+      "loading" : false,
+      "name" : "Current ordinary error completes its spinner",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : "current-provider-failure",
+      "loading" : false,
+      "name" : "Current ordinary error remains visible",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Current provider cancellation completes its spinner",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Current provider cancellation publishes no invented error",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Already-cancelled task does not contact the provider",
+      "passed" : true,
+      "segments" : [
+        "existing body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Already-cancelled task preserves the existing complete state",
+      "passed" : true,
+      "segments" : [
+        "existing body"
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : true,
+      "name" : "Original selected-version title and language are forwarded unchanged",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    },
+    {
+      "error" : null,
+      "loading" : false,
+      "name" : "Current selected edition still renders",
+      "passed" : true,
+      "segments" : [
+        "current selected edition"
+      ]
+    },
+    {
+      "error" : "הטקסט המלא עבור תוצאה זו ריק.",
+      "loading" : false,
+      "name" : "Current empty result retains its original error and finishes loading",
+      "passed" : true,
+      "segments" : [
+
+      ]
+    }
+  ],
+  "passed" : 37,
+  "schema" : 1,
+  "scope" : "Verbatim original preview task component; held fixture provider; not full SwiftUI build or native UI acceptance",
+  "sourceSHA256" : "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf",
+  "taskBodySHA256" : "1aaeb58f405f1bd0d8f9b8dc988680dadc569ee2f8323582411ca74eaa16ad13",
+  "variant" : "candidate"
+}
