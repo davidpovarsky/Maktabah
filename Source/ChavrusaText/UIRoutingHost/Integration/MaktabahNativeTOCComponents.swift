@@ -29,18 +29,47 @@ import OtzariaUIRouting
         Anchor.allCases.map { .init(anchor: $0.id, title: $0.title) }
     }
 
-    static func makeOwner(manager: iOSNavigationManager) -> MaktabahNativeComponentOwner {
+    static func makeOwner(manager: iOSNavigationManager,
+                          phonePresentation: MaktabahNativePhoneTOCPresentationBinding? = nil) -> MaktabahNativeComponentOwner {
         MaktabahNativeComponentOwner(
             destination: destination, presentation: .currentTab, descriptors: descriptors,
             available: { [weak manager] id in
                 guard let manager, let anchor = Anchor(rawValue: id.rawValue) else { return false }
-                return isAvailable(anchor, manager: manager)
+                return (MaktabahApp.isIpad || phonePresentation?.isAvailable() == true)
+                    && isAvailable(anchor, manager: manager)
             },
             captureSource: { [weak manager] id in
                 guard let manager, let anchor = Anchor(rawValue: id.rawValue) else {
                     throw UIRouteError(.unavailable, "native_toc_component_unavailable")
                 }
-                return try captureSource(anchor, manager: manager)
+                if !MaktabahApp.isIpad {
+                    guard let phonePresentation else {
+                        throw UIRouteError(.unavailable, "native_phone_toc_parent_unavailable")
+                    }
+                    // The scene captured the exact parent FIRST, before Core.
+                    // Reuse that retained proof, never capture a replacement.
+                    let parentSource = try phonePresentation.captureComponentSource()
+                    let model = try phonePresentation.retainedReader().tocViewModel
+                    let selection = anchor == .currentSelection ? currentSelection(manager: manager) : nil
+                    let path = selection.flatMap { model.pathToNode($0) }?.map(ObjectIdentifier.init)
+                    if anchor == .currentSelection && (selection == nil || path == nil) {
+                        throw UIRouteError(.unavailable, "native_toc_selection_unavailable")
+                    }
+                    return { [weak manager, weak model] in
+                        try parentSource()
+                        guard let manager, let model, owns(model, manager: manager),
+                              isAvailable(anchor, manager: manager) else {
+                            throw UIRouteError(.staleState, "native_phone_toc_component_changed")
+                        }
+                        if anchor == .currentSelection {
+                            guard let selection, currentSelection(manager: manager) === selection,
+                                  model.pathToNode(selection)?.map(ObjectIdentifier.init) == path else {
+                                throw UIRouteError(.staleState, "native_toc_selection_source_changed")
+                            }
+                        }
+                    }
+                }
+                return try captureOriginalSource(anchor, manager: manager)
             }
         )
     }
@@ -49,8 +78,8 @@ import OtzariaUIRouting
         currentReader(manager)?.tocViewModel === model
     }
 
-    private static func currentReader(_ manager: iOSNavigationManager) -> ReaderViewModel? {
-        guard MaktabahApp.isIpad, let id = manager.activeTabId,
+    static func currentReader(_ manager: iOSNavigationManager) -> ReaderViewModel? {
+        guard let id = manager.activeTabId,
               let tab = manager.openTabs.first(where: { $0.id == id }),
               let book = tab.book.backendLocator,
               let section = tab.viewModel.backendSection?.locator,
@@ -68,7 +97,10 @@ import OtzariaUIRouting
     static func currentSelection(manager: iOSNavigationManager) -> TOCNode? {
         guard let reader = currentReader(manager) else { return nil }
         let model = reader.tocViewModel
-        let displayed = reader.backendSection.flatMap { model.findNode(for: $0.locator) }
+        // Both ORIGINAL Reader hosts use the same existing locator matcher
+        // before the legacy exact/range fallbacks. No route selects a new node.
+        let displayed = reader.backendSection.flatMap { model.findMatchingNode(for: $0.locator) }
+            ?? reader.backendSection.flatMap { model.findNode(for: $0.locator) }
             ?? model.findNode(forContentId: reader.currentContentId)
         guard let displayed, let exact = model.findNodeById(displayed.id),
               model.pathToNode(exact) != nil else { return nil }
@@ -106,7 +138,7 @@ import OtzariaUIRouting
 
     /// Retain the original owner before Core suspension. A different tab, TOC
     /// reload, structure or canonical Reader position cannot inherit the route.
-    private static func captureSource(_ anchor: Anchor, manager: iOSNavigationManager) throws
+    static func captureOriginalSource(_ anchor: Anchor, manager: iOSNavigationManager) throws
         -> @MainActor () throws -> Void {
         guard isAvailable(anchor, manager: manager),
               let tabID = manager.activeTabId, let reader = currentReader(manager) else {

@@ -2,6 +2,7 @@ import FloatingPanel
 import SwiftUI
 import TorahInspectorCore
 import TorahInspectorUI
+import OtzariaUIRouting
 
 struct ContentsToggleIcon: View {
     let isOpen: Bool
@@ -87,6 +88,7 @@ struct iOSReaderWorkspaceView: View {
     @Environment(\.maktabahNativeRoutingSession) private var nativeRoutingSession
 
     @State private var detailColumnWidth: CGFloat = 0
+    @State private var nativePhoneTOCAttachment = MaktabahNativePhoneTOCViewAttachment()
     @State private var compactContentsRequested = false
     @State private var compactUsesContentsFallback = false
     @State private var panelWidth = Self.defaultPanelWidth
@@ -238,6 +240,16 @@ struct iOSReaderWorkspaceView: View {
             attachNativeNoteEditor()
         }
         .onDisappear { nativeRoutingSession?.detachNoteEditor(id: nativeNoteEditorOwnerID) }
+        .onAppear { attachNativePhoneTOC() }
+        .onChange(of: nativeRoutingSession.map(ObjectIdentifier.init), initial: true) { _, _ in
+            attachNativePhoneTOC()
+        }
+        .onChange(of: nativeRoutingSession?.phoneTOCPresentation?.renderRevision) { _, _ in
+            nativePhoneTOCAttachment.render()
+        }
+        .onChange(of: compactContentsRequested) { _, _ in nativePhoneTOCAttachment.stateDidChange() }
+        .onChange(of: compactUsesContentsFallback) { _, _ in nativePhoneTOCAttachment.stateDidChange() }
+        .onDisappear { nativePhoneTOCAttachment.disappeared() }
         #if DEBUG
         .task {
             guard usesNativeStudySheet, NativeStudySheetAcceptance.namespace != nil else { return }
@@ -353,6 +365,7 @@ struct iOSReaderWorkspaceView: View {
             onSelect: selectTOCNode
         )
         .toolbar(removing: .sidebarToggle)
+        .modifier(MaktabahNativeRoutingSurface(kind: .tableOfContents))
     }
 
     @ViewBuilder
@@ -793,7 +806,44 @@ struct iOSReaderWorkspaceView: View {
         )
     }
 
+    private var nativePhoneTOCBlocked: Bool {
+        showPanel || showPanelSheet || pendingCompactContentsOpen
+            || editingAnnotation != nil || noteErrorMessage != nil
+            || viewModel.isPopoverPresented
+            || navigationManager.selectedBookForInfo != nil || navigationManager.showingTabsList
+    }
+
+    private func attachNativePhoneTOC() {
+        guard !MaktabahApp.isIpad, let session = nativeRoutingSession,
+              let owner = session.phoneTOCPresentation,
+              let source = session.workspaceProjectionSource, source.isAuthoritative,
+              let workspace = try? source.read(),
+              let id = navigationManager.activeTabId,
+              navigationManager.openTabs.filter({ $0.id == id }).count == 1,
+              let tab = navigationManager.openTabs.first(where: { $0.id == id }),
+              tab.book === book, tab.viewModel === viewModel,
+              navigationManager.selectedBook === book else {
+            nativePhoneTOCAttachment.detach()
+            return
+        }
+        nativePhoneTOCAttachment.use(owner)
+        owner.attach(token: nativePhoneTOCAttachment.token, tabID: id, book: book,
+            reader: viewModel, workspace: workspace,
+            requested: { !useWideLayout && (compactContentsRequested || compactUsesContentsFallback) },
+            blocked: { nativePhoneTOCBlocked },
+            present: { [weak owner] in
+                guard let owner, nativePhoneTOCAttachment.isBound(to: owner),
+                      owner.ownsOriginalWorkspace(token: nativePhoneTOCAttachment.token),
+                      !nativePhoneTOCBlocked else {
+                    throw UIRouteError(.staleState, "native_phone_toc_original_owner_changed")
+                }
+                presentContents(nativePhoneOwner: owner)
+            })
+        nativePhoneTOCAttachment.render()
+    }
+
     private func openContents() {
+        nativePhoneTOCAttachment.originalStateWillChange()
         if usesNativeStudySheet, nativeStudyPresentation.presentation != nil {
             nativeStudyPresentation.requestDismissal(showContents: true)
             viewModel.closeReaderInspector()
@@ -823,7 +873,16 @@ struct iOSReaderWorkspaceView: View {
         presentContents()
     }
 
-    private func presentContents() {
+    private func presentContents(nativePhoneOwner: MaktabahNativePhoneTOCPresentationBinding? = nil) {
+        if let nativePhoneOwner {
+            // Only the exact retained canonical callback bypasses user-state
+            // retirement. Ordinary, deferred and reentrant user calls do not.
+            guard nativePhoneTOCAttachment.isBound(to: nativePhoneOwner),
+                  nativePhoneOwner.isRenderingOriginalContents(token: nativePhoneTOCAttachment.token),
+                  !nativePhoneTOCBlocked else { return }
+        } else {
+            nativePhoneTOCAttachment.originalStateWillChange()
+        }
         if let sidebarCoordinator {
             sidebarCoordinator.showContents()
             preferredCompactColumn = .sidebar
@@ -846,6 +905,7 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func closeContents() {
+        nativePhoneTOCAttachment.originalStateWillChange()
         if sidebarCoordinator != nil {
             preferredCompactColumn = .detail
             withAnimation(.snappy(duration: 0.30, extraBounce: 0)) { libraryColumnVisibility = .detailOnly }
@@ -865,6 +925,7 @@ struct iOSReaderWorkspaceView: View {
     }
 
     private func selectTOCNode(_ id: Int) {
+        nativePhoneTOCAttachment.originalStateWillChange()
         viewModel.didSelectTOCNode(id: id)
         if !useWideLayout { closeContents() }
     }

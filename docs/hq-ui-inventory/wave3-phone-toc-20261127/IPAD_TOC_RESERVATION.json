@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-27T02:06:58.430128+00:00",
+  "root_reservation": "Minimal selectedTOCNode(for:) hunk only; existing findMatchingNode(for:) first; preserve fixture3891/523; no shared routing changes",
+  "base_commit": "2cd8f255ac581d4739af68ab2e7775aa85d7855a",
+  "path": "Source/UI/iOS/Views/iPadLayout.swift",
+  "base_blob": "8ae501fe792d354f2a3813de146763fcfb7dcf48",
+  "base_sha256": "bfb2983248c83579288319155027e762b529bff6d80dc27d1b0c8c7bfc940241",
+  "actual_upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstream_blob": "9ad82bcfaf091056c7ea12a029a2856a89611653"
+}

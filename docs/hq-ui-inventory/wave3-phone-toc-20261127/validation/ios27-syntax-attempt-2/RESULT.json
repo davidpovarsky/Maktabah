@@ -1,0 +1,122 @@
+{
+  "scope": "Required iOS/iPadOS27 target syntax only; NOT Apple SDK typecheck/native/physical execution",
+  "at": "2026-11-27T02:20:49.436012+00:00",
+  "passed": 8,
+  "failed": 0,
+  "records": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+      "sha256": "bad53e1755a413999c5408cc2f3bdb7238dc4e681bce135488074d845232597a",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift",
+      "sha256": "bcd89a1db89cb881cf5b5649e5f04e91c2cef008be4866a6dd7b288bd80cbf24",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "sha256": "3fb9431099f39cd4024b24938c8628d5367112676fafdf019be47bad83d6d281",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "sha256": "f481f262f2a3fa6f9cf2aa2c4dee23b5d86d27afe80846296468e3ac2d6f30ec",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/UI/iOS/Managers/iOSNavigationManager.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "sha256": "b34172e6fa48c31ba69ad7654e5321cc9255016d19e419467612eab25543cff9",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/UI/iOS/Views/iPadLayout.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "sha256": "44bfa60ac7aa6c59d87fe2f9215461574166dd5e77457ab9f6937366266f45bf",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "sha256": "3fdf0665d909d769cf31d88f353df7c3aef860fa556e23fa570b79637d7f36e6",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    },
+    {
+      "path": "Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift",
+      "sha256": "cbc2af8f7d48a74bcfb8e619d6bfb7be2efb7af811e2e3991acfc8c17ba41014",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-frontend",
+        "-parse",
+        "-target",
+        "arm64-apple-ios27.0-simulator",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/Maktabah-iOSUITests/NativeLibraryTOCComponentAcceptanceTests.swift"
+      ],
+      "exit": 0,
+      "error": ""
+    }
+  ],
+  "native_ui_executed": 0,
+  "physical_device_executed": 0
+}

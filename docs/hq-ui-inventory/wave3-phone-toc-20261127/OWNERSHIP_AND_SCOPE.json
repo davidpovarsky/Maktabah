@@ -1,0 +1,32 @@
+{
+  "base": "0c93d1de3b4ba9734c3341e3b088ca41818fb619",
+  "selected_row_source_dependency": "28fc012929c53210758c9af12bb0cd25c69a9faa",
+  "shared_phase_dependency": "49e334a96cdd336e331650ad755e607908256e84",
+  "actual_upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "ownership": [
+    {
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "base_blob": "fa9a8aac0e1efafc2ce0e50c85cce43f5cf099fd",
+      "upstream_blob": "1f18b94eb518e265924d3f8cc2548a35f877a153",
+      "ownership": "UPSTREAM_OWNED",
+      "root_reserved": true
+    },
+    {
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "base_blob": "43a07288ea75141aa38ab12498344f5b28d13928",
+      "upstream_blob": null,
+      "ownership": "DOWNSTREAM",
+      "root_reserved": true
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeTOCComponents.swift",
+      "base_blob": "8a8acc7c62645931444e820c5dbcf464ba0e2b11",
+      "upstream_blob": null,
+      "ownership": "DOWNSTREAM",
+      "root_reserved": true
+    }
+  ],
+  "required_runtime": "iOS/iPadOS27 only, per root original owner clarification",
+  "at": "2026-11-27T01:33:11.439159+00:00",
+  "protected_gate_unchanged": true
+}

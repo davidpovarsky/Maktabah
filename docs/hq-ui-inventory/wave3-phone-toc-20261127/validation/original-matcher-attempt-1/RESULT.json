@@ -1,0 +1,54 @@
+{
+  "at": "2026-11-27T02:11:01.840277+00:00",
+  "scope": "Actual original source execution; explicit Reader/domain storage boundary; no Apple SDK/native UI/physical claim",
+  "databaseSHA256": "d3d9bfcc2320a987a0391ad23fa72abcf6fd1fa0f3cba95adc05096e05a9edef",
+  "source_commit": "2cd8f255ac581d4739af68ab2e7775aa85d7855a",
+  "files": {
+    "OriginalModels.swift": "2f1f5f46123be803ee03bafaf2466b660fcc727fce16170aaa27bb675c7d0e54",
+    "OriginalTracker.swift": "67f3f2c8e40e0b57de386a681299b9166b052babcd7cb692380de98c2878b9f7",
+    "OriginalSefariaRef.swift": "d7ee0e9120838a5411d9245141d2046aacd687b6e1a1349484210d182c9c311d",
+    "OriginalTOCNode.swift": "a51d9b51f6057a69853255097213e83f9748f4215044639a2631fc2bced87653",
+    "OriginalRegistry.swift": "c77573425a5a5120bb0b9615b6dd91ca3747147bc42729900c346dc19ecd16e7",
+    "OriginalModelMethods.swift": "9e2de9db09d212611a31ffd2dff49ef28b67b41dae36ed52176286057c7f6d43",
+    "ActualIPadSelector.swift": "4c71624444444453532eadf6619acdefe68bf868434e6faaede458d8cf340b14",
+    "LegacyIPadSelector.swift": "c4e0a390d088b34f84512d49346e8f6f31f92af88ee4a16987cd77efaca8e622",
+    "Boundary.swift": "4362e51d0a8f3952635546f88f1a0444dd048f855aebc35647334bf2fe514d52",
+    "Controls.swift": "0a2a80168d7c5f63c01fe01546507aab8569fdff562ea13db3dfc61fd9a82249"
+  },
+  "result": [
+    {
+      "variant": "Combined",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-20261127/validation/original-matcher-attempt-1/Combined.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/matcher-Combined-original-matcher-attempt-1"
+      ],
+      "compileExit": 0,
+      "runExit": 0,
+      "log": "PASS exact SQL bootstrap has no TOC heading\nPASS original surrogate one-point ranges have no current-line heading\nPASS unchanged old iPad selector reproduces missing current row\nPASS new iPad original matcher resolves independent SQL entry643037\nPASS original node object path equals independent SQL ancestry\nPASS original selected title equals independent SQL heading\nPASS exact heading remains selected\nPASS another work cannot match this tree\nPASS position before first heading is unavailable\nPASS next heading uses its original node\nPASS selection preserves original Reader locator and surrogate\nPASS actual registry reverse resolves exact selected heading\nRESULT passed=12 failed=0 nodes=616\n"
+    },
+    {
+      "variant": "NegativeOriginalSelector",
+      "command": [
+        "/usr/local/bin/swiftc",
+        "-swift-version",
+        "6",
+        "-strict-concurrency=complete",
+        "-parse-as-library",
+        "/mnt/development/projects/worktrees/Maktabah-wave3-phone-toc-20261127/docs/hq-ui-inventory/wave3-phone-toc-20261127/validation/original-matcher-attempt-1/NegativeOriginalSelector.swift",
+        "-o",
+        "/mnt/development/projects/diagnostics/otzaria-wave3-toc-oracle-20261127/matcher-NegativeOriginalSelector-original-matcher-attempt-1"
+      ],
+      "compileExit": 0,
+      "runExit": 1,
+      "log": "PASS exact SQL bootstrap has no TOC heading\nPASS original surrogate one-point ranges have no current-line heading\nPASS unchanged old iPad selector reproduces missing current row\nFAIL new iPad original matcher resolves independent SQL entry643037\nFAIL original node object path equals independent SQL ancestry\nFAIL original selected title equals independent SQL heading\nPASS exact heading remains selected\nPASS another work cannot match this tree\nPASS position before first heading is unavailable\nPASS next heading uses its original node\nPASS selection preserves original Reader locator and surrogate\nFAIL actual registry reverse resolves exact selected heading\nRESULT passed=8 failed=4 nodes=616\n"
+    }
+  ],
+  "nativeUIExecuted": 0,
+  "physicalExecuted": 0
+}

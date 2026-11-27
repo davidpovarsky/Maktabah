@@ -1,0 +1,19 @@
+PASS cold original nil declares exactly one setter
+PASS canonical cold transition preserves didSet presentation owner
+PASS canonical exact +1 passes
+PASS equal-value original setter still advances metadata
+PASS unexpected equal-value write is rejected after canonical apply
+PASS same original viewer book declares zero setters
+PASS true canonical no-op is accepted
+PASS redundant assignment is not a permitted no-op
+PASS nil-other-nil before apply cannot inherit source
+PASS one intended setter plus reentrant ABA is rejected
+PASS same book in another original stack requires exactly one setter
+PASS mode assignment alone cannot silently repair original presentation ownership
+PASS same book owning-stack correction matches +1 and original didSet
+PASS another existing selected book is unavailable
+PASS required assignment at exhausted counter is refused before mutation
+PASS overflow becomes permanent unavailable instead of wrapping
+PASS original overflow setter still preserves original didSet behavior
+PASS subsequent assignments never reset exhausted ownership metadata
+PASS exhausted same-book route also fails closed
