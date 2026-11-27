@@ -1,0 +1,167 @@
+{
+  "schema": 1,
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "scope": "Complete original source evidence; not behavioral execution",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "4efd2fe79017d665b13aadc103900bbca27d51b3",
+      "bytes": 90615,
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "d813f2e1deb1bdf0d86d4ef3f790924585816446",
+      "bytes": 70887,
+      "sha256": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6",
+      "retainedPath": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "6ce8bb4db0122e9c74e30e68d36f6da4cb7c3201",
+      "bytes": 14414,
+      "sha256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03",
+      "retainedPath": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "faaea78e38b34e03abec768860a9c35d8838a8a8",
+      "bytes": 8269,
+      "sha256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae",
+      "retainedPath": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "d02a60dcea307f5ecaf77fc3eab4e7a4da86de2f",
+      "bytes": 181320,
+      "sha256": "b9323a2b896b6922b9dc8deb65572318d94e6872d8645bfb7058e848029ed27b",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "00e3ff7ec095836ccb35bb8bb1af77c8e1a5d6ce",
+      "bytes": 24327,
+      "sha256": "d1639d520bbb19235bcd5c4a5717b8f19156fa18687fc22dce71583d9ed56c59",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "f41dd5e97604e54322aad4cbef3a37906e30cb6b",
+      "bytes": 21276,
+      "sha256": "9511ae34354914d1637c524c1a75d0479831bb4ade430e51fbf81ff5b5d98239",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "4e13442e0ba46912b05da6d28a697e76f2037728",
+      "bytes": 7979,
+      "sha256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "e2933cade8515fcb74e7b4ab9aa8604db7367cc7",
+      "bytes": 14564,
+      "sha256": "db189ccc54e82b2280b078dcd02e845d07ad3cba52a86f6d7a5e52551411e2a9",
+      "retainedPath": "original/Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "2c3643f84d0b7a29193a130cbcfa891c5627e595",
+      "bytes": 36770,
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+    },
+    {
+      "path": "Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "fc6fa5b6e1abc62d694a7ac2d13e3990fc97d9d2",
+      "bytes": 34464,
+      "sha256": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f",
+      "retainedPath": "original/Source/ZayitSearch/UnifiedSearchSessionController.swift"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "1f2289e80e0cca6454c2234c456ece75306b3b6f",
+      "bytes": 21809,
+      "sha256": "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf",
+      "retainedPath": "original/Source/Features/Search/iOS/SearchResultsListView.swift"
+    },
+    {
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "13d09fdd09e18aa829b2f09a373793afeae04579",
+      "bytes": 12564,
+      "sha256": "805b87e17cd062f5fd5a6099af525b772b8e65b068ac044a3f1bdc5a4a5b6f73",
+      "retainedPath": "original/Source/Features/Search/iOS/SearchModeView.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "6bc73ee040ef10fa7f587d26e17eda3530997d7b",
+      "bytes": 11134,
+      "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "1d5624a5f4e637eefaf299df4efd79d0d95c3cc2",
+      "bytes": 26367,
+      "sha256": "29f57981f85bdbc04aa72282dfa15564a44280f6f9f215e65b54f8e25a79693c",
+      "retainedPath": "original/Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift"
+    },
+    {
+      "path": "Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "41028d323eaba2d6e3a9f10865aa6c4eed0b6230",
+      "bytes": 5278,
+      "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01",
+      "retainedPath": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift"
+    },
+    {
+      "path": "AGENTS.md",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "c4484e966f3f0b897a673c86d9b1f373f4ebf19c",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62",
+      "retainedPath": "original/AGENTS.md"
+    },
+    {
+      "path": "PROJECT_AGENT_GUIDANCE.md",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "77952126169991d431766f44b5d62ecd2567a189",
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0",
+      "retainedPath": "original/PROJECT_AGENT_GUIDANCE.md"
+    },
+    {
+      "path": "docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "8999f5329b0045f56f280c903f40a91e500fd36b",
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63",
+      "retainedPath": "original/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "path": "docs/ui-routing/wave3-semantic-search-intent-20261127/RESULT_SELECTION_AND_PAGING_PROPOSAL.md",
+      "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+      "gitBlob": "1980bcf6f0da9c746842f99684ba545d3a7aa26c",
+      "bytes": 6302,
+      "sha256": "2ce29dc44925d2dddfcedc3a320c5e0b900a69f03578cf13d80bb625c6745e67",
+      "retainedPath": "original/docs/ui-routing/wave3-semantic-search-intent-20261127/RESULT_SELECTION_AND_PAGING_PROPOSAL.md"
+    }
+  ]
+}

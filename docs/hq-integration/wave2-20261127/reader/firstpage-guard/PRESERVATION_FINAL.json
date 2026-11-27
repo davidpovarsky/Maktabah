@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "utc": "2026-11-27T10:07:59.565405+00:00",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+  "supersedesUncommittedCandidateSHA256": "70d64d593d22dbfb512b74bd8d6ed9d259c9404b8a47072ced30f5bc18d989a2",
+  "baselineSHA256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079",
+  "candidateBytes": 36861,
+  "candidateSHA256": "b18518dbf450cf5e923632df17f660169bca3e86b029790645da1f5aaf69e81f",
+  "patchSHA256": "e71a9e963dcf8efa4d3b529e71f48daf75fcc78111c73c6e2def835246e7dc25",
+  "originalCommonGuardByteIdentical": true,
+  "originalPreSubmissionBranchByteIdentical": true,
+  "reverseTwoReplacementsReproducesWholeBaseline": true,
+  "refinementReason": "Root review preserves original pre-submit error code and guard priority by adding pagination equality only to post-submit branch; final no-loading-more guard retained",
+  "behavioralValidation": "NOT_RUN"
+}

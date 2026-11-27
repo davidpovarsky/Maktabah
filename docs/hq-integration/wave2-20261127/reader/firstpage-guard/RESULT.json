@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "status": "SOURCE_GUARD_PATCH_SYNTAX_VERIFIED_NATIVE_PENDING",
+  "utc": "2026-11-27T10:06:10.773538+00:00",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "candidateSourceSHA256": "70d64d593d22dbfb512b74bd8d6ed9d259c9404b8a47072ced30f5bc18d989a2",
+  "sourcePatchSHA256": "c5646f93ae98666d734d8b033bcb47618b04a61f428fb6f86773cb1d4c4c3954",
+  "actualSyntaxReceipt": "oracle-syntax/RESULT.json",
+  "behavioralValidation": "NOT_RUN",
+  "sdkTypecheck": "NOT_RUN",
+  "nativeAcceptance": "NOT_RUN",
+  "changedProductionPaths": [
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+  ],
+  "changedProductionNumstat": {
+    "argv": [
+      "diff",
+      "--cached",
+      "--numstat",
+      "--",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+    ],
+    "exit": 0,
+    "stdout": "3\t3\tSource/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift\n",
+    "stderr": ""
+  },
+  "scopedDiffCheck": {
+    "argv": [
+      "diff",
+      "--cached",
+      "--check",
+      "--",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/FINDINGS.md",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/PRESERVATION.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/PROVENANCE.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/README.md",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/TRACE_INPUTS.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/UPSTREAM_API_METADATA.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/SPARSE_INITIALIZATION_NOTE.md",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/apply-exact-guards.py",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/existing-test-inventory.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/initialize-final.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/initialize-first-transport-error.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/initialize-readback.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/parse-whole-file.py",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/operation-receipts/preflight.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/RESULT.json",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/parse.stderr.log",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/parse.stdout.log",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/version.stderr.log",
+      "docs/hq-integration/wave2-20261127/reader/firstpage-guard/oracle-syntax/version.stdout.log"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "allFilesDiffCheck": {
+    "argv": [
+      "diff",
+      "--cached",
+      "--check"
+    ],
+    "exit": 2,
+    "stdout": "docs/hq-integration/wave2-20261127/reader/firstpage-guard/original/Source/ZayitSearch/UnifiedSearchSessionController.swift:833: new blank line at EOF.\n",
+    "stderr": ""
+  },
+  "rawEvidencePolicy": "Original byte-exact source copies and the raw unified patch are retained without whitespace normalization. Any raw-copy/context warnings do not change the product source gate.",
+  "originalInputCount": 20,
+  "artifactFiles": [
+    {
+      "path": "FINDINGS.md",
+      "bytes": 6765,
+      "sha256": "041e96722eb28e188f0214735e2bea99f1169bc257159841c8dbd3a6bf416558"
+    },
+    {
+      "path": "PRESERVATION.json",
+      "bytes": 826,
+      "sha256": "2cc0fe14a3cc886836f04da2adcb19a90774845becca9c42b973be364e121622"
+    },
+    {
+      "path": "PROVENANCE.json",
+      "bytes": 1595,
+      "sha256": "155f0f6e73aff43a64468bdc182aade313c06e0e65147d27708e33b9a7cd8a9c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5065,
+      "sha256": "1c09846428641c9442d687e8d1568c7074447a6aa005c82a852122555f4729c4"
+    },
+    {
+      "path": "SOURCE.patch",
+      "bytes": 2058,
+      "sha256": "c5646f93ae98666d734d8b033bcb47618b04a61f428fb6f86773cb1d4c4c3954"
+    },
+    {
+      "path": "TRACE_INPUTS.json",
+      "bytes": 8817,
+      "sha256": "bb315f83f15bffe7dfa3bc67a1bf37c32b644ec7cf473366761ef11f49a277f0"
+    },
+    {
+      "path": "UPSTREAM_API_METADATA.json",
+      "bytes": 1203,
+      "sha256": "92f8f7c172077f5410397c1642ad29a266a871905dce6e9a1bde062ccaf0662f"
+    },
+    {
+      "path": "baseline.swift",
+      "bytes": 36770,
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079"
+    },
+    {
+      "path": "candidate.swift",
+      "bytes": 36790,
+      "sha256": "70d64d593d22dbfb512b74bd8d6ed9d259c9404b8a47072ced30f5bc18d989a2"
+    },
+    {
+      "path": "operation-receipts/SPARSE_INITIALIZATION_NOTE.md",
+      "bytes": 773,
+      "sha256": "bbb65577bcb3d324f32c5b7ca9eaf8b41fd28e42e47a09f6c94f3ca15421c227"
+    },
+    {
+      "path": "operation-receipts/apply-exact-guards.py",
+      "bytes": 3028,
+      "sha256": "a9cef3d8964ca1e6a8dcde32e8bffb83d09b5d647ad5fc34cdb6bf504eba1633"
+    },
+    {
+      "path": "operation-receipts/existing-test-inventory.json",
+      "bytes": 634,
+      "sha256": "d089f1ef902466e7aa1ffe878ae5368b8b28e834672854d8f8ee7352be58f887"
+    },
+    {
+      "path": "operation-receipts/initialize-final.json",
+      "bytes": 294,
+      "sha256": "aec9b75210db75a7ee8d08646ded0aed306e9439e58188f1e12f0b51c3c2999d"
+    },
+    {
+      "path": "operation-receipts/initialize-first-transport-error.json",
+      "bytes": 220,
+      "sha256": "8098600a875c3553d473eb04df978a486abe92e41d0e5b49bbb4730c78f1710b"
+    },
+    {
+      "path": "operation-receipts/initialize-readback.json",
+      "bytes": 920,
+      "sha256": "053f7be0078624b09093178de3a5d8923f89b2115634d68a650cc6048d32f9cf"
+    },
+    {
+      "path": "operation-receipts/parse-whole-file.py",
+      "bytes": 2751,
+      "sha256": "30d37c5dbb2b5aa53e2578d02c6520c31879f553eb76e708699601736de61f8d"
+    },
+    {
+      "path": "operation-receipts/preflight.json",
+      "bytes": 2358,
+      "sha256": "e01a1b53cca770f7e9ea3350ac0f0218c928ee1b5b3246f14727dbd34c4e4a3c"
+    },
+    {
+      "path": "oracle-syntax/RESULT.json",
+      "bytes": 2349,
+      "sha256": "a66ff6593eb48f16aef08488a4c2f78968c02603d228609f2a3a96d0b9289d2d"
+    },
+    {
+      "path": "oracle-syntax/parse.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "oracle-syntax/parse.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "oracle-syntax/version.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "oracle-syntax/version.stdout.log",
+      "bytes": 76,
+      "sha256": "59360730c588801a672c1118d5d1debc93581f6b74e6a82d5d8cbda1b4a729ce"
+    },
+    {
+      "path": "original/AGENTS.md",
+      "bytes": 10301,
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+    },
+    {
+      "path": "original/PROJECT_AGENT_GUIDANCE.md",
+      "bytes": 6019,
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "bytes": 7979,
+      "sha256": "7c6b0127d6eee1739f7da9cabd7306c713af560d7c019a6d7be7fd78760f6074"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 181320,
+      "sha256": "b9323a2b896b6922b9dc8deb65572318d94e6872d8645bfb7058e848029ed27b"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingHost.swift",
+      "bytes": 21276,
+      "sha256": "9511ae34354914d1637c524c1a75d0479831bb4ade430e51fbf81ff5b5d98239"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+      "bytes": 36770,
+      "sha256": "607f0a9abd68b361a609f59725d798deda6566c8327ed43996521b8638591079"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 24327,
+      "sha256": "d1639d520bbb19235bcd5c4a5717b8f19156fa18687fc22dce71583d9ed56c59"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 90615,
+      "sha256": "3f33afee08eaa4a4245cf9c4481c25a6117793ad7abf0645a24cf0c86ab460f1"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSearchIntentService.swift",
+      "bytes": 11134,
+      "sha256": "3e3f60ec83edd8f2681fce2e718eaf23d87a43cb945c79e9bf8c956adea794d8"
+    },
+    {
+      "path": "original/Source/ChavrusaText/UIRoutingHost/Tests/ChavrusaUIRoutingHostTests/NativeSearchIntentServiceTests.swift",
+      "bytes": 26367,
+      "sha256": "29f57981f85bdbc04aa72282dfa15564a44280f6f9f215e65b54f8e25a79693c"
+    },
+    {
+      "path": "original/Source/Features/Search/iOS/SearchModeView.swift",
+      "bytes": 12564,
+      "sha256": "805b87e17cd062f5fd5a6099af525b772b8e65b068ac044a3f1bdc5a4a5b6f73"
+    },
+    {
+      "path": "original/Source/Features/Search/iOS/SearchResultsListView.swift",
+      "bytes": 21809,
+      "sha256": "50608dd921aad1290a0ced53628fd5674b6476432c8b3cb58f66c3ce39ac7baf"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Contracts/ActionSearchResults.swift",
+      "bytes": 5278,
+      "sha256": "912f536e17c9fdcc3d6392208678c4a931d9c94fa7c268adc2281b1d36791f01"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionExecutor.swift",
+      "bytes": 70887,
+      "sha256": "f0d698e6be0c988fc67bf6fe0f786cd3ee46243cc10255b1a022c5100d9977f6"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Engine/ActionSemanticJourneys.swift",
+      "bytes": 14414,
+      "sha256": "11267448ee64f23ccbc858a5aaf0b89ae6dda208262177a0015cca52d6ed0a03"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Sources/OtzariaActionCore/Ports/ActionNavigationAuthority.swift",
+      "bytes": 8269,
+      "sha256": "89af621942e11b74290633f0562f5451ae7dba73530dbc2a0b4b6b7555d182ae"
+    },
+    {
+      "path": "original/Source/Otzaria/Actions/Tests/OtzariaActionCoreTests/Resolver/SearchResultsActionTests.swift",
+      "bytes": 14564,
+      "sha256": "db189ccc54e82b2280b078dcd02e845d07ad3cba52a86f6d7a5e52551411e2a9"
+    },
+    {
+      "path": "original/Source/ZayitSearch/UnifiedSearchSessionController.swift",
+      "bytes": 34464,
+      "sha256": "6f4f501078006140019dbdd8e254f578c932db0f18d7525c5fc0912f85d5735f"
+    },
+    {
+      "path": "original/docs/architecture/UPSTREAM_INTEGRITY_POLICY.md",
+      "bytes": 11503,
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+    },
+    {
+      "path": "original/docs/ui-routing/wave3-semantic-search-intent-20261127/RESULT_SELECTION_AND_PAGING_PROPOSAL.md",
+      "bytes": 6302,
+      "sha256": "2ce29dc44925d2dddfcedc3a320c5e0b900a69f03578cf13d80bb625c6745e67"
+    }
+  ],
+  "freeBytes": 971640832
+}

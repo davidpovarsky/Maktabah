@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "output": "{\"utc\": \"2026-11-27T10:01:43.769010+00:00\", \"argv\": [\"git\", \"-c\", \"gc.auto=0\", \"-C\", \"/mnt/development/projects/worktrees/Maktabah-wave2-firstpage-guard-20261127\", \"grep\", \"-n\", \"-E\", \"MaktabahNativeSearchResultsBinding|native_search_results_not_ready|native_search_owner_changed\", \"15d283aa0ccbbfe6966f26a2c182810cb39fdafa\", \"--\", \"tools\", \"Tests\", \"Maktabah-iOSUITests\", \"Source/Otzaria/Actions/Tests\", \"Source/ChavrusaText/UIRoutingHost/Tests\"], \"exit\": 1, \"stdout\": \"\", \"stderr\": \"\", \"freeBytes\": 1127940096}",
+  "duration": 4.44,
+  "returncode": 0
+}

@@ -1,0 +1,25 @@
+{
+  "sourceURL": "https://api.github.com/repos/bismillah-100/Maktabah/commits/main",
+  "requestedRef": "main",
+  "sha": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "tree": {
+    "sha": "84297735aae2abc831755c3bac57987ff07668a3",
+    "url": "https://api.github.com/repos/bismillah-100/Maktabah/git/trees/84297735aae2abc831755c3bac57987ff07668a3"
+  },
+  "parents": [
+    {
+      "sha": "eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "url": "https://api.github.com/repos/bismillah-100/Maktabah/commits/eac633bc469859573fdaaf7029d0a6ae68c21817",
+      "html_url": "https://github.com/bismillah-100/Maktabah/commit/eac633bc469859573fdaaf7029d0a6ae68c21817"
+    }
+  ],
+  "authorDate": "2026-11-24T02:21:10Z",
+  "committerDate": "2026-11-24T02:21:10Z",
+  "message": "chore: bump project version to 4.2.3 (build 198), update docs and zstd to version 1.6.0. (#163)\n\n* chore: bump project version to 4.2.3 (build 198) and update docs\n\n* chore: update zstd to 1.6.0",
+  "verification": {
+    "verified": true,
+    "reason": "valid",
+    "verifiedAt": "2026-11-24T02:21:11Z"
+  },
+  "scope": "Actual official upstream response observed before edit; this is Git provenance, not an Apple/native execution."
+}

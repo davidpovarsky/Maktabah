@@ -619,6 +619,7 @@ struct MaktabahNativeSceneBindings {
         }
         if let submissionRevision {
             guard session.submissionRevision == submissionRevision, session.query.utf8.elementsEqual(query.search.text.utf8),
+                  session.paginationRevision == initialPagination,
                   session.selectedBookIds == selectedBookIDs, model.selectedBookIds == selectedBookIDs,
                   session.scope == .exact, session.requestConfiguration == submittedConfiguration,
                   !session.resultsAreDirty else { throw UIRouteError(.staleState, "native_search_query_changed") }
@@ -667,7 +668,7 @@ struct MaktabahNativeSceneBindings {
     }
     func validateCompleted() throws {
         try validate()
-        guard submissionRevision != nil, session.hasSubmitted, !session.isSearching,
+        guard submissionRevision != nil, session.hasSubmitted, !session.isSearching, !session.isLoadingMore,
               session.errorMessage == nil, !session.resultsAreDirty else {
             throw UIRouteError(.unavailable, "native_search_results_not_ready")
         }

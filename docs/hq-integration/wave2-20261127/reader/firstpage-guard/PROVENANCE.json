@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "observedUTC": "2026-11-27T10:05:10.706773+00:00",
+  "base": "15d283aa0ccbbfe6966f26a2c182810cb39fdafa",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-wave2-firstpage-guard-20261127",
+  "branch": "codex/otzaria-wave2-firstpage-guard-20261127",
+  "upstream": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstreamMetadata": "UPSTREAM_API_METADATA.json",
+  "upstreamFileAbsent": true,
+  "upstreamLookup": {
+    "argv": [
+      "git",
+      "-c",
+      "gc.auto=0",
+      "-C",
+      "/mnt/development/projects/worktrees/Maktabah-wave2-firstpage-guard-20261127",
+      "ls-tree",
+      "4203de5fd77beb119e5826e039be1a61325f7be0",
+      "--",
+      "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift"
+    ],
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "mergeBase": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "downstreamIntroduction": "d337c60896c6ef24af277697e6012ae1595c0335 Connect canonical native navigation guards to scene hosts and entry points\n",
+  "fileClassification": "DOWNSTREAM_OWNED_SHARED_INTEGRATION_SEAM",
+  "proposalBlob": "1980bcf6f0da9c746842f99684ba545d3a7aa26c",
+  "ownership": {
+    "task": "1220939535420506",
+    "comment": "1220949623346203",
+    "notifiedUTC": "2026-11-27T09:55:38Z",
+    "source": "root explicit coordination and user authorization",
+    "scope": "only MaktabahNativeSearchResultsBinding and dedicated evidence"
+  },
+  "unchangedProductionPaths": "All except Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+  "nativeExecution": "NOT_RUN"
+}
