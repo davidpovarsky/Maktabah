@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "status": "SYNTHETIC_SOURCE_ADMISSION_CONTROLS_PASS",
+  "tests": 18,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "candidate": {
+    "path": "/workspace/scratch/ca3b32b82803/reader-prerequisites/study-ui-prerequisites.py",
+    "bytes": 47638,
+    "sha256": "f7cd883ea1588ed4a98a49e5a210cf0390eb6816f5c07c7ef90e9d149306f8c2"
+  },
+  "controlScriptSHA256": "6b28325d10402b36a9bb58c98324ee400acae0aeec45a11a17ccda08200befd4",
+  "producerSources": {
+    "Scripts/CI/production-study-v40-ui.py": {
+      "originalPath": "/workspace/scratch/ca3b32b82803/reader-prerequisites/control-inputs/Scripts/CI/production-study-v40-ui.py",
+      "bytes": 45393,
+      "sha256": "613bbf862725b3b5a1b7171938a34381315e5e3640dcd065637b27f65a2d522a"
+    },
+    "Scripts/CI/study-ui-settings-receipts.py": {
+      "originalPath": "/workspace/scratch/ca3b32b82803/reader-prerequisites/control-inputs/Scripts/CI/study-ui-settings-receipts.py",
+      "bytes": 42922,
+      "sha256": "01e73bb98b1fbccfd2a2fd20db41b774ecd358e2417ded2379c0e7cdf82b5aef"
+    },
+    "Scripts/CI/reader-groups100-v40-focused-native.py": {
+      "originalPath": "/workspace/scratch/ca3b32b82803/reader-prerequisites/control-inputs/Scripts/CI/reader-groups100-v40-focused-native.py",
+      "bytes": 32422,
+      "sha256": "c6e3b0dc5b8aab6dfbfec3cf3621b58bc8bc91407f8184ac30372dcd421bd5e3"
+    },
+    "Scripts/CI/reader-full-v32-ui-observation.py": {
+      "originalPath": "/workspace/scratch/ca3b32b82803/reader-prerequisites/control-inputs/Scripts/CI/reader-full-v32-ui-observation.py",
+      "bytes": 84518,
+      "sha256": "75e1f2a609d1807c481fd8a28110940e68d8c9e97a2eb0092750db2107765d49"
+    },
+    "Scripts/CI/reader-full-v40-ui-observation.py": {
+      "originalPath": "/workspace/scratch/ca3b32b82803/reader-prerequisites/control-inputs/Scripts/CI/reader-full-v40-ui-observation.py",
+      "bytes": 23994,
+      "sha256": "f3a10c9ebfb725e734071d9805268b1e052d5bf687f9da529a82579622c3ed10"
+    },
+    "tools/verify_xcresult_zero_skips.py": {
+      "originalPath": "/workspace/scratch/ca3b32b82803/reader-prerequisites/control-inputs/tools/verify_xcresult_zero_skips.py",
+      "bytes": 10243,
+      "sha256": "51beb08088e75255e12a5742ea2bf26bdc6991bc402c9b480b7f9ed95ba36eb6"
+    }
+  },
+  "startedAtUnix": 1795754284.6118217,
+  "finishedAtUnix": 1795754290.9019353,
+  "nativeExecutions": 0,
+  "simulatorConnections": 0,
+  "productionDatabaseReads": 0,
+  "actualInstallations": 0,
+  "positiveCompleteAdmissionClaimed": false,
+  "scope": "Synthetic producer-shaped files, original file verifier and a temporary local git repository only. No UI/SDK/performance acceptance."
+}
