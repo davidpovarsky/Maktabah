@@ -1,0 +1,19 @@
+{
+  "base": "9c6d3b96efcd210f12645bdc442ff747d02807e5",
+  "files": {
+    "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift": {
+      "bytes": 21971,
+      "sha256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "bytes": 176703,
+      "sha256": "086e78dc363c269f4ef5a8168e2cf53e141d4b2bd3de7ea8176eb1acbaaccb60"
+    },
+    "Source/UI/iOS/Views/iOSMainView.swift": {
+      "bytes": 34750,
+      "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a"
+    }
+  },
+  "peerReviewCommit": "19dc53e3412c759cff18f74531e8953085289199",
+  "nativeAppAcceptance": "NOT_RUN"
+}

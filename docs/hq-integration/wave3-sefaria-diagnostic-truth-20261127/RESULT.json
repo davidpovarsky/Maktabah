@@ -1,0 +1,32 @@
+{
+  "status": "SOURCE_CONTROLS_AND_REVIEW_RETAINED_NATIVE_PENDING",
+  "base": "9c6d3b96efcd210f12645bdc442ff747d02807e5",
+  "source": {
+    "Source/SefariaEmbedded/Testing/SefariaEmbeddedAcceptanceDiagnosticRunner.swift": {
+      "bytes": 21971,
+      "sha256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4"
+    },
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift": {
+      "bytes": 176703,
+      "sha256": "086e78dc363c269f4ef5a8168e2cf53e141d4b2bd3de7ea8176eb1acbaaccb60"
+    },
+    "Source/UI/iOS/Views/iOSMainView.swift": {
+      "bytes": 34750,
+      "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a"
+    }
+  },
+  "membersVerified": 34,
+  "archiveBytes": 448121,
+  "archiveSHA256": "da9a515764f6543a8926a3f5cebe86dc9f9ee4f2b6367aaf8e9b6e30b3bebd15",
+  "baseline": {
+    "passed": 2,
+    "failed": 20
+  },
+  "candidateRunner": {
+    "passed": 22,
+    "failed": 0
+  },
+  "lateInFlightResponseRejection": "NOT_RUN",
+  "finalAppleAppTypecheck": "NOT_RUN",
+  "fullNativeAcceptance": "NOT_RUN"
+}

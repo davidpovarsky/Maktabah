@@ -1,0 +1,138 @@
+{
+  "APPLE_SYNTAX_ATTEMPT1.json": {
+    "bytes": 1709,
+    "sha256": "8d4ece371822600135ff33f0647cc5596d72171bb3efe20e613588e1ed3086bc"
+  },
+  "APPLE_SYNTAX_CONTROLLER.py": {
+    "bytes": 2310,
+    "sha256": "4dcada8b08495e2944b2d3b3db40bb3bf897ba6b9116b7cccc872fae9c7a869e"
+  },
+  "CONTROLS_CONTROLLER.py": {
+    "bytes": 15984,
+    "sha256": "08267f43888b596577a5656be577ccbd33fd8347d7294899bcc2e534d7d12dd7"
+  },
+  "CONTROLS_SENTINEL_RESULT.json": {
+    "bytes": 26195,
+    "sha256": "b09921fc51c0047ec88d77f41d43d87c61c218d30f503e96157e7d933d875d6b"
+  },
+  "FINAL_IOS_TARGET_SYNTAX.json": {
+    "bytes": 1815,
+    "sha256": "02c415f4c3963dff78b4e54f843da6a273894898443bd8b958382a8e9cdfc979"
+  },
+  "MaktabahNativeRoutingComposition.final-ios-target-parse.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "SOURCE_CORRECTION_2.json": {
+    "bytes": 568,
+    "sha256": "0270d3f5b890c135b304aa3c5ed05e9b3b6250ec581489d716964b7e9133dee3"
+  },
+  "SOURCE_CORRECTION_3.json": {
+    "bytes": 558,
+    "sha256": "78032df6c0cde7c009fa58d5291aae3ff795a0a269022ea2987eac47f567867f"
+  },
+  "SOURCE_EDIT.json": {
+    "bytes": 1061,
+    "sha256": "0cc8eab29f5047d0b26148af87a2e0cc52ff2dc143d4b12e38f4d9684105ecf8"
+  },
+  "SefariaEmbeddedAcceptanceDiagnosticRunner.final-ios-target-parse.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "composition-attempt1.swift": {
+    "bytes": 176419,
+    "sha256": "b09185cb04eabd08a00e9124b0320bb819ac387eea4206be6076dba7e7ca0ee5"
+  },
+  "composition-attempt2.swift": {
+    "bytes": 176431,
+    "sha256": "6ca9ab297e14da42bc26edbc7d2cc32400ea2679696b3fc7e392199f425a28fc"
+  },
+  "composition-final-linux-parse.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "controls/BoundaryDoubles.swift": {
+    "bytes": 5497,
+    "sha256": "7a585fbcecea8ed567f8a44ff891359ed37d556c15959556d7251aabd4bea47a"
+  },
+  "controls/DiagnosticControls.swift": {
+    "bytes": 6542,
+    "sha256": "080b70ba8bfd9c8c906be2ab6a25e136d251f6225f974d27fbd2261291d7f8fa"
+  },
+  "controls/EXECUTION.json": {
+    "bytes": 5862,
+    "sha256": "8fee5d31cb2a4b25a6ec3fb336276d927426d24168020df3bebdddfe98c26cf7"
+  },
+  "controls/baseline/RESULT.json": {
+    "bytes": 7717,
+    "sha256": "27a48dcfaf809b2a6c87a82e131c27fec8f3e9fd19e7631fee4e63755d9c5dbd"
+  },
+  "controls/baseline/SefariaEmbeddedAcceptanceDiagnosticRunner.swift": {
+    "bytes": 17879,
+    "sha256": "17f242c80d496309da9887d331af89a89a32a640676a840a48c1407d1e766ae5"
+  },
+  "controls/baseline/SefariaEmbeddedSurfaceContract.swift": {
+    "bytes": 3692,
+    "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a"
+  },
+  "controls/baseline/SefariaRPCModels.swift": {
+    "bytes": 4566,
+    "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+  },
+  "controls/baseline/compile.log": {
+    "bytes": 3053,
+    "sha256": "66a213e0333694c75a32ed83dbdeea97f36032402bf29355b48f906744fee927"
+  },
+  "controls/baseline/diagnostic-controls": {
+    "bytes": 651840,
+    "sha256": "5c9989e82dd326045b2517156a2633b6381416b9414819a697491c1c4aef2149"
+  },
+  "controls/baseline/execution.log": {
+    "bytes": 84318,
+    "sha256": "3e04bf6a71377438eec1ca067f663cec62b73ad4433c7a1a1bcef44f825df69c"
+  },
+  "controls/candidate/RESULT.json": {
+    "bytes": 8141,
+    "sha256": "37774064b5843da10577c59b149567a906de210637d87be10590d88011ea45d4"
+  },
+  "controls/candidate/SefariaEmbeddedAcceptanceDiagnosticRunner.swift": {
+    "bytes": 21971,
+    "sha256": "8d5441cf0d36a67dfa766a1fc2b2901af84b893d5675497c6463637ef7c699c4"
+  },
+  "controls/candidate/SefariaEmbeddedSurfaceContract.swift": {
+    "bytes": 3692,
+    "sha256": "bc4a74148bcaf44cea5869f147fffae5434474b95fba6a59bf2443d3462d293a"
+  },
+  "controls/candidate/SefariaRPCModels.swift": {
+    "bytes": 4566,
+    "sha256": "897ffe28dda75bc0c0b12924e5a21c8b417044e48038cdfc0d72d9a5953c88ce"
+  },
+  "controls/candidate/compile.log": {
+    "bytes": 6226,
+    "sha256": "01e07b97c7ff84c59ae0dcd57c4758ab3b52837c68f817a56a921d5cdd34ef69"
+  },
+  "controls/candidate/diagnostic-controls": {
+    "bytes": 742200,
+    "sha256": "f62e92ed94586607c5e3a790de4088369d7d59d664ec6e77359ffec7df081124"
+  },
+  "controls/candidate/execution.log": {
+    "bytes": 66182,
+    "sha256": "8cd774818faff1968443e0ac34bb1bdd45d7b77512617d2fdc8a24cc811d43cf"
+  },
+  "diff-check.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "iOSMainView.final-ios-target-parse.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "source-current.diff": {
+    "bytes": 18866,
+    "sha256": "389b87f45541299ddfc5520cec8c7ba15dbd9dbc27a8fbcd1e9fb09d5219f394"
+  },
+  "source.diff": {
+    "bytes": 18578,
+    "sha256": "a325c099d0055839c995a68336275ed0ae85d656e076993959684aa339c38375"
+  }
+}

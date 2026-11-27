@@ -1,0 +1,844 @@
+{
+  "status": "FAIL",
+  "base_ref": "157729471b649a023a81f923be33fb7bfa6e41c9",
+  "head_ref": "9c6d3b96efcd210f12645bdc442ff747d02807e5",
+  "upstream_ref": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "total_changes_detected": 12436,
+  "total_violations": 18,
+  "total_warnings": 38,
+  "violations": [
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 24ab48b84d61fe4bae88eb41c53506664db44701 != expected f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08): Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 78b84bd9f41177a4a4139cd7f7ff3d46269b548c != expected a7d7180ef1b7ba77a40a98d32592365206c1e41f): Source/Core/Database/SQLiteDatabase.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual d05245bd9f92e2d03058d6f5db01f8e085b29fa9 != expected e556b0e4a6ac3735ac86797b78c5cc43e457fc76): Source/Features/Annotations/iOS/AnnotationListView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual c3d3854cc5069e512f6dddfefd47e2d439ef8047 != expected 46f202177491274e37e140326913cfcbf716883b): Source/Features/Library/iOS/iOSLibraryView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual cefdba7518894946196c7678a8f108e9e3bc19ae != expected 2338175e3d2ed5f421c91c192957135dde61d00a): Source/Features/Reader/ViewModel/BookTOCViewModel.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 1d17cd321a97758bbb3ef5c2aef7f66bbf2ebec4 != expected 850dcefe3c8726da93cd3a73414bbced244aea4d): Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual f96646f4b645aaa6e9a2312b3347ba80f162272f != expected 3e2c3600ab4f17a8570944777c8a26e5e158eb00): Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 6f56802eef2fba13c9ac82de5a5b5895912eb730 != expected d8386c58093527a0f81e3ac1bf4fac739e5ab966): Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Reader/iOS/ViewOptionsView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 435ba8dd16ca45036f60767fc9285cfa346b9c69 != expected 43a07288ea75141aa38ab12498344f5b28d13928): Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 13d09fdd09e18aa829b2f09a373793afeae04579 != expected d4f061293e7c8682d41320602da5692d47dce7d9): Source/Features/Search/iOS/SearchModeView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 1f2289e80e0cca6454c2234c456ece75306b3b6f != expected d8b91be607657bc47476ebe91e013ca7c222c7a1): Source/Features/Search/iOS/SearchResultsListView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 88159e1ce914ed5b081e72223d3fe85b4896c11c != expected 05254df866e1f6a866e2807a8a5ed49561273b22): Source/Features/Search/iOS/iOSSearchFilterViewController.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 6de6dc461eb148525e001c7e2ddcf9ba3581b14c != expected d8488611ddfb166985a0e724bec6495a45f15b1e): Source/Features/Setting/SettingsView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Localizable.xcstrings",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual a0211d58769803f81eb44026449f3853822ddf95 != expected e504d083d7f54b03f253592e83ad42d0cea07079): Source/Localizable.xcstrings"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual f1e65158e962bb0ea8a5d18917f4ecdf4225aba7 != expected fa9a8aac0e1efafc2ce0e50c85cce43f5cf099fd): Source/UI/iOS/Managers/iOSNavigationManager.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual cf98b1438ea63f278eead83ac1938d187d350b9d != expected 4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7): Source/UI/iOS/Views/iOSMainView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 5df9e71251ea0a2ecf9d838eb7d8ae4268186b4e != expected 8ae501fe792d354f2a3813de146763fcfb7dcf48): Source/UI/iOS/Views/iPadLayout.swift"
+    }
+  ],
+  "warnings": [
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": ".gitignore",
+      "approval_ref": "OWNER_PATCH_001",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_001",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "13e0283e18450fefd77f87532412f30be5a3124b",
+        "patch_digest_sha256": "dadd1cc991e603b5aeb7c8cc0f9b201c2140cf836d9b960d1d65e462093b5908",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "cd64803499985b5546ce90314cf19f3fe6c2357a52b3b1e03582ff8750d936d8d4ce8fa2f01d470d93d0c184151d17e2c823fe060c99cff2aeeaf2cfdae3df05",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: .gitignore (approval=OWNER_PATCH_001, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "CLAUDE.md",
+      "approval_ref": "OWNER_PATCH_002",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_002",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "b527e5f0dba1979adb32d4144b4d8c9e99163824",
+        "patch_digest_sha256": "2832622a26c4e00b6fa4ca637e939597020e964d939c2cd5c0b211fecf8a9d47",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "04e14b8cf2faad7e4b62f70ab2d54aaa5302515c3a5b9d20f9e3cefe5f1ab7b310f3f54e524e84162712eca856a1f2d41f8a38d90d2993fbb82674a82335c50b",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: CLAUDE.md (approval=OWNER_PATCH_002, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "approval_ref": "OWNER_PATCH_004",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_004",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "f206d6b087dfc07a0d0e65bda4c198e2a8b1dbae",
+        "patch_digest_sha256": "7cd65635b154e29a3566c80c1e6a8e1aabca0f95b57f631253d3161cc9d5e67d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "35b439ae3403acaf80c7977bb863bffffaa7a362793eab2294e4a434d736162288d32ceebaff6cde91284eb2759ab7ccfcdfb35b3d11e3397db546c978b33e03",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Maktabah.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved (approval=OWNER_PATCH_004, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Core/CloudKit/CloudKitCoreManager.swift",
+      "approval_ref": "OWNER_PATCH_005",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_005",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "970f67f278ecf9f38070eae88fc1d5d46a6b370b",
+        "patch_digest_sha256": "69fcd805f7ff80f673dd31d0d3ee544746b0ddba02e9c8f26a8af53fdd8d1090",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "db038355df1d085dcc2fc4eba82b907e8156a45c34b92e290ce3be07a87dc7a2d88e868b24c00eb51982983d2931b6a31476a40eb70cc5143a4e3cc1702fce06",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Core/CloudKit/CloudKitCoreManager.swift (approval=OWNER_PATCH_005, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Annotations/Database/AnnotationRepository.swift",
+      "approval_ref": "OWNER_PATCH_007",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_007",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "96fb9890aab0804090247c9b9f8f8700c56de892",
+        "patch_digest_sha256": "24efe8332dda70d6892df9275d83902981939e112e645da7b6123fc1953fb0e4",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "2c26913fc999de1e10438c995b9d86aec2e729d23e6ed4c682597e4334c4ceb10523c4a45c315e73ec001671fc55a0a78657ac9af8bdd1766741e3a249bdd80a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Annotations/Database/AnnotationRepository.swift (approval=OWNER_PATCH_007, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Annotations/Database/AnnotationTreeBuilder.swift",
+      "approval_ref": "OWNER_PATCH_052",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_052",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "6d40f617d58f70fda0028b6469ac5a8768f142a9",
+        "patch_digest_sha256": "e71882308da133a99937923e8fa4d4f531cb9a09b31b18a16ec4b922318b6c35",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "7c4e46fc5cfc636daafc1b918cc4291ebeaa543e5ae8066eb27a40ac83f4b49a8d9cc910397fe0c347ea641ad11709eb785f4c8d35e4789b6b605d9afda66f0e",
+        "signed_at": "2026-11-26T11:59:29Z",
+        "expires_at": "2027-11-26T11:59:29Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Annotations/Database/AnnotationTreeBuilder.swift (approval=OWNER_PATCH_052, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Annotations/Models/AnnotationEvent.swift",
+      "approval_ref": "OWNER_PATCH_053",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_053",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "6b710b32b9f10e49721ba7b7ae2e00b99288344a",
+        "patch_digest_sha256": "bcb9499e6ee4bc5423a33fbeab361ddb80f9029673b95334ec7bb9987cc27f99",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "8349b10ca95291806c3be56faf8fe01b25bec662034aa4a822b04ce403324d3cde1c254acfa7ce9f74abfab845e24129ede5499c1d524d2616f5fec2ff51190e",
+        "signed_at": "2026-11-26T11:59:29Z",
+        "expires_at": "2027-11-26T11:59:29Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Annotations/Models/AnnotationEvent.swift (approval=OWNER_PATCH_053, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateManager.swift",
+      "approval_ref": "OWNER_PATCH_009",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_009",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "940a67a916f76348d11ae593ba6349948bb13582",
+        "patch_digest_sha256": "9fe638191fb2a22f80a3b3061f40d4c885b875c5699738c8717829b4de3bba72",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "49d288c2c1bad63e4b3408fc27718f0a2c28471d6d17cd736ad517b9b0c06485f5a55b3fbb85e595c55c7aa0c07a8b1e90f0df0a80bd1605a250ed71dfc0bc0a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Library/Database/Updater/BookUpdateManager.swift (approval=OWNER_PATCH_009, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift",
+      "approval_ref": "OWNER_PATCH_010",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_010",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2cadfc0a6cc532b272178194ac3a8d2ee0bd1968",
+        "patch_digest_sha256": "9fe42711bf3f05f3217cf4da65d07325180ed1fba62ba06d96a0a3014be4618a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "84c4d1d6e108ee92934cc03c976e896ff53dea31062039a247939be333b34d3177e93a04596d13b69a4ee15a1e0ec4056c1aaaeef902c0f67091604757a7fa0d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Library/Database/Updater/BookUpdateMgr+Fetch.swift (approval=OWNER_PATCH_010, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift",
+      "approval_ref": "OWNER_PATCH_011",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_011",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "076c7b559c5ff2ea6eec88ab76b1802a26d9f5a3",
+        "patch_digest_sha256": "82717c62468e932aa8f0c6222d051c6c827febf305f20028353ba7e936aa462a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "6bbc77cb8f8c7b1afd0367b6b8f01f114bfd1662825345a0242b0cc704f742ffdbc996568272dc5109480de2c5e5e2fb21f8ccd1e6365efff1cd175760ac7c02",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Library/Database/Updater/BookUpdateMgr+Import.swift (approval=OWNER_PATCH_011, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift",
+      "approval_ref": "OWNER_PATCH_012",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_012",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "7727f5dc3248ac315f083c3dfe4c884839e650b7",
+        "patch_digest_sha256": "3f8b01644ba0aa34a5ab39a5acf75bc7959d315fdff4c8d1e99c1b50011c298d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "13e21b6139a89d37f84ce4b25e1d464d697ca05902c90bdcb83153d07d67a44d70ac5e261b5d80912461fa79cb457cf1b25a55843cf858c31e6510d9a00ae907",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Library/Database/Updater/BookUpdateMgr+SQLite.swift (approval=OWNER_PATCH_012, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Library/Updates/BookUpdateView.swift",
+      "approval_ref": "OWNER_PATCH_013",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_013",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d8162f600dbc177362c6cb53152e99c5aa2a0153",
+        "patch_digest_sha256": "704c4bab8ee289577eec39b670b8e2441ca9ea21e36ff1043c66a4e1c8873879",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "fab398409bf5e29f3441b445eb2cfe7f5e9c0bab269aae250124a578ba36c6aa00ad18ac26782a86a9433e1e8f36751aa91e18353e99e8dd29c138cf8e18bc02",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Library/Updates/BookUpdateView.swift (approval=OWNER_PATCH_013, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Library/ViewModel/BookUpdateVM.swift",
+      "approval_ref": "OWNER_PATCH_014",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_014",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "9e59b5f0e6a8c160d82ca76b175a0915c1e96db0",
+        "patch_digest_sha256": "a114769093c189230b75b2118c83eb390c636602a4ea4ef01438374790697f69",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "530c02c667915539892a2421661ddc76fef1fcb38d5e50974a7f7b9370d3b297a135384984f773ad0790f1d5b63a6dbbf87917bb0513e48712c6881ae232750a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Library/ViewModel/BookUpdateVM.swift (approval=OWNER_PATCH_014, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/Cache/BookPageCache.swift",
+      "approval_ref": "OWNER_PATCH_016",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_016",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "c7540a5ac13671d72973acc0ee93fd1d977b9eb9",
+        "patch_digest_sha256": "a47d4d921bf65cc5f28a665f0775b1316bde343a5ed94acb1e51ad7777e63166",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "858e45131af560d1752f7f019f16815da77702614a44efcb70d7fb231537f2ad74e0b8505e27cd719d84b4ddbbfd8aa2e69f8296fbbc1a7181d28a36e6f56201",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/Cache/BookPageCache.swift (approval=OWNER_PATCH_016, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift",
+      "approval_ref": "OWNER_PATCH_018",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_018",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2f1002c6d131211c72185796042c9e5e7f401cba",
+        "patch_digest_sha256": "fdbd7278af4d7491e47316abadaddaed35f0447c00203ea66c47ddcbd8894d22",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "476dc37957469a7b5fa91118f84ca630b1637d1ffa048bbf15f96c4f298deeb47adef68741da496a6a400f4af387ea8b91671cf31e79199de1c2cd9a0df6c604",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/ViewModel/Extensions/Reader+Content.swift (approval=OWNER_PATCH_018, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift",
+      "approval_ref": "OWNER_PATCH_019",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_019",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "dff3cecf5510770a9cd0aff8c55b0040b69cf528",
+        "patch_digest_sha256": "74dcef59f1d7d8387462c6b981958af9a5cf707d03b911d10417bf18a3370723",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e347c1ffdca92302fcceda3424e8bffc6fd409f51e7327cfd48e1ccfd316fdeb723fe380aa2f0480d3c069769ad7b022c5f8765f5a286b1c35f6bae6ec51360d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/ViewModel/Extensions/Reader+Navigation.swift (approval=OWNER_PATCH_019, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift",
+      "approval_ref": "OWNER_PATCH_020",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_020",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "1b1d4b0520eae69000ed5af4fec24b552f33ca04",
+        "patch_digest_sha256": "7a3526f4d4fa9f8f4ef3c2c158940ccd78e6ff168d643d843454a9b5ca861e7a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "730aa869355a49fd750214f9bf7c6ccdcf67509030d1f34b78caae00fc24e274326b56b6548a1d61f2c1dabf9963262e2e8a437196f83bba323c31cd60b1d30e",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/ViewModel/Extensions/Reader+iOS.swift (approval=OWNER_PATCH_020, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/ViewModel/ReaderViewModel.swift",
+      "approval_ref": "OWNER_PATCH_021",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_021",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "7f57e3883b42fb6aa76a7e76ae1220a2134f3f87",
+        "patch_digest_sha256": "79b0752ea64497ce8f73594a624e5bd90a80a7e943444d9ffe3afc5a3f3dfb6f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "c1c01a40460609e0a096b50432f8a831b100a8ca6b85ff5f3c4d926b3fab47f5d43f3859df383e5c795dfb23eb4ae5dbc8cd47d601ccfd5823250d3aa0b5c500",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/ViewModel/ReaderViewModel.swift (approval=OWNER_PATCH_021, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift",
+      "approval_ref": "OWNER_PATCH_022",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_022",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "612dffd9889a2eeb7f53dc03c462a150952fbfaa",
+        "patch_digest_sha256": "dd5e1d915bea2a165e3a67a27667c4e00c0bf2f93c289b5944bbfeabdaf8ad8a",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "f5872ca546bbf6204722799e7833b52149e42c8d7b48537f5429564121e242aa3b9f5d3fdcc6d0850d3022e4fa2f1a84fc13f2ca82b91225d107a8a28705030a",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/iOS/Toolbar/ReaderTabItemView.swift (approval=OWNER_PATCH_022, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift",
+      "approval_ref": "OWNER_PATCH_024",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_024",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "1c01ba601e16b4d4a05198b6d6f1fdb40dc15b28",
+        "patch_digest_sha256": "c14e25c5b99362ae0c1d2e057e28d7cba41dd1302afd71e4e104f6f2a952aaf7",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "a856be67ab6adff320b7c8f7d549265d5b160625ad18ffe1f03e80e3c0d651d036793ada68f470f0d126af3e47a2718c70864f8db21087aed838674c7665190c",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/iOS/Toolbar/iOSBookAnnotationsView.swift (approval=OWNER_PATCH_024, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift",
+      "approval_ref": "OWNER_PATCH_025",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_025",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "b1c1b4a1c0b7d5ad24cf3425142e4f76afcd1a56",
+        "patch_digest_sha256": "92bec49e909a51d8733106713eb9cd1f4313036434ddf281c77c65bfaadaab9d",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "25f2536bb0588e8be15d35bd82a092d6f99cf74e1feba8ee2089bfd76c62001e74ce699238f56d6651b2eca0e99ad47e95cda0d7de8b5046e5545a9f03584406",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/iOS/Toolbar/iOSBookSearchView.swift (approval=OWNER_PATCH_025, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift",
+      "approval_ref": "OWNER_PATCH_027",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_027",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "e7fdeeada1226cf42552b3b4484234e44d478293",
+        "patch_digest_sha256": "e22a523270a3b9cefdf796a6b8b943e297f0a8dbbe71fe365842d6a652124eba",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "05f57e5ccb8404051616af60e5d0e979cb3d5cb26c85c723e8b174b70bac85867d8e7ea6bb52857afd1d719a314bbc39fe648c1b1399d31aa77d43eaebfbf905",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/iOS/Toolbar/iOSReaderNavigationPopoverView.swift (approval=OWNER_PATCH_027, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift",
+      "approval_ref": "OWNER_PATCH_029",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_029",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "9400e58154a456b2d4d0ae64722f28b1542ab24d",
+        "patch_digest_sha256": "e5634dd95e871686763a3ab452f7a521d7d61830f9bd06b20068f96b26186b33",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "b47551fa7052589564c5250cf164b0f58fb5e16e4c6e5990aac24657cbb8918265a465280b85f45044256d0e01b50e9e908d2d808fcd1cf24eb542ee6f9bbd01",
+        "signed_at": "2026-11-26T09:50:45Z",
+        "expires_at": "2027-11-26T09:50:45Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/iOS/iOSAnnotationEditorSheet.swift (approval=OWNER_PATCH_029, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/iOSReaderTabView.swift",
+      "approval_ref": "OWNER_PATCH_055",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_055",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "705fd35132951a10e101aaa16f4b1d835e392288",
+        "patch_digest_sha256": "8733d5c27c7e67f5b7e561bdf425671e587e743b92fb002d2b22fe8cc3fe5d63",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "536b6b372c97a2e845c5b40e2458c64312760748e84ccc03e8f21e6f448be19b3b1663222b0e2c31e280103bc48993a4ffaaaf52d844be6b5c52e23880ac5300",
+        "signed_at": "2026-11-26T20:06:18Z",
+        "expires_at": "2027-11-26T20:06:18Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/iOS/iOSReaderTabView.swift (approval=OWNER_PATCH_055, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/iOSReaderView.swift",
+      "approval_ref": "OWNER_PATCH_030",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_030",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d7df4a7e272ec2d48d2b6b1089410af4c9025fd2",
+        "patch_digest_sha256": "6f0dd7ef45859dfbffa32875dcc362dbc8cbbf3222ef256a27d7b22f05f0b0c0",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "dda8f75c99cd71c6b45d9765e68e0b760789242f4037b8c1d860ff4083cdac22f26b171800baa1d899ab73a6889267f1d3583b12df6cee75e2598899dc0f9908",
+        "signed_at": "2026-11-26T20:06:18Z",
+        "expires_at": "2027-11-26T20:06:18Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Reader/iOS/iOSReaderView.swift (approval=OWNER_PATCH_030, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Search/Models/SearchResultItem.swift",
+      "approval_ref": "OWNER_PATCH_032",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_032",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2eed19f58dae86205bfd01b838db77a5ad1129ba",
+        "patch_digest_sha256": "04c91eca13bfacfbecbca6c263006521d66cfb9ef728e93b62677665aeef2e3f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "2d94882bfb456d4302e2495949e44392363c56b9a6a830c1ee6fe235a7762745ab3d1a6e0f60dd1d45781e5965752309c367185b37f3f7afa93b39bf87a5db02",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Search/Models/SearchResultItem.swift (approval=OWNER_PATCH_032, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Search/ViewModel/Extensions/Search+Execution.swift",
+      "approval_ref": "OWNER_PATCH_033",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_033",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "0dffa1139c3492834162cdddc52fb3252223eaa8",
+        "patch_digest_sha256": "053466f4bc0891c937de61044b478563b27620d5cd7370f64127a975fcffd757",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "af2c3a16b150623eb9c47bdc64a001ff27ff88418c1234b40c99d1f07da52f039c3eb746d7fbe14191db5548f202ca371b32e3e0ae4811e9dbf4b46869b29f0d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Search/ViewModel/Extensions/Search+Execution.swift (approval=OWNER_PATCH_033, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Search/ViewModel/SearchViewModel.swift",
+      "approval_ref": "OWNER_PATCH_034",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_034",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "566117c44bba83cffbb0664fc700b673e331eb63",
+        "patch_digest_sha256": "5992be34f0c4cf2ed60fa1e5da24164483b1009edd84b147969b4eaa26104061",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "d21652a76a0d0b241604a42c36098d0a5e2e328f6bbc16b3c4e5d8eea39d19cbf835ab8804e6dd2ee4fe357b6bb38fafc874786513ed624af92bbf9fb95e4106",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Search/ViewModel/SearchViewModel.swift (approval=OWNER_PATCH_034, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/SearchComponents.swift",
+      "approval_ref": "OWNER_PATCH_035",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_035",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "505eb9ff52842307b8b800a0cd207e151e6416bf",
+        "patch_digest_sha256": "078d81333a16c48af7f5614ea275e70873e1ba84f9f9f4f62db8c7d95c3a758f",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e4df2862d922ec431003660cc7f509bd99c3565d991a1dd067e131ec8faaec216d6d2d6c3195e41f5e37bf66fb8254f8e38ccfd746451be07ea3216286dcc601",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/Features/Search/iOS/SearchComponents.swift (approval=OWNER_PATCH_035, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/iOS/MaktabahApp.swift",
+      "approval_ref": "OWNER_PATCH_041",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_041",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "465c81c9af7c75136898e0afe92fb80b35178d7c",
+        "patch_digest_sha256": "18e89b53a34aa85d0a72aa6be9a0e7883c39912d7cef6e3991445033ce704dfe",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "14875beb435edfefe2e1565a3a0b0fd590aebf6c8a4ca397f568cc28bfba7581115262b9748da48099f7979a572eecfac5ff71a6eb092e71e9bddea701064b0d",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/iOS/MaktabahApp.swift (approval=OWNER_PATCH_041, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/iOS/Managers/BootstrapManager.swift",
+      "approval_ref": "OWNER_PATCH_042",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_042",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "d205d7c234fdc2cafd4a6c22f5a6fe21c05ea1a2",
+        "patch_digest_sha256": "0514df6e1d879e5e770b93a4ec3685c3a0eb180df37325e8e6caaea669d043b8",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "cbb6efe5428c8ce645a3c6424896b6684deffea5547c637573522acf6259a691ae3480df8e77236514a8d902475cd0493aab80ef429e77a7b92d2f742901cf09",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/iOS/Managers/BootstrapManager.swift (approval=OWNER_PATCH_042, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/iOS/Managers/iOSReaderSessionManager.swift",
+      "approval_ref": "OWNER_PATCH_044",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_044",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "41b29a581f9e76bd127359db94f6a804f324efdf",
+        "patch_digest_sha256": "5c783ea3489383a7f0b07f2f4f363e1cedcd3a4b1dc5107a4b50177ae28a9c0b",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "26c5686f979ab50ba4bd80dc1774f6d1aecbbd57eb50a9e8aadc237bab6a8a782b20e22aacdc06b0ad2bd376e28aae26311fd528f0947d20aafb673759e7c206",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/iOS/Managers/iOSReaderSessionManager.swift (approval=OWNER_PATCH_044, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/Common/ListContentView.swift",
+      "approval_ref": "OWNER_PATCH_045",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_045",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "df6e248cee2391caf0a9c193c2ec343ce5ab2f45",
+        "patch_digest_sha256": "2f560895adc78ca3a729581cf651a3a5f8db7c2e8f5a34f12ef7f1c69097e00c",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "59e6eb3dd6459aa3fbe1e6441a609ca5429e8501b203d772eed26b53b0d46edf6c8a6b9ea3cd97fb26557343161a8c342de6f7bf6b2264e220d99e78629ae409",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/iOS/Views/Common/ListContentView.swift (approval=OWNER_PATCH_045, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+      "approval_ref": "OWNER_PATCH_046",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_046",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "3f7bb041252146dc4893d407b44f343646de4f8b",
+        "patch_digest_sha256": "a985ebfaed4a939cca7384f051d0bb720d85817cd2cbba0b6b5e04088022abf6",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "c115c15cbc0d05f93191ae9d173e345aa2eb974c8c4280c25c234297bd0a6f678037e4ee03877f3aec375fe6facf60b5eefa39ce6145819ff815a9e48180a608",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift (approval=OWNER_PATCH_046, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/iPhoneLayout.swift",
+      "approval_ref": "OWNER_PATCH_049",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_049",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "fb1aa1edf7f52369edbfe999801b70d3fdc6cca3",
+        "patch_digest_sha256": "a519b5de6dd6001e5abaef967ccff6791a80a61f75a4610e0575239a743fa988",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "e471ddaae4ff2c6f0a447481b2d88e5d810817f9e8a80a8d7928fac549d3e32fe6337f832acf21525500fd9a911cefa7b18799d31371596da9a975a26c5fe103",
+        "signed_at": "2026-11-26T20:06:18Z",
+        "expires_at": "2027-11-26T20:06:18Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/iOS/Views/iPhoneLayout.swift (approval=OWNER_PATCH_049, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/iOS/Wrappers/iOSIbarotTextView.swift",
+      "approval_ref": "OWNER_PATCH_050",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_050",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "2e88624b715c3ef9e6fc8d65fbbbb77877ea1a7e",
+        "patch_digest_sha256": "b949b76586ceccf0516ebc0b0e59a6738d99ce66871e76396e4a310191bc3d26",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "f5ec58087034e38588ab59c86976b6af6784afb3ef102c0ead68a4f52e20ca35a2897d0721bdeeb77d018ba70a1a97ab46f89f2c839632c48306013302283a09",
+        "signed_at": "2026-11-26T00:52:17Z",
+        "expires_at": "2027-11-26T00:52:17Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/iOS/Wrappers/iOSIbarotTextView.swift (approval=OWNER_PATCH_050, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/UI/macOS/TextView/IbarotTextView.swift",
+      "approval_ref": "OWNER_PATCH_054",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_054",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "e3b24ec57d2dac598aa794fd63f22c28dd57bb82",
+        "patch_digest_sha256": "c926a4a555de043b6d424d3eb3e135c5509c126ce8f79560b313f13f767208dc",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "1ea133367d02035fa43277846ed9e473afd8b698a6de9f4cc1e91e1034834362299ff194ed5532ff5104b038d1d1edf8bede0a0e6ad3cc6b856b6e69fa0bf205",
+        "signed_at": "2026-11-26T11:59:29Z",
+        "expires_at": "2027-11-26T11:59:29Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/UI/macOS/TextView/IbarotTextView.swift (approval=OWNER_PATCH_054, signer=2e12388ab1ac...)"
+    },
+    {
+      "type": "APPROVED_UPSTREAM_EXCEPTION",
+      "path": "Source/iOS-Info.plist",
+      "approval_ref": "OWNER_PATCH_051",
+      "attestation": {
+        "repo": "davidpovarsky/Maktabah",
+        "approval_id": "OWNER_PATCH_051",
+        "base_sha": "157729471b649a023a81f923be33fb7bfa6e41c9",
+        "expected_head_blob_sha": "9fb969d36d812ccca1bf905d46cbe6b849c60792",
+        "patch_digest_sha256": "7920c08cd13f40b10f369355b88153926bf60cdbda5d3da4f0d050ff51dc23a2",
+        "signer_public_key": "2e12388ab1ac11ec32a6f17054dc8b4ae9cb456af40d363d5fa7e1537cebdaac",
+        "signature": "d4417af727ff0400f1ac123e99de6046b88728483a325adc69eba7eb5ac169c680f86170cc7bd20370c155f03224650d8bffaac9f23b8f3053a0558899e66503",
+        "signed_at": "2026-11-26T02:05:55Z",
+        "expires_at": "2027-11-26T02:05:55Z"
+      },
+      "patch_format": "full-index-v1",
+      "message": "Cryptographically verified upstream exception: Source/iOS-Info.plist (approval=OWNER_PATCH_051, signer=2e12388ab1ac...)"
+    }
+  ],
+  "policy_files_changed": [],
+  "protected_files_changed": [
+    "Maktabah.xcodeproj/project.pbxproj",
+    "Source/Core/Database/SQLiteDatabase.swift",
+    "Source/Features/Annotations/iOS/AnnotationListView.swift",
+    "Source/Features/Library/iOS/iOSLibraryView.swift",
+    "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+    "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+    "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+    "Source/Features/Reader/iOS/ViewOptionsView.swift",
+    "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+    "Source/Features/Search/iOS/SearchModeView.swift",
+    "Source/Features/Search/iOS/SearchResultsListView.swift",
+    "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+    "Source/Features/Setting/SettingsView.swift",
+    "Source/Localizable.xcstrings",
+    "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+    "Source/UI/iOS/Views/iOSMainView.swift",
+    "Source/UI/iOS/Views/iPadLayout.swift"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "head": "9c6d3b96efcd210f12645bdc442ff747d02807e5",
+  "command": [
+    "python3",
+    "Scripts/CI/verify-owner-release-approval.py",
+    "--repo",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127",
+    "--expected-sha",
+    "9c6d3b96efcd210f12645bdc442ff747d02807e5",
+    "--repository",
+    "davidpovarsky/Maktabah",
+    "--out-dir",
+    "/mnt/development/projects/worktrees/Maktabah-wave3-integration-20261127/build/wave3-owner-current-9c6d3b96-20261127"
+  ],
+  "exit": 1,
+  "status": "FAILED",
+  "protectedPathCount": 56,
+  "verifiedProtectedPaths": null,
+  "reportStatus": "FAIL",
+  "violations": [
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 24ab48b84d61fe4bae88eb41c53506664db44701 != expected f4c4deaaa738a3cac1bd4de145bf5fd6d4ecaa08): Maktabah.xcodeproj/project.pbxproj"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Core/Database/SQLiteDatabase.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 78b84bd9f41177a4a4139cd7f7ff3d46269b548c != expected a7d7180ef1b7ba77a40a98d32592365206c1e41f): Source/Core/Database/SQLiteDatabase.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual d05245bd9f92e2d03058d6f5db01f8e085b29fa9 != expected e556b0e4a6ac3735ac86797b78c5cc43e457fc76): Source/Features/Annotations/iOS/AnnotationListView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Library/iOS/iOSLibraryView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual c3d3854cc5069e512f6dddfefd47e2d439ef8047 != expected 46f202177491274e37e140326913cfcbf716883b): Source/Features/Library/iOS/iOSLibraryView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/ViewModel/BookTOCViewModel.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual cefdba7518894946196c7678a8f108e9e3bc19ae != expected 2338175e3d2ed5f421c91c192957135dde61d00a): Source/Features/Reader/ViewModel/BookTOCViewModel.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 1d17cd321a97758bbb3ef5c2aef7f66bbf2ebec4 != expected 850dcefe3c8726da93cd3a73414bbced244aea4d): Source/Features/Reader/iOS/Toolbar/TOCNodeRow.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual f96646f4b645aaa6e9a2312b3347ba80f162272f != expected 3e2c3600ab4f17a8570944777c8a26e5e158eb00): Source/Features/Reader/iOS/Toolbar/iOSReaderBottomToolbarView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 6f56802eef2fba13c9ac82de5a5b5895912eb730 != expected d8386c58093527a0f81e3ac1bf4fac739e5ab966): Source/Features/Reader/iOS/Toolbar/iOSTOCView.swift"
+    },
+    {
+      "type": "UNAUTHORIZED_UPSTREAM_MODIFICATION",
+      "path": "Source/Features/Reader/iOS/ViewOptionsView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Protected upstream-owned file modified without owner approval (COMMITTED): Source/Features/Reader/iOS/ViewOptionsView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 435ba8dd16ca45036f60767fc9285cfa346b9c69 != expected 43a07288ea75141aa38ab12498344f5b28d13928): Source/Features/Reader/iOS/iOSReaderWorkspaceView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/SearchModeView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 13d09fdd09e18aa829b2f09a373793afeae04579 != expected d4f061293e7c8682d41320602da5692d47dce7d9): Source/Features/Search/iOS/SearchModeView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/SearchResultsListView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 1f2289e80e0cca6454c2234c456ece75306b3b6f != expected d8b91be607657bc47476ebe91e013ca7c222c7a1): Source/Features/Search/iOS/SearchResultsListView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Search/iOS/iOSSearchFilterViewController.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 88159e1ce914ed5b081e72223d3fe85b4896c11c != expected 05254df866e1f6a866e2807a8a5ed49561273b22): Source/Features/Search/iOS/iOSSearchFilterViewController.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Features/Setting/SettingsView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 6de6dc461eb148525e001c7e2ddcf9ba3581b14c != expected d8488611ddfb166985a0e724bec6495a45f15b1e): Source/Features/Setting/SettingsView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/Localizable.xcstrings",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual a0211d58769803f81eb44026449f3853822ddf95 != expected e504d083d7f54b03f253592e83ad42d0cea07079): Source/Localizable.xcstrings"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Managers/iOSNavigationManager.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual f1e65158e962bb0ea8a5d18917f4ecdf4225aba7 != expected fa9a8aac0e1efafc2ce0e50c85cce43f5cf099fd): Source/UI/iOS/Managers/iOSNavigationManager.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/iOSMainView.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual cf98b1438ea63f278eead83ac1938d187d350b9d != expected 4a86c5a4e98f8487d8da6eab0b824cc98f13d3b7): Source/UI/iOS/Views/iOSMainView.swift"
+    },
+    {
+      "type": "UNAPPROVED_HUNK_DIFFERS_FROM_EXCEPTION",
+      "path": "Source/UI/iOS/Views/iPadLayout.swift",
+      "status": "M",
+      "provenance": "COMMITTED",
+      "message": "Modified upstream file differs from approved exception blob (actual 5df9e71251ea0a2ecf9d838eb7d8ae4268186b4e != expected 8ae501fe792d354f2a3813de146763fcfb7dcf48): Source/UI/iOS/Views/iPadLayout.swift"
+    }
+  ],
+  "totalWarnings": 38,
+  "externalPublicKeyFingerprint": "b0f0fa39ad1b59595699cd7eaef340a17567c9ff8dbe1408c2372c2a5866818b",
+  "receiptSHA256": "b8e0d96cc518240e102fb3b5dd4ae8c04a18a0d93c1b69ee1a0d81a4adffa51b",
+  "reportSHA256": "dc3d398ad1873b5039b77cf35cd0cb5d812b125bb29bc019caf9d6f3a41bda97",
+  "registryModified": false,
+  "signingPerformed": false
+}

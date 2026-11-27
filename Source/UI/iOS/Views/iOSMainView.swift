@@ -479,6 +479,9 @@ private extension iOSMainView {
     func runSefariaEmbeddedComprehensiveAcceptance() async {
         let report = await SefariaEmbeddedAcceptanceDiagnosticRunner.run(visibleSurfaceProvider: {
             try await MaktabahNativeRoutingComposition.shared.performOriginalSefariaSurfaceAcceptance(manager: navigationManager)
+        }, nativeReaderProvider: { locator, epoch in
+            try await MaktabahNativeRoutingComposition.shared.performOriginalSefariaSearchResultAcceptance(
+                locator: locator, epoch: epoch, manager: navigationManager)
         }) {
             await self.runBackendSwitchSnapshotRegression()
         }

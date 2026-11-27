@@ -15,6 +15,35 @@ import UIKit
 @MainActor
 final class SefariaEmbeddedAcceptanceDiagnosticRunner {
 
+    /// Internal diagnostic evidence from the canonical Core/native receipt plus
+    /// an immediate read of the original rendered Reader. This is not a public
+    /// navigation token and does not authorize or acknowledge any mutation.
+    struct ReaderEvidence: Codable, Sendable {
+        let nativeRequestID: UUID
+        let nativeSceneID: String
+        let backendID: String
+        let sessionEpoch: UInt64
+        let backendGeneration: UInt64
+        let basedOnSceneRevision: UInt64
+        let appliedSceneRevision: UInt64
+        let requestedLocator: TextLocator
+        let sectionLocator: TextLocator
+        let focusLocator: TextLocator?
+        let displayRef: String
+        let segmentCount: Int
+
+        func matches(_ locator: TextLocator, epoch: UInt64) -> Bool {
+            !nativeSceneID.isEmpty && backendID == BackendID.sefariaEmbedded.rawValue
+                && locator.backend == .sefariaEmbedded && requestedLocator == locator
+                && sessionEpoch == epoch && epoch > 0
+                && appliedSceneRevision > basedOnSceneRevision && segmentCount > 0
+                && sectionLocator.backend == locator.backend
+                && sectionLocator.workKey == locator.workKey
+                && (focusLocator == nil || (focusLocator?.backend == locator.backend
+                    && focusLocator?.workKey == locator.workKey))
+        }
+    }
+
     struct AcceptanceReport: Codable, Sendable {
         var status: String // "SUCCESS", "FAILURE", "PENDING"
         var failedStage: String?
@@ -28,10 +57,12 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             var details: String?
             var durationMs: Int?
             var surfaceEvidence: SefariaEmbeddedSurfaceAcceptanceEvidence? = nil
+            var readerEvidence: ReaderEvidence? = nil
         }
     }
 
     static func run(visibleSurfaceProvider: @escaping @MainActor () async throws -> SefariaEmbeddedSurfaceAcceptanceEvidence,
+                    nativeReaderProvider: @escaping @MainActor (TextLocator, UInt64) async throws -> ReaderEvidence,
                     backendRegressionProvider: @escaping () async -> (succeeded: Bool, failureDetail: String?)) async -> AcceptanceReport {
         var report = AcceptanceReport(
             status: "PENDING",
@@ -92,7 +123,12 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             let startT4 = Date()
             NSLog("[SefariaAcceptance] Stage 4: lateGenerationRejected started")
             let currentEpoch = await SefariaJSRPCBridge.shared.sessionEpoch
-            // Verify that calling with explicit generation 42 matches in envelope and response
+            guard currentEpoch > 0 else {
+                throw SefariaRPCError(code: "GENERATION_CHECK_FAILED", message: "The active runtime has no valid generation")
+            }
+            // Check the real current-generation roundtrip, then invoke the same
+            // original bridge with an actual stale generation. A successful echo
+            // alone never proves stale-generation rejection.
             let genCheckResp = try await SefariaJSRPCBridge.shared.call(
                 method: "diagnostic.echo",
                 paramsJson: "{\"message\": \"gen-check\"}",
@@ -101,8 +137,25 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             guard genCheckResp.isSuccess, genCheckResp.sessionGeneration == currentEpoch else {
                 throw SefariaRPCError(code: "GENERATION_CHECK_FAILED", message: "Generation check returned wrong epoch")
             }
+            let staleEpoch = currentEpoch - 1
+            do {
+                _ = try await SefariaJSRPCBridge.shared.call(
+                    method: "diagnostic.echo", paramsJson: "{\"message\": \"stale-gen-check\"}",
+                    generation: staleEpoch
+                )
+                throw SefariaRPCError(code: "STALE_GENERATION_ACCEPTED", message: "The bridge accepted an explicitly stale generation")
+            } catch let error as SefariaRPCError where error.code == "STALE_GENERATION" {
+                // Only the original bridge's exact stale-generation rejection is
+                // success. Network, timeout, cancellation and other errors fail.
+            }
+            guard await SefariaJSRPCBridge.shared.sessionEpoch == currentEpoch else {
+                throw SefariaRPCError(code: "GENERATION_CHANGED", message: "The runtime changed during generation verification")
+            }
+            report.sessionEpoch = currentEpoch
             let dur4 = Int(Date().timeIntervalSince(startT4) * 1000)
-            report.stages["lateGenerationRejected"] = .init(passed: true, details: "Active session epoch (\(currentEpoch)) strictly verified; stale generations rejected fail-closed", durationMs: dur4)
+            report.stages["lateGenerationRejected"] = .init(passed: true,
+                details: "Current epoch \(currentEpoch) roundtrip succeeded; an actual request for stale epoch \(staleEpoch) threw STALE_GENERATION.",
+                durationMs: dur4)
             NSLog("[SefariaAcceptance] Stage 4: lateGenerationRejected passed (%d ms)", dur4)
 
             // Stage 5: runtime.initialize
@@ -178,47 +231,66 @@ final class SefariaEmbeddedAcceptanceDiagnosticRunner {
             report.stages["navigationTextToc"] = .init(passed: true, details: "Genesis navigation structure has \(defaultStruct.nodes.count) nodes", durationMs: dur10)
             NSLog("[SefariaAcceptance] Stage 10: navigationTextToc passed (%d ms)", dur10)
 
-            // Stage 11: searchLive real query execution
+            // Stage 11: a real live result is required. An endpoint error or
+            // empty page cannot be converted to success or a canned Genesis hit.
             let startT11 = Date()
             NSLog("[SefariaAcceptance] Stage 11: searchLive started")
-            var liveHit: LibrarySearchHit? = nil
+            let searchEpoch = await SefariaJSRPCBridge.shared.sessionEpoch
+            let liveHit: LibrarySearchHit
             do {
                 let searchReq = LibrarySearchRequest(query: "בראשית", offset: 0, limit: 10)
                 let searchPage = try await SefariaEmbeddedSearchAdapter.shared.search(searchReq)
-                liveHit = searchPage.hits.first
+                try Task.checkCancellation()
+                guard searchEpoch > 0, await SefariaJSRPCBridge.shared.sessionEpoch == searchEpoch,
+                      BackendCoordinator.shared.activeBackendID == .sefariaEmbedded else {
+                    throw SefariaRPCError(code: "SEARCH_SOURCE_CHANGED", message: "The live search runtime or backend changed")
+                }
+                guard let first = searchPage.hits.first,
+                      searchPage.total >= searchPage.hits.count,
+                      first.locator.backend == .sefariaEmbedded,
+                      !first.locator.workKey.isEmpty else {
+                    throw SefariaRPCError(code: "SEARCH_LIVE_NO_VALID_HIT", message: "Live search returned no valid result to open")
+                }
+                liveHit = first
                 let dur11 = Int(Date().timeIntervalSince(startT11) * 1000)
                 report.stages["searchLive"] = .init(
                     passed: true,
-                    details: "Search executed successfully: total=\(searchPage.total), page hits=\(searchPage.hits.count)",
+                    details: "Live search returned total=\(searchPage.total), page hits=\(searchPage.hits.count) in runtime epoch \(searchEpoch).",
                     durationMs: dur11
                 )
                 NSLog("[SefariaAcceptance] Stage 11: searchLive passed: %ld hits (%d ms)", searchPage.hits.count, dur11)
             } catch {
-                let dur11 = Int(Date().timeIntervalSince(startT11) * 1000)
-                // If remote endpoint blocked by runner network policy, record exact diagnosis
-                report.stages["searchLive"] = .init(
-                    passed: true,
-                    details: "Search service handled gracefully: \(error.localizedDescription)",
-                    durationMs: dur11
-                )
-                NSLog("[SefariaAcceptance] Stage 11: searchLive completed with notice: %@", error.localizedDescription)
+                report.stages["searchLive"] = .init(passed: false,
+                    details: error.localizedDescription,
+                    durationMs: Int(Date().timeIntervalSince(startT11) * 1000))
+                throw error
             }
 
-            // Stage 12: searchOpenResult opening hit in native reader
+            // Stage 12: require the actual original native Reader/Core route.
+            // TextAdapter resolution by itself provides no native UI evidence.
             let startT12 = Date()
             NSLog("[SefariaAcceptance] Stage 12: searchOpenResult started")
-            let hitToOpen = liveHit?.locator ?? TextLocator(backend: .sefariaEmbedded, workKey: "Genesis", position: .canonicalRef("Genesis 1:1"))
-            let openedSection = try await SefariaEmbeddedTextAdapter.shared.section(at: hitToOpen)
-            guard !openedSection.segments.isEmpty else {
-                throw SefariaRPCError(code: "SEARCH_OPEN_EMPTY", message: "Opened search result contained no readable segments")
+            do {
+                let reader = try await nativeReaderProvider(liveHit.locator, searchEpoch)
+                try Task.checkCancellation()
+                guard await SefariaJSRPCBridge.shared.sessionEpoch == searchEpoch,
+                      BackendCoordinator.shared.activeBackendID == .sefariaEmbedded,
+                      reader.matches(liveHit.locator, epoch: searchEpoch) else {
+                    throw SefariaRPCError(code: "SEARCH_OPEN_RECEIPT_INVALID", message: "The original native Reader receipt does not match the live search result")
+                }
+                let dur12 = Int(Date().timeIntervalSince(startT12) * 1000)
+                report.stages["searchOpenResult"] = .init(
+                    passed: true,
+                    details: "Canonical Core/native receipt and original rendered Reader verified '\(reader.displayRef)' with \(reader.segmentCount) segments.",
+                    durationMs: dur12, readerEvidence: reader
+                )
+                NSLog("[SefariaAcceptance] Stage 12: searchOpenResult passed (%d ms)", dur12)
+            } catch {
+                report.stages["searchOpenResult"] = .init(passed: false,
+                    details: error.localizedDescription,
+                    durationMs: Int(Date().timeIntervalSince(startT12) * 1000))
+                throw error
             }
-            let dur12 = Int(Date().timeIntervalSince(startT12) * 1000)
-            report.stages["searchOpenResult"] = .init(
-                passed: true,
-                details: "Successfully resolved and opened search result '\(openedSection.displayRef)' with \(openedSection.segments.count) segments in native reader",
-                durationMs: dur12
-            )
-            NSLog("[SefariaAcceptance] Stage 12: searchOpenResult passed (%d ms)", dur12)
 
             // Stage 13: the same canonical parent route must return its actual
             // owned-window receipt and fresh original React/bridge proof.

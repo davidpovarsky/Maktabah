@@ -1,0 +1,22 @@
+{
+  "OBSERVATION.json": {
+    "bytes": 8475,
+    "sha256": "326491329eb0c2da20ebb89dbe802f78458c0bf0c7332d0ea8c41a1cfe0aec07"
+  },
+  "boundary-guard-report.json": {
+    "bytes": 49787,
+    "sha256": "dc3d398ad1873b5039b77cf35cd0cb5d812b125bb29bc019caf9d6f3a41bda97"
+  },
+  "owner-approval-gate.json": {
+    "bytes": 4625,
+    "sha256": "b8e0d96cc518240e102fb3b5dd4ae8c04a18a0d93c1b69ee1a0d81a4adffa51b"
+  },
+  "stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout.log": {
+    "bytes": 4625,
+    "sha256": "b8e0d96cc518240e102fb3b5dd4ae8c04a18a0d93c1b69ee1a0d81a4adffa51b"
+  }
+}
