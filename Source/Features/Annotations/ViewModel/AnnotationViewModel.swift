@@ -78,7 +78,30 @@ struct SwiftUIAnnotationNode: Identifiable {
 
 @Observable
 class AnnotationViewModel: ViewModelBase {
-    var state: ViewModelState = .loading
+    #if os(iOS)
+    @ObservationIgnored let nativeRoutingPublication = MaktabahNativeAnnotationListPublication()
+    #endif
+    var state: ViewModelState = .loading {
+        willSet { nativeRoutingInputWillChange() }
+    }
+
+    private func nativeRoutingInputWillChange() {
+        #if os(iOS)
+        nativeRoutingPublication.willPublish()
+        #endif
+    }
+    private func nativeRoutingBeginSearch() -> UUID? {
+        #if os(iOS)
+        return nativeRoutingPublication.beginOriginalSearch()
+        #else
+        return nil
+        #endif
+    }
+    private func nativeRoutingFinishSearch(_ token: UUID?) {
+        #if os(iOS)
+        if let token { nativeRoutingPublication.finishOriginalSearch(token) }
+        #endif
+    }
 
     /// Cache untuk pencarian dan filter buku
     private var cachedFilteredNodes: [AnnotationNode]?
@@ -98,10 +121,13 @@ class AnnotationViewModel: ViewModelBase {
 
     private var searchTask: Task<Void, Never>?
     var searchText: String = "" {
+        willSet { nativeRoutingInputWillChange() }
         didSet {
             guard oldValue != searchText else { return }
             searchTask?.cancel()
+            let nativeSearch = nativeRoutingBeginSearch()
             searchTask = Task { [weak self] in
+                defer { self?.nativeRoutingFinishSearch(nativeSearch) }
                 try? await Task.sleep(for: .seconds(0.3))
                 guard !Task.isCancelled else { return }
                 self?.applyFilter()
@@ -110,6 +136,7 @@ class AnnotationViewModel: ViewModelBase {
     }
 
     var searchScope: AnnotationSearchScope = .all {
+        willSet { nativeRoutingInputWillChange() }
         didSet {
             guard oldValue != searchScope else { return }
             if !searchText.isEmpty {
@@ -119,6 +146,7 @@ class AnnotationViewModel: ViewModelBase {
     }
 
     var groupingMode: AnnotationGroupingMode = UserDefaults.standard.selectedAnnGroupingMode {
+        willSet { nativeRoutingInputWillChange() }
         didSet {
             guard oldValue != groupingMode else { return }
             state = .loading
@@ -128,6 +156,7 @@ class AnnotationViewModel: ViewModelBase {
     }
 
     var sortField: AnnotationSortField = UserDefaults.standard.selectedAnnSortField {
+        willSet { nativeRoutingInputWillChange() }
         didSet {
             guard oldValue != sortField else { return }
             state = .loading
@@ -137,6 +166,7 @@ class AnnotationViewModel: ViewModelBase {
     }
 
     var sortAscending: Bool = UserDefaults.standard.selectedAnnAscending {
+        willSet { nativeRoutingInputWillChange() }
         didSet {
             guard oldValue != sortAscending else { return }
             state = .loading
@@ -148,6 +178,7 @@ class AnnotationViewModel: ViewModelBase {
     // MARK: - Tag Filtering
 
     var selectedTags: Set<String> = [] {
+        willSet { nativeRoutingInputWillChange() }
         didSet {
             guard oldValue != selectedTags else { return }
             applyFilter()
@@ -155,6 +186,7 @@ class AnnotationViewModel: ViewModelBase {
     }
 
     var tagFilterMode: TagFilterMode = .or {
+        willSet { nativeRoutingInputWillChange() }
         didSet {
             guard oldValue != tagFilterMode else { return }
             if !selectedTags.isEmpty {
@@ -227,6 +259,7 @@ class AnnotationViewModel: ViewModelBase {
     }
 
     private func handleTreeDiff(_ diff: AnnotationTreeDiff?) {
+        nativeRoutingInputWillChange()
         guard let diff else {
             reloadFromTree()
             onTreeUpdate?(filteredNodes, groupingMode)
@@ -258,6 +291,7 @@ class AnnotationViewModel: ViewModelBase {
 
     private func flushBufferedDiffs() {
         guard let callback = onIncrementalUpdate else { return }
+        if !bufferedDiffs.isEmpty { nativeRoutingInputWillChange() }
         for diff in bufferedDiffs {
             callback(diff)
         }
@@ -265,12 +299,14 @@ class AnnotationViewModel: ViewModelBase {
     }
 
     func loadAnnotations() async {
+        nativeRoutingInputWillChange()
         AnnotationTreeBuilder.shared.updateGroupingMode(groupingMode)
         AnnotationTreeBuilder.shared.updateSorting(field: sortField, isAscending: sortAscending)
         reloadFromTree()
     }
 
     func applyFilter() {
+        nativeRoutingInputWillChange()
         reloadFromTree()
         onTreeUpdate?(filteredNodes, groupingMode)
     }
