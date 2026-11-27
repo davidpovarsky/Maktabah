@@ -1,0 +1,15 @@
+{
+  "affectedPath": "Maktabah-iOSUITests/ProductionOtzariaAcceptanceTests.swift",
+  "afterSHA256": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377",
+  "beforeSHA256": "122fdb0babaf9ceec8c34ba1695b9392ac62e53733f84587afe86231480c0108",
+  "helperAdditionSHA256": "0c50eda55965421f80cdd94f0e6e365c7399265ea527bb4bd543ec8c59abf36f",
+  "helperCommit": "78f61e08694d463a289072c41c1e27f04c264c8d",
+  "nativeResultSHA256": "3a88a9cbf35282b9bc141787744e525460ff1f1837d7fb1f887576459f038595",
+  "nativeUIStatus": "NOT_RUN",
+  "onlyApprovedHunksInserted": true,
+  "parentCommit": "56ea94eddf6a8bf405844d264ee57a1c66f3955b",
+  "scope": "two additive UI-test hook calls and caller SDK check only",
+  "sourceChanges": [],
+  "upstreamPathPresent": false,
+  "upstreamRevision": "4203de5fd77beb119e5826e039be1a61325f7be0"
+}

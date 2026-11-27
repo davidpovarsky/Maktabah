@@ -1058,6 +1058,8 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
         try require(try fileHash(database) == context.expectedCurrentSHA256 && Data(contentsOf: manifestURL) == oldManifest,
                     "Cold recovery changed the restored full v40 source")
         capture("settings-update-recovered-old-reader")
+        let warmSearchData = OriginalSearchDataUpdateReadiness(app: app, test: self)
+        let readyBeforeFinalRetry = try warmSearchData.captureReadyBeforeFinalRetry()
         try openUpdateSettings()
         install = app.buttons["otzaria-update-install"]
         try require(install.waitForExistence(timeout: 60) && install.isHittable && app.staticTexts[context.expectedTargetTag].exists,
@@ -1076,6 +1078,10 @@ final class ManagedLibraryUpdateAcceptanceTests: MaktabahUITestBase {
                     (installed["assetID"] as? NSNumber)?.int64Value == expectedAssetID &&
                     installed["digest"] as? String == expectedAssetDigest,
                     "Committed release identity differs from the official metadata displayed in Settings")
+        let actualUpdatedDatabaseBytes = try XCTUnwrap(
+            try FileManager.default.attributesOfItem(atPath: context.databasePath)[.size] as? NSNumber).int64Value
+        _ = try warmSearchData.captureMismatchAfterFinalRetry(
+            previous: readyBeforeFinalRetry, updatedDatabaseBytes: actualUpdatedDatabaseBytes)
         let quickCheck = try rows(context.databasePath, "PRAGMA quick_check(1)")
         try require(quickCheck == [["quick_check": "text:ok"]], "Updated database failed independent SQLite integrity")
         for (table, key) in [("book", "books"), ("line", "lines"), ("link", "links")] {

@@ -1,0 +1,62 @@
+{
+  "command": [
+    "xcrun",
+    "swiftc",
+    "-typecheck",
+    "-parse-as-library",
+    "-swift-version",
+    "6",
+    "-target",
+    "arm64-apple-ios27.0-simulator",
+    "-sdk",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk",
+    "-F",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+    "-I",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+    "-module-cache-path",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-attempt-1/module-cache",
+    "-module-name",
+    "Maktabah_iOSUITests",
+    "-D",
+    "DEBUG",
+    "-enable-upcoming-feature",
+    "NonisolatedNonsendingByDefault",
+    "-enable-upcoming-feature",
+    "InferIsolatedConformances",
+    "-enable-upcoming-feature",
+    "MemberImportVisibility",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/MaktabahUITestBase.swift",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/OriginalSearchReadinessSupport.swift",
+    "/Users/m1/builds/otzaria-wave2-library-controls-20261127/ui-warm-readiness-attempt-1/ProductionOtzariaAcceptanceTests.swift"
+  ],
+  "compilerFlagsReceipt": {
+    "path": "/Users/m1/builds/otzaria-wave2-library-controls-20261127/inspector-sefaria-mode-ui-attempt-3/RESULT.json",
+    "sha256": "2cc2b0f86d436b4cc70707ea0f47cf9ee19f9520e9efd915da0e1a5367545bf6"
+  },
+  "errors": [],
+  "exitCode": 0,
+  "finishedUTC": "2026-11-27T04:46:05.007782+00:00",
+  "freeBytesAfter": 10782175232,
+  "freeBytesBefore": 10782334976,
+  "helperCommit": "78f61e08694d463a289072c41c1e27f04c264c8d",
+  "helperSHA256": "0c50eda55965421f80cdd94f0e6e365c7399265ea527bb4bd543ec8c59abf36f",
+  "inputs": {
+    "HELPER_EXTRACTION.json": "907fbc35a814eeba6e3fe59309f22e42fc4f6628ba826b257fe307addbbb7949",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "OriginalSearchReadinessSupport.swift": "1c876ad1e4bf62c82bd641c99cbbc455b08d44f03ddd5e999bb1aa2c59dd2d8a",
+    "ProductionOtzariaAcceptanceTests.swift": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377"
+  },
+  "inputsAfter": {
+    "HELPER_EXTRACTION.json": "907fbc35a814eeba6e3fe59309f22e42fc4f6628ba826b257fe307addbbb7949",
+    "MaktabahUITestBase.swift": "2a422d019d1451548ef2df17b46fc39d1bbb0535be94392ee725bcdb6ec64e94",
+    "OriginalSearchReadinessSupport.swift": "1c876ad1e4bf62c82bd641c99cbbc455b08d44f03ddd5e999bb1aa2c59dd2d8a",
+    "ProductionOtzariaAcceptanceTests.swift": "03f61db1bd4720f3e68fffbdec523b3b8d5a0493f5636ae144fad6626d97c377"
+  },
+  "newClassWarnings": [],
+  "scope": "Apple SDK whole Settings caller plus exact shared original helper source typecheck only; no application, Simulator, updater or search UI execution",
+  "sourceParentCommit": "56ea94eddf6a8bf405844d264ee57a1c66f3955b",
+  "startedUTC": "2026-11-27T04:46:03.607364+00:00",
+  "status": "COMPLETE_SOURCE_ONLY",
+  "warningDiagnosticCount": 148
+}
