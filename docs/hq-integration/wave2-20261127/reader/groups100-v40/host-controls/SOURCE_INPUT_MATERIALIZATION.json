@@ -1,0 +1,18 @@
+{
+  "checkout": "cce695b38e801c1121524ed8776d6606604d7778",
+  "scope": "Exact tracked bytes missing from sparse worktree, no source or gate changes",
+  "files": [
+    {
+      "path": ".github/workflows/otzaria-reader-groups-full-v32.yml",
+      "bytes": 12675,
+      "sha256": "5a2725cdd632a182669719cd0410a8d120a4fd9168882a73041e5a7d8312723c",
+      "git_blob": "095d64f64d1d55251bb21a23a783e2a8ed05d188"
+    },
+    {
+      "path": "docs/hq-integration/mac-execution-20261124/SHARED_SOURCE.json",
+      "bytes": 1426,
+      "sha256": "ca09fffa74dfe026d36a424acc83f0287e12ee3f2697c4a5b2b67537f707d1ea",
+      "git_blob": "af33d35d77c75faee3ebaa2f813ada59933f443b"
+    }
+  ]
+}

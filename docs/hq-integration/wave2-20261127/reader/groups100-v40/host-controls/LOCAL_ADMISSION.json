@@ -1,0 +1,236 @@
+{
+  "status": "PASS_SOURCE_ADMISSION_CONTROLS_ONLY",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "native_ui_executed": 0,
+  "simulator_executed": 0,
+  "actual_app_rss_measured": 0,
+  "actual_cold_app_proved": 0,
+  "cases": [
+    {
+      "name": "unique_real_operation_shape_inside_revision_interval",
+      "expected": "accept",
+      "observed": "accept",
+      "passed": true
+    },
+    {
+      "name": "no_operation_cannot_be_inferred",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "duplicate_original_operation_is_ambiguous",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_processID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_schema",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_observedDocumentID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_observedGroupID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_namespace",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_sceneID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_beforeRevision",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_afterRevision",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_returnedNormally",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_observedBackend",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_footprintAfterBytes",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_memoryMetric",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_operation_elapsedSeconds",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "distinct_cold_process_with_new_scene_same_owner",
+      "expected": "accept",
+      "observed": "accept",
+      "passed": true
+    },
+    {
+      "name": "partial99_cohort_cannot_accept_cold_proof",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_processID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_preCold_processID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_requestID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_profileID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_groupID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_documentID",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_canonicalLocator",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_workspaceRevision",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_postCold_observedUptime",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_catalogSHA256",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_databaseSHA256",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_installationManifestSHA256",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "reject_cold_containerPath",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "genuine_export_manifest_shape_admits_one_exact_case",
+      "expected": "accept",
+      "observed": "accept",
+      "passed": true
+    },
+    {
+      "name": "wrong_test_attachment_rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "wrong_device_attachment_rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "duplicate_cold_attachment_rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "escaped_export_path_rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    },
+    {
+      "name": "symlink_cold_receipt_rejected",
+      "expected": "reject",
+      "observed": "reject",
+      "passed": true
+    }
+  ],
+  "driver_sha256": "c6e3b0dc5b8aab6dfbfec3cf3621b58bc8bc91407f8184ac30372dcd421bd5e3",
+  "control_sha256": "0f6df21c2ca86dfa12c9774d0bd7bc72b517a322124590501d306cff89bf4da7",
+  "original_bounded_read_source_sha256": "6bd11a7ed0dea926cb39fd7f07debd6d6824043e1447efe145c19bc1d1bb3ca6"
+}
