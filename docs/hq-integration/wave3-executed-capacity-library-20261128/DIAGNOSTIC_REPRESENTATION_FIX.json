@@ -1,0 +1,19 @@
+{
+  "newJSONDecodedBytesExact": true,
+  "normalGitChecksAndHooksRetained": true,
+  "onlyWhitespaceOffender": "INITIAL_WHITESPACE_DIAGNOSTIC.txt",
+  "originalDiagnosticSHA256": "273a16a7ec7aa2db5bebe23ffa2c340d38b9943fbada7a7965aa49a286b9d659",
+  "previousSourceArchiveUnchanged": {
+    "bytes": 1938563,
+    "fullCRCAndEveryPayloadReadBack": true,
+    "name": "EXECUTED_SOURCE_AND_EVIDENCE_RAW.zip",
+    "sha256": "c2bd9de2925fb507f7bdfbbe84d27000bbb97d9027346aabdccae659408b71fd"
+  },
+  "priorFailureSHA256": "c74fb8ce0d2cde4090aeba6c027caad4ec5ae94a546a19172318d5a6c7e3e856",
+  "priorFailureStage": "unchanged git diff--cached--check",
+  "priorJob": "job_81e2d468e995",
+  "schema": "otzaria.raw-diagnostic-representation-fix/1",
+  "sourceChanged": false,
+  "testsRepeated": 0,
+  "utc": "2026-11-28T07:27:02.222597+00:00"
+}

@@ -1,0 +1,206 @@
+{
+  "AppleSDK": "NOT_RUN",
+  "Release114plus2": "NOT_RUN",
+  "TestFlight": "NOT_UPLOADED",
+  "finalNative116": "NOT_RUN",
+  "inspector": {
+    "compileExit": 0,
+    "completed52CaseReport": false,
+    "failureArchiveSHA256": "266ef6be8112e1ead176aa4dea0adb602a787e6c881368fbaa7f070b27c15d3c",
+    "failureEvidencePath": "/home/ubuntu/otzaria-wave3-inspector52-first-execution-evidence-20261128",
+    "job": "job_73061fd0be5a",
+    "receiptPath": "/home/ubuntu/otzaria-wave3-inspector-controls-rootfs-20261127/controls-app-new-e718-1/RESULT.json",
+    "receiptSHA256": "22cedbf742905ae2fa11c270c70e1e9687794205ac0d5549bf03bb90fb61d033",
+    "retryExecutedAtCheckpoint": false,
+    "runtimeExit": -11,
+    "status": "FAILED_FIXTURE_REENTRANT_OBSERVATION"
+  },
+  "library": {
+    "getterOmission": {
+      "boundary": "Actual publication + original model setters/task + original full snapshot/expansion/reveal/controller chain + full Library binding and original app enums/Library projection branch; explicit UI/diffable/domain/Combine/Workspace owners. No Core/native execution or UIKit rendering.",
+      "cases": [
+        {
+          "error": "LibraryControlFailure(message: \"getter cannot authorize a stale scroll\")",
+          "name": "source release from actual index getter prevents scroll before rejection",
+          "pass": false
+        },
+        {
+          "error": "LibraryControlFailure(message: \"matching old item cannot authorize a stale scroll\")",
+          "name": "source release from actual item getter prevents scroll before rejection",
+          "pass": false
+        },
+        {
+          "error": "LibraryControlFailure(message: \"post-expansion getter is revalidated before layout\")",
+          "name": "source release from actual expanded getter prevents the next layout effect",
+          "pass": false
+        }
+      ],
+      "failed": 3,
+      "passed": 0
+    },
+    "job": "job_4ecd5899d1cf",
+    "nativeRuns": 0,
+    "originalEnumRefusal": {
+      "actualOriginalEnums": true,
+      "expectedCompileFailure": true,
+      "stderr": {
+        "bytes": 3256,
+        "sha256": "b0dbab00964ac54dab14934a30e4e4d548fc7f093a27d820fcd252bf5197766d"
+      }
+    },
+    "receipt": {
+      "bytes": 124773,
+      "path": "/home/ubuntu/otzaria-wave3-library-controls-rootfs-20261127/owner-attempt-3/RESULT.json",
+      "sha256": "909c6dab027a61f70157547dd155f1b1833613df9390f4a6c2ead389bc447713"
+    },
+    "sourceControls": {
+      "boundary": "Actual publication + original model setters/task + original full snapshot/expansion/reveal/controller chain + full Library binding and original app enums/Library projection branch; explicit UI/diffable/domain/Combine/Workspace owners. No Core/native execution or UIKit rendering.",
+      "cases": [
+        {
+          "name": "book expands actual ancestors once and selects original cell without Reader delegate",
+          "pass": true
+        },
+        {
+          "name": "category reveal expands original parent and category without a book action",
+          "pass": true
+        },
+        {
+          "name": "already-expanded original path makes zero redundant category writes",
+          "pass": true
+        },
+        {
+          "name": "same leaf IDs and names in different original paths remain distinct occurrences",
+          "pass": true
+        },
+        {
+          "name": "foreign backend published book is never advertised as current",
+          "pass": true
+        },
+        {
+          "name": "equal original category setter invalidates before snapshot replacement",
+          "pass": true
+        },
+        {
+          "name": "same full path with a different original object cannot reuse cached source",
+          "pass": true
+        },
+        {
+          "name": "old snapshot completion preserves original sync but cannot qualify newer application",
+          "pass": true
+        },
+        {
+          "name": "actual search setter retires before unchanged visible fields and old cancellation cannot settle new query",
+          "pass": true
+        },
+        {
+          "name": "equal original query publication retires even without a new Task",
+          "pass": true
+        },
+        {
+          "name": "source publication overflow remains exhausted and cannot be reset by later writes",
+          "pass": true
+        },
+        {
+          "name": "ordinary original category toggle revokes pending navigation and preserves its action",
+          "pass": true
+        },
+        {
+          "name": "release during original diffable apply stops later scroll and selection",
+          "pass": true
+        },
+        {
+          "name": "same request cannot recursively enter apply during original publication",
+          "pass": true
+        },
+        {
+          "name": "source release from actual index getter prevents scroll before rejection",
+          "pass": true
+        },
+        {
+          "name": "source release from actual item getter prevents scroll before rejection",
+          "pass": true
+        },
+        {
+          "name": "source release from actual expanded getter prevents the next layout effect",
+          "pass": true
+        },
+        {
+          "name": "original configuration animation callback cannot write after retained release",
+          "pass": true
+        },
+        {
+          "name": "wrong old controller detach cannot revoke the retained exact host",
+          "pass": true
+        },
+        {
+          "name": "same controller detach and reattach cannot rearm old occurrence",
+          "pass": true
+        },
+        {
+          "name": "source callback release during real report preserves effect but refuses completed proof",
+          "pass": true
+        },
+        {
+          "name": "selected clipped original cell is not visible acceptance",
+          "pass": true
+        },
+        {
+          "name": "selected original cell covered by another real hit target cannot acknowledge",
+          "pass": true
+        },
+        {
+          "name": "parent only cannot satisfy exact original row route",
+          "pass": true
+        },
+        {
+          "name": "backend ABA reaches original publication latch before any resumed effect",
+          "pass": true
+        },
+        {
+          "name": "actual original root binding ABA cannot preserve a library reservation",
+          "pass": true
+        },
+        {
+          "name": "actual Settings publication ABA cannot be hidden by final false value",
+          "pass": true
+        },
+        {
+          "name": "iPad original Library sidebar remains available with retained active Reader",
+          "pass": true
+        },
+        {
+          "name": "phone hidden retained Reader permits original Library NavigationStack root",
+          "pass": true
+        },
+        {
+          "name": "phone pushed Reader cannot be replaced by an attached hidden Library controller",
+          "pass": true
+        },
+        {
+          "name": "iPad original contents page and hidden columns remain unavailable",
+          "pass": true
+        },
+        {
+          "name": "unmounted unloaded original collection cannot publish entities",
+          "pass": true
+        },
+        {
+          "name": "original database notification retires captured published metadata",
+          "pass": true
+        },
+        {
+          "name": "original window identity loss before apply cannot produce any row effect",
+          "pass": true
+        },
+        {
+          "name": "original snapshot cycle guard remains unavailable rather than manufacturing rows",
+          "pass": true
+        }
+      ],
+      "failed": 0,
+      "passed": 35
+    },
+    "sourceOnly": true
+  },
+  "schema": "otzaria.actual-source-controls/1"
+}

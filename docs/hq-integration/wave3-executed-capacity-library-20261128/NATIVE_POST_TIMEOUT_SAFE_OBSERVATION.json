@@ -1,0 +1,74 @@
+{
+  "capturedResult": {
+    "completeAssets": [
+      {
+        "content_type": "application/gzip",
+        "created_at": "2026-11-28T07:08:59Z",
+        "digest": "sha256:f427758916a543b58f230c87e3d5eff1067e7db47f79a46d984315f8e155b556",
+        "download_count": 0,
+        "id": 803618998,
+        "name": "native116-remaining-original-evidence-staged-20261128.tar.gz",
+        "size": 1272863810,
+        "state": "uploaded",
+        "updated_at": "2026-11-28T07:13:51Z",
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803618998"
+      },
+      {
+        "content_type": "application/gzip",
+        "created_at": "2026-11-28T04:43:44Z",
+        "digest": null,
+        "download_count": 0,
+        "id": 803257093,
+        "name": "native116-remaining-original-evidence.tar.gz",
+        "size": 1272863810,
+        "state": "starter",
+        "updated_at": "2026-11-28T04:43:44Z",
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803257093"
+      },
+      {
+        "content_type": "application/gzip",
+        "created_at": "2026-11-28T04:42:39Z",
+        "digest": "sha256:424c2e2f95b3616e39b51cbacc621678dc2899ceba857a2dd42b72b0a0597cc4",
+        "download_count": 0,
+        "id": 803254522,
+        "name": "native116-source-snapshot.json.gz",
+        "size": 7106913,
+        "state": "uploaded",
+        "updated_at": "2026-11-28T04:42:41Z",
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803254522"
+      },
+      {
+        "content_type": "application/json",
+        "created_at": "2026-11-28T04:42:42Z",
+        "digest": "sha256:a8faa73411de67ead8f98856fe25cb3a368d5adb91f1d51f5e3103c9795299c0",
+        "download_count": 0,
+        "id": 803254562,
+        "name": "native116-stream-preservation-manifest.json",
+        "size": 160216,
+        "state": "uploaded",
+        "updated_at": "2026-11-28T04:42:42Z",
+        "url": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803254562"
+      }
+    ],
+    "mutations": 0,
+    "release": {
+      "draft": true,
+      "id": 461304898,
+      "tag_name": "native116-remaining-stream-20261127-wave3"
+    },
+    "repository": {
+      "full_name": "davidpovarsky/Maktabah-preserved-evidence",
+      "id": 1474927804,
+      "private": true
+    },
+    "uploadAttempted": false,
+    "utc": "2026-11-28T07:16:33.791372+00:00"
+  },
+  "failedPublishJob": "job_b2645b6cabe3",
+  "failedPublishStatusRetained": true,
+  "fullArchiveAuthenticatedReadbackAtCheckpoint": false,
+  "noNewPOST": true,
+  "readJob": "job_1e939eb95539",
+  "retirementAuthorized": false,
+  "schema": "otzaria.native116-post-timeout-observation/1"
+}
