@@ -1,0 +1,19 @@
+{
+  "actorCandidatesIntegrated": false,
+  "archiveBytes": 397424,
+  "archiveSHA256": "0f1a30c0150628e517ddab2f159df275c7f379fe107a25f167e2b48b24c0d748",
+  "at": "2026-11-28T03:14:34.121106+00:00",
+  "before": "f5a877a99a5952f5094a650c83042eb3166b7de8",
+  "boundedLookupNotGlobalAbsence": true,
+  "fileCount": 29,
+  "newTests": 0,
+  "originalBytes": 2070269,
+  "originalFilesRejoined": 29,
+  "originalScopesUnchanged": true,
+  "productChanges": 0,
+  "rawMembersReadBack": 29,
+  "releaseQualified": false,
+  "schema": "otzaria.exact-actor-toc-recovery-intake/1",
+  "source": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "status": "EXACT_DOCUMENTATION_PREPARED_FOR_COMMIT"
+}
