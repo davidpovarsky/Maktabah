@@ -1,0 +1,41 @@
+{
+  "apiOperations": 0,
+  "archiveMembersInspected": false,
+  "candidate": {
+    "content": {
+      "bytes": 691303419,
+      "sha256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100"
+    },
+    "kind": "file",
+    "metadata": {
+      "allocatedBytes": 691310592,
+      "atimeNS": "1795650664681413429",
+      "bytes": 691303419,
+      "ctimeNS": "1795650759375970627",
+      "device": 2064,
+      "gid": 1002,
+      "inode": 6204866,
+      "mode": 33152,
+      "mtimeNS": "1795650759375970627",
+      "nlink": 1,
+      "uid": 1001,
+      "xattrs": []
+    },
+    "path": "Maktabah/untracked.tar.gz"
+  },
+  "closedOwnershipEstablished": false,
+  "directoryCount": 12,
+  "entryCount": 85,
+  "fileCount": 73,
+  "observedOpenCandidateFDs": [],
+  "processScanUnreadable": [],
+  "retirementAuthorized": false,
+  "scopeAllocatedBytes": 696344576,
+  "snapshot": {
+    "bytes": 53140,
+    "sha256": "8d1f5356ea716bfcbd1152386e834514802325c75efc857ab8e085bbeb6906c7"
+  },
+  "sourceChanged": false,
+  "status": "READ_ONLY_RAW_BYTES_AND_METADATA_CAPTURED",
+  "utc": "2026-11-28T05:09:53.026522+00:00"
+}

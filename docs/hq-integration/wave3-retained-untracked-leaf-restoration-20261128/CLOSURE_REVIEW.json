@@ -1,0 +1,54 @@
+{
+  "actualBindingSHA256": "3213427846b4312d31dc614b9f74b66ceda345702b790db9e01b6cfa981346f8",
+  "archiveSHA256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100",
+  "evidence": [
+    {
+      "capturedHEAD": "59b01fa2d604facbcc3b3b1075a6283e7f1115db",
+      "facts": "The exact original snapshot contains 12 directories and 73 regular files: captured HEAD/status/staged and unstaged patches/untracked archives plus final checkpoint bundle and saved index. The selected leaf is the Maktabah untracked backup, not a live .git checkout or configured SDK/module path.",
+      "headRecordSHA256": "059578168813f3c95856817bd4f64416797a27602980e7ea6e2ffab8b638f54f",
+      "job": "job_f29259f36075",
+      "kind": "retained-capture-namespace",
+      "snapshotIndexSHA256": "f3cdc5a104beb4e25e15635b3fd5a2091954194ab3affee7ff8da9d2dbe3fc82"
+    },
+    {
+      "facts": "All85 entries and73 regular-file hashes match the original metadata before and after publication; the original leaf remains present. Date, owner UID and archive name were not used alone as closure evidence.",
+      "kind": "source-stability",
+      "metadataSHA256": "b9689adea8a471ab2a27844608573bf3988995c62f61d87e2f0a0bb7039e26bb",
+      "preflightJob": "job_9e1b71f819ac",
+      "prepareJob": "job_adec27424e47",
+      "publishJob": "job_ed3c7570ae45"
+    },
+    {
+      "facts": "The active integration uses /home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127 and the preserved Core31/UI13/Host41/private LibraryHost43 and KitCore products. Current built-in work is Library35 source continuation, the exact10 closed-workspace relocation proposal and independent source review. None requires this local opaque archive. The bounded current-docs literal search returned no match; that alone is not claimed as machine-wide absence.",
+      "kind": "current-consumers",
+      "rootHEAD": "07b08a287a03e571da4fcbf4f3149e58b1730960",
+      "rootSource": "182dd74229c04959cecae82a59d16268dcbd80bc"
+    },
+    {
+      "archiveAssetID": 803430120,
+      "completePhaseFiles": 66,
+      "facts": "Both exact payloads received full authenticated byte/size/SHA256 readbacks; actual outer job and final marker succeeded. Source is unchanged. No publication or retirement gate is inferred from server metadata alone.",
+      "kind": "private-preservation",
+      "manifestAssetID": 803430071,
+      "receiptSHA256": "06457c54ed2a98570a54e02e18e9970a2626ccd28b0f99eb4212c7025ee26de9",
+      "releaseID": 461337522,
+      "rootReceiptReadJob": "job_db5b02e1bba6"
+    },
+    {
+      "facts": "The reviewed retirement controller must still verify fresh private identities, full85 source hashes, bounded process FD/mapping/cwd/exe no-use, exact root/parent/leaf FD joins, and durable Git restoration bytes. Only the exact pinned single-link leaf can be unlinked. The immediate parent's inevitable mtime/ctime change is explicit; all84 other contents/identities/modes/xattrs stay protected.",
+      "kind": "remaining-immediate-fences"
+    }
+  ],
+  "localConsumersRequireArchive": false,
+  "protectedEntries": 84,
+  "relativeLeaf": "Maktabah/untracked.tar.gz",
+  "retainedRootOwnedArtifact": true,
+  "reviewScope": "One opaque retained backup archive. No assertion that its members were extracted or qualified. No live checkout, compiled module, corpus, external agent output or surrounding entry is retired.",
+  "reviewUTC": "2026-11-28T06:07:27.115824+00:00",
+  "reviewer": "Root, sole authorized Wave3 integration and delivery controller",
+  "schema": "otzaria.retained-untracked-root-closure/1",
+  "snapshotSHA256": "8d1f5356ea716bfcbd1152386e834514802325c75efc857ab8e085bbeb6906c7",
+  "sourceRoot": "/mnt/development/projects/preserved/maktabah-final-delivery-20261126.HEKmdGhG",
+  "sourceWriterExclusion": true,
+  "writerExclusionScope": "Root reserves the sole writer for this exact archive during retirement; current built-in agent work is limited to distinct Rootfs proposal/review scopes. This is coordination plus fresh fail-closed source/no-use fences, not a claim of an OS-wide mandatory lock."
+}

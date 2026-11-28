@@ -1,0 +1,149 @@
+{
+  "archiveSHA256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100",
+  "bindingSHA256": "3213427846b4312d31dc614b9f74b66ceda345702b790db9e01b6cfa981346f8",
+  "closureSHA256": "c5f49d3f2168ba9bdcc36d5830040b386c90ec2af3d9315f9a246066294f5b0e",
+  "files": {
+    "ACTUAL_PUBLISH_JOB.json": {
+      "bytes": 1235,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/ACTUAL_PUBLISH_JOB.json",
+      "sha256": "0357242cadeff747a76a4d9e5122862d81859ce7f394a1991d8e46e579e9c505"
+    },
+    "ACTUAL_TRANSPORT_BINDING.json": {
+      "bytes": 3363,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/ACTUAL_TRANSPORT_BINDING.json",
+      "sha256": "3213427846b4312d31dc614b9f74b66ceda345702b790db9e01b6cfa981346f8"
+    },
+    "CLOSURE_REVIEW.json": {
+      "bytes": 4095,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/CLOSURE_REVIEW.json",
+      "sha256": "c5f49d3f2168ba9bdcc36d5830040b386c90ec2af3d9315f9a246066294f5b0e"
+    },
+    "PRESERVED_UNTRACKED_LEAF_MANIFEST.json": {
+      "bytes": 72747,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/PRESERVED_UNTRACKED_LEAF_MANIFEST.json",
+      "sha256": "be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3"
+    },
+    "PUBLISH_MARKER.json": {
+      "bytes": 319,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/PUBLISH_MARKER.json",
+      "sha256": "73fc06ab1b1dd94e5619a43eb1a2684f48b76333a5fb98dbbbcaa516213ee2a4"
+    },
+    "PUBLISH_TERMINAL.json": {
+      "bytes": 568,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/PUBLISH_TERMINAL.json",
+      "sha256": "98b69c10f1c82a71c4fe3a47ecd1f8d638be45a862ded56d546da5812034ab20"
+    },
+    "RESTORATION_POINTER.json": {
+      "bytes": 110121,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/RESTORATION_POINTER.json",
+      "sha256": "c7c944a1f5d742d30d644acf525bfa68aefecdd755ceb8139bd815603c676c78"
+    },
+    "SOURCE_PREFLIGHT_RESULT.json": {
+      "bytes": 1110,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/SOURCE_PREFLIGHT_RESULT.json",
+      "sha256": "dc80359d614f918aab15a50e2a93918aa0b268a6e7a10794f5bcccb1c413845f"
+    },
+    "SOURCE_SEAL.json": {
+      "bytes": 943,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/SOURCE_SEAL.json",
+      "sha256": "b3fb30020b2bafffd741829e78974f1fa088e20c70d5291d8d35648463ab0e1e"
+    },
+    "SOURCE_SNAPSHOT.json": {
+      "bytes": 53140,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/SOURCE_SNAPSHOT.json",
+      "sha256": "8d1f5356ea716bfcbd1152386e834514802325c75efc857ab8e085bbeb6906c7"
+    },
+    "TRANSPORT_RECEIPT.json": {
+      "bytes": 2898,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/TRANSPORT_RECEIPT.json",
+      "sha256": "06457c54ed2a98570a54e02e18e9970a2626ccd28b0f99eb4212c7025ee26de9"
+    },
+    "leaf_common.py": {
+      "bytes": 47065,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/leaf_common.py",
+      "sha256": "a9bfb63bfd5538b51450051ddd8a0260d4396d856d6f4b9a64d255216b63afa7"
+    },
+    "preserve_untracked_leaf.py": {
+      "bytes": 10444,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/preserve_untracked_leaf.py",
+      "sha256": "b59eaffc312b7c15e5f63209731047473b94ee25308bc5f5f1958b7ae1b9a25f"
+    },
+    "restore_untracked_leaf.py": {
+      "bytes": 7822,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/restore_untracked_leaf.py",
+      "sha256": "232012cd36e10d65106611c62134c6aa58c7cdb3b913db5a4ef9430827dd8e74"
+    },
+    "retire_untracked_leaf.py": {
+      "bytes": 15254,
+      "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/retire-prepare/retire_untracked_leaf.py",
+      "sha256": "ec5ad989426b3cc2d6637092c7cdbbe70221a2a6653fa5c1ce76cc8afdae098f"
+    }
+  },
+  "noUse": {
+    "inspectionErrors": 0,
+    "matches": [],
+    "ownAllowedFDs": [
+      6
+    ],
+    "processesInspected": 387,
+    "seconds": 0.11963771190494299,
+    "status": "NO_MATCHING_ACTIVE_FD_MAPPING_CWD_OR_EXE",
+    "targetDevice": 2064,
+    "targetInode": 6204866,
+    "vanishedProcesses": 0
+  },
+  "onlyAllowedNamespaceTimestampException": "Maktabah: mtimeNS and ctimeNS after sole leaf unlink",
+  "protectedEntries": 84,
+  "relativeLeaf": "Maktabah/untracked.tar.gz",
+  "remoteIdentity": {
+    "assets": {
+      "PRESERVED_UNTRACKED_LEAF_MANIFEST.json": {
+        "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803430071",
+        "bytes": 72747,
+        "id": 803430071,
+        "name": "PRESERVED_UNTRACKED_LEAF_MANIFEST.json",
+        "serverDigest": "sha256:be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3",
+        "sha256": "be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3"
+      },
+      "untracked.tar.gz": {
+        "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803430120",
+        "bytes": 691303419,
+        "id": 803430120,
+        "name": "untracked.tar.gz",
+        "serverDigest": "sha256:e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100",
+        "sha256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100"
+      }
+    },
+    "draft": true,
+    "id": 461337522,
+    "repositoryID": 1474927804,
+    "tag": "retained-untracked-e7783edf-20261128-wave3"
+  },
+  "removed": false,
+  "requiredBeforeCommit": "Root independently publishes every exact prepared file plus this PREDELETE in Git, reads them back, and acknowledges the exact PREDELETE digest.",
+  "schema": "otzaria.retained-untracked-predelete/1",
+  "snapshotSHA256": "8d1f5356ea716bfcbd1152386e834514802325c75efc857ab8e085bbeb6906c7",
+  "sourceRoot": "/mnt/development/projects/preserved/maktabah-final-delivery-20261126.HEKmdGhG",
+  "sourceSealSHA256": "b3fb30020b2bafffd741829e78974f1fa088e20c70d5291d8d35648463ab0e1e",
+  "sourceVerification": {
+    "allRegularHashesVerified": true,
+    "entryCount": 85,
+    "immediateParent": {
+      "allocatedBytes": 4096,
+      "atimeNS": "1795842425730928799",
+      "bytes": 4096,
+      "ctimeNS": "1795650664681413429",
+      "device": 2064,
+      "gid": 1002,
+      "inode": 6204860,
+      "mode": 17856,
+      "mtimeNS": "1795650664681413429",
+      "nlink": 2,
+      "uid": 1001,
+      "xattrs": []
+    },
+    "metadataSHA256": "b9689adea8a471ab2a27844608573bf3988995c62f61d87e2f0a0bb7039e26bb",
+    "parentNamespaceTimestampsMayDiffer": false
+  },
+  "status": "PREPARED_ORIGINAL_RETAINED"
+}

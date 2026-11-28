@@ -1,0 +1,83 @@
+{
+  "archiveMembersValidated": false,
+  "contentsQualified": false,
+  "originalRetained": true,
+  "preparedSHA256": "6ffff6f6c6ac385eb714e01bc4db8ebb0b177da988992901c95f2614d24a521e",
+  "protectedEntries": 84,
+  "readbacks": [
+    {
+      "assetID": 803430071,
+      "authenticatedFullReadback": true,
+      "bytes": 72747,
+      "exit": 0,
+      "name": "PRESERVED_UNTRACKED_LEAF_MANIFEST.json",
+      "sha256": "be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3"
+    },
+    {
+      "assetID": 803430120,
+      "authenticatedFullReadback": true,
+      "bytes": 691303419,
+      "exit": 0,
+      "name": "untracked.tar.gz",
+      "sha256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100"
+    }
+  ],
+  "release": {
+    "assets": {
+      "PRESERVED_UNTRACKED_LEAF_MANIFEST.json": {
+        "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803430071",
+        "bytes": 72747,
+        "id": 803430071,
+        "name": "PRESERVED_UNTRACKED_LEAF_MANIFEST.json",
+        "serverDigest": "sha256:be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3",
+        "sha256": "be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3"
+      },
+      "untracked.tar.gz": {
+        "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803430120",
+        "bytes": 691303419,
+        "id": 803430120,
+        "name": "untracked.tar.gz",
+        "serverDigest": "sha256:e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100",
+        "sha256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100"
+      }
+    },
+    "draft": true,
+    "id": 461337522,
+    "repositoryID": 1474927804,
+    "tag": "retained-untracked-e7783edf-20261128-wave3"
+  },
+  "repository": {
+    "full_name": "davidpovarsky/Maktabah-preserved-evidence",
+    "id": 1474927804,
+    "private": true
+  },
+  "retirementAuthorized": false,
+  "rootFreeAfter": 2303762432,
+  "rootFreeBefore": 2306822144,
+  "selfContainedSourceTree": false,
+  "sourceSealSHA256": "b3fb30020b2bafffd741829e78974f1fa088e20c70d5291d8d35648463ab0e1e",
+  "sourceTreeRestored": false,
+  "sourceUnchanged": true,
+  "sourceVerification": {
+    "allRegularHashesVerified": true,
+    "entryCount": 85,
+    "immediateParent": {
+      "allocatedBytes": 4096,
+      "atimeNS": "1795842425730928799",
+      "bytes": 4096,
+      "ctimeNS": "1795650664681413429",
+      "device": 2064,
+      "gid": 1002,
+      "inode": 6204860,
+      "mode": 17856,
+      "mtimeNS": "1795650664681413429",
+      "nlink": 2,
+      "uid": 1001,
+      "xattrs": []
+    },
+    "metadataSHA256": "b9689adea8a471ab2a27844608573bf3988995c62f61d87e2f0a0bb7039e26bb",
+    "parentNamespaceTimestampsMayDiffer": false
+  },
+  "status": "EXACT_OPAQUE_ARCHIVE_AND_MANIFEST_FULL_READBACK_VERIFIED",
+  "utc": "2026-11-28T05:58:37.119898+00:00"
+}

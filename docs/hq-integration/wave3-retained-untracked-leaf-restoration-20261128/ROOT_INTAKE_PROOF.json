@@ -1,0 +1,31 @@
+{
+  "PREDELETESHA256": "bd1a444ff3b7fe334f1e7a12e92a719d4dfb532cd0eacbd9531f2dca4e811f19",
+  "actualPrepareJob": "job_adec27424e47",
+  "actualPublishJob": "job_ed3c7570ae45",
+  "actualRetirementPrepareJob": "job_57b52caad25e",
+  "allOriginal84SurroundingEntriesRetained": true,
+  "archiveAssetID": 803430120,
+  "archiveExtracted": false,
+  "before": "07b08a287a03e571da4fcbf4f3149e58b1730960",
+  "manifestAssetID": 803430071,
+  "preparedFiles": 15,
+  "privateReleaseID": 461337522,
+  "privateRepositoryID": 1474927804,
+  "requiredDurableFiles": 16,
+  "review1SourcesPreserved": true,
+  "review2OnlySixReversibleHunks": true,
+  "rootPublishReadJob": "job_db5b02e1bba6",
+  "rootRetirementPrepareReadJob": "job_21ce4d6d7775",
+  "schema": "otzaria.retained-untracked-root-intake/1",
+  "sourceFixes": [
+    "Bind two reused restore function names",
+    "Require isolated/no-bytecode/non-debug invocation",
+    "Join exact actual outer-job output to receipt, marker and terminal pins"
+  ],
+  "sourceRetired": false,
+  "sourceTree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "sourceTreeRestored": false,
+  "status": "EXACT_ACTUAL_RESTORATION_INPUTS_VERIFIED_BEFORE_GIT",
+  "testsRun": 0,
+  "utc": "2026-11-28T06:16:14.125931+00:00"
+}

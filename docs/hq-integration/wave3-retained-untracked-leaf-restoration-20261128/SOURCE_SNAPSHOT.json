@@ -1,0 +1,1830 @@
+{
+  "entries": {
+    ".": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425720928741",
+        "bytes": 4096,
+        "ctimeNS": "1795650769384029454",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204847,
+        "mode": 17856,
+        "mtimeNS": "1795650769384029454",
+        "nlink": 13,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "."
+    },
+    "Maktabah": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425730928799",
+        "bytes": 4096,
+        "ctimeNS": "1795650664681413429",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204860,
+        "mode": 17856,
+        "mtimeNS": "1795650664681413429",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah"
+    },
+    "Maktabah-core-final-20261126": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425735928827",
+        "bytes": 4096,
+        "ctimeNS": "1795650761761984653",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204867,
+        "mode": 17856,
+        "mtimeNS": "1795650761761984653",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-core-final-20261126"
+    },
+    "Maktabah-core-final-20261126/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "69db851a6d074f94a467734c4900e312977502db5ae6ce1df9083525fff671cc"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650761770984706",
+        "bytes": 41,
+        "ctimeNS": "1795650761447982807",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204868,
+        "mode": 33152,
+        "mtimeNS": "1795650761447982807",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-core-final-20261126/HEAD"
+    },
+    "Maktabah-core-final-20261126/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650761630983883",
+        "bytes": 0,
+        "ctimeNS": "1795650761630983883",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204871,
+        "mode": 33152,
+        "mtimeNS": "1795650761630983883",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-core-final-20261126/staged.patch"
+    },
+    "Maktabah-core-final-20261126/status.z": {
+      "content": {
+        "bytes": 89,
+        "sha256": "bb0121b6d287d8f853a349dccba7c6d7925e34c748d6b9950f7fc1c8709a7f18"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650761449982819",
+        "bytes": 89,
+        "ctimeNS": "1795650761565983501",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204869,
+        "mode": 33152,
+        "mtimeNS": "1795650761565983501",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-core-final-20261126/status.z"
+    },
+    "Maktabah-core-final-20261126/unstaged.patch": {
+      "content": {
+        "bytes": 6065,
+        "sha256": "4ef413ee934ed1157a5f7e16b05041147c727821737f66ad1171ec2c2e26f8af"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 8192,
+        "atimeNS": "1795650761568983518",
+        "bytes": 6065,
+        "ctimeNS": "1795650761608983753",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204870,
+        "mode": 33152,
+        "mtimeNS": "1795650761608983753",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-core-final-20261126/unstaged.patch"
+    },
+    "Maktabah-core-final-20261126/untracked.tar.gz": {
+      "content": {
+        "bytes": 45,
+        "sha256": "85cea451eec057fa7e734548ca3ba6d779ed5836a3f9de14b8394575ef0d7d8e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650761761984653",
+        "bytes": 45,
+        "ctimeNS": "1795650761766984682",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204873,
+        "mode": 33152,
+        "mtimeNS": "1795650761766984682",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-core-final-20261126/untracked.tar.gz"
+    },
+    "Maktabah-core-final-20261126/untracked.z": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650761761984653",
+        "bytes": 0,
+        "ctimeNS": "1795650761644983965",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204872,
+        "mode": 33152,
+        "mtimeNS": "1795650761644983965",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-core-final-20261126/untracked.z"
+    },
+    "Maktabah-groups-install-observation-20261123": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425733928816",
+        "bytes": 4096,
+        "ctimeNS": "1795650762074986493",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204874,
+        "mode": 17856,
+        "mtimeNS": "1795650762074986493",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-groups-install-observation-20261123"
+    },
+    "Maktabah-groups-install-observation-20261123/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "084c523ec396cc90d5b750d2c54516ad134369c0c3057a7eca2dc5408f48be7d"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650762122986775",
+        "bytes": 41,
+        "ctimeNS": "1795650761930985646",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204875,
+        "mode": 33152,
+        "mtimeNS": "1795650761930985646",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-groups-install-observation-20261123/HEAD"
+    },
+    "Maktabah-groups-install-observation-20261123/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650762003986075",
+        "bytes": 0,
+        "ctimeNS": "1795650762003986075",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204878,
+        "mode": 33152,
+        "mtimeNS": "1795650762003986075",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-groups-install-observation-20261123/staged.patch"
+    },
+    "Maktabah-groups-install-observation-20261123/status.z": {
+      "content": {
+        "bytes": 494,
+        "sha256": "e2fcb0425625e19d81ec1f901946e3686b2cf1319b02dcbb287a8753e6793f3c"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650761931985652",
+        "bytes": 494,
+        "ctimeNS": "1795650761954985787",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204876,
+        "mode": 33152,
+        "mtimeNS": "1795650761954985787",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-groups-install-observation-20261123/status.z"
+    },
+    "Maktabah-groups-install-observation-20261123/unstaged.patch": {
+      "content": {
+        "bytes": 50674,
+        "sha256": "440c6a141ace9f19b104f25fce3a4b916d5b11e97c4cfc79e0f944ad6470d38a"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 53248,
+        "atimeNS": "1795650761955985793",
+        "bytes": 50674,
+        "ctimeNS": "1795650762001986064",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204877,
+        "mode": 33152,
+        "mtimeNS": "1795650762001986064",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-groups-install-observation-20261123/unstaged.patch"
+    },
+    "Maktabah-groups-install-observation-20261123/untracked.tar.gz": {
+      "content": {
+        "bytes": 97514,
+        "sha256": "0a0e61a4de18a6e3cd14c9a74cda8e4c4717486f3f999defb9ea28de9bb919e7"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 98304,
+        "atimeNS": "1795650762074986493",
+        "bytes": 97514,
+        "ctimeNS": "1795650762117986746",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204880,
+        "mode": 33152,
+        "mtimeNS": "1795650762117986746",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-groups-install-observation-20261123/untracked.tar.gz"
+    },
+    "Maktabah-groups-install-observation-20261123/untracked.z": {
+      "content": {
+        "bytes": 3422,
+        "sha256": "c4eb27722cbe7ab0f68faf0648803f0c894b9a131121a7b5180b3a3e7bb176bd"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650762074986493",
+        "bytes": 3422,
+        "ctimeNS": "1795650762071986475",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204879,
+        "mode": 33152,
+        "mtimeNS": "1795650762071986475",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-groups-install-observation-20261123/untracked.z"
+    },
+    "Maktabah-hanlin-live-consent-20261123": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425722928752",
+        "bytes": 4096,
+        "ctimeNS": "1795650762326987974",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204881,
+        "mode": 17856,
+        "mtimeNS": "1795650762326987974",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-hanlin-live-consent-20261123"
+    },
+    "Maktabah-hanlin-live-consent-20261123/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "70ee077e2b840e340c9228ea8ee5bb645da4b1c26cfd1a705134476a69183696"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650762330987998",
+        "bytes": 41,
+        "ctimeNS": "1795650762229987404",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204882,
+        "mode": 33152,
+        "mtimeNS": "1795650762229987404",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-hanlin-live-consent-20261123/HEAD"
+    },
+    "Maktabah-hanlin-live-consent-20261123/staged.patch": {
+      "content": {
+        "bytes": 100053,
+        "sha256": "8b888aec6d8e54798a66f7d3a4a4d1b811dbed96c0dd57cb3e26aab5bbcde590"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 102400,
+        "atimeNS": "1795650762282987715",
+        "bytes": 100053,
+        "ctimeNS": "1795650762309987874",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204885,
+        "mode": 33152,
+        "mtimeNS": "1795650762309987874",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-hanlin-live-consent-20261123/staged.patch"
+    },
+    "Maktabah-hanlin-live-consent-20261123/status.z": {
+      "content": {
+        "bytes": 654,
+        "sha256": "5f94f1506bedd9c7b3a3701a1d6d88ebc8a4ff0c04553b38d36933178c7af8a8"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650762230987410",
+        "bytes": 654,
+        "ctimeNS": "1795650762263987604",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204883,
+        "mode": 33152,
+        "mtimeNS": "1795650762263987604",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-hanlin-live-consent-20261123/status.z"
+    },
+    "Maktabah-hanlin-live-consent-20261123/unstaged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650762265987616",
+        "bytes": 0,
+        "ctimeNS": "1795650762265987616",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204884,
+        "mode": 33152,
+        "mtimeNS": "1795650762265987616",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-hanlin-live-consent-20261123/unstaged.patch"
+    },
+    "Maktabah-hanlin-live-consent-20261123/untracked.tar.gz": {
+      "content": {
+        "bytes": 45,
+        "sha256": "85cea451eec057fa7e734548ca3ba6d779ed5836a3f9de14b8394575ef0d7d8e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650762326987974",
+        "bytes": 45,
+        "ctimeNS": "1795650762327987980",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204887,
+        "mode": 33152,
+        "mtimeNS": "1795650762327987980",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-hanlin-live-consent-20261123/untracked.tar.gz"
+    },
+    "Maktabah-hanlin-live-consent-20261123/untracked.z": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650762326987974",
+        "bytes": 0,
+        "ctimeNS": "1795650762311987886",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204886,
+        "mode": 33152,
+        "mtimeNS": "1795650762311987886",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-hanlin-live-consent-20261123/untracked.z"
+    },
+    "Maktabah-mac-final-integration-20261124": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425732928810",
+        "bytes": 4096,
+        "ctimeNS": "1795650763418994393",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204888,
+        "mode": 17856,
+        "mtimeNS": "1795650763418994393",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-mac-final-integration-20261124"
+    },
+    "Maktabah-mac-final-integration-20261124/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "fa22b639965323cb147af07a919e57e234640147bf564174286c427335e30106"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650763422994417",
+        "bytes": 41,
+        "ctimeNS": "1795650763287993623",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204889,
+        "mode": 33152,
+        "mtimeNS": "1795650763287993623",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-mac-final-integration-20261124/HEAD"
+    },
+    "Maktabah-mac-final-integration-20261124/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650763373994129",
+        "bytes": 0,
+        "ctimeNS": "1795650763373994129",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204892,
+        "mode": 33152,
+        "mtimeNS": "1795650763373994129",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-mac-final-integration-20261124/staged.patch"
+    },
+    "Maktabah-mac-final-integration-20261124/status.z": {
+      "content": {
+        "bytes": 129,
+        "sha256": "4cb189609438fbc97edb3036dc0bc9d357a57751505c6d9b8c5ea8b74f5d8148"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650763288993629",
+        "bytes": 129,
+        "ctimeNS": "1795650763336993911",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204890,
+        "mode": 33152,
+        "mtimeNS": "1795650763336993911",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-mac-final-integration-20261124/status.z"
+    },
+    "Maktabah-mac-final-integration-20261124/unstaged.patch": {
+      "content": {
+        "bytes": 22920,
+        "sha256": "9b1528df98c6cc5af342d0c6558b4b7fa525360f78be35be7638bec6a5effab0"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 24576,
+        "atimeNS": "1795650763337993917",
+        "bytes": 22920,
+        "ctimeNS": "1795650763371994117",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204891,
+        "mode": 33152,
+        "mtimeNS": "1795650763371994117",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-mac-final-integration-20261124/unstaged.patch"
+    },
+    "Maktabah-mac-final-integration-20261124/untracked.tar.gz": {
+      "content": {
+        "bytes": 45,
+        "sha256": "85cea451eec057fa7e734548ca3ba6d779ed5836a3f9de14b8394575ef0d7d8e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650763418994393",
+        "bytes": 45,
+        "ctimeNS": "1795650763420994405",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204894,
+        "mode": 33152,
+        "mtimeNS": "1795650763420994405",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-mac-final-integration-20261124/untracked.tar.gz"
+    },
+    "Maktabah-mac-final-integration-20261124/untracked.z": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650763418994393",
+        "bytes": 0,
+        "ctimeNS": "1795650763382994181",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204893,
+        "mode": 33152,
+        "mtimeNS": "1795650763382994181",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-mac-final-integration-20261124/untracked.z"
+    },
+    "Maktabah-native-core-repairs-20261120": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425726928775",
+        "bytes": 4096,
+        "ctimeNS": "1795650764990003627",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204895,
+        "mode": 17856,
+        "mtimeNS": "1795650764990003627",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-native-core-repairs-20261120"
+    },
+    "Maktabah-native-core-repairs-20261120/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "49033ed52d8e5ec9544d831684b1353a1e87ca500dd3d5f98243e38da2860a70"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650765011003751",
+        "bytes": 41,
+        "ctimeNS": "1795650764870002922",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204896,
+        "mode": 33152,
+        "mtimeNS": "1795650764870002922",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-native-core-repairs-20261120/HEAD"
+    },
+    "Maktabah-native-core-repairs-20261120/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650764954003416",
+        "bytes": 0,
+        "ctimeNS": "1795650764954003416",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204899,
+        "mode": 33152,
+        "mtimeNS": "1795650764954003416",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-native-core-repairs-20261120/staged.patch"
+    },
+    "Maktabah-native-core-repairs-20261120/status.z": {
+      "content": {
+        "bytes": 169,
+        "sha256": "288eafe7aa48aab042d9a183bb7429ab44a56d00e23554b062c9ebd185d9a6f9"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650764871002928",
+        "bytes": 169,
+        "ctimeNS": "1795650764916003192",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204897,
+        "mode": 33152,
+        "mtimeNS": "1795650764916003192",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-native-core-repairs-20261120/status.z"
+    },
+    "Maktabah-native-core-repairs-20261120/unstaged.patch": {
+      "content": {
+        "bytes": 1095,
+        "sha256": "a588515e33fa2dafd389fddb09829be430e996b8d1c4c1c55a976e1dc9b6b54f"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650764918003204",
+        "bytes": 1095,
+        "ctimeNS": "1795650764952003404",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204898,
+        "mode": 33152,
+        "mtimeNS": "1795650764952003404",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-native-core-repairs-20261120/unstaged.patch"
+    },
+    "Maktabah-native-core-repairs-20261120/untracked.tar.gz": {
+      "content": {
+        "bytes": 3413,
+        "sha256": "d2fc54a26f1f9736882010849c2e560cea7b238f9532a832426d1b7c1c0e8b11"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650764990003627",
+        "bytes": 3413,
+        "ctimeNS": "1795650764994003651",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204901,
+        "mode": 33152,
+        "mtimeNS": "1795650764994003651",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-native-core-repairs-20261120/untracked.tar.gz"
+    },
+    "Maktabah-native-core-repairs-20261120/untracked.z": {
+      "content": {
+        "bytes": 90,
+        "sha256": "e69d7baa46c1033bb427aff23f8e51317cb85ce5092f84295fc4096f63e97288"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650764992003639",
+        "bytes": 90,
+        "ctimeNS": "1795650764988003616",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204900,
+        "mode": 33152,
+        "mtimeNS": "1795650764988003616",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-native-core-repairs-20261120/untracked.z"
+    },
+    "Maktabah-oracle-completion-20261123": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425724928764",
+        "bytes": 4096,
+        "ctimeNS": "1795650765622007342",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204902,
+        "mode": 17856,
+        "mtimeNS": "1795650765622007342",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-oracle-completion-20261123"
+    },
+    "Maktabah-oracle-completion-20261123/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "efd5618af4f13778dcf09263064ee35dbb61e57fc565fca09f2f77432376b368"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650765626007366",
+        "bytes": 41,
+        "ctimeNS": "1795650765508006672",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204903,
+        "mode": 33152,
+        "mtimeNS": "1795650765508006672",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-oracle-completion-20261123/HEAD"
+    },
+    "Maktabah-oracle-completion-20261123/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650765588007142",
+        "bytes": 0,
+        "ctimeNS": "1795650765588007142",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204906,
+        "mode": 33152,
+        "mtimeNS": "1795650765588007142",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-oracle-completion-20261123/staged.patch"
+    },
+    "Maktabah-oracle-completion-20261123/status.z": {
+      "content": {
+        "bytes": 13,
+        "sha256": "0defd8266357fe5c7a889a36c1070e68b577e90852818b059ceb0dacd1bf4216"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650765510006684",
+        "bytes": 13,
+        "ctimeNS": "1795650765546006896",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204904,
+        "mode": 33152,
+        "mtimeNS": "1795650765546006896",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-oracle-completion-20261123/status.z"
+    },
+    "Maktabah-oracle-completion-20261123/unstaged.patch": {
+      "content": {
+        "bytes": 2386,
+        "sha256": "bd2461441ce35335515bf9413237b2fefff514e211aea9345c68be6f564bbd58"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650765549006913",
+        "bytes": 2386,
+        "ctimeNS": "1795650765581007101",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204905,
+        "mode": 33152,
+        "mtimeNS": "1795650765581007101",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-oracle-completion-20261123/unstaged.patch"
+    },
+    "Maktabah-oracle-completion-20261123/untracked.tar.gz": {
+      "content": {
+        "bytes": 45,
+        "sha256": "85cea451eec057fa7e734548ca3ba6d779ed5836a3f9de14b8394575ef0d7d8e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650765622007342",
+        "bytes": 45,
+        "ctimeNS": "1795650765623007348",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204908,
+        "mode": 33152,
+        "mtimeNS": "1795650765623007348",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-oracle-completion-20261123/untracked.tar.gz"
+    },
+    "Maktabah-oracle-completion-20261123/untracked.z": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650765621007336",
+        "bytes": 0,
+        "ctimeNS": "1795650765601007219",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204907,
+        "mode": 33152,
+        "mtimeNS": "1795650765601007219",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-oracle-completion-20261123/untracked.z"
+    },
+    "Maktabah-original-editor-process-resume-20261122": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425726928775",
+        "bytes": 4096,
+        "ctimeNS": "1795650768101021913",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204909,
+        "mode": 17856,
+        "mtimeNS": "1795650768101021913",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-editor-process-resume-20261122"
+    },
+    "Maktabah-original-editor-process-resume-20261122/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "265d12f39a38d2488970105bad91f81bcb62e1ce6d5dd77924969d2b38e56105"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768111021972",
+        "bytes": 41,
+        "ctimeNS": "1795650767895020702",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204910,
+        "mode": 33152,
+        "mtimeNS": "1795650767895020702",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-editor-process-resume-20261122/HEAD"
+    },
+    "Maktabah-original-editor-process-resume-20261122/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650768007021361",
+        "bytes": 0,
+        "ctimeNS": "1795650768007021361",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204913,
+        "mode": 33152,
+        "mtimeNS": "1795650768007021361",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-editor-process-resume-20261122/staged.patch"
+    },
+    "Maktabah-original-editor-process-resume-20261122/status.z": {
+      "content": {
+        "bytes": 386,
+        "sha256": "9630200154331be68330f3e6d05db8f9a9bd161a603b788e2f0a57780a700723"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650767896020708",
+        "bytes": 386,
+        "ctimeNS": "1795650767953021043",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204911,
+        "mode": 33152,
+        "mtimeNS": "1795650767953021043",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-editor-process-resume-20261122/status.z"
+    },
+    "Maktabah-original-editor-process-resume-20261122/unstaged.patch": {
+      "content": {
+        "bytes": 61597,
+        "sha256": "8624aff6c10b7e659c0d1613d25acf358cca9470a293e379b91a6244b021757b"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 65536,
+        "atimeNS": "1795650767954021049",
+        "bytes": 61597,
+        "ctimeNS": "1795650768005021349",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204912,
+        "mode": 33152,
+        "mtimeNS": "1795650768005021349",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-editor-process-resume-20261122/unstaged.patch"
+    },
+    "Maktabah-original-editor-process-resume-20261122/untracked.tar.gz": {
+      "content": {
+        "bytes": 45,
+        "sha256": "85cea451eec057fa7e734548ca3ba6d779ed5836a3f9de14b8394575ef0d7d8e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768101021913",
+        "bytes": 45,
+        "ctimeNS": "1795650768104021931",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204915,
+        "mode": 33152,
+        "mtimeNS": "1795650768104021931",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-editor-process-resume-20261122/untracked.tar.gz"
+    },
+    "Maktabah-original-editor-process-resume-20261122/untracked.z": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650768102021919",
+        "bytes": 0,
+        "ctimeNS": "1795650768012021390",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204914,
+        "mode": 33152,
+        "mtimeNS": "1795650768012021390",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-editor-process-resume-20261122/untracked.z"
+    },
+    "Maktabah-original-import-host-20261123": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425728928787",
+        "bytes": 4096,
+        "ctimeNS": "1795650768355023406",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204916,
+        "mode": 17856,
+        "mtimeNS": "1795650768355023406",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-import-host-20261123"
+    },
+    "Maktabah-original-import-host-20261123/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "7fd64da6adfdea6da5ade2433eed4dc3a9bd40e4715d4b8a91a36d0034fe290a"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768362023447",
+        "bytes": 41,
+        "ctimeNS": "1795650768267022889",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204917,
+        "mode": 33152,
+        "mtimeNS": "1795650768267022889",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-import-host-20261123/HEAD"
+    },
+    "Maktabah-original-import-host-20261123/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650768320023200",
+        "bytes": 0,
+        "ctimeNS": "1795650768320023200",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204920,
+        "mode": 33152,
+        "mtimeNS": "1795650768320023200",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-import-host-20261123/staged.patch"
+    },
+    "Maktabah-original-import-host-20261123/status.z": {
+      "content": {
+        "bytes": 156,
+        "sha256": "fcfd3718e7e08ebea3ac0b80553784d0d3970d6f02c77794970d15e5923f627a"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768269022901",
+        "bytes": 156,
+        "ctimeNS": "1795650768299023077",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204918,
+        "mode": 33152,
+        "mtimeNS": "1795650768299023077",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-import-host-20261123/status.z"
+    },
+    "Maktabah-original-import-host-20261123/unstaged.patch": {
+      "content": {
+        "bytes": 663,
+        "sha256": "51cfa42183aac295a399bb540edd2d3c79543fddca2bdc1a2f39f4b41e4fae01"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768302023095",
+        "bytes": 663,
+        "ctimeNS": "1795650768318023189",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204919,
+        "mode": 33152,
+        "mtimeNS": "1795650768318023189",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-import-host-20261123/unstaged.patch"
+    },
+    "Maktabah-original-import-host-20261123/untracked.tar.gz": {
+      "content": {
+        "bytes": 4068,
+        "sha256": "ebf3f65fe42615e962391d8dac1f7351be0a4668de98f3e5158cbf237e38c172"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768354023400",
+        "bytes": 4068,
+        "ctimeNS": "1795650768357023418",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204922,
+        "mode": 33152,
+        "mtimeNS": "1795650768357023418",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-import-host-20261123/untracked.tar.gz"
+    },
+    "Maktabah-original-import-host-20261123/untracked.z": {
+      "content": {
+        "bytes": 176,
+        "sha256": "32fa5b84c21eb8c680daf78823de73e35f201ddf91e2cd0e74bdab695e2fee0c"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768354023400",
+        "bytes": 176,
+        "ctimeNS": "1795650768347023359",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204921,
+        "mode": 33152,
+        "mtimeNS": "1795650768347023359",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-original-import-host-20261123/untracked.z"
+    },
+    "Maktabah-reader-groups-full-v32-20261123": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425727928781",
+        "bytes": 4096,
+        "ctimeNS": "1795650768989027132",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204923,
+        "mode": 17856,
+        "mtimeNS": "1795650768989027132",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-reader-groups-full-v32-20261123"
+    },
+    "Maktabah-reader-groups-full-v32-20261123/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "41b318c0f5c13020cbb43617f21a30dd45635673d6e7da8f501d625629df8bd7"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768996027174",
+        "bytes": 41,
+        "ctimeNS": "1795650768830026198",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204924,
+        "mode": 33152,
+        "mtimeNS": "1795650768830026198",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-reader-groups-full-v32-20261123/HEAD"
+    },
+    "Maktabah-reader-groups-full-v32-20261123/staged.patch": {
+      "content": {
+        "bytes": 1170690,
+        "sha256": "abed79a2b0011afc9a8a69b84c7228af41ba5784b9fcf66a57fee1a6365512aa"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 1171456,
+        "atimeNS": "1795650768887026533",
+        "bytes": 1170690,
+        "ctimeNS": "1795650768941026850",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204927,
+        "mode": 33152,
+        "mtimeNS": "1795650768941026850",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-reader-groups-full-v32-20261123/staged.patch"
+    },
+    "Maktabah-reader-groups-full-v32-20261123/status.z": {
+      "content": {
+        "bytes": 6552,
+        "sha256": "e4222eb5b95c38fbbb12a071881266d740c9b312c89668e8c90401c20fa8c411"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 8192,
+        "atimeNS": "1795650768831026204",
+        "bytes": 6552,
+        "ctimeNS": "1795650768865783888",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204925,
+        "mode": 33152,
+        "mtimeNS": "1795650768865783888",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-reader-groups-full-v32-20261123/status.z"
+    },
+    "Maktabah-reader-groups-full-v32-20261123/unstaged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650768866026410",
+        "bytes": 0,
+        "ctimeNS": "1795650768866026410",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204926,
+        "mode": 33152,
+        "mtimeNS": "1795650768866026410",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-reader-groups-full-v32-20261123/unstaged.patch"
+    },
+    "Maktabah-reader-groups-full-v32-20261123/untracked.tar.gz": {
+      "content": {
+        "bytes": 45,
+        "sha256": "85cea451eec057fa7e734548ca3ba6d779ed5836a3f9de14b8394575ef0d7d8e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650768989027132",
+        "bytes": 45,
+        "ctimeNS": "1795650768992027150",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204929,
+        "mode": 33152,
+        "mtimeNS": "1795650768992027150",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-reader-groups-full-v32-20261123/untracked.tar.gz"
+    },
+    "Maktabah-reader-groups-full-v32-20261123/untracked.z": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650768991027144",
+        "bytes": 0,
+        "ctimeNS": "1795650768942026856",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204928,
+        "mode": 33152,
+        "mtimeNS": "1795650768942026856",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah-reader-groups-full-v32-20261123/untracked.z"
+    },
+    "Maktabah/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "059578168813f3c95856817bd4f64416797a27602980e7ea6e2ffab8b638f54f"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650759379970650",
+        "bytes": 41,
+        "ctimeNS": "1795650664471412192",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204861,
+        "mode": 33152,
+        "mtimeNS": "1795650664471412192",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah/HEAD"
+    },
+    "Maktabah/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650664504412386",
+        "bytes": 0,
+        "ctimeNS": "1795650664504412386",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204864,
+        "mode": 33152,
+        "mtimeNS": "1795650664504412386",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah/staged.patch"
+    },
+    "Maktabah/status.z": {
+      "content": {
+        "bytes": 2618,
+        "sha256": "d79a36ecaaf5568d83d53a632eced3ac53f11c98437044300ea4f381337aa2fc"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650664472412197",
+        "bytes": 2618,
+        "ctimeNS": "1795650664479412239",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204862,
+        "mode": 33152,
+        "mtimeNS": "1795650664479412239",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah/status.z"
+    },
+    "Maktabah/unstaged.patch": {
+      "content": {
+        "bytes": 85997,
+        "sha256": "7bde1a727576daede101bfdaf9cdc928a7ea8b1c4dc27fc4d86685b4057ecdbe"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 86016,
+        "atimeNS": "1795650664480412245",
+        "bytes": 85997,
+        "ctimeNS": "1795650664503412380",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204863,
+        "mode": 33152,
+        "mtimeNS": "1795650664503412380",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah/unstaged.patch"
+    },
+    "Maktabah/untracked.tar.gz": {
+      "content": {
+        "bytes": 691303419,
+        "sha256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 691310592,
+        "atimeNS": "1795650664681413429",
+        "bytes": 691303419,
+        "ctimeNS": "1795650759375970627",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204866,
+        "mode": 33152,
+        "mtimeNS": "1795650759375970627",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah/untracked.tar.gz"
+    },
+    "Maktabah/untracked.z": {
+      "content": {
+        "bytes": 1216807,
+        "sha256": "fcd3357eed070f2e5c96306594aaaf220cefaa5a44b75e02c39ab4ac3e9e2bc3"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 1220608,
+        "atimeNS": "1795650664681413429",
+        "bytes": 1216807,
+        "ctimeNS": "1795650664679397377",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204865,
+        "mode": 33152,
+        "mtimeNS": "1795650664679397377",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "Maktabah/untracked.z"
+    },
+    "final-checkpoint.bundle": {
+      "content": {
+        "bytes": 198721,
+        "sha256": "f6c9b69a68aeafa9e8ee148c484f2e5ad6958647aefbbcecab9ce84ce1b6aa4e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 200704,
+        "atimeNS": "1795650664209410648",
+        "bytes": 198721,
+        "ctimeNS": "1795650664206410631",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204853,
+        "mode": 33204,
+        "mtimeNS": "1795650664206410631",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "final-checkpoint.bundle"
+    },
+    "final-staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795686554334932811",
+        "bytes": 0,
+        "ctimeNS": "1795650616859131589",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204850,
+        "mode": 33152,
+        "mtimeNS": "1795650616859131589",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "final-staged.patch"
+    },
+    "final-status.z": {
+      "content": {
+        "bytes": 207,
+        "sha256": "1a5e39920fcdcaca292197cdb33dd0d327bbadbd58276e7ead9d86893768b196"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650664001409423",
+        "bytes": 207,
+        "ctimeNS": "1795650616838131465",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204848,
+        "mode": 33152,
+        "mtimeNS": "1795650616838131465",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "final-status.z"
+    },
+    "final-unstaged.patch": {
+      "content": {
+        "bytes": 5103,
+        "sha256": "8108c066467a672acea84ce71a685f434f4f108458796657ba9b638da599800b"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 8192,
+        "atimeNS": "1795650664021409541",
+        "bytes": 5103,
+        "ctimeNS": "1795650616858131583",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204849,
+        "mode": 33152,
+        "mtimeNS": "1795650616858131583",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "final-unstaged.patch"
+    },
+    "final-untracked.tar.gz": {
+      "content": {
+        "bytes": 6883,
+        "sha256": "1b499a8fd45cdcfddf928ec3c33466c860616b4ff321735be94d5e5517ed6d7a"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 8192,
+        "atimeNS": "1795650664027409576",
+        "bytes": 6883,
+        "ctimeNS": "1795650616907131872",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204852,
+        "mode": 33152,
+        "mtimeNS": "1795650616907131872",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "final-untracked.tar.gz"
+    },
+    "final-untracked.z": {
+      "content": {
+        "bytes": 574,
+        "sha256": "ce2d219fe930f7a62451bf5a4bd80ec2c41a568026dc696a9622d0f1e1e8fca8"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650616902131843",
+        "bytes": 574,
+        "ctimeNS": "1795650616896131807",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204851,
+        "mode": 33152,
+        "mtimeNS": "1795650616896131807",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "final-untracked.z"
+    },
+    "maktabah-sdk-consumer-20261123": {
+      "kind": "directory",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795842425731928804",
+        "bytes": 4096,
+        "ctimeNS": "1795650769565030518",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204930,
+        "mode": 17856,
+        "mtimeNS": "1795650769565030518",
+        "nlink": 2,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "maktabah-sdk-consumer-20261123"
+    },
+    "maktabah-sdk-consumer-20261123/HEAD": {
+      "content": {
+        "bytes": 41,
+        "sha256": "dc292b2ac7b45acb4cdde28d05b566c75494df058b73a02ce30416da6375cb8b"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650769571030553",
+        "bytes": 41,
+        "ctimeNS": "1795650769390029489",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204931,
+        "mode": 33152,
+        "mtimeNS": "1795650769390029489",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "maktabah-sdk-consumer-20261123/HEAD"
+    },
+    "maktabah-sdk-consumer-20261123/staged.patch": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650769519030248",
+        "bytes": 0,
+        "ctimeNS": "1795650769519030248",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204934,
+        "mode": 33152,
+        "mtimeNS": "1795650769519030248",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "maktabah-sdk-consumer-20261123/staged.patch"
+    },
+    "maktabah-sdk-consumer-20261123/status.z": {
+      "content": {
+        "bytes": 20,
+        "sha256": "3f406b7dcbc196056efb99ae275ff9c2cb423d0827fbfcfe0cbfd70fdbd1c040"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650769391029495",
+        "bytes": 20,
+        "ctimeNS": "1795650769474029983",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204932,
+        "mode": 33152,
+        "mtimeNS": "1795650769474029983",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "maktabah-sdk-consumer-20261123/status.z"
+    },
+    "maktabah-sdk-consumer-20261123/unstaged.patch": {
+      "content": {
+        "bytes": 233,
+        "sha256": "48307bc6dadfbf886ef767fa6837c8b88d22b9015346e469948661adab439e3e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650769477030001",
+        "bytes": 233,
+        "ctimeNS": "1795650769518030242",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204933,
+        "mode": 33152,
+        "mtimeNS": "1795650769518030242",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "maktabah-sdk-consumer-20261123/unstaged.patch"
+    },
+    "maktabah-sdk-consumer-20261123/untracked.tar.gz": {
+      "content": {
+        "bytes": 45,
+        "sha256": "85cea451eec057fa7e734548ca3ba6d779ed5836a3f9de14b8394575ef0d7d8e"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 4096,
+        "atimeNS": "1795650769565030518",
+        "bytes": 45,
+        "ctimeNS": "1795650769567030530",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204936,
+        "mode": 33152,
+        "mtimeNS": "1795650769567030530",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "maktabah-sdk-consumer-20261123/untracked.tar.gz"
+    },
+    "maktabah-sdk-consumer-20261123/untracked.z": {
+      "content": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 0,
+        "atimeNS": "1795650769565030518",
+        "bytes": 0,
+        "ctimeNS": "1795650769532030324",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204935,
+        "mode": 33152,
+        "mtimeNS": "1795650769532030324",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "maktabah-sdk-consumer-20261123/untracked.z"
+    },
+    "snapshot.index": {
+      "content": {
+        "bytes": 1769347,
+        "sha256": "f3cdc5a104beb4e25e15635b3fd5a2091954194ab3affee7ff8da9d2dbe3fc82"
+      },
+      "kind": "file",
+      "metadata": {
+        "allocatedBytes": 1769472,
+        "atimeNS": "1795650632712225055",
+        "bytes": 1769347,
+        "ctimeNS": "1795650634828235207",
+        "device": 2064,
+        "gid": 1002,
+        "inode": 6204859,
+        "mode": 33200,
+        "mtimeNS": "1795650634827237522",
+        "nlink": 1,
+        "uid": 1001,
+        "xattrs": []
+      },
+      "path": "snapshot.index"
+    }
+  },
+  "readMethod": "O_NOATIME|O_NOFOLLOW; exact before/after metadata and complete SHA256",
+  "schema": "otzaria.retained-delivery-readonly-preflight/1",
+  "sourceRoot": "/mnt/development/projects/preserved/maktabah-final-delivery-20261126.HEKmdGhG",
+  "sourceUnchanged": true
+}

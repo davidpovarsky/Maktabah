@@ -1,0 +1,29 @@
+{
+  "schema": "otzaria.retained-untracked-source-seal/1",
+  "files": {
+    "leaf_common.py": {
+      "bytes": 47065,
+      "sha256": "a9bfb63bfd5538b51450051ddd8a0260d4396d856d6f4b9a64d255216b63afa7"
+    },
+    "preserve_untracked_leaf.py": {
+      "bytes": 10444,
+      "sha256": "b59eaffc312b7c15e5f63209731047473b94ee25308bc5f5f1958b7ae1b9a25f"
+    },
+    "retire_untracked_leaf.py": {
+      "bytes": 15254,
+      "sha256": "ec5ad989426b3cc2d6637092c7cdbbe70221a2a6653fa5c1ce76cc8afdae098f"
+    },
+    "restore_untracked_leaf.py": {
+      "bytes": 7822,
+      "sha256": "232012cd36e10d65106611c62134c6aa58c7cdb3b913db5a4ef9430827dd8e74"
+    },
+    "SOURCE_SNAPSHOT.json": {
+      "bytes": 53140,
+      "sha256": "8d1f5356ea716bfcbd1152386e834514802325c75efc857ab8e085bbeb6906c7"
+    },
+    "SOURCE_PREFLIGHT_RESULT.json": {
+      "bytes": 1110,
+      "sha256": "dc80359d614f918aab15a50e2a93918aa0b268a6e7a10794f5bcccb1c413845f"
+    }
+  }
+}

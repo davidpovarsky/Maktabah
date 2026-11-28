@@ -1,0 +1,15 @@
+{
+  "marker": {
+    "bytes": 319,
+    "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/publish/FINAL_RECEIPT_PUBLISHED.json",
+    "sha256": "73fc06ab1b1dd94e5619a43eb1a2684f48b76333a5fb98dbbbcaa516213ee2a4"
+  },
+  "originalRetained": true,
+  "phase": "publish",
+  "receipt": {
+    "bytes": 2898,
+    "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-20261128/publish/VERIFIED_PRIVATE_PRESERVATION.json",
+    "sha256": "06457c54ed2a98570a54e02e18e9970a2626ccd28b0f99eb4212c7025ee26de9"
+  },
+  "status": "SUCCEEDED"
+}

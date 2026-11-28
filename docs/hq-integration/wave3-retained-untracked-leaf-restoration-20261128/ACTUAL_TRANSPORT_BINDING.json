@@ -1,0 +1,43 @@
+{
+  "actualJob": {
+    "base64": "eyJvayI6dHJ1ZSwiam9iIjp7ImlkIjoiam9iX2VkM2M3NTcwYWU0NSIsInR5cGUiOiJqb2JfcmVzdWx0Iiwic291cmNlIjoic2NyaXB0X3J1bkBob3N0XzI5OWNmNzVmNmIzMzhlY2QiLCJzZXZlcml0eSI6ImluZm8iLCJ0b29sIjoic2NyaXB0X3J1biIsImhvc3QiOiJob3N0XzI5OWNmNzVmNmIzMzhlY2QiLCJzdGF0dXMiOiJzdWNjZWVkZWQiLCJleGl0X2NvZGUiOjAsImNyZWF0ZWRfYXQiOjE3OTU4NDUyMzkuNjQyMDgwOCwic3RhcnRlZF9hdCI6IjIwMjYtMTEtMjhUMDU6NTM6NTkuNzIzOTg4KzAwOjAwIiwiZmluaXNoZWRfYXQiOiIyMDI2LTExLTI4VDA1OjU4OjM3LjE0MzQ4NiswMDowMCIsImR1cmF0aW9uX3MiOjI3Ny40MiwiZXJyb3IiOm51bGwsIm91dHB1dF90cnVuY2F0ZWQiOmZhbHNlLCJ0aW1lb3V0X3MiOjMwMDAsInJlYWQiOmZhbHNlLCJub3RpZmllZCI6eyJ0ZWxlZ3JhbSI6bnVsbCwicmVzZW5kIjpudWxsfSwibm90aWZ5X3NwZWMiOnt9LCJvdXRwdXQiOiJ7XCJyZWNlaXB0XCI6IHtcInBhdGhcIjogXCIvaG9tZS91YnVudHUvb3R6YXJpYS13YXZlMy1wcmVzZXJ2ZWQtdW50cmFja2VkLWxlYWYtdHJhbnNwb3J0LTIwMjYxMTI4L3B1Ymxpc2gvVkVSSUZJRURfUFJJVkFURV9QUkVTRVJWQVRJT04uanNvblwiLCBcImJ5dGVzXCI6IDI4OTgsIFwic2hhMjU2XCI6IFwiMDY0NTdjNTRlZDJhOTg1NzBhNTRlMDJlMThlOTk3MGEyNjI2Y2NkMjhiMGY5OWViNDIxMmM3MDI1ZWUyNmRlOVwifSwgXCJtYXJrZXJcIjoge1wicGF0aFwiOiBcIi9ob21lL3VidW50dS9vdHphcmlhLXdhdmUzLXByZXNlcnZlZC11bnRyYWNrZWQtbGVhZi10cmFuc3BvcnQtMjAyNjExMjgvcHVibGlzaC9GSU5BTF9SRUNFSVBUX1BVQkxJU0hFRC5qc29uXCIsIFwiYnl0ZXNcIjogMzE5LCBcInNoYTI1NlwiOiBcIjczZmMwNmFiMWIxZGQ5NGU1NjE5YTQzZWIxYTI2ODRmNDhiNzYzMzNhNWZiOThkYmJiY2FhNTE2MjEzZWUyYTRcIn0sIFwidGVybWluYWxcIjoge1wicGF0aFwiOiBcIi9ob21lL3VidW50dS9vdHphcmlhLXdhdmUzLXByZXNlcnZlZC11bnRyYWNrZWQtbGVhZi10cmFuc3BvcnQtMjAyNjExMjgvcHVibGlzaC9URVJNSU5BTF9SRVNVTFQuanNvblwiLCBcImJ5dGVzXCI6IDU2OCwgXCJzaGEyNTZcIjogXCI5OGI2OWMxMGYxYzgyYTcxYzRmZTNhNDdlY2QxZjhkNjM4YmU0NWE4NjJkZWQ1NmQ1NDZkYTU4MTIwMzRhYjIwXCJ9LCBcIm9yaWdpbmFsUmV0YWluZWRcIjogdHJ1ZX0ifX0=",
+    "bytes": 1235,
+    "id": "job_ed3c7570ae45",
+    "sha256": "0357242cadeff747a76a4d9e5122862d81859ce7f394a1991d8e46e579e9c505"
+  },
+  "archiveSHA256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100",
+  "assets": {
+    "PRESERVED_UNTRACKED_LEAF_MANIFEST.json": {
+      "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803430071",
+      "bytes": 72747,
+      "id": 803430071,
+      "name": "PRESERVED_UNTRACKED_LEAF_MANIFEST.json",
+      "serverDigest": "sha256:be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3",
+      "sha256": "be87dfdc23e404ec570a34d6b79cb406b2f314d7e7e5eb3607146b93ce7234d3"
+    },
+    "untracked.tar.gz": {
+      "apiURL": "https://api.github.com/repos/davidpovarsky/Maktabah-preserved-evidence/releases/assets/803430120",
+      "bytes": 691303419,
+      "id": 803430120,
+      "name": "untracked.tar.gz",
+      "serverDigest": "sha256:e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100",
+      "sha256": "e7783edfe09c044fb8b13f398604b35011a987970495c47d52a3306a15b8b100"
+    }
+  },
+  "marker": {
+    "bytes": 319,
+    "sha256": "73fc06ab1b1dd94e5619a43eb1a2684f48b76333a5fb98dbbbcaa516213ee2a4"
+  },
+  "receipt": {
+    "bytes": 2898,
+    "sha256": "06457c54ed2a98570a54e02e18e9970a2626ccd28b0f99eb4212c7025ee26de9"
+  },
+  "releaseID": 461337522,
+  "repositoryID": 1474927804,
+  "schema": "otzaria.retained-untracked-actual-transport-binding/1",
+  "sourceSealSHA256": "b3fb30020b2bafffd741829e78974f1fa088e20c70d5291d8d35648463ab0e1e",
+  "terminal": {
+    "bytes": 568,
+    "sha256": "98b69c10f1c82a71c4fe3a47ecd1f8d638be45a862ded56d546da5812034ab20"
+  }
+}

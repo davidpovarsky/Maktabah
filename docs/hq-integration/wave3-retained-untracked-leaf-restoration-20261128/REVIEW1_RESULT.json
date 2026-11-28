@@ -1,0 +1,62 @@
+{
+  "APIOrAuthCalls": 0,
+  "DataWrites": 0,
+  "GitCommands": 0,
+  "RootReviewRequiredBeforeAnyRuntimePhase": true,
+  "allocatedBytesBeforeResult": 1019904,
+  "archive": {
+    "bytes": 234796,
+    "decodedMembers": 21,
+    "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-proposal-20261128/SOURCE_PROPOSAL.zip",
+    "sha256": "93be4acb6c3f9729a5b168eee9b2a1b2a9bf73bf15d0b87a1b390c8ddd01cc45"
+  },
+  "controllerImports": 0,
+  "files": 23,
+  "manifest": {
+    "bytes": 3331,
+    "path": "ARTIFACTS.json",
+    "sha256": "7a2f6eee6e152ccc067342c2a194e053300c574d4129c888c8fc054eee164c56"
+  },
+  "protocolControllersExecuted": 0,
+  "root": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-proposal-20261128",
+  "sourceArchiveReadOrRegenerated": false,
+  "sourceMaterializerExecuted": true,
+  "sourceSeal": {
+    "bytes": 943,
+    "sha256": "e3376afb30f633ff5d04e58fec2af8326e3ae07a703815e8741e372882d486ca"
+  },
+  "sources": {
+    "SOURCE_PREFLIGHT_RESULT.json": {
+      "bytes": 1110,
+      "sha256": "dc80359d614f918aab15a50e2a93918aa0b268a6e7a10794f5bcccb1c413845f"
+    },
+    "SOURCE_SNAPSHOT.json": {
+      "bytes": 53140,
+      "sha256": "8d1f5356ea716bfcbd1152386e834514802325c75efc857ab8e085bbeb6906c7"
+    },
+    "leaf_common.py": {
+      "bytes": 46202,
+      "sha256": "e2c5c2dc0409881d1dee99ed77e029f676bee47ee798c3d7b3ab9cc1f5bb9bc0"
+    },
+    "preserve_untracked_leaf.py": {
+      "bytes": 10444,
+      "sha256": "88ba1ae4451fe81047823219209a4d05e0e73be7d430a107517752492ddb42cb"
+    },
+    "restore_untracked_leaf.py": {
+      "bytes": 7822,
+      "sha256": "5574bc5bdd52c90fb27551338a8d24430fd7a6ed2baa96a866bf0f9eb8081e3c"
+    },
+    "retire_untracked_leaf.py": {
+      "bytes": 15254,
+      "sha256": "00407a4762165015aa979bdc6b359b98d4cd64e296f71506b2f08f4792d973df"
+    }
+  },
+  "staticReview": {
+    "bytes": 3267,
+    "path": "SOURCE_REVIEW_PROOF.json",
+    "sha256": "0b3d79f19967fecf0a0b5f34a4f7dc1a38f3c9ef7ffd899ed2d73a8676fa367e"
+  },
+  "status": "SOURCE_ONLY_PROPOSAL_SEALED_NO_RUNTIME_ACTION",
+  "tests": 0,
+  "utc": "2026-11-28T05:41:52.683001+00:00"
+}

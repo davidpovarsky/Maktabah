@@ -1,0 +1,64 @@
+{
+  "APIOrAuthCalls": 0,
+  "DataWrites": 0,
+  "GitCommands": 0,
+  "RootReviewRequiredBeforeAnyRuntimePhase": true,
+  "allocatedBytesBeforeResult": 1396736,
+  "archive": {
+    "bytes": 326631,
+    "decodedMembers": 29,
+    "path": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-review2-proposal-20261128/SOURCE_PROPOSAL.zip",
+    "sha256": "8455ee2686451f377d0cb14f6fa920a08e688fc80d52ac9abefc2f80bc0ee8c3"
+  },
+  "controllerImports": 0,
+  "files": 31,
+  "manifest": {
+    "bytes": 4623,
+    "path": "ARTIFACTS.json",
+    "sha256": "e924a6838824aa34c8f5f13d9e7e6379f9b258d3698eaa9a491baf9d2c26abb4"
+  },
+  "original23Unchanged": true,
+  "predecessor": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-proposal-20261128",
+  "protocolControllersExecuted": 0,
+  "root": "/home/ubuntu/otzaria-wave3-preserved-untracked-leaf-transport-review2-proposal-20261128",
+  "sourceArchiveReadOrRegenerated": false,
+  "sourceMaterializerExecuted": true,
+  "sourceSeal": {
+    "bytes": 943,
+    "sha256": "b3fb30020b2bafffd741829e78974f1fa088e20c70d5291d8d35648463ab0e1e"
+  },
+  "sources": {
+    "SOURCE_PREFLIGHT_RESULT.json": {
+      "bytes": 1110,
+      "sha256": "dc80359d614f918aab15a50e2a93918aa0b268a6e7a10794f5bcccb1c413845f"
+    },
+    "SOURCE_SNAPSHOT.json": {
+      "bytes": 53140,
+      "sha256": "8d1f5356ea716bfcbd1152386e834514802325c75efc857ab8e085bbeb6906c7"
+    },
+    "leaf_common.py": {
+      "bytes": 47065,
+      "sha256": "a9bfb63bfd5538b51450051ddd8a0260d4396d856d6f4b9a64d255216b63afa7"
+    },
+    "preserve_untracked_leaf.py": {
+      "bytes": 10444,
+      "sha256": "b59eaffc312b7c15e5f63209731047473b94ee25308bc5f5f1958b7ae1b9a25f"
+    },
+    "restore_untracked_leaf.py": {
+      "bytes": 7822,
+      "sha256": "232012cd36e10d65106611c62134c6aa58c7cdb3b913db5a4ef9430827dd8e74"
+    },
+    "retire_untracked_leaf.py": {
+      "bytes": 15254,
+      "sha256": "ec5ad989426b3cc2d6637092c7cdbbe70221a2a6653fa5c1ce76cc8afdae098f"
+    }
+  },
+  "staticReview": {
+    "bytes": 3670,
+    "path": "SOURCE_REVIEW_PROOF.json",
+    "sha256": "a2dd2cbdd2c8a0791090c89bb7260a7d412c357ef1375cac5366aeaa2ee38ad0"
+  },
+  "status": "SOURCE_ONLY_PROPOSAL_SEALED_NO_RUNTIME_ACTION",
+  "tests": 0,
+  "utc": "2026-11-28T05:48:50.050947+00:00"
+}
