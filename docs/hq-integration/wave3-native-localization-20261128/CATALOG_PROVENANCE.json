@@ -1,0 +1,12 @@
+{
+  "existingTerms": {
+    "Note Draft": "טיוטת הערה",
+    "Search results": "תוצאות חיפוש",
+    "Study Tools": "כלי לימוד"
+  },
+  "intermediate791SHA256": "345fd5a7fcca829d797bb143e3de0800f82b1d1dd2c2f73b7b5817343f161c86",
+  "limits": "Translation keys for original Library/Book/Inspector candidates do not themselves register or qualify those features.",
+  "originalBookCatalogSHA256": "87dd2474745016d38a4aaf303a79bbf134d0e10a1c210de1010d6284414b4153",
+  "originalFFAArchiveSHA256": "df641fafd9b470eaa22307025fff8599f6c60cc18196c6aed1d900adb43c94eb",
+  "threeKeyExactEditsSHA256": "0917a616d3899cc80d28d1910f580c1fd495a82ae27f484ead1b72157e761439"
+}

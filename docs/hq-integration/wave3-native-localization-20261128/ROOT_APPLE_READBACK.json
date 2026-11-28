@@ -1,0 +1,21 @@
+{
+  "allArchiveBytesAndMembersVerified": true,
+  "archive": {
+    "bytes": 87022,
+    "path": "/home/ubuntu/otzaria-wave3-catalog794-apple-actual-20261128/APPLE_CATALOG_RAW.zip",
+    "sha256": "a8d262aba2e79b4553b17aa822e38cacca49d118f45163b9a57e82b8640f406b"
+  },
+  "candidateKeys": 794,
+  "nativeRuns": 0,
+  "newKeys": 15,
+  "original779EntriesUnchanged": true,
+  "result": {
+    "bytes": 4425,
+    "path": "/home/ubuntu/otzaria-wave3-catalog794-apple-actual-20261128/RESULT.json",
+    "sha256": "ec07688b794233450de92dbf0396b774c1a1535fd1c3be2ff80f0014b3e8387e"
+  },
+  "schema": "otzaria.catalog794-root-readback/1",
+  "sshExit": 0,
+  "status": "ROOT_VERIFIED_ACTUAL_APPLE_CATALOG",
+  "utc": "2026-11-28T09:47:49.691286+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "all791OldBytesAndEntriesPreserved": true,
+  "base791SHA256": "345fd5a7fcca829d797bb143e3de0800f82b1d1dd2c2f73b7b5817343f161c86",
+  "candidateSHA256": "04e8f9618bcacc6144e337f2d2038dcb27e210eee99f97a8a51ae517e4d703c3",
+  "current779EntriesPreserved": true,
+  "currentSourceBase": "d62b1a24bd7a93f4cfce6dfa487966a0ace41c1d",
+  "currentSourceTree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "nativeTests": 0,
+  "newKeys": 15,
+  "routeExposureChanged": false,
+  "schema": "otzaria.final-catalog-source-composition/1",
+  "sourceEditSHA256": "0917a616d3899cc80d28d1910f580c1fd495a82ae27f484ead1b72157e761439",
+  "status": "SOURCE_READY_FOR_APPLE_CATALOG_COMPILE",
+  "swiftChanged": false,
+  "uniqueKeys": 794,
+  "utc": "2026-11-28T09:43:45.983467+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "AppleCatalogJob": "job_7073fc2cc135",
+  "AppleResultSHA256": "ec07688b794233450de92dbf0396b774c1a1535fd1c3be2ff80f0014b3e8387e",
+  "RootReadbackSHA256": "8e8ed4cdc0b251483dd11a5ffcdbdfa1f164c17f8ccb38f152b3a973261d0dae",
+  "allExisting779EntriesAndRawBytesPreserved": true,
+  "base": "d62b1a24bd7a93f4cfce6dfa487966a0ace41c1d",
+  "catalogKeysAfter": 794,
+  "catalogKeysBefore": 779,
+  "finalReleaseAcceptance": "OPEN",
+  "fullAppBuilds": 0,
+  "nativeRuns": 0,
+  "newKeyOrigins": {
+    "existingHebrewTermsForDisplayedTitles": 3,
+    "localizedLinkFailureMessages": 2,
+    "originalPrimaryBookInspector": 10
+  },
+  "onlyURLSwiftChanges": "TwoNSLocalizedStringwrappers; fullinverseexact. No URL parsing/routing/authentication/logging or actionexposure change.",
+  "ownerRegistryChanged": false,
+  "products": {
+    "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeURLHandler.swift": {
+      "afterBytes": 2315,
+      "afterSHA256": "95788f5e9f66cd77c4b17f1489f215b968ddead3bbff079bfc59bc56c91637ab",
+      "beforeBytes": 2150,
+      "beforeSHA256": "acac0a385ded536ba15117f1a90c81657f68b6f33c08b3473795c138746ade45"
+    },
+    "Source/Localizable.xcstrings": {
+      "afterBytes": 411193,
+      "afterSHA256": "04e8f9618bcacc6144e337f2d2038dcb27e210eee99f97a8a51ae517e4d703c3",
+      "beforeBytes": 405228,
+      "beforeSHA256": "c6806b486fdf3e958c77d4cfbce312dc418eb01e9a73da021f5e2a22732fe86a"
+    }
+  },
+  "schema": "otzaria.native-localization-product-intake/1",
+  "sourceAfter": "f47fd5b11b0ed4b9220f7a5142b2b54c8285c04b",
+  "sourceBefore": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "utc": "2026-11-28T10:07:39.597677+00:00"
+}

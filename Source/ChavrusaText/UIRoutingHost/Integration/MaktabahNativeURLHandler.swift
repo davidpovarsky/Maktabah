@@ -38,8 +38,8 @@ enum MaktabahNativeURLHandler {
                     ?? continuation?.code ?? "native_link_not_acknowledged"
                 OtzariaFileLogger.shared.log("[NativeNavigationFailure] code=\(category)")
                 let message = (error as? NativeIntentOutcome)?.errorDescription ?? continuation?.errorDescription
-                    ?? "This link could not be displayed in the selected library and window."
-                manager.alertMessage = .init(title: "Unable to open link", message: message)
+                    ?? NSLocalizedString("This link could not be displayed in the selected library and window.", comment: "Public navigation failure when no localized outcome is available")
+                manager.alertMessage = .init(title: NSLocalizedString("Unable to open link", comment: "Public navigation failure alert title"), message: message)
             }
         }
         return true

@@ -1,6 +1,246 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Study Tools": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Study Tools"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כלי לימוד"
+          }
+        }
+      }
+    },
+    "Search results": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search results"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תוצאות חיפוש"
+          }
+        }
+      }
+    },
+    "Note Draft": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Note Draft"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טיוטת הערה"
+          }
+        }
+      }
+    },
+    "Open book information": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open book information"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת פרטי ספר"
+          }
+        }
+      }
+    },
+    "Show the original information sheet for a book in the Library.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show the original information sheet for a book in the Library."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת חלון המידע המקורי של ספר בספרייה."
+          }
+        }
+      }
+    },
+    "Library item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Library item"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פריט בספרייה"
+          }
+        }
+      }
+    },
+    "Library window": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Library window"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חלון הספרייה"
+          }
+        }
+      }
+    },
+    "Reveal a library item": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal a library item"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת פריט בספרייה"
+          }
+        }
+      }
+    },
+    "Reveal a category or book row in its original Library list.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal a category or book row in its original Library list."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת קטגוריה או שורת ספר ברשימת הספרייה המקורית."
+          }
+        }
+      }
+    },
+    "Inspector selection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inspector selection"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פריט בכלי הלימוד"
+          }
+        }
+      }
+    },
+    "Show Inspector selection": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Inspector selection"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצג פריט בכלי הלימוד"
+          }
+        }
+      }
+    },
+    "Inspector window": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inspector window"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חלון כלי הלימוד"
+          }
+        }
+      }
+    },
+    "Reveal an existing Inspector tool or loaded row in its original Reader.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reveal an existing Inspector tool or loaded row in its original Reader."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת כלי לימוד קיים או שורה שנטענה בקורא המקורי."
+          }
+        }
+      }
+    },
+    "Unable to open link": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to open link"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן לפתוח את הקישור"
+          }
+        }
+      }
+    },
+    "This link could not be displayed in the selected library and window.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This link could not be displayed in the selected library and window."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן להציג את הקישור בספרייה ובחלון שנבחרו."
+          }
+        }
+      }
+    },
     "Open annotation editor": {
       "localizations": {
         "en": {

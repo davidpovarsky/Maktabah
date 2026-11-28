@@ -1,0 +1,95 @@
+{
+  "allExistingENHECompiledValuesUnchanged": true,
+  "candidateSHA256": "04e8f9618bcacc6144e337f2d2038dcb27e210eee99f97a8a51ae517e4d703c3",
+  "catalogKeys": 794,
+  "existingARIDBytesUnchanged": {
+    "ar": "4059f8af6cdc35cc53c78e2b285347c86870094099ede2afff753d048d9909ae",
+    "id": "bb561b451724e44b4879042857b45e977daabfe194c49987b0aa462df69c0961"
+  },
+  "files": {
+    "EXPECTED_NEW_LOCALIZATIONS.json": {
+      "bytes": 4693,
+      "sha256": "f8a0f91c1dbd658cf410fe2076429a3f29eceec75f23aaf2bbed5f6e55bf3207"
+    },
+    "Localizable.xcstrings": {
+      "bytes": 411193,
+      "sha256": "04e8f9618bcacc6144e337f2d2038dcb27e210eee99f97a8a51ae517e4d703c3"
+    },
+    "compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compiled/ar.lproj/Localizable.strings": {
+      "bytes": 42371,
+      "sha256": "4059f8af6cdc35cc53c78e2b285347c86870094099ede2afff753d048d9909ae"
+    },
+    "compiled/en.lproj/Localizable.strings": {
+      "bytes": 48936,
+      "sha256": "20415daed57e98b9b6ff19483f5379cc05c8a311a11fabb285654d0c6c2e63db"
+    },
+    "compiled/he.lproj/Localizable.strings": {
+      "bytes": 68255,
+      "sha256": "b18e0ee6de062c906fde82370d88dbfa6bf69e03fdaf0ae51e138c0c3f17f94a"
+    },
+    "compiled/id.lproj/Localizable.strings": {
+      "bytes": 36000,
+      "sha256": "bb561b451724e44b4879042857b45e977daabfe194c49987b0aa462df69c0961"
+    }
+  },
+  "freeAfter": 9028075520,
+  "freeBefore": 9028710400,
+  "nativeRuns": 0,
+  "new15ActualValues": {
+    "en": {
+      "Inspector selection": "Inspector selection",
+      "Inspector window": "Inspector window",
+      "Library item": "Library item",
+      "Library window": "Library window",
+      "Note Draft": "Note Draft",
+      "Open book information": "Open book information",
+      "Reveal a category or book row in its original Library list.": "Reveal a category or book row in its original Library list.",
+      "Reveal a library item": "Reveal a library item",
+      "Reveal an existing Inspector tool or loaded row in its original Reader.": "Reveal an existing Inspector tool or loaded row in its original Reader.",
+      "Search results": "Search results",
+      "Show Inspector selection": "Show Inspector selection",
+      "Show the original information sheet for a book in the Library.": "Show the original information sheet for a book in the Library.",
+      "Study Tools": "Study Tools",
+      "This link could not be displayed in the selected library and window.": "This link could not be displayed in the selected library and window.",
+      "Unable to open link": "Unable to open link"
+    },
+    "he": {
+      "Inspector selection": "פריט בכלי הלימוד",
+      "Inspector window": "חלון כלי הלימוד",
+      "Library item": "פריט בספרייה",
+      "Library window": "חלון הספרייה",
+      "Note Draft": "טיוטת הערה",
+      "Open book information": "פתיחת פרטי ספר",
+      "Reveal a category or book row in its original Library list.": "הצגת קטגוריה או שורת ספר ברשימת הספרייה המקורית.",
+      "Reveal a library item": "הצגת פריט בספרייה",
+      "Reveal an existing Inspector tool or loaded row in its original Reader.": "הצגת כלי לימוד קיים או שורה שנטענה בקורא המקורי.",
+      "Search results": "תוצאות חיפוש",
+      "Show Inspector selection": "הצג פריט בכלי הלימוד",
+      "Show the original information sheet for a book in the Library.": "הצגת חלון המידע המקורי של ספר בספרייה.",
+      "Study Tools": "כלי לימוד",
+      "This link could not be displayed in the selected library and window.": "לא ניתן להציג את הקישור בספרייה ובחלון שנבחרו.",
+      "Unable to open link": "לא ניתן לפתוח את הקישור"
+    }
+  },
+  "newCompiledCounts": {
+    "en": 557,
+    "he": 715
+  },
+  "oldCompiledCounts": {
+    "en": 542,
+    "he": 700
+  },
+  "schema": "otzaria.catalog794-apple-compile/1",
+  "status": "APPLE_CATALOG_COMPILE_AND_EXISTING_TRANSLATION_PRESERVATION_PASS",
+  "systemIntentRuns": 0,
+  "utc": "2026-11-28T09:47:49.428011+00:00",
+  "xcstringstoolExit": 0
+}
