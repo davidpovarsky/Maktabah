@@ -93,6 +93,7 @@ final class AnnotationOriginalEditorRevisionAttempt {
     private let sourceLifetime: AnytypeOriginalAnnotationImportSourceLifetime
     private var native: AnytypeOriginalAnnotationRevisionAttempt?
     private var invocationStarted = false
+    private var nativeInvocationStarted = false
 
     private init(local: AnnotationLocalEditorSession,
                  prepared: AnnotationLocalEditorNativeRevisionPreparation,
@@ -225,6 +226,9 @@ final class AnnotationOriginalEditorRevisionAttempt {
                     retire(); return .recordedWithoutOwnership(receipt)
                 }
                 do {
+                    // The original one-use SDK invoke guarantees an actual
+                    // drain callback even when its source admission fails.
+                    nativeInvocationStarted = true
                     try await native.invoke()
                     retire()
                     return .nativeAwaitReturned(receipt)
@@ -237,6 +241,14 @@ final class AnnotationOriginalEditorRevisionAttempt {
         } onCancel: {
             lifetime.retire(); local.retire()
         }
+    }
+
+    /// Join only a genuinely invoked native attempt. Prepared/rejected work
+    /// has no future native callback to await. Durable failures remain errors;
+    /// neither this barrier nor close dispatches or retries a native mutation.
+    func drainAdmittedOutcome() async throws -> AnnotationOriginalEditorRevisionOutcome? {
+        guard nativeInvocationStarted else { return try await history.recordedOutcomeIfDrained() }
+        return try await history.durableOutcome()
     }
 
     @discardableResult

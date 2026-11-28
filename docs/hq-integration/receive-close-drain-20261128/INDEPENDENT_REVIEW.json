@@ -1,0 +1,15 @@
+{
+  "schema": "otzaria.receive-close-drain.independent-review.v1",
+  "reviewer": "/root",
+  "status": "ACCEPTED_SOURCE_SCOPE",
+  "scope": "Both complete patch halves and full Revision.prepare/invoke/drain methods",
+  "findings": [
+    "Monotonic admission fence, startup and operation capture/join, late outcome UI fencing.",
+    "Durable callback join only after actual nativeInvocationStarted.",
+    "Prepared-after-close guarded by existing observation/local retirement binding and final owner.isCurrent.",
+    "Close never dispatches a fresh native mutation."
+  ],
+  "acceptance_limit": "Original close RED plus20GREEN supports this source fix, not full SDK/App/native acceptance.",
+  "patch_sha256": "4a01d6b53c402e7b4fe031963ab141ce9e6ccccec536abdeeb51962f712c0157",
+  "compressed_patch_sha256": "c181021483e29745124ece6d6cc9fbcf78db83a7f29ead14f4a6181180c9620d"
+}

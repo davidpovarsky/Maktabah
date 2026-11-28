@@ -1,0 +1,7 @@
+{
+  "reason": "git diff --check interpreted unified-diff blank context lines as trailing whitespace in a new text artifact. Exact patch bytes preserved losslessly as gzip; no product/control changes.",
+  "raw_bytes": 21711,
+  "raw_sha256": "4a01d6b53c402e7b4fe031963ab141ce9e6ccccec536abdeeb51962f712c0157",
+  "compressed_bytes": 4839,
+  "compressed_sha256": "c181021483e29745124ece6d6cc9fbcf78db83a7f29ead14f4a6181180c9620d"
+}

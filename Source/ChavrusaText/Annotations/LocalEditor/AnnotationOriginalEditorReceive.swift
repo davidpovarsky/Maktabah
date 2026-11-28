@@ -30,7 +30,12 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     private var revisionAttempt: AnnotationOriginalEditorRevisionAttempt?
     private(set) var revisionOutcome: AnnotationOriginalEditorRevisionOutcome?
     private var allMappings: [AnnotationOriginalEditorNativeReceiptFile.HistoricalMapping] = []
+    private var startupTask: Task<Void, Never>?
     private var operation: Task<Void, Never>?
+    // Monotonic admission fence. A late result may be retained as history but
+    // cannot reopen this presentation after close or a failed original Stop.
+    private var closeRequested = false
+    private(set) var closeError: (any Error)?
     private var closeTask: Task<Void, Never>?
     private var began = false
     private(set) var stage = Stage.opening
@@ -62,7 +67,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     var controller: UIViewController? { presentation?.viewController }
     var remotePreview: String { received?.capture.textPreview ?? "" }
     var localPreview: String { snapshot?.annotation.note ?? "" }
-    var canClose: Bool { stage != .saving && stage != .updating && stage != .closing && stage != .closed }
+    var canClose: Bool { !closeRequested && stage != .saving && stage != .updating && stage != .closing && stage != .closed }
 
     init(annotation: Annotation, inspected: AnnotationLocalEditorSnapshot,
          workspace: StudyWorkspaceNavigationAdapter, operationKind: OperationKind = .receive) {
@@ -71,8 +76,31 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     }
 
     func begin() async {
-        guard !began else { return }; began = true
+        guard !began, !closeRequested, !Task.isCancelled else { return }
+        began = true
+        let startup = Task { [self] in await beginOwned() }
+        startupTask = startup
+        // The SwiftUI caller may be cancelled on disappearance. Its actual
+        // worker remains retained and joined by close, including detached I/O.
+        await withTaskCancellationHandler {
+            await startup.value
+        } onCancel: { startup.cancel() }
+        startupTask = nil
+    }
+
+    private func requireOpen() throws {
+        guard !closeRequested else { throw AnnotationLocalEditorError.retired }
+        try Task.checkCancellation()
+    }
+
+    private func advance(to next: Stage) {
+        guard !closeRequested else { return }
+        stage = next
+    }
+
+    private func beginOwned() async {
         do {
+            try requireOpen()
             let observed = try AnnotationOriginalEditorSourceObservation(annotation: annotation,
                 store: AnnotationStore.shared, workspace: workspace, presentationLifetime: lifetime)
             observation = observed
@@ -89,32 +117,37 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                   try AnnotationOriginalEditorMount.nativeBody(in: captured) != nil else {
                 throw AnnotationLocalEditorError.wrongOwner
             }
+            try requireOpen()
             snapshot = captured
-            linkedState = try await local.linkedState(snapshot: captured)
-            allMappings = try await Task.detached {
+            let links = try await local.linkedState(snapshot: captured)
+            try observed.requireCurrent(); try requireOpen()
+            linkedState = links
+            let storedMappings = try await Task.detached {
                 try AnnotationOriginalEditorNativeReceiptFile.mappings(
                     annotationUUID: captured.annotationUUID, capturedDatabaseURL: captured.databaseURL)
             }.value
-            try observed.requireCurrent()
+            try observed.requireCurrent(); try requireOpen()
+            allMappings = storedMappings
             localStopNeedsRetry = true
             try await AnytypeOriginalEditorModule.suspendLocalAnnotationRuntime(
                 appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier)
             localStopNeedsRetry = false
             try observed.requireCurrent(); try Task.checkCancellation()
             try presentAccount()
-        } catch { if stage != .closing && stage != .closed { stage = .failed } }
+        } catch { if stage != .closing && stage != .closed { advance(to: .failed) } }
     }
 
     private func presentAccount() throws {
+        try requireOpen()
         presentation = try AnytypeOriginalEditorAccountSession.makePresentation(
             appGroup: ITorahSharedContainer.chavrusaTextAppGroupIdentifier,
             onReady: { [weak self] session in self?.selected(session) },
             onFailure: { [weak self] _ in self?.fail() })
-        stage = .authenticating
+        advance(to: .authenticating)
     }
 
     private func selected(_ session: AnytypeOriginalEditorAccountSession) {
-        guard stage == .authenticating else { return }
+        guard !closeRequested, stage == .authenticating else { return }
         do {
             guard let observation else { throw AnnotationLocalEditorError.retired }
             try observation.requireCurrent(); try session.validateCurrent()
@@ -124,7 +157,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                     $0.destination.account == session.identity.accountID && $0.destination.space == session.identity.spaceID
                 }.map(CopyChoice.linked)
                 selectedMappingID = mappings.count == 1 ? mappings[0].id : nil
-                stage = mappings.isEmpty ? .noMapping : .choosing
+                advance(to: mappings.isEmpty ? .noMapping : .choosing)
                 if mappings.count == 1 { readSelected() }
                 return
             }
@@ -136,16 +169,16 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 discoverCopies(in: session)
             } else {
                 selectedMappingID = mappings.count == 1 ? mappings[0].id : nil
-                stage = .choosing
+                advance(to: .choosing)
             }
-        } catch { stage = .failed }
+        } catch { advance(to: .failed) }
     }
 
     private func discoverCopies(in session: AnytypeOriginalEditorAccountSession) {
-        guard operation == nil, let local, let observation, let snapshot else {
+        guard !closeRequested, operation == nil, let local, let observation, let snapshot else {
             fail(); return
         }
-        stage = .discovering
+        advance(to: .discovering)
         operation = Task { [self] in
             defer { operation = nil }
             var query: AnytypeOriginalEditorLocalAnnotationSourceLifetime?
@@ -174,26 +207,26 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 guard stage == .discovering else { return }
                 mappings = copies.map(CopyChoice.discovered)
                 selectedMappingID = mappings.count == 1 ? mappings[0].id : nil
-                stage = mappings.isEmpty ? .noMapping : .choosing
+                advance(to: mappings.isEmpty ? .noMapping : .choosing)
             } catch {
                 query?.retire()
-                if stage != .closing && stage != .closed { stage = .failed }
+                if stage != .closing && stage != .closed { advance(to: .failed) }
             }
         }
     }
 
     func refreshSharedCopies() {
-        guard stage == .noMapping, operation == nil, let account else { return }
+        guard !closeRequested, stage == .noMapping, operation == nil, let account else { return }
         discoverCopies(in: account)
     }
 
     private func fail() {
-        if stage != .closing && stage != .closed && stage != .closeFailed { stage = .failed }
+        if stage != .closing && stage != .closed && stage != .closeFailed { advance(to: .failed) }
     }
 
     func retryLocalStop() {
-        guard stage == .failed, localStopNeedsRetry, presentation == nil, operation == nil else { return }
-        stage = .opening
+        guard !closeRequested, stage == .failed, localStopNeedsRetry, presentation == nil, operation == nil else { return }
+        advance(to: .opening)
         operation = Task { [self] in
             defer { operation = nil }
             do {
@@ -207,14 +240,14 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     }
 
     func readSelected() {
-        guard stage == .choosing, operation == nil,
+        guard !closeRequested, stage == .choosing, operation == nil,
               let mapping = mappings.first(where: { $0.id == selectedMappingID }),
               let local, let observation, let snapshot, let account, let linkedState else { return }
         // Retain before the original native read and every suspension. Delivery
         // progress may refresh later; consent cannot be silently recaptured.
         let consent = linkedState.consent
         receivedConsent = consent
-        stage = .reading
+        advance(to: .reading)
         operation = Task { [self] in
             defer { operation = nil }
             do {
@@ -242,9 +275,9 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 }.value
                 try observation.requireCurrent()
                 try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
-                try observation.requireCurrent(); try account.validateCurrent()
+                try observation.requireCurrent(); try account.validateCurrent(); try requireOpen()
                 let currentLinks = try await local.linkedState(snapshot: snapshot)
-                try observation.requireCurrent(); try account.validateCurrent()
+                try observation.requireCurrent(); try account.validateCurrent(); try requireOpen()
                 guard currentLinks.consent == consent else { throw AnnotationExchangeError.staleRevision }
                 self.linkedState = currentLinks
                 let current = try AnnotationOriginalEditorMount.nativeBody(in: snapshot)
@@ -253,14 +286,14 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                         != mapping.sharedBodyDigest
                 } ?? true
                 keepLinked = selectedLink != nil
-                stage = .reviewing
+                advance(to: .reviewing)
                 if operationKind == .synchronize { try await synchronizeObservedVersion() }
             } catch {
                 if let pending = selectedDelivery, retainedHistoryURL == nil {
                     try? await local.deferLinkedRead(pending, snapshot: snapshot)
                 }
                 if stage != .closing && stage != .closed {
-                    stage = retainedHistoryURL == nil ? .failed : .changed
+                    advance(to: retainedHistoryURL == nil ? .failed : .changed)
                 }
             }
         }
@@ -284,57 +317,60 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
     }
 
     func unlinkSelectedCopy() {
-        guard stage == .reviewing, operation == nil, let link = selectedLink,
+        guard !closeRequested, stage == .reviewing, operation == nil, let link = selectedLink,
               let snapshot, let local, let observation, let receivedConsent else { return }
         operation = Task { [self] in
             defer { operation = nil }
             do {
                 try observation.requireCurrent()
                 let after = try await local.unlinkNativeCopy(link, snapshot: snapshot, expectedConsent: receivedConsent)
-                try observation.requireCurrent()
+                try observation.requireCurrent(); try requireOpen()
                 // This one explicit original mutation returns its own atomic
                 // post-state. No fresh read can adopt another session's consent.
                 linkedState = after
                 self.receivedConsent = after.consent
                 keepLinked = false
-            } catch { stage = .changed }
+            } catch { advance(to: .changed) }
         }
     }
 
     private func synchronizeObservedVersion() async throws {
         guard let link = selectedLink, let actual = received, let local, let snapshot,
               let receivedConsent else { throw AnnotationExchangeError.receiptMismatch }
+        try requireOpen()
         let currentLinks = try await local.linkedState(snapshot: snapshot)
+        try requireOpen()
         guard currentLinks.consent == receivedConsent else { throw AnnotationExchangeError.staleRevision }
         linkedState = currentLinks
         let unsettled = linkedState?.deliveries.filter {
             $0.link.id == link.id && ($0.state == .dispatchMayHaveOccurred || $0.state == .needsReview)
         } ?? []
         if !unsettled.isEmpty || linkedState?.unresolvedReconciliationLinks.contains(link.id) == true {
-            localChangedSinceShare = true; stage = .reviewing; return
+            localChangedSinceShare = true; advance(to: .reviewing); return
         }
         if let delivery = selectedDelivery {
             guard delivery.link.nativeRootSHA256 == actual.observedNativeRevisionSHA256 else {
                 try await local.requireLinkedReview(delivery, snapshot: snapshot)
                 let reviewedLinks = try await local.linkedState(snapshot: snapshot)
+                try requireOpen()
                 guard reviewedLinks.consent == receivedConsent else { throw AnnotationExchangeError.staleRevision }
                 linkedState = reviewedLinks
-                localChangedSinceShare = true; stage = .reviewing; return
+                localChangedSinceShare = true; advance(to: .reviewing); return
             }
-            guard Int64(Date().timeIntervalSince1970) >= delivery.notBefore else { stage = .waiting; return }
+            guard Int64(Date().timeIntervalSince1970) >= delivery.notBefore else { advance(to: .waiting); return }
             await performUpdate(explicitReview: false)
         } else if link.nativeRootSHA256 != actual.observedNativeRevisionSHA256 {
             keepLinked = true
             await performReceive()
         } else {
-            stage = .synchronized
+            advance(to: .synchronized)
         }
     }
 
     /// Explicit choice consumes the actual sealed read. Its origin and optional
     /// link consent commit atomically with the complete local rich body.
     func acceptReceivedVersion() {
-        guard operationKind != .update, stage == .reviewing, operation == nil else { return }
+        guard !closeRequested, operationKind != .update, stage == .reviewing, operation == nil else { return }
         operation = Task { [self] in
             defer { operation = nil }
             await performReceive()
@@ -345,7 +381,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
         guard let actual = received, let history = retainedHistoryURL, let local,
               let observation, let snapshot, let account, let receivedConsent else { return }
         let enableLink = keepLinked
-        stage = .saving
+        advance(to: .saving)
         do {
             try observation.requireCurrent(); try account.validateCurrent()
             try AnnotationOriginalEditorMount.assertUnchanged(snapshot, try await local.read())
@@ -367,16 +403,16 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 try AnnotationOriginalEditorReceiveHistory.recordCommit(receipt, beside: history)
             }.value
             observation.retire(); local.retire()
-            if stage != .closed && stage != .closing { stage = .saved }
+            if stage != .closed && stage != .closing { advance(to: .saved) }
         } catch {
-            if stage != .closed && stage != .closing { stage = .changed }
+            if stage != .closed && stage != .closing { advance(to: .changed) }
         }
     }
 
     /// Explicit review may resolve prior uncertainty through a NEW original
     /// locked read and conditional revision. Automatic replay never does so.
     func updateExistingVersion() {
-        guard operationKind != .receive, stage == .reviewing, operation == nil else { return }
+        guard !closeRequested, operationKind != .receive, stage == .reviewing, operation == nil else { return }
         operation = Task { [self] in
             defer { operation = nil }
             await performUpdate(explicitReview: true)
@@ -387,7 +423,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
         guard let actual = received, let readSource = nativeSource,
               let historyURL = retainedHistoryURL, let local, let observation,
               let snapshot, let account else { return }
-        stage = .updating
+        advance(to: .updating)
         do {
             let reviewedLink = explicitReview ? selectedLink : nil
             let delivery = reviewedLink == nil ? selectedDelivery : nil
@@ -397,11 +433,12 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
                 linkedDelivery: delivery, linkedReconciliation: reviewedLink)
             switch prepared {
             case .recordedWithoutOwnership:
-                stage = .changed
+                advance(to: .changed)
             case .prepared(let attempt):
                 revisionAttempt = attempt
+                try requireOpen()
                 switch try await attempt.invoke() {
-                case .recordedWithoutOwnership: stage = .unverified
+                case .recordedWithoutOwnership: advance(to: .unverified)
                 case .nativeAwaitReturned: applyRevisionOutcome(try await attempt.history.durableOutcome())
                 }
             }
@@ -409,7 +446,7 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
             if let attempt = revisionAttempt, let outcome = try? await attempt.history.recordedOutcomeIfDrained() {
                 applyRevisionOutcome(outcome)
             } else if stage != .closing && stage != .closed {
-                stage = revisionAttempt?.history.dispatch == nil ? .changed : .unverified
+                advance(to: revisionAttempt?.history.dispatch == nil ? .changed : .unverified)
             }
         }
     }
@@ -418,34 +455,53 @@ final class AnnotationOriginalEditorReceivePresentation: Identifiable {
         revisionOutcome = outcome
         guard stage != .closing && stage != .closed else { return }
         switch outcome.kind {
-        case .verified: stage = .updated
-        case .conflict: stage = .conflict
-        case .unverified: stage = .unverified
+        case .verified: advance(to: .updated)
+        case .conflict: advance(to: .conflict)
+        case .unverified: advance(to: .unverified)
         }
     }
 
     func close(retrying: Bool = false) {
         guard canClose || (retrying && stage == .closeFailed), closeTask == nil else { return }
+        closeRequested = true
+        // Capture both admitted handles before any suspension. Neither worker
+        // awaits closeTask, so this barrier cannot join itself.
+        let startup = startupTask
+        let pending = operation
+        startup?.cancel(); pending?.cancel()
         lifetime.retire(); observation?.retire(); local?.retire(); nativeSource?.retire()
+        revisionAttempt?.requestCancellation()
         revisionAttempt?.retire()
-        operation?.cancel(); stage = .closing
+        stage = .closing
         closeTask = Task { [self] in
             defer { closeTask = nil }
             do {
+                if let startup { await startup.value }
+                if let pending { await pending.value }
+                // The native callback may outlive a cancelled invoke waiter.
+                // Its actual durable write, including linked reconciliation,
+                // must finish before SDK close releases the account owner.
+                if let attempt = revisionAttempt,
+                   let outcome = try await attempt.drainAdmittedOutcome() {
+                    revisionOutcome = outcome
+                }
                 if let presentation {
                     if retrying { try await presentation.retryClose() }
                     else { try await presentation.close() }
                 }
+                closeError = nil
                 account = nil; presentation = nil; stage = .closed
-            } catch { stage = .closeFailed }
+            } catch {
+                closeError = error
+                stage = .closeFailed
+            }
         }
     }
 
     func removed() {
-        revisionAttempt?.requestCancellation()
-        operation?.cancel()
-        if stage == .saving { stage = .changed }
-        if stage == .updating { stage = .unverified }
+        guard !closeRequested else { return }
+        if stage == .saving { advance(to: .changed) }
+        if stage == .updating { advance(to: .unverified) }
         close()
     }
 

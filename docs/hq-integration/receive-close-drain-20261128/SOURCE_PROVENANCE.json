@@ -1,0 +1,32 @@
+{
+  "baseline_commit": "ccad81d5b5256027239c38ce0eaba028f6fb887a",
+  "baseline_source_tree": "f47fd5b11b0ed4b9220f7a5142b2b54c8285c04b",
+  "live_upstream_main": "4203de5fd77beb119e5826e039be1a61325f7be0",
+  "upstream_merge_base": "a0ed0df908a6cb38bc459d4baaeb400f447b2fc4",
+  "worktree": "/mnt/development/projects/worktrees/Maktabah-close-drain-20261128",
+  "branch": "codex/otzaria-close-drain-20261128",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorReceive.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "added_at": "1daaa2990bfd2670ee4d7ea3fcfa81a9790453b9",
+      "absent_at_live_upstream": true,
+      "changes": "Retained startup, monotonic close admission, joined startup/operation/revision history, fenced late UI stage publication, retained close error.",
+      "before_sha256": "cd445a484bc2ef348d43f83f53d419a5806ee17417bfb3cc4f62752d83112e55",
+      "after_sha256": "632b55eb5e39dac79b58c946d430f331695aa3dda657dba9b39afa42586208c6"
+    },
+    {
+      "path": "Source/ChavrusaText/Annotations/LocalEditor/AnnotationOriginalEditorRevision.swift",
+      "classification": "DOWNSTREAM_OWNED",
+      "added_at": "ed1fab6f1a085eb71c69fae8ec5b34e25fafce9c",
+      "changes": "Record only the actual one-use SDK invoke boundary and expose a drain of its actual durable outcome; never dispatch or retry in the barrier.",
+      "before_sha256": "2daff6e1d21d053a53b396f7121039ee20416ecb92afd1caddc80ae78bfe4f98",
+      "after_sha256": "a52c25f882af4151e4e7021101ddd2c6a7fff50a068303847ce479d1380f7a82"
+    }
+  ],
+  "new_upstream_hunks": [],
+  "sdk_edited": false,
+  "gates_edited": false,
+  "native_acceptance": "NOT_RUN",
+  "full_sdk_app_typecheck": "NOT_RUN"
+}

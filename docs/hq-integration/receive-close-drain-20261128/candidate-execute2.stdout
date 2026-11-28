@@ -1,0 +1,89 @@
+{
+  "cases" : [
+    {
+      "name" : "close waits admitted local operation before account release",
+      "status" : "PASS"
+    },
+    {
+      "name" : "cancelled operation retains actual completion before closed",
+      "status" : "PASS"
+    },
+    {
+      "name" : "removed SwiftUI startup remains joined",
+      "status" : "PASS"
+    },
+    {
+      "name" : "startup cancellation does not drop actual worker",
+      "status" : "PASS"
+    },
+    {
+      "name" : "close fences admission synchronously",
+      "status" : "PASS"
+    },
+    {
+      "name" : "begin cannot reopen a closed owner",
+      "status" : "PASS"
+    },
+    {
+      "name" : "late UI cannot reopen closed owner",
+      "status" : "PASS"
+    },
+    {
+      "name" : "removal during save joins actual persistence",
+      "status" : "PASS"
+    },
+    {
+      "name" : "save completion survives removal without late UI",
+      "status" : "PASS"
+    },
+    {
+      "name" : "cancelled native waiter waits original drain callback",
+      "status" : "PASS"
+    },
+    {
+      "name" : "native callback alone cannot pass durable history barrier",
+      "status" : "PASS"
+    },
+    {
+      "name" : "late UI cannot reopen closing owner",
+      "status" : "PASS"
+    },
+    {
+      "name" : "unverified native outcome retained before account release",
+      "status" : "PASS"
+    },
+    {
+      "name" : "uninvoked preparation does not await nonexistent callback",
+      "status" : "PASS"
+    },
+    {
+      "name" : "durable history failure retains owner and actual error",
+      "status" : "PASS"
+    },
+    {
+      "name" : "failed history never silently releases account",
+      "status" : "PASS"
+    },
+    {
+      "name" : "original Stop failure retains presentation account and error",
+      "status" : "PASS"
+    },
+    {
+      "name" : "late completion cannot erase Stop failure or auto retry",
+      "status" : "PASS"
+    },
+    {
+      "name" : "explicit Stop retry preserves single owner chain",
+      "status" : "PASS"
+    },
+    {
+      "name" : "reentrant close and removal share one captured barrier",
+      "status" : "PASS"
+    }
+  ],
+  "failed" : 0,
+  "passed" : 20,
+  "schema" : "otzaria.receive-close-drain.actual-methods.v1",
+  "scope" : "Exact consumer lifecycle and history methods; explicit SDK, local persistence and UI boundary doubles. No native, full App, SDK, SQLite or remote acceptance.",
+  "status" : "PASS"
+}

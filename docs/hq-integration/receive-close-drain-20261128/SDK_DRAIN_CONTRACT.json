@@ -1,0 +1,31 @@
+{
+  "head": "d6090c03b9ac4e5760941e34f4c04478db4ae59f",
+  "files": {
+    "OriginalEditorFramework/AnytypeOriginalEditorAccountSession.swift": {
+      "bytes": 46595,
+      "sha256": "76ae8932646c13b5d04b8f66b4ac85e3051b8894613fdf941163af2051657ba1"
+    },
+    "OriginalEditorFramework/AnytypeOriginalAnnotationRevision.swift": {
+      "bytes": 38449,
+      "sha256": "2ad5e6ef3c88808522f48f9e51f17e05724cbcd015d4a26b3e938ca0655ed886"
+    },
+    "Anytype/Sources/Pinkha/Torah/Annotations/OriginalAnnotationImport.swift": {
+      "bytes": 15016,
+      "sha256": "d56aae13097c78f44fae2245c907de959910429ecc3152fcf20ebc43859818fb"
+    }
+  },
+  "excerpts": {
+    "    func invoke() async throws": {
+      "body": "    func invoke() async throws -> Anytype_Rpc.Annotation.Import.Response {\n        guard phase == .prepared else {\n            throw OriginalAnnotationImportAttemptError.alreadyInvoked\n        }\n        phase = .invoking\n        do {\n            try source.validate()\n            // These are the same source/account/selection/permission captures,\n            // not newly created lifetimes. Keep their original admissions until\n            // both original native calls have drained, including after retirement.\n            admissions = try EditorDocumentWriteCapture.acquireAll(source.captures)\n            retirements = source.captures.map { capture in\n                capture.source.observe(capture.token) { [self] in\n                    Task { @MainActor in _ = requestCancellation() }\n                }\n            }\n        } catch {\n            finishImportDrain()\n            throw error\n        }\n\n        return try await withTaskCancellationHandler {\n            do {\n                return try await source.performOperation(\n                    rpcNames: [\"AnnotationImport\"],\n                    onDrained: { [self] in finishImportDrain() },\n                    operation: { [call, entry] in\n                        entry.enter()\n                        return try await call.invoke()\n                    }\n                )\n            } catch {\n                // performOperation installs its drain before entering this\n                // closure. If it never entered, its pre-admission rejection\n                // cannot have scheduled this closed native call. Otherwise\n                // only that original drain may release the retained admissions.\n                if !entry.didEnter { finishImportDrain() }\n                throw error\n            }\n        } onCancel: { [self] in\n            Task { @MainActor in _ = requestCancellation() }\n        }\n    }",
+      "sha256": "21250066b9ac883149724520967b26335bd9aee529f6d31e8d6338f2db39f129"
+    },
+    "    private func finishIfDrained()": {
+      "body": "    private func finishIfDrained() {\n        guard phase == .invoking, importDrained,\n              !cancellationScheduled || cancellationDrained else { return }\n        phase = .drained\n        let history = OriginalAnnotationImportCallHistory(\n            call: call, cancellation: cancellationCall,\n            cancellationWasScheduled: cancellationScheduled,\n            cancellationAwaitFailed: cancellationAwaitFailed\n        )\n        drainedHistory = history\n        let deliver = onDrained\n        onDrained = nil\n        for observation in retirements { observation.cancel() }\n        retirements.removeAll()\n        // Release only after both complete response copies have been retained.\n        // A history callback has no authority to revive any of these captures.\n        for admission in admissions { admission.cancel() }\n        admissions.removeAll()\n        cancellationTask = nil\n        deliver?(history)\n    }",
+      "sha256": "aca248232ef3a4968d3bcf986cc6f9b12ff8dee6586fe6c529f11d2b28810052"
+    },
+    "    private func finishImportDrain()": {
+      "body": "    private func finishImportDrain() {\n        guard !importDrained else { return }\n        importDrained = true\n        finishIfDrained()\n    }",
+      "sha256": "d40e6112bd647257d985423910c6ea7f8dbdfe2c584033b9da76b5af82234ba5"
+    }
+  }
+}

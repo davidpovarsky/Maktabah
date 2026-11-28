@@ -21,6 +21,8 @@ Potential improvements, features, optimizations, or architectural ideas.
 
 ## Discoveries & Tips
 
+- Original annotation Receive close must join its retained startup, admitted local operation and actual native revision durable-history task before releasing the SDK account owner. Cancellation alone is insufficient; a prepared but never invoked revision must not wait for a nonexistent callback. The 2026-11-28 repair has 20 exact-method Apple controls and an original-close RED; current full App/native account-switch acceptance remains open. See `docs/hq-integration/receive-close-drain-20261128`.
+
 - Reusing a pinned SwiftPM archive must account for read-only files in existing checkouts. The 2026-11-25 MiniApps prelude failed at TorahInspectorKit/PROJECT_BOARD.md before compilation. The restore helper now permits the original safe extraction to proceed only after verifying exact archive bytes, canonical build ancestry, file ownership and a single hard link; changed content and aliased paths fail without permission changes. Archive integrity controls passed; the original native prelude still requires a new run.
 
 - The existing original-editor StageB journey is a Debug/simulator qualification using an ordinary page in an owned localOnly account. It does not enable the normal production annotation entry, dedicated Annotation visibility or cross-app exchange. A real user account's original editor writes before Host Save, so the ordinary Otzaria UI requires an owned localOnly draft lifecycle with canonical SQLite body/CAS, explicit source retirement and recovery; keep cross-app delivery separate. Implementation is in progress under docs/hq-integration/production-annotation-lifecycle-20261124 (2026-11-24).

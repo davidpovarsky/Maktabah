@@ -1,0 +1,18 @@
+{
+  "schema": "otzaria.close-drain.generator-replay.v1",
+  "runtime_tests_repeated": false,
+  "status": "PASS",
+  "generated_sources": {
+    "candidate.swift": "522c14285815c8092ae43349fa9ea3f7ff1dce8e8f7efd8edf52b83e82731723",
+    "original-close.swift": "cbc3198fb954caf267f44c3df27980f737cfb57b7a25f70fe389bba752503c11"
+  },
+  "method_extractions": {
+    "func begin()": "ac19a3ad655202fa707b0aaaa8c9deee1cd6a42951f8436776c999125c319a5d",
+    "private func requireOpen()": "810928e8d27c3c411b107705b8b4422239ca91e70535ae4c4b69651b51f6f56b",
+    "private func advance(": "b8d583e2db4a52f03f39a25755709eb42aaafad1beb2457e1ae1dda973a1ebd1",
+    "func close(": "18ecb9b7b6ba3e95581b02dcec691d3d61e3d6fce88509c08e5b5b82a6e6101f",
+    "func removed()": "2ef3057457ee8e9d83aa9901137b5320c1281a6897c09ffac58332d8e7363a7e",
+    "private func fail()": "9714d052974cf40e9bab5536a64483680441209c872ede0dff34faa8ea03d8cf",
+    "private func applyRevisionOutcome(": "427a688e22c04f56d4f9eb02ad235a38f3bce7acacd41bdf6d6dec9f55962c97"
+  }
+}

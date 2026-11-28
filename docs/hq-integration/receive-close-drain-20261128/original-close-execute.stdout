@@ -1,0 +1,17 @@
+{
+  "cases" : [
+    {
+      "name" : "close waits admitted local operation before account release",
+      "status" : "FAIL"
+    },
+    {
+      "name" : "cancelled operation retains actual completion before closed",
+      "status" : "FAIL"
+    }
+  ],
+  "failed" : 2,
+  "passed" : 0,
+  "schema" : "otzaria.receive-close-drain.actual-methods.v1",
+  "scope" : "Exact consumer lifecycle and history methods; explicit SDK, local persistence and UI boundary doubles. No native, full App, SDK, SQLite or remote acceptance.",
+  "status" : "FAIL"
+}
