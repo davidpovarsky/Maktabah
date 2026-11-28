@@ -1,0 +1,264 @@
+{
+  "all194ArchiveMembersReverified": true,
+  "baseCommit": "a61cd44a4fff8454211ba356c1648e029d81cab6",
+  "components": [
+    {
+      "actualBuildJob": "job_786abd6626a1",
+      "actualCommandCount": 11,
+      "archive": {
+        "bytes": 1804462,
+        "members": 44,
+        "sha256": "df2051c0aa3fb490c237c0f831e2d0381e6c055bc7e87e4d2591da41af78a916"
+      },
+      "configuration": "debug",
+      "fullAppBuilds": 0,
+      "independentReadbackJob": "job_2f7931c37d55",
+      "machOObjects": [
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeFeatureIntents.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "2fc77f652f314f355101408d49cf903ccddef23062fd331acb7d095585e553c9"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeLibrarySelectionIntents.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "9775fde1fbeebb47b87bc4b5ebcb7760e5dec7017ec56c13078c8ebced64b1c1"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeBookInfoIntents.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "6953fe416875e2fadcb21953f699fdb52ebee6f15a4655ce09427b79c88b82d7"
+        }
+      ],
+      "manifestSHA256": "cf075e130c45dc4dbbd926ebc304c6f00b913efa69526f66046c9a0032dffa0a",
+      "name": "host47-debug",
+      "nativeRuns": 0,
+      "originalSwiftCounts": {
+        "ChavrusaUIRoutingHost": 47,
+        "OtzariaActionCore": 31,
+        "OtzariaUIRouting": 13
+      },
+      "resultSHA256": "b7e092454d76756b53980968c0cda0ef28ca13173ee0b7fc39f95c0e32601044",
+      "rootProof": {
+        "bytes": 10936,
+        "sha256": "80ce7c34a38de4de0ac78980d7f8c90f0ec3ab948fa1bd1a4f9eaa5b1776f41c"
+      },
+      "sourceBase": "d62b1a24bd7a93f4cfce6dfa487966a0ace41c1d",
+      "sourceTree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+      "status": "PASS_COMPONENT_APPLE_SDK_ONLY"
+    },
+    {
+      "actualBuildJob": "job_23b1d6adc648",
+      "actualCommandCount": 11,
+      "archive": {
+        "bytes": 2034827,
+        "members": 44,
+        "sha256": "0f2e0b2d93071674a624f446e63d2ea664cdc8a79b171ec4fdb2a61fb115943e"
+      },
+      "configuration": "release",
+      "fullAppBuilds": 0,
+      "independentReadbackJob": "job_9ad15344f936",
+      "machOObjects": [
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Release-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeFeatureIntents.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "aa1a1e770eff439579d51536753cdf4b20c85e577001efc0ceb26e515fd142b1"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Release-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeLibrarySelectionIntents.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "1941f6a2daae8c2e54ff38c510dbeaa6ecf5abc940fe2ba2d300a2772559f4b2"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Release-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeBookInfoIntents.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "b3ee72347511265e42ada43eac562b4a6c8df32915c9b4f19c0c8e9cd4e6a7c0"
+        }
+      ],
+      "manifestSHA256": "cf075e130c45dc4dbbd926ebc304c6f00b913efa69526f66046c9a0032dffa0a",
+      "name": "host47-release",
+      "nativeRuns": 0,
+      "originalSwiftCounts": {
+        "ChavrusaUIRoutingHost": 47,
+        "OtzariaActionCore": 31,
+        "OtzariaUIRouting": 13
+      },
+      "resultSHA256": "6adeba96f1acf07973859b5ae5b2a7869c8d5f3e548ea5078e7d584beeadffd5",
+      "rootProof": {
+        "bytes": 11008,
+        "sha256": "ca77aa5824634c77d18dacce26cdf9dec85eca0a3a411b1ddc91073591ca3742"
+      },
+      "sourceBase": "d62b1a24bd7a93f4cfce6dfa487966a0ace41c1d",
+      "sourceTree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+      "status": "PASS_COMPONENT_APPLE_SDK_ONLY"
+    },
+    {
+      "actualBuildJob": "job_b57a334e5daa",
+      "actualCommandCount": 17,
+      "archive": {
+        "bytes": 2655234,
+        "members": 53,
+        "sha256": "7d45387f8f70ba99070f4d3b2a8e1790bbd6b54f89587a8fe9829f73167bbd94"
+      },
+      "configuration": "debug",
+      "fullAppBuilds": 0,
+      "independentReadbackJob": "job_c1662124715c",
+      "machOObjects": [
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Debug-iphonesimulator/TorahInspectorCore-t.build/Objects-normal/arm64/Models.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "50b625d5ac8242a958e29696749e73ad194ac316dbab9f2289a3b68a8a45fa83"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Debug-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorNavigationSurface.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "fa31ce17caf3e484f88278d1ec71cb3791f25949963866a2d0dc93cf4c4fe676"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Debug-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorView.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "4a5152f82d84a9116c76119d0375412da3440d538e393baa6fd16b74fca990f4"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Debug-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahSegmentDetailView.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "85525de7fbce4094efb6a618ceb48c687252562ff646e8cc6ad7e330b7f1f725"
+        }
+      ],
+      "manifestSHA256": "42ca6741b449867a8b83f9d31ba990cbc285e694cdeba3bd34e5f1f9da78a16c",
+      "name": "kit414-debug",
+      "nativeRuns": 0,
+      "originalSwiftCounts": {
+        "TorahInspectorCore": 8,
+        "TorahInspectorUI": 15
+      },
+      "resultSHA256": "ae602d397a65aaf4a1c30683c0b25c4504bde3f585317e421c5178f7edafbfbc",
+      "rootProof": {
+        "bytes": 12371,
+        "sha256": "e2334ad5061c07a886ee4e549eb285826e7060ca8fcad4e73a42ac1a5df3b4ad"
+      },
+      "sourceBase": "414e0d3e95d53509381d233a23fcdd28ef24167a",
+      "sourceTree": "294f57e29cdb414df4647358221755c3e2ebcf99",
+      "status": "PASS_COMPONENT_APPLE_SDK_ONLY"
+    },
+    {
+      "actualBuildJob": "job_ff2da295f839",
+      "actualCommandCount": 17,
+      "archive": {
+        "bytes": 2323528,
+        "members": 53,
+        "sha256": "050cc114a86ede44009eddc14234bb4167fdcd54f34223ba9f5eab22e1e77799"
+      },
+      "configuration": "release",
+      "fullAppBuilds": 0,
+      "independentReadbackJob": "job_cf1cf4572a98",
+      "machOObjects": [
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorCore-t.build/Objects-normal/arm64/Models.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "c53144182acc72000606714ff53dcf2fc0b82d77318216a9f3593c9f14666e14"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorNavigationSurface.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "35d0361a136f2734b872910dc2229f1c3d98f2532e62d3915aea061862c5b95a"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorView.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "1adca208319a76217254730dc64f1b7340fc6d1f987d666f4e65d997ca524435"
+        },
+        {
+          "cpu": "arm64",
+          "fileType": "MH_OBJECT",
+          "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahSegmentDetailView.o",
+          "platforms": [
+            7
+          ],
+          "sha256": "52ca7c4ac1bd1451a567e2a8494cef39dd11d9c89efed18f783d35a7a9a9d35f"
+        }
+      ],
+      "manifestSHA256": "42ca6741b449867a8b83f9d31ba990cbc285e694cdeba3bd34e5f1f9da78a16c",
+      "name": "kit414-release",
+      "nativeRuns": 0,
+      "originalSwiftCounts": {
+        "TorahInspectorCore": 8,
+        "TorahInspectorUI": 15
+      },
+      "resultSHA256": "8253dd0735ee1244c669c831bab9c0c8594784103bc3879e3ee27ca64418ecf3",
+      "rootProof": {
+        "bytes": 12410,
+        "sha256": "f8409fa8ad803c37bb00a5b062205ab84f256e7c0e266801cd30c62419729b01"
+      },
+      "sourceBase": "414e0d3e95d53509381d233a23fcdd28ef24167a",
+      "sourceTree": "294f57e29cdb414df4647358221755c3e2ebcf99",
+      "status": "PASS_COMPONENT_APPLE_SDK_ONLY"
+    }
+  ],
+  "fullAppGateBytesUnchanged": 15032385536,
+  "limits": "Actual Apple SDK arm64 iOS Simulator component compilation only. No App Integration/PBX, native UI acceptance, system action delivery, full SDK, device archive, signature, upload or physical execution is asserted.",
+  "originalGuards": {
+    "admissionBytes": 3221225472,
+    "cleanupBudgetSeconds": 50,
+    "hardOuterSeconds": 675,
+    "jobs": 2,
+    "liveBytes": 2415919104,
+    "workSeconds": 600
+  },
+  "rootSourceTree": "f47fd5b11b0ed4b9220f7a5142b2b54c8285c04b",
+  "schema": "otzaria.original-apple-components-actual-evidence/1",
+  "sourceChangesInThisCommit": 0,
+  "utc": "2026-11-28T11:03:43.054373+00:00"
+}

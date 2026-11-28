@@ -1,0 +1,246 @@
+{
+  "actualCommandExits": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "allSelectedBytesReverified": true,
+  "archive": {
+    "bytes": 1804462,
+    "path": "/home/ubuntu/otzaria-wave3-host47-apple-independent-readback-20261128/APPLE_ARTIFACTS_RAW.zip",
+    "sha256": "df2051c0aa3fb490c237c0f831e2d0381e6c055bc7e87e4d2591da41af78a916"
+  },
+  "currentSourceManifestSHA256": "cf075e130c45dc4dbbd926ebc304c6f00b913efa69526f66046c9a0032dffa0a",
+  "files": {
+    "INPUT_MANIFEST.json": {
+      "bytes": 91170,
+      "sha256": "cf075e130c45dc4dbbd926ebc304c6f00b913efa69526f66046c9a0032dffa0a"
+    },
+    "NativeBookInfoIntents.file.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeBookInfoIntents.file.stdout.log": {
+      "bytes": 272,
+      "sha256": "548bca9a3c05f0e9b1752d8a167ddda38f45145927bd438a48dee711c0a33c15"
+    },
+    "NativeBookInfoIntents.symbols.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeBookInfoIntents.symbols.stdout.log": {
+      "bytes": 66511,
+      "sha256": "08e51d993061b57320749dd117db3bdeebec79bc36b5bfc0123132a7b015abe6"
+    },
+    "NativeBookInfoIntents.vtool.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeBookInfoIntents.vtool.stdout.log": {
+      "bytes": 365,
+      "sha256": "267f4bd657eacddea733e873523ffe9c058640d71195ff2840efc55c16c471c2"
+    },
+    "NativeFeatureIntents.file.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeFeatureIntents.file.stdout.log": {
+      "bytes": 271,
+      "sha256": "77ae25249e7e852aafe179489e6358ac8dbf4b294c3b52edfb55c608828c9cfb"
+    },
+    "NativeFeatureIntents.symbols.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeFeatureIntents.symbols.stdout.log": {
+      "bytes": 102270,
+      "sha256": "5fc9f7031f58062485e5f751930118ef55ef5c2306b556b338809385c2ad230d"
+    },
+    "NativeFeatureIntents.vtool.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeFeatureIntents.vtool.stdout.log": {
+      "bytes": 364,
+      "sha256": "c40409aa86ca75f8c8fad3297a1e06051c86b314ec1186be1c04c0f24d786b6d"
+    },
+    "NativeLibrarySelectionIntents.file.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeLibrarySelectionIntents.file.stdout.log": {
+      "bytes": 280,
+      "sha256": "04786c012a687e8aa0c9e1d273116f63115a4d7be4c381e402c36443e19c1690"
+    },
+    "NativeLibrarySelectionIntents.symbols.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeLibrarySelectionIntents.symbols.stdout.log": {
+      "bytes": 84681,
+      "sha256": "d6daebb2d5689ff4822064176115f3f883b9f7ef24d83d33874dcb24d0405708"
+    },
+    "NativeLibrarySelectionIntents.vtool.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "NativeLibrarySelectionIntents.vtool.stdout.log": {
+      "bytes": 373,
+      "sha256": "9cdf6fb6dcda90ecb0d8a4168a295385d7ceb3f683a70a4a264912cb22192c4e"
+    },
+    "RESULT.json": {
+      "bytes": 17282,
+      "sha256": "b7e092454d76756b53980968c0cda0ef28ca13173ee0b7fc39f95c0e32601044"
+    },
+    "SOURCE_TRANSFER_RESULT.json": {
+      "bytes": 38570,
+      "sha256": "500616dfc6798e7d9bf2f73deacd15edb9c82404bd4c3c7957c51de658fa3950"
+    },
+    "build.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build.stdout.log": {
+      "bytes": 1513,
+      "sha256": "12b42340ef9ea8ad42d31f8f875c7b3e8f56815c32c93acf38f8b2f9b7741024"
+    },
+    "compiled-controller.py": {
+      "bytes": 18254,
+      "sha256": "912a97fec7c9509a8e8a99a71588feec5a45185a6dc8df1bd6767284ca330c7a"
+    },
+    "compiled-localizations/ar.lproj/Localizable.strings": {
+      "bytes": 42371,
+      "sha256": "4059f8af6cdc35cc53c78e2b285347c86870094099ede2afff753d048d9909ae"
+    },
+    "compiled-localizations/en.lproj/Localizable.strings": {
+      "bytes": 47574,
+      "sha256": "60a186453351304bf25e0282c85c17592371ce21547f319364dfccda0f165e48"
+    },
+    "compiled-localizations/he.lproj/Localizable.strings": {
+      "bytes": 66706,
+      "sha256": "14642fd57fcafc5113148a763ba13746d276381abaeecafb63803462e683f844"
+    },
+    "compiled-localizations/id.lproj/Localizable.strings": {
+      "bytes": 36000,
+      "sha256": "bb561b451724e44b4879042857b45e977daabfe194c49987b0aa462df69c0961"
+    },
+    "localizations.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "localizations.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/ChavrusaUIRoutingHost.SwiftFileList": {
+      "bytes": 7773,
+      "sha256": "93f00f7451017874381b444a666273e639003dd642207a65499621e14b8cb830"
+    },
+    "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/ChavrusaUIRoutingHost.swiftmodule": {
+      "bytes": 1255164,
+      "sha256": "15987f844f4398a4cb8196dcf3ea9cf5d4440b1569bce4194dfc8a6fc417d859"
+    },
+    "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeBookInfoIntents.o": {
+      "bytes": 178256,
+      "sha256": "6953fe416875e2fadcb21953f699fdb52ebee6f15a4655ce09427b79c88b82d7"
+    },
+    "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeFeatureIntents.o": {
+      "bytes": 284104,
+      "sha256": "2fc77f652f314f355101408d49cf903ccddef23062fd331acb7d095585e553c9"
+    },
+    "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeLibrarySelectionIntents.o": {
+      "bytes": 215296,
+      "sha256": "9775fde1fbeebb47b87bc4b5ebcb7760e5dec7017ec56c13078c8ebced64b1c1"
+    },
+    "swift-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-iphonesimulator/OtzariaActionCore-t.build/DerivedSources/resource_bundle_accessor.swift": {
+      "bytes": 1746,
+      "sha256": "f7b40a7f0389fcbc9f05d48696fa07f1f109bfdec95f9f12ec833e2a1d5b84c0"
+    },
+    "swift-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-iphonesimulator/OtzariaActionCore-t.build/Objects-normal/arm64/OtzariaActionCore.SwiftFileList": {
+      "bytes": 5005,
+      "sha256": "9b53666ce8496435abfe2e669754f90599bfdc1e945b5d63777d4c5425af688e"
+    },
+    "swift-build/out/Intermediates.noindex/OtzariaActionCore.build/Debug-iphonesimulator/OtzariaActionCore-t.build/Objects-normal/arm64/OtzariaActionCore.swiftmodule": {
+      "bytes": 731856,
+      "sha256": "eaebc0057bdc6cc9f4e29552804b5dfc2f46becd922e257ecad4df7393d77b70"
+    },
+    "swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/DerivedSources/resource_bundle_accessor.swift": {
+      "bytes": 1742,
+      "sha256": "91bdd8248c49f80552a8938c51047647415fcc8b2014566d7073dbf9891582be"
+    },
+    "swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/Objects-normal/arm64/OtzariaUIRouting.SwiftFileList": {
+      "bytes": 2227,
+      "sha256": "62ad8e3db3640e44cb0141fe50cf71c47102319f88c903e78c549546036d9542"
+    },
+    "swift-build/out/Intermediates.noindex/OtzariaUIRouting.build/Debug-iphonesimulator/OtzariaUIRouting-t.build/Objects-normal/arm64/OtzariaUIRouting.swiftmodule": {
+      "bytes": 337136,
+      "sha256": "2484a90115fdc47031acc0489e23c7e3416c857cbd7f6615737f4673ce83198d"
+    },
+    "swift-build/out/Products/Debug-iphonesimulator/ChavrusaUIRoutingHost.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
+      "bytes": 1255164,
+      "sha256": "15987f844f4398a4cb8196dcf3ea9cf5d4440b1569bce4194dfc8a6fc417d859"
+    },
+    "swift-build/out/Products/Debug-iphonesimulator/OtzariaActionCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
+      "bytes": 731856,
+      "sha256": "eaebc0057bdc6cc9f4e29552804b5dfc2f46becd922e257ecad4df7393d77b70"
+    },
+    "swift-build/out/Products/Debug-iphonesimulator/OtzariaUIRouting.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
+      "bytes": 337136,
+      "sha256": "2484a90115fdc47031acc0489e23c7e3416c857cbd7f6615737f4673ce83198d"
+    }
+  },
+  "fullAppBuilds": 0,
+  "fullAppGateUnchanged": 15032385536,
+  "limits": "Real Debug Apple package code/modules only, exact91 originals +2derivedaccessors; does not compile App Integration/PBX or execute system intents.",
+  "machoObjects": [
+    {
+      "cpu": "arm64",
+      "fileType": "MH_OBJECT",
+      "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeFeatureIntents.o",
+      "platforms": [
+        7
+      ],
+      "sha256": "2fc77f652f314f355101408d49cf903ccddef23062fd331acb7d095585e553c9"
+    },
+    {
+      "cpu": "arm64",
+      "fileType": "MH_OBJECT",
+      "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeLibrarySelectionIntents.o",
+      "platforms": [
+        7
+      ],
+      "sha256": "9775fde1fbeebb47b87bc4b5ebcb7760e5dec7017ec56c13078c8ebced64b1c1"
+    },
+    {
+      "cpu": "arm64",
+      "fileType": "MH_OBJECT",
+      "path": "swift-build/out/Intermediates.noindex/ChavrusaUIRoutingHost.build/Debug-iphonesimulator/ChavrusaUIRoutingHost-t.build/Objects-normal/arm64/NativeBookInfoIntents.o",
+      "platforms": [
+        7
+      ],
+      "sha256": "6953fe416875e2fadcb21953f699fdb52ebee6f15a4655ce09427b79c88b82d7"
+    }
+  ],
+  "nativeRuns": 0,
+  "newCompilerRuns": 0,
+  "resultBytes": 17282,
+  "resultSHA256": "b7e092454d76756b53980968c0cda0ef28ca13173ee0b7fc39f95c0e32601044",
+  "schema": "otzaria.host47-root-apple-artifact-readback/1",
+  "sourceBase": "d62b1a24bd7a93f4cfce6dfa487966a0ace41c1d",
+  "sourceCounts": {
+    "ChavrusaUIRoutingHost": 47,
+    "OtzariaActionCore": 31,
+    "OtzariaUIRouting": 13
+  },
+  "sourceTree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "status": "ROOT_READ_REAL_APPLE_ARTIFACTS",
+  "utc": "2026-11-28T09:42:56.396441+00:00"
+}

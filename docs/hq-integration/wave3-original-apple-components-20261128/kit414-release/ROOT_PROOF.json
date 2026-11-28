@@ -1,0 +1,297 @@
+{
+  "actualCommandExits": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "allSelectedBytesReverified": true,
+  "archive": {
+    "bytes": 2323528,
+    "path": "/home/ubuntu/otzaria-wave3-kit414-apple-release-independent-readback-20261128/APPLE_ARTIFACTS_RAW.zip",
+    "sha256": "050cc114a86ede44009eddc14234bb4167fdcd54f34223ba9f5eab22e1e77799"
+  },
+  "configuration": "release",
+  "currentSourceManifestSHA256": "42ca6741b449867a8b83f9d31ba990cbc285e694cdeba3bd34e5f1f9da78a16c",
+  "files": {
+    "INPUT_MANIFEST.json": {
+      "bytes": 57562,
+      "sha256": "42ca6741b449867a8b83f9d31ba990cbc285e694cdeba3bd34e5f1f9da78a16c"
+    },
+    "Models.file.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "Models.file.stdout.log": {
+      "bytes": 270,
+      "sha256": "751db4c6f418d782a1619226f49f5af933f5ad8a5900f5a795665054eb526190"
+    },
+    "Models.symbols.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "Models.symbols.stdout.log": {
+      "bytes": 180245,
+      "sha256": "b8d068fb089c0ebb5c527c7b788fa4d6f8ab4394ac005dda7266ec6e51004b42"
+    },
+    "Models.vtool.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "Models.vtool.stdout.log": {
+      "bytes": 363,
+      "sha256": "275882621e7d55c33cbc03c35cfde2ddb35fe98490a74b2babef62979eab2560"
+    },
+    "RESULT.json": {
+      "bytes": 27874,
+      "sha256": "8253dd0735ee1244c669c831bab9c0c8594784103bc3879e3ee27ca64418ecf3"
+    },
+    "SOURCE_TRANSFER_RESULT.json": {
+      "bytes": 27398,
+      "sha256": "ef3917db03883af61823f17bc94748e79229510e2305970862a562574ab53c3c"
+    },
+    "TorahInspectorNavigationSurface.file.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahInspectorNavigationSurface.file.stdout.log": {
+      "bytes": 293,
+      "sha256": "d93d2af27c990924df7356a33be3cc028af0dd9a5ac8ead0ddfc7979e52dcfa2"
+    },
+    "TorahInspectorNavigationSurface.symbols.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahInspectorNavigationSurface.symbols.stdout.log": {
+      "bytes": 68061,
+      "sha256": "abde53ee83799ca120ae19d4aebff0aa5d44dc7d47ec0c628813d2f4faa6a525"
+    },
+    "TorahInspectorNavigationSurface.vtool.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahInspectorNavigationSurface.vtool.stdout.log": {
+      "bytes": 386,
+      "sha256": "f7d927cbb03706ad54733021fc3771015df18de175cbcd8101d88c566ba2a653"
+    },
+    "TorahInspectorView.file.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahInspectorView.file.stdout.log": {
+      "bytes": 280,
+      "sha256": "582afde3788bc36d67d3e31bf3031313b00ffeb6f5037156567c33d073551e57"
+    },
+    "TorahInspectorView.symbols.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahInspectorView.symbols.stdout.log": {
+      "bytes": 207085,
+      "sha256": "08c5902f56498cabf38c357155e68a85785aa48e7379f5abde1931da13586888"
+    },
+    "TorahInspectorView.vtool.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahInspectorView.vtool.stdout.log": {
+      "bytes": 373,
+      "sha256": "bd90d593bb028468ea56afe613d691a017a9d1f861a6fb752ec4dc5b50f2a390"
+    },
+    "TorahSegmentDetailView.file.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahSegmentDetailView.file.stdout.log": {
+      "bytes": 284,
+      "sha256": "5a64607e446ea622910ddb8e3f15808f6f04caba24660e92246461a035c32e8b"
+    },
+    "TorahSegmentDetailView.symbols.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahSegmentDetailView.symbols.stdout.log": {
+      "bytes": 2055608,
+      "sha256": "9ad3b87b7eeda0ce20aaf5bb548caa154ba4f61a1c8f1be102cab17a96a95ce9"
+    },
+    "TorahSegmentDetailView.vtool.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "TorahSegmentDetailView.vtool.stdout.log": {
+      "bytes": 377,
+      "sha256": "8739f1ac4e7f3457842d0c7f96dd2987f46a69f9b81d39b8b417db6df843c36a"
+    },
+    "build.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build.stdout.log": {
+      "bytes": 520,
+      "sha256": "acbaee49953bb1c2614b6dba6b080b3e5bcada4ec567b2f08f0a296475d45234"
+    },
+    "compiled-controller.py": {
+      "bytes": 21812,
+      "sha256": "3596c225df447f9141a2342c2813c57eef58b5de9b0409231b373ee601f267dd"
+    },
+    "en.compiled-strings.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "en.compiled-strings.stdout.log": {
+      "bytes": 2660,
+      "sha256": "e28db6bc948e23ec8c89ab6d027190f4fe35359e5a60abb18f9634a595b53e75"
+    },
+    "en.original-strings.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "en.original-strings.stdout.log": {
+      "bytes": 2660,
+      "sha256": "e28db6bc948e23ec8c89ab6d027190f4fe35359e5a60abb18f9634a595b53e75"
+    },
+    "he.compiled-strings.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "he.compiled-strings.stdout.log": {
+      "bytes": 3317,
+      "sha256": "994ec9a61004cb8c7fb515a6eaa3f6372429a72bd1bfd52cb12c07b32a3d41c4"
+    },
+    "he.original-strings.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "he.original-strings.stdout.log": {
+      "bytes": 3317,
+      "sha256": "994ec9a61004cb8c7fb515a6eaa3f6372429a72bd1bfd52cb12c07b32a3d41c4"
+    },
+    "original-resources/en/Localizable.strings": {
+      "bytes": 2866,
+      "sha256": "165de3b7f1894669a1bf9f7d0bd4cf01a7f2e29820455d55840efbebef0cda7d"
+    },
+    "original-resources/he/Localizable.strings": {
+      "bytes": 3525,
+      "sha256": "f81bcdabbf8136bdffb358b373f77c2191d3678f8763b944cff2e7c4c48c0f2b"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorCore-t.build/Objects-normal/arm64/Models.o": {
+      "bytes": 666920,
+      "sha256": "c53144182acc72000606714ff53dcf2fc0b82d77318216a9f3593c9f14666e14"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorCore-t.build/Objects-normal/arm64/TorahInspectorCore.SwiftFileList": {
+      "bytes": 1077,
+      "sha256": "84ff28f90d802dc4b72ae359e7c48e7a3c7d50d27217099b01c8c4eb90df1af1"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorCore-t.build/Objects-normal/arm64/TorahInspectorCore.swiftmodule": {
+      "bytes": 413704,
+      "sha256": "4eeb90355ccc53db729abce58cfb431671919d69a7c3c6b4c1beebbb788ea10a"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/DerivedSources/resource_bundle_accessor.swift": {
+      "bytes": 1744,
+      "sha256": "48a11439cec6adc26e741cf5921f5adac233d624cc3650eeb56a04545a6afc55"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorNavigationSurface.o": {
+      "bytes": 237112,
+      "sha256": "35d0361a136f2734b872910dc2229f1c3d98f2532e62d3915aea061862c5b95a"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorUI.SwiftFileList": {
+      "bytes": 2252,
+      "sha256": "9f63118ce888859167ec66b1d76a72dfc4a4a924d61b40eed0771d91000c6e5f"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorUI.swiftmodule": {
+      "bytes": 566616,
+      "sha256": "d86781f3c5fd31734c75cde781c1319d8249b5cc78cafb992730a74211d9b444"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorView.o": {
+      "bytes": 852984,
+      "sha256": "1adca208319a76217254730dc64f1b7340fc6d1f987d666f4e65d997ca524435"
+    },
+    "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahSegmentDetailView.o": {
+      "bytes": 4384488,
+      "sha256": "52ca7c4ac1bd1451a567e2a8494cef39dd11d9c89efed18f783d35a7a9a9d35f"
+    },
+    "swift-build/out/Products/Release-iphonesimulator/TorahInspectorCore.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
+      "bytes": 413704,
+      "sha256": "4eeb90355ccc53db729abce58cfb431671919d69a7c3c6b4c1beebbb788ea10a"
+    },
+    "swift-build/out/Products/Release-iphonesimulator/TorahInspectorKit_TorahInspectorUI.bundle/en.lproj/Localizable.strings": {
+      "bytes": 2866,
+      "sha256": "165de3b7f1894669a1bf9f7d0bd4cf01a7f2e29820455d55840efbebef0cda7d"
+    },
+    "swift-build/out/Products/Release-iphonesimulator/TorahInspectorKit_TorahInspectorUI.bundle/he.lproj/Localizable.strings": {
+      "bytes": 3525,
+      "sha256": "f81bcdabbf8136bdffb358b373f77c2191d3678f8763b944cff2e7c4c48c0f2b"
+    },
+    "swift-build/out/Products/Release-iphonesimulator/TorahInspectorUI.swiftmodule/arm64-apple-ios-simulator.swiftmodule": {
+      "bytes": 566616,
+      "sha256": "d86781f3c5fd31734c75cde781c1319d8249b5cc78cafb992730a74211d9b444"
+    }
+  },
+  "fullAppBuilds": 0,
+  "fullAppGateUnchanged": 15032385536,
+  "limits": "Real Release Apple package code/modules only: all169 original tracked inputs, Core8/UI15 +1 derived resource accessor, 59 EN/HE entries. No App Integration/PBX, system intents or native execution.",
+  "machoObjects": [
+    {
+      "cpu": "arm64",
+      "fileType": "MH_OBJECT",
+      "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorCore-t.build/Objects-normal/arm64/Models.o",
+      "platforms": [
+        7
+      ],
+      "sha256": "c53144182acc72000606714ff53dcf2fc0b82d77318216a9f3593c9f14666e14"
+    },
+    {
+      "cpu": "arm64",
+      "fileType": "MH_OBJECT",
+      "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorNavigationSurface.o",
+      "platforms": [
+        7
+      ],
+      "sha256": "35d0361a136f2734b872910dc2229f1c3d98f2532e62d3915aea061862c5b95a"
+    },
+    {
+      "cpu": "arm64",
+      "fileType": "MH_OBJECT",
+      "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahInspectorView.o",
+      "platforms": [
+        7
+      ],
+      "sha256": "1adca208319a76217254730dc64f1b7340fc6d1f987d666f4e65d997ca524435"
+    },
+    {
+      "cpu": "arm64",
+      "fileType": "MH_OBJECT",
+      "path": "swift-build/out/Intermediates.noindex/TorahInspectorKit.build/Release-iphonesimulator/TorahInspectorUI-t.build/Objects-normal/arm64/TorahSegmentDetailView.o",
+      "platforms": [
+        7
+      ],
+      "sha256": "52ca7c4ac1bd1451a567e2a8494cef39dd11d9c89efed18f783d35a7a9a9d35f"
+    }
+  ],
+  "nativeRuns": 0,
+  "newCompilerRuns": 0,
+  "resultBytes": 27874,
+  "resultSHA256": "8253dd0735ee1244c669c831bab9c0c8594784103bc3879e3ee27ca64418ecf3",
+  "schema": "otzaria.kit414-root-apple-artifact-readback/1",
+  "sourceBase": "414e0d3e95d53509381d233a23fcdd28ef24167a",
+  "sourceCounts": {
+    "TorahInspectorCore": 8,
+    "TorahInspectorUI": 15
+  },
+  "sourceTree": "294f57e29cdb414df4647358221755c3e2ebcf99",
+  "status": "ROOT_READ_REAL_APPLE_ARTIFACTS",
+  "utc": "2026-11-28T10:55:02.738067+00:00"
+}
