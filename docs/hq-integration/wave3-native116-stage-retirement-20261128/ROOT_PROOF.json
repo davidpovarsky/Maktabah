@@ -1,0 +1,27 @@
+{
+  "baseCommit": "ae225aef1c4bfbc891a79085d40564254460d39b",
+  "bundle": {
+    "bytes": 62494,
+    "members": 27,
+    "sha256": "f7e418900468c30fcb75f6a5e7ffd431d180688e9443f5d5aa1743a7e021a4b8"
+  },
+  "commitJob": "job_695b4bbc5941",
+  "durablePreservationCommit": "ae225aef1c4bfbc891a79085d40564254460d39b",
+  "durableRemoteProofSHA256": "8bcbc0e69dbcf5c2d026b2d88f7245ff4aa4f3f3e49ad438d40c6ed4d000739c",
+  "externalReferencesTouched": false,
+  "finalSHA256": "da2ceb8bcc621d2c939708939c1ea599630b2c8524b14eb209d67c14ca16bab2",
+  "freeSpace": "Shared Mac observation only; no exclusive APFS reclaimed-byte inference; full-app15,032,385,536-byte gate remains unchanged.",
+  "independentJob": "job_15daf663d116",
+  "inventorySHA256": "c876bb3a000c366b6f136b3acff22420a87ea68648852e80c9dda686e3a27b21",
+  "nativeRuns": 0,
+  "originalNativeTreeDeleted": false,
+  "prepareJob": "job_38079a35e83b",
+  "prepareReviewJob": "job_d042b64339c9",
+  "preservedWarnings": "Independent readback exited0 with three Python SyntaxWarnings about compact numeric token spacing; original warnings and verifier bytes retained. No healthy action rerun.",
+  "restorerExecuted": false,
+  "schema": "otzaria.native-stage-retirement-publication/1",
+  "sourceTree": "f47fd5b11b0ed4b9220f7a5142b2b54c8285c04b",
+  "status": "ACTUAL_ONE_CLOSED_STAGE_LEAF_RETIRED_AND_INDEPENDENTLY_CONFIRMED",
+  "testFlightUploads": 0,
+  "utc": "2026-11-28T10:54:15.760938+00:00"
+}

@@ -1,0 +1,285 @@
+{
+  "nativeAcceptanceRuns": 0,
+  "originalFileCount": 23,
+  "originalNativeBaseline": {
+    "fail": 34,
+    "pass": 82
+  },
+  "originalNativeTreeUntouched": true,
+  "originalSourcePins": [
+    {
+      "bytes": 8323,
+      "path": "source/PROCEDURE.md",
+      "sha256": "94fabe1b55525a2f0004b821c4eff797379e8e7c9d7fa189f27a3869aa97c4f1",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/PROCEDURE.md"
+    },
+    {
+      "bytes": 981,
+      "path": "source/RESULT.json",
+      "sha256": "0b499a332f1071db1f460cd117f5298f2f955d6760008b520662040acc5599c8",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/RESULT.json"
+    },
+    {
+      "bytes": 6078,
+      "path": "source/SOURCE_PROOF.json",
+      "sha256": "01fdee33a68db549ce9a47d5929cdd8393b9e92ce3abfdc8c0d1a803fdab319a",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/SOURCE_PROOF.json"
+    },
+    {
+      "bytes": 1830,
+      "path": "source/SOURCE_SEAL.json",
+      "sha256": "8cd9b1733bf391e0dd2594b1e88918079e76a83f28aebe6266fc883c3dcb655e",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/SOURCE_SEAL.json"
+    },
+    {
+      "bytes": 43383,
+      "path": "source/mac_retire_stage_leaf.py",
+      "sha256": "af5c73920345cdf6e34e12e6abd0a29bd1cce5f8cdfbcaa188b58044701a888d",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/mac_retire_stage_leaf.py"
+    },
+    {
+      "bytes": 47399,
+      "path": "source/retire_stage_leaf.py",
+      "sha256": "d6cb2ebbda3fbdc3718270d3aedde13942601a984819ecf7e8e5b64aea6090fa",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/retire_stage_leaf.py"
+    },
+    {
+      "bytes": 6525,
+      "path": "prepare/FINAL_RESULT.json",
+      "sha256": "a41a5f3334d92994195cf619fb33b70128597e23f23e685a730caf7d1eec2114",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/FINAL_RESULT.json"
+    },
+    {
+      "bytes": 5035,
+      "path": "prepare/PREDELETE.json",
+      "sha256": "104ee91e1c1bbe4756a0e5976849ba0a61e07c6b7f361b1dbcf1b7b3e3fe5ad3",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/PREDELETE.json"
+    },
+    {
+      "bytes": 2679,
+      "path": "prepare/PROCESS_LEDGER.json",
+      "sha256": "4b396e08030cd365c00fa71f634b61adf7a1cfb9cceae1b7ea54df66c2314ef3",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/PROCESS_LEDGER.json"
+    },
+    {
+      "bytes": 1023,
+      "path": "prepare/SSH_ALIAS.json",
+      "sha256": "0d6b957577d103a84277e938f2c40651c965944b7afa7699f9523d2e7aaeeb79",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/SSH_ALIAS.json"
+    },
+    {
+      "bytes": 427,
+      "path": "prepare/TERMINAL.json",
+      "sha256": "f0d5780a334f867e8cd41a01a6fb3fd4ce4c7b1b51e279ae312d03d28fba8665",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/TERMINAL.json"
+    },
+    {
+      "bytes": 0,
+      "path": "prepare/mac-collector.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/mac-collector.stderr"
+    },
+    {
+      "bytes": 12311,
+      "path": "prepare/mac-collector.stdout",
+      "sha256": "7a50acc8a50989be1d4a261ad5d23f8749dbc439f7fe020abf481989cb602ebc",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/mac-collector.stdout"
+    },
+    {
+      "bytes": 72,
+      "path": "prepare/ssh-alias.stderr",
+      "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/prepare/ssh-alias.stderr"
+    },
+    {
+      "bytes": 10573,
+      "path": "commit/FINAL_RESULT.json",
+      "sha256": "da2ceb8bcc621d2c939708939c1ea599630b2c8524b14eb209d67c14ca16bab2",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/FINAL_RESULT.json"
+    },
+    {
+      "bytes": 246,
+      "path": "commit/PREDELETE.json",
+      "sha256": "48ac1a2e685aca6f2cd7c30487a4b8b64733535fad7d906170e2a6144ffe5a25",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/PREDELETE.json"
+    },
+    {
+      "bytes": 2677,
+      "path": "commit/PROCESS_LEDGER.json",
+      "sha256": "9e753f2190dcba2b05a7541e24fee2a42e9bb8969eb32a925319f52fb3625c9f",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/PROCESS_LEDGER.json"
+    },
+    {
+      "bytes": 1023,
+      "path": "commit/SSH_ALIAS.json",
+      "sha256": "c25d41e3419634e78e919a0c280275959fa9a12f4ed93f329d9242599649387e",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/SSH_ALIAS.json"
+    },
+    {
+      "bytes": 439,
+      "path": "commit/TERMINAL.json",
+      "sha256": "6ff8c19f817b94107ff468177e482ce4e0f3798297a19c76deddf8e71238115d",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/TERMINAL.json"
+    },
+    {
+      "bytes": 0,
+      "path": "commit/mac-collector.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/mac-collector.stderr"
+    },
+    {
+      "bytes": 11696,
+      "path": "commit/mac-collector.stdout",
+      "sha256": "114deb696471a287f290e3e5e1959c8a4ebc9a335c93d9999bf7e78747be3b49",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/mac-collector.stdout"
+    },
+    {
+      "bytes": 72,
+      "path": "commit/ssh-alias.stderr",
+      "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/commit/ssh-alias.stderr"
+    },
+    {
+      "bytes": 5115,
+      "path": "admission/ROOT_DURABLE_GIT_PROOF.json",
+      "sha256": "5f1f1fb25cf049a7420f14f59ff488fc521e6389abb50d55221ff6e8f95e3fdf",
+      "sourcePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128/admission/ROOT_DURABLE_GIT_PROOF.json"
+    }
+  ],
+  "pins": [
+    {
+      "bytes": 5115,
+      "path": "admission/ROOT_DURABLE_GIT_PROOF.json",
+      "sha256": "5f1f1fb25cf049a7420f14f59ff488fc521e6389abb50d55221ff6e8f95e3fdf"
+    },
+    {
+      "bytes": 10573,
+      "path": "commit/FINAL_RESULT.json",
+      "sha256": "da2ceb8bcc621d2c939708939c1ea599630b2c8524b14eb209d67c14ca16bab2"
+    },
+    {
+      "bytes": 246,
+      "path": "commit/PREDELETE.json",
+      "sha256": "48ac1a2e685aca6f2cd7c30487a4b8b64733535fad7d906170e2a6144ffe5a25"
+    },
+    {
+      "bytes": 2677,
+      "path": "commit/PROCESS_LEDGER.json",
+      "sha256": "9e753f2190dcba2b05a7541e24fee2a42e9bb8969eb32a925319f52fb3625c9f"
+    },
+    {
+      "bytes": 1023,
+      "path": "commit/SSH_ALIAS.json",
+      "sha256": "c25d41e3419634e78e919a0c280275959fa9a12f4ed93f329d9242599649387e"
+    },
+    {
+      "bytes": 439,
+      "path": "commit/TERMINAL.json",
+      "sha256": "6ff8c19f817b94107ff468177e482ce4e0f3798297a19c76deddf8e71238115d"
+    },
+    {
+      "bytes": 0,
+      "path": "commit/mac-collector.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 11696,
+      "path": "commit/mac-collector.stdout",
+      "sha256": "114deb696471a287f290e3e5e1959c8a4ebc9a335c93d9999bf7e78747be3b49"
+    },
+    {
+      "bytes": 72,
+      "path": "commit/ssh-alias.stderr",
+      "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a"
+    },
+    {
+      "bytes": 6525,
+      "path": "prepare/FINAL_RESULT.json",
+      "sha256": "a41a5f3334d92994195cf619fb33b70128597e23f23e685a730caf7d1eec2114"
+    },
+    {
+      "bytes": 5035,
+      "path": "prepare/PREDELETE.json",
+      "sha256": "104ee91e1c1bbe4756a0e5976849ba0a61e07c6b7f361b1dbcf1b7b3e3fe5ad3"
+    },
+    {
+      "bytes": 2679,
+      "path": "prepare/PROCESS_LEDGER.json",
+      "sha256": "4b396e08030cd365c00fa71f634b61adf7a1cfb9cceae1b7ea54df66c2314ef3"
+    },
+    {
+      "bytes": 1023,
+      "path": "prepare/SSH_ALIAS.json",
+      "sha256": "0d6b957577d103a84277e938f2c40651c965944b7afa7699f9523d2e7aaeeb79"
+    },
+    {
+      "bytes": 427,
+      "path": "prepare/TERMINAL.json",
+      "sha256": "f0d5780a334f867e8cd41a01a6fb3fd4ce4c7b1b51e279ae312d03d28fba8665"
+    },
+    {
+      "bytes": 0,
+      "path": "prepare/mac-collector.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 12311,
+      "path": "prepare/mac-collector.stdout",
+      "sha256": "7a50acc8a50989be1d4a261ad5d23f8749dbc439f7fe020abf481989cb602ebc"
+    },
+    {
+      "bytes": 72,
+      "path": "prepare/ssh-alias.stderr",
+      "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a"
+    },
+    {
+      "bytes": 4845,
+      "path": "root/INDEPENDENT_READBACK.json",
+      "sha256": "0f2e7f16331db6fa1c0324a97a337f002b4f32129ada8d5a874ad6ee14e8714a"
+    },
+    {
+      "bytes": 5579,
+      "path": "root/INDEPENDENT_READBACK_JOB.json",
+      "sha256": "d48280ba8e75a4817f5fe47279788a14502f88a04ff99385a78dcd385811afac"
+    },
+    {
+      "bytes": 3263,
+      "path": "root/INDEPENDENT_READBACK_SCRIPT.py",
+      "sha256": "f06b9c4c6468079b69aead01d5c912f7a92def62de9988d6fefbaa2ae0e23b9e"
+    },
+    {
+      "bytes": 8323,
+      "path": "source/PROCEDURE.md",
+      "sha256": "94fabe1b55525a2f0004b821c4eff797379e8e7c9d7fa189f27a3869aa97c4f1"
+    },
+    {
+      "bytes": 981,
+      "path": "source/RESULT.json",
+      "sha256": "0b499a332f1071db1f460cd117f5298f2f955d6760008b520662040acc5599c8"
+    },
+    {
+      "bytes": 6078,
+      "path": "source/SOURCE_PROOF.json",
+      "sha256": "01fdee33a68db549ce9a47d5929cdd8393b9e92ce3abfdc8c0d1a803fdab319a"
+    },
+    {
+      "bytes": 1830,
+      "path": "source/SOURCE_SEAL.json",
+      "sha256": "8cd9b1733bf391e0dd2594b1e88918079e76a83f28aebe6266fc883c3dcb655e"
+    },
+    {
+      "bytes": 43383,
+      "path": "source/mac_retire_stage_leaf.py",
+      "sha256": "af5c73920345cdf6e34e12e6abd0a29bd1cce5f8cdfbcaa188b58044701a888d"
+    },
+    {
+      "bytes": 47399,
+      "path": "source/retire_stage_leaf.py",
+      "sha256": "d6cb2ebbda3fbdc3718270d3aedde13942601a984819ecf7e8e5b64aea6090fa"
+    }
+  ],
+  "schema": "otzaria.native-stage-retirement-preserved-files/1",
+  "sourceRoot": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-retirement-proposal-20261128",
+  "totalMembersBeforeInventory": 26,
+  "utc": "2026-11-28T10:54:15.746777+00:00"
+}
