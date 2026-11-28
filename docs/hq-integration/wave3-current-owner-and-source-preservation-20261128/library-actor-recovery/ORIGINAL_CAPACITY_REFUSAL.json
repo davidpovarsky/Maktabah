@@ -1,0 +1,24 @@
+{
+  "created_at": 1795825325.5937443,
+  "duration_s": 0.99,
+  "error": null,
+  "exit_code": 1,
+  "finished_at": "2026-11-28T00:22:06.689483+00:00",
+  "host": "host_299cf75f6b338ecd",
+  "id": "job_a157237c7f48",
+  "notified": {
+    "resend": null,
+    "telegram": null
+  },
+  "notify_spec": {},
+  "output": "Traceback (most recent call last):\n  File \"/home/ubuntu/otzaria-wave3-library-controls-rootfs-20261127/controller-owner-attempt-3/source-owner-attempt-3-runner.py\", line 41, in <module>\n    assert disk('/mnt/development')>FLOOR+4*1024*1024\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError",
+  "output_truncated": false,
+  "read": true,
+  "severity": "warning",
+  "source": "exec@host_299cf75f6b338ecd",
+  "started_at": "2026-11-28T00:22:05.697575+00:00",
+  "status": "failed",
+  "timeout_s": 900,
+  "tool": "exec",
+  "type": "job_result"
+}

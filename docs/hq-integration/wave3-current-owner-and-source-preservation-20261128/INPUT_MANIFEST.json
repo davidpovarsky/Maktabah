@@ -1,0 +1,104 @@
+[
+  {
+    "bytes": 1037359,
+    "destination": "source-owner/PRESERVATION_RAW.zip",
+    "sha256": "5aee71788fe1b2af256ba8992a1a27dba8dc2362a91caa00b544f9b103309dfc",
+    "source": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128/PRESERVATION_RAW.zip"
+  },
+  {
+    "bytes": 88461,
+    "destination": "source-owner/SOURCE_MANIFEST.json",
+    "sha256": "cbe6ea229cc41f0a22b841c85085c706186aea5d78265019dabec6f19eca0924",
+    "source": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128/SOURCE_MANIFEST.json"
+  },
+  {
+    "bytes": 24977,
+    "destination": "source-owner/INPUT_PINS.json",
+    "sha256": "486781773214b06e40e76f6654708c9761b9504d50511ea712028f1187a89054",
+    "source": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128/INPUT_PINS.json"
+  },
+  {
+    "bytes": 3543,
+    "destination": "source-owner/PRESERVATION_RESULT.json",
+    "sha256": "b709e8033b74009ec4dcecf83508602d4d5e31e808fb6ed9078f0f8269f4823f",
+    "source": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128/PRESERVATION_RESULT.json"
+  },
+  {
+    "bytes": 1639,
+    "destination": "source-owner/HANDOFF.json",
+    "sha256": "a55437a2a099c3ed912d638f93a525c365101ce1e5801522841b77594d9bd219",
+    "source": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128/HANDOFF.json"
+  },
+  {
+    "bytes": 5583,
+    "destination": "source-owner/README.md",
+    "sha256": "d91019c24903c64bf8a372c176cfd2f3e9ecdbeb1b88107dea1833f10708c763",
+    "source": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128/README.md"
+  },
+  {
+    "bytes": 17382,
+    "destination": "source-owner/PACKAGER.py",
+    "sha256": "753337ad0586db6bb616b262abef6e3e450d449c9a39289ada0310ed8350589e",
+    "source": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128/PACKAGER.py"
+  },
+  {
+    "bytes": 22187,
+    "destination": "kit-publication/KIT_PUBLICATION_RAW.zip",
+    "sha256": "84dac3dd4e1d5108b3fbb2e43dfec4da6b68433af28152e39c70340172903d2f",
+    "source": "/home/ubuntu/otzaria-wave3-kit-owner-root-receipts-20261128/KIT_PUBLICATION_RAW.zip"
+  },
+  {
+    "bytes": 5079,
+    "destination": "kit-publication/KIT_PUBLICATION_MANIFEST.json",
+    "sha256": "28c28993f1d84045b5e57970a02d39ec7c12f391d4449241fc28fa2b82550462",
+    "source": "/home/ubuntu/otzaria-wave3-kit-owner-root-receipts-20261128/KIT_PUBLICATION_MANIFEST.json"
+  },
+  {
+    "bytes": 29728,
+    "destination": "kit-publication/ROOT_READBACK_RECEIPTS.json",
+    "sha256": "750cc40f9cf52dc781e441bb824d431cec7210be21ca36f5d2c2142f835ea6dc",
+    "source": "/home/ubuntu/otzaria-wave3-kit-owner-root-receipts-20261128/ROOT_READBACK_RECEIPTS.json"
+  },
+  {
+    "bytes": 999,
+    "destination": "kit-publication/README.md",
+    "sha256": "2e1b070872297f64d29cfe1d8256c048ae7e4cea9552241760ad21ab6084b1e8",
+    "source": "/home/ubuntu/otzaria-wave3-kit-owner-root-receipts-20261128/README.md"
+  },
+  {
+    "bytes": 890,
+    "destination": "kit-publication/RESULT.json",
+    "sha256": "234165d8f41c3e8e5deda2444d403ee12daafb67567b5e0fbb9ae952834756aa",
+    "source": "/home/ubuntu/otzaria-wave3-kit-owner-root-receipts-20261128/RESULT.json"
+  },
+  {
+    "bytes": 148056,
+    "destination": "library-actor-recovery/RAW_SOURCE.zip",
+    "sha256": "74c8c8c52b9d0b07986942d0a2a0bd6e959459c6051d2af2ef54bf48838c3c1d",
+    "source": "/home/ubuntu/otzaria-wave3-library-actor-source-recovery-20261128/RAW_SOURCE.zip"
+  },
+  {
+    "bytes": 8219,
+    "destination": "library-actor-recovery/INPUTS_MANIFEST.json",
+    "sha256": "1563476d0631aa909926163b5e7a80484b4a39ac9ab3fb810f663bc3404da184",
+    "source": "/home/ubuntu/otzaria-wave3-library-actor-source-recovery-20261128/INPUTS_MANIFEST.json"
+  },
+  {
+    "bytes": 1370,
+    "destination": "library-actor-recovery/SOURCE_RECOVERY.json",
+    "sha256": "95c447cea31077a9d942d6e735536419709ca23aad640cd748ebfd1cfe6c1236",
+    "source": "/home/ubuntu/otzaria-wave3-library-actor-source-recovery-20261128/SOURCE_RECOVERY.json"
+  },
+  {
+    "bytes": 873,
+    "destination": "library-actor-recovery/ORIGINAL_CAPACITY_REFUSAL.json",
+    "sha256": "88cd67b319f627715cf123b3b83ca61155614f0270446949064b164b84ec2419",
+    "source": "/home/ubuntu/otzaria-wave3-library-actor-source-recovery-20261128/ORIGINAL_CAPACITY_REFUSAL.json"
+  },
+  {
+    "bytes": 549,
+    "destination": "library-actor-recovery/README.md",
+    "sha256": "7540dccbba07db5393788acab66ede25173b4ccee50f94b18252d152b86d708a",
+    "source": "/home/ubuntu/otzaria-wave3-library-actor-source-recovery-20261128/README.md"
+  }
+]

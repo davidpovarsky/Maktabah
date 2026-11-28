@@ -1,0 +1,627 @@
+{
+  "independent_pins_received_from": [
+    "root Native source seals/proposal pins",
+    "ui_acceptance final phone listing and proof",
+    "navigation_fix sealed TOC common and owner audit handoffs"
+  ],
+  "limitations": [
+    "preservation integrity only",
+    "no scoped Python import or source execution",
+    "no compiler/native/auth/private-key operations",
+    "no product or Git writes",
+    "Root separately adds Kit provenance and independent review receipts"
+  ],
+  "output": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128",
+  "product_equivalent_head": "87ccd4625115eb43c650180174825b288ba2e592",
+  "reserve_and_cap_bytes": 8388608,
+  "root_floor_bytes": 1593835520,
+  "schema": "otzaria.source-owner-checkpoint.inputs.v1",
+  "scopes": [
+    {
+      "anchors": {
+        "HANDOFF.json": {
+          "bytes": 1880,
+          "sha256": "d9e53748882ebdd4b284702039ae71326d73bffa835ce0db2436be3a9cfd01dd"
+        },
+        "PACKAGE_MANIFEST.json": {
+          "bytes": 5847,
+          "sha256": "b5ef494974cdcafa320765a54510ad27866ee5d8a1c06a98525ac90d82b3581e"
+        }
+      },
+      "bytes": 1215247,
+      "expected": {
+        "FINAL_MATERIALIZE_INPUT.json": {
+          "bytes": 91477,
+          "sha256": "1ce1903df803707dec61ea9ca456c547d34e908ea7c34113a83468abd6d67c18"
+        },
+        "FINAL_RESULT.json": {
+          "bytes": 4111,
+          "sha256": "44884496828b10e39a893fd2a99012a150f0688bcfff81db7e991553326d2db7"
+        },
+        "HANDOFF.json": {
+          "bytes": 1880,
+          "sha256": "d9e53748882ebdd4b284702039ae71326d73bffa835ce0db2436be3a9cfd01dd"
+        },
+        "MATERIALIZE_INPUT.json": {
+          "bytes": 50933,
+          "sha256": "f0e1511375f00683eb04486243198fde40663ffc8edf46a6131e3cc315a4122b"
+        },
+        "PACKAGE_MANIFEST.json": {
+          "bytes": 5847,
+          "sha256": "b5ef494974cdcafa320765a54510ad27866ee5d8a1c06a98525ac90d82b3581e"
+        },
+        "PREPARE_RECEIPT.json": {
+          "bytes": 1191,
+          "sha256": "1786c8e47ffa6b493ab14bc0dd6926f96a7dcccb3ab246616e206c11e2e4f6e8"
+        },
+        "RESULT.json": {
+          "bytes": 3088,
+          "sha256": "7ebbd8986ffea0c04191542fe0922eda1804e2f684386efdb1b43866527d070d"
+        },
+        "SOURCE_REVIEW.json": {
+          "bytes": 2961,
+          "sha256": "ec16386b643191e48139f6593319f45fbfc7675ad2089706c8ca9d7bce916963"
+        },
+        "baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift": {
+          "bytes": 8386,
+          "sha256": "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf"
+        },
+        "baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift": {
+          "bytes": 3125,
+          "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f"
+        },
+        "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+          "bytes": 203596,
+          "sha256": "66b971765ac6b3e749a6a9b5780b654d7dd2c473fc0dae673c8b04592cea4acc"
+        },
+        "baseline/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift": {
+          "bytes": 10302,
+          "sha256": "61028bdba52398eb73cd3c6d0bbd3fd1a1f4136506311f89c62da8560e79a8ff"
+        },
+        "candidate-final/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+          "bytes": 233272,
+          "sha256": "768da87edb39a3206c0df61d66eb7c34704ff73f35d35c2e38361ec355619596"
+        },
+        "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift": {
+          "bytes": 231068,
+          "sha256": "dd95e7647964cf5885c8b71451c39843880578db7beb3bf73973971a94f5611a"
+        },
+        "evidence/294_ADDITIVE_NOTES.json": {
+          "bytes": 1248,
+          "sha256": "f00926ae0d901512cb2cca63e350e97b64bfc1896e42a9bbd70b33f920dacd66"
+        },
+        "evidence/EXACT_DIRECTORY_IDENTITY.json": {
+          "bytes": 316,
+          "sha256": "ad19c21f9937532c06a444562eb4052fb59bfe36257b16c4bd5f9f1394a05fa6"
+        },
+        "evidence/EXTERNAL_UI_INTERFACE.json": {
+          "bytes": 438,
+          "sha256": "33d7d32d0aed470795e384939d17f36b3fa4a16377cbaf19e8ad356061912e77"
+        },
+        "evidence/NATIVE_STATE_CHANGED_CALL_TRACE.json": {
+          "bytes": 1955,
+          "sha256": "ec01d6261491fc16964a6a8429df1ebfa88c09fa1d7fcdf90b0a8258773e0541"
+        },
+        "evidence/OBSERVED_METHODS.json": {
+          "bytes": 8608,
+          "sha256": "067f706e7d5dc8fb11be3c6cc6b0c0dbaa94d0b90910b37287ad4218da99f493"
+        },
+        "proposal-final/COMMON_HELPERS.swift": {
+          "bytes": 28699,
+          "sha256": "132b997dd63db2233d555b0bd2f01321aeacd9923ee8856952f14b77bf110fb3"
+        },
+        "proposal-final/EXACT_EDITS.json": {
+          "bytes": 44561,
+          "sha256": "cd264fdf9cc61ca6d37cb3f2bf22e496a9bf7ba19cb1c6e4d267907a5a7b12a8"
+        },
+        "proposal-final/ROOT_WIRING_PREREQUISITES.md": {
+          "bytes": 7705,
+          "sha256": "ae73606352d97c7ddd65151924dcfb17da8e29541bd781154bfa2bb1e68e5ad8"
+        },
+        "proposal-final/SOURCE.diff": {
+          "bytes": 32207,
+          "sha256": "64d6c7310e03c6a0cdcb33e9d9a80e3627ac44d4f90656073f142e910d8b228e"
+        },
+        "proposal/COMMON_HELPERS.swift": {
+          "bytes": 26495,
+          "sha256": "e5cb347a0fb0d1b6f0ce911b8db0cdc5243c83fd2b09863e7546c4b0ea0c7d30"
+        },
+        "proposal/EXACT_EDITS.json": {
+          "bytes": 42317,
+          "sha256": "ce3d3a6efb71e85b09f8521be166f6b98c24e429723ff41112d210a453b99858"
+        },
+        "proposal/ROOT_WIRING_PREREQUISITES.md": {
+          "bytes": 6239,
+          "sha256": "88aa13429db54e949222713e74a6818e243b9b56de6566d45ba3d24bd9bc0a1a"
+        },
+        "proposal/SOURCE.diff": {
+          "bytes": 29965,
+          "sha256": "12685ee95bdd3218915a3dc21c5ffae4b94a719d6922e32ae5a2dae94df8831d"
+        },
+        "review/MATERIALIZATION_ATTEMPT1_FAILURE.json": {
+          "bytes": 52232,
+          "sha256": "ad30a3cb7a5ada109f6f3b38475b153c9bfac347ddda07c68c6d4bff20e10403"
+        },
+        "review/capture-order-fix/CORRECTION.json": {
+          "bytes": 12251,
+          "sha256": "5586bc1bc5236aa567c48a7435d1b41f83e3a91aa147917a636f7129798690a2"
+        },
+        "review/capture-order-fix/HELPER.diff": {
+          "bytes": 11001,
+          "sha256": "4c89ac18d673364f7cffd0795336da28f8bc566b8515b4696befff846062d3cb"
+        },
+        "review/capture-order-fix/INTERMEDIATE_HELPER.swift": {
+          "bytes": 27622,
+          "sha256": "2a96b581c690c99a440d61311329d48cde311450c31b53bdfb71651d5f5e0247"
+        },
+        "review/helper-draft1-to-draft2.json": {
+          "bytes": 3608,
+          "sha256": "8527ea96daa22bf14e7bf92c51388b9a40774d0e9915d5c97c636667c71c6418"
+        },
+        "review/helper-draft1.swift": {
+          "bytes": 26543,
+          "sha256": "75eda2f72b8075384d2ddd9898d40eb5c618012498078dee3f4dce67f1b548b4"
+        }
+      },
+      "files": 33,
+      "label": "toc-common",
+      "manifest": "PACKAGE_MANIFEST.json",
+      "root": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "PROOF.json": {
+          "bytes": 2291,
+          "sha256": "1079d7747bbac95170ce78d9c2805e7d5b4cb5379a540e6744bfa61dc9e8dc41"
+        },
+        "REMOTE_ARTIFACT_LIST.json": {
+          "bytes": 2453,
+          "sha256": "719594b54212a3b252a73f8a08ae25288ab37b93fc012ce9e938eee600d98dfe"
+        }
+      },
+      "bytes": 81336,
+      "expected": {
+        "DESIGN.md": {
+          "bytes": 7545,
+          "sha256": "432379f133c3878e5f148ddfeb59fedd6849d1b4ea6acdd1b5664e817eb2ec2b"
+        },
+        "DESIGN_ADDENDUM_PROOF.json": {
+          "bytes": 480,
+          "sha256": "6924b5db70112af032115bd83c544f9b82985a38718700687a953015d9c1a729"
+        },
+        "DESIGN_ADDENDUM_QUERY_PREPARATION.md": {
+          "bytes": 3925,
+          "sha256": "82aa012ebc6321215dd9e1818b3fb63892c43c9f8a7206e4f93488d77bc2d5f1"
+        },
+        "PARENT_READINESS_ADDITION.swift": {
+          "bytes": 1831,
+          "sha256": "357f37fd72ddba347f9afec4a862e1e3be7eb8e535d5529ae49c73823025aa5f"
+        },
+        "PHONE_PRE_EFFECT_READINESS.patch": {
+          "bytes": 2279,
+          "sha256": "e86b1bc1592b14d5c617e5878cdb86edd1c3c61da0f0cf47a7d2bfdaf6854bd3"
+        },
+        "PROOF.json": {
+          "bytes": 2291,
+          "sha256": "1079d7747bbac95170ce78d9c2805e7d5b4cb5379a540e6744bfa61dc9e8dc41"
+        },
+        "READ_CONTEXT.json": {
+          "bytes": 12957,
+          "sha256": "7929c0c19473fb8a6ebe55f79b3c6f9b932abadbd9ba397abf1fa41fa9a3c5f9"
+        },
+        "REMOTE_ARTIFACT_LIST.json": {
+          "bytes": 2453,
+          "sha256": "719594b54212a3b252a73f8a08ae25288ab37b93fc012ce9e938eee600d98dfe"
+        },
+        "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift": {
+          "bytes": 22872,
+          "sha256": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d"
+        },
+        "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift": {
+          "bytes": 24703,
+          "sha256": "1ef05ec651636b358bd54d6cf9ad2cba068a2ddff2cd4cf176369590d28ddd17"
+        }
+      },
+      "files": 10,
+      "label": "toc-phone",
+      "manifest": "REMOTE_ARTIFACT_LIST.json",
+      "root": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "FINAL_MANIFEST.json": {
+          "bytes": 6298,
+          "sha256": "60b2c39d86e0a05f2c27be7a34b5193f09f14ff07caa9f088a14774b44f875e0"
+        },
+        "HANDOFF.json": {
+          "bytes": 1778,
+          "sha256": "a8dd3ecd03e405e6f6537ef97a591387a6619e5facca2660a7ed3225ef90b9af"
+        },
+        "OWNER_VERIFICATION_RAW.zip": {
+          "bytes": 270168,
+          "sha256": "b8ed1dd55125a6662d74d2f9d8144dad4466aa31b60afd6f29c5ff3511ec018c"
+        }
+      },
+      "bytes": 1549283,
+      "expected": {
+        "ADDITIONAL_SOURCE_PINS.json": {
+          "bytes": 5738,
+          "sha256": "4af582d9ddd890e3ac008e620e3a4b24fcaa2fba03893b046c4486e89031c320"
+        },
+        "CLASSIFY.py": {
+          "bytes": 22232,
+          "sha256": "2e887b6c8a500313babceefc93b7b4378ff4860012898d81af898cb0bae67677"
+        },
+        "CURRENT_COVERAGE.json": {
+          "bytes": 72362,
+          "sha256": "1ed7ece72e87a156acbf184a59c5abdc17421bfe267fc7501d4e8990ed01bce9"
+        },
+        "FINAL_MANIFEST.json": {
+          "bytes": 6298,
+          "sha256": "60b2c39d86e0a05f2c27be7a34b5193f09f14ff07caa9f088a14774b44f875e0"
+        },
+        "HANDOFF.json": {
+          "bytes": 1778,
+          "sha256": "a8dd3ecd03e405e6f6537ef97a591387a6619e5facca2660a7ed3225ef90b9af"
+        },
+        "HISTORICAL_SIGNATURES.json": {
+          "bytes": 48620,
+          "sha256": "46d8428d44cfa530c00e0dd9d56b4fe99c48a3c319c6ecbc06068e485ebacfb3"
+        },
+        "MANIFEST.json": {
+          "bytes": 2850,
+          "sha256": "5e2f3987262d4b03cd62a45b90bc4cf05c80f0de1af72b1d90284632cf681883"
+        },
+        "NEW_CODE_OBLIGATIONS.json": {
+          "bytes": 3630,
+          "sha256": "a10ea459ae1331f67e6926f7a048ecb07a0b99bd489f62caa6bb938f4e9d2795"
+        },
+        "OWNER_VERIFICATION_RAW.zip": {
+          "bytes": 270168,
+          "sha256": "b8ed1dd55125a6662d74d2f9d8144dad4466aa31b60afd6f29c5ff3511ec018c"
+        },
+        "README.md": {
+          "bytes": 16164,
+          "sha256": "b68385565f943acc841fcb3dc0559592f99cd6c8868a4f69006f3df7e7cfd704"
+        },
+        "READ_TRANSPORT_FAILURES.json": {
+          "bytes": 6589,
+          "sha256": "59b22f8eec90df800ec9b4d870d8b796a3a6dd8aa992433c37cc7d014cf6b383"
+        },
+        "RESULT.json": {
+          "bytes": 2690,
+          "sha256": "9e6d1c7af1c6c8023a35658d2d195ae4fe80f7d19281d57c2ede1486b3392833"
+        },
+        "RESULT_READBACK.json": {
+          "bytes": 2048,
+          "sha256": "181591ba6016243aa315060c865476e4a8f800f7ab51b015768b83023e6d929c"
+        },
+        "RUN_COMMAND.sh": {
+          "bytes": 23591,
+          "sha256": "ac4bc39c8e16bf9498bf8403b023c24a084c783098bfe7d53de1f3fcf8eddfd7"
+        },
+        "RUN_RECEIPT.json": {
+          "bytes": 4531,
+          "sha256": "56977d1e17fc8013ceb252c0133bdd3fbf3c0d737040295d7f1a14c332eecf08"
+        },
+        "SOURCE_DELTA.json": {
+          "bytes": 185638,
+          "sha256": "57f33aedc633c7db98cf08501f549a1ce7272dc526f3726011854ec42dfb758c"
+        },
+        "TRUST_AND_INPUTS.json": {
+          "bytes": 7903,
+          "sha256": "3dea16949449c2c90a63989b85d3887010b5a7d1013a9f09495f1d577e4c90ec"
+        },
+        "additional-inputs/AGENTS.md": {
+          "bytes": 10301,
+          "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62"
+        },
+        "additional-inputs/PROJECT_AGENT_GUIDANCE.md": {
+          "bytes": 6019,
+          "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0"
+        },
+        "additional-inputs/final_integration_source.py": {
+          "bytes": 41693,
+          "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079"
+        },
+        "additional-inputs/ios-testflight.yml": {
+          "bytes": 61764,
+          "sha256": "0eb140364a65a8e11451a5843d437919396f0f1d6f84b6d9f23c015585f786b3"
+        },
+        "additional-inputs/prior-9c6d-observation.json": {
+          "bytes": 8475,
+          "sha256": "326491329eb0c2da20ebb89dbe802f78458c0bf0c7332d0ea8c41a1cfe0aec07"
+        },
+        "additional-inputs/prior-eb532-owner-approval-gate.json.gz": {
+          "bytes": 1513,
+          "sha256": "d726767f97860ce400473cbe97800f81ba0bebe7e963a3aee9e50a7dc2129a65"
+        },
+        "additional-inputs/prior-final-owner-preflight.md": {
+          "bytes": 22308,
+          "sha256": "3f3aa55b9e188f39b03604fb31b570449239ae912c3934c9b1159d947f46a5c8"
+        },
+        "additional-inputs/reviewed-vendor-semantics.inputs.json": {
+          "bytes": 44186,
+          "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208"
+        },
+        "additional-inputs/reviewed-vendor-source.inputs.json": {
+          "bytes": 25409,
+          "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32"
+        },
+        "additional-inputs/upstream-boundary-guard.yml": {
+          "bytes": 2756,
+          "sha256": "717080cb78f128094de92b29ce69bbd5fcb3b3c4baf812e1f63140bbd2bfdb43"
+        },
+        "additional-inputs/verify-runtime27-release-gate.py": {
+          "bytes": 21381,
+          "sha256": "c181a9ddf92685e61dd5fb1ea79c82a7111f40dc55527ea740dbf79cd1348b0a"
+        },
+        "inputs/UPSTREAM_INTEGRITY_POLICY.md": {
+          "bytes": 11503,
+          "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63"
+        },
+        "inputs/historical-9c6d-owner-gate.json": {
+          "bytes": 4625,
+          "sha256": "b8e0d96cc518240e102fb3b5dd4ae8c04a18a0d93c1b69ee1a0d81a4adffa51b"
+        },
+        "inputs/historical-build-admission.json": {
+          "bytes": 209079,
+          "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15"
+        },
+        "inputs/historical-eb532-boundary-report.json.gz": {
+          "bytes": 9414,
+          "sha256": "ac8ac8f19bbc1440891a1cbfcda01329967363a55a0206f37072731e79a5ce85"
+        },
+        "inputs/historical-ec5385-inventory.json": {
+          "bytes": 107565,
+          "sha256": "33089825ede3f673dab414c0b2e77ea70a90726880c992aee543933e963ccd7b"
+        },
+        "inputs/original-wrapper-controls.py": {
+          "bytes": 13175,
+          "sha256": "45a6917073d8153e84e7aab075fb1046842dde297e93e15a77656ba1d1c3210a"
+        },
+        "inputs/registry-before-six-path-signing.json": {
+          "bytes": 87350,
+          "sha256": "f20a921a70955cea267b1cf6e0de17315a339a9f688552a3150008e754ba3649"
+        },
+        "inputs/registry-current.json": {
+          "bytes": 88477,
+          "sha256": "5bd809034fa0c97cc05655ae216af4201543a6754ea3408013ed48d4eab85a1a"
+        },
+        "inputs/release-wrapper.py": {
+          "bytes": 9969,
+          "sha256": "ab0da734ad6328da65da410e4d09d4e2911e423c82d7808df452fe8dae90aaaa"
+        },
+        "inputs/trusted-base-pr-guard.py": {
+          "bytes": 38157,
+          "sha256": "70cf39a26e0010122467c9775d9290a93da2a82dcc792c48b679251a4e93baca"
+        },
+        "inputs/trusted-verifier.py": {
+          "bytes": 41334,
+          "sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676"
+        }
+      },
+      "files": 39,
+      "label": "owner-audit",
+      "manifest": "FINAL_MANIFEST.json",
+      "root": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128"
+    },
+    {
+      "anchors": {
+        "PROPOSAL_PIN.json": {
+          "bytes": 1765,
+          "sha256": "37851a2b5a48320cfc50c37666e7d2aae2013b6908fda069a8101e0136e18229"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "bec6e0d9d26e9effca1aaa613c1145ee0511000ae9128297c4a8b029761df0c1"
+        }
+      },
+      "bytes": 255866,
+      "expected": {
+        "CANDIDATE.patch": {
+          "bytes": 23662,
+          "sha256": "a085e173afe3754c7bf69afe8c3bc61485265f85b9f0f7c7d992d18b1bf1f211"
+        },
+        "CONTRACT_PROPOSAL.json": {
+          "bytes": 2633,
+          "sha256": "dbc2854b9178e975f435c4f0ef5cabcffa5a2e3178dcaada9c004afd9ee26654"
+        },
+        "PROPOSAL_PIN.json": {
+          "bytes": 1765,
+          "sha256": "37851a2b5a48320cfc50c37666e7d2aae2013b6908fda069a8101e0136e18229"
+        },
+        "SOURCE_PRESERVATION.json": {
+          "bytes": 16872,
+          "sha256": "5039beff73a939250bcccbe9ad75370fb2eb66d0ba8937d4a1652687f6b0d964"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "bec6e0d9d26e9effca1aaa613c1145ee0511000ae9128297c4a8b029761df0c1"
+        },
+        "baseline_mac_producer.py": {
+          "bytes": 23011,
+          "sha256": "10aa61bda420de8777f5ad127f238cad7420c23e72099348c1a79842fc87e703"
+        },
+        "baseline_oracle_controller.py": {
+          "bytes": 51282,
+          "sha256": "c1769280d75470fa2b5302fb7a89ce2fee9d74981c395b20067b2ff34879644b"
+        },
+        "baseline_reviewed_runtime.py": {
+          "bytes": 8447,
+          "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+        },
+        "baseline_stream_format.py": {
+          "bytes": 13919,
+          "sha256": "45d7f99ad7a9fa6a913a5eba54b01b73ea43260951340926cb09c46460992055"
+        },
+        "mac_producer.py": {
+          "bytes": 22935,
+          "sha256": "3c7422905a4e48f0ec68005a580a6c7b1696e19c12b8e115a5f9b5a9b196f488"
+        },
+        "oracle_controller.py": {
+          "bytes": 56524,
+          "sha256": "f4c8f7efc7d5360c876f43fbaa0a87cfae68e24622f057594fa143c4dbe68d2b"
+        },
+        "reviewed_runtime.py": {
+          "bytes": 8447,
+          "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+        },
+        "stream_format.py": {
+          "bytes": 25603,
+          "sha256": "9a592f2bc2e3eb0db9ba32fb7c9c5b34e658c73ed7239e0f468926b5bf34b6b9"
+        }
+      },
+      "files": 13,
+      "label": "native-v3",
+      "manifest": "PROPOSAL_PIN.json",
+      "root": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "PROPOSAL_PIN.json": {
+          "bytes": 1772,
+          "sha256": "f1fcc1f42d00d411ea98a981528968782490ffdbb3589e4194093194f31d4322"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "5f89a4d2eb1ed4b5184ad97a98ae47b94c205a5bc5393fe05a47ad449ea34a1b"
+        }
+      },
+      "bytes": 262074,
+      "expected": {
+        "CANDIDATE.patch": {
+          "bytes": 6257,
+          "sha256": "9b3e3e1a896d6f770484173dab30e94cfbddce08faab9fba2052b9fd1fc3ab8a"
+        },
+        "CONTRACT_PROPOSAL.json": {
+          "bytes": 4533,
+          "sha256": "94eec4d71fc0fe79a0e1512f84b4afe129a2c315e8c12893ef5a6c590da3adaa"
+        },
+        "PROPOSAL_PIN.json": {
+          "bytes": 1772,
+          "sha256": "f1fcc1f42d00d411ea98a981528968782490ffdbb3589e4194093194f31d4322"
+        },
+        "SOURCE_PRESERVATION.json": {
+          "bytes": 18790,
+          "sha256": "f2eaf9e103e0b6dd5f8624fa15697db9da69520578cf57274768f6fe667ad48f"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "5f89a4d2eb1ed4b5184ad97a98ae47b94c205a5bc5393fe05a47ad449ea34a1b"
+        },
+        "baseline_mac_producer.py": {
+          "bytes": 22935,
+          "sha256": "3c7422905a4e48f0ec68005a580a6c7b1696e19c12b8e115a5f9b5a9b196f488"
+        },
+        "baseline_oracle_controller.py": {
+          "bytes": 56524,
+          "sha256": "f4c8f7efc7d5360c876f43fbaa0a87cfae68e24622f057594fa143c4dbe68d2b"
+        },
+        "baseline_reviewed_runtime.py": {
+          "bytes": 8447,
+          "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+        },
+        "baseline_stream_format.py": {
+          "bytes": 25603,
+          "sha256": "9a592f2bc2e3eb0db9ba32fb7c9c5b34e658c73ed7239e0f468926b5bf34b6b9"
+        },
+        "mac_producer.py": {
+          "bytes": 22948,
+          "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4"
+        },
+        "oracle_controller.py": {
+          "bytes": 58509,
+          "sha256": "38abb2b529f659691ea8dae87f751b883453b9a8479e36f578c325be701ecbbe"
+        },
+        "reviewed_runtime.py": {
+          "bytes": 8447,
+          "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+        },
+        "stream_format.py": {
+          "bytes": 26543,
+          "sha256": "c9496f69ebb2992732c5144697c5e6ff44e39724ea5045a733815310527cd0a2"
+        }
+      },
+      "files": 13,
+      "label": "native-v3-review2",
+      "manifest": "PROPOSAL_PIN.json",
+      "root": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "PROPOSAL_PIN.json": {
+          "bytes": 1772,
+          "sha256": "d907a773fba8b45db372b0ab3b1f008f2feac08cd26d18dd4598e9888ee35e42"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "ce0c176c3bad79677ac277c301e8c0f164c598f820a4a110f128334a0a4cb500"
+        }
+      },
+      "bytes": 266271,
+      "expected": {
+        "CANDIDATE.patch": {
+          "bytes": 4938,
+          "sha256": "2fd92821335d1b086895195eee0ef478e84892d821e81b8b5cc1bc3a5c90850a"
+        },
+        "CONTRACT_PROPOSAL.json": {
+          "bytes": 3332,
+          "sha256": "a5c8c80be377f1bd4e3b0ff449ace619a0b5776066d044467c0130f356e37e1c"
+        },
+        "PROPOSAL_PIN.json": {
+          "bytes": 1772,
+          "sha256": "d907a773fba8b45db372b0ab3b1f008f2feac08cd26d18dd4598e9888ee35e42"
+        },
+        "SOURCE_PRESERVATION.json": {
+          "bytes": 20303,
+          "sha256": "b4fb2a0de03f5d5c523afb97a699e7f043e83121f671360f56d644a61c97e80f"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "ce0c176c3bad79677ac277c301e8c0f164c598f820a4a110f128334a0a4cb500"
+        },
+        "baseline_mac_producer.py": {
+          "bytes": 22948,
+          "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4"
+        },
+        "baseline_oracle_controller.py": {
+          "bytes": 58509,
+          "sha256": "38abb2b529f659691ea8dae87f751b883453b9a8479e36f578c325be701ecbbe"
+        },
+        "baseline_reviewed_runtime.py": {
+          "bytes": 8447,
+          "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+        },
+        "baseline_stream_format.py": {
+          "bytes": 26543,
+          "sha256": "c9496f69ebb2992732c5144697c5e6ff44e39724ea5045a733815310527cd0a2"
+        },
+        "mac_producer.py": {
+          "bytes": 22948,
+          "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4"
+        },
+        "oracle_controller.py": {
+          "bytes": 60775,
+          "sha256": "d1ee5da71d8ffdbdc650b8a32b53b20179e32557daba904131eab8d2ecb85588"
+        },
+        "reviewed_runtime.py": {
+          "bytes": 8447,
+          "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+        },
+        "stream_format.py": {
+          "bytes": 26543,
+          "sha256": "c9496f69ebb2992732c5144697c5e6ff44e39724ea5045a733815310527cd0a2"
+        }
+      },
+      "files": 13,
+      "label": "native-v3-review3",
+      "manifest": "PROPOSAL_PIN.json",
+      "root": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128"
+    }
+  ],
+  "source_head": "55845d215d8e6ff4559dab04ef63791920c4053a",
+  "source_tree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "total_bytes": 3630077,
+  "total_files": 121
+}

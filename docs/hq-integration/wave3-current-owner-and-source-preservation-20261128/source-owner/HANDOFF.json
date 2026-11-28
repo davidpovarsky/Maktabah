@@ -1,0 +1,51 @@
+{
+  "artifacts_excluding_handoff": [
+    {
+      "bytes": 24977,
+      "path": "INPUT_PINS.json",
+      "sha256": "486781773214b06e40e76f6654708c9761b9504d50511ea712028f1187a89054"
+    },
+    {
+      "bytes": 17382,
+      "path": "PACKAGER.py",
+      "sha256": "753337ad0586db6bb616b262abef6e3e450d449c9a39289ada0310ed8350589e"
+    },
+    {
+      "bytes": 1037359,
+      "path": "PRESERVATION_RAW.zip",
+      "sha256": "5aee71788fe1b2af256ba8992a1a27dba8dc2362a91caa00b544f9b103309dfc"
+    },
+    {
+      "bytes": 3543,
+      "path": "PRESERVATION_RESULT.json",
+      "sha256": "b709e8033b74009ec4dcecf83508602d4d5e31e808fb6ed9078f0f8269f4823f"
+    },
+    {
+      "bytes": 5583,
+      "path": "README.md",
+      "sha256": "d91019c24903c64bf8a372c176cfd2f3e9ecdbeb1b88107dea1833f10708c763"
+    },
+    {
+      "bytes": 88461,
+      "path": "SOURCE_MANIFEST.json",
+      "sha256": "cbe6ea229cc41f0a22b841c85085c706186aea5d78265019dabec6f19eca0924"
+    }
+  ],
+  "files_preserved": 121,
+  "original_payload_bytes": 3630077,
+  "output": "/home/ubuntu/otzaria-wave3-source-owner-checkpoint-20261128",
+  "resources": {
+    "allocated_before_handoff": 1196032,
+    "free_before_handoff": 2259607552,
+    "reserve_and_cap_bytes": 8388608,
+    "root_floor_bytes": 1593835520
+  },
+  "root_checkpoint_commit": "NOT_PERFORMED",
+  "root_repository_writes": false,
+  "schema": "otzaria.source-owner-checkpoint.handoff.v1",
+  "source_head": "55845d215d8e6ff4559dab04ef63791920c4053a",
+  "source_scopes_unchanged": true,
+  "source_tree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "status": "PRESERVED_ONLY_NOT_RELEASE_QUALIFIED",
+  "zip_members": 121
+}

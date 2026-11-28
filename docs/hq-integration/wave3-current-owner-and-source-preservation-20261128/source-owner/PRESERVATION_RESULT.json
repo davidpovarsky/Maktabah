@@ -1,0 +1,113 @@
+{
+  "all_original_bytes_and_identity_metadata_rejoined": true,
+  "data_writes": false,
+  "files": 121,
+  "independent_seals_and_closed_sets_verified": true,
+  "native_generation_baselines_byte_exact": true,
+  "nested_owner_capsule_bytes_unchanged": true,
+  "nested_owner_capsule_members_verified": 37,
+  "new_approval_or_release_qualification": false,
+  "original_atime_not_claimed_unchanged": true,
+  "original_scope_writes": false,
+  "owner_audit": {
+    "current_external_key_provisioning": "NOT_PROBED",
+    "current_paths": 69,
+    "full_release_gate": "NOT_RUN",
+    "historical_valid_unexpired": 55,
+    "matching": 31,
+    "missing_approved_record": 14,
+    "stale": 24
+  },
+  "payload_bytes": 3630077,
+  "preserved_source_execution_imports_tests_compilation_native_auth_signing": false,
+  "product_or_git_writes": false,
+  "resources": {
+    "before_result_allocated_bytes": 1191936,
+    "full_reserve_and_allocated_cap_bytes": 8388608,
+    "guard_events": [
+      {
+        "allocated_bytes": 4096,
+        "planned_additional_bytes": 20480,
+        "rootfs_free_bytes": 2260799488,
+        "step": "before PACKAGER.py"
+      },
+      {
+        "allocated_bytes": 24576,
+        "planned_additional_bytes": 0,
+        "rootfs_free_bytes": 2260779008,
+        "step": "after PACKAGER.py"
+      },
+      {
+        "allocated_bytes": 24576,
+        "planned_additional_bytes": 28672,
+        "rootfs_free_bytes": 2260779008,
+        "step": "before INPUT_PINS.json"
+      },
+      {
+        "allocated_bytes": 53248,
+        "planned_additional_bytes": 0,
+        "rootfs_free_bytes": 2260750336,
+        "step": "after INPUT_PINS.json"
+      },
+      {
+        "allocated_bytes": 53248,
+        "planned_additional_bytes": 8192,
+        "rootfs_free_bytes": 2260750336,
+        "step": "before README.md"
+      },
+      {
+        "allocated_bytes": 61440,
+        "planned_additional_bytes": 0,
+        "rootfs_free_bytes": 2260742144,
+        "step": "after README.md"
+      },
+      {
+        "allocated_bytes": 61440,
+        "planned_additional_bytes": 90112,
+        "rootfs_free_bytes": 2260742144,
+        "step": "before SOURCE_MANIFEST.json"
+      },
+      {
+        "allocated_bytes": 151552,
+        "planned_additional_bytes": 0,
+        "rootfs_free_bytes": 2260652032,
+        "step": "after SOURCE_MANIFEST.json"
+      },
+      {
+        "allocated_bytes": 151552,
+        "planned_additional_bytes": 4740605,
+        "rootfs_free_bytes": 2260647936,
+        "step": "before ZIP"
+      },
+      {
+        "allocated_bytes": 1191936,
+        "planned_additional_bytes": 0,
+        "rootfs_free_bytes": 2259611648,
+        "step": "after ZIP"
+      },
+      {
+        "allocated_bytes": 1191936,
+        "planned_additional_bytes": 0,
+        "rootfs_free_bytes": 2259611648,
+        "step": "after original-source final rejoin"
+      }
+    ],
+    "root_floor_bytes": 1593835520,
+    "rootfs_free_before": 2260803584
+  },
+  "schema": "otzaria.source-owner-checkpoint.result.v1",
+  "scopes": 6,
+  "source_head": "55845d215d8e6ff4559dab04ef63791920c4053a",
+  "source_tree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "status": "PRESERVED_AND_VERIFIED",
+  "symlinks_hardlinks_nonregular_extra_leaves_or_directories": 0,
+  "time_utc": "2026-11-28T02:22:00.170517+00:00",
+  "zip": {
+    "all_member_bytes_and_sha256_verified": true,
+    "bytes": 1037359,
+    "crc_verified": true,
+    "members": 121,
+    "path": "PRESERVATION_RAW.zip",
+    "sha256": "5aee71788fe1b2af256ba8992a1a27dba8dc2362a91caa00b544f9b103309dfc"
+  }
+}

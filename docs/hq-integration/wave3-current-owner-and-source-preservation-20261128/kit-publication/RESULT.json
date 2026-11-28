@@ -1,0 +1,30 @@
+{
+  "allocated_bytes_before_result": 73728,
+  "created_at": "2026-11-28T02:16:06.904338+00:00",
+  "files": [
+    {
+      "bytes": 22187,
+      "path": "KIT_PUBLICATION_RAW.zip",
+      "sha256": "84dac3dd4e1d5108b3fbb2e43dfec4da6b68433af28152e39c70340172903d2f"
+    },
+    {
+      "bytes": 5079,
+      "path": "KIT_PUBLICATION_MANIFEST.json",
+      "sha256": "28c28993f1d84045b5e57970a02d39ec7c12f391d4449241fc28fa2b82550462"
+    },
+    {
+      "bytes": 29728,
+      "path": "ROOT_READBACK_RECEIPTS.json",
+      "sha256": "750cc40f9cf52dc781e441bb824d431cec7210be21ca36f5d2c2142f835ea6dc"
+    },
+    {
+      "bytes": 999,
+      "path": "README.md",
+      "sha256": "2e1b070872297f64d29cfe1d8256c048ae7e4cea9552241760ad21ab6084b1e8"
+    }
+  ],
+  "no_source_git_data_mutation": true,
+  "schema": "otzaria.kit-root-receipts-checkpoint/1",
+  "source_leaves": 31,
+  "source_total_bytes": 54394
+}

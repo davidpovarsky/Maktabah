@@ -1,0 +1,163 @@
+{
+  "all_byte_and_crc_readbacks": true,
+  "files": [
+    {
+      "bytes": 11788,
+      "path": "continuation-2/CONTROLLER.py",
+      "sha256": "af8d0d4dde85a812e88b1267bfa14df0ef861cadba7b3e8e785d95affb82b2e3"
+    },
+    {
+      "bytes": 5546,
+      "path": "continuation-2/COMMANDS.json",
+      "sha256": "568283971a997576551a4b75b63dca850a2a7a9b07b3a0ab5f5ea2e7b0e3c571"
+    },
+    {
+      "bytes": 4511,
+      "path": "continuation-2/RESULT.json",
+      "sha256": "862f7669efc1764cf93f00645cc4e697c1220abc26dfc378d6f908f2d8a8b78f"
+    },
+    {
+      "bytes": 41,
+      "path": "continuation-2/01.stdout",
+      "sha256": "21403d9f4e849d852ff16acba5c3d7eb9508bee92f8dc3db27bd10793cf34489"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 41,
+      "path": "continuation-2/02.stdout",
+      "sha256": "5899a8e78913b049b42feb22882a4809560bc920929e9a39981b7b06f4ee1edc"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 59,
+      "path": "continuation-2/03.stdout",
+      "sha256": "c30c111665fd3d2e3ecb85653af466b08e521c892959aa2a46da9fb87348f2d6"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/03.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 55,
+      "path": "continuation-2/04.stdout",
+      "sha256": "ac2b647b16b2fc03bcd8770f47d3a3045ac344134acdc9aa69f0cfed87a94f24"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/04.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/05.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/05.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1278,
+      "path": "continuation-2/06.stdout",
+      "sha256": "b06836a499f51ceb30baf76fd106b94a6411fdb9878db689284251690c8c578b"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/06.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/23.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/23.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 153,
+      "path": "continuation-2/24.stdout",
+      "sha256": "9e448ab1f56eba10c1baa63396ae6538412bc3642e0b7d81f428b8fbd3f9505b"
+    },
+    {
+      "bytes": 284,
+      "path": "continuation-2/24.stderr",
+      "sha256": "ab4d04b3f6cc338cec2eba4bedb52538d79b1d393209496e2ea41da1a9a92cfd"
+    },
+    {
+      "bytes": 111,
+      "path": "continuation-2/25.stdout",
+      "sha256": "de5d49dcfc901ff368dc25a158b7a056d2c8767554bdbfcb27eb8669de6ae7df"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/25.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/26.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/26.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 41,
+      "path": "continuation-2/27.stdout",
+      "sha256": "5899a8e78913b049b42feb22882a4809560bc920929e9a39981b7b06f4ee1edc"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/27.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/28.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "continuation-2/28.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 437,
+      "path": "evidence/54.stderr",
+      "sha256": "e3ce131cd9285d7fc6d07cd7421a8fa248275cc65fe32dfd0860d7e6de840c38"
+    },
+    {
+      "bytes": 4887,
+      "path": "evidence/FAILED.json",
+      "sha256": "f1b99a63f03fe1c0b0e85561ce440dadf35146ed471c6211b905ef084202c12b"
+    },
+    {
+      "bytes": 83,
+      "path": "continuation-1/239.stderr",
+      "sha256": "2e554a39e2bb4414b5e2c3f5a90ebc87b405b5b8231d692704ec6df4580e8f60"
+    },
+    {
+      "bytes": 25079,
+      "path": "continuation-1/FAILED.json",
+      "sha256": "b56462b17a71724a35060a79e7bb264d2d678bdc58aa509757125c34773ebc78"
+    }
+  ],
+  "members": 31,
+  "schema": "otzaria.kit-publication-raw-manifest/1",
+  "source_root": "/home/ubuntu/otzaria-wave3-inspector-kit-source-20261128"
+}

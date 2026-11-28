@@ -1,0 +1,2546 @@
+{
+  "archive_names_are_relative": true,
+  "file_count": 121,
+  "files": [
+    {
+      "bytes": 91477,
+      "original_metadata": {
+        "allocated_bytes": 94208,
+        "bytes": 91477,
+        "ctime_ns": 1795829776201795424,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631968,
+        "mode": 420,
+        "mtime_ns": 1795829776201795424,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/FINAL_MATERIALIZE_INPUT.json",
+      "path": "FINAL_MATERIALIZE_INPUT.json",
+      "scope": "toc-common",
+      "sha256": "1ce1903df803707dec61ea9ca456c547d34e908ea7c34113a83468abd6d67c18",
+      "zip_member": "toc-common/FINAL_MATERIALIZE_INPUT.json"
+    },
+    {
+      "bytes": 4111,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 4111,
+        "ctime_ns": 1795829776218079078,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631978,
+        "mode": 420,
+        "mtime_ns": 1795829776218079078,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/FINAL_RESULT.json",
+      "path": "FINAL_RESULT.json",
+      "scope": "toc-common",
+      "sha256": "44884496828b10e39a893fd2a99012a150f0688bcfff81db7e991553326d2db7",
+      "zip_member": "toc-common/FINAL_RESULT.json"
+    },
+    {
+      "bytes": 1880,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1880,
+        "ctime_ns": 1795829896775651740,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632017,
+        "mode": 420,
+        "mtime_ns": 1795829896775651740,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/HANDOFF.json",
+      "path": "HANDOFF.json",
+      "scope": "toc-common",
+      "sha256": "d9e53748882ebdd4b284702039ae71326d73bffa835ce0db2436be3a9cfd01dd",
+      "zip_member": "toc-common/HANDOFF.json"
+    },
+    {
+      "bytes": 50933,
+      "original_metadata": {
+        "allocated_bytes": 53248,
+        "bytes": 50933,
+        "ctime_ns": 1795829285418886452,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631498,
+        "mode": 420,
+        "mtime_ns": 1795829285418886452,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/MATERIALIZE_INPUT.json",
+      "path": "MATERIALIZE_INPUT.json",
+      "scope": "toc-common",
+      "sha256": "f0e1511375f00683eb04486243198fde40663ffc8edf46a6131e3cc315a4122b",
+      "zip_member": "toc-common/MATERIALIZE_INPUT.json"
+    },
+    {
+      "bytes": 5847,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 5847,
+        "ctime_ns": 1795829896774332013,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632016,
+        "mode": 420,
+        "mtime_ns": 1795829896774332013,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/PACKAGE_MANIFEST.json",
+      "path": "PACKAGE_MANIFEST.json",
+      "scope": "toc-common",
+      "sha256": "b5ef494974cdcafa320765a54510ad27866ee5d8a1c06a98525ac90d82b3581e",
+      "zip_member": "toc-common/PACKAGE_MANIFEST.json"
+    },
+    {
+      "bytes": 1191,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1191,
+        "ctime_ns": 1795828623751516764,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621146,
+        "mode": 420,
+        "mtime_ns": 1795828623751516764,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/PREPARE_RECEIPT.json",
+      "path": "PREPARE_RECEIPT.json",
+      "scope": "toc-common",
+      "sha256": "1786c8e47ffa6b493ab14bc0dd6926f96a7dcccb3ab246616e206c11e2e4f6e8",
+      "zip_member": "toc-common/PREPARE_RECEIPT.json"
+    },
+    {
+      "bytes": 3088,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 3088,
+        "ctime_ns": 1795829285420813743,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631499,
+        "mode": 420,
+        "mtime_ns": 1795829285420813743,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/RESULT.json",
+      "path": "RESULT.json",
+      "scope": "toc-common",
+      "sha256": "7ebbd8986ffea0c04191542fe0922eda1804e2f684386efdb1b43866527d070d",
+      "zip_member": "toc-common/RESULT.json"
+    },
+    {
+      "bytes": 2961,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2961,
+        "ctime_ns": 1795829896759049884,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632015,
+        "mode": 420,
+        "mtime_ns": 1795829896759049884,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/SOURCE_REVIEW.json",
+      "path": "SOURCE_REVIEW.json",
+      "scope": "toc-common",
+      "sha256": "ec16386b643191e48139f6593319f45fbfc7675ad2089706c8ca9d7bce916963",
+      "zip_member": "toc-common/SOURCE_REVIEW.json"
+    },
+    {
+      "bytes": 8386,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8386,
+        "ctime_ns": 1795829776203301912,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631974,
+        "mode": 420,
+        "mtime_ns": 1795829776203301912,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "path": "baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+      "scope": "toc-common",
+      "sha256": "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf",
+      "zip_member": "toc-common/baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift"
+    },
+    {
+      "bytes": 3125,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 3125,
+        "ctime_ns": 1795829776205121443,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631977,
+        "mode": 420,
+        "mtime_ns": 1795829776205121443,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "path": "baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift",
+      "scope": "toc-common",
+      "sha256": "24ff00ddfc80351456bda7270ecb7a5bb48e2029fa9991721e3aa1d8d3a35e3f",
+      "zip_member": "toc-common/baseline-dependencies/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeComponentSourceObservation.swift"
+    },
+    {
+      "bytes": 203596,
+      "original_metadata": {
+        "allocated_bytes": 204800,
+        "bytes": 203596,
+        "ctime_ns": 1795828623751108362,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621142,
+        "mode": 420,
+        "mtime_ns": 1795828623751108362,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "scope": "toc-common",
+      "sha256": "66b971765ac6b3e749a6a9b5780b654d7dd2c473fc0dae673c8b04592cea4acc",
+      "zip_member": "toc-common/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "bytes": 10302,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 10302,
+        "ctime_ns": 1795828623751331083,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621145,
+        "mode": 420,
+        "mtime_ns": 1795828623751331083,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/baseline/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift",
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift",
+      "scope": "toc-common",
+      "sha256": "61028bdba52398eb73cd3c6d0bbd3fd1a1f4136506311f89c62da8560e79a8ff",
+      "zip_member": "toc-common/baseline/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeSceneDirectory.swift"
+    },
+    {
+      "bytes": 233272,
+      "original_metadata": {
+        "allocated_bytes": 233472,
+        "bytes": 233272,
+        "ctime_ns": 1795829776189494072,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631957,
+        "mode": 420,
+        "mtime_ns": 1795829776189494072,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/candidate-final/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "path": "candidate-final/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "scope": "toc-common",
+      "sha256": "768da87edb39a3206c0df61d66eb7c34704ff73f35d35c2e38361ec355619596",
+      "zip_member": "toc-common/candidate-final/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "bytes": 231068,
+      "original_metadata": {
+        "allocated_bytes": 233472,
+        "bytes": 231068,
+        "ctime_ns": 1795829285411620410,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631485,
+        "mode": 420,
+        "mtime_ns": 1795829285411620410,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "scope": "toc-common",
+      "sha256": "dd95e7647964cf5885c8b71451c39843880578db7beb3bf73973971a94f5611a",
+      "zip_member": "toc-common/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "bytes": 1248,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1248,
+        "ctime_ns": 1795829285418197288,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631497,
+        "mode": 420,
+        "mtime_ns": 1795829285418197288,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/evidence/294_ADDITIVE_NOTES.json",
+      "path": "evidence/294_ADDITIVE_NOTES.json",
+      "scope": "toc-common",
+      "sha256": "f00926ae0d901512cb2cca63e350e97b64bfc1896e42a9bbd70b33f920dacd66",
+      "zip_member": "toc-common/evidence/294_ADDITIVE_NOTES.json"
+    },
+    {
+      "bytes": 316,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 316,
+        "ctime_ns": 1795829285416894400,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631495,
+        "mode": 420,
+        "mtime_ns": 1795829285416894400,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/evidence/EXACT_DIRECTORY_IDENTITY.json",
+      "path": "evidence/EXACT_DIRECTORY_IDENTITY.json",
+      "scope": "toc-common",
+      "sha256": "ad19c21f9937532c06a444562eb4052fb59bfe36257b16c4bd5f9f1394a05fa6",
+      "zip_member": "toc-common/evidence/EXACT_DIRECTORY_IDENTITY.json"
+    },
+    {
+      "bytes": 438,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 438,
+        "ctime_ns": 1795829285417522324,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631496,
+        "mode": 420,
+        "mtime_ns": 1795829285417522324,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/evidence/EXTERNAL_UI_INTERFACE.json",
+      "path": "evidence/EXTERNAL_UI_INTERFACE.json",
+      "scope": "toc-common",
+      "sha256": "33d7d32d0aed470795e384939d17f36b3fa4a16377cbaf19e8ad356061912e77",
+      "zip_member": "toc-common/evidence/EXTERNAL_UI_INTERFACE.json"
+    },
+    {
+      "bytes": 1955,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1955,
+        "ctime_ns": 1795829776200471536,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631967,
+        "mode": 420,
+        "mtime_ns": 1795829776200471536,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/evidence/NATIVE_STATE_CHANGED_CALL_TRACE.json",
+      "path": "evidence/NATIVE_STATE_CHANGED_CALL_TRACE.json",
+      "scope": "toc-common",
+      "sha256": "ec01d6261491fc16964a6a8429df1ebfa88c09fa1d7fcdf90b0a8258773e0541",
+      "zip_member": "toc-common/evidence/NATIVE_STATE_CHANGED_CALL_TRACE.json"
+    },
+    {
+      "bytes": 8608,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8608,
+        "ctime_ns": 1795829285416219677,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631494,
+        "mode": 420,
+        "mtime_ns": 1795829285416219677,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/evidence/OBSERVED_METHODS.json",
+      "path": "evidence/OBSERVED_METHODS.json",
+      "scope": "toc-common",
+      "sha256": "067f706e7d5dc8fb11be3c6cc6b0c0dbaa94d0b90910b37287ad4218da99f493",
+      "zip_member": "toc-common/evidence/OBSERVED_METHODS.json"
+    },
+    {
+      "bytes": 28699,
+      "original_metadata": {
+        "allocated_bytes": 32768,
+        "bytes": 28699,
+        "ctime_ns": 1795829776190993961,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631959,
+        "mode": 420,
+        "mtime_ns": 1795829776190993961,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal-final/COMMON_HELPERS.swift",
+      "path": "proposal-final/COMMON_HELPERS.swift",
+      "scope": "toc-common",
+      "sha256": "132b997dd63db2233d555b0bd2f01321aeacd9923ee8856952f14b77bf110fb3",
+      "zip_member": "toc-common/proposal-final/COMMON_HELPERS.swift"
+    },
+    {
+      "bytes": 44561,
+      "original_metadata": {
+        "allocated_bytes": 45056,
+        "bytes": 44561,
+        "ctime_ns": 1795829776192262728,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631960,
+        "mode": 420,
+        "mtime_ns": 1795829776192262728,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal-final/EXACT_EDITS.json",
+      "path": "proposal-final/EXACT_EDITS.json",
+      "scope": "toc-common",
+      "sha256": "cd264fdf9cc61ca6d37cb3f2bf22e496a9bf7ba19cb1c6e4d267907a5a7b12a8",
+      "zip_member": "toc-common/proposal-final/EXACT_EDITS.json"
+    },
+    {
+      "bytes": 7705,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 7705,
+        "ctime_ns": 1795829776194840663,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631962,
+        "mode": 420,
+        "mtime_ns": 1795829776194840663,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal-final/ROOT_WIRING_PREREQUISITES.md",
+      "path": "proposal-final/ROOT_WIRING_PREREQUISITES.md",
+      "scope": "toc-common",
+      "sha256": "ae73606352d97c7ddd65151924dcfb17da8e29541bd781154bfa2bb1e68e5ad8",
+      "zip_member": "toc-common/proposal-final/ROOT_WIRING_PREREQUISITES.md"
+    },
+    {
+      "bytes": 32207,
+      "original_metadata": {
+        "allocated_bytes": 32768,
+        "bytes": 32207,
+        "ctime_ns": 1795829776193653416,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631961,
+        "mode": 420,
+        "mtime_ns": 1795829776193653416,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal-final/SOURCE.diff",
+      "path": "proposal-final/SOURCE.diff",
+      "scope": "toc-common",
+      "sha256": "64d6c7310e03c6a0cdcb33e9d9a80e3627ac44d4f90656073f142e910d8b228e",
+      "zip_member": "toc-common/proposal-final/SOURCE.diff"
+    },
+    {
+      "bytes": 26495,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 26495,
+        "ctime_ns": 1795829285412484415,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631487,
+        "mode": 420,
+        "mtime_ns": 1795829285412484415,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal/COMMON_HELPERS.swift",
+      "path": "proposal/COMMON_HELPERS.swift",
+      "scope": "toc-common",
+      "sha256": "e5cb347a0fb0d1b6f0ce911b8db0cdc5243c83fd2b09863e7546c4b0ea0c7d30",
+      "zip_member": "toc-common/proposal/COMMON_HELPERS.swift"
+    },
+    {
+      "bytes": 42317,
+      "original_metadata": {
+        "allocated_bytes": 45056,
+        "bytes": 42317,
+        "ctime_ns": 1795829285413096938,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631488,
+        "mode": 420,
+        "mtime_ns": 1795829285413096938,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal/EXACT_EDITS.json",
+      "path": "proposal/EXACT_EDITS.json",
+      "scope": "toc-common",
+      "sha256": "ce3d3a6efb71e85b09f8521be166f6b98c24e429723ff41112d210a453b99858",
+      "zip_member": "toc-common/proposal/EXACT_EDITS.json"
+    },
+    {
+      "bytes": 6239,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 6239,
+        "ctime_ns": 1795829285414340266,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631490,
+        "mode": 420,
+        "mtime_ns": 1795829285414340266,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal/ROOT_WIRING_PREREQUISITES.md",
+      "path": "proposal/ROOT_WIRING_PREREQUISITES.md",
+      "scope": "toc-common",
+      "sha256": "88aa13429db54e949222713e74a6818e243b9b56de6566d45ba3d24bd9bc0a1a",
+      "zip_member": "toc-common/proposal/ROOT_WIRING_PREREQUISITES.md"
+    },
+    {
+      "bytes": 29965,
+      "original_metadata": {
+        "allocated_bytes": 32768,
+        "bytes": 29965,
+        "ctime_ns": 1795829285413742622,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631489,
+        "mode": 420,
+        "mtime_ns": 1795829285413742622,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/proposal/SOURCE.diff",
+      "path": "proposal/SOURCE.diff",
+      "scope": "toc-common",
+      "sha256": "12685ee95bdd3218915a3dc21c5ffae4b94a719d6922e32ae5a2dae94df8831d",
+      "zip_member": "toc-common/proposal/SOURCE.diff"
+    },
+    {
+      "bytes": 52232,
+      "original_metadata": {
+        "allocated_bytes": 53248,
+        "bytes": 52232,
+        "ctime_ns": 1795829265817067995,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631479,
+        "mode": 420,
+        "mtime_ns": 1795829265817067995,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/review/MATERIALIZATION_ATTEMPT1_FAILURE.json",
+      "path": "review/MATERIALIZATION_ATTEMPT1_FAILURE.json",
+      "scope": "toc-common",
+      "sha256": "ad30a3cb7a5ada109f6f3b38475b153c9bfac347ddda07c68c6d4bff20e10403",
+      "zip_member": "toc-common/review/MATERIALIZATION_ATTEMPT1_FAILURE.json"
+    },
+    {
+      "bytes": 12251,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 12251,
+        "ctime_ns": 1795829776197389318,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631965,
+        "mode": 420,
+        "mtime_ns": 1795829776197389318,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/review/capture-order-fix/CORRECTION.json",
+      "path": "review/capture-order-fix/CORRECTION.json",
+      "scope": "toc-common",
+      "sha256": "5586bc1bc5236aa567c48a7435d1b41f83e3a91aa147917a636f7129798690a2",
+      "zip_member": "toc-common/review/capture-order-fix/CORRECTION.json"
+    },
+    {
+      "bytes": 11001,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 11001,
+        "ctime_ns": 1795829776198932327,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631966,
+        "mode": 420,
+        "mtime_ns": 1795829776198932327,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/review/capture-order-fix/HELPER.diff",
+      "path": "review/capture-order-fix/HELPER.diff",
+      "scope": "toc-common",
+      "sha256": "4c89ac18d673364f7cffd0795336da28f8bc566b8515b4696befff846062d3cb",
+      "zip_member": "toc-common/review/capture-order-fix/HELPER.diff"
+    },
+    {
+      "bytes": 27622,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 27622,
+        "ctime_ns": 1795829776196370232,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631964,
+        "mode": 420,
+        "mtime_ns": 1795829776196370232,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/review/capture-order-fix/INTERMEDIATE_HELPER.swift",
+      "path": "review/capture-order-fix/INTERMEDIATE_HELPER.swift",
+      "scope": "toc-common",
+      "sha256": "2a96b581c690c99a440d61311329d48cde311450c31b53bdfb71651d5f5e0247",
+      "zip_member": "toc-common/review/capture-order-fix/INTERMEDIATE_HELPER.swift"
+    },
+    {
+      "bytes": 3608,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 3608,
+        "ctime_ns": 1795829285415545273,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631492,
+        "mode": 420,
+        "mtime_ns": 1795829285415545273,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/review/helper-draft1-to-draft2.json",
+      "path": "review/helper-draft1-to-draft2.json",
+      "scope": "toc-common",
+      "sha256": "8527ea96daa22bf14e7bf92c51388b9a40774d0e9915d5c97c636667c71c6418",
+      "zip_member": "toc-common/review/helper-draft1-to-draft2.json"
+    },
+    {
+      "bytes": 26543,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 26543,
+        "ctime_ns": 1795829285414939189,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 631491,
+        "mode": 420,
+        "mtime_ns": 1795829285414939189,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128/review/helper-draft1.swift",
+      "path": "review/helper-draft1.swift",
+      "scope": "toc-common",
+      "sha256": "75eda2f72b8075384d2ddd9898d40eb5c618012498078dee3f4dce67f1b548b4",
+      "zip_member": "toc-common/review/helper-draft1.swift"
+    },
+    {
+      "bytes": 7545,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 7545,
+        "ctime_ns": 1795828732112849051,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621179,
+        "mode": 416,
+        "mtime_ns": 1795828732112849051,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/DESIGN.md",
+      "path": "DESIGN.md",
+      "scope": "toc-phone",
+      "sha256": "432379f133c3878e5f148ddfeb59fedd6849d1b4ea6acdd1b5664e817eb2ec2b",
+      "zip_member": "toc-phone/DESIGN.md"
+    },
+    {
+      "bytes": 480,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 480,
+        "ctime_ns": 1795829101081875574,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632837,
+        "mode": 416,
+        "mtime_ns": 1795829101081875574,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/DESIGN_ADDENDUM_PROOF.json",
+      "path": "DESIGN_ADDENDUM_PROOF.json",
+      "scope": "toc-phone",
+      "sha256": "6924b5db70112af032115bd83c544f9b82985a38718700687a953015d9c1a729",
+      "zip_member": "toc-phone/DESIGN_ADDENDUM_PROOF.json"
+    },
+    {
+      "bytes": 3925,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 3925,
+        "ctime_ns": 1795829101081713533,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632836,
+        "mode": 416,
+        "mtime_ns": 1795829101081713533,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/DESIGN_ADDENDUM_QUERY_PREPARATION.md",
+      "path": "DESIGN_ADDENDUM_QUERY_PREPARATION.md",
+      "scope": "toc-phone",
+      "sha256": "82aa012ebc6321215dd9e1818b3fb63892c43c9f8a7206e4f93488d77bc2d5f1",
+      "zip_member": "toc-phone/DESIGN_ADDENDUM_QUERY_PREPARATION.md"
+    },
+    {
+      "bytes": 1831,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1831,
+        "ctime_ns": 1795828732112675010,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621177,
+        "mode": 416,
+        "mtime_ns": 1795828732112675010,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/PARENT_READINESS_ADDITION.swift",
+      "path": "PARENT_READINESS_ADDITION.swift",
+      "scope": "toc-phone",
+      "sha256": "357f37fd72ddba347f9afec4a862e1e3be7eb8e535d5529ae49c73823025aa5f",
+      "zip_member": "toc-phone/PARENT_READINESS_ADDITION.swift"
+    },
+    {
+      "bytes": 2279,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2279,
+        "ctime_ns": 1795828732112770491,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621178,
+        "mode": 416,
+        "mtime_ns": 1795828732112770491,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/PHONE_PRE_EFFECT_READINESS.patch",
+      "path": "PHONE_PRE_EFFECT_READINESS.patch",
+      "scope": "toc-phone",
+      "sha256": "e86b1bc1592b14d5c617e5878cdb86edd1c3c61da0f0cf47a7d2bfdaf6854bd3",
+      "zip_member": "toc-phone/PHONE_PRE_EFFECT_READINESS.patch"
+    },
+    {
+      "bytes": 2291,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2291,
+        "ctime_ns": 1795828732119342249,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621181,
+        "mode": 416,
+        "mtime_ns": 1795828732119342249,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/PROOF.json",
+      "path": "PROOF.json",
+      "scope": "toc-phone",
+      "sha256": "1079d7747bbac95170ce78d9c2805e7d5b4cb5379a540e6744bfa61dc9e8dc41",
+      "zip_member": "toc-phone/PROOF.json"
+    },
+    {
+      "bytes": 12957,
+      "original_metadata": {
+        "allocated_bytes": 16384,
+        "bytes": 12957,
+        "ctime_ns": 1795828732112932452,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621180,
+        "mode": 416,
+        "mtime_ns": 1795828732112932452,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/READ_CONTEXT.json",
+      "path": "READ_CONTEXT.json",
+      "scope": "toc-phone",
+      "sha256": "7929c0c19473fb8a6ebe55f79b3c6f9b932abadbd9ba397abf1fa41fa9a3c5f9",
+      "zip_member": "toc-phone/READ_CONTEXT.json"
+    },
+    {
+      "bytes": 2453,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2453,
+        "ctime_ns": 1795829101087892130,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632838,
+        "mode": 416,
+        "mtime_ns": 1795829101087892130,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/REMOTE_ARTIFACT_LIST.json",
+      "path": "REMOTE_ARTIFACT_LIST.json",
+      "scope": "toc-phone",
+      "sha256": "719594b54212a3b252a73f8a08ae25288ab37b93fc012ce9e938eee600d98dfe",
+      "zip_member": "toc-phone/REMOTE_ARTIFACT_LIST.json"
+    },
+    {
+      "bytes": 22872,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22872,
+        "ctime_ns": 1795828732112194287,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621169,
+        "mode": 416,
+        "mtime_ns": 1795828732112194287,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+      "scope": "toc-phone",
+      "sha256": "3be167a7855d74e854765c4ae885eec2f07bf9ba0c22028a795a5007b9a2653d",
+      "zip_member": "toc-phone/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift"
+    },
+    {
+      "bytes": 24703,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 24703,
+        "ctime_ns": 1795828732112480089,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 621176,
+        "mode": 416,
+        "mtime_ns": 1795828732112480089,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift",
+      "scope": "toc-phone",
+      "sha256": "1ef05ec651636b358bd54d6cf9ad2cba068a2ddff2cd4cf176369590d28ddd17",
+      "zip_member": "toc-phone/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePhoneTOCPresentation.swift"
+    },
+    {
+      "bytes": 5738,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 5738,
+        "ctime_ns": 1795831356794016323,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632116,
+        "mode": 420,
+        "mtime_ns": 1795831356794016323,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/ADDITIONAL_SOURCE_PINS.json",
+      "path": "ADDITIONAL_SOURCE_PINS.json",
+      "scope": "owner-audit",
+      "sha256": "4af582d9ddd890e3ac008e620e3a4b24fcaa2fba03893b046c4486e89031c320",
+      "zip_member": "owner-audit/ADDITIONAL_SOURCE_PINS.json"
+    },
+    {
+      "bytes": 22232,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22232,
+        "ctime_ns": 1795830877979943794,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632049,
+        "mode": 420,
+        "mtime_ns": 1795830877979943794,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/CLASSIFY.py",
+      "path": "CLASSIFY.py",
+      "scope": "owner-audit",
+      "sha256": "2e887b6c8a500313babceefc93b7b4378ff4860012898d81af898cb0bae67677",
+      "zip_member": "owner-audit/CLASSIFY.py"
+    },
+    {
+      "bytes": 72362,
+      "original_metadata": {
+        "allocated_bytes": 73728,
+        "bytes": 72362,
+        "ctime_ns": 1795830879638205318,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632063,
+        "mode": 420,
+        "mtime_ns": 1795830879638205318,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/CURRENT_COVERAGE.json",
+      "path": "CURRENT_COVERAGE.json",
+      "scope": "owner-audit",
+      "sha256": "1ed7ece72e87a156acbf184a59c5abdc17421bfe267fc7501d4e8990ed01bce9",
+      "zip_member": "owner-audit/CURRENT_COVERAGE.json"
+    },
+    {
+      "bytes": 6298,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 6298,
+        "ctime_ns": 1795831356798516750,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632117,
+        "mode": 420,
+        "mtime_ns": 1795831356798516750,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/FINAL_MANIFEST.json",
+      "path": "FINAL_MANIFEST.json",
+      "scope": "owner-audit",
+      "sha256": "60b2c39d86e0a05f2c27be7a34b5193f09f14ff07caa9f088a14774b44f875e0",
+      "zip_member": "owner-audit/FINAL_MANIFEST.json"
+    },
+    {
+      "bytes": 1778,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1778,
+        "ctime_ns": 1795831356863536771,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632119,
+        "mode": 420,
+        "mtime_ns": 1795831356863536771,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/HANDOFF.json",
+      "path": "HANDOFF.json",
+      "scope": "owner-audit",
+      "sha256": "a8dd3ecd03e405e6f6537ef97a591387a6619e5facca2660a7ed3225ef90b9af",
+      "zip_member": "owner-audit/HANDOFF.json"
+    },
+    {
+      "bytes": 48620,
+      "original_metadata": {
+        "allocated_bytes": 49152,
+        "bytes": 48620,
+        "ctime_ns": 1795830878510255462,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632062,
+        "mode": 420,
+        "mtime_ns": 1795830878510255462,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/HISTORICAL_SIGNATURES.json",
+      "path": "HISTORICAL_SIGNATURES.json",
+      "scope": "owner-audit",
+      "sha256": "46d8428d44cfa530c00e0dd9d56b4fe99c48a3c319c6ecbc06068e485ebacfb3",
+      "zip_member": "owner-audit/HISTORICAL_SIGNATURES.json"
+    },
+    {
+      "bytes": 2850,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2850,
+        "ctime_ns": 1795830880206022329,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632067,
+        "mode": 420,
+        "mtime_ns": 1795830880206022329,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/MANIFEST.json",
+      "path": "MANIFEST.json",
+      "scope": "owner-audit",
+      "sha256": "5e2f3987262d4b03cd62a45b90bc4cf05c80f0de1af72b1d90284632cf681883",
+      "zip_member": "owner-audit/MANIFEST.json"
+    },
+    {
+      "bytes": 3630,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 3630,
+        "ctime_ns": 1795831356662786033,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632099,
+        "mode": 420,
+        "mtime_ns": 1795831356662786033,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/NEW_CODE_OBLIGATIONS.json",
+      "path": "NEW_CODE_OBLIGATIONS.json",
+      "scope": "owner-audit",
+      "sha256": "a10ea459ae1331f67e6926f7a048ecb07a0b99bd489f62caa6bb938f4e9d2795",
+      "zip_member": "owner-audit/NEW_CODE_OBLIGATIONS.json"
+    },
+    {
+      "bytes": 270168,
+      "original_metadata": {
+        "allocated_bytes": 270336,
+        "bytes": 270168,
+        "ctime_ns": 1795831356844199738,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632118,
+        "mode": 420,
+        "mtime_ns": 1795831356844199738,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/OWNER_VERIFICATION_RAW.zip",
+      "path": "OWNER_VERIFICATION_RAW.zip",
+      "scope": "owner-audit",
+      "sha256": "b8ed1dd55125a6662d74d2f9d8144dad4466aa31b60afd6f29c5ff3511ec018c",
+      "zip_member": "owner-audit/OWNER_VERIFICATION_RAW.zip"
+    },
+    {
+      "bytes": 16164,
+      "original_metadata": {
+        "allocated_bytes": 16384,
+        "bytes": 16164,
+        "ctime_ns": 1795831356662312030,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632098,
+        "mode": 420,
+        "mtime_ns": 1795831356662312030,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/README.md",
+      "path": "README.md",
+      "scope": "owner-audit",
+      "sha256": "b68385565f943acc841fcb3dc0559592f99cd6c8868a4f69006f3df7e7cfd704",
+      "zip_member": "owner-audit/README.md"
+    },
+    {
+      "bytes": 6589,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 6589,
+        "ctime_ns": 1795831356663972320,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632102,
+        "mode": 420,
+        "mtime_ns": 1795831356663972320,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/READ_TRANSPORT_FAILURES.json",
+      "path": "READ_TRANSPORT_FAILURES.json",
+      "scope": "owner-audit",
+      "sha256": "59b22f8eec90df800ec9b4d870d8b796a3a6dd8aa992433c37cc7d014cf6b383",
+      "zip_member": "owner-audit/READ_TRANSPORT_FAILURES.json"
+    },
+    {
+      "bytes": 2690,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2690,
+        "ctime_ns": 1795830880203664275,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632066,
+        "mode": 420,
+        "mtime_ns": 1795830880203664275,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/RESULT.json",
+      "path": "RESULT.json",
+      "scope": "owner-audit",
+      "sha256": "9e6d1c7af1c6c8023a35658d2d195ae4fe80f7d19281d57c2ede1486b3392833",
+      "zip_member": "owner-audit/RESULT.json"
+    },
+    {
+      "bytes": 2048,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2048,
+        "ctime_ns": 1795831356664420642,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632103,
+        "mode": 420,
+        "mtime_ns": 1795831356664420642,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/RESULT_READBACK.json",
+      "path": "RESULT_READBACK.json",
+      "scope": "owner-audit",
+      "sha256": "181591ba6016243aa315060c865476e4a8f800f7ab51b015768b83023e6d929c",
+      "zip_member": "owner-audit/RESULT_READBACK.json"
+    },
+    {
+      "bytes": 23591,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 23591,
+        "ctime_ns": 1795831356663158595,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632100,
+        "mode": 420,
+        "mtime_ns": 1795831356663158595,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/RUN_COMMAND.sh",
+      "path": "RUN_COMMAND.sh",
+      "scope": "owner-audit",
+      "sha256": "ac4bc39c8e16bf9498bf8403b023c24a084c783098bfe7d53de1f3fcf8eddfd7",
+      "zip_member": "owner-audit/RUN_COMMAND.sh"
+    },
+    {
+      "bytes": 4531,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 4531,
+        "ctime_ns": 1795831356663546197,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632101,
+        "mode": 420,
+        "mtime_ns": 1795831356663546197,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/RUN_RECEIPT.json",
+      "path": "RUN_RECEIPT.json",
+      "scope": "owner-audit",
+      "sha256": "56977d1e17fc8013ceb252c0133bdd3fbf3c0d737040295d7f1a14c332eecf08",
+      "zip_member": "owner-audit/RUN_RECEIPT.json"
+    },
+    {
+      "bytes": 185638,
+      "original_metadata": {
+        "allocated_bytes": 188416,
+        "bytes": 185638,
+        "ctime_ns": 1795830880200865938,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632064,
+        "mode": 420,
+        "mtime_ns": 1795830880200865938,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/SOURCE_DELTA.json",
+      "path": "SOURCE_DELTA.json",
+      "scope": "owner-audit",
+      "sha256": "57f33aedc633c7db98cf08501f549a1ce7272dc526f3726011854ec42dfb758c",
+      "zip_member": "owner-audit/SOURCE_DELTA.json"
+    },
+    {
+      "bytes": 7903,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 7903,
+        "ctime_ns": 1795830880203410193,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632065,
+        "mode": 420,
+        "mtime_ns": 1795830880203410193,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/TRUST_AND_INPUTS.json",
+      "path": "TRUST_AND_INPUTS.json",
+      "scope": "owner-audit",
+      "sha256": "3dea16949449c2c90a63989b85d3887010b5a7d1013a9f09495f1d577e4c90ec",
+      "zip_member": "owner-audit/TRUST_AND_INPUTS.json"
+    },
+    {
+      "bytes": 10301,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 10301,
+        "ctime_ns": 1795831356674041739,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632105,
+        "mode": 420,
+        "mtime_ns": 1795831356674041739,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/AGENTS.md",
+      "path": "additional-inputs/AGENTS.md",
+      "scope": "owner-audit",
+      "sha256": "a746df4023f31a5ec05c8e03f9df3374c6f7ea2bde1f2bbb53805bbbedff4d62",
+      "zip_member": "owner-audit/additional-inputs/AGENTS.md"
+    },
+    {
+      "bytes": 6019,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 6019,
+        "ctime_ns": 1795831356685896809,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632106,
+        "mode": 420,
+        "mtime_ns": 1795831356685896809,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/PROJECT_AGENT_GUIDANCE.md",
+      "path": "additional-inputs/PROJECT_AGENT_GUIDANCE.md",
+      "scope": "owner-audit",
+      "sha256": "2c693a6e13a6c878c31bb249f40a01427e74dfc9e29d912a043f4c6dda6ed1c0",
+      "zip_member": "owner-audit/additional-inputs/PROJECT_AGENT_GUIDANCE.md"
+    },
+    {
+      "bytes": 41693,
+      "original_metadata": {
+        "allocated_bytes": 45056,
+        "bytes": 41693,
+        "ctime_ns": 1795831356728658900,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632110,
+        "mode": 420,
+        "mtime_ns": 1795831356728658900,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/final_integration_source.py",
+      "path": "additional-inputs/final_integration_source.py",
+      "scope": "owner-audit",
+      "sha256": "500fdd1eebe4a2dd6ae3af823606a99aaa73cd4a6c8da6ed6ed600ff0f434079",
+      "zip_member": "owner-audit/additional-inputs/final_integration_source.py"
+    },
+    {
+      "bytes": 61764,
+      "original_metadata": {
+        "allocated_bytes": 65536,
+        "bytes": 61764,
+        "ctime_ns": 1795831356708181179,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632108,
+        "mode": 420,
+        "mtime_ns": 1795831356708181179,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/ios-testflight.yml",
+      "path": "additional-inputs/ios-testflight.yml",
+      "scope": "owner-audit",
+      "sha256": "0eb140364a65a8e11451a5843d437919396f0f1d6f84b6d9f23c015585f786b3",
+      "zip_member": "owner-audit/additional-inputs/ios-testflight.yml"
+    },
+    {
+      "bytes": 8475,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8475,
+        "ctime_ns": 1795831356776259659,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632114,
+        "mode": 420,
+        "mtime_ns": 1795831356776259659,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/prior-9c6d-observation.json",
+      "path": "additional-inputs/prior-9c6d-observation.json",
+      "scope": "owner-audit",
+      "sha256": "326491329eb0c2da20ebb89dbe802f78458c0bf0c7332d0ea8c41a1cfe0aec07",
+      "zip_member": "owner-audit/additional-inputs/prior-9c6d-observation.json"
+    },
+    {
+      "bytes": 1513,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1513,
+        "ctime_ns": 1795831356787704246,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632115,
+        "mode": 420,
+        "mtime_ns": 1795831356787704246,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/prior-eb532-owner-approval-gate.json.gz",
+      "path": "additional-inputs/prior-eb532-owner-approval-gate.json.gz",
+      "scope": "owner-audit",
+      "sha256": "d726767f97860ce400473cbe97800f81ba0bebe7e963a3aee9e50a7dc2129a65",
+      "zip_member": "owner-audit/additional-inputs/prior-eb532-owner-approval-gate.json.gz"
+    },
+    {
+      "bytes": 22308,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22308,
+        "ctime_ns": 1795831356764544270,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632113,
+        "mode": 420,
+        "mtime_ns": 1795831356764544270,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/prior-final-owner-preflight.md",
+      "path": "additional-inputs/prior-final-owner-preflight.md",
+      "scope": "owner-audit",
+      "sha256": "3f3aa55b9e188f39b03604fb31b570449239ae912c3934c9b1159d947f46a5c8",
+      "zip_member": "owner-audit/additional-inputs/prior-final-owner-preflight.md"
+    },
+    {
+      "bytes": 44186,
+      "original_metadata": {
+        "allocated_bytes": 45056,
+        "bytes": 44186,
+        "ctime_ns": 1795831356751620154,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632112,
+        "mode": 420,
+        "mtime_ns": 1795831356751620154,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/reviewed-vendor-semantics.inputs.json",
+      "path": "additional-inputs/reviewed-vendor-semantics.inputs.json",
+      "scope": "owner-audit",
+      "sha256": "8423dae0002cce697d48a1a11d43fdae0a2a06f5c143420a56247fae8ed4e208",
+      "zip_member": "owner-audit/additional-inputs/reviewed-vendor-semantics.inputs.json"
+    },
+    {
+      "bytes": 25409,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 25409,
+        "ctime_ns": 1795831356740197647,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632111,
+        "mode": 420,
+        "mtime_ns": 1795831356740197647,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/reviewed-vendor-source.inputs.json",
+      "path": "additional-inputs/reviewed-vendor-source.inputs.json",
+      "scope": "owner-audit",
+      "sha256": "43e166c8b19e6bd5fdba5395246e31b2a089db4ed9f39c510b91e8188830db32",
+      "zip_member": "owner-audit/additional-inputs/reviewed-vendor-source.inputs.json"
+    },
+    {
+      "bytes": 2756,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2756,
+        "ctime_ns": 1795831356697416876,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632107,
+        "mode": 420,
+        "mtime_ns": 1795831356697416876,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/upstream-boundary-guard.yml",
+      "path": "additional-inputs/upstream-boundary-guard.yml",
+      "scope": "owner-audit",
+      "sha256": "717080cb78f128094de92b29ce69bbd5fcb3b3c4baf812e1f63140bbd2bfdb43",
+      "zip_member": "owner-audit/additional-inputs/upstream-boundary-guard.yml"
+    },
+    {
+      "bytes": 21381,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 21381,
+        "ctime_ns": 1795831356718410159,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632109,
+        "mode": 420,
+        "mtime_ns": 1795831356718410159,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/additional-inputs/verify-runtime27-release-gate.py",
+      "path": "additional-inputs/verify-runtime27-release-gate.py",
+      "scope": "owner-audit",
+      "sha256": "c181a9ddf92685e61dd5fb1ea79c82a7111f40dc55527ea740dbf79cd1348b0a",
+      "zip_member": "owner-audit/additional-inputs/verify-runtime27-release-gate.py"
+    },
+    {
+      "bytes": 11503,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 11503,
+        "ctime_ns": 1795830878029654729,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632053,
+        "mode": 420,
+        "mtime_ns": 1795830878029654729,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/UPSTREAM_INTEGRITY_POLICY.md",
+      "path": "inputs/UPSTREAM_INTEGRITY_POLICY.md",
+      "scope": "owner-audit",
+      "sha256": "ce022884d2a28ae5e9186d2a5cddc3f2bf2f6be5a36076240b752c39742bcd63",
+      "zip_member": "owner-audit/inputs/UPSTREAM_INTEGRITY_POLICY.md"
+    },
+    {
+      "bytes": 4625,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 4625,
+        "ctime_ns": 1795830878089520524,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632058,
+        "mode": 420,
+        "mtime_ns": 1795830878089520524,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/historical-9c6d-owner-gate.json",
+      "path": "inputs/historical-9c6d-owner-gate.json",
+      "scope": "owner-audit",
+      "sha256": "b8e0d96cc518240e102fb3b5dd4ae8c04a18a0d93c1b69ee1a0d81a4adffa51b",
+      "zip_member": "owner-audit/inputs/historical-9c6d-owner-gate.json"
+    },
+    {
+      "bytes": 209079,
+      "original_metadata": {
+        "allocated_bytes": 212992,
+        "bytes": 209079,
+        "ctime_ns": 1795830878121838796,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632061,
+        "mode": 420,
+        "mtime_ns": 1795830878121838796,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/historical-build-admission.json",
+      "path": "inputs/historical-build-admission.json",
+      "scope": "owner-audit",
+      "sha256": "4dc9fbeb212b248cfc3b464d688b1b5e08ee6d647012571bd5c696c406ddfa15",
+      "zip_member": "owner-audit/inputs/historical-build-admission.json"
+    },
+    {
+      "bytes": 9414,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 9414,
+        "ctime_ns": 1795830878098944500,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632059,
+        "mode": 420,
+        "mtime_ns": 1795830878098944500,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/historical-eb532-boundary-report.json.gz",
+      "path": "inputs/historical-eb532-boundary-report.json.gz",
+      "scope": "owner-audit",
+      "sha256": "ac8ac8f19bbc1440891a1cbfcda01329967363a55a0206f37072731e79a5ce85",
+      "zip_member": "owner-audit/inputs/historical-eb532-boundary-report.json.gz"
+    },
+    {
+      "bytes": 107565,
+      "original_metadata": {
+        "allocated_bytes": 110592,
+        "bytes": 107565,
+        "ctime_ns": 1795830878110484889,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632060,
+        "mode": 420,
+        "mtime_ns": 1795830878110484889,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/historical-ec5385-inventory.json",
+      "path": "inputs/historical-ec5385-inventory.json",
+      "scope": "owner-audit",
+      "sha256": "33089825ede3f673dab414c0b2e77ea70a90726880c992aee543933e963ccd7b",
+      "zip_member": "owner-audit/inputs/historical-ec5385-inventory.json"
+    },
+    {
+      "bytes": 13175,
+      "original_metadata": {
+        "allocated_bytes": 16384,
+        "bytes": 13175,
+        "ctime_ns": 1795830878048826203,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632055,
+        "mode": 420,
+        "mtime_ns": 1795830878048826203,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/original-wrapper-controls.py",
+      "path": "inputs/original-wrapper-controls.py",
+      "scope": "owner-audit",
+      "sha256": "45a6917073d8153e84e7aab075fb1046842dde297e93e15a77656ba1d1c3210a",
+      "zip_member": "owner-audit/inputs/original-wrapper-controls.py"
+    },
+    {
+      "bytes": 87350,
+      "original_metadata": {
+        "allocated_bytes": 90112,
+        "bytes": 87350,
+        "ctime_ns": 1795830878076241885,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632057,
+        "mode": 420,
+        "mtime_ns": 1795830878076241885,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/registry-before-six-path-signing.json",
+      "path": "inputs/registry-before-six-path-signing.json",
+      "scope": "owner-audit",
+      "sha256": "f20a921a70955cea267b1cf6e0de17315a339a9f688552a3150008e754ba3649",
+      "zip_member": "owner-audit/inputs/registry-before-six-path-signing.json"
+    },
+    {
+      "bytes": 88477,
+      "original_metadata": {
+        "allocated_bytes": 90112,
+        "bytes": 88477,
+        "ctime_ns": 1795830878059008183,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632056,
+        "mode": 420,
+        "mtime_ns": 1795830878059008183,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/registry-current.json",
+      "path": "inputs/registry-current.json",
+      "scope": "owner-audit",
+      "sha256": "5bd809034fa0c97cc05655ae216af4201543a6754ea3408013ed48d4eab85a1a",
+      "zip_member": "owner-audit/inputs/registry-current.json"
+    },
+    {
+      "bytes": 9969,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 9969,
+        "ctime_ns": 1795830878012904389,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632051,
+        "mode": 420,
+        "mtime_ns": 1795830878012904389,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/release-wrapper.py",
+      "path": "inputs/release-wrapper.py",
+      "scope": "owner-audit",
+      "sha256": "ab0da734ad6328da65da410e4d09d4e2911e423c82d7808df452fe8dae90aaaa",
+      "zip_member": "owner-audit/inputs/release-wrapper.py"
+    },
+    {
+      "bytes": 38157,
+      "original_metadata": {
+        "allocated_bytes": 40960,
+        "bytes": 38157,
+        "ctime_ns": 1795830878039739229,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632054,
+        "mode": 420,
+        "mtime_ns": 1795830878039739229,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/trusted-base-pr-guard.py",
+      "path": "inputs/trusted-base-pr-guard.py",
+      "scope": "owner-audit",
+      "sha256": "70cf39a26e0010122467c9775d9290a93da2a82dcc792c48b679251a4e93baca",
+      "zip_member": "owner-audit/inputs/trusted-base-pr-guard.py"
+    },
+    {
+      "bytes": 41334,
+      "original_metadata": {
+        "allocated_bytes": 45056,
+        "bytes": 41334,
+        "ctime_ns": 1795830878019828471,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632052,
+        "mode": 420,
+        "mtime_ns": 1795830878019828471,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128/inputs/trusted-verifier.py",
+      "path": "inputs/trusted-verifier.py",
+      "scope": "owner-audit",
+      "sha256": "9733798a242382f59da99cb999a169e2c69c59010b336742e9a8fa151e837676",
+      "zip_member": "owner-audit/inputs/trusted-verifier.py"
+    },
+    {
+      "bytes": 23662,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 23662,
+        "ctime_ns": 1795830129864512367,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632027,
+        "mode": 420,
+        "mtime_ns": 1795830129864512367,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/CANDIDATE.patch",
+      "path": "CANDIDATE.patch",
+      "scope": "native-v3",
+      "sha256": "a085e173afe3754c7bf69afe8c3bc61485265f85b9f0f7c7d992d18b1bf1f211",
+      "zip_member": "native-v3/CANDIDATE.patch"
+    },
+    {
+      "bytes": 2633,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 2633,
+        "ctime_ns": 1795830129866512379,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632028,
+        "mode": 420,
+        "mtime_ns": 1795830129866512379,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/CONTRACT_PROPOSAL.json",
+      "path": "CONTRACT_PROPOSAL.json",
+      "scope": "native-v3",
+      "sha256": "dbc2854b9178e975f435c4f0ef5cabcffa5a2e3178dcaada9c004afd9ee26654",
+      "zip_member": "native-v3/CONTRACT_PROPOSAL.json"
+    },
+    {
+      "bytes": 1765,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1765,
+        "ctime_ns": 1795830129870512402,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632030,
+        "mode": 420,
+        "mtime_ns": 1795830129870512402,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/PROPOSAL_PIN.json",
+      "path": "PROPOSAL_PIN.json",
+      "scope": "native-v3",
+      "sha256": "37851a2b5a48320cfc50c37666e7d2aae2013b6908fda069a8101e0136e18229",
+      "zip_member": "native-v3/PROPOSAL_PIN.json"
+    },
+    {
+      "bytes": 16872,
+      "original_metadata": {
+        "allocated_bytes": 20480,
+        "bytes": 16872,
+        "ctime_ns": 1795830129867512385,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632029,
+        "mode": 420,
+        "mtime_ns": 1795830129867512385,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/SOURCE_PRESERVATION.json",
+      "path": "SOURCE_PRESERVATION.json",
+      "scope": "native-v3",
+      "sha256": "5039beff73a939250bcccbe9ad75370fb2eb66d0ba8937d4a1652687f6b0d964",
+      "zip_member": "native-v3/SOURCE_PRESERVATION.json"
+    },
+    {
+      "bytes": 766,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 766,
+        "ctime_ns": 1795830129872512414,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632031,
+        "mode": 420,
+        "mtime_ns": 1795830129872512414,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/SOURCE_SEAL.json",
+      "path": "SOURCE_SEAL.json",
+      "scope": "native-v3",
+      "sha256": "bec6e0d9d26e9effca1aaa613c1145ee0511000ae9128297c4a8b029761df0c1",
+      "zip_member": "native-v3/SOURCE_SEAL.json"
+    },
+    {
+      "bytes": 23011,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 23011,
+        "ctime_ns": 1795830129847512269,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632020,
+        "mode": 420,
+        "mtime_ns": 1795830129847512269,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/baseline_mac_producer.py",
+      "path": "baseline_mac_producer.py",
+      "scope": "native-v3",
+      "sha256": "10aa61bda420de8777f5ad127f238cad7420c23e72099348c1a79842fc87e703",
+      "zip_member": "native-v3/baseline_mac_producer.py"
+    },
+    {
+      "bytes": 51282,
+      "original_metadata": {
+        "allocated_bytes": 53248,
+        "bytes": 51282,
+        "ctime_ns": 1795830129849512280,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632021,
+        "mode": 420,
+        "mtime_ns": 1795830129849512280,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/baseline_oracle_controller.py",
+      "path": "baseline_oracle_controller.py",
+      "scope": "native-v3",
+      "sha256": "c1769280d75470fa2b5302fb7a89ce2fee9d74981c395b20067b2ff34879644b",
+      "zip_member": "native-v3/baseline_oracle_controller.py"
+    },
+    {
+      "bytes": 8447,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8447,
+        "ctime_ns": 1795830129852512298,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632022,
+        "mode": 420,
+        "mtime_ns": 1795830129852512298,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/baseline_reviewed_runtime.py",
+      "path": "baseline_reviewed_runtime.py",
+      "scope": "native-v3",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80",
+      "zip_member": "native-v3/baseline_reviewed_runtime.py"
+    },
+    {
+      "bytes": 13919,
+      "original_metadata": {
+        "allocated_bytes": 16384,
+        "bytes": 13919,
+        "ctime_ns": 1795830129845512257,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632019,
+        "mode": 420,
+        "mtime_ns": 1795830129845512257,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/baseline_stream_format.py",
+      "path": "baseline_stream_format.py",
+      "scope": "native-v3",
+      "sha256": "45d7f99ad7a9fa6a913a5eba54b01b73ea43260951340926cb09c46460992055",
+      "zip_member": "native-v3/baseline_stream_format.py"
+    },
+    {
+      "bytes": 22935,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22935,
+        "ctime_ns": 1795830129856512321,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632024,
+        "mode": 420,
+        "mtime_ns": 1795830129856512321,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/mac_producer.py",
+      "path": "mac_producer.py",
+      "scope": "native-v3",
+      "sha256": "3c7422905a4e48f0ec68005a580a6c7b1696e19c12b8e115a5f9b5a9b196f488",
+      "zip_member": "native-v3/mac_producer.py"
+    },
+    {
+      "bytes": 56524,
+      "original_metadata": {
+        "allocated_bytes": 57344,
+        "bytes": 56524,
+        "ctime_ns": 1795830129859512338,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632025,
+        "mode": 420,
+        "mtime_ns": 1795830129859512338,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/oracle_controller.py",
+      "path": "oracle_controller.py",
+      "scope": "native-v3",
+      "sha256": "f4c8f7efc7d5360c876f43fbaa0a87cfae68e24622f057594fa143c4dbe68d2b",
+      "zip_member": "native-v3/oracle_controller.py"
+    },
+    {
+      "bytes": 8447,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8447,
+        "ctime_ns": 1795830129861512350,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632026,
+        "mode": 420,
+        "mtime_ns": 1795830129861512350,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/reviewed_runtime.py",
+      "path": "reviewed_runtime.py",
+      "scope": "native-v3",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80",
+      "zip_member": "native-v3/reviewed_runtime.py"
+    },
+    {
+      "bytes": 25603,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 25603,
+        "ctime_ns": 1795830129854512309,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632023,
+        "mode": 420,
+        "mtime_ns": 1795830129854512309,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128/stream_format.py",
+      "path": "stream_format.py",
+      "scope": "native-v3",
+      "sha256": "9a592f2bc2e3eb0db9ba32fb7c9c5b34e658c73ed7239e0f468926b5bf34b6b9",
+      "zip_member": "native-v3/stream_format.py"
+    },
+    {
+      "bytes": 6257,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 6257,
+        "ctime_ns": 1795830528256851009,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632043,
+        "mode": 420,
+        "mtime_ns": 1795830528256851009,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/CANDIDATE.patch",
+      "path": "CANDIDATE.patch",
+      "scope": "native-v3-review2",
+      "sha256": "9b3e3e1a896d6f770484173dab30e94cfbddce08faab9fba2052b9fd1fc3ab8a",
+      "zip_member": "native-v3-review2/CANDIDATE.patch"
+    },
+    {
+      "bytes": 4533,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 4533,
+        "ctime_ns": 1795830528258851021,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632044,
+        "mode": 420,
+        "mtime_ns": 1795830528258851021,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/CONTRACT_PROPOSAL.json",
+      "path": "CONTRACT_PROPOSAL.json",
+      "scope": "native-v3-review2",
+      "sha256": "94eec4d71fc0fe79a0e1512f84b4afe129a2c315e8c12893ef5a6c590da3adaa",
+      "zip_member": "native-v3-review2/CONTRACT_PROPOSAL.json"
+    },
+    {
+      "bytes": 1772,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1772,
+        "ctime_ns": 1795830528262851045,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632046,
+        "mode": 420,
+        "mtime_ns": 1795830528262851045,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/PROPOSAL_PIN.json",
+      "path": "PROPOSAL_PIN.json",
+      "scope": "native-v3-review2",
+      "sha256": "f1fcc1f42d00d411ea98a981528968782490ffdbb3589e4194093194f31d4322",
+      "zip_member": "native-v3-review2/PROPOSAL_PIN.json"
+    },
+    {
+      "bytes": 18790,
+      "original_metadata": {
+        "allocated_bytes": 20480,
+        "bytes": 18790,
+        "ctime_ns": 1795830528260851033,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632045,
+        "mode": 420,
+        "mtime_ns": 1795830528260851033,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/SOURCE_PRESERVATION.json",
+      "path": "SOURCE_PRESERVATION.json",
+      "scope": "native-v3-review2",
+      "sha256": "f2eaf9e103e0b6dd5f8624fa15697db9da69520578cf57274768f6fe667ad48f",
+      "zip_member": "native-v3-review2/SOURCE_PRESERVATION.json"
+    },
+    {
+      "bytes": 766,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 766,
+        "ctime_ns": 1795830528264851057,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632047,
+        "mode": 420,
+        "mtime_ns": 1795830528264851057,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/SOURCE_SEAL.json",
+      "path": "SOURCE_SEAL.json",
+      "scope": "native-v3-review2",
+      "sha256": "5f89a4d2eb1ed4b5184ad97a98ae47b94c205a5bc5393fe05a47ad449ea34a1b",
+      "zip_member": "native-v3-review2/SOURCE_SEAL.json"
+    },
+    {
+      "bytes": 22935,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22935,
+        "ctime_ns": 1795830528241850918,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632036,
+        "mode": 420,
+        "mtime_ns": 1795830528241850918,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/baseline_mac_producer.py",
+      "path": "baseline_mac_producer.py",
+      "scope": "native-v3-review2",
+      "sha256": "3c7422905a4e48f0ec68005a580a6c7b1696e19c12b8e115a5f9b5a9b196f488",
+      "zip_member": "native-v3-review2/baseline_mac_producer.py"
+    },
+    {
+      "bytes": 56524,
+      "original_metadata": {
+        "allocated_bytes": 57344,
+        "bytes": 56524,
+        "ctime_ns": 1795830528243850930,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632037,
+        "mode": 420,
+        "mtime_ns": 1795830528243850930,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/baseline_oracle_controller.py",
+      "path": "baseline_oracle_controller.py",
+      "scope": "native-v3-review2",
+      "sha256": "f4c8f7efc7d5360c876f43fbaa0a87cfae68e24622f057594fa143c4dbe68d2b",
+      "zip_member": "native-v3-review2/baseline_oracle_controller.py"
+    },
+    {
+      "bytes": 8447,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8447,
+        "ctime_ns": 1795830528245850942,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632038,
+        "mode": 420,
+        "mtime_ns": 1795830528245850942,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/baseline_reviewed_runtime.py",
+      "path": "baseline_reviewed_runtime.py",
+      "scope": "native-v3-review2",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80",
+      "zip_member": "native-v3-review2/baseline_reviewed_runtime.py"
+    },
+    {
+      "bytes": 25603,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 25603,
+        "ctime_ns": 1795830528237850894,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632035,
+        "mode": 420,
+        "mtime_ns": 1795830528237850894,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/baseline_stream_format.py",
+      "path": "baseline_stream_format.py",
+      "scope": "native-v3-review2",
+      "sha256": "9a592f2bc2e3eb0db9ba32fb7c9c5b34e658c73ed7239e0f468926b5bf34b6b9",
+      "zip_member": "native-v3-review2/baseline_stream_format.py"
+    },
+    {
+      "bytes": 22948,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22948,
+        "ctime_ns": 1795830528250850973,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632040,
+        "mode": 420,
+        "mtime_ns": 1795830528250850973,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/mac_producer.py",
+      "path": "mac_producer.py",
+      "scope": "native-v3-review2",
+      "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4",
+      "zip_member": "native-v3-review2/mac_producer.py"
+    },
+    {
+      "bytes": 58509,
+      "original_metadata": {
+        "allocated_bytes": 61440,
+        "bytes": 58509,
+        "ctime_ns": 1795830528252850985,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632041,
+        "mode": 420,
+        "mtime_ns": 1795830528252850985,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/oracle_controller.py",
+      "path": "oracle_controller.py",
+      "scope": "native-v3-review2",
+      "sha256": "38abb2b529f659691ea8dae87f751b883453b9a8479e36f578c325be701ecbbe",
+      "zip_member": "native-v3-review2/oracle_controller.py"
+    },
+    {
+      "bytes": 8447,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8447,
+        "ctime_ns": 1795830528254850997,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632042,
+        "mode": 420,
+        "mtime_ns": 1795830528254850997,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/reviewed_runtime.py",
+      "path": "reviewed_runtime.py",
+      "scope": "native-v3-review2",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80",
+      "zip_member": "native-v3-review2/reviewed_runtime.py"
+    },
+    {
+      "bytes": 26543,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 26543,
+        "ctime_ns": 1795830528248850961,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632039,
+        "mode": 420,
+        "mtime_ns": 1795830528248850961,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128/stream_format.py",
+      "path": "stream_format.py",
+      "scope": "native-v3-review2",
+      "sha256": "c9496f69ebb2992732c5144697c5e6ff44e39724ea5045a733815310527cd0a2",
+      "zip_member": "native-v3-review2/stream_format.py"
+    },
+    {
+      "bytes": 4938,
+      "original_metadata": {
+        "allocated_bytes": 8192,
+        "bytes": 4938,
+        "ctime_ns": 1795831485607523534,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632129,
+        "mode": 420,
+        "mtime_ns": 1795831485607523534,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/CANDIDATE.patch",
+      "path": "CANDIDATE.patch",
+      "scope": "native-v3-review3",
+      "sha256": "2fd92821335d1b086895195eee0ef478e84892d821e81b8b5cc1bc3a5c90850a",
+      "zip_member": "native-v3-review3/CANDIDATE.patch"
+    },
+    {
+      "bytes": 3332,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 3332,
+        "ctime_ns": 1795831485610523551,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632130,
+        "mode": 420,
+        "mtime_ns": 1795831485610523551,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/CONTRACT_PROPOSAL.json",
+      "path": "CONTRACT_PROPOSAL.json",
+      "scope": "native-v3-review3",
+      "sha256": "a5c8c80be377f1bd4e3b0ff449ace619a0b5776066d044467c0130f356e37e1c",
+      "zip_member": "native-v3-review3/CONTRACT_PROPOSAL.json"
+    },
+    {
+      "bytes": 1772,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 1772,
+        "ctime_ns": 1795831485614523575,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632132,
+        "mode": 420,
+        "mtime_ns": 1795831485614523575,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/PROPOSAL_PIN.json",
+      "path": "PROPOSAL_PIN.json",
+      "scope": "native-v3-review3",
+      "sha256": "d907a773fba8b45db372b0ab3b1f008f2feac08cd26d18dd4598e9888ee35e42",
+      "zip_member": "native-v3-review3/PROPOSAL_PIN.json"
+    },
+    {
+      "bytes": 20303,
+      "original_metadata": {
+        "allocated_bytes": 20480,
+        "bytes": 20303,
+        "ctime_ns": 1795831485612523563,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632131,
+        "mode": 420,
+        "mtime_ns": 1795831485612523563,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/SOURCE_PRESERVATION.json",
+      "path": "SOURCE_PRESERVATION.json",
+      "scope": "native-v3-review3",
+      "sha256": "b4fb2a0de03f5d5c523afb97a699e7f043e83121f671360f56d644a61c97e80f",
+      "zip_member": "native-v3-review3/SOURCE_PRESERVATION.json"
+    },
+    {
+      "bytes": 766,
+      "original_metadata": {
+        "allocated_bytes": 4096,
+        "bytes": 766,
+        "ctime_ns": 1795831485617523592,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632133,
+        "mode": 420,
+        "mtime_ns": 1795831485617523592,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/SOURCE_SEAL.json",
+      "path": "SOURCE_SEAL.json",
+      "scope": "native-v3-review3",
+      "sha256": "ce0c176c3bad79677ac277c301e8c0f164c598f820a4a110f128334a0a4cb500",
+      "zip_member": "native-v3-review3/SOURCE_SEAL.json"
+    },
+    {
+      "bytes": 22948,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22948,
+        "ctime_ns": 1795831485590523434,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632122,
+        "mode": 420,
+        "mtime_ns": 1795831485590523434,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/baseline_mac_producer.py",
+      "path": "baseline_mac_producer.py",
+      "scope": "native-v3-review3",
+      "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4",
+      "zip_member": "native-v3-review3/baseline_mac_producer.py"
+    },
+    {
+      "bytes": 58509,
+      "original_metadata": {
+        "allocated_bytes": 61440,
+        "bytes": 58509,
+        "ctime_ns": 1795831485593523451,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632123,
+        "mode": 420,
+        "mtime_ns": 1795831485593523451,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/baseline_oracle_controller.py",
+      "path": "baseline_oracle_controller.py",
+      "scope": "native-v3-review3",
+      "sha256": "38abb2b529f659691ea8dae87f751b883453b9a8479e36f578c325be701ecbbe",
+      "zip_member": "native-v3-review3/baseline_oracle_controller.py"
+    },
+    {
+      "bytes": 8447,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8447,
+        "ctime_ns": 1795831485595523463,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632124,
+        "mode": 420,
+        "mtime_ns": 1795831485595523463,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/baseline_reviewed_runtime.py",
+      "path": "baseline_reviewed_runtime.py",
+      "scope": "native-v3-review3",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80",
+      "zip_member": "native-v3-review3/baseline_reviewed_runtime.py"
+    },
+    {
+      "bytes": 26543,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 26543,
+        "ctime_ns": 1795831485587523416,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632121,
+        "mode": 420,
+        "mtime_ns": 1795831485587523416,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/baseline_stream_format.py",
+      "path": "baseline_stream_format.py",
+      "scope": "native-v3-review3",
+      "sha256": "c9496f69ebb2992732c5144697c5e6ff44e39724ea5045a733815310527cd0a2",
+      "zip_member": "native-v3-review3/baseline_stream_format.py"
+    },
+    {
+      "bytes": 22948,
+      "original_metadata": {
+        "allocated_bytes": 24576,
+        "bytes": 22948,
+        "ctime_ns": 1795831485600523493,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632126,
+        "mode": 420,
+        "mtime_ns": 1795831485600523493,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/mac_producer.py",
+      "path": "mac_producer.py",
+      "scope": "native-v3-review3",
+      "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4",
+      "zip_member": "native-v3-review3/mac_producer.py"
+    },
+    {
+      "bytes": 60775,
+      "original_metadata": {
+        "allocated_bytes": 61440,
+        "bytes": 60775,
+        "ctime_ns": 1795831485602523504,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632127,
+        "mode": 420,
+        "mtime_ns": 1795831485602523504,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/oracle_controller.py",
+      "path": "oracle_controller.py",
+      "scope": "native-v3-review3",
+      "sha256": "d1ee5da71d8ffdbdc650b8a32b53b20179e32557daba904131eab8d2ecb85588",
+      "zip_member": "native-v3-review3/oracle_controller.py"
+    },
+    {
+      "bytes": 8447,
+      "original_metadata": {
+        "allocated_bytes": 12288,
+        "bytes": 8447,
+        "ctime_ns": 1795831485605523522,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632128,
+        "mode": 420,
+        "mtime_ns": 1795831485605523522,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/reviewed_runtime.py",
+      "path": "reviewed_runtime.py",
+      "scope": "native-v3-review3",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80",
+      "zip_member": "native-v3-review3/reviewed_runtime.py"
+    },
+    {
+      "bytes": 26543,
+      "original_metadata": {
+        "allocated_bytes": 28672,
+        "bytes": 26543,
+        "ctime_ns": 1795831485598523481,
+        "device": 2049,
+        "gid": 1001,
+        "inode": 632125,
+        "mode": 420,
+        "mtime_ns": 1795831485598523481,
+        "nlink": 1,
+        "uid": 1001
+      },
+      "original_path": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128/stream_format.py",
+      "path": "stream_format.py",
+      "scope": "native-v3-review3",
+      "sha256": "c9496f69ebb2992732c5144697c5e6ff44e39724ea5045a733815310527cd0a2",
+      "zip_member": "native-v3-review3/stream_format.py"
+    }
+  ],
+  "no_normalization": true,
+  "payload_bytes": 3630077,
+  "schema": "otzaria.source-owner-checkpoint.manifest.v1",
+  "scopes": [
+    {
+      "anchors": {
+        "HANDOFF.json": {
+          "bytes": 1880,
+          "sha256": "d9e53748882ebdd4b284702039ae71326d73bffa835ce0db2436be3a9cfd01dd"
+        },
+        "PACKAGE_MANIFEST.json": {
+          "bytes": 5847,
+          "sha256": "b5ef494974cdcafa320765a54510ad27866ee5d8a1c06a98525ac90d82b3581e"
+        }
+      },
+      "bytes": 1215247,
+      "closed_set_verified": true,
+      "files": 33,
+      "label": "toc-common",
+      "manifest": "PACKAGE_MANIFEST.json",
+      "root": "/home/ubuntu/otzaria-wave3-toc-common-source-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "PROOF.json": {
+          "bytes": 2291,
+          "sha256": "1079d7747bbac95170ce78d9c2805e7d5b4cb5379a540e6744bfa61dc9e8dc41"
+        },
+        "REMOTE_ARTIFACT_LIST.json": {
+          "bytes": 2453,
+          "sha256": "719594b54212a3b252a73f8a08ae25288ab37b93fc012ce9e938eee600d98dfe"
+        }
+      },
+      "bytes": 81336,
+      "closed_set_verified": true,
+      "files": 10,
+      "label": "toc-phone",
+      "manifest": "REMOTE_ARTIFACT_LIST.json",
+      "root": "/home/ubuntu/otzaria-wave3-toc-parent-boundary-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "FINAL_MANIFEST.json": {
+          "bytes": 6298,
+          "sha256": "60b2c39d86e0a05f2c27be7a34b5193f09f14ff07caa9f088a14774b44f875e0"
+        },
+        "HANDOFF.json": {
+          "bytes": 1778,
+          "sha256": "a8dd3ecd03e405e6f6537ef97a591387a6619e5facca2660a7ed3225ef90b9af"
+        },
+        "OWNER_VERIFICATION_RAW.zip": {
+          "bytes": 270168,
+          "sha256": "b8ed1dd55125a6662d74d2f9d8144dad4466aa31b60afd6f29c5ff3511ec018c"
+        }
+      },
+      "bytes": 1549283,
+      "closed_set_verified": true,
+      "files": 39,
+      "label": "owner-audit",
+      "manifest": "FINAL_MANIFEST.json",
+      "root": "/home/ubuntu/otzaria-wave3-current-owner-verification-20261128"
+    },
+    {
+      "anchors": {
+        "PROPOSAL_PIN.json": {
+          "bytes": 1765,
+          "sha256": "37851a2b5a48320cfc50c37666e7d2aae2013b6908fda069a8101e0136e18229"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "bec6e0d9d26e9effca1aaa613c1145ee0511000ae9128297c4a8b029761df0c1"
+        }
+      },
+      "bytes": 255866,
+      "closed_set_verified": true,
+      "files": 13,
+      "label": "native-v3",
+      "manifest": "PROPOSAL_PIN.json",
+      "root": "/home/ubuntu/otzaria-wave3-native116-compact-v3-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "PROPOSAL_PIN.json": {
+          "bytes": 1772,
+          "sha256": "f1fcc1f42d00d411ea98a981528968782490ffdbb3589e4194093194f31d4322"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "5f89a4d2eb1ed4b5184ad97a98ae47b94c205a5bc5393fe05a47ad449ea34a1b"
+        }
+      },
+      "bytes": 262074,
+      "closed_set_verified": true,
+      "files": 13,
+      "label": "native-v3-review2",
+      "manifest": "PROPOSAL_PIN.json",
+      "root": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review2-proposal-20261128"
+    },
+    {
+      "anchors": {
+        "PROPOSAL_PIN.json": {
+          "bytes": 1772,
+          "sha256": "d907a773fba8b45db372b0ab3b1f008f2feac08cd26d18dd4598e9888ee35e42"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 766,
+          "sha256": "ce0c176c3bad79677ac277c301e8c0f164c598f820a4a110f128334a0a4cb500"
+        }
+      },
+      "bytes": 266271,
+      "closed_set_verified": true,
+      "files": 13,
+      "label": "native-v3-review3",
+      "manifest": "PROPOSAL_PIN.json",
+      "root": "/home/ubuntu/otzaria-wave3-native116-compact-v3-review3-proposal-20261128"
+    }
+  ],
+  "source_head": "55845d215d8e6ff4559dab04ef63791920c4053a",
+  "source_tree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "zip": "PRESERVATION_RAW.zip"
+}

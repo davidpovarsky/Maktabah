@@ -1,0 +1,217 @@
+[
+  {
+    "bytes": 2002,
+    "path": "CURRENT_SOURCE_PINS.json",
+    "sha256": "25a8d779c23979060e6e236999dc6fdb391f542bf96ab7356fb1b2f085107cc4"
+  },
+  {
+    "bytes": 1051,
+    "path": "GETTER_FENCE_CORRECTION.json",
+    "sha256": "3b8762795dc82275b945cde50ab2885a500b785ffe559e86811829ad7d1ab4ce"
+  },
+  {
+    "bytes": 14709,
+    "path": "ORIGINAL_HOOK_EDITS.json",
+    "sha256": "cf6b1b14e6b9227508ca0084bf187e290246f92fcbdd040d03b9b4e1734af3ae"
+  },
+  {
+    "bytes": 2822,
+    "path": "ORIGINAL_LIBRARY_PARENT_CORRECTION.json",
+    "sha256": "8fd107afc96a2b312783e3581841c4664cacc0ec9fa28ca4fcc9bb6718841379"
+  },
+  {
+    "bytes": 10373,
+    "path": "baseline/Source/Features/Library/ViewModel/LibraryViewModel.swift",
+    "sha256": "abd41c287795a89ccd6541c649c2f9a9c37d57f5d3626ce90aa371b9b3915a52"
+  },
+  {
+    "bytes": 5107,
+    "path": "baseline/Source/Features/Library/iOS/LibraryViewControllerWrapper.swift",
+    "sha256": "564393f8ca52504535c9232d983d5d89de5c7e391e8ee2f9b73666883ddc6d48"
+  },
+  {
+    "bytes": 9017,
+    "path": "baseline/Source/Features/Library/iOS/iOSLibraryView.swift",
+    "sha256": "3fa74f98c3f2894ad22f3d8eca3b319850450ffc63a9b0affd37a45e59ea7c9c"
+  },
+  {
+    "bytes": 6423,
+    "path": "baseline/Source/Features/Library/iOS/iOSLibraryViewController.swift",
+    "sha256": "08b97830305cc4843538be98a83e8aa0d3e65f7629e26b7eba4cbe97873acec2"
+  },
+  {
+    "bytes": 7923,
+    "path": "baseline/Source/UI/iOS/Views/Common/BaseHierarchicalListViewController.swift",
+    "sha256": "369c6f73ded8f2a0c5d2ee9513648150993760109e314b599d66dae0890abac2"
+  },
+  {
+    "bytes": 19998,
+    "path": "baseline/Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+    "sha256": "f6be0e9682141fd6f5ed2107cabda8495679e5d600a477e2fe80092bb785951a"
+  },
+  {
+    "bytes": 7044,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibraryListPublication.swift",
+    "sha256": "3bcb93f70b9352eeeeb196a41e333da69fc7a9c19e314b4ba1198c2d1c217919"
+  },
+  {
+    "bytes": 28097,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibrarySelectionBinding.swift",
+    "sha256": "c8cd7b741fe0b2189efeaa49327b0b01f1bbb2abafa6356442ff503c3e2aeba9"
+  },
+  {
+    "bytes": 11825,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeLibrarySelectionIntentService.swift",
+    "sha256": "da597e5eb1b35685e66829c754c36ab592e29693057e6ded42c4645c40c38871"
+  },
+  {
+    "bytes": 3033,
+    "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeLibrarySelectionIntents.swift",
+    "sha256": "bb67d75f6279c0438d888623aeb5a8133817fce141e70c7a1eabe466928671e1"
+  },
+  {
+    "bytes": 11021,
+    "path": "candidate/Source/Features/Library/ViewModel/LibraryViewModel.swift",
+    "sha256": "6119ff390d993a902409c10a25d8996803c6a41d4f5c0de1bf6139fb8035fcdf"
+  },
+  {
+    "bytes": 6137,
+    "path": "candidate/Source/Features/Library/iOS/LibraryViewControllerWrapper.swift",
+    "sha256": "3c0691b77ff01b137db908f6c02a63d3d1114161e73b43f4f91a3d0063f2a542"
+  },
+  {
+    "bytes": 9161,
+    "path": "candidate/Source/Features/Library/iOS/iOSLibraryView.swift",
+    "sha256": "a772f366df8320d605aab7966f4fa0298486c1cc8ca8a62462440a56eac9da2b"
+  },
+  {
+    "bytes": 19504,
+    "path": "candidate/Source/Features/Library/iOS/iOSLibraryViewController.swift",
+    "sha256": "a7315cf2b0badfb87fec4ad8ced607d0921f9d3a8c7792fac75829541521972f"
+  },
+  {
+    "bytes": 8425,
+    "path": "candidate/Source/UI/iOS/Views/Common/BaseHierarchicalListViewController.swift",
+    "sha256": "eedd84680e0a8d224a75fbf4f7c197d13b367f7be0a053a4d3c1d04171a460e9"
+  },
+  {
+    "bytes": 22154,
+    "path": "candidate/Source/UI/iOS/Views/Common/iOSHierarchicalCollectionViewController.swift",
+    "sha256": "4dcee0d7a513d3adf72b6914eecd8eb28ad6e95ea76fcce808d68844cc903038"
+  },
+  {
+    "bytes": 16090,
+    "path": "controls/CAPSULE_SOURCE_BINDINGS.json",
+    "sha256": "8af5a2916c8f3a7ef643e75830451165b910d4795aa02d1c3e44710a24003011"
+  },
+  {
+    "bytes": 16043,
+    "path": "controls/ExplicitLibraryBoundary.swift",
+    "sha256": "a191f102caac24f994d0de6aa2198ccff0cae315aa83fc4d8851528e15935c9c"
+  },
+  {
+    "bytes": 22470,
+    "path": "controls/LibraryOwnerControls.swift",
+    "sha256": "88a845636ba070e023ee3ac4b17133f8ca21f128b0231c3ac344746ccba2623c"
+  },
+  {
+    "bytes": 28034,
+    "path": "controls/capsules/ActualLibraryBinding.swift",
+    "sha256": "9640832f358abb51f4db42205c7b2bf7de0c72f8d984fcd8ef617ee5f96dd5c5"
+  },
+  {
+    "bytes": 31063,
+    "path": "controls/capsules/ActualLibraryController.swift",
+    "sha256": "13980c987ea1b2c65daf8cf25be7ddfa034681d13497ace880cda4a7b3bfcca0"
+  },
+  {
+    "bytes": 7235,
+    "path": "controls/capsules/ActualLibraryPublication.swift",
+    "sha256": "4df6b9dd8b3065000c289155ecf07928847d2c715e9c88d099ffc978a0522f40"
+  },
+  {
+    "bytes": 6049,
+    "path": "controls/capsules/ActualOriginalAuthorities.swift",
+    "sha256": "7362d02405aa864aa0f0ad3345ace7dd3def1e315e87026e6df8c69907671a4b"
+  },
+  {
+    "bytes": 2957,
+    "path": "controls/capsules/ActualOriginalLibraryProjection.swift",
+    "sha256": "ce26b6f6f7ce5acb5ac5a62e11447aada2d364962276f56f81dd527a25ea5602"
+  },
+  {
+    "bytes": 2035,
+    "path": "controls/capsules/ActualOriginalLibrarySetters.swift",
+    "sha256": "04fb04efaee73de524853873d957adffb63a9138159e35cfd5122135ab0d743f"
+  },
+  {
+    "bytes": 30997,
+    "path": "controls/capsules/PreservedGetterController.swift",
+    "sha256": "1b1786e46af2533597504eb0364360668004f4e166d9beeb6f4e3c0a6b3efefa"
+  },
+  {
+    "bytes": 1389,
+    "path": "controls/capsules/PreservedWrongParentPredicate.swift",
+    "sha256": "09cf4896ae55dd12483ceb1d4f490a81a9eeab5f447752bb1ca774eeced99d15"
+  },
+  {
+    "bytes": 11462,
+    "path": "controls/make_source_capsules.py",
+    "sha256": "7487bb1dc7e6d31e783a98ce47d50f143d6d3076f7abf1d7a7f6269e70205829"
+  },
+  {
+    "bytes": 1500,
+    "path": "original-inputs/SOURCE_INPUTS.json",
+    "sha256": "eba523aadbd487996a16591bae25e45c0bca2e59c868d36fd3dcf7d995c9d7b7"
+  },
+  {
+    "bytes": 8386,
+    "path": "original-inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeComponentBinding.swift",
+    "sha256": "67b734f8c1a5e2a28b95a5ee7a23625f565a23eee06449b41cd7834f47c47eaf"
+  },
+  {
+    "bytes": 38602,
+    "path": "original-inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneBindings.swift",
+    "sha256": "86dbb61cf7e20eb55c1d6b4c4a3504edbb037a816ebaa2a8be2ab7625ae9c085"
+  },
+  {
+    "bytes": 27361,
+    "path": "original-inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+    "sha256": "d5b05ed77d57a26f6ef6f3dfef13fa0213b48885e6a982951127681b6607a8db"
+  },
+  {
+    "bytes": 27762,
+    "path": "original-inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+    "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+  },
+  {
+    "bytes": 956,
+    "path": "original-inputs/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeWindowObservation.swift",
+    "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+  },
+  {
+    "bytes": 304,
+    "path": "original-inputs/Source/Core/AppCoordinator/AppMode.swift",
+    "sha256": "d43c6980e3843aaa511513e1b7a4e8fe66fec791ce7e7d3cdef63c174abf9f9b"
+  },
+  {
+    "bytes": 34750,
+    "path": "original-inputs/Source/UI/iOS/Views/iOSMainView.swift",
+    "sha256": "8849cf7f720238530158ef8b514dd53451c113ca5d68145199e5d9978134d05a"
+  },
+  {
+    "bytes": 12048,
+    "path": "preserved-1-before-getter-fences/CONTROLLER_ADDITION.swift",
+    "sha256": "d405f7111074b6ec39cb693179cf57e11cba70c7f7bc6f2bec245a64325b65bb"
+  },
+  {
+    "bytes": 19438,
+    "path": "preserved-1-before-getter-fences/Source/Features/Library/iOS/iOSLibraryViewController.swift",
+    "sha256": "7746f078d14a1a7d3404593c5602df703e27a0499d90764174deeda6bb983d34"
+  },
+  {
+    "bytes": 27786,
+    "path": "preserved-2-before-original-library-parent/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeLibrarySelectionBinding.swift",
+    "sha256": "de6e6148718deb04870c48ca2cc28dc2406cee379fc43aeb6f49ff4cdc911185"
+  }
+]
