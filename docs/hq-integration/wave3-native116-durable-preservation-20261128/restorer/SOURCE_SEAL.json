@@ -1,0 +1,64 @@
+{
+  "admissionCap": 196608,
+  "combinedFamilyCap": 2097152,
+  "directories": [
+    ""
+  ],
+  "familyPath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128",
+  "files": {
+    "HANDOFF.json": {
+      "bytes": 6658,
+      "sha256": "3a93e1082aadd84f41a6f4db436dcd13829c397702cda5d7be4a7b67cdd7ada4"
+    },
+    "RESULT.json": {
+      "bytes": 1138,
+      "sha256": "0bfce8e87445ac195617df429bdf7043b74284c87d1a3b128546e40b3296c502"
+    },
+    "SOURCE_DIFFS.json.gz": {
+      "bytes": 2324,
+      "sha256": "6d229d7dd26df16b5eb56535d2dfe132dcbf49f074927f42db68d45c42850537"
+    },
+    "mac_restore_stage_leaf.py": {
+      "bytes": 23551,
+      "sha256": "e3c66535982b23080c4d10d89fb1a9f55f6c0b4ab786f47b5624d4af6bb452be"
+    },
+    "restore_stage_leaf.py": {
+      "bytes": 52679,
+      "sha256": "72292b70581bf62d40b42dbf1e2829be05eada8eb4b173d23025cf5e3ebc37b0"
+    }
+  },
+  "historicalFamilies": [
+    {
+      "allocatedCap": 630784,
+      "lastObservedAllocated": 589824,
+      "path": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128",
+      "sourceSeal": {
+        "bytes": 1869,
+        "sha256": "8390416645ed999d535df0e623f3e89dad40a070bc6067a238a01c8fd0c0c746"
+      }
+    },
+    {
+      "allocatedCap": 602112,
+      "lastObservedAllocated": 602112,
+      "path": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128",
+      "sourceSeal": {
+        "bytes": 3877,
+        "sha256": "f35f15423c1db350b26741131aa7c340cda2d5f58f994b9e31f39a71f114e817"
+      }
+    },
+    {
+      "allocatedCap": 36864,
+      "lastObservedAllocated": 36864,
+      "path": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128",
+      "sourceSeal": {
+        "bytes": 1573,
+        "sha256": "11d28e6b1c20abee6cac8ffd273e2f15fa8ab9e83f0f68ed5456cfb37fc96ff0"
+      }
+    }
+  ],
+  "newFamilyCap": 827392,
+  "runtimeCap": 524288,
+  "schema": "otzaria.native116-stage-leaf-restorer-source/2",
+  "sourceCap": 106496,
+  "status": "SOURCE_ONLY_UNRUN"
+}

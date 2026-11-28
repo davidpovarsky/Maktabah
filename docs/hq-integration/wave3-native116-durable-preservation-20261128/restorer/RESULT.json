@@ -1,0 +1,35 @@
+{
+  "GET": false,
+  "MacAction": false,
+  "allHistoricalMetadataUnchanged": true,
+  "candidateExecuted": false,
+  "combinedMaximumConservative": 2097152,
+  "forwardInverseExact": true,
+  "globalCap": 2097152,
+  "historicalActualAllocated": 1228800,
+  "historicalConservativeAllocated": 1269760,
+  "newFamilyMaximum": 827392,
+  "onlyPointerNoAdmissionAuthority": true,
+  "original23AndDelta8FullHashesUnchanged": true,
+  "originalPreflightSourceSealExact": true,
+  "pointerPath": "admission/RESTORATION_POINTER.json",
+  "restoration": false,
+  "retirement": false,
+  "schema": "otzaria.native116-stage-restorer-executable-source-result/1",
+  "scope": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128",
+  "sourceASTOnly": true,
+  "sourceAllocatedPlanned": 102400,
+  "sourceFiles": 6,
+  "sourcePins": {
+    "oracle": {
+      "bytes": 52679,
+      "sha256": "72292b70581bf62d40b42dbf1e2829be05eada8eb4b173d23025cf5e3ebc37b0"
+    },
+    "receiver": {
+      "bytes": 23551,
+      "sha256": "e3c66535982b23080c4d10d89fb1a9f55f6c0b4ab786f47b5624d4af6bb452be"
+    }
+  },
+  "status": "SOURCE_ONLY_SEALED",
+  "tests": 0
+}

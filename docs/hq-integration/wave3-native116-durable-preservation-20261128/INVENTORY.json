@@ -1,0 +1,570 @@
+{
+  "actualRestoration": "NOT_RUN",
+  "families": {
+    "otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128": {
+      "absolutePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128",
+      "files": {
+        "AUTHOR_SOURCE_ONLY.py": {
+          "bytes": 219888,
+          "sha256": "485338989b72783e7491fbaa5189d7cd48b7201e784c12693a9831519bc2191d"
+        },
+        "CONDITIONAL_PLAN_ORIGINAL.json": {
+          "bytes": 19376,
+          "sha256": "838c72dabf5d140bbf6de7643ad318e2178617071c145469c3d788b0025aaf1b"
+        },
+        "HANDOFF.json": {
+          "bytes": 1299,
+          "sha256": "671ce11159d91adb5bb9fd2fe6ee87e8ce9fb16ca953db45b41e905047707226"
+        },
+        "OPAQUE_LEAF_RESTORATION_DESIGN.json": {
+          "bytes": 10495,
+          "sha256": "19b551b8a09ff30937293e717b1a57160b330320ef21ac99c2cc5e61e34404ce"
+        },
+        "ORIGINAL_PRODUCER.py": {
+          "bytes": 22948,
+          "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4"
+        },
+        "ORIGINAL_RUNTIME.py": {
+          "bytes": 8447,
+          "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+        },
+        "ORIGINAL_STAGE_HELPER.py": {
+          "bytes": 20765,
+          "sha256": "a44a5dd966dc202e8380fac3a7e878b06cac1c4a00d3934b361b6322fc545547"
+        },
+        "README.md": {
+          "bytes": 4154,
+          "sha256": "43cfbe725eabe537ca62ae9d3eb6b3c7f73b3b7889e9c5eb1a4cd2711879ade6"
+        },
+        "RESULT.json": {
+          "bytes": 1592,
+          "sha256": "c9bf3061ce2bbbc4523927239c987e326093efcc18944f86723e80921b4b73f8"
+        },
+        "SOURCE_PACKET_MANIFEST.json": {
+          "bytes": 3027,
+          "sha256": "17a1e5c1fb39d9e917b5bd30f9767c7bc195b7d8fa691685d291233034cf3f17"
+        },
+        "SOURCE_PACKET_RAW.zip": {
+          "bytes": 129162,
+          "sha256": "25729711aad0b71b5af5c132e5409ceba2ba923eb807e48f8c697652bf98e304"
+        },
+        "SOURCE_PLAN.json": {
+          "bytes": 5226,
+          "sha256": "0c8640decbb5ec1cef501eb3326a1f02ade3c9eaf5d41e9b61d758d8bd10ceec"
+        },
+        "SOURCE_REUSE.json": {
+          "bytes": 2420,
+          "sha256": "0aa74d5bff117bba70e04e9c65075eb6a0b5e41f4b7485d9c0649e000a5c29f3"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 1869,
+          "sha256": "8390416645ed999d535df0e623f3e89dad40a070bc6067a238a01c8fd0c0c746"
+        },
+        "STATIC_SOURCE_PROOF.json": {
+          "bytes": 1653,
+          "sha256": "211e173109886657d233f1613086825e613a47eedc6d57370353af3369015f15"
+        },
+        "STATUS_ADDENDUM.json": {
+          "bytes": 1631,
+          "sha256": "c43fbc18b428db2234ccd17b35cfefb204750f4daed82471cd4f6e5ada380f82"
+        },
+        "actual-read-only-preflight/FINAL_RESULT.json": {
+          "bytes": 3284,
+          "sha256": "8d49d1a2497fdfd1a4fc4bfc1c0e680e7a70fe29b02c03915aafb0a0a833304a"
+        },
+        "actual-read-only-preflight/PROCESS_LEDGER.json": {
+          "bytes": 2696,
+          "sha256": "1f854c9b61071826a5936a29b9b7287c24da302cafda08b90e6bfddee672f025"
+        },
+        "actual-read-only-preflight/SSH_ALIAS.json": {
+          "bytes": 1027,
+          "sha256": "913a00b7f13ad55a1ec9221312fd43f1780b3d810bcbb93dbb3774af946e8515"
+        },
+        "actual-read-only-preflight/TERMINAL.json": {
+          "bytes": 211,
+          "sha256": "a2e4f1d057a2c606ba5593d91fce58fc98ee0083ddfdb0713e1e3b591be5530a"
+        },
+        "actual-read-only-preflight/mac-collector.stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "actual-read-only-preflight/mac-collector.stdout": {
+          "bytes": 8972,
+          "sha256": "bfaaf15056bfc2af0b939437b985bd7fb9d67d2dd967124f6bae09968cadd118"
+        },
+        "actual-read-only-preflight/ssh-alias.stderr": {
+          "bytes": 72,
+          "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a"
+        },
+        "mac_stage_leaf_preflight.py": {
+          "bytes": 31598,
+          "sha256": "29602d16f05a66b52e72fef32a04001878e22041027905187c110e3a7c3c885b"
+        },
+        "run_stage_leaf_preflight.py": {
+          "bytes": 21569,
+          "sha256": "137e9f317c9f146debd73b5ec2d24167f21399276891a22795f6e97a51fb47dc"
+        }
+      }
+    },
+    "otzaria-wave3-native116-stage-leaf-restore-execution-20261128": {
+      "absolutePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128",
+      "files": {
+        "HANDOFF.json": {
+          "bytes": 6658,
+          "sha256": "3a93e1082aadd84f41a6f4db436dcd13829c397702cda5d7be4a7b67cdd7ada4"
+        },
+        "RESULT.json": {
+          "bytes": 1138,
+          "sha256": "0bfce8e87445ac195617df429bdf7043b74284c87d1a3b128546e40b3296c502"
+        },
+        "SOURCE_DIFFS.json.gz": {
+          "bytes": 2324,
+          "sha256": "6d229d7dd26df16b5eb56535d2dfe132dcbf49f074927f42db68d45c42850537"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 2047,
+          "sha256": "2ac9a9125dbc680664e68a0ca53661ca569416ff8bdc003e306997e542f0d755"
+        },
+        "admission/RESTORATION_POINTER.json": {
+          "bytes": 3304,
+          "sha256": "59b453bc05306e26f76ab4b557c5831b1f26386988bc42a1edb5556dcd787983"
+        },
+        "mac_restore_stage_leaf.py": {
+          "bytes": 23551,
+          "sha256": "e3c66535982b23080c4d10d89fb1a9f55f6c0b4ab786f47b5624d4af6bb452be"
+        },
+        "restore_stage_leaf.py": {
+          "bytes": 52679,
+          "sha256": "72292b70581bf62d40b42dbf1e2829be05eada8eb4b173d23025cf5e3ebc37b0"
+        }
+      }
+    },
+    "otzaria-wave3-native116-stage-leaf-restore-proposal-20261128": {
+      "absolutePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128",
+      "files": {
+        "ADMISSION_TEMPLATE.json": {
+          "bytes": 829,
+          "sha256": "9f5e221c0071536f32de091e57d097f9bf80d93b4b4a5e399724b99aaabbd244"
+        },
+        "AUTHOR_ARCHIVE_PINS.json": {
+          "bytes": 757,
+          "sha256": "3e7d438c30ad2e184bbeb34d0aa6a00ed70ffadef85c08a819ddb491b948aef3"
+        },
+        "PLAN.json": {
+          "bytes": 4418,
+          "sha256": "04784f66e55ae0b11005724c9f6f291668ca2b22a1ab139b67f319ceb693743d"
+        },
+        "PRIOR_FAMILY_ALLOCATION.json": {
+          "bytes": 7759,
+          "sha256": "3f048dcef831926fa02bc954ecf90eb458d845eb876f9a5e086373498488a6e2"
+        },
+        "README.md": {
+          "bytes": 5614,
+          "sha256": "b649c2adb09e293d95cad9cc819f820833610f6ccb86d50cba32b3b63ed456e2"
+        },
+        "RESTORATION_POINTER_TEMPLATE.json": {
+          "bytes": 2799,
+          "sha256": "6f641ea9b9fe9d18fb7bdbc86a38a9609ae451f94a2d8dcc8a65f12a551653ed"
+        },
+        "RESULT.json": {
+          "bytes": 1361,
+          "sha256": "f57637945107081a0fe55eb0058be4df76c13d5869dcc236f15e936f6fbea402"
+        },
+        "SOURCE_RAW.zip": {
+          "bytes": 336969,
+          "sha256": "74c4218a200c17ebee1e5ba32f6618476043fda929862231eb082d9956fafa44"
+        },
+        "SOURCE_REUSE.json": {
+          "bytes": 1768,
+          "sha256": "54445010c6b04c10a0db89c8e440f7975715e760f9b1fa944086fa1ed15ada54"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 3877,
+          "sha256": "f35f15423c1db350b26741131aa7c340cda2d5f58f994b9e31f39a71f114e817"
+        },
+        "STATIC_SOURCE_PROOF.json": {
+          "bytes": 1467,
+          "sha256": "01426d428ed811ec1e6941cf2f7ab655d57decfce2c048b87eb089812b211985"
+        },
+        "evidence/COLLECTOR_FINAL.json": {
+          "bytes": 3284,
+          "sha256": "8d49d1a2497fdfd1a4fc4bfc1c0e680e7a70fe29b02c03915aafb0a0a833304a"
+        },
+        "evidence/COLLECTOR_TRANSCRIPT.ndjson": {
+          "bytes": 8972,
+          "sha256": "bfaaf15056bfc2af0b939437b985bd7fb9d67d2dd967124f6bae09968cadd118"
+        },
+        "evidence/LOCAL_SOURCE_CONSTRUCTION_DIAGNOSTIC.json": {
+          "bytes": 282,
+          "sha256": "b98bb2862864d5035f291d6260836bbfef33f3a1fb8d1d1a16208bebc6d12a61"
+        },
+        "mac_restore_stage_leaf.py": {
+          "bytes": 23231,
+          "sha256": "e410fd69518359203427e0fabeae91e21ba9fc5921dd32f350411fa91d33168c"
+        },
+        "original/OPAQUE_RESTORATION_DESIGN.json": {
+          "bytes": 10495,
+          "sha256": "19b551b8a09ff30937293e717b1a57160b330320ef21ac99c2cc5e61e34404ce"
+        },
+        "original/QUALIFIED_ORACLE_LAUNCHER.py": {
+          "bytes": 21569,
+          "sha256": "137e9f317c9f146debd73b5ec2d24167f21399276891a22795f6e97a51fb47dc"
+        },
+        "original/QUALIFIED_STAGE_COLLECTOR.py": {
+          "bytes": 31598,
+          "sha256": "29602d16f05a66b52e72fef32a04001878e22041027905187c110e3a7c3c885b"
+        },
+        "restore_stage_leaf.py": {
+          "bytes": 49510,
+          "sha256": "424866f9d403141fc6ee5adcfee467e6fefc58a74a4f7167a3226381b6e1aa32"
+        },
+        "review/ACTUAL_PRIOR_ALLOCATION.json": {
+          "bytes": 8593,
+          "sha256": "51c75fcb537f484b584586cf73139d7ea4d1d4d6adbcd2c1f3721612c68cfe37"
+        },
+        "review/ALLOCATION_CORRECTION.json": {
+          "bytes": 310,
+          "sha256": "079b5fc0d7113900a295ac72caa88c75a8f51b45f33688e0ac6760339cc33fe9"
+        },
+        "review/ALLOCATION_READ_SOURCE.py": {
+          "bytes": 1223,
+          "sha256": "320671d9533739f515122b0537713b56d99dcc5d7b0d0c9034c8480d25564e81"
+        },
+        "review/INITIAL_SOURCE_AUTHOR_FAILURE.json": {
+          "bytes": 929,
+          "sha256": "199aa677fb23699219e17c332e2c834b6ef0afef5a9143fb8d3114b47c234a7f"
+        }
+      }
+    },
+    "otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128": {
+      "absolutePath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128",
+      "files": {
+        "ACTUAL_READBACK_JOB.json": {
+          "bytes": 1103,
+          "sha256": "43ed9879a39e364bb7aa88c82b40e9cd4a62c5baaded8b2e361c5667aa07214f"
+        },
+        "ACTUAL_ROOT_ADMISSION.json": {
+          "bytes": 1650,
+          "sha256": "3ad47febd3d652c8e8ff707b665ec5fe457e704800373fbaa06042622d6c6ac1"
+        },
+        "CANDIDATE.patch": {
+          "bytes": 1634,
+          "sha256": "bbe8c697f12e659f762edb9578587315579f19d2cab06032792a56c970d571b8"
+        },
+        "EXACT_EDIT.json": {
+          "bytes": 1957,
+          "sha256": "66e6c91b14dec13bf6073413eb8cb8abf2829c2f3520c6965a8b51b2e1a81c85"
+        },
+        "README.md": {
+          "bytes": 2568,
+          "sha256": "30576af5c00b5a88867c62ee95c766ec917a190ad6cd079140ffc5360c51e28d"
+        },
+        "RESULT.json": {
+          "bytes": 1898,
+          "sha256": "b474328e7ae901aaacf0d6edd6921bac6178fd5e8976999cee292987372caf32"
+        },
+        "SOURCE_PROOF.json": {
+          "bytes": 3282,
+          "sha256": "b553132ce929de7aa4d998c46901dffad985004a9165bc964d3874ec3545fa95"
+        },
+        "SOURCE_SEAL.json": {
+          "bytes": 1573,
+          "sha256": "11d28e6b1c20abee6cac8ffd273e2f15fa8ab9e83f0f68ed5456cfb37fc96ff0"
+        }
+      }
+    }
+  },
+  "members": {
+    "actual-readback/08-completed-archive-authenticated-full-readback.RESULT.json": {
+      "bytes": 119,
+      "sha256": "4f5d93c7d621008092ab02ada401feffb220b42369851d9bc4202bbb6ffcc095"
+    },
+    "actual-readback/ACTUAL_READBACK_JOB.json": {
+      "bytes": 1103,
+      "sha256": "43ed9879a39e364bb7aa88c82b40e9cd4a62c5baaded8b2e361c5667aa07214f"
+    },
+    "actual-readback/ACTUAL_ROOT_ADMISSION.json": {
+      "bytes": 1650,
+      "sha256": "3ad47febd3d652c8e8ff707b665ec5fe457e704800373fbaa06042622d6c6ac1"
+    },
+    "actual-readback/FINAL_RESULT.json": {
+      "bytes": 65536,
+      "sha256": "e9242bcf55ad96d02f5d5ad876dc65813a40699258406b360ead957cf5cda702"
+    },
+    "actual-readback/completed-archive.FULL_READBACK.json": {
+      "bytes": 1022,
+      "sha256": "7eec5056aa9adaaa41d82b47d19a2ebb60719a89ab54be1500f07a2eb2331ccf"
+    },
+    "actual-readback/existing-manifest.FULL_READBACK.json": {
+      "bytes": 588,
+      "sha256": "0e522751afcf614a7e2e71658d128d147a55a2349fa2699188201a32a26c5e01"
+    },
+    "actual-readback/existing-snapshot.FULL_READBACK.json": {
+      "bytes": 581,
+      "sha256": "91d206758523e06243ae8d871aecbb397102871ba12799af86615b66ca360df9"
+    },
+    "actual-readback/post-readback-original-full-source.SOURCE_EQUAL.json": {
+      "bytes": 455,
+      "sha256": "90050ebe2cbb3037f52e789da04e3a32019d83c9ebdbd441e4284db899dd6656"
+    },
+    "actual-readback/pre-readback-original-full-source.SOURCE_EQUAL.json": {
+      "bytes": 453,
+      "sha256": "6ab2854a42fc296b3d289a7f37bd2044ad236e43869a0157d59a0d075bfdaadb"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/AUTHOR_SOURCE_ONLY.py": {
+      "bytes": 219888,
+      "sha256": "485338989b72783e7491fbaa5189d7cd48b7201e784c12693a9831519bc2191d"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/CONDITIONAL_PLAN_ORIGINAL.json": {
+      "bytes": 19376,
+      "sha256": "838c72dabf5d140bbf6de7643ad318e2178617071c145469c3d788b0025aaf1b"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/HANDOFF.json": {
+      "bytes": 1299,
+      "sha256": "671ce11159d91adb5bb9fd2fe6ee87e8ce9fb16ca953db45b41e905047707226"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/OPAQUE_LEAF_RESTORATION_DESIGN.json": {
+      "bytes": 10495,
+      "sha256": "19b551b8a09ff30937293e717b1a57160b330320ef21ac99c2cc5e61e34404ce"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/ORIGINAL_PRODUCER.py": {
+      "bytes": 22948,
+      "sha256": "4e98ae9088ef26d4df8da3c8317539b9e13ffceefbb776093c8636b64c1b2ce4"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/ORIGINAL_RUNTIME.py": {
+      "bytes": 8447,
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/ORIGINAL_STAGE_HELPER.py": {
+      "bytes": 20765,
+      "sha256": "a44a5dd966dc202e8380fac3a7e878b06cac1c4a00d3934b361b6322fc545547"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/README.md": {
+      "bytes": 4154,
+      "sha256": "43cfbe725eabe537ca62ae9d3eb6b3c7f73b3b7889e9c5eb1a4cd2711879ade6"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/RESULT.json": {
+      "bytes": 1592,
+      "sha256": "c9bf3061ce2bbbc4523927239c987e326093efcc18944f86723e80921b4b73f8"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/SOURCE_PACKET_MANIFEST.json": {
+      "bytes": 3027,
+      "sha256": "17a1e5c1fb39d9e917b5bd30f9767c7bc195b7d8fa691685d291233034cf3f17"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/SOURCE_PACKET_RAW.zip": {
+      "bytes": 129162,
+      "sha256": "25729711aad0b71b5af5c132e5409ceba2ba923eb807e48f8c697652bf98e304"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/SOURCE_PLAN.json": {
+      "bytes": 5226,
+      "sha256": "0c8640decbb5ec1cef501eb3326a1f02ade3c9eaf5d41e9b61d758d8bd10ceec"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/SOURCE_REUSE.json": {
+      "bytes": 2420,
+      "sha256": "0aa74d5bff117bba70e04e9c65075eb6a0b5e41f4b7485d9c0649e000a5c29f3"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/SOURCE_SEAL.json": {
+      "bytes": 1869,
+      "sha256": "8390416645ed999d535df0e623f3e89dad40a070bc6067a238a01c8fd0c0c746"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/STATIC_SOURCE_PROOF.json": {
+      "bytes": 1653,
+      "sha256": "211e173109886657d233f1613086825e613a47eedc6d57370353af3369015f15"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/STATUS_ADDENDUM.json": {
+      "bytes": 1631,
+      "sha256": "c43fbc18b428db2234ccd17b35cfefb204750f4daed82471cd4f6e5ada380f82"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/actual-read-only-preflight/FINAL_RESULT.json": {
+      "bytes": 3284,
+      "sha256": "8d49d1a2497fdfd1a4fc4bfc1c0e680e7a70fe29b02c03915aafb0a0a833304a"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/actual-read-only-preflight/PROCESS_LEDGER.json": {
+      "bytes": 2696,
+      "sha256": "1f854c9b61071826a5936a29b9b7287c24da302cafda08b90e6bfddee672f025"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/actual-read-only-preflight/SSH_ALIAS.json": {
+      "bytes": 1027,
+      "sha256": "913a00b7f13ad55a1ec9221312fd43f1780b3d810bcbb93dbb3774af946e8515"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/actual-read-only-preflight/TERMINAL.json": {
+      "bytes": 211,
+      "sha256": "a2e4f1d057a2c606ba5593d91fce58fc98ee0083ddfdb0713e1e3b591be5530a"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/actual-read-only-preflight/mac-collector.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/actual-read-only-preflight/mac-collector.stdout": {
+      "bytes": 8972,
+      "sha256": "bfaaf15056bfc2af0b939437b985bd7fb9d67d2dd967124f6bae09968cadd118"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/actual-read-only-preflight/ssh-alias.stderr": {
+      "bytes": 72,
+      "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/mac_stage_leaf_preflight.py": {
+      "bytes": 31598,
+      "sha256": "29602d16f05a66b52e72fef32a04001878e22041027905187c110e3a7c3c885b"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128/run_stage_leaf_preflight.py": {
+      "bytes": 21569,
+      "sha256": "137e9f317c9f146debd73b5ec2d24167f21399276891a22795f6e97a51fb47dc"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/HANDOFF.json": {
+      "bytes": 6658,
+      "sha256": "3a93e1082aadd84f41a6f4db436dcd13829c397702cda5d7be4a7b67cdd7ada4"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/RESULT.json": {
+      "bytes": 1138,
+      "sha256": "0bfce8e87445ac195617df429bdf7043b74284c87d1a3b128546e40b3296c502"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/SOURCE_DIFFS.json.gz": {
+      "bytes": 2324,
+      "sha256": "6d229d7dd26df16b5eb56535d2dfe132dcbf49f074927f42db68d45c42850537"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/SOURCE_SEAL.json": {
+      "bytes": 2047,
+      "sha256": "2ac9a9125dbc680664e68a0ca53661ca569416ff8bdc003e306997e542f0d755"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/admission/RESTORATION_POINTER.json": {
+      "bytes": 3304,
+      "sha256": "59b453bc05306e26f76ab4b557c5831b1f26386988bc42a1edb5556dcd787983"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/mac_restore_stage_leaf.py": {
+      "bytes": 23551,
+      "sha256": "e3c66535982b23080c4d10d89fb1a9f55f6c0b4ab786f47b5624d4af6bb452be"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/restore_stage_leaf.py": {
+      "bytes": 52679,
+      "sha256": "72292b70581bf62d40b42dbf1e2829be05eada8eb4b173d23025cf5e3ebc37b0"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/ADMISSION_TEMPLATE.json": {
+      "bytes": 829,
+      "sha256": "9f5e221c0071536f32de091e57d097f9bf80d93b4b4a5e399724b99aaabbd244"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/AUTHOR_ARCHIVE_PINS.json": {
+      "bytes": 757,
+      "sha256": "3e7d438c30ad2e184bbeb34d0aa6a00ed70ffadef85c08a819ddb491b948aef3"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/PLAN.json": {
+      "bytes": 4418,
+      "sha256": "04784f66e55ae0b11005724c9f6f291668ca2b22a1ab139b67f319ceb693743d"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/PRIOR_FAMILY_ALLOCATION.json": {
+      "bytes": 7759,
+      "sha256": "3f048dcef831926fa02bc954ecf90eb458d845eb876f9a5e086373498488a6e2"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/README.md": {
+      "bytes": 5614,
+      "sha256": "b649c2adb09e293d95cad9cc819f820833610f6ccb86d50cba32b3b63ed456e2"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/RESTORATION_POINTER_TEMPLATE.json": {
+      "bytes": 2799,
+      "sha256": "6f641ea9b9fe9d18fb7bdbc86a38a9609ae451f94a2d8dcc8a65f12a551653ed"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/RESULT.json": {
+      "bytes": 1361,
+      "sha256": "f57637945107081a0fe55eb0058be4df76c13d5869dcc236f15e936f6fbea402"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/SOURCE_RAW.zip": {
+      "bytes": 336969,
+      "sha256": "74c4218a200c17ebee1e5ba32f6618476043fda929862231eb082d9956fafa44"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/SOURCE_REUSE.json": {
+      "bytes": 1768,
+      "sha256": "54445010c6b04c10a0db89c8e440f7975715e760f9b1fa944086fa1ed15ada54"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/SOURCE_SEAL.json": {
+      "bytes": 3877,
+      "sha256": "f35f15423c1db350b26741131aa7c340cda2d5f58f994b9e31f39a71f114e817"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/STATIC_SOURCE_PROOF.json": {
+      "bytes": 1467,
+      "sha256": "01426d428ed811ec1e6941cf2f7ab655d57decfce2c048b87eb089812b211985"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/evidence/COLLECTOR_FINAL.json": {
+      "bytes": 3284,
+      "sha256": "8d49d1a2497fdfd1a4fc4bfc1c0e680e7a70fe29b02c03915aafb0a0a833304a"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/evidence/COLLECTOR_TRANSCRIPT.ndjson": {
+      "bytes": 8972,
+      "sha256": "bfaaf15056bfc2af0b939437b985bd7fb9d67d2dd967124f6bae09968cadd118"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/evidence/LOCAL_SOURCE_CONSTRUCTION_DIAGNOSTIC.json": {
+      "bytes": 282,
+      "sha256": "b98bb2862864d5035f291d6260836bbfef33f3a1fb8d1d1a16208bebc6d12a61"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/mac_restore_stage_leaf.py": {
+      "bytes": 23231,
+      "sha256": "e410fd69518359203427e0fabeae91e21ba9fc5921dd32f350411fa91d33168c"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/original/OPAQUE_RESTORATION_DESIGN.json": {
+      "bytes": 10495,
+      "sha256": "19b551b8a09ff30937293e717b1a57160b330320ef21ac99c2cc5e61e34404ce"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/original/QUALIFIED_ORACLE_LAUNCHER.py": {
+      "bytes": 21569,
+      "sha256": "137e9f317c9f146debd73b5ec2d24167f21399276891a22795f6e97a51fb47dc"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/original/QUALIFIED_STAGE_COLLECTOR.py": {
+      "bytes": 31598,
+      "sha256": "29602d16f05a66b52e72fef32a04001878e22041027905187c110e3a7c3c885b"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/restore_stage_leaf.py": {
+      "bytes": 49510,
+      "sha256": "424866f9d403141fc6ee5adcfee467e6fefc58a74a4f7167a3226381b6e1aa32"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/review/ACTUAL_PRIOR_ALLOCATION.json": {
+      "bytes": 8593,
+      "sha256": "51c75fcb537f484b584586cf73139d7ea4d1d4d6adbcd2c1f3721612c68cfe37"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/review/ALLOCATION_CORRECTION.json": {
+      "bytes": 310,
+      "sha256": "079b5fc0d7113900a295ac72caa88c75a8f51b45f33688e0ac6760339cc33fe9"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/review/ALLOCATION_READ_SOURCE.py": {
+      "bytes": 1223,
+      "sha256": "320671d9533739f515122b0537713b56d99dcc5d7b0d0c9034c8480d25564e81"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128/review/INITIAL_SOURCE_AUTHOR_FAILURE.json": {
+      "bytes": 929,
+      "sha256": "199aa677fb23699219e17c332e2c834b6ef0afef5a9143fb8d3114b47c234a7f"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/ACTUAL_READBACK_JOB.json": {
+      "bytes": 1103,
+      "sha256": "43ed9879a39e364bb7aa88c82b40e9cd4a62c5baaded8b2e361c5667aa07214f"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/ACTUAL_ROOT_ADMISSION.json": {
+      "bytes": 1650,
+      "sha256": "3ad47febd3d652c8e8ff707b665ec5fe457e704800373fbaa06042622d6c6ac1"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/CANDIDATE.patch": {
+      "bytes": 1634,
+      "sha256": "bbe8c697f12e659f762edb9578587315579f19d2cab06032792a56c970d571b8"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/EXACT_EDIT.json": {
+      "bytes": 1957,
+      "sha256": "66e6c91b14dec13bf6073413eb8cb8abf2829c2f3520c6965a8b51b2e1a81c85"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/README.md": {
+      "bytes": 2568,
+      "sha256": "30576af5c00b5a88867c62ee95c766ec917a190ad6cd079140ffc5360c51e28d"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/RESULT.json": {
+      "bytes": 1898,
+      "sha256": "b474328e7ae901aaacf0d6edd6921bac6178fd5e8976999cee292987372caf32"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/SOURCE_PROOF.json": {
+      "bytes": 3282,
+      "sha256": "b553132ce929de7aa4d998c46901dffad985004a9165bc964d3874ec3545fa95"
+    },
+    "families/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128/SOURCE_SEAL.json": {
+      "bytes": 1573,
+      "sha256": "11d28e6b1c20abee6cac8ffd273e2f15fa8ab9e83f0f68ed5456cfb37fc96ff0"
+    }
+  },
+  "nativeAcceptance": "NOT_RUN",
+  "originalNativeAndWindowsDependencies": "RETAINED_NOT_RETIRABLE",
+  "schema": "otzaria.native116-durable-source-and-readback-inventory/1"
+}

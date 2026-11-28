@@ -1,0 +1,98 @@
+{
+  "asset": {
+    "bytes": 1272863810,
+    "id": 803618998,
+    "name": "native116-remaining-original-evidence-staged-20261128.tar.gz",
+    "releaseID": 461304898,
+    "repository": "davidpovarsky/Maktabah-preserved-evidence",
+    "repositoryID": 1474927804,
+    "sha256": "f427758916a543b58f230c87e3d5eff1067e7db47f79a46d984315f8e155b556"
+  },
+  "collectorResultSHA256": "8d49d1a2497fdfd1a4fc4bfc1c0e680e7a70fe29b02c03915aafb0a0a833304a",
+  "collectorTranscriptSHA256": "bfaaf15056bfc2af0b939437b985bd7fb9d67d2dd967124f6bae09968cadd118",
+  "currentStageLeafAbsenceClaimed": false,
+  "destination": "/Users/m1/otzaria-native116-staged-archive-20261128/native116-remaining-original-evidence.tar.gz",
+  "extractsOriginalTree": false,
+  "fullReadbackJobID": "job_a02eee978d8f",
+  "fullReadbackResultSHA256": "e9242bcf55ad96d02f5d5ad876dc65813a40699258406b360ead957cf5cda702",
+  "originalMetadata": {
+    "archive": {
+      "acl": null,
+      "allocatedBytes": 1272864768,
+      "atimeNS": "1795845385698193451",
+      "birthtimeNS": "1795845188979067835",
+      "bytes": 1272863810,
+      "ctimeNS": "1795845386291328289",
+      "device": 16777232,
+      "flags": 0,
+      "gid": 20,
+      "inode": 80215400,
+      "kind": "file",
+      "mode": 33024,
+      "mtimeNS": "1795845337662706536",
+      "nlink": 1,
+      "pathBase64": "bmF0aXZlMTE2LXJlbWFpbmluZy1vcmlnaW5hbC1ldmlkZW5jZS50YXIuZ3o=",
+      "rdev": 0,
+      "uid": 501,
+      "xattrs": []
+    },
+    "parent": {
+      "acl": null,
+      "allocatedBytes": 0,
+      "atimeNS": "1795845249365515805",
+      "birthtimeNS": "1795845188978746795",
+      "bytes": 128,
+      "ctimeNS": "1795845188979074585",
+      "device": 16777232,
+      "flags": 0,
+      "gid": 20,
+      "inode": 80215398,
+      "kind": "directory",
+      "mode": 16832,
+      "mtimeNS": "1795845188979074585",
+      "nlink": 4,
+      "pathBase64": "",
+      "rdev": 0,
+      "uid": 501,
+      "xattrs": []
+    },
+    "terminal": {
+      "acl": null,
+      "allocatedBytes": 65536,
+      "atimeNS": "1795845386429359912",
+      "birthtimeNS": "1795845188978882252",
+      "bytes": 65536,
+      "ctimeNS": "1795845386291846079",
+      "device": 16777232,
+      "flags": 0,
+      "gid": 20,
+      "inode": 80215399,
+      "kind": "file",
+      "mode": 33152,
+      "mtimeNS": "1795845386291846079",
+      "nlink": 1,
+      "pathBase64": "U1RBR0VfVEVSTUlOQUwuanNvbg==",
+      "rdev": 0,
+      "uid": 501,
+      "xattrs": []
+    }
+  },
+  "restorationExecuted": false,
+  "restoresOriginalInodeCtimeBirthtimeOrAllocation": false,
+  "retirementAuthorized": false,
+  "schema": "otzaria.native116-stage-opaque-restoration-pointer/1",
+  "sourcePins": {
+    "oracle": {
+      "bytes": 52679,
+      "sha256": "72292b70581bf62d40b42dbf1e2829be05eada8eb4b173d23025cf5e3ebc37b0"
+    },
+    "receiver": {
+      "bytes": 23551,
+      "sha256": "e3c66535982b23080c4d10d89fb1a9f55f6c0b4ab786f47b5624d4af6bb452be"
+    }
+  },
+  "sourceScope": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128",
+  "sourceSealPath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/SOURCE_SEAL.json",
+  "sourceSealSHA256": "2ac9a9125dbc680664e68a0ca53661ca569416ff8bdc003e306997e542f0d755",
+  "status": "QUALIFIED_BYTES_SOURCE_BOUND_PENDING_ROOT_DURABLE_RETIREMENT"
+}

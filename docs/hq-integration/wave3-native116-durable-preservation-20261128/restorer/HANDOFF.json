@@ -1,0 +1,168 @@
+{
+  "GET": false,
+  "MacCall": false,
+  "accountingRefactor": "The old per-packet640KiB source allowance is replaced only for this new execution family by the explicit106496/196608/524288 partition. All three frozen historical families are counted separately and capped; their original files are never modified or copied wholesale. Overall2MiB and root/Mac floors are unchanged.",
+  "allocationPartition": {
+    "allFourMaximaWithConservativeHistory": 2097152,
+    "futureAdmission": 196608,
+    "futureRuntime": 524288,
+    "globalCombined": 2097152,
+    "headroomWithActualHistoryAtNewFamilyMaximum": 40960,
+    "historicalActualNow": 1228800,
+    "historicalConservative": 1269760,
+    "newExecutionFamily": 827392,
+    "newSource": 106496
+  },
+  "cli": [
+    "/usr/bin/sudo",
+    "-u",
+    "ubuntu",
+    "-H",
+    "/usr/bin/python3",
+    "-I",
+    "-B",
+    "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/restore_stage_leaf.py",
+    "--source-seal-sha256",
+    "<exact SOURCE_SEAL.json SHA256 from author receipt>",
+    "--admission-sha256",
+    "<future Root-approved admission/ADMISSION.json SHA256>",
+    "restore-once"
+  ],
+  "diffs": {
+    "compressedBytes": 2324,
+    "compressedSHA256": "6d229d7dd26df16b5eb56535d2dfe132dcbf49f074927f42db68d45c42850537",
+    "decodedBytes": 7480,
+    "decodedSHA256": "cda815003b9dfe4d89397f65076d653cb8e5de68563a2803d2424ab0f63dd160",
+    "file": "SOURCE_DIFFS.json.gz"
+  },
+  "exactChanges": {
+    "allOtherDefinitionsByteExact": true,
+    "fullQualificationEquals09e78": true,
+    "oracleDefinitionsAdded": [
+      "historical_allocation",
+      "verify_preserved_history"
+    ],
+    "oracleDefinitionsChanged": [
+      "allocation",
+      "guard",
+      "verify_seal"
+    ],
+    "oracleTextEdits": 8,
+    "receiverDefinitionsAdded": [
+      "terminal_alarm"
+    ],
+    "receiverDefinitionsChanged": [
+      "main"
+    ],
+    "receiverTextEdits": 4
+  },
+  "floors": {
+    "SDKAdmissionUnchanged": 15032385536,
+    "mac": 2415919104,
+    "root": 1593835520
+  },
+  "futureAdmission": "Only the concrete source-bound pointer is created now. ADMISSION.json, the other six pinned evidence leaves and restore-once remain absent. Root must review source, preserve the pointer and full source remotely, separately authorize/verify exact stage retirement, then supply the original seven-evidence admission. No source seal or __file__ is spoofed.",
+  "history": [
+    {
+      "actualAllocatedNow": 589824,
+      "allocatedCap": 630784,
+      "entries": 27,
+      "lastObservedAllocated": 589824,
+      "path": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-preflight-proposal-20261128",
+      "sourceSeal": {
+        "bytes": 1869,
+        "sha256": "8390416645ed999d535df0e623f3e89dad40a070bc6067a238a01c8fd0c0c746"
+      }
+    },
+    {
+      "actualAllocatedNow": 602112,
+      "allocatedCap": 602112,
+      "entries": 27,
+      "lastObservedAllocated": 602112,
+      "path": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-proposal-20261128",
+      "sourceSeal": {
+        "bytes": 3877,
+        "sha256": "f35f15423c1db350b26741131aa7c340cda2d5f58f994b9e31f39a71f114e817"
+      }
+    },
+    {
+      "actualAllocatedNow": 36864,
+      "allocatedCap": 36864,
+      "entries": 9,
+      "lastObservedAllocated": 36864,
+      "path": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-readback-binding-proposal-20261128",
+      "sourceSeal": {
+        "bytes": 1573,
+        "sha256": "11d28e6b1c20abee6cac8ffd273e2f15fa8ab9e83f0f68ed5456cfb37fc96ff0"
+      }
+    }
+  ],
+  "pointerPath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/admission/RESTORATION_POINTER.json",
+  "preservedChecks": "Exact archive GET size/SHA/exit, full prior qualification/member/source checks, READY, withheld64KiB, full stored hash, original empty metadata support, no-replace publication, target absence, all partial state retention and original own-process cleanup remain.",
+  "preservedSourceAuthorDiagnostic": {
+    "API": false,
+    "MacAction": false,
+    "candidateImported": false,
+    "command": [
+      "python3",
+      "/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_87e0bf7f93e9432f96f10d39d42de604/script.py"
+    ],
+    "executionScopeCreated": false,
+    "kind": "SOURCE_MATERIALIZATION_SERIALIZED_DIFF_CAP_REFUSAL",
+    "measurement": {
+      "exactHunksWithoutDuplicateUnifiedPatches": {
+        "bytes": 2324,
+        "rawBytes": 7480,
+        "roundtripExact": true,
+        "sha256": "6d229d7dd26df16b5eb56535d2dfe132dcbf49f074927f42db68d45c42850537"
+      },
+      "newScopeAbsent": true,
+      "noWrites": true,
+      "original": {
+        "bytes": 4386,
+        "rawBytes": 17025,
+        "roundtripExact": true,
+        "sha256": "64edde815056df9b930eb3f802397efcf30ba9c0410bcc56d6b7bcdab4c2c092"
+      }
+    },
+    "output": "Traceback (most recent call last):\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_87e0bf7f93e9432f96f10d39d42de604/script.py\", line 97, in <module>\nAssertionError",
+    "returncode": 1,
+    "sourceAuthorBytes": 138412,
+    "sourceAuthorSHA256": "a0e852972dd5d42f4121a3f4c648cfb8e5d9f17c51d64678089486e74c8ebba2"
+  },
+  "qualification": {
+    "archiveAsset": 803618998,
+    "archiveBytes": 1272863810,
+    "archiveSHA256": "f427758916a543b58f230c87e3d5eff1067e7db47f79a46d984315f8e155b556",
+    "finalBytes": 65536,
+    "finalSHA256": "e9242bcf55ad96d02f5d5ad876dc65813a40699258406b360ead957cf5cda702",
+    "job": "job_a02eee978d8f"
+  },
+  "restore": false,
+  "retirement": false,
+  "schema": "otzaria.native116-stage-restorer-runnable-source-handoff/1",
+  "scope": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128",
+  "sourceOnly": true,
+  "sourcePins": {
+    "oracle": {
+      "bytes": 52679,
+      "sha256": "72292b70581bf62d40b42dbf1e2829be05eada8eb4b173d23025cf5e3ebc37b0"
+    },
+    "receiver": {
+      "bytes": 23551,
+      "sha256": "e3c66535982b23080c4d10d89fb1a9f55f6c0b4ab786f47b5624d4af6bb452be"
+    }
+  },
+  "sourceSealPath": "/home/ubuntu/otzaria-wave3-native116-stage-leaf-restore-execution-20261128/SOURCE_SEAL.json",
+  "status": "SOURCE_ONLY_RUNNABLE_REQUIRES_ROOT_ADMISSION",
+  "terminalGrace": {
+    "OracleStreamDeadlineSeconds": 1200,
+    "bodyDeadlineSeconds": 1200,
+    "externalProcessSignalsAdded": false,
+    "forcedOwnExit": 124,
+    "limit": "Receiver fsync/close/final-report now retain a15-second self-only alarm. Expiry can exit124 without a final report and cannot qualify success. Actual restore/throughput remains unrun.",
+    "overallSeconds": 2700,
+    "partialPayloadRetained": true,
+    "terminalOnlySeconds": 15
+  }
+}

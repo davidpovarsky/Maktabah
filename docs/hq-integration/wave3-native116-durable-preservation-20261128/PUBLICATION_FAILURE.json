@@ -1,0 +1,13 @@
+{
+  "diagnostic": "restorer/mac_restore_stage_leaf.py:393: new blank line at EOF.",
+  "exit": 1,
+  "failedGate": "git diff --cached --check",
+  "headUnchanged": "152b30100e27b21a273e624a289b44211a2b2b13",
+  "jobID": "job_4b4676ea97e5",
+  "normalGitGateChanged": false,
+  "originalReceiverBytes": 23551,
+  "originalReceiverSHA256": "e3c66535982b23080c4d10d89fb1a9f55f6c0b4ab786f47b5624d4af6bb452be",
+  "originalSourceChanged": false,
+  "resolution": "The duplicate direct receiver is preserved outside Git and inside the byte-exact bundle; the reviewed current receiver is additionally represented losslessly as base64 JSON.",
+  "schema": "otzaria.preserved-documentation-publication-refusal/1"
+}
