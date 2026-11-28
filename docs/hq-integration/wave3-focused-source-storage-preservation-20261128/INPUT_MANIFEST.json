@@ -1,0 +1,37 @@
+[
+  {
+    "bytes": 87596,
+    "path": "HISTORICAL_SOURCES.zip",
+    "sha256": "d00812b52bbfedc7ad8424f92c346f673fe82d74ded02ad89a4491259aa11433"
+  },
+  {
+    "bytes": 6558,
+    "path": "resolve_preserved_sources.py",
+    "sha256": "1ca9f9d9ae105407bb47c8396655e7e22987035662a34fe220d06e268f74caca"
+  },
+  {
+    "bytes": 21239,
+    "path": "PREPARE_SOURCE_STORAGE.py",
+    "sha256": "9d43ad1eccc66cf94cb8267b7c9d7073716df6813cc892a0abe7d3188c9a279b"
+  },
+  {
+    "bytes": 7360,
+    "path": "SOURCE_STORAGE_PREPARED.json",
+    "sha256": "1f21b056271a04d2c1146687cdb4c65e0fed3f8c7853912daabdb64854c8d73c"
+  },
+  {
+    "bytes": 1698,
+    "path": "SOURCE_STORAGE_README.md",
+    "sha256": "d584b29948a78ea7ad0f515e806418f5c4e78642fbc3338705bf736080593a8d"
+  },
+  {
+    "bytes": 10986,
+    "path": "RETIRE_PRESERVED_SOURCES.py",
+    "sha256": "a54c32e758dc2fb27e22bd4822299ea49b92200a5a9ec980f8057d2c799a41ce"
+  },
+  {
+    "bytes": 13502,
+    "path": "RETIRE_PRESERVED_SOURCES_REVIEW2.py",
+    "sha256": "0a89e349e9f0b02a9d1c6c7a7632cc47430b72afbcd0b489206780daf7a1651f"
+  }
+]
