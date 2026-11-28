@@ -1,0 +1,213 @@
+{
+  "fileCount": 41,
+  "files": [
+    {
+      "bytes": 1124,
+      "path": "AUDIT_ADDENDUM.json",
+      "sha256": "9cd8d598457c0ba02ce677889d144f5c78bd62f93f29266e54b7eb2cbc96f73c"
+    },
+    {
+      "bytes": 9804,
+      "path": "INPUT_PINS.json",
+      "sha256": "e090f79adbe1a980aa83791ec6c0d8f4a3cf2633fa35c1b4a66518f219962fc9"
+    },
+    {
+      "bytes": 1209,
+      "path": "ORIGINAL_SOURCE_LOOKUP.json",
+      "sha256": "96ba50df12c361b26abb295e82f2d1da60188c8fd22207f49519432e1405c28a"
+    },
+    {
+      "bytes": 2802,
+      "path": "PREPARATION_FAILURE.json",
+      "sha256": "d63ab9971107c536455847fdaab3ce145e8764225293879f5eb8c12755051822"
+    },
+    {
+      "bytes": 562,
+      "path": "RAW_STDERR.zip",
+      "sha256": "b217864c5bb04a16f986d285ed08f6f3035a8f07a8d5caa3357ad3d1f96beb5c"
+    },
+    {
+      "bytes": 3136,
+      "path": "README.md",
+      "sha256": "0fb9270b5a98817fd550ff3655816d4434d2ee66d6a472abca904e2b9401bd7c"
+    },
+    {
+      "bytes": 1901,
+      "path": "native116/attempt-1/TERMINAL_NOTIFICATION.json",
+      "sha256": "61a906b8e27b62353bceb5e45941797a2b1807279bf14b1b8092491fc4602b1a"
+    },
+    {
+      "bytes": 491,
+      "path": "native116/attempt-1/prepare/01-pinned-ssh-config-read.PROCESS.json",
+      "sha256": "ee291a5c7824fc018dc10db0f763cb4c570a26a3efdfe53f9a5d370f59994c08"
+    },
+    {
+      "bytes": 113,
+      "path": "native116/attempt-1/prepare/01-pinned-ssh-config-read.RESULT.json",
+      "sha256": "e509bf4d8e18da73b0be2075fc14019702be77f0f8fdb8d9340aa98a5540f31c"
+    },
+    {
+      "bytes": 444,
+      "path": "native116/attempt-1/prepare/01-pinned-ssh-config-read.TERMINAL.json",
+      "sha256": "4cad8ab697925a25d8b031ec53946be276c199ec18b6e80160fc5baaaf6bb71a"
+    },
+    {
+      "bytes": 665,
+      "path": "native116/attempt-1/prepare/02-exact-source-snapshot.PROCESS.json",
+      "sha256": "97e047dbde9e17fdf6bdd3086d183f66e9da771ea31c17cff35d6926fec2149e"
+    },
+    {
+      "bytes": 442,
+      "path": "native116/attempt-1/prepare/02-exact-source-snapshot.TERMINAL.json",
+      "sha256": "9a657a66b1bdb931791ef5e3aae28f1fee41ee031c7f45be66f35bd0d54e4a4f"
+    },
+    {
+      "bytes": 665,
+      "path": "native116/attempt-1/prepare/02-exact-source-snapshot.stderr",
+      "sha256": "be354236e40508233d31ef9c726c08613a59978933dec343d4901894eac93019"
+    },
+    {
+      "bytes": 221,
+      "path": "native116/attempt-1/prepare/FAILED.json",
+      "sha256": "30a7ae5d6f386d2ec8b2e1f26e2d5dfb3a60650141727c5a58fe4bbb303c6af2"
+    },
+    {
+      "bytes": 129,
+      "path": "native116/attempt-1/prepare/PINNED_SSH_ALIAS.json",
+      "sha256": "c9cbaec86bd97e6668228b19f302210c41019daef3b2da4aca105eef9f2baaf2"
+    },
+    {
+      "bytes": 1064,
+      "path": "native116/attempt-1/prepare/SOURCE_SEAL.json",
+      "sha256": "a8362544613fa5b5d9d2c6a099be827152120f674a010feb1236edd809339d97"
+    },
+    {
+      "bytes": 1064,
+      "path": "native116/attempt-1/tools/SOURCE_SEAL.json",
+      "sha256": "a8362544613fa5b5d9d2c6a099be827152120f674a010feb1236edd809339d97"
+    },
+    {
+      "bytes": 22955,
+      "path": "native116/attempt-1/tools/mac_producer.py",
+      "sha256": "e78860dbc2d0c4a9ead27375e7fc57addefd20cf41b37c44e017a9dfc2bd8b5b"
+    },
+    {
+      "bytes": 43553,
+      "path": "native116/attempt-1/tools/oracle_controller.py",
+      "sha256": "f0ac7a74b6b96da232d22f9f4432269edf0f350aafb0b933ec72b9d4a8aba65d"
+    },
+    {
+      "bytes": 8447,
+      "path": "native116/attempt-1/tools/reviewed_runtime.py",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+    },
+    {
+      "bytes": 11267,
+      "path": "native116/attempt-1/tools/stream_format.py",
+      "sha256": "c584d41c7df4bcb942e4f0229252f4456a9fb88468da12ac84532e7772296774"
+    },
+    {
+      "bytes": 1978,
+      "path": "native116/attempt-2-compact-v2/TERMINAL_NOTIFICATION.json",
+      "sha256": "6404aed7e9fcda70f07fa2567996ddc9c1fc2222d9cce867f1d3bc8f464dcba7"
+    },
+    {
+      "bytes": 491,
+      "path": "native116/attempt-2-compact-v2/prepare/01-pinned-ssh-config-read.PROCESS.json",
+      "sha256": "5c1fc4d711ed534a1831ad590f34715f71e5436c70f7b28d8504d323eb743f2a"
+    },
+    {
+      "bytes": 113,
+      "path": "native116/attempt-2-compact-v2/prepare/01-pinned-ssh-config-read.RESULT.json",
+      "sha256": "e509bf4d8e18da73b0be2075fc14019702be77f0f8fdb8d9340aa98a5540f31c"
+    },
+    {
+      "bytes": 444,
+      "path": "native116/attempt-2-compact-v2/prepare/01-pinned-ssh-config-read.TERMINAL.json",
+      "sha256": "636206262da0d9410b08d75acdf45896488f9e76522c796ca8e4b294871a255e"
+    },
+    {
+      "bytes": 665,
+      "path": "native116/attempt-2-compact-v2/prepare/02-exact-source-snapshot.PROCESS.json",
+      "sha256": "c964085d3e47451a78026cbaee92d98d16e0244ba7cfb3cd9f0d710280b4d2b7"
+    },
+    {
+      "bytes": 442,
+      "path": "native116/attempt-2-compact-v2/prepare/02-exact-source-snapshot.TERMINAL.json",
+      "sha256": "6469fd8568c94b0288b5040901bad3cecd59ad8b5a5af91cd720de4e61c1494d"
+    },
+    {
+      "bytes": 681,
+      "path": "native116/attempt-2-compact-v2/prepare/02-exact-source-snapshot.stderr",
+      "sha256": "fddc3ebea8fa8c06c65acd5fb06dcb08845df4ae5372787676c90adca7730a81"
+    },
+    {
+      "bytes": 221,
+      "path": "native116/attempt-2-compact-v2/prepare/FAILED.json",
+      "sha256": "93eba6d0f748b62c8335afe6c5b7e251eafe3afcfc712f2cfb9c0c2124d06b87"
+    },
+    {
+      "bytes": 129,
+      "path": "native116/attempt-2-compact-v2/prepare/PINNED_SSH_ALIAS.json",
+      "sha256": "c9cbaec86bd97e6668228b19f302210c41019daef3b2da4aca105eef9f2baaf2"
+    },
+    {
+      "bytes": 9608,
+      "path": "native116/attempt-2-compact-v2/prepare/PRIOR_OWNED_ALLOCATION.json",
+      "sha256": "737ce268c138d64876822e0a2e94fa48dea79e44193346c917a7abec3a59984a"
+    },
+    {
+      "bytes": 1100,
+      "path": "native116/attempt-2-compact-v2/prepare/SOURCE_SEAL.json",
+      "sha256": "c901ff1c7c53cb0aa48caae48a0953a2c1ae98a35a106a7008d8c28581a7f351"
+    },
+    {
+      "bytes": 1100,
+      "path": "native116/attempt-2-compact-v2/tools/SOURCE_SEAL.json",
+      "sha256": "c901ff1c7c53cb0aa48caae48a0953a2c1ae98a35a106a7008d8c28581a7f351"
+    },
+    {
+      "bytes": 23011,
+      "path": "native116/attempt-2-compact-v2/tools/mac_producer.py",
+      "sha256": "10aa61bda420de8777f5ad127f238cad7420c23e72099348c1a79842fc87e703"
+    },
+    {
+      "bytes": 51282,
+      "path": "native116/attempt-2-compact-v2/tools/oracle_controller.py",
+      "sha256": "c1769280d75470fa2b5302fb7a89ce2fee9d74981c395b20067b2ff34879644b"
+    },
+    {
+      "bytes": 8447,
+      "path": "native116/attempt-2-compact-v2/tools/reviewed_runtime.py",
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+    },
+    {
+      "bytes": 13919,
+      "path": "native116/attempt-2-compact-v2/tools/stream_format.py",
+      "sha256": "45d7f99ad7a9fa6a913a5eba54b01b73ea43260951340926cb09c46460992055"
+    },
+    {
+      "bytes": 20841,
+      "path": "original-kit/TorahSourceReaderView.swift",
+      "sha256": "5b0e3044c299242f701af6e6d48d4b7222337432cafc6a0e774f3398e5c49517"
+    },
+    {
+      "bytes": 4085,
+      "path": "preparation-attempt-1/INTAKE_PROOF.json",
+      "sha256": "cbbb05ca7d9cf9b6f4cd333f4c0f29ee3ea0c16c7defbf498f1ba5a2a3dcb7ec"
+    },
+    {
+      "bytes": 7265,
+      "path": "preparation-attempt-1/MANIFEST.json",
+      "sha256": "cc7d1224768d013958364f15e4c41c2145402cfc2275f14b00d7677718985a1d"
+    },
+    {
+      "bytes": 1876,
+      "path": "preparation-attempt-2/TERMINAL_NOTIFICATION.json",
+      "sha256": "c30d810a873607d2213f1cb53c1c1d4cce67f2a9b563051bf1d913c6ccb7cf72"
+    }
+  ],
+  "rawStderrStorage": "RAW_STDERR.zip preserves exactly the two original logical paths recorded in PREPARATION_FAILURE.json",
+  "schema": "otzaria.wave3-addendum-manifest/2",
+  "totalBytes": 259756
+}

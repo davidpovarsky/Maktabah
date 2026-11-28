@@ -1,0 +1,8 @@
+{
+  "code": "CONTROLLED_STAGE_FAILED",
+  "errorType": "RuntimeError",
+  "exceptionTextRecorded": false,
+  "stage": "PREPARE",
+  "status": "FAILED_NO_UPLOAD_NO_SOURCE_CHANGE",
+  "utc": "2026-11-28T00:52:03.701728+00:00"
+}

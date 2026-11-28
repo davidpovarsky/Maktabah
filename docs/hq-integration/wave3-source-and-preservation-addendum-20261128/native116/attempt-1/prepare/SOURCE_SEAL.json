@@ -1,0 +1,24 @@
+{
+  "files": {
+    "mac_producer.py": {
+      "bytes": 22955,
+      "sha256": "e78860dbc2d0c4a9ead27375e7fc57addefd20cf41b37c44e017a9dfc2bd8b5b"
+    },
+    "oracle_controller.py": {
+      "bytes": 43553,
+      "sha256": "f0ac7a74b6b96da232d22f9f4432269edf0f350aafb0b933ec72b9d4a8aba65d"
+    },
+    "reviewed_runtime.py": {
+      "bytes": 8447,
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+    },
+    "stream_format.py": {
+      "bytes": 11267,
+      "sha256": "c584d41c7df4bcb942e4f0229252f4456a9fb88468da12ac84532e7772296774"
+    }
+  },
+  "fixedSourceRoot": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd",
+  "repositoryID": 1474927804,
+  "schema": "otzaria.native116-stream-source-seal/1",
+  "scope": "Local source for Root-owned bounded installed-Darwin qualification. Actual first import refusal preserved; native descriptor semantics still pending. Original25 local protocol controls retained without rerun; no preservation prepare/upload/retirement."
+}

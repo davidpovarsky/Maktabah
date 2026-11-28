@@ -1,0 +1,27 @@
+{
+  "job": {
+    "created_at": 1795825675.1374428,
+    "duration_s": 22.72,
+    "error": null,
+    "exit_code": 1,
+    "finished_at": "2026-11-28T00:28:17.987056+00:00",
+    "host": "host_299cf75f6b338ecd",
+    "id": "job_49fe37716882",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output": "Traceback (most recent call last):\n  File \"/home/ubuntu/otzaria-wave3-native116-stream-tools-20261127/oracle_controller.py\", line 806, in <module>\n    main()\n  File \"/home/ubuntu/otzaria-wave3-native116-stream-tools-20261127/oracle_controller.py\", line 801, in main\n    if args.phase == 'prepare': prepare()\n                                ^^^^^^^^^\n  File \"/home/ubuntu/otzaria-wave3-native116-stream-tools-20261127/oracle_controller.py\", line 446, in prepare\n    snapshot = read_all(pipe, F.SNAPSHOT_CAP)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/otzaria-wave3-native116-stream-tools-20261127/oracle_controller.py\", line 391, in read_all\n    block = pipe.read(BLOCK)\n            ^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/otzaria-wave3-native116-stream-tools-20261127/oracle_controller.py\", line 277, in read\n    self.finish()\n  File \"/home/ubuntu/otzaria-wave3-native116-stream-tools-20261127/oracle_controller.py\", line 290, in finish\n    require(code == 0, 'Owned producer/readback failed; no retry')\n  File \"/home/ubuntu/otzaria-wave3-native116-stream-tools-20261127/oracle_controller.py\", line 53, in require\n    raise RuntimeError(message)\nRuntimeError: Owned producer/readback failed; no retry",
+    "output_truncated": false,
+    "read": false,
+    "severity": "warning",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "started_at": "2026-11-28T00:27:55.267176+00:00",
+    "status": "failed",
+    "timeout_s": 2850,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "ok": true
+}

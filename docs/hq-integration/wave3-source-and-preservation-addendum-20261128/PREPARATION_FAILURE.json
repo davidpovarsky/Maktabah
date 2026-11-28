@@ -1,0 +1,54 @@
+{
+  "actualTerminal": {
+    "job": {
+      "created_at": 1795828379.250367,
+      "duration_s": 0.7,
+      "error": null,
+      "exit_code": 1,
+      "finished_at": "2026-11-28T01:13:00.036213+00:00",
+      "host": "host_299cf75f6b338ecd",
+      "id": "job_f59908f9ffcb",
+      "notified": {
+        "resend": null,
+        "telegram": null
+      },
+      "notify_spec": {},
+      "output": "{\"gitReadOrWriteFailed\": \"diff\", \"exit\": 2, \"stderr\": \"\"}\nTraceback (most recent call last):\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_42be49cdddad44efa4c3ab242853ed61/script.py\", line 147, in <module>\n    git(\"diff\",\"--cached\",\"--check\")\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_42be49cdddad44efa4c3ab242853ed61/script.py\", line 20, in git\n    raise RuntimeError(\"Git operation failed; preserve owned partial state\")\nRuntimeError: Git operation failed; preserve owned partial state",
+      "output_truncated": false,
+      "read": false,
+      "severity": "warning",
+      "source": "script_run@host_299cf75f6b338ecd",
+      "started_at": "2026-11-28T01:12:59.339278+00:00",
+      "status": "failed",
+      "timeout_s": 240,
+      "tool": "script_run",
+      "type": "job_result"
+    },
+    "ok": true
+  },
+  "correction": "Preserve the two unchanged original72-byte CRLF stderr streams in a two-member binary ZIP. Do not normalize original stderr or modify Git whitespace settings. All other inputs remain byte-identical. Preserve original precommit manifest/proof separately.",
+  "originalRemoteSourcesUntouched": true,
+  "rawArchive": {
+    "bytes": 562,
+    "members": [
+      {
+        "bytes": 72,
+        "path": "native116/attempt-1/prepare/01-pinned-ssh-config-read.stderr",
+        "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a"
+      },
+      {
+        "bytes": 72,
+        "path": "native116/attempt-2-compact-v2/prepare/01-pinned-ssh-config-read.stderr",
+        "sha256": "d0e14941dee288cc8de19e48436cdf3c2e7939d4b98136c44d954b5f8be73d8a"
+      }
+    ],
+    "path": "RAW_STDERR.zip",
+    "sha256": "b217864c5bb04a16f986d285ed08f6f3035a8f07a8d5caa3357ad3d1f96beb5c"
+  },
+  "readOnlyWhitespaceDiagnosis": {
+    "exit": 2,
+    "stderr": "",
+    "stdout": "docs/hq-integration/wave3-source-and-preservation-addendum-20261128/native116/attempt-1/prepare/01-pinned-ssh-config-read.stderr:1: trailing whitespace.\n+Pseudo-terminal will not be allocated because stdin is not a terminal.\r\ndocs/hq-integration/wave3-source-and-preservation-addendum-20261128/native116/attempt-2-compact-v2/prepare/01-pinned-ssh-config-read.stderr:1: trailing whitespace.\n+Pseudo-terminal will not be allocated because stdin is not a terminal.\r\n"
+  },
+  "schema": "otzaria.wave3-addendum-preparation-failure/1"
+}

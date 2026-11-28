@@ -1,0 +1,37 @@
+{
+  "anchor": "private var readerContent",
+  "anchorLine": 194,
+  "bytes": 20841,
+  "gitBlob": "484f8361bd853286fc5e75fb811eeb83c6cf55e5",
+  "nativeAcceptance": "NOT_RUN",
+  "noProductSourceChange": true,
+  "origin": "https://github.com/davidpovarsky/TorahInspectorKit.git",
+  "originalReadJob": {
+    "created_at": 1795828041.8855903,
+    "duration_s": 0.12,
+    "error": null,
+    "exit_code": 0,
+    "finished_at": "2026-11-28T01:07:22.088115+00:00",
+    "host": "host_299cf75f6b338ecd",
+    "id": "job_131d40800523",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output_truncated": false,
+    "read": false,
+    "severity": "info",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "started_at": "2026-11-28T01:07:21.965707+00:00",
+    "status": "succeeded",
+    "timeout_s": 60,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "path": "Sources/TorahInspectorUI/TorahSourceReaderView.swift",
+  "revision": "23db0f84e88d9ee9c7053c49de86903fc7bb5785",
+  "schema": "otzaria.original-inspector-source-reader-receipt/1",
+  "sha256": "5b0e3044c299242f701af6e6d48d4b7222337432cafc6a0e774f3398e5c49517",
+  "status": "EXACT_ORIGINAL_BODY_JOINED"
+}

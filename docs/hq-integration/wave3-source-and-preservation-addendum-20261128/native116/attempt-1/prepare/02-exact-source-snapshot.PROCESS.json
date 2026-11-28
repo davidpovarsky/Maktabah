@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "sudo",
+    "-u",
+    "ubuntu",
+    "-H",
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "-T",
+    "scaleway-mac",
+    "/usr/bin/python3",
+    "-I",
+    "-"
+  ],
+  "identity": {
+    "pgid": 2919435,
+    "pid": 2919435,
+    "session": 2919435,
+    "startTicks": "735274736"
+  },
+  "inputBytes": 62157,
+  "inputSHA256": "5645fe983ebde3c7a3f8d757b3f962c71305bf59e06bc5d18af9b8bf791270b1",
+  "utc": "2026-11-28T00:27:55.538072+00:00"
+}

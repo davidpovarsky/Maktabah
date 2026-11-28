@@ -1,0 +1,27 @@
+{
+  "job": {
+    "created_at": 1795828673.5705411,
+    "duration_s": 0.89,
+    "error": null,
+    "exit_code": 1,
+    "finished_at": "2026-11-28T01:17:54.551849+00:00",
+    "host": "host_299cf75f6b338ecd",
+    "id": "job_2d226806073b",
+    "notified": {
+      "resend": null,
+      "telegram": null
+    },
+    "notify_spec": {},
+    "output": "{\"operation\": \"rm\", \"exit\": 1, \"stdout\": \"\", \"stderr\": \"The following paths and/or pathspecs matched paths that exist\\noutside of your sparse-checkout definition, so will not be\\nupdated in the index:\\ndocs/hq-integration/wave3-source-and-preservation-addendum-20261128/native116/attempt-1/prepare/01-pinned-ssh-config-read.stderr\\ndocs/hq-integration/wave3-source-and-preservation-addendum-20261128/native116/attempt-2-compact-v2/prepare/01-pinned-ssh-config-read.stderr\\nhint: If you intend to update such entries, try one of the following:\\nhint: * Use the --sparse option.\\nhint: * Disable or modify the sparsity rules.\\nhint: Disable this message with \\\"git config advice.updateSparsePath false\\\"\\n\"}\nTraceback (most recent call last):\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_6026c647315347199e1b519cb8150a75/script.py\", line 60, in <module>\n    git(\"rm\",\"--cached\",\"--\",*[str(REL/n) for n in names])\n  File \"/var/lib/sentinelx/uploads/.sentinelx_uploads/script_job_6026c647315347199e1b519cb8150a75/script.py\", line 18, in git\n    raise RuntimeError(\"Git operation failed; owned evidence remains\")\nRuntimeError: Git operation failed; owned evidence remains",
+    "output_truncated": false,
+    "read": false,
+    "severity": "warning",
+    "source": "script_run@host_299cf75f6b338ecd",
+    "started_at": "2026-11-28T01:17:53.656872+00:00",
+    "status": "failed",
+    "timeout_s": 240,
+    "tool": "script_run",
+    "type": "job_result"
+  },
+  "ok": true
+}

@@ -1,0 +1,29 @@
+{
+  "appRows": 241,
+  "externalFullBodyRows": 53,
+  "joinedOriginalSourceAnchors": 294,
+  "originalRows": 294,
+  "portablePorts": {
+    "rows": 32,
+    "sixRowsShare": "TabSwitcherPagePort",
+    "uniquePaths": 27
+  },
+  "qaContractFamilies": 51,
+  "readEvidence": "ORIGINAL_SOURCE_LOOKUP.json",
+  "rowClosed": "inventory.v1.inspector.shared.reader",
+  "schema": "otzaria.294-original-source-addendum/1",
+  "scope": "Source/provenance correspondence only. Wiring, unmet contracts, unintegrated proposals, full Apple SDK/Native116/Release114+2/production/physical and release gates are unchanged.",
+  "sealedPriorPacket": {
+    "files": 79,
+    "localPacketNotCopiedByThisCheckpoint": true,
+    "manifestSHA256": "49ada5e8060c0e8df177b7f788cf1c321baf96a8174563c20b82b8d8df900830",
+    "path": "current-294-source-reconciliation-20261128/",
+    "payloadBytes": 5802428,
+    "previousJoined": 293,
+    "previousUnresolved": 1,
+    "rewritten": false
+  },
+  "sourceHead": "87ccd4625115eb43c650180174825b288ba2e592",
+  "sourceTree": "182dd74229c04959cecae82a59d16268dcbd80bc",
+  "weakCoarseOrPlaceholderAppAnchorsUnchanged": 20
+}

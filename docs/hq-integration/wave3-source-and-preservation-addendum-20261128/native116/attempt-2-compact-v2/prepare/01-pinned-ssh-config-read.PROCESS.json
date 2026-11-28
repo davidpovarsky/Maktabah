@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "sudo",
+    "-u",
+    "ubuntu",
+    "-H",
+    "ssh",
+    "-G",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "IdentitiesOnly=yes",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "scaleway-mac"
+  ],
+  "identity": {
+    "pgid": 2981007,
+    "pid": 2981007,
+    "session": 2981007,
+    "startTicks": "735416448"
+  },
+  "inputBytes": 0,
+  "inputSHA256": null,
+  "utc": "2026-11-28T00:51:32.652163+00:00"
+}

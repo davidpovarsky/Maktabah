@@ -1,0 +1,24 @@
+{
+  "files": {
+    "mac_producer.py": {
+      "bytes": 23011,
+      "sha256": "10aa61bda420de8777f5ad127f238cad7420c23e72099348c1a79842fc87e703"
+    },
+    "oracle_controller.py": {
+      "bytes": 51282,
+      "sha256": "c1769280d75470fa2b5302fb7a89ce2fee9d74981c395b20067b2ff34879644b"
+    },
+    "reviewed_runtime.py": {
+      "bytes": 8447,
+      "sha256": "ac8ed682ade9d74f0b74b3bf90e3dafdc38e144a4b4048e6b5b115d986648f80"
+    },
+    "stream_format.py": {
+      "bytes": 13919,
+      "sha256": "45d7f99ad7a9fa6a913a5eba54b01b73ea43260951340926cb09c46460992055"
+    }
+  },
+  "fixedSourceRoot": "/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd",
+  "repositoryID": 1474927804,
+  "schema": "otzaria.native116-stream-source-seal/1",
+  "scope": "Local compact-v2 proposal. Same 24 MiB raw-wire and compressed snapshot limits, 48 MiB current-plus-prior metadata allowance, unchanged archive/resource/source guards. Actual first metadata-cap refusal is preserved. Root has not dispatched this candidate; whole-tree fit remains unknown."
+}

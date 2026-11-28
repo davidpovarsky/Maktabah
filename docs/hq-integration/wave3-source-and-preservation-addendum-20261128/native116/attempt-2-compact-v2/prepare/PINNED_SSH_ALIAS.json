@@ -1,0 +1,7 @@
+{
+  "hostname": "62.210.195.226",
+  "identitiesonly": "yes",
+  "port": "22",
+  "stricthostkeychecking": "true",
+  "user": "m1"
+}

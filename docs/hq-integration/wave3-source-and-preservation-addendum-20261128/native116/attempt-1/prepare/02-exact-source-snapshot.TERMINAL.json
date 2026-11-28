@@ -1,0 +1,16 @@
+{
+  "exit": 1,
+  "noAutomaticRetry": true,
+  "pid": 2919435,
+  "startIdentity": {
+    "pgid": 2919435,
+    "pid": 2919435,
+    "session": 2919435,
+    "startTicks": "735274736"
+  },
+  "stderrBytes": 665,
+  "stderrSHA256": "be354236e40508233d31ef9c726c08613a59978933dec343d4901894eac93019",
+  "stdoutBytes": 0,
+  "stdoutSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "utc": "2026-11-28T00:28:17.865508+00:00"
+}

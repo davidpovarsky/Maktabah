@@ -1,0 +1,8 @@
+{"schema":"otzaria.native116-owned-producer-terminal/1","mode":"snapshot","pid":52003,"sourceRoot":"/Users/m1/builds/otzaria-root-actions-acceptance-20261126.wjQnLNJl/original-native116-prebuilt-evidence.X0L7wYFd","sourceModified":false,"status":"FAILED_SOURCE_NOT_ACCEPTED","errorType":"RuntimeError","error":"Metadata cap"}
+Traceback (most recent call last):
+  File "<stdin>", line 11, in <module>
+  File "<reviewed-mac_producer.py>", line 416, in main
+  File "<reviewed-mac_producer.py>", line 300, in capture
+  File "<reviewed-mac_producer.py>", line 263, in enumerate_source
+  File "<reviewed-stream_format.py>", line 36, in require
+RuntimeError: Metadata cap
