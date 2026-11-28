@@ -125,6 +125,8 @@ import ChavrusaUIRoutingHost
     private let windowReady: @MainActor () -> Bool
     private let retainWindow: @MainActor () throws -> MaktabahNativeWindowObservation
     private let readForeign: @MainActor () -> Void
+    private let publishOriginalUIKitPresentation: (@MainActor (UUID) -> Void)?
+    private var publishingOriginalUIKitPresentation = false
     private var host: Host?
     private var catalogSource: Catalog?
     private var retained: Source?
@@ -144,10 +146,12 @@ import ChavrusaUIRoutingHost
          workspacePresentation: MaktabahNativeWorkspacePresentationBinding,
          commonReady: @escaping @MainActor () -> Bool, windowReady: @escaping @MainActor () -> Bool,
          retainWindow: @escaping @MainActor () throws -> MaktabahNativeWindowObservation,
-         readForeignPresentations: @escaping @MainActor () -> Void) {
+         readForeignPresentations: @escaping @MainActor () -> Void,
+         originalUIKitPresentationWillChange: (@MainActor (UUID) -> Void)? = nil) {
         self.sceneID = sceneID; self.bindings = bindings; self.workspaceSource = workspaceSource
         self.workspacePresentation = workspacePresentation; self.commonReady = commonReady
         self.windowReady = windowReady; self.retainWindow = retainWindow; readForeign = readForeignPresentations
+        publishOriginalUIKitPresentation = originalUIKitPresentationWillChange
     }
     func install(changed: @escaping @MainActor () -> Void, invalidated: @escaping @MainActor () -> Void) {
         self.changed = changed; self.invalidated = invalidated
@@ -156,7 +160,7 @@ import ChavrusaUIRoutingHost
     /// Metadata may remain available in a background scene. The actual window
     /// and foreground admission are independently required before any effect.
     var isAvailable: Bool {
-        guard mounted, !retiring, lifetime != nil, let host, let controller = host.controller,
+        guard mounted, !retiring, !hasOriginalUIKitPresentation, lifetime != nil, let host, let controller = host.controller,
               let model = host.model, model === bindings.manager.annotationViewModel,
               controller.viewModel === model, controller.isViewLoaded, model.state == .loaded,
               !model.nativeRoutingPublication.searchPending, !host.blocked(), commonReady(),
@@ -188,6 +192,103 @@ import ChavrusaUIRoutingHost
         guard catalogSource === source, self.host === host, lifetime == revision,
               retained == nil, pending == nil else { throw stale() }
         return source.entries.map(\.record)
+    }
+
+    /// Read-only capture of the SAME cached original row for the original List
+    /// Edit action. Its independent publications survive only catalog retirement
+    /// caused by presenting that editor; no list/Store/backend event is waived.
+    @MainActor final class OriginalEditorRecord {
+        let record: Record
+        let annotation: Annotation
+        let listOwner: UUID
+        private let check: @MainActor () throws -> Void
+        private let checkVisible: @MainActor (UIWindow) throws -> Void
+        private let invalidateSource: @MainActor () -> Void
+        private var valid = true
+        private var checking = false
+        fileprivate init(record: Record, annotation: Annotation, listOwner: UUID,
+                         check: @escaping @MainActor () throws -> Void,
+                         checkVisible: @escaping @MainActor (UIWindow) throws -> Void,
+                         invalidate: @escaping @MainActor () -> Void) {
+            self.record = record; self.annotation = annotation; self.listOwner = listOwner
+            self.check = check; self.checkVisible = checkVisible; invalidateSource = invalidate
+        }
+        func validateVisibleList(in window: UIWindow) throws {
+            try validate(); try checkVisible(window); try validate()
+        }
+        func validate() throws {
+            guard valid, !checking else { retire(); throw Self.stale() }
+            checking = true; defer { checking = false }
+            do {
+                try check()
+                guard valid else { throw Self.stale() }
+            } catch { retire(); throw error }
+        }
+        func retire() { valid = false; invalidateSource() }
+        private static func stale() -> UIRouteError {
+            .init(.staleState, "native_annotation_original_editor_record_changed")
+        }
+    }
+
+    func captureOriginalEditorRecord(_ record: Record) throws -> OriginalEditorRecord {
+        guard !accessing, !retiring, retained == nil, pending == nil,
+              let revision = lifetime, isAvailable, let host, let catalog = catalogSource,
+              catalog.host === host, record.sceneID == sceneID,
+              let controller = host.controller, let model = host.model else { throw stale() }
+        accessing = true; defer { accessing = false }
+        let entry = try catalog.entry(record)
+        // These are NEW, independent observers of the existing original source,
+        // installed synchronously before capture returns and BEFORE any await.
+        // The old catalog's retire() never owns or rearms these observers.
+        let modelPublication = try model.nativeRoutingPublication.capture()
+        let collectionPublication = try controller.nativeRoutingPublication.capture()
+        let storePublication = NativeComponentSourceObservation(read: {})
+        let storeEvents = AnnotationStore.shared.events.sink { _ in storePublication.invalidate() }
+        let observation = MaktabahNativeComponentSourceObservation {
+            _ = model.state; _ = model.searchText; _ = model.searchScope
+            _ = model.groupingMode; _ = model.sortField; _ = model.sortAscending
+            _ = model.selectedTags; _ = model.tagFilterMode
+        }
+        let source = OriginalEditorRecord(record: record, annotation: entry.row.annotation,
+            listOwner: host.token, check: { [weak self, weak controller, weak model] in
+                _ = storeEvents // retain the exact original Store subscription
+                try storePublication.validate(); try observation.validate()
+                try modelPublication.validate(); try collectionPublication.validate()
+                guard let self, let controller, let model, self.mounted, !self.retiring,
+                      self.host === host, host.controller === controller, host.model === model,
+                      model === self.bindings.manager.annotationViewModel, controller.viewModel === model,
+                      model.state == .loaded, !model.nativeRoutingPublication.searchPending,
+                      controller.nativeRoutingMatches(entry.row) else {
+                    throw UIRouteError(.staleState, "native_annotation_original_editor_record_changed")
+                }
+                try storePublication.validate(); try observation.validate()
+                try modelPublication.validate(); try collectionPublication.validate()
+                guard self.mounted, !self.retiring, self.host === host,
+                      host.controller === controller, host.model === model else { throw self.stale() }
+            }, checkVisible: { [weak controller] window in
+                guard let controller, let view = controller.viewIfLoaded, view.window === window,
+                      !controller.isBeingDismissed, !controller.isMovingFromParent,
+                      controller.presentedViewController == nil else {
+                    throw UIRouteError(.unavailable, "native_annotation_original_list_not_visible")
+                }
+                let actual = MaktabahNativeSavedResultsGeometry.evidence(view)
+                guard actual.foreground, !actual.hidden, !actual.transitioning, actual.alpha >= 0.95,
+                      actual.visible.width > 1, actual.visible.height > 1 else {
+                    throw UIRouteError(.unavailable, "native_annotation_original_list_not_visible")
+                }
+            }, invalidate: {
+                storePublication.invalidate(); observation.invalidate()
+            })
+        do {
+            try catalog.validate()
+            guard mounted, lifetime == revision, self.host === host, catalogSource === catalog,
+                  retained == nil, pending == nil, isAvailable else { throw stale() }
+            try source.validate()
+            try catalog.validate()
+            guard mounted, lifetime == revision, self.host === host, catalogSource === catalog,
+                  retained == nil, pending == nil else { throw stale() }
+            return source
+        } catch { source.retire(); throw error }
     }
 
     /// Called before the FIRST foreground/Core await. No alternate catalog,
@@ -355,6 +456,25 @@ import ChavrusaUIRoutingHost
     func originalModalWillChange(owner: UUID) {
         guard host?.token == owner else { return }
         retire()
+    }
+    /// Actual current UIKit modality, including the synchronous publication
+    /// callback itself. This is a blocker, never a synthetic presentation ACK.
+    var hasOriginalUIKitPresentation: Bool {
+        publishingOriginalUIKitPresentation || host?.controller?.presentedViewController != nil
+    }
+    func originalUIKitPresentationWillChange(controller: iOSAnnotationViewController, owner: UUID) {
+        guard mounted, !retiring, let host, host.token == owner,
+              host.controller === controller else { return }
+        guard !publishingOriginalUIKitPresentation else {
+            controller.nativeRoutingPublication.willPublish(); retire(); return
+        }
+        publishingOriginalUIKitPresentation = true
+        defer { publishingOriginalUIKitPresentation = false }
+        // Fixed original source invalidation precedes every arbitrary callback.
+        controller.nativeRoutingPublication.willPublish()
+        retire()
+        guard mounted, !retiring, self.host === host, host.controller === controller else { return }
+        publishOriginalUIKitPresentation?(owner)
     }
     func hostLayoutChanged(controller: iOSAnnotationViewController, owner: UUID) {
         guard let host, host.token == owner, host.controller === controller else { return }

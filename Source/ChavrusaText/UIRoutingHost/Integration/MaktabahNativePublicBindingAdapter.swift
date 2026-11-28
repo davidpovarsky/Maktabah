@@ -72,6 +72,7 @@ struct MaktabahNativePublicPresentation {
                    !MaktabahNativeSefariaSurfaceBinding.accepts(destination),
                    destination != MaktabahNativeSavedResultsBinding.destination,
                    destination != MaktabahNativeAnnotationEditorControls.destination,
+                   destination != MaktabahNativeAnnotationEditorOpening.destination,
                    MaktabahApp.isIpad || destination != MaktabahNativeTOCComponents.destination else {
                  throw UIRouteError(.unavailable, "native_parent_source_missing")
              }

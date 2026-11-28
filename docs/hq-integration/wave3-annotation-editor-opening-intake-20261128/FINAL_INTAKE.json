@@ -1,0 +1,320 @@
+{
+  "schema": "otzaria.annotation-editor-opening.actual-intake.v1",
+  "sealed_utc": "2026-11-28T00:21:18.107573+00:00",
+  "base_commit": "759da82e7eb443634a4396c4768e44bca53f9001",
+  "base_source_tree": "c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb",
+  "root_current_read_ref": "ffa47784063bfda88b5d3c083d1a32bcacd14041",
+  "owned_source": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+      "status": "modified",
+      "before": {
+        "bytes": 23921,
+        "sha256": "e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa"
+      },
+      "after": {
+        "bytes": 30874,
+        "sha256": "2c5e6bfa3b8b3d88fc7b3bc105e64921caaa406e66ef4b36a4099aa734445440"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorOpening.swift",
+      "status": "new",
+      "before": null,
+      "after": {
+        "bytes": 25458,
+        "sha256": "0a6c7c0b4b16a4e06bdc1c664097eb84b7fbdd72b6032f109c33b1d57e856432"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+      "status": "modified",
+      "before": {
+        "bytes": 25322,
+        "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+      },
+      "after": {
+        "bytes": 32769,
+        "sha256": "ff8501c43d7b8673c67ecb94536ae7132c757d046dd919f3fc69257fdb5bf873"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntentService.swift",
+      "status": "new",
+      "before": null,
+      "after": {
+        "bytes": 7406,
+        "sha256": "c787c10eb0e8daa691cac85aca316a72b5d0f9cfb1d329b1da25490d57ac4f64"
+      }
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntents.swift",
+      "status": "new",
+      "before": null,
+      "after": {
+        "bytes": 1147,
+        "sha256": "d11e94c3bac2fcf26af5c8b008683d919cf1551c88b074865caf383387168970"
+      }
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "status": "modified",
+      "before": {
+        "bytes": 15826,
+        "sha256": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df"
+      },
+      "after": {
+        "bytes": 17385,
+        "sha256": "cc234714d18265d9e950ccef11e265b4fd3c604298dedb385b5ef17f4314bd28"
+      }
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnVC+TagFilter.swift",
+      "status": "modified",
+      "before": {
+        "bytes": 2463,
+        "sha256": "5993b5f5651a70fefaf5f17dd69907d1d13953aa7872ab35231d95e006d89ebc"
+      },
+      "after": {
+        "bytes": 2511,
+        "sha256": "426dce20033baf8ccff56cf6d546faf341adc6b7f846500b4580a0b37bbc5d0f"
+      }
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "status": "modified",
+      "before": {
+        "bytes": 32323,
+        "sha256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c"
+      },
+      "after": {
+        "bytes": 32718,
+        "sha256": "9a6e6246e7dc89d0f2b36c377c81e83ea4ff08104aefbebc49d99ed0daa65c7c"
+      }
+    }
+  ],
+  "owned_source_exact_forward_inverse": true,
+  "shared": {
+    "root_only": true,
+    "hunks": 40,
+    "files": [
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+        "before_bytes": 189298,
+        "before_sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8",
+        "after_bytes": 203596,
+        "after_sha256": "66b971765ac6b3e749a6a9b5780b654d7dd2c473fc0dae673c8b04592cea4acc"
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+        "before_bytes": 28434,
+        "before_sha256": "56deba49344a23aa670843a343986091141911455b9e8a536c69cc2d27cd3284",
+        "after_bytes": 29289,
+        "after_sha256": "a72174264f68ce10af35c596166a1342e60f5eec124fb9ccc3261f2a0ae8e243"
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+        "before_bytes": 277099,
+        "before_sha256": "b40fc20a91743560e9f04d3eaf6a9ff566ce7c952066366d67c2a9b7b8b9ddde",
+        "after_bytes": 283500,
+        "after_sha256": "53ceafc8e8b3085e2279af3319945528790c2270e5b0656d553bdc134b9ff4d7"
+      },
+      {
+        "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+        "before_bytes": 23430,
+        "before_sha256": "d2b450caf3bd1574ecc7720474bed4c5560d08f26fd6c0e8f248020015bb2db7",
+        "after_bytes": 23515,
+        "after_sha256": "ef2db05cbb391fef37b46c64a414324ed73d80d3a76adb481d6c67be4921cad8"
+      }
+    ],
+    "manifest": {
+      "path": "proposal/SHARED_EDITS.json",
+      "bytes": 50956,
+      "sha256": "35b7ef090b517ce5397a63f19a16dfee6e07926371dd829636af830254510a39"
+    },
+    "exact_forward_inverse": true,
+    "applied_to_live_repository": false
+  },
+  "job": {
+    "id": "job_ac7f55889e4f",
+    "exit": 0,
+    "started": "2026-11-28T00:16:14.754476+00:00",
+    "finished": "2026-11-28T00:17:04.593825+00:00",
+    "seconds": 49.84,
+    "one_run_no_retry": true,
+    "terminal": {
+      "path": "evidence/dispatch-attempt-3/TERMINAL.json",
+      "bytes": 2404,
+      "sha256": "e869edb518b7c605dd6fdb49ba45fcfeb01230240a76144b2e0c7479a3356a11"
+    }
+  },
+  "controller": {
+    "path": "run_controls.py",
+    "bytes": 18456,
+    "sha256": "b99798452886fe5170825330d7246171b36285bf99848a305a0a93244ebf571d"
+  },
+  "payload": {
+    "path": "CONTROL_PAYLOAD.json",
+    "bytes": 403679,
+    "sha256": "148ffac7c1aa13e535358be244a3d03d3508d3a733446587d44ebfa720d031af"
+  },
+  "result": {
+    "path": "evidence/dispatch-attempt-3/readback/RESULT.json",
+    "bytes": 31023,
+    "sha256": "7c22bf9bb0b4cbc92b6b88db57376ff6a398a7b5c2afa9b7d10df18ad5a4228b"
+  },
+  "raw_transfer": {
+    "path": "evidence/dispatch-attempt-3/RAW_TRANSFER_VERIFICATION.json",
+    "bytes": 1014,
+    "sha256": "8e72cc52274c03f6f0ec99cfa9b25f8e11898df5c01fea04ae3a4cd43b0740e9"
+  },
+  "actual": {
+    "status": "PASS_SOURCE_ONLY",
+    "owner": {
+      "failed": 0,
+      "passed": 34
+    },
+    "service": {
+      "failed": 0,
+      "passed": 14
+    },
+    "source_counterexamples": [
+      {
+        "name": "original-tag-method-ABA-counterexample",
+        "exit": 1,
+        "passed": 0,
+        "failed": 1,
+        "report_sha256": "eaac26f0bdcd3e1f90adef1f7c839073785de30f01839fdc3894424caef47cc7",
+        "cases": [
+          {
+            "error": "OpeningControlFailure(message: \"actual original tag open/close must permanently retire the retained source\")",
+            "name": "original pre-hook tag method admits open/close stale source",
+            "pass": false
+          }
+        ]
+      },
+      {
+        "name": "original-List-coverage-counterexample",
+        "exit": 1,
+        "passed": 0,
+        "failed": 1,
+        "report_sha256": "5d4bd030b4e7230cd7229049fbd14eadf89367a91ebd39b174384f067442c202",
+        "cases": [
+          {
+            "error": "OpeningControlFailure(message: \"one actual original covered-list callback must preserve the same editor proof\")",
+            "name": "original pre-allowance List removal rejects its actual editor",
+            "pass": false
+          }
+        ]
+      },
+      {
+        "name": "late-coverage-before-independent-state-counterexample",
+        "exit": 1,
+        "passed": 0,
+        "failed": 1,
+        "report_sha256": "c7823bfe347701fe6dd45acffebddeaaf819e65a2abc3db3233154769c6b971b",
+        "cases": [
+          {
+            "error": "UIRouteError(status: OtzariaActionCore.ActionStatus.staleState, code: \"native_component_source_changed\")",
+            "name": "same actual child before original List coverage remains valid",
+            "pass": false
+          }
+        ]
+      }
+    ],
+    "full_file_debug_release_syntax": 24,
+    "source_modules": {
+      "base": "759da82e7eb443634a4396c4768e44bca53f9001",
+      "counts": {
+        "Core": 31,
+        "Host": 41,
+        "UI": 13
+      },
+      "products": [
+        {
+          "bytes": 444488,
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/ChavrusaUIRoutingHost.swiftmodule",
+          "sha256": "66f9ec0fb9581527b483ef6e766c1ce7c5e405c8417f54dc9d6504af8e2e88cb",
+          "use": "read-only existing original compiled product"
+        },
+        {
+          "bytes": 3097048,
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-annotation-selection-intake-20261127-attempt2/output/libChavrusaUIRoutingHost.so",
+          "sha256": "88d6217c0bec3136ad9a2f36c4bc68ef0daeb886fe994b1536560038a3b90f77",
+          "use": "read-only existing original compiled product"
+        },
+        {
+          "bytes": 315448,
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/OtzariaUIRouting.swiftmodule",
+          "sha256": "7d3b1cb4f488ef5178a117c9200458a33d5e83578255f648d87feb6a7d0793e4",
+          "use": "read-only existing original compiled product"
+        },
+        {
+          "bytes": 1578856,
+          "path": "/mnt/development/projects/diagnostics/otzaria-wave3-rn-semantic-intake-20261127/output/libOtzariaUIRouting.so",
+          "sha256": "d5f0b4a3880467dab9103481dd11b825008c74958395d1ac122671b2d482595d",
+          "use": "read-only existing original compiled product"
+        },
+        {
+          "bytes": 708952,
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/OtzariaActionCore.swiftmodule",
+          "sha256": "c45482e0c872e1378e9048b9f1b9fef473b0a9b8973ef0e17ee9e2df22a24103",
+          "use": "read-only existing original compiled product"
+        },
+        {
+          "bytes": 3002144,
+          "path": "/home/ubuntu/.codex/worktrees/Maktabah-wave3-integration-rootfs-20261127/.git/search-continuation-integrated-controls-20261127/output/libOtzariaActionCore.so",
+          "sha256": "f7a7d43d27b341f53a32b5205306c6bcec69c7a05b1f381d6e2239d5803d049a",
+          "use": "read-only existing original compiled product"
+        }
+      ],
+      "rejoined": 85,
+      "source_join_sha256": "7768e4896eb3fc6fb2ff2256a820bc03c315b9c512936948c6346164b7a4efef"
+    },
+    "initial_capacity": {
+      "data": 2899271680,
+      "own": 0,
+      "root": 2343628800
+    },
+    "final_data_free": 2896904192,
+    "final_root_free": 2318057472,
+    "task_allocated_at_result": 23625728
+  },
+  "source_counterexample_limit": "First two variants invoke actual old function bodies beside the new owner; they do not claim the new feature existed historically. The third compiles the preserved pre-independent-child owner even though its unchanged stdout source_variant field says candidate actual source bodies; the compile argv and exact input hashes identify the historical variant.",
+  "preserved_dispatch_failures": [
+    {
+      "path": "evidence/dispatch-attempt-1/TERMINAL.json",
+      "bytes": 3096,
+      "sha256": "5e0c5755b0a046e5fe28be558d04466c2acae361aa5d1d182ddce041a3c11e9a"
+    },
+    {
+      "path": "evidence/dispatch-attempt-2/TERMINAL.json",
+      "bytes": 2032,
+      "sha256": "483437b6c7cf65dea578a7954f2fe6e7c078b0e0d0cfb7a3647c86d40ba16d82"
+    }
+  ],
+  "membership": {
+    "path": "MEMBERSHIP.json",
+    "bytes": 1369,
+    "sha256": "cd4193186014e6ae5ebca077c07056084336b5095e48cffc7623f14ee0a95873"
+  },
+  "localization": {
+    "path": "LOCALIZATION_ADDITIONS.json",
+    "bytes": 545,
+    "sha256": "d2bd497c7b34f075c406f941fa03219aa08da658769d1791f67216013f0af019"
+  },
+  "historical_documents": "CURRENT_SOURCE_PINS and CONTROL_BOUNDARIES remain byte-exact pre-run inputs. This actual receipt supersedes their NOT_RUN status only for the explicitly enumerated source controls/syntax, never for native gates.",
+  "limits": {
+    "Core_operation": "NOT_RUN",
+    "Apple_SDK_typecheck": "NOT_RUN",
+    "UIKit_lifecycle_geometry": "NOT_RUN",
+    "database_persistence": "NOT_RUN",
+    "system_AppIntent_delivery": "NOT_RUN",
+    "native_acceptance": "NOT_RUN",
+    "full_original_native_suites": "NOT_RUN",
+    "physical_device": "NOT_RUN",
+    "real_store_model_backend_admission": "explicit fixture boundaries"
+  },
+  "primary_and_bookinfo_shared_proposals_applied": false,
+  "next": "Root selective source/shared integration; no healthy rerun or additional compiler in this lane. Resume independent CURRENT294 read-only mapping."
+}

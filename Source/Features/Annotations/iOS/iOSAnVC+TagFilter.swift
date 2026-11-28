@@ -70,6 +70,7 @@ extension iOSAnnotationViewController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
         }
+        nativeRoutingOriginalModalWillPresent()
         present(hostingVC, animated: true)
     }
 }

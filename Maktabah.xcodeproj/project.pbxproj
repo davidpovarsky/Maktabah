@@ -1488,6 +1488,7 @@
 		D4032B42A357852D4E98A0E6 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };
 		538D4EFA21E56EC7B252C365 /* ReaderInitialContentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */; };
 		391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */; };
+		7B9903EC81F4E32BFE0D0F22 /* MaktabahNativeAnnotationEditorOpening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AE74BC78D1328897798652 /* MaktabahNativeAnnotationEditorOpening.swift */; };
 		829576B5B95B15E3487D7062 /* MaktabahNativeAnnotationEditorViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754916F7F4FBFD3D12AAC9CB /* MaktabahNativeAnnotationEditorViews.swift */; };
 /* End PBXBuildFile section */
 
@@ -2354,6 +2355,7 @@
 		14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"; sourceTree = "<group>"; };
 		0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/ReaderInitialContentRequest.swift"; sourceTree = "<group>"; };
 		19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift"; sourceTree = "<group>"; };
+		41AE74BC78D1328897798652 /* MaktabahNativeAnnotationEditorOpening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationEditorOpening.swift"; sourceTree = "<group>"; };
 		754916F7F4FBFD3D12AAC9CB /* MaktabahNativeAnnotationEditorViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRoutingHost/Integration/MaktabahNativeAnnotationEditorViews.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2453,6 +2455,7 @@
 			children = (
 				754916F7F4FBFD3D12AAC9CB /* MaktabahNativeAnnotationEditorViews.swift */,
 				19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */,
+				41AE74BC78D1328897798652 /* MaktabahNativeAnnotationEditorOpening.swift */,
 				0D9E230554E3F5C704AB53A8 /* ReaderInitialContentRequest.swift */,
 				14AB4D488C859AA1B15DCBE6 /* MaktabahNativeAnnotationSelectionBinding.swift */,
 				F9AC1E79C7089D5C5C1E9F75 /* MaktabahNativeAnnotationListPublication.swift */,
@@ -5326,6 +5329,7 @@
 			files = (
 				829576B5B95B15E3487D7062 /* MaktabahNativeAnnotationEditorViews.swift in Sources */,
 				391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */,
+				7B9903EC81F4E32BFE0D0F22 /* MaktabahNativeAnnotationEditorOpening.swift in Sources */,
 				538D4EFA21E56EC7B252C365 /* ReaderInitialContentRequest.swift in Sources */,
 				1B5357D0B0EE878AA66F722D /* MaktabahNativeAnnotationSelectionBinding.swift in Sources */,
 				E1BAF39B27EDD22092C3AF8B /* MaktabahNativeAnnotationListPublication.swift in Sources */,

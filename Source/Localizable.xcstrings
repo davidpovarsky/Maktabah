@@ -1,6 +1,38 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Open annotation editor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open annotation editor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת עורך ההערות"
+          }
+        }
+      }
+    },
+    "Open an existing annotation in its original editor.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open an existing annotation in its original editor."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת הערה קיימת בעורך המקורי שלה."
+          }
+        }
+      }
+    },
     "Annotation record": {
       "localizations": {
         "en": {

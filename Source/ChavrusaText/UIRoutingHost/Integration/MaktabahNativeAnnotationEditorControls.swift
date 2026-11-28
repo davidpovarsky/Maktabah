@@ -102,6 +102,12 @@ final class MaktabahNativeAnnotationEditorControls {
     let sceneID: UIStableID
     private(set) var layoutRevision: UInt64 = 0
     @ObservationIgnored let originalStatePublication = NativeComponentSourcePublication()
+    // Opening a saved record retains the ORIGINAL editor State, independently
+    // of warm-control request retirement. The original List's one coverage
+    // callback retires warm controls, but it does not mutate this editor State.
+    // This latch advances only before actual editor State/attachment writes.
+    @ObservationIgnored private let originalRecordStatePublication = NativeComponentSourcePublication()
+    @ObservationIgnored private var originalRecordRevision: UInt64? = 0
     @ObservationIgnored private let retainWindow: @MainActor () throws -> MaktabahNativeWindowObservation
     @ObservationIgnored private let retainParent: @MainActor (UUID) throws -> (@MainActor () throws -> Void)
     @ObservationIgnored private var host: Host?
@@ -112,6 +118,7 @@ final class MaktabahNativeAnnotationEditorControls {
     @ObservationIgnored private var pending: Pending?
     @ObservationIgnored private var capturing: UUID?
     @ObservationIgnored private var validating = false
+    @ObservationIgnored private var readingOriginalPresentation = false
     @ObservationIgnored private var mounted = true
     @ObservationIgnored private var changed: @MainActor () -> Void = {}
     @ObservationIgnored private var invalidated: @MainActor () -> Void = {}
@@ -151,6 +158,95 @@ final class MaktabahNativeAnnotationEditorControls {
     }
     var originalListOwner: UUID? { host?.access.attachment.listOwner }
     var isMounted: Bool { host?.view?.window != nil }
+
+    /// Read-only identity of an ORIGINAL editor attachment. The opening owner
+    /// may wait for this first attachment's initialization/layout, but a later
+    /// host can never replace it under the same opening request.
+    struct OriginalPresentationIdentity: Equatable {
+        fileprivate let host: ObjectIdentifier
+        fileprivate let token: UUID
+        fileprivate let viewID: UUID
+        fileprivate let listOwner: UUID
+    }
+    @MainActor final class OriginalPresentedRecord {
+        private let check: @MainActor () throws -> Void
+        private let invalidateSource: @MainActor () -> Void
+        private var valid = true
+        private var checking = false
+        fileprivate init(check: @escaping @MainActor () throws -> Void,
+                         invalidate: @escaping @MainActor () -> Void) {
+            self.check = check; invalidateSource = invalidate
+        }
+        func validateVisible() throws {
+            guard valid, !checking else { retire(); throw MaktabahNativeAnnotationEditorControls.stale() }
+            checking = true; defer { checking = false }
+            do {
+                try check()
+                guard valid else { throw MaktabahNativeAnnotationEditorControls.stale() }
+            } catch { retire(); throw error }
+        }
+        func retire() { valid = false; invalidateSource() }
+    }
+    func originalPresentationIdentity(annotation: Annotation, listOwner: UUID,
+                                      window: UIWindow) throws -> OriginalPresentationIdentity? {
+        guard mounted, !readingOriginalPresentation else { throw Self.stale() }
+        guard let host else { return nil }
+        readingOriginalPresentation = true; defer { readingOriginalPresentation = false }
+        let identity = OriginalPresentationIdentity(host: ObjectIdentifier(host), token: host.token,
+            viewID: host.access.viewID, listOwner: host.access.attachment.listOwner)
+        guard host.access.attachment.controls === self, identity.listOwner == listOwner,
+              host.view?.window == nil || host.view?.window === window else { throw Self.stale() }
+        let current = host.access.attachment.parentCurrent()
+        let snapshot = host.access.snapshot()
+        guard mounted, self.host === host, host.token == identity.token,
+              host.access.viewID == identity.viewID, host.access.attachment.listOwner == listOwner,
+              host.access.attachment.controls === self, current, snapshot.annotation == annotation,
+              host.view?.window == nil || host.view?.window === window else { throw Self.stale() }
+        return identity
+    }
+    func captureOriginalPresentedRecord(annotation: Annotation, listOwner: UUID, window: UIWindow,
+                                        identity: OriginalPresentationIdentity) throws -> OriginalPresentedRecord? {
+        guard mounted, !readingOriginalPresentation, let host, let revision = originalRecordRevision,
+              ObjectIdentifier(host) == identity.host, host.token == identity.token,
+              host.access.viewID == identity.viewID, identity.listOwner == listOwner else { throw Self.stale() }
+        readingOriginalPresentation = true; defer { readingOriginalPresentation = false }
+        let observation = MaktabahNativeComponentSourceObservation(publications: [originalRecordStatePublication]) {
+            _ = host.access.attachment.parentCurrent(); _ = host.access.snapshot()
+        }
+        @MainActor func requireIdentity() throws {
+            try observation.validate()
+            guard self.mounted, self.host === host, self.originalRecordRevision == revision,
+                  host.token == identity.token, host.access.viewID == identity.viewID,
+                  host.access.attachment.controls === self, host.access.attachment.listOwner == listOwner else { throw Self.stale() }
+        }
+        do {
+            try requireIdentity()
+            let current = host.access.attachment.parentCurrent(), snapshot = host.access.snapshot()
+            try requireIdentity()
+            guard current, snapshot.annotation == annotation, !snapshot.blocked else { throw Self.stale() }
+            // Initialization and actual original layout are allowed to finish;
+            // no geometry or source evidence is synthesized while they do so.
+            guard snapshot.initialized, let view = host.view, view.window === window,
+                  MaktabahNativeAnnotationEditorGeometry.ownsTopSheet(view, sceneID: sceneID),
+                  MaktabahNativeSavedResultsGeometry.isVisible(view, in: view, window: window, sceneID: sceneID) else {
+                observation.invalidate(); return nil
+            }
+            try requireIdentity()
+            let proof = OriginalPresentedRecord(check: { [weak self, weak view, weak window] in
+                guard let self, let view, let window else { throw Self.stale() }
+                try requireIdentity()
+                let current = host.access.attachment.parentCurrent(), actual = host.access.snapshot()
+                try requireIdentity()
+                guard current, actual.annotation == annotation, actual.initialized, !actual.blocked,
+                      host.view === view, view.window === window,
+                      MaktabahNativeAnnotationEditorGeometry.ownsTopSheet(view, sceneID: self.sceneID),
+                      MaktabahNativeSavedResultsGeometry.isVisible(view, in: view, window: window, sceneID: self.sceneID) else { throw Self.unavailable() }
+                try requireIdentity()
+            }, invalidate: { observation.invalidate() })
+            try proof.validateVisible()
+            return proof
+        } catch { observation.invalidate(); throw error }
+    }
 
     // Parent retention precedes generic component retention, before Core awaits.
     func retainSource(requestID: UUID) throws {
@@ -318,6 +414,7 @@ final class MaktabahNativeAnnotationEditorControls {
            host.access.viewID == access.viewID, host.access.attachment.listOwner == access.attachment.listOwner {
             host.access = access; return
         }
+        advanceOriginalRecordStatePublication()
         retire()
         host = Host(token: token, view: view, access: access)
         controls = controls.filter { $0.key == access.viewID }
@@ -325,11 +422,13 @@ final class MaktabahNativeAnnotationEditorControls {
     }
     func detach(viewID: UUID, token: UUID, view: UIView) {
         guard let host, host.access.viewID == viewID, host.token == token, host.view === view else { return }
+        advanceOriginalRecordStatePublication()
         retire(); self.host = nil; controls.removeValue(forKey: viewID); changed()
     }
     /// Synchronous original setter/teardown hook. Equal writes invalidate too.
     func originalStateWillChange(viewID: UUID) {
         guard host?.access.viewID == viewID else { return }
+        advanceOriginalRecordStatePublication()
         retire()
     }
     func observeControl(viewID: UUID, anchor: Anchor, token: UUID, marker: UIView, field: UIView?) {
@@ -382,7 +481,19 @@ final class MaktabahNativeAnnotationEditorControls {
         if wasPending { invalidated() }
     }
     func unmount() {
+        advanceOriginalRecordStatePublication()
         retire(); mounted = false; host = nil; controls.removeAll()
+    }
+
+    private func advanceOriginalRecordStatePublication() {
+        // Closed weak one-way invalidation precedes any original callback.
+        // No source is recaptured and a retired child proof is never rearmed.
+        originalRecordStatePublication.invalidateRetainedSources()
+        guard let revision = originalRecordRevision, revision < .max else {
+            originalRecordRevision = nil
+            return
+        }
+        originalRecordRevision = revision + 1
     }
 
     private func source(for requestID: UUID) -> Source? {

@@ -259,6 +259,10 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             .init(id: id("native.annotations"), title: "Annotations".localized, implementation: .implemented,
                   supportedBackends: ActionBackendID.allCases, presentations: [.currentTab], requiredCoreActions: [], allowsPublicRoute: true,
                   publicNavigationV2: .init(rules: [.init(presentation: .currentTab)])),
+            // Same real cached annotation entity; only its typed Edit entry.
+            .init(id: MaktabahNativeAnnotationEditorOpening.destination, title: String(localized: "Open annotation editor"),
+                  implementation: .implemented, supportedBackends: ActionBackendID.allCases,
+                  presentations: [.sheet], requiredCoreActions: []),
             .init(id: MaktabahNativeAnnotationEditorControls.destination, title: String(localized: "Annotation editor"),
                   implementation: .implemented, supportedBackends: ActionBackendID.allCases,
                   presentations: [.sheet], anchors: MaktabahNativeAnnotationEditorControls.Anchor.allCases.map(\.id),
@@ -951,6 +955,89 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             }
         }
         return result
+    }
+
+    private func openAnnotationEditor(_ request: NativeAnnotationEditorIntentService.OpenRequest) async throws
+        -> UISceneAcknowledgement {
+        try Task.checkCancellation()
+        let window = request.window, end = deadline()
+        let matches = try annotationSelectionWindows().filter { $0 == window }
+        guard matches.count == 1, request.record.sceneID == window.sceneID,
+              window.backend == request.expectedSnapshot.backend, window.destination.rawValue == "native.annotations",
+              let original = scenes[window.sceneID],
+              original.session.mounted, let manager = original.manager,
+              ObjectIdentifier(manager) == original.managerID,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "original_annotation_opening_window_changed")
+        }
+        let retained = try original.session.retainAnnotationEditor(request.record, requestID: request.requestID)
+        defer { retained.releaseSource(requestID: request.requestID) }
+        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in
+            try await waitForMount(managerID: original.managerID)
+        }
+        try Task.checkCancellation()
+        guard activated == window.sceneID, let current = scenes[window.sceneID],
+              current.session === original.session, current.managerID == original.managerID,
+              current.manager === manager, current.session.mounted, current.session.foreground,
+              current.session.annotationEditorOpening === retained,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "original_annotation_opening_activation_changed")
+        }
+        try retained.validateSource(requestID: request.requestID)
+        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: request.expectedSnapshot)
+        try issue(context, sceneID: window.sceneID)
+        defer { finish(context, sceneID: window.sceneID) }
+        let invocation = ActionPortInvocation(requestId: request.requestID, snapshot: request.expectedSnapshot,
+                                             deadlineUptimeNanoseconds: end)
+        let scene = try await directory.currentScene(sceneID: window.sceneID, context: context, invocation: invocation)
+        try retained.validateSource(requestID: request.requestID)
+        guard scenes[window.sceneID]?.session === original.session,
+              original.session.annotationEditorOpening === retained,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "original_annotation_opening_source_changed")
+        }
+        let route = try original.session.prepareAnnotationEditor(invocation: invocation, scene: scene)
+        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)
+        let result = try await orchestrator.commit(command, context: context)
+        record(result)
+        if case .acknowledged(let receipt) = result {
+            do {
+                try Task.checkCancellation()
+                guard scenes[window.sceneID]?.session === original.session,
+                      original.session.annotationEditorOpening === retained,
+                      try backend.currentBackendSnapshot() == request.expectedSnapshot,
+                      SystemActionClock().now() < end else {
+                    throw UIRouteError(.staleState, "original_annotation_opening_completion_changed")
+                }
+                try original.session.validateCompletedAnnotationEditor(receipt, original: retained)
+                guard receipt.requestId == request.requestID, receipt.sceneID == window.sceneID,
+                      receipt.route.state.selectedItemID == request.record.itemID else {
+                    throw UIRouteError(.failed, "native_effect_uncertain")
+                }
+            } catch {
+                throw NativeAnnotationEditorIntentService.Failure(acknowledgement: result, underlying: error)
+            }
+        }
+        return result
+    }
+
+    private func validateAnnotationEditorCompletion(_ request: NativeAnnotationEditorIntentService.OpenRequest,
+        receipt: UISceneReceipt) throws {
+        guard receipt.requestId == request.requestID, receipt.sceneID == request.record.sceneID,
+              receipt.sceneID == request.window.sceneID,
+              receipt.route.state.selectedItemID == request.record.itemID,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot,
+              let entry = scenes[receipt.sceneID], entry.session.mounted,
+              let original = entry.session.annotationEditorOpening,
+              original.sceneID == receipt.sceneID else {
+            throw UIRouteError(.staleState, "original_annotation_opening_completion_changed")
+        }
+        try entry.session.validateCompletedAnnotationEditor(receipt, original: original)
+        guard scenes[receipt.sceneID]?.session === entry.session,
+              entry.session.annotationEditorOpening === original,
+              try backend.currentBackendSnapshot() == request.expectedSnapshot else {
+            throw UIRouteError(.staleState, "original_annotation_opening_completion_changed")
+        }
     }
 
     private func savedResultsCatalog() throws -> NativeSavedResultIntentService.Catalog {
@@ -3077,6 +3164,17 @@ final class MaktabahNativeRoutingComposition: UIDestinationEligibilityPort, Otza
             catch { logIntentFailure(error, stage: "annotation_record"); throw error }
         })
         AppDependencyManager.shared.add(dependency: annotationService)
+        let annotationEditorService = NativeAnnotationEditorIntentService(read: { [self] in
+            try annotationSelectionCatalog()
+        }, windows: { [self] in
+            try annotationSelectionWindows()
+        }, navigate: { [self] in
+            do { return try await openAnnotationEditor($0) }
+            catch { logIntentFailure(error, stage: "annotation_editor"); throw error }
+        }, validateCompletion: { [self] request, receipt in
+            try validateAnnotationEditorCompletion(request, receipt: receipt)
+        })
+        AppDependencyManager.shared.add(dependency: annotationEditorService)
         let savedService = NativeSavedResultIntentService(read: { [self] in
             try savedResultsCatalog()
         }, windows: { [self] in

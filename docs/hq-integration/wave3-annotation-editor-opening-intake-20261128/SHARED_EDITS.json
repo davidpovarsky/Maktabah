@@ -1,0 +1,318 @@
+{
+  "root_only": true,
+  "base": "759da82e7eb443634a4396c4768e44bca53f9001",
+  "inverse_verified": true,
+  "original_remove_unchanged_sha256": "545f0a1776efb88ed47fc84aa0875fe6680aaa5248ed918ca4e62e43be9921b1",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "before_bytes": 189298,
+      "before_sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8",
+      "after_bytes": 203596,
+      "after_sha256": "66b971765ac6b3e749a6a9b5780b654d7dd2c473fc0dae673c8b04592cea4acc"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "before_bytes": 28434,
+      "before_sha256": "56deba49344a23aa670843a343986091141911455b9e8a536c69cc2d27cd3284",
+      "after_bytes": 29289,
+      "after_sha256": "a72174264f68ce10af35c596166a1342e60f5eec124fb9ccc3261f2a0ae8e243"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "before_bytes": 277099,
+      "before_sha256": "b40fc20a91743560e9f04d3eaf6a9ff566ce7c952066366d67c2a9b7b8b9ddde",
+      "after_bytes": 283500,
+      "after_sha256": "53ceafc8e8b3085e2279af3319945528790c2270e5b0656d553bdc134b9ff4d7"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "before_bytes": 23430,
+      "before_sha256": "d2b450caf3bd1574ecc7720474bed4c5560d08f26fd6c0e8f248020015bb2db7",
+      "after_bytes": 23515,
+      "after_sha256": "ef2db05cbb391fef37b46c64a414324ed73d80d3a76adb481d6c67be4921cad8"
+    }
+  ],
+  "edits": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "new finite original editor opening owner",
+      "occurrences": 1,
+      "before": "    private(set) var annotationEditorControls: MaktabahNativeAnnotationEditorControls?\n",
+      "after": "    private(set) var annotationEditorOpening: MaktabahNativeAnnotationEditorOpening?\n    @ObservationIgnored private var retainedAnnotationEditorOpening = false\n    private(set) var annotationEditorControls: MaktabahNativeAnnotationEditorControls?\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "same retained parent source validation",
+      "occurrences": 1,
+      "before": "    func validateParentSource(destination: UIDestinationID, requestID: UUID) throws {\n",
+      "after": "    func validateParentSource(destination: UIDestinationID, requestID: UUID) throws {\n        if destination == MaktabahNativeAnnotationEditorOpening.destination {\n            guard let original = annotationEditorOpening else {\n                throw UIRouteError(.staleState, \"original_annotation_editor_opening_detached\")\n            }\n            try original.validateSource(requestID: requestID)\n            return\n        }\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "original window/foreign callback invalidation",
+      "occurrences": 1,
+      "before": "        annotationEditorControls?.retire()\n        sefariaRootSources.values.forEach",
+      "after": "        annotationEditorControls?.retire()\n        annotationEditorOpening?.retire()\n        sefariaRootSources.values.forEach"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "original Notes setter invalidates opening",
+      "occurrences": 1,
+      "before": "        annotationSelectionBinding?.retire()\n        annotationEditorControls?.retire()\n        if retainedSefariaSurface { presentation.revoke() }\n",
+      "after": "        annotationSelectionBinding?.retire()\n        annotationEditorControls?.retire()\n        annotationEditorOpening?.retire()\n        if retainedSefariaSurface { presentation.revoke() }\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "original Search prepublication invalidates opening",
+      "occurrences": 1,
+      "before": "        defer { annotationSelectionBinding?.retire(); annotationEditorControls?.retire() }",
+      "after": "        defer { annotationSelectionBinding?.retire(); annotationEditorControls?.retire(); annotationEditorOpening?.retire() }"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "owner replacement retires before any later capture",
+      "occurrences": 1,
+      "before": "            annotationPresentationOwner = owner; annotationPresentationBlocked = isBlocked\n            annotationSelectionBinding?.retire()\n",
+      "after": "            annotationPresentationOwner = owner; annotationPresentationBlocked = isBlocked\n            annotationSelectionBinding?.retire()\n            annotationEditorOpening?.retire()\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "consume exact original modal event before unchanged publication",
+      "occurrences": 1,
+      "before": "    func originalAnnotationPresentationWillChange(owner: UUID) {\n        guard mounted, annotationPresentationOwner == owner else { return }\n        advanceOriginalAnnotationPresentationPublication()\n",
+      "after": "    func originalAnnotationPresentationWillChange(owner: UUID) {\n        guard mounted, annotationPresentationOwner == owner else { return }\n        annotationEditorOpening?.originalModalWillChange(owner: owner)\n        advanceOriginalAnnotationPresentationPublication()\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "actual UIKit modal blocker alongside original State blocker",
+      "occurrences": 1,
+      "before": "        let blocked = annotationPresentationBlocked?() == true\n",
+      "after": "        let blocked = annotationPresentationBlocked?() == true\n            || annotationSelectionBinding?.hasOriginalUIKitPresentation == true\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "retain exact original UIKit blocker identity for unrelated captures",
+      "occurrences": 1,
+      "before": "        let owner = annotationPresentationOwner\n        let validate: @MainActor () throws -> Void = { [weak self] in\n            guard let self, self.mounted,\n                  self.annotationPresentationPublicationRevision == revision,\n                  self.annotationPresentationOwner == owner,\n                  self.annotationPresentationBlocked?() != true else {\n",
+      "after": "        let owner = annotationPresentationOwner\n        let originalList = annotationSelectionBinding\n        let validate: @MainActor () throws -> Void = { [weak self, weak originalList] in\n            guard let self, self.mounted,\n                  self.annotationSelectionBinding === originalList,\n                  originalList?.hasOriginalUIKitPresentation != true,\n                  self.annotationPresentationPublicationRevision == revision,\n                  self.annotationPresentationOwner == owner,\n                  self.annotationPresentationBlocked?() != true else {\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "UIKit blocker getter rechecked after original State getter",
+      "occurrences": 1,
+      "before": "            guard self.annotationPresentationPublicationRevision == revision,\n                  self.annotationPresentationOwner == owner else {\n                throw UIRouteError(.staleState, \"original_annotation_presentation_changed\")\n",
+      "after": "            guard self.annotationPresentationPublicationRevision == revision,\n                  self.annotationPresentationOwner == owner,\n                  self.annotationSelectionBinding === originalList,\n                  originalList?.hasOriginalUIKitPresentation != true else {\n                throw UIRouteError(.staleState, \"original_annotation_presentation_changed\")\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "new private modal facet for same original List setter only",
+      "occurrences": 1,
+      "before": "    func observeSearchPresentation(owner: UUID, isBlocked: @escaping @MainActor () -> Bool) {\n",
+      "after": "    /// Exact opening exception. One original Edit publication and at most one\n    /// matching List coverage publication; all other owner/State changes fail.\n    private func retainOriginalAnnotationOpeningPresentationObservation(owner: UUID,\n        annotation: Annotation, requestID: UUID) throws -> @MainActor () throws -> Void {\n        guard mounted, let revision = annotationPresentationPublicationRevision, revision < .max,\n              annotationPresentationOwner == owner, let opening = annotationEditorOpening,\n              let originalList = annotationSelectionBinding,\n              !originalList.hasOriginalUIKitPresentation else {\n            throw UIRouteError(.unavailable, \"original_annotation_opening_parent_unavailable\")\n        }\n        let validate: @MainActor () throws -> Void = { [weak self, weak opening, weak originalList] in\n            guard let self, let opening, let originalList, self.mounted,\n                  self.annotationEditorOpening === opening, self.annotationSelectionBinding === originalList,\n                  self.annotationPresentationOwner == owner,\n                  opening.allowsOriginalPresentationRevision(requestID: requestID, owner: owner,\n                    initial: revision, current: self.annotationPresentationPublicationRevision) else {\n                throw UIRouteError(.staleState, \"original_annotation_opening_parent_changed\")\n            }\n            let editing = try opening.originalListIsEditing(requestID: requestID, owner: owner, annotation: annotation)\n            guard self.annotationPresentationBlocked?() == editing,\n                  editing || !originalList.hasOriginalUIKitPresentation else {\n                throw UIRouteError(.staleState, \"original_annotation_opening_parent_changed\")\n            }\n            // Recheck both the callback's original owner and monotonic revision.\n            guard self.mounted, self.annotationEditorOpening === opening,\n                  self.annotationSelectionBinding === originalList, self.annotationPresentationOwner == owner,\n                  opening.allowsOriginalPresentationRevision(requestID: requestID, owner: owner,\n                    initial: revision, current: self.annotationPresentationPublicationRevision),\n                  try opening.originalListIsEditing(requestID: requestID, owner: owner, annotation: annotation) == editing,\n                  editing || !originalList.hasOriginalUIKitPresentation else {\n                throw UIRouteError(.staleState, \"original_annotation_opening_parent_changed\")\n            }\n        }\n        try validate()\n        return validate\n    }\n\n    func observeSearchPresentation(owner: UUID, isBlocked: @escaping @MainActor () -> Bool) {\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "same command may await only its original sheet transition",
+      "occurrences": 1,
+      "before": "    func isPresentationReady(for destination: UIDestinationID) -> Bool {\n",
+      "after": "    func isPresentationReady(for destination: UIDestinationID) -> Bool {\n        if destination == MaktabahNativeAnnotationEditorOpening.destination {\n            guard foreground, isOriginalAnnotationEditorRootReady, let original = annotationEditorOpening else { return false }\n            if let requestID = submissionID, command?.invocation.requestId == requestID,\n               command?.route.route.destination == destination,\n               original.isContinuingAppliedRequest(requestID: requestID) { return true }\n            return original.isAvailable && windowSource?.isPresentationReady(in: sceneID) == true\n        }\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "original UIKit publication forwards to exact scene owner",
+      "occurrences": 1,
+      "before": "                    _ = mounted; _ = studyChatPresentationID; _ = workspacePresentation?.originalStateRevision\n                })\n            annotationSelectionBinding = annotations\n",
+      "after": "                    _ = mounted; _ = studyChatPresentationID; _ = workspacePresentation?.originalStateRevision\n                }, originalUIKitPresentationWillChange: { [weak self] owner in\n                    self?.originalAnnotationPresentationWillChange(owner: owner)\n                })\n            annotationSelectionBinding = annotations\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "observe first original editor attachment from actual owner callback",
+      "occurrences": 1,
+      "before": "                guard let self, let editor, annotationEditorControls === editor else { return }\n                originalPresentationStateDidChange()\n",
+      "after": "                guard let self, let editor, annotationEditorControls === editor else { return }\n                annotationEditorOpening?.originalEditorHostDidChange()\n                originalPresentationStateDidChange()\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "construct one scene-owned opening adapter",
+      "occurrences": 1,
+      "before": "            attachComponentOwner(editor.componentOwner)\n",
+      "after": "            attachComponentOwner(editor.componentOwner)\n            let opening = MaktabahNativeAnnotationEditorOpening(sceneID: sceneID, selection: annotations, editor: editor,\n                retainWindow: { [weak self] in\n                    guard let self else { throw UIRouteError(.staleState, \"original_annotation_opening_window_detached\") }\n                    return try retainOriginalWindowObservation()\n                }, retainParent: { [weak self] owner, annotation, requestID in\n                    guard let self else { throw UIRouteError(.staleState, \"original_annotation_opening_parent_detached\") }\n                    return try captureAnnotationOpeningWindow(owner: owner, annotation: annotation, requestID: requestID)\n                }, windowReady: { [weak self] in\n                    guard let self else { return false }\n                    return foreground && windowSource?.isPresentationReady(in: sceneID) == true\n                })\n            annotationEditorOpening = opening\n            opening.install(changed: { [weak self, weak opening] in\n                guard let self, let opening, annotationEditorOpening === opening else { return }\n                originalPresentationStateDidChange()\n            }, invalidated: { [weak self] in\n                guard let self, retainedAnnotationEditorOpening else { return }\n                presentation.revoke()\n            })\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "directory independently requires the right original editor proof",
+      "occurrences": 1,
+      "before": "               (kind != .annotationEditor || (try? annotationEditorControls?.validateVisible(requestID: command.invocation.requestId)) != nil) {",
+      "after": "               (kind != .annotationEditor || (command.route.route.destination == MaktabahNativeAnnotationEditorOpening.destination\n                    ? annotationEditorOpening?.hasVisibleSurface(requestID: command.invocation.requestId) == true\n                    : (try? annotationEditorControls?.validateVisible(requestID: command.invocation.requestId)) != nil)) {"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "finite opening observation classification",
+      "occurrences": 1,
+      "before": "        let annotationEditor = value.route.route.destination == MaktabahNativeAnnotationEditorControls.destination\n",
+      "after": "        let annotationEditor = value.route.route.destination == MaktabahNativeAnnotationEditorControls.destination\n        let annotationOpening = value.route.route.destination == MaktabahNativeAnnotationEditorOpening.destination\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "retain same bounded validation for opening",
+      "occurrences": 1,
+      "before": "if workspaceParent != nil || phoneTOC || sefaria || historyRecord || savedResults || annotationSelection || annotationEditor {",
+      "after": "if workspaceParent != nil || phoneTOC || sefaria || historyRecord || savedResults || annotationSelection || annotationEditor || annotationOpening {"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "begin original opening with existing admission validator",
+      "occurrences": 1,
+      "before": "            if annotationEditor {\n",
+      "after": "            if annotationOpening {\n                guard let original = annotationEditorOpening, let parentValidation else {\n                    throw UIRouteError(.staleState, \"original_annotation_opening_parent_not_retained\")\n                }\n                try original.begin(requestID: value.invocation.requestId, validate: parentValidation)\n            }\n            if annotationEditor {\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "failed begin settles exact opening",
+      "occurrences": 1,
+      "before": "            annotationEditorControls?.finish(requestID: value.invocation.requestId, completed: false)\n",
+      "after": "            annotationEditorControls?.finish(requestID: value.invocation.requestId, completed: false)\n            annotationEditorOpening?.finish(requestID: value.invocation.requestId, completed: false)\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "retain and retire completed opening identity",
+      "occurrences": 1,
+      "before": "        retainedAnnotationEditor = annotationEditor\n",
+      "after": "        retainedAnnotationEditor = annotationEditor\n        retainedAnnotationEditorOpening = annotationOpening\n        if !annotationOpening { annotationEditorOpening?.clearCompletedProof() }\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "factor existing original root fence without weakening either original entry",
+      "occurrences": 1,
+      "before": "        } else { annotationPresentation = try retainOriginalAnnotationPresentationObservation() }\n        let originalWindow = try retainOriginalWindowObservation()\n",
+      "after": "        } else { annotationPresentation = try retainOriginalAnnotationPresentationObservation() }\n        return try captureHistoryReaderWindow(searchPresentation: searchPresentation,\n            annotationPresentation: annotationPresentation)\n    }\n    private func captureHistoryReaderWindow(searchPresentation: @escaping @MainActor () throws -> Void,\n        annotationPresentation: @escaping @MainActor () throws -> Void) throws -> @MainActor () throws -> Void {\n        let originalWindow = try retainOriginalWindowObservation()\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "opening named original window/root/modal capture and typed entry",
+      "occurrences": 1,
+      "before": "    func retainAnnotation(_ record: NativeAnnotationSelectionIntentService.Record, requestID: UUID) throws\n",
+      "after": "    private func captureAnnotationOpeningWindow(owner: UUID, annotation: Annotation, requestID: UUID) throws\n        -> @MainActor () throws -> Void {\n        guard isOriginalAnnotationEditorRootReady, let original = annotationEditorOpening else {\n            throw UIRouteError(.unavailable, \"original_annotation_opening_root_unavailable\")\n        }\n        let observation = MaktabahNativeComponentSourceObservation {\n            _ = mounted; _ = studyChatPresentationID\n            _ = workspacePresentation?.originalStateRevision\n            _ = sefariaSurfaceBinding?.presentationFacets\n            _ = savedResultsBinding?.isRequestedOrMounted\n        }\n        let search = try retainHistorySearchPresentationObservation()\n        let annotations = try retainOriginalAnnotationOpeningPresentationObservation(owner: owner,\n            annotation: annotation, requestID: requestID)\n        let root = try captureHistoryReaderWindow(searchPresentation: search, annotationPresentation: annotations)\n        let validate: @MainActor () throws -> Void = { [weak self, weak original] in\n            try observation.validate(); try root()\n            guard let self, let original, self.annotationEditorOpening === original,\n                  self.isOriginalAnnotationEditorRootReady else {\n                throw UIRouteError(.staleState, \"original_annotation_opening_root_changed\")\n            }\n            try root(); try observation.validate()\n        }\n        try validate()\n        return validate\n    }\n    func retainAnnotationEditor(_ record: NativeAnnotationSelectionIntentService.Record, requestID: UUID) throws\n        -> MaktabahNativeAnnotationEditorOpening {\n        guard mounted, let original = annotationEditorOpening else {\n            throw UIRouteError(.unavailable, \"original_annotation_opening_owner_missing\")\n        }\n        try original.retain(record: record, requestID: requestID)\n        return original\n    }\n    func prepareAnnotationEditor(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {\n        guard mounted, foreground, scene.sceneID == sceneID, let original = annotationEditorOpening else {\n            throw UIRouteError(.staleState, \"original_annotation_opening_window_changed\")\n        }\n        let selected = try original.selectedItem(requestID: invocation.requestId)\n        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding,\n            savedResults: savedResultsBinding, annotationEditor: annotationEditorControls)\n        return RouteSpec(requestId: invocation.requestId, destination: MaktabahNativeAnnotationEditorOpening.destination,\n            backend: invocation.snapshot.backend, presentation: .init(kind: .sheet),\n            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID, selectedItemID: selected),\n            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),\n            expectedBackendSnapshot: invocation.snapshot)\n    }\n    func validateCompletedAnnotationEditor(_ receipt: UISceneReceipt,\n        original: MaktabahNativeAnnotationEditorOpening) throws {\n        guard annotationEditorOpening === original,\n              receipt.route.destination == MaktabahNativeAnnotationEditorOpening.destination,\n              original.hasVisibleSurface(requestID: receipt.requestId),\n              original.observedItem(requestID: receipt.requestId) == receipt.route.state.selectedItemID else {\n            throw UIRouteError(.staleState, \"original_annotation_opening_completion_changed\")\n        }\n        try original.validateCompletedSurface(requestID: receipt.requestId)\n        try validateCompletedJourneySurface(receipt)\n        try original.validateSource(requestID: receipt.requestId)\n    }\n\n    func retainAnnotation(_ record: NativeAnnotationSelectionIntentService.Record, requestID: UUID) throws\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "immutable typed opening route state",
+      "occurrences": 1,
+      "before": "        if route.destination == MaktabahNativeAnnotationSelectionBinding.destination {\n",
+      "after": "        if route.destination == MaktabahNativeAnnotationEditorOpening.destination {\n            guard route.content == nil, route.focus == nil, route.presentation == .init(kind: .sheet),\n                  let original = annotationEditorOpening,\n                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID,\n                    selectedItemID: try original.selectedItem(requestID: command.invocation.requestId)) else {\n                throw UIRouteError(.staleState, \"original_annotation_opening_route_changed\")\n            }\n            return\n        }\n        if route.destination == MaktabahNativeAnnotationSelectionBinding.destination {\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "one canonical original List Edit apply",
+      "occurrences": 1,
+      "before": "        if command.route.route.destination == MaktabahNativeAnnotationEditorControls.destination {\n",
+      "after": "        if command.route.route.destination == MaktabahNativeAnnotationEditorOpening.destination {\n            try validateSurface(command)\n            guard retainedAnnotationEditorOpening, let original = annotationEditorOpening else {\n                throw UIRouteError(.staleState, \"original_annotation_opening_owner_missing\")\n            }\n            try original.apply(requestID: command.invocation.requestId)\n            return\n        }\n        if command.route.route.destination == MaktabahNativeAnnotationEditorControls.destination {\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "reuse existing bounded actual witness observation",
+      "occurrences": 1,
+      "before": "if retainedComponentOwner != nil || retainedHistoryRecord || retainedSavedResults || retainedAnnotationSelection || retainedAnnotationEditor || [",
+      "after": "if retainedComponentOwner != nil || retainedHistoryRecord || retainedSavedResults || retainedAnnotationSelection || retainedAnnotationEditor || retainedAnnotationEditorOpening || ["
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "only same actual opening source contributes its private sheet projection",
+      "occurrences": 1,
+      "before": "        let annotationSource = kind == .annotations && (retainedAnnotationSelection\n",
+      "after": "        let annotationOpening = kind == .annotationEditor && (retainedAnnotationEditorOpening\n            || (command == nil && lastCompletedSurface?.route.destination == MaktabahNativeAnnotationEditorOpening.destination))\n            ? annotationEditorOpening : nil\n        let annotationSource = kind == .annotations && (retainedAnnotationSelection\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "pass source-specific original opening projection",
+      "occurrences": 1,
+      "before": "                                               annotationEditor: annotationEditorControls,\n",
+      "after": "                                               annotationOpening: annotationOpening,\n                                               annotationOpeningRequestID: annotationOpening != nil\n                                                   ? submissionID ?? lastCompletedSurface?.route.requestId : nil,\n                                               annotationEditor: annotationEditorControls,\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "active report must use same original editor and independent witness",
+      "occurrences": 1,
+      "before": "        if evidence.isVisible, evidence.surface.destination == MaktabahNativeAnnotationEditorControls.destination {\n",
+      "after": "        if evidence.isVisible, evidence.surface.destination == MaktabahNativeAnnotationEditorOpening.destination {\n            do {\n                guard retainedAnnotationEditorOpening, let original = annotationEditorOpening,\n                      let requestID = evidence.submissionID, submissionID == requestID,\n                      command?.invocation.requestId == requestID else {\n                    throw UIRouteError(.staleState, \"original_annotation_opening_report_not_owned\")\n                }\n                try original.withValidatedSurface(requestID: requestID) {\n                    guard isPresentationReady(for: evidence.surface.destination),\n                          let actual = try surface(.annotationEditor), actual == evidence.surface else {\n                        throw UIRouteError(.staleState, \"original_annotation_opening_report_changed\")\n                    }\n                    recordNativeObservation(evidence)\n                }\n            } catch {\n                if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }\n                presentation.revoke()\n            }\n            return\n        }\n        if evidence.isVisible, evidence.surface.destination == MaktabahNativeAnnotationEditorControls.destination {\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "original operation finish owns completed proof",
+      "occurrences": 1,
+      "before": "        annotationEditorControls?.finish(requestID: requestID, completed: completed && retainedAnnotationEditor)\n",
+      "after": "        annotationEditorControls?.finish(requestID: requestID, completed: completed && retainedAnnotationEditor)\n        annotationEditorOpening?.finish(requestID: requestID, completed: completed && retainedAnnotationEditorOpening)\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "reset only observation bookkeeping",
+      "occurrences": 1,
+      "before": "        retainedAnnotationEditor = false\n",
+      "after": "        retainedAnnotationEditor = false\n        retainedAnnotationEditorOpening = false\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "closed opening invalidation before original unmount callbacks",
+      "occurrences": 1,
+      "before": "    func unmount() {\n        guard mounted else { return }\n        advanceOriginalAnnotationPresentationPublication()\n",
+      "after": "    func unmount() {\n        guard mounted else { return }\n        annotationEditorOpening?.originalSessionWillUnmount()\n        advanceOriginalAnnotationPresentationPublication()\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "unmount exact scene owner",
+      "occurrences": 1,
+      "before": "        annotationEditorControls?.unmount(); annotationEditorControls = nil; retainedAnnotationEditor = false\n",
+      "after": "        annotationEditorControls?.unmount(); annotationEditorControls = nil; retainedAnnotationEditor = false\n        annotationEditorOpening?.unmount(); annotationEditorOpening = nil; retainedAnnotationEditorOpening = false\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "label": "reuse existing actual original editor witness kind",
+      "occurrences": 1,
+      "before": "        case \"native.annotations.editor\": .annotationEditor\n",
+      "after": "        case \"native.annotations.editor\", \"native.annotations.editor.record\": .annotationEditor\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "label": "optional typed opening proof input",
+      "occurrences": 1,
+      "before": "                 annotationEditor: MaktabahNativeAnnotationEditorControls? = nil,\n",
+      "after": "                 annotationOpening: MaktabahNativeAnnotationEditorOpening? = nil,\n                 annotationOpeningRequestID: UUID? = nil,\n                 annotationEditor: MaktabahNativeAnnotationEditorControls? = nil,\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "label": "exact opened record projection before unchanged warm control branch",
+      "occurrences": 1,
+      "before": "        case .annotationEditor:\n            guard !settingsPresented, selectedTab.canonical == .annotations, manager.currentMode == .annotations,\n",
+      "after": "        case .annotationEditor:\n            if let original = annotationOpening {\n                guard !settingsPresented, selectedTab.canonical == .annotations, manager.currentMode == .annotations,\n                      let requestID = annotationOpeningRequestID,\n                      original.hasVisibleSurface(requestID: requestID),\n                      let selected = original.observedItem(requestID: requestID) else { return nil }\n                return .init(destination: MaktabahNativeAnnotationEditorOpening.destination,\n                    presentation: .init(kind: .sheet), content: nil,\n                    state: .init(workspaceID: state.workspaceID, profileID: state.profileID, selectedItemID: selected), focus: nil)\n            }\n            guard !settingsPresented, selectedTab.canonical == .annotations, manager.currentMode == .annotations,\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "label": "no generic fallback for the typed-only editor parent",
+      "occurrences": 1,
+      "before": "                   destination != MaktabahNativeAnnotationEditorControls.destination,\n",
+      "after": "                   destination != MaktabahNativeAnnotationEditorControls.destination,\n                   destination != MaktabahNativeAnnotationEditorOpening.destination,\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "label": "private typed original Edit descriptor; no public-v2 discovery",
+      "occurrences": 1,
+      "before": "            .init(id: MaktabahNativeAnnotationEditorControls.destination, title: String(localized: \"Annotation editor\"),\n",
+      "after": "            // Same real cached annotation entity; only its typed Edit entry.\n            .init(id: MaktabahNativeAnnotationEditorOpening.destination, title: String(localized: \"Open annotation editor\"),\n                  implementation: .implemented, supportedBackends: ActionBackendID.allCases,\n                  presentations: [.sheet], requiredCoreActions: []),\n            .init(id: MaktabahNativeAnnotationEditorControls.destination, title: String(localized: \"Annotation editor\"),\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "label": "same original AppIntent foreground/Core/receipt flow for Edit",
+      "occurrences": 1,
+      "before": "    private func revealAnnotation(_ request: NativeAnnotationSelectionIntentService.OpenRequest) async throws\n        -> UISceneAcknowledgement {\n        try Task.checkCancellation()\n        let window = request.window, end = deadline()\n        let matches = try annotationSelectionWindows().filter { $0 == window }\n        guard matches.count == 1, request.record.sceneID == window.sceneID,\n              window.backend == request.expectedSnapshot.backend, window.destination.rawValue == \"native.annotations\",\n              let original = scenes[window.sceneID],\n              original.session.mounted, let manager = original.manager,\n              ObjectIdentifier(manager) == original.managerID,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_annotation_window_changed\")\n        }\n        let retained = try original.session.retainAnnotation(request.record, requestID: request.requestID)\n        defer { retained.releaseSource(requestID: request.requestID) }\n        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in\n            try await waitForMount(managerID: original.managerID)\n        }\n        try Task.checkCancellation()\n        guard activated == window.sceneID, let current = scenes[window.sceneID],\n              current.session === original.session, current.managerID == original.managerID,\n              current.manager === manager, current.session.mounted, current.session.foreground,\n              current.session.annotationSelectionBinding === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_annotation_activation_changed\")\n        }\n        try retained.validateSource(requestID: request.requestID)\n        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: request.expectedSnapshot)\n        try issue(context, sceneID: window.sceneID)\n        defer { finish(context, sceneID: window.sceneID) }\n        let invocation = ActionPortInvocation(requestId: request.requestID, snapshot: request.expectedSnapshot,\n                                             deadlineUptimeNanoseconds: end)\n        let scene = try await directory.currentScene(sceneID: window.sceneID, context: context, invocation: invocation)\n        try retained.validateSource(requestID: request.requestID)\n        guard scenes[window.sceneID]?.session === original.session,\n              original.session.annotationSelectionBinding === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_annotation_source_changed\")\n        }\n        let route = try original.session.prepareAnnotation(invocation: invocation, scene: scene)\n        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)\n        let result = try await orchestrator.commit(command, context: context)\n        record(result)\n        if case .acknowledged(let receipt) = result {\n            do {\n                try Task.checkCancellation()\n                guard scenes[window.sceneID]?.session === original.session,\n                      original.session.annotationSelectionBinding === retained,\n                      try backend.currentBackendSnapshot() == request.expectedSnapshot,\n                      SystemActionClock().now() < end else {\n                    throw UIRouteError(.staleState, \"native_annotation_completion_changed\")\n                }\n                try original.session.validateCompletedAnnotation(receipt, original: retained)\n                guard receipt.requestId == request.requestID, receipt.sceneID == window.sceneID,\n                      receipt.route.state.selectedItemID == request.record.itemID else {\n                    throw UIRouteError(.failed, \"native_effect_uncertain\")\n                }\n            } catch {\n                throw NativeAnnotationSelectionIntentService.Failure(acknowledgement: result, underlying: error)\n            }\n        }\n        return result\n    }\n",
+      "after": "    private func revealAnnotation(_ request: NativeAnnotationSelectionIntentService.OpenRequest) async throws\n        -> UISceneAcknowledgement {\n        try Task.checkCancellation()\n        let window = request.window, end = deadline()\n        let matches = try annotationSelectionWindows().filter { $0 == window }\n        guard matches.count == 1, request.record.sceneID == window.sceneID,\n              window.backend == request.expectedSnapshot.backend, window.destination.rawValue == \"native.annotations\",\n              let original = scenes[window.sceneID],\n              original.session.mounted, let manager = original.manager,\n              ObjectIdentifier(manager) == original.managerID,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_annotation_window_changed\")\n        }\n        let retained = try original.session.retainAnnotation(request.record, requestID: request.requestID)\n        defer { retained.releaseSource(requestID: request.requestID) }\n        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in\n            try await waitForMount(managerID: original.managerID)\n        }\n        try Task.checkCancellation()\n        guard activated == window.sceneID, let current = scenes[window.sceneID],\n              current.session === original.session, current.managerID == original.managerID,\n              current.manager === manager, current.session.mounted, current.session.foreground,\n              current.session.annotationSelectionBinding === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_annotation_activation_changed\")\n        }\n        try retained.validateSource(requestID: request.requestID)\n        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: request.expectedSnapshot)\n        try issue(context, sceneID: window.sceneID)\n        defer { finish(context, sceneID: window.sceneID) }\n        let invocation = ActionPortInvocation(requestId: request.requestID, snapshot: request.expectedSnapshot,\n                                             deadlineUptimeNanoseconds: end)\n        let scene = try await directory.currentScene(sceneID: window.sceneID, context: context, invocation: invocation)\n        try retained.validateSource(requestID: request.requestID)\n        guard scenes[window.sceneID]?.session === original.session,\n              original.session.annotationSelectionBinding === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"native_annotation_source_changed\")\n        }\n        let route = try original.session.prepareAnnotation(invocation: invocation, scene: scene)\n        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)\n        let result = try await orchestrator.commit(command, context: context)\n        record(result)\n        if case .acknowledged(let receipt) = result {\n            do {\n                try Task.checkCancellation()\n                guard scenes[window.sceneID]?.session === original.session,\n                      original.session.annotationSelectionBinding === retained,\n                      try backend.currentBackendSnapshot() == request.expectedSnapshot,\n                      SystemActionClock().now() < end else {\n                    throw UIRouteError(.staleState, \"native_annotation_completion_changed\")\n                }\n                try original.session.validateCompletedAnnotation(receipt, original: retained)\n                guard receipt.requestId == request.requestID, receipt.sceneID == window.sceneID,\n                      receipt.route.state.selectedItemID == request.record.itemID else {\n                    throw UIRouteError(.failed, \"native_effect_uncertain\")\n                }\n            } catch {\n                throw NativeAnnotationSelectionIntentService.Failure(acknowledgement: result, underlying: error)\n            }\n        }\n        return result\n    }\n\n    private func openAnnotationEditor(_ request: NativeAnnotationEditorIntentService.OpenRequest) async throws\n        -> UISceneAcknowledgement {\n        try Task.checkCancellation()\n        let window = request.window, end = deadline()\n        let matches = try annotationSelectionWindows().filter { $0 == window }\n        guard matches.count == 1, request.record.sceneID == window.sceneID,\n              window.backend == request.expectedSnapshot.backend, window.destination.rawValue == \"native.annotations\",\n              let original = scenes[window.sceneID],\n              original.session.mounted, let manager = original.manager,\n              ObjectIdentifier(manager) == original.managerID,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"original_annotation_opening_window_changed\")\n        }\n        let retained = try original.session.retainAnnotationEditor(request.record, requestID: request.requestID)\n        defer { retained.releaseSource(requestID: request.requestID) }\n        let activated = try await NativeObservationDeadline.run(until: end, clock: SystemActionClock()) { [self] in\n            try await waitForMount(managerID: original.managerID)\n        }\n        try Task.checkCancellation()\n        guard activated == window.sceneID, let current = scenes[window.sceneID],\n              current.session === original.session, current.managerID == original.managerID,\n              current.manager === manager, current.session.mounted, current.session.foreground,\n              current.session.annotationEditorOpening === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"original_annotation_opening_activation_changed\")\n        }\n        try retained.validateSource(requestID: request.requestID)\n        let context = context(sceneID: window.sceneID, origin: .appIntent, snapshot: request.expectedSnapshot)\n        try issue(context, sceneID: window.sceneID)\n        defer { finish(context, sceneID: window.sceneID) }\n        let invocation = ActionPortInvocation(requestId: request.requestID, snapshot: request.expectedSnapshot,\n                                             deadlineUptimeNanoseconds: end)\n        let scene = try await directory.currentScene(sceneID: window.sceneID, context: context, invocation: invocation)\n        try retained.validateSource(requestID: request.requestID)\n        guard scenes[window.sceneID]?.session === original.session,\n              original.session.annotationEditorOpening === retained,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"original_annotation_opening_source_changed\")\n        }\n        let route = try original.session.prepareAnnotationEditor(invocation: invocation, scene: scene)\n        let command = try UISceneCommand(route: registry.validate(route), invocation: invocation, scene: scene)\n        let result = try await orchestrator.commit(command, context: context)\n        record(result)\n        if case .acknowledged(let receipt) = result {\n            do {\n                try Task.checkCancellation()\n                guard scenes[window.sceneID]?.session === original.session,\n                      original.session.annotationEditorOpening === retained,\n                      try backend.currentBackendSnapshot() == request.expectedSnapshot,\n                      SystemActionClock().now() < end else {\n                    throw UIRouteError(.staleState, \"original_annotation_opening_completion_changed\")\n                }\n                try original.session.validateCompletedAnnotationEditor(receipt, original: retained)\n                guard receipt.requestId == request.requestID, receipt.sceneID == window.sceneID,\n                      receipt.route.state.selectedItemID == request.record.itemID else {\n                    throw UIRouteError(.failed, \"native_effect_uncertain\")\n                }\n            } catch {\n                throw NativeAnnotationEditorIntentService.Failure(acknowledgement: result, underlying: error)\n            }\n        }\n        return result\n    }\n\n    private func validateAnnotationEditorCompletion(_ request: NativeAnnotationEditorIntentService.OpenRequest,\n        receipt: UISceneReceipt) throws {\n        guard receipt.requestId == request.requestID, receipt.sceneID == request.record.sceneID,\n              receipt.sceneID == request.window.sceneID,\n              receipt.route.state.selectedItemID == request.record.itemID,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot,\n              let entry = scenes[receipt.sceneID], entry.session.mounted,\n              let original = entry.session.annotationEditorOpening,\n              original.sceneID == receipt.sceneID else {\n            throw UIRouteError(.staleState, \"original_annotation_opening_completion_changed\")\n        }\n        try entry.session.validateCompletedAnnotationEditor(receipt, original: original)\n        guard scenes[receipt.sceneID]?.session === entry.session,\n              entry.session.annotationEditorOpening === original,\n              try backend.currentBackendSnapshot() == request.expectedSnapshot else {\n            throw UIRouteError(.staleState, \"original_annotation_opening_completion_changed\")\n        }\n    }\n"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "label": "register one thin service using existing real entity discovery",
+      "occurrences": 1,
+      "before": "        AppDependencyManager.shared.add(dependency: annotationService)\n",
+      "after": "        AppDependencyManager.shared.add(dependency: annotationService)\n        let annotationEditorService = NativeAnnotationEditorIntentService(read: { [self] in\n            try annotationSelectionCatalog()\n        }, windows: { [self] in\n            try annotationSelectionWindows()\n        }, navigate: { [self] in\n            do { return try await openAnnotationEditor($0) }\n            catch { logIntentFailure(error, stage: \"annotation_editor\"); throw error }\n        }, validateCompletion: { [self] request, receipt in\n            try validateAnnotationEditorCompletion(request, receipt: receipt)\n        })\n        AppDependencyManager.shared.add(dependency: annotationEditorService)\n"
+    }
+  ]
+}

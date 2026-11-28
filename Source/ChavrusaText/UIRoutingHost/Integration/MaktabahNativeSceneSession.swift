@@ -233,6 +233,8 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     private(set) var searchEntryBinding: MaktabahNativeSearchEntryBinding?
     private(set) var historyRecordBinding: MaktabahNativeHistoryRecordBinding?
     @ObservationIgnored private var retainedHistoryRecord = false
+    private(set) var annotationEditorOpening: MaktabahNativeAnnotationEditorOpening?
+    @ObservationIgnored private var retainedAnnotationEditorOpening = false
     private(set) var annotationEditorControls: MaktabahNativeAnnotationEditorControls?
     @ObservationIgnored private var retainedAnnotationEditor = false
     private(set) var annotationSelectionBinding: MaktabahNativeAnnotationSelectionBinding?
@@ -330,6 +332,13 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         try workspacePresentation.retainSource(parent: parent, requestID: requestID)
     }
     func validateParentSource(destination: UIDestinationID, requestID: UUID) throws {
+        if destination == MaktabahNativeAnnotationEditorOpening.destination {
+            guard let original = annotationEditorOpening else {
+                throw UIRouteError(.staleState, "original_annotation_editor_opening_detached")
+            }
+            try original.validateSource(requestID: requestID)
+            return
+        }
         if destination == MaktabahNativeAnnotationEditorControls.destination {
             guard let original = annotationEditorControls else {
                 throw UIRouteError(.staleState, "original_annotation_editor_owner_detached")
@@ -487,6 +496,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         savedResultsBinding?.retire()
         annotationSelectionBinding?.retire()
         annotationEditorControls?.retire()
+        annotationEditorOpening?.retire()
         sefariaRootSources.values.forEach { $0.invalidate() }
         completedSefariaRootSource?.invalidate()
         presentation.revoke()
@@ -500,10 +510,12 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
             advanceOriginalAnnotationPresentationPublication()
             annotationPresentationOwner = owner; annotationPresentationBlocked = isBlocked
             annotationSelectionBinding?.retire()
+            annotationEditorOpening?.retire()
         } else { annotationPresentationBlocked = isBlocked }
     }
     func originalAnnotationPresentationWillChange(owner: UUID) {
         guard mounted, annotationPresentationOwner == owner else { return }
+        annotationEditorOpening?.originalModalWillChange(owner: owner)
         advanceOriginalAnnotationPresentationPublication()
         annotationSelectionBinding?.originalModalWillChange(owner: owner)
     }
@@ -534,6 +546,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         guard let revision = annotationPresentationPublicationRevision else { return true }
         let owner = annotationPresentationOwner
         let blocked = annotationPresentationBlocked?() == true
+            || annotationSelectionBinding?.hasOriginalUIKitPresentation == true
         return blocked || annotationPresentationPublicationRevision != revision || annotationPresentationOwner != owner
     }
     /// Retain before foreground activation. The caller must register the fixed
@@ -544,8 +557,11 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
             throw UIRouteError(.unavailable, "original_annotation_presentation_unavailable")
         }
         let owner = annotationPresentationOwner
-        let validate: @MainActor () throws -> Void = { [weak self] in
+        let originalList = annotationSelectionBinding
+        let validate: @MainActor () throws -> Void = { [weak self, weak originalList] in
             guard let self, self.mounted,
+                  self.annotationSelectionBinding === originalList,
+                  originalList?.hasOriginalUIKitPresentation != true,
                   self.annotationPresentationPublicationRevision == revision,
                   self.annotationPresentationOwner == owner,
                   self.annotationPresentationBlocked?() != true else {
@@ -554,7 +570,9 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
             // The original blocker is a getter callback. It may publish a new
             // owner/state; final equality alone cannot restore that source.
             guard self.annotationPresentationPublicationRevision == revision,
-                  self.annotationPresentationOwner == owner else {
+                  self.annotationPresentationOwner == owner,
+                  self.annotationSelectionBinding === originalList,
+                  originalList?.hasOriginalUIKitPresentation != true else {
                 throw UIRouteError(.staleState, "original_annotation_presentation_changed")
             }
         }
@@ -587,6 +605,43 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
                   self.annotationPresentationOwner == owner,
                   original.originalListOwner == owner else {
                 throw UIRouteError(.staleState, "original_annotation_editor_parent_changed")
+            }
+        }
+        try validate()
+        return validate
+    }
+
+    /// Exact opening exception. One original Edit publication and at most one
+    /// matching List coverage publication; all other owner/State changes fail.
+    private func retainOriginalAnnotationOpeningPresentationObservation(owner: UUID,
+        annotation: Annotation, requestID: UUID) throws -> @MainActor () throws -> Void {
+        guard mounted, let revision = annotationPresentationPublicationRevision, revision < .max,
+              annotationPresentationOwner == owner, let opening = annotationEditorOpening,
+              let originalList = annotationSelectionBinding,
+              !originalList.hasOriginalUIKitPresentation else {
+            throw UIRouteError(.unavailable, "original_annotation_opening_parent_unavailable")
+        }
+        let validate: @MainActor () throws -> Void = { [weak self, weak opening, weak originalList] in
+            guard let self, let opening, let originalList, self.mounted,
+                  self.annotationEditorOpening === opening, self.annotationSelectionBinding === originalList,
+                  self.annotationPresentationOwner == owner,
+                  opening.allowsOriginalPresentationRevision(requestID: requestID, owner: owner,
+                    initial: revision, current: self.annotationPresentationPublicationRevision) else {
+                throw UIRouteError(.staleState, "original_annotation_opening_parent_changed")
+            }
+            let editing = try opening.originalListIsEditing(requestID: requestID, owner: owner, annotation: annotation)
+            guard self.annotationPresentationBlocked?() == editing,
+                  editing || !originalList.hasOriginalUIKitPresentation else {
+                throw UIRouteError(.staleState, "original_annotation_opening_parent_changed")
+            }
+            // Recheck both the callback's original owner and monotonic revision.
+            guard self.mounted, self.annotationEditorOpening === opening,
+                  self.annotationSelectionBinding === originalList, self.annotationPresentationOwner == owner,
+                  opening.allowsOriginalPresentationRevision(requestID: requestID, owner: owner,
+                    initial: revision, current: self.annotationPresentationPublicationRevision),
+                  try opening.originalListIsEditing(requestID: requestID, owner: owner, annotation: annotation) == editing,
+                  editing || !originalList.hasOriginalUIKitPresentation else {
+                throw UIRouteError(.staleState, "original_annotation_opening_parent_changed")
             }
         }
         try validate()
@@ -629,7 +684,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     }
     private func advanceOriginalSearchPresentationPublication() {
         // This original foreign State publication cannot rearm an annotation source.
-        defer { annotationSelectionBinding?.retire(); annotationEditorControls?.retire() }
+        defer { annotationSelectionBinding?.retire(); annotationEditorControls?.retire(); annotationEditorOpening?.retire() }
         guard let revision = searchPresentationPublicationRevision, revision < .max else {
             searchPresentationPublicationRevision = nil
             return
@@ -772,6 +827,13 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     }
 
     func isPresentationReady(for destination: UIDestinationID) -> Bool {
+        if destination == MaktabahNativeAnnotationEditorOpening.destination {
+            guard foreground, isOriginalAnnotationEditorRootReady, let original = annotationEditorOpening else { return false }
+            if let requestID = submissionID, command?.invocation.requestId == requestID,
+               command?.route.route.destination == destination,
+               original.isContinuingAppliedRequest(requestID: requestID) { return true }
+            return original.isAvailable && windowSource?.isPresentationReady(in: sceneID) == true
+        }
         if destination == MaktabahNativeAnnotationEditorControls.destination {
             // The stable own editor supplies its original top-sheet witness.
             // Every other route retains the existing no-Annotations-modal gate.
@@ -932,6 +994,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         savedResultsBinding?.retire()
         annotationSelectionBinding?.retire()
         annotationEditorControls?.retire()
+        annotationEditorOpening?.retire()
         if retainedSefariaSurface { presentation.revoke() }
     }
     func detachNoteEditor(id: UUID) {
@@ -1383,6 +1446,8 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
                 }, readForeignPresentations: { [weak self] in
                     guard let self else { return }
                     _ = mounted; _ = studyChatPresentationID; _ = workspacePresentation?.originalStateRevision
+                }, originalUIKitPresentationWillChange: { [weak self] owner in
+                    self?.originalAnnotationPresentationWillChange(owner: owner)
                 })
             annotationSelectionBinding = annotations
             annotations.install(changed: { [weak self, weak annotations] in
@@ -1403,12 +1468,32 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
             annotationEditorControls = editor
             editor.install(changed: { [weak self, weak editor] in
                 guard let self, let editor, annotationEditorControls === editor else { return }
+                annotationEditorOpening?.originalEditorHostDidChange()
                 originalPresentationStateDidChange()
             }, invalidated: { [weak self] in
                 guard let self, retainedAnnotationEditor else { return }
                 presentation.revoke()
             })
             attachComponentOwner(editor.componentOwner)
+            let opening = MaktabahNativeAnnotationEditorOpening(sceneID: sceneID, selection: annotations, editor: editor,
+                retainWindow: { [weak self] in
+                    guard let self else { throw UIRouteError(.staleState, "original_annotation_opening_window_detached") }
+                    return try retainOriginalWindowObservation()
+                }, retainParent: { [weak self] owner, annotation, requestID in
+                    guard let self else { throw UIRouteError(.staleState, "original_annotation_opening_parent_detached") }
+                    return try captureAnnotationOpeningWindow(owner: owner, annotation: annotation, requestID: requestID)
+                }, windowReady: { [weak self] in
+                    guard let self else { return false }
+                    return foreground && windowSource?.isPresentationReady(in: sceneID) == true
+                })
+            annotationEditorOpening = opening
+            opening.install(changed: { [weak self, weak opening] in
+                guard let self, let opening, annotationEditorOpening === opening else { return }
+                originalPresentationStateDidChange()
+            }, invalidated: { [weak self] in
+                guard let self, retainedAnnotationEditorOpening else { return }
+                presentation.revoke()
+            })
             let saved = MaktabahNativeSavedResultsBinding(sceneID: sceneID, bindings: bindings,
                 workspaceSource: workspaceSource, workspacePresentation: original,
                 commonReady: { [weak self] in
@@ -1480,7 +1565,9 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
                (kind != .reader || projection.hasRenderedReaderEvidence(sceneID: sceneID,
                     includingContainingSection: command.route.route.destination == MaktabahNativeReaderTabBinding.destination)),
                (kind != .noteDraft || (try? noteDraftBinding?.validateVisible()) != nil),
-               (kind != .annotationEditor || (try? annotationEditorControls?.validateVisible(requestID: command.invocation.requestId)) != nil) {
+               (kind != .annotationEditor || (command.route.route.destination == MaktabahNativeAnnotationEditorOpening.destination
+                    ? annotationEditorOpening?.hasVisibleSurface(requestID: command.invocation.requestId) == true
+                    : (try? annotationEditorControls?.validateVisible(requestID: command.invocation.requestId)) != nil)) {
                 surface = current
                 route = current.observedRoute(for: command, backend: command.invocation.snapshot)
             }
@@ -1521,9 +1608,10 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         let workspaceSelection = value.route.route.destination == MaktabahNativeWorkspaceSelectionBinding.destination
         let annotationSelection = value.route.route.destination == MaktabahNativeAnnotationSelectionBinding.destination
         let annotationEditor = value.route.route.destination == MaktabahNativeAnnotationEditorControls.destination
+        let annotationOpening = value.route.route.destination == MaktabahNativeAnnotationEditorOpening.destination
         let savedResults = value.route.route.destination == MaktabahNativeSavedResultsBinding.destination
         let parentValidation: (@MainActor () throws -> Void)?
-        if workspaceParent != nil || phoneTOC || sefaria || historyRecord || savedResults || annotationSelection || annotationEditor {
+        if workspaceParent != nil || phoneTOC || sefaria || historyRecord || savedResults || annotationSelection || annotationEditor || annotationOpening {
             parentValidation = try renderValidation ?? boundedRenderValidation(for: value)
         } else { parentValidation = nil }
         let inspector: MaktabahNativeInspectorBinding?
@@ -1577,6 +1665,12 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
                     target: MaktabahNativeSefariaSurfaceBinding.semanticTarget(for: value.route.route.destination),
                     deadlineUptimeNanoseconds: value.invocation.deadlineUptimeNanoseconds, validate: parentValidation)
             }
+            if annotationOpening {
+                guard let original = annotationEditorOpening, let parentValidation else {
+                    throw UIRouteError(.staleState, "original_annotation_opening_parent_not_retained")
+                }
+                try original.begin(requestID: value.invocation.requestId, validate: parentValidation)
+            }
             if annotationEditor {
                 guard let annotationEditorControls, let parentValidation else {
                     throw UIRouteError(.staleState, "original_annotation_editor_parent_not_retained")
@@ -1617,6 +1711,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
             savedResultsBinding?.finish(requestID: value.invocation.requestId, completed: false)
             annotationSelectionBinding?.finish(requestID: value.invocation.requestId, completed: false)
             annotationEditorControls?.finish(requestID: value.invocation.requestId, completed: false)
+            annotationEditorOpening?.finish(requestID: value.invocation.requestId, completed: false)
             presentation.end(requestID: value.invocation.requestId)
             throw error
         }
@@ -1627,6 +1722,8 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         retainedSavedResults = savedResults
         retainedAnnotationSelection = annotationSelection
         retainedAnnotationEditor = annotationEditor
+        retainedAnnotationEditorOpening = annotationOpening
+        if !annotationOpening { annotationEditorOpening?.clearCompletedProof() }
         if !annotationSelection { annotationSelectionBinding?.clearCompletedProof() }
         if !savedResults { savedResultsBinding?.clearCompletedProof() }
         if !historyRecord { historyRecordBinding?.clearCompletedProof() }
@@ -1671,6 +1768,11 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         if let annotationEditorOwner {
             annotationPresentation = try retainOriginalAnnotationEditorPresentationObservation(owner: annotationEditorOwner)
         } else { annotationPresentation = try retainOriginalAnnotationPresentationObservation() }
+        return try captureHistoryReaderWindow(searchPresentation: searchPresentation,
+            annotationPresentation: annotationPresentation)
+    }
+    private func captureHistoryReaderWindow(searchPresentation: @escaping @MainActor () throws -> Void,
+        annotationPresentation: @escaping @MainActor () throws -> Void) throws -> @MainActor () throws -> Void {
         let originalWindow = try retainOriginalWindowObservation()
         _ = try originalWindow.validate()
         let manager = bindings.manager
@@ -1758,6 +1860,66 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         }
         try validate()
         return validate
+    }
+
+    private func captureAnnotationOpeningWindow(owner: UUID, annotation: Annotation, requestID: UUID) throws
+        -> @MainActor () throws -> Void {
+        guard isOriginalAnnotationEditorRootReady, let original = annotationEditorOpening else {
+            throw UIRouteError(.unavailable, "original_annotation_opening_root_unavailable")
+        }
+        let observation = MaktabahNativeComponentSourceObservation {
+            _ = mounted; _ = studyChatPresentationID
+            _ = workspacePresentation?.originalStateRevision
+            _ = sefariaSurfaceBinding?.presentationFacets
+            _ = savedResultsBinding?.isRequestedOrMounted
+        }
+        let search = try retainHistorySearchPresentationObservation()
+        let annotations = try retainOriginalAnnotationOpeningPresentationObservation(owner: owner,
+            annotation: annotation, requestID: requestID)
+        let root = try captureHistoryReaderWindow(searchPresentation: search, annotationPresentation: annotations)
+        let validate: @MainActor () throws -> Void = { [weak self, weak original] in
+            try observation.validate(); try root()
+            guard let self, let original, self.annotationEditorOpening === original,
+                  self.isOriginalAnnotationEditorRootReady else {
+                throw UIRouteError(.staleState, "original_annotation_opening_root_changed")
+            }
+            try root(); try observation.validate()
+        }
+        try validate()
+        return validate
+    }
+    func retainAnnotationEditor(_ record: NativeAnnotationSelectionIntentService.Record, requestID: UUID) throws
+        -> MaktabahNativeAnnotationEditorOpening {
+        guard mounted, let original = annotationEditorOpening else {
+            throw UIRouteError(.unavailable, "original_annotation_opening_owner_missing")
+        }
+        try original.retain(record: record, requestID: requestID)
+        return original
+    }
+    func prepareAnnotationEditor(invocation: ActionPortInvocation, scene: UISceneSnapshot) throws -> RouteSpec {
+        guard mounted, foreground, scene.sceneID == sceneID, let original = annotationEditorOpening else {
+            throw UIRouteError(.staleState, "original_annotation_opening_window_changed")
+        }
+        let selected = try original.selectedItem(requestID: invocation.requestId)
+        let identity = try project().identity(workspacePresentation: workspacePresentation, sefariaSurface: sefariaSurfaceBinding,
+            savedResults: savedResultsBinding, annotationEditor: annotationEditorControls)
+        return RouteSpec(requestId: invocation.requestId, destination: MaktabahNativeAnnotationEditorOpening.destination,
+            backend: invocation.snapshot.backend, presentation: .init(kind: .sheet),
+            state: .init(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID, selectedItemID: selected),
+            scene: .init(kind: .specific, sceneID: sceneID, expectedRevision: scene.revision),
+            expectedBackendSnapshot: invocation.snapshot)
+    }
+    func validateCompletedAnnotationEditor(_ receipt: UISceneReceipt,
+        original: MaktabahNativeAnnotationEditorOpening) throws {
+        guard annotationEditorOpening === original,
+              receipt.route.destination == MaktabahNativeAnnotationEditorOpening.destination,
+              original.hasVisibleSurface(requestID: receipt.requestId),
+              original.observedItem(requestID: receipt.requestId) == receipt.route.state.selectedItemID else {
+            throw UIRouteError(.staleState, "original_annotation_opening_completion_changed")
+        }
+        try original.validateCompletedSurface(requestID: receipt.requestId)
+        try validateCompletedJourneySurface(receipt)
+        try original.validateSource(requestID: receipt.requestId)
     }
 
     func retainAnnotation(_ record: NativeAnnotationSelectionIntentService.Record, requestID: UUID) throws
@@ -1887,6 +2049,15 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         }
         guard command.scene.sceneID == sceneID, route.state.workspaceID == identity.state.workspaceID,
               route.state.profileID == identity.state.profileID else { throw UIRouteError(.staleState, "native_workspace_changed") }
+        if route.destination == MaktabahNativeAnnotationEditorOpening.destination {
+            guard route.content == nil, route.focus == nil, route.presentation == .init(kind: .sheet),
+                  let original = annotationEditorOpening,
+                  route.state == UIStateSpec(workspaceID: identity.state.workspaceID, profileID: identity.state.profileID,
+                    selectedItemID: try original.selectedItem(requestID: command.invocation.requestId)) else {
+                throw UIRouteError(.staleState, "original_annotation_opening_route_changed")
+            }
+            return
+        }
         if route.destination == MaktabahNativeAnnotationSelectionBinding.destination {
             guard route.content == nil, route.focus == nil, route.presentation == .init(kind: .currentTab),
                   let annotationSelectionBinding,
@@ -2157,6 +2328,14 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
     }
 
     func apply(_ command: UISceneCommand) throws {
+        if command.route.route.destination == MaktabahNativeAnnotationEditorOpening.destination {
+            try validateSurface(command)
+            guard retainedAnnotationEditorOpening, let original = annotationEditorOpening else {
+                throw UIRouteError(.staleState, "original_annotation_opening_owner_missing")
+            }
+            try original.apply(requestID: command.invocation.requestId)
+            return
+        }
         if command.route.route.destination == MaktabahNativeAnnotationEditorControls.destination {
             try validateSurface(command)
             guard retainedAnnotationEditor, let original = annotationEditorControls else {
@@ -2331,7 +2510,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         // or TextKit paint/scroll restoration. Observe the same live UIKit
         // witness only while its original request is waiting; never echo the route.
         let readerObservation: Task<Void, Never>?
-        if retainedComponentOwner != nil || retainedHistoryRecord || retainedSavedResults || retainedAnnotationSelection || retainedAnnotationEditor || ["native.reader", "native.reader.tab", "native.workspace.selection", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations",
+        if retainedComponentOwner != nil || retainedHistoryRecord || retainedSavedResults || retainedAnnotationSelection || retainedAnnotationEditor || retainedAnnotationEditorOpening || ["native.reader", "native.reader.tab", "native.workspace.selection", "native.reader.noteDraft", "native.library", "native.reader.toc", "native.annotations",
                                              "native.workspace.profiles", "native.workspace.overview", "native.sefariaEmbedded"].contains(command.route.route.destination.rawValue) {
             readerObservation = Task { @MainActor [weak self] in
                 while !Task.isCancelled {
@@ -2388,6 +2567,9 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         let historySource = kind == .history && (retainedHistoryRecord
             || (command == nil && lastCompletedSurface?.route.destination == MaktabahNativeHistoryRecords.destination
                 && lastCompletedSurface?.route.state.selectedItemID != nil)) ? historyRecordBinding : nil
+        let annotationOpening = kind == .annotationEditor && (retainedAnnotationEditorOpening
+            || (command == nil && lastCompletedSurface?.route.destination == MaktabahNativeAnnotationEditorOpening.destination))
+            ? annotationEditorOpening : nil
         let annotationSource = kind == .annotations && (retainedAnnotationSelection
             || (command == nil && lastCompletedSurface?.route.destination == MaktabahNativeAnnotationSelectionBinding.destination))
             ? annotationSelectionBinding : nil
@@ -2397,6 +2579,9 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
                                                historyRecord: historySource,
                                                annotationSelection: annotationSource,
                                                annotationRequestID: annotationSource != nil ? submissionID ?? lastCompletedSurface?.route.requestId : nil,
+                                               annotationOpening: annotationOpening,
+                                               annotationOpeningRequestID: annotationOpening != nil
+                                                   ? submissionID ?? lastCompletedSurface?.route.requestId : nil,
                                                annotationEditor: annotationEditorControls,
                                                annotationEditorRequestID: kind == .annotationEditor
                                                    ? submissionID ?? lastCompletedSurface?.route.requestId : nil,
@@ -2724,6 +2909,26 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
 
     func observe(_ evidence: NativeSurfaceWitness.Evidence) {
         guard mounted, evidence.sceneID == sceneID else { return }
+        if evidence.isVisible, evidence.surface.destination == MaktabahNativeAnnotationEditorOpening.destination {
+            do {
+                guard retainedAnnotationEditorOpening, let original = annotationEditorOpening,
+                      let requestID = evidence.submissionID, submissionID == requestID,
+                      command?.invocation.requestId == requestID else {
+                    throw UIRouteError(.staleState, "original_annotation_opening_report_not_owned")
+                }
+                try original.withValidatedSurface(requestID: requestID) {
+                    guard isPresentationReady(for: evidence.surface.destination),
+                          let actual = try surface(.annotationEditor), actual == evidence.surface else {
+                        throw UIRouteError(.staleState, "original_annotation_opening_report_changed")
+                    }
+                    recordNativeObservation(evidence)
+                }
+            } catch {
+                if visible.removeValue(forKey: evidence.surface.destination) != nil { try? nativeStateChanged() }
+                presentation.revoke()
+            }
+            return
+        }
         if evidence.isVisible, evidence.surface.destination == MaktabahNativeAnnotationEditorControls.destination {
             do {
                 guard retainedAnnotationEditor, let original = annotationEditorControls,
@@ -2916,6 +3121,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         savedResultsBinding?.finish(requestID: requestID, completed: completed && retainedSavedResults)
         annotationSelectionBinding?.finish(requestID: requestID, completed: completed && retainedAnnotationSelection)
         annotationEditorControls?.finish(requestID: requestID, completed: completed && retainedAnnotationEditor)
+        annotationEditorOpening?.finish(requestID: requestID, completed: completed && retainedAnnotationEditorOpening)
         if retainedSefariaSurface, completed, let root = sefariaRootSources[requestID],
            (try? root.validate(bindings, workspace: workspacePresentation)) != nil {
             completedSefariaRootSource = root
@@ -2927,6 +3133,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         retainedSavedResults = false
         retainedAnnotationSelection = false
         retainedAnnotationEditor = false
+        retainedAnnotationEditorOpening = false
         presentation.end(requestID: requestID); submissionID = nil
         // Keep only the independently observed surface. Clear private request
         // metadata after its owner has validated the complete visible receipt.
@@ -2965,6 +3172,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
 
     func unmount() {
         guard mounted else { return }
+        annotationEditorOpening?.originalSessionWillUnmount()
         advanceOriginalAnnotationPresentationPublication()
         advanceOriginalSearchPresentationPublication()
         lastCompletedSurface = nil
@@ -2981,6 +3189,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         savedResultsBinding?.unmount(); savedResultsBinding = nil; retainedSavedResults = false
         annotationSelectionBinding?.unmount(); annotationSelectionBinding = nil; retainedAnnotationSelection = false
         annotationEditorControls?.unmount(); annotationEditorControls = nil; retainedAnnotationEditor = false
+        annotationEditorOpening?.unmount(); annotationEditorOpening = nil; retainedAnnotationEditorOpening = false
         sefariaRootSources.values.forEach { $0.invalidate() }; sefariaRootSources.removeAll()
         completedSefariaRootSource?.invalidate(); completedSefariaRootSource = nil
         sefariaSurfaceBinding?.unmount(); sefariaSurfaceBinding = nil; retainedSefariaSurface = false
@@ -3008,7 +3217,7 @@ final class MaktabahNativeSceneSession: NativeParentSelectionSceneDriver {
         case "native.search": .search
         case "native.search.results": .searchResults
         case "native.annotations", "native.annotations.record": .annotations
-        case "native.annotations.editor": .annotationEditor
+        case "native.annotations.editor", "native.annotations.editor.record": .annotationEditor
         case "native.settings": .settings
         case "native.workspace.profiles": .workspaceProfiles
         case "native.workspace.overview": .workspaceOverview

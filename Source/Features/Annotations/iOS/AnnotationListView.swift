@@ -39,15 +39,26 @@ struct AnnotationListView: View {
                     isExporting || isImporting || showOverwriteDialog || showImportAlert
                         || showMissingBookAlert || editingAnnotation != nil
                 })
+                nativeRoutingSession?.annotationEditorOpening?.attachList(owner: nativeRoutingOwner,
+                    read: { nativeEditorOpeningState },
+                    edit: { annotation, permit in
+                        try presentOriginalAnnotationEditor(annotation, permit: permit)
+                    })
             }
-            .onDisappear { nativeRoutingSession?.removeAnnotationPresentation(owner: nativeRoutingOwner) }
+            .onDisappear {
+                let opening = nativeRoutingSession?.annotationEditorOpening
+                let coverage = opening?.originalListWillDisappear(owner: nativeRoutingOwner,
+                    annotation: editingAnnotation)
+                nativeRoutingSession?.removeAnnotationPresentation(owner: nativeRoutingOwner)
+                opening?.originalListDidDisappear(owner: nativeRoutingOwner, coverage: coverage)
+            }
     }
 
     private func annotationContent(_ viewModel: AnnotationViewModel) -> some View {
         AnnotationViewControllerWrapper(
             navigationManager: navigationManager,
             viewModel: viewModel,
-            onEditAnnotation: { nativeModalWillChange(); editingAnnotation = $0 },
+            onEditAnnotation: { try? presentOriginalAnnotationEditor($0) },
             onShowBookInfo: { navigationManager.selectedBookForInfo = $0 },
             nativeRoutingBinding: nativeRoutingSession?.annotationSelectionBinding,
             nativeRoutingOwner: nativeRoutingOwner,
@@ -162,6 +173,23 @@ struct AnnotationListView: View {
 
     private func nativeModalWillChange() {
         nativeRoutingSession?.originalAnnotationPresentationWillChange(owner: nativeRoutingOwner)
+    }
+
+    private var nativeEditorOpeningState: MaktabahNativeAnnotationEditorOpening.ListState {
+        .init(editingAnnotation: editingAnnotation,
+            blockedByOtherPresentation: isExporting || isImporting || showOverwriteDialog
+                || showImportAlert || showMissingBookAlert)
+    }
+
+    /// The original List Edit owner. The default-nil ordinary UI call keeps its
+    /// original publication and State assignment, in that same order.
+    private func presentOriginalAnnotationEditor(_ annotation: Annotation,
+        permit: MaktabahNativeAnnotationEditorOpening.EditPermit? = nil) throws {
+        try permit?.willSet(owner: nativeRoutingOwner, annotation: annotation)
+        nativeModalWillChange()
+        try permit?.didPublish(owner: nativeRoutingOwner)
+        editingAnnotation = annotation
+        try permit?.didSet(owner: nativeRoutingOwner, annotation: annotation)
     }
 
     /// Preserve the exact original State setter; only publication metadata is

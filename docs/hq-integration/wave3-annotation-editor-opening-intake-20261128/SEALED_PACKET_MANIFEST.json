@@ -1,0 +1,609 @@
+{
+  "schema": "otzaria.annotation-editor-opening.local-seal.v1",
+  "files": [
+    {
+      "path": "ACTUAL_EXECUTION.md",
+      "bytes": 5100,
+      "sha256": "29032c6b5a336a2af5dd95bfbbb57f6f20a7ef7bd568f844b50f31f359e603ba"
+    },
+    {
+      "path": "BASELINE.json",
+      "bytes": 881,
+      "sha256": "d4bc7ed7d50ba2365f7ff0ad2d072ff832860c10aadc624cf445fa279562cb45"
+    },
+    {
+      "path": "CHILD_PUBLICATION_DELTA.diff",
+      "bytes": 4576,
+      "sha256": "08c1953730e1d31e7ff7936cea09f8f9b8a846cdfc947da4b0daeff1554bfbef"
+    },
+    {
+      "path": "CHILD_PUBLICATION_DELTA.json",
+      "bytes": 1918,
+      "sha256": "f1e44671cbcb6c7f59f155a251755a13f6be3d2f387f3afb5bf0ca13ef2289fb"
+    },
+    {
+      "path": "CONTROL_BOUNDARIES.md",
+      "bytes": 5128,
+      "sha256": "b2df92dbf26428725e943a6220c14dc2b9d3952264f24d219ac550799f88a4ed"
+    },
+    {
+      "path": "CONTROL_PAYLOAD.json",
+      "bytes": 403679,
+      "sha256": "148ffac7c1aa13e535358be244a3d03d3508d3a733446587d44ebfa720d031af"
+    },
+    {
+      "path": "CURRENT_SOURCE_PINS.json",
+      "bytes": 2976,
+      "sha256": "a9e79094d2235901194dba7da15e1fa023dd8b084ce11dd76270ef4e31d66a37"
+    },
+    {
+      "path": "DISPATCH.py",
+      "bytes": 425434,
+      "sha256": "344c1e8817b0a8ae746abd6dbc40378d23ae9fd791586c569f9a5e3afe54d456"
+    },
+    {
+      "path": "FINAL_INTAKE.json",
+      "bytes": 12693,
+      "sha256": "607accf1b8926800bf83ad46b5ada9e24fb926050aafddb7088317f205148a1a"
+    },
+    {
+      "path": "FIRST_SOURCE.diff",
+      "bytes": 53582,
+      "sha256": "c4be779a6b8105c3a5c15ed41d9a60d0a4b42acbdf28578bd7be08c7e1748fbf"
+    },
+    {
+      "path": "FIRST_SOURCE_PINS.json",
+      "bytes": 2384,
+      "sha256": "981ba7cc3fc181abb10b7e22a003e421a65d5a7e5610c3ac94af53f101353941"
+    },
+    {
+      "path": "LOCALIZATION_ADDITIONS.json",
+      "bytes": 545,
+      "sha256": "d2bd497c7b34f075c406f941fa03219aa08da658769d1791f67216013f0af019"
+    },
+    {
+      "path": "MEMBERSHIP.json",
+      "bytes": 1369,
+      "sha256": "cd4193186014e6ae5ebca077c07056084336b5095e48cffc7623f14ee0a95873"
+    },
+    {
+      "path": "PLANNED_CONTROL_INPUTS.json",
+      "bytes": 11820,
+      "sha256": "5ef2864f1a3b5767b1a621729710093bceeefd022c38a841ee5aebef1418c7f9"
+    },
+    {
+      "path": "REVIEW_SOURCE_PINS.json",
+      "bytes": 3388,
+      "sha256": "2ce0d9581efa74367c7c233695b609a057672a1ae71058f381797d93ab7fe708"
+    },
+    {
+      "path": "SOURCE.diff",
+      "bytes": 59207,
+      "sha256": "236bea33ae8118cd1ea38167ea8262497a361e9dd68f8260e5a1e028bfa23361"
+    },
+    {
+      "path": "SOURCE_EDITS.json",
+      "bytes": 60068,
+      "sha256": "74d8766d5f68b9defe88609e80abacf17eb2566151ad69dd4e71148963d321b0"
+    },
+    {
+      "path": "TAG_MODAL_BASELINE.json",
+      "bytes": 597,
+      "sha256": "882bb9fb1252c129867aec9bf8413a7e6c102aa83f094848ded000bf067896fe"
+    },
+    {
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+      "bytes": 23921,
+      "sha256": "e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa"
+    },
+    {
+      "path": "baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+      "bytes": 25322,
+      "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+    },
+    {
+      "path": "baseline/Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "bytes": 15826,
+      "sha256": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df"
+    },
+    {
+      "path": "baseline/Source/Features/Annotations/iOS/iOSAnVC+TagFilter.swift",
+      "bytes": 2463,
+      "sha256": "5993b5f5651a70fefaf5f17dd69907d1d13953aa7872ab35231d95e006d89ebc"
+    },
+    {
+      "path": "baseline/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "bytes": 32323,
+      "sha256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c"
+    },
+    {
+      "path": "build_shared_proposal.py",
+      "bytes": 33287,
+      "sha256": "9c10ff0cf76d9aafb1d545212a34b43c9eacb7f88aeda9a594ebddf78990c8a8"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+      "bytes": 30874,
+      "sha256": "2c5e6bfa3b8b3d88fc7b3bc105e64921caaa406e66ef4b36a4099aa734445440"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorOpening.swift",
+      "bytes": 25458,
+      "sha256": "0a6c7c0b4b16a4e06bdc1c664097eb84b7fbdd72b6032f109c33b1d57e856432"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+      "bytes": 32769,
+      "sha256": "ff8501c43d7b8673c67ecb94536ae7132c757d046dd919f3fc69257fdb5bf873"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntentService.swift",
+      "bytes": 7406,
+      "sha256": "c787c10eb0e8daa691cac85aca316a72b5d0f9cfb1d329b1da25490d57ac4f64"
+    },
+    {
+      "path": "candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntents.swift",
+      "bytes": 1147,
+      "sha256": "d11e94c3bac2fcf26af5c8b008683d919cf1551c88b074865caf383387168970"
+    },
+    {
+      "path": "candidate/Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "bytes": 17385,
+      "sha256": "cc234714d18265d9e950ccef11e265b4fd3c604298dedb385b5ef17f4314bd28"
+    },
+    {
+      "path": "candidate/Source/Features/Annotations/iOS/iOSAnVC+TagFilter.swift",
+      "bytes": 2511,
+      "sha256": "426dce20033baf8ccff56cf6d546faf341adc6b7f846500b4580a0b37bbc5d0f"
+    },
+    {
+      "path": "candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "bytes": 32718,
+      "sha256": "9a6e6246e7dc89d0f2b36c377c81e83ea4ff08104aefbebc49d99ed0daa65c7c"
+    },
+    {
+      "path": "controls/OpeningFixture.swift",
+      "bytes": 7731,
+      "sha256": "dbf06d2bb08b9c95c79bc59b7f07b2470cb627f7fbb7dc151d523880e027b695"
+    },
+    {
+      "path": "controls/OpeningOwnerControls.swift",
+      "bytes": 18613,
+      "sha256": "1e9292babed571e8c6bd8d098c3bdf2e7ec1bdda90931621e0c9c398dd2348de"
+    },
+    {
+      "path": "controls/OpeningServiceControls.swift",
+      "bytes": 9896,
+      "sha256": "9ddf2c46fd1323697061848f3a297e7500dbb3bd8ccc71149422b32313dd4cf4"
+    },
+    {
+      "path": "controls/SOURCE_EXTRACTIONS.json",
+      "bytes": 17008,
+      "sha256": "a436b3eadf1d6319f8b37ae525d068b1e0235f9bcf1b3c2377ec926aec5c50e9"
+    },
+    {
+      "path": "controls/generated/ActualComponentSourceObservation.swift",
+      "bytes": 1944,
+      "sha256": "e2225a3648027b7171b88d7a73578950e8ff599e3814e1abe7287875b5eba4d4"
+    },
+    {
+      "path": "controls/generated/ActualListPublication.swift",
+      "bytes": 2791,
+      "sha256": "b53baa66b8a42d94ba4abcb87020040fe4d8933821553d8e512759c0d499b157"
+    },
+    {
+      "path": "controls/generated/ActualNativeReaderEntityIdentifier.swift",
+      "bytes": 1632,
+      "sha256": "0fd4f4e6cd3419f90051aaafc192dfdc6fafca848cbda5bb6f7c2d8f72c65ebb"
+    },
+    {
+      "path": "controls/generated/ActualOpeningSession.swift",
+      "bytes": 18545,
+      "sha256": "f9aaa679a6052154b8255b434d8391f0feab22cc9843e6bc732c8952259e8545"
+    },
+    {
+      "path": "controls/generated/ActualOriginalController.swift",
+      "bytes": 13268,
+      "sha256": "8150eae80e5a3611fa12aa41e54fcc234ad117ce4c86c34564bee169419a5383"
+    },
+    {
+      "path": "controls/generated/ActualOriginalList.swift",
+      "bytes": 3190,
+      "sha256": "44ec0ee6e6d253999879238ade1a2e5b9172ed0a11181687e2857c188acc7e16"
+    },
+    {
+      "path": "controls/generated/ActualOriginalRootPublication.swift",
+      "bytes": 1170,
+      "sha256": "d997fbcbb6b18e453cecabd091f3c2fc8986baaf637ca95e45517e201d3c5c39"
+    },
+    {
+      "path": "controls/generated/BeforeIndependentChildState.swift",
+      "bytes": 29635,
+      "sha256": "48023d1fbea3543699dfce8adb418a3c1674519ecbf901d865d1c8afbcfafa20"
+    },
+    {
+      "path": "controls/generated/ExplicitOpeningBoundary.swift",
+      "bytes": 13908,
+      "sha256": "b9bf3b41f33797064eaac6b3fa4e4ee8c8b25f1492db8063b4ac458e27f8682f"
+    },
+    {
+      "path": "controls/generated/MaktabahNativeAnnotationEditorControls.swift",
+      "bytes": 30842,
+      "sha256": "877bc3329843d0ae9f84317ac9bcd95d125c0cf4b0328c07397d48476e174fc7"
+    },
+    {
+      "path": "controls/generated/MaktabahNativeAnnotationEditorOpening.swift",
+      "bytes": 25426,
+      "sha256": "33bc6047828f181f5daab008a6d7c15299f4ec63de1930bd486575b396a5effa"
+    },
+    {
+      "path": "controls/generated/MaktabahNativeAnnotationSelectionBinding.swift",
+      "bytes": 32706,
+      "sha256": "0b4e67bad53d508923cd8b0eba4849dff6e70563ed9caad5f2d5787931d2fad8"
+    },
+    {
+      "path": "controls/generated/NativeAnnotationEditorIntentService.swift",
+      "bytes": 7435,
+      "sha256": "95cad21d0cf6faa450fa730620f7ce6e01b7d14fb0c25f5b849b557d3193e362"
+    },
+    {
+      "path": "controls/generated/OriginalWindowObservation.swift",
+      "bytes": 924,
+      "sha256": "982cd54355b617091cd7b62601a6dcb80dc9ea19af208c54164a75512d4d0cdf"
+    },
+    {
+      "path": "controls/prepare_controls.py",
+      "bytes": 20416,
+      "sha256": "1a6525a23b0deebe7a33e41e9d2e9d7a25e385cf6901c4640bc0c7d600bdd436"
+    },
+    {
+      "path": "evidence/dispatch-attempt-1/DISPATCH.py",
+      "bytes": 425434,
+      "sha256": "344c1e8817b0a8ae746abd6dbc40378d23ae9fd791586c569f9a5e3afe54d456"
+    },
+    {
+      "path": "evidence/dispatch-attempt-1/ENQUEUED.json",
+      "bytes": 1696,
+      "sha256": "89073e3794f4012ea943f9b4d17381728d459603129250ff9438db149d4957f4"
+    },
+    {
+      "path": "evidence/dispatch-attempt-1/PRESERVATION.json",
+      "bytes": 1085,
+      "sha256": "fa3416a8354245d698009f75beafc34673f162f92909d640db18b4bab1390acb"
+    },
+    {
+      "path": "evidence/dispatch-attempt-1/TERMINAL.json",
+      "bytes": 3096,
+      "sha256": "5e0c5755b0a046e5fe28be558d04466c2acae361aa5d1d182ddce041a3c11e9a"
+    },
+    {
+      "path": "evidence/dispatch-attempt-1/run_controls.py",
+      "bytes": 18456,
+      "sha256": "b99798452886fe5170825330d7246171b36285bf99848a305a0a93244ebf571d"
+    },
+    {
+      "path": "evidence/dispatch-attempt-2/ENQUEUED.json",
+      "bytes": 1696,
+      "sha256": "7905cab09487ddb6a3a3d582b382b5c934108dc9ec7291476a9388502add6559"
+    },
+    {
+      "path": "evidence/dispatch-attempt-2/PRESERVATION.json",
+      "bytes": 1038,
+      "sha256": "df9085f866c86cc58daed92b4e73b690b0c1cb80b242b51e35df0b432656eabc"
+    },
+    {
+      "path": "evidence/dispatch-attempt-2/READONLY_STATUS.json",
+      "bytes": 1097,
+      "sha256": "77c61cf1de58b59876eed15ec2292b817c736a0c6c8fc9d51d42fd65f2a3e304"
+    },
+    {
+      "path": "evidence/dispatch-attempt-2/TERMINAL.json",
+      "bytes": 2032,
+      "sha256": "483437b6c7cf65dea578a7954f2fe6e7c078b0e0d0cfb7a3647c86d40ba16d82"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/DISPATCH.py",
+      "bytes": 425434,
+      "sha256": "344c1e8817b0a8ae746abd6dbc40378d23ae9fd791586c569f9a5e3afe54d456"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/ENQUEUED.json",
+      "bytes": 1696,
+      "sha256": "1180651fb0fc89faff300af21cca42b221afbd0f17b672f391dab0e8f81096b5"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/LOCAL_INPUT_JOIN.json",
+      "bytes": 652,
+      "sha256": "af40f2db3db38a1815687d244f5b88f9a917112d459a63574386332e1893bc48"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/RAW.zip",
+      "bytes": 430796,
+      "sha256": "dee386e151bfc956c6b63a7bd6e210cd5e4bba5797aafd62c530be6694e443d7"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/RAW_TRANSFER_VERIFICATION.json",
+      "bytes": 1014,
+      "sha256": "8e72cc52274c03f6f0ec99cfa9b25f8e11898df5c01fea04ae3a4cd43b0740e9"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/RESULT_READ.json",
+      "bytes": 54804,
+      "sha256": "00541c2adcf662d8bb767393348652c99e854b6aa35ee818894d69ee8b4df966"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/RESULT_READ.sh",
+      "bytes": 895,
+      "sha256": "2c4c6693f09aa05cc3cb17fc3533f99c4a3ed4d4dd28c905a826cb84159455a3"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/TERMINAL.json",
+      "bytes": 2404,
+      "sha256": "e869edb518b7c605dd6fdb49ba45fcfeb01230240a76144b2e0c7479a3356a11"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/CURRENT_MODULE_JOIN.json",
+      "bytes": 2256,
+      "sha256": "d2c44d5d1297cbfa7b57f9d8b0ea92415382e9b38803634c920875561794152c"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/RAW_MANIFEST.json",
+      "bytes": 26178,
+      "sha256": "ba5f4099cce712f69439b194e2103c4176817ec5e88c13dfaf52109948c21957"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/RESULT.json",
+      "bytes": 31023,
+      "sha256": "7c22bf9bb0b4cbc92b6b88db57376ff6a398a7b5c2afa9b7d10df18ad5a4228b"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/STATUS.json",
+      "bytes": 30283,
+      "sha256": "3f38adbe9e291b666a1e240e03f633844a17c8d092aab3a825c68ae9e3f9380e"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/UNCHANGED_ORIGINAL_BODIES.json",
+      "bytes": 323,
+      "sha256": "a61717282b7feb3e1f6f839e36a83809e38d08256e3d88f216e692926bb77d92"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/actual-owner-controls.stdout",
+      "bytes": 4353,
+      "sha256": "9943d1db9e46672df4e3a1fa6af0dd07333db7ea4cd36cb5c51a9b3aa3bb0870"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/actual-service-controls.stdout",
+      "bytes": 1834,
+      "sha256": "3fedbe507f6eea5b9ff2e82cd86b49757395b56ce1a6265f62d6f0a40189d33e"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/late-coverage-before-independent-state-counterexample.stdout",
+      "bytes": 642,
+      "sha256": "c7823bfe347701fe6dd45acffebddeaaf819e65a2abc3db3233154769c6b971b"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/original-List-coverage-counterexample.stdout",
+      "bytes": 686,
+      "sha256": "5d4bd030b4e7230cd7229049fbd14eadf89367a91ebd39b174384f067442c202"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/readback/original-tag-method-ABA-counterexample.stdout",
+      "bytes": 670,
+      "sha256": "eaac26f0bdcd3e1f90adef1f7c839073785de30f01839fdc3894424caef47cc7"
+    },
+    {
+      "path": "evidence/dispatch-attempt-3/run_controls.py",
+      "bytes": 18456,
+      "sha256": "b99798452886fe5170825330d7246171b36285bf99848a305a0a93244ebf571d"
+    },
+    {
+      "path": "evidence/pre-independent-child-publication/PRESERVATION.json",
+      "bytes": 978,
+      "sha256": "d9b524f2abe2b16cc6cb65799ac2f3648b26f35d031cfc87206442b4e6ff2d98"
+    },
+    {
+      "path": "evidence/pre-independent-child-publication/REVIEW_SOURCE_PINS.json",
+      "bytes": 3388,
+      "sha256": "2ce0d9581efa74367c7c233695b609a057672a1ae71058f381797d93ab7fe708"
+    },
+    {
+      "path": "evidence/pre-independent-child-publication/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+      "bytes": 29667,
+      "sha256": "969f24beef58a0e0fc320e728697783478ed213423d700634c175caa42daab5f"
+    },
+    {
+      "path": "evidence/pre-independent-child-publication/controls/OpeningOwnerControls.swift",
+      "bytes": 17985,
+      "sha256": "53255ab19f22990d52aa2808e1a9d0d8be2a38414a522ba6743cc3433c88ce8b"
+    },
+    {
+      "path": "evidence/pre-independent-child-publication/proposal/SHARED_EDITS.json",
+      "bytes": 50956,
+      "sha256": "35b7ef090b517ce5397a63f19a16dfee6e07926371dd829636af830254510a39"
+    },
+    {
+      "path": "evidence/proposal-builder-attempt-1/FAILURE.txt",
+      "bytes": 185,
+      "sha256": "a3b9b16c7980197f117d93055e97666e654dab77c6b2c6481cc79dfa6fbf2d84"
+    },
+    {
+      "path": "evidence/proposal-builder-attempt-1/build_shared_proposal.py",
+      "bytes": 33179,
+      "sha256": "ee8f2cccbd7b8c015f03a49b1ced31ae725715fe5998f3996a3bf2c510afc633"
+    },
+    {
+      "path": "evidence/unrun-root-publication-projection-correction/CORRECTION.json",
+      "bytes": 499,
+      "sha256": "9f491f99fcb636abb37b4b8f288a82b27ac476d1c8f9a1c996efcdc204d8322d"
+    },
+    {
+      "path": "evidence/unrun-root-publication-projection-correction/controls/SOURCE_EXTRACTIONS.json",
+      "bytes": 16635,
+      "sha256": "036fd6234774f5abe5ff2d2fc121117dbabb8305508d9153c5b4d3f8c0dba00c"
+    },
+    {
+      "path": "evidence/unrun-root-publication-projection-correction/controls/generated/ActualOriginalRootPublication.swift",
+      "bytes": 962,
+      "sha256": "af3fe5ff898cfd27f4ef17be9422994aa8f5c60aced00752d65ef2f93536f143"
+    },
+    {
+      "path": "evidence/unrun-root-publication-projection-correction/controls/prepare_controls.py",
+      "bytes": 19431,
+      "sha256": "b76dd373d43a1bae1da9b97662929531fbb2ea19f67f87d9c67803be0f933a74"
+    },
+    {
+      "path": "evidence/unrun-runner-before-optimized-python-refusal/CORRECTION.json",
+      "bytes": 405,
+      "sha256": "3326a127e4e66379b25c65471fdfe9595236ab79789bca094a19053d32b3e338"
+    },
+    {
+      "path": "evidence/unrun-runner-before-optimized-python-refusal/RUN.patch",
+      "bytes": 313,
+      "sha256": "4b468d681496a13debd2fce3d57d447dbd9f92d55bfd887d1c3a71153cc651be"
+    },
+    {
+      "path": "evidence/unrun-runner-before-optimized-python-refusal/RUN.py",
+      "bytes": 18339,
+      "sha256": "d392b809bf0f5bc1716e3e6fba90ca3dd267060e27499536b79ce59297e8f2e7"
+    },
+    {
+      "path": "evidence/unrun-runner-guard-correction/CORRECTION.json",
+      "bytes": 397,
+      "sha256": "2d49c56ef08d7096502b88fc59e72c52170e112318ccde76301790b6f7285b2d"
+    },
+    {
+      "path": "evidence/unrun-runner-guard-correction/RUN.py",
+      "bytes": 18213,
+      "sha256": "b8ee321c288a5ca03f667c9fa6286e6c3f5904c2e9b7ef5dfc46ec82baedb6ce"
+    },
+    {
+      "path": "prepare_payload.py",
+      "bytes": 2099,
+      "sha256": "f545a159cab9f274416bc28ffb62be58b01807481625c8fe6dbee1dff7390492"
+    },
+    {
+      "path": "proposal/SHARED_EDITS.json",
+      "bytes": 50956,
+      "sha256": "35b7ef090b517ce5397a63f19a16dfee6e07926371dd829636af830254510a39"
+    },
+    {
+      "path": "proposal/SOURCE.diff",
+      "bytes": 41049,
+      "sha256": "971828c346679de21cab8f97b99ceba57bae11e0d5f981290b018150555a13e8"
+    },
+    {
+      "path": "proposal/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "bytes": 23430,
+      "sha256": "d2b450caf3bd1574ecc7720474bed4c5560d08f26fd6c0e8f248020015bb2db7"
+    },
+    {
+      "path": "proposal/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 277099,
+      "sha256": "b40fc20a91743560e9f04d3eaf6a9ff566ce7c952066366d67c2a9b7b8b9ddde"
+    },
+    {
+      "path": "proposal/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 28434,
+      "sha256": "56deba49344a23aa670843a343986091141911455b9e8a536c69cc2d27cd3284"
+    },
+    {
+      "path": "proposal/baseline/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 189298,
+      "sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "bytes": 23515,
+      "sha256": "ef2db05cbb391fef37b46c64a414324ed73d80d3a76adb481d6c67be4921cad8"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "bytes": 283500,
+      "sha256": "53ceafc8e8b3085e2279af3319945528790c2270e5b0656d553bdc134b9ff4d7"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "bytes": 29289,
+      "sha256": "a72174264f68ce10af35c596166a1342e60f5eec124fb9ccc3261f2a0ae8e243"
+    },
+    {
+      "path": "proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "bytes": 203596,
+      "sha256": "66b971765ac6b3e749a6a9b5780b654d7dd2c473fc0dae673c8b04592cea4acc"
+    },
+    {
+      "path": "reference/REFERENCE_PINS.json",
+      "bytes": 1538,
+      "sha256": "5fe644e5a2a8f95ae654533985e5ae9709b9ae92f187144ffcfa5558c3255546"
+    },
+    {
+      "path": "reference/annotations-editor-controls-implementation/controls/ActualComponentSourceObservation.swift",
+      "bytes": 1944,
+      "sha256": "e2225a3648027b7171b88d7a73578950e8ff599e3814e1abe7287875b5eba4d4"
+    },
+    {
+      "path": "reference/annotations-editor-controls-implementation/controls/OriginalWindowObservation.swift",
+      "bytes": 956,
+      "sha256": "b9500b0abb21230a85f73f9814ef4e7ce2b75b12ab382d950ba336ace32c9570"
+    },
+    {
+      "path": "reference/annotations-selection-analysis/controls/ActualAnnotationControllerCapsule.swift",
+      "bytes": 10364,
+      "sha256": "5e13e94d71df22ab8b5ed14f0e97c1bf857e612c9f1ebc5eab30167677febf23"
+    },
+    {
+      "path": "reference/annotations-selection-analysis/controls/ActualNativeReaderEntityIdentifier.swift",
+      "bytes": 1632,
+      "sha256": "0fd4f4e6cd3419f90051aaafc192dfdc6fafca848cbda5bb6f7c2d8f72c65ebb"
+    },
+    {
+      "path": "reference/annotations-selection-analysis/controls/ExplicitAnnotationBoundary.swift",
+      "bytes": 11662,
+      "sha256": "8b17737c90f9afa4dab765e82d1bc4b3309d50633769863123845b82df266090"
+    },
+    {
+      "path": "reference/annotations-selection-analysis/packet/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationListPublication.swift",
+      "bytes": 2810,
+      "sha256": "99a48e13e579c46191b6a3aef928e7201b4c3fc70bd0e40d58e5e5bfc7c5a966"
+    },
+    {
+      "path": "reference/rn-inner-semantics/root-shared-intake/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSearchEntry.swift",
+      "bytes": 27762,
+      "sha256": "7e752dde2a43cf4625e12149dd9bc7b3fb383f0fdfdb529cd380bfa456f60532"
+    },
+    {
+      "path": "review/primary-composition-dff13921/REVIEW.json",
+      "bytes": 4402,
+      "sha256": "0a297ec50ba7a743624c34be9406a0af5c70ea43bd7897dec11675dceef95838"
+    },
+    {
+      "path": "review/primary-composition-dff13921/STATIC_READ_ATTEMPT1.json",
+      "bytes": 359,
+      "sha256": "0f7dc82a9658c9af1b0743f4ec0c90e2590d7ffdac2055db91208fb462ce9824"
+    },
+    {
+      "path": "review/primary-composition-dff13921/STATIC_SOURCE_READ.json",
+      "bytes": 6443,
+      "sha256": "07f80bf6b0214da1277301d851bf0283a65adf1625749e70dbce6b9ce2c01746"
+    },
+    {
+      "path": "review/primary-composition-dff13921/STATIC_SOURCE_READ.py",
+      "bytes": 5414,
+      "sha256": "e77078e9eb9e8ab4f9b69b7ee0ff7ba87594404f06a505f41ad802fdf02d94af"
+    },
+    {
+      "path": "run_controls.py",
+      "bytes": 18456,
+      "sha256": "b99798452886fe5170825330d7246171b36285bf99848a305a0a93244ebf571d"
+    },
+    {
+      "path": "seal_actual_handoff.py",
+      "bytes": 9060,
+      "sha256": "e906a1a936ca6fdc8a21f4f96351d57238ea260f5ed90d564cd0137c62906d46"
+    }
+  ],
+  "file_count": 120,
+  "bytes": 4552463,
+  "source_or_shared_mutations_after_run": false,
+  "native": "NOT_RUN"
+}

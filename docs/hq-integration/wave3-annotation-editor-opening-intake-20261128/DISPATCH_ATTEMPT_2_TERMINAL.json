@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"job\":{\"id\":\"job_052e54ce13a4\",\"type\":\"job_result\",\"source\":\"script_run@host_299cf75f6b338ecd\",\"severity\":\"warning\",\"tool\":\"script_run\",\"host\":\"host_299cf75f6b338ecd\",\"status\":\"failed\",\"exit_code\":1,\"created_at\":1795817658.868163,\"started_at\":\"2026-11-27T22:14:19.182399+00:00\",\"finished_at\":\"2026-11-27T22:14:19.388360+00:00\",\"duration_s\":0.21,\"error\":null,\"output_truncated\":false,\"timeout_s\":600,\"read\":false,\"notified\":{\"telegram\":null,\"resend\":null},\"notify_spec\":{},\"output\":\"Traceback (most recent call last):\\n  File \\\"<stdin>\\\", line 3, in <module>\\n  File \\\"annotation-editor-opening-RUN.py\\\", line 31, in <module>\\n  File \\\"annotation-editor-opening-RUN.py\\\", line 26, in capacity\\nRuntimeError: original shared floors / exact own80MiB cap: {'data': 2028810240, 'root': 2207133696, 'own': 0}\"}}"
+    }
+  ],
+  "structuredContent": {
+    "ok": true,
+    "job": {
+      "id": "job_052e54ce13a4",
+      "type": "job_result",
+      "source": "script_run@host_299cf75f6b338ecd",
+      "severity": "warning",
+      "tool": "script_run",
+      "host": "host_299cf75f6b338ecd",
+      "status": "failed",
+      "exit_code": 1,
+      "created_at": 1795817658.868163,
+      "started_at": "2026-11-27T22:14:19.182399+00:00",
+      "finished_at": "2026-11-27T22:14:19.388360+00:00",
+      "duration_s": 0.21,
+      "error": null,
+      "output_truncated": false,
+      "timeout_s": 600,
+      "read": false,
+      "notified": {
+        "telegram": null,
+        "resend": null
+      },
+      "notify_spec": {},
+      "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 3, in <module>\n  File \"annotation-editor-opening-RUN.py\", line 31, in <module>\n  File \"annotation-editor-opening-RUN.py\", line 26, in capacity\nRuntimeError: original shared floors / exact own80MiB cap: {'data': 2028810240, 'root': 2207133696, 'own': 0}"
+    }
+  },
+  "isError": false
+}

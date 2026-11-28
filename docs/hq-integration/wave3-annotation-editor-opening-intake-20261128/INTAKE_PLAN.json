@@ -1,0 +1,228 @@
+{
+  "schema": "otzaria.annotation-opening.selective-intake-plan/1",
+  "base": "ffa47784063bfda88b5d3c083d1a32bcacd14041",
+  "sourceBefore": "c62aa1a24c1a10fb5129c25d6869faa00c9a3dfb",
+  "vendorBefore": "2fb868bdbe5d2d52735e857a24933918ff658cef",
+  "files": [
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift",
+      "before": {
+        "bytes": 23921,
+        "sha256": "e14cd2eb9fd2977c5f4103628e0d320f5f265527a67af453b972606065b5feaa"
+      },
+      "after": {
+        "bytes": 30874,
+        "sha256": "2c5e6bfa3b8b3d88fc7b3bc105e64921caaa406e66ef4b36a4099aa734445440"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorOpening.swift",
+      "before": null,
+      "after": {
+        "bytes": 25458,
+        "sha256": "0a6c7c0b4b16a4e06bdc1c664097eb84b7fbdd72b6032f109c33b1d57e856432"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationEditorOpening.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift",
+      "before": {
+        "bytes": 25322,
+        "sha256": "018d56a5867ed10e61259dee84044109176181c04f2bc444e0c70768bd9ce879"
+      },
+      "after": {
+        "bytes": 32769,
+        "sha256": "ff8501c43d7b8673c67ecb94536ae7132c757d046dd919f3fc69257fdb5bf873"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeAnnotationSelectionBinding.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntentService.swift",
+      "before": null,
+      "after": {
+        "bytes": 7406,
+        "sha256": "c787c10eb0e8daa691cac85aca316a72b5d0f9cfb1d329b1da25490d57ac4f64"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntentService.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntents.swift",
+      "before": null,
+      "after": {
+        "bytes": 1147,
+        "sha256": "d11e94c3bac2fcf26af5c8b008683d919cf1551c88b074865caf383387168970"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/ChavrusaText/UIRoutingHost/Sources/ChavrusaUIRoutingHost/NativeAnnotationEditorIntents.swift"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/AnnotationListView.swift",
+      "before": {
+        "bytes": 15826,
+        "sha256": "bfbc3506d23bab8676e7a23a0b0a23a204cefca615be527dea12d62a5c18f1df"
+      },
+      "after": {
+        "bytes": 17385,
+        "sha256": "cc234714d18265d9e950ccef11e265b4fd3c604298dedb385b5ef17f4314bd28"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/Features/Annotations/iOS/AnnotationListView.swift"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnVC+TagFilter.swift",
+      "before": {
+        "bytes": 2463,
+        "sha256": "5993b5f5651a70fefaf5f17dd69907d1d13953aa7872ab35231d95e006d89ebc"
+      },
+      "after": {
+        "bytes": 2511,
+        "sha256": "426dce20033baf8ccff56cf6d546faf341adc6b7f846500b4580a0b37bbc5d0f"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/Features/Annotations/iOS/iOSAnVC+TagFilter.swift"
+    },
+    {
+      "path": "Source/Features/Annotations/iOS/iOSAnnotationViewController.swift",
+      "before": {
+        "bytes": 32323,
+        "sha256": "a6577cf5d2060b3849ab06634c9e52915e9048260feda7814c02cf926965bd1c"
+      },
+      "after": {
+        "bytes": 32718,
+        "sha256": "9a6e6246e7dc89d0f2b36c377c81e83ea4ff08104aefbebc49d99ed0daa65c7c"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/candidate/Source/Features/Annotations/iOS/iOSAnnotationViewController.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift",
+      "before": {
+        "bytes": 189298,
+        "sha256": "10c1b860789040d03481a3fa4ee2cce25d8894c48385c05e42a2fc6edda82bc8"
+      },
+      "after": {
+        "bytes": 203596,
+        "sha256": "66b971765ac6b3e749a6a9b5780b654d7dd2c473fc0dae673c8b04592cea4acc"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneSession.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift",
+      "before": {
+        "bytes": 28434,
+        "sha256": "56deba49344a23aa670843a343986091141911455b9e8a536c69cc2d27cd3284"
+      },
+      "after": {
+        "bytes": 29289,
+        "sha256": "a72174264f68ce10af35c596166a1342e60f5eec124fb9ccc3261f2a0ae8e243"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeSceneProjection.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift",
+      "before": {
+        "bytes": 277099,
+        "sha256": "b40fc20a91743560e9f04d3eaf6a9ff566ce7c952066366d67c2a9b7b8b9ddde"
+      },
+      "after": {
+        "bytes": 283500,
+        "sha256": "53ceafc8e8b3085e2279af3319945528790c2270e5b0656d553bdc134b9ff4d7"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativeRoutingComposition.swift"
+    },
+    {
+      "path": "Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift",
+      "before": {
+        "bytes": 23430,
+        "sha256": "d2b450caf3bd1574ecc7720474bed4c5560d08f26fd6c0e8f248020015bb2db7"
+      },
+      "after": {
+        "bytes": 23515,
+        "sha256": "ef2db05cbb391fef37b46c64a414324ed73d80d3a76adb481d6c67be4921cad8"
+      },
+      "archiveKey": "annotations-editor-opening-implementation/proposal/candidate/Source/ChavrusaText/UIRoutingHost/Integration/MaktabahNativePublicBindingAdapter.swift"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before": {
+        "bytes": 649248,
+        "sha256": "32e0a629c5ecdb68317f0bc65baec850a51622fc80886d9316b24a27080874ad"
+      },
+      "after": {
+        "bytes": 649868,
+        "sha256": "f77ff75bc96174022ea88dbc66d3bc8b3ee8cc82861fdcc6402fccf3ddbce4e5"
+      },
+      "metadata": true
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "before": {
+        "bytes": 404394,
+        "sha256": "6ae875fa45ca7a70b27e7f6c50f54f12192ba635bf7e0947524b69087fe48547"
+      },
+      "after": {
+        "bytes": 405228,
+        "sha256": "c6806b486fdf3e958c77d4cfbce312dc418eb01e9a73da021f5e2a22732fe86a"
+      },
+      "metadata": true
+    }
+  ],
+  "metadataEdits": [
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before": "\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */; };\n",
+      "after": "\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */; };\n\t\t7B9903EC81F4E32BFE0D0F22 /* MaktabahNativeAnnotationEditorOpening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AE74BC78D1328897798652 /* MaktabahNativeAnnotationEditorOpening.swift */; };\n"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before": "\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift\"; sourceTree = \"<group>\"; };\n",
+      "after": "\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationEditorControls.swift\"; sourceTree = \"<group>\"; };\n\t\t41AE74BC78D1328897798652 /* MaktabahNativeAnnotationEditorOpening.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = \"UIRoutingHost/Integration/MaktabahNativeAnnotationEditorOpening.swift\"; sourceTree = \"<group>\"; };\n"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before": "\t\t\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */,\n",
+      "after": "\t\t\t\t19CC9E671ADE09B048FC6B1E /* MaktabahNativeAnnotationEditorControls.swift */,\n\t\t\t\t41AE74BC78D1328897798652 /* MaktabahNativeAnnotationEditorOpening.swift */,\n"
+    },
+    {
+      "path": "Maktabah.xcodeproj/project.pbxproj",
+      "before": "\t\t\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */,\n",
+      "after": "\t\t\t\t391EA830625F5FB1A8E1A6BE /* MaktabahNativeAnnotationEditorControls.swift in Sources */,\n\t\t\t\t7B9903EC81F4E32BFE0D0F22 /* MaktabahNativeAnnotationEditorOpening.swift in Sources */,\n"
+    },
+    {
+      "path": "Source/Localizable.xcstrings",
+      "before": "  \"strings\": {\n",
+      "after": "  \"strings\": {\n    \"Open annotation editor\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Open annotation editor\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"פתיחת עורך ההערות\"\n          }\n        }\n      }\n    },\n    \"Open an existing annotation in its original editor.\": {\n      \"localizations\": {\n        \"en\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"Open an existing annotation in its original editor.\"\n          }\n        },\n        \"he\": {\n          \"stringUnit\": {\n            \"state\": \"translated\",\n            \"value\": \"פתיחת הערה קיימת בעורך המקורי שלה.\"\n          }\n        }\n      }\n    },\n"
+    }
+  ],
+  "sharedHunks": 40,
+  "appMemberships": [
+    {
+      "name": "MaktabahNativeAnnotationEditorOpening.swift",
+      "buildID": "7B9903EC81F4E32BFE0D0F22",
+      "fileReferenceID": "41AE74BC78D1328897798652"
+    }
+  ],
+  "localizedKeys": {
+    "Open annotation editor": "פתיחת עורך ההערות",
+    "Open an existing annotation in its original editor.": "פתיחת הערה קיימת בעורך המקורי שלה."
+  },
+  "hostSources": "Original Host package target auto-discovery; no duplicate app membership.",
+  "existingShortcuts": "Ten unchanged; no registration edited.",
+  "evidence": {
+    "resultSHA256": "7c22bf9bb0b4cbc92b6b88db57376ff6a398a7b5c2afa9b7d10df18ad5a4228b",
+    "rawSHA256": "dee386e151bfc956c6b63a7bd6e210cd5e4bba5797aafd62c530be6694e443d7",
+    "ownerPassed": 34,
+    "servicePassed": 14,
+    "expectedNegativeVariants": 3,
+    "fullFileSyntax": 24
+  },
+  "remaining": [
+    "Apple SDK typechecking",
+    "real UIKit lifecycle and geometry",
+    "production database persistence",
+    "system App Intents delivery",
+    "Native116",
+    "Release114+2",
+    "genuine final owner gate",
+    "physical hardware QA"
+  ],
+  "selectiveIntakeOnly": true,
+  "labBranchesMerged": 0
+}

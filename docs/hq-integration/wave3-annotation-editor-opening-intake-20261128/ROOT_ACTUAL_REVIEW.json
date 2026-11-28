@@ -1,0 +1,27 @@
+{
+  "schema": "otzaria.annotation-opening.root-independent-evidence-review/1",
+  "reviewedUTC": "2026-11-28T00:26:03.122765+00:00",
+  "actualJob": "job_ac7f55889e4f",
+  "resultSHA256": "7c22bf9bb0b4cbc92b6b88db57376ff6a398a7b5c2afa9b7d10df18ad5a4228b",
+  "rawZipSHA256": "dee386e151bfc956c6b63a7bd6e210cd5e4bba5797aafd62c530be6694e443d7",
+  "physicalZipMembers": 150,
+  "verifiedPayloadRows": 149,
+  "ownerPassed": 34,
+  "servicePassed": 14,
+  "expectedCounterexamples": [
+    {
+      "name": "original-tag-method-ABA-counterexample",
+      "exit": 1
+    },
+    {
+      "name": "original-List-coverage-counterexample",
+      "exit": 1
+    },
+    {
+      "name": "late-coverage-before-independent-state-counterexample",
+      "exit": 1
+    }
+  ],
+  "fullFileSyntaxPasses": 24,
+  "meaning": "Source controls with explicit native boundaries; not Apple SDK typecheck, application or hardware acceptance."
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "otzaria.annotation-opening.raw-transfer.v1",
+  "remote_path": "/home/ubuntu/.codex/artifacts/otzaria-wave3-annotation-editor-opening-controls-20261127/attempt-1/RAW.zip",
+  "transport": "Sentinel one-download link; POST fetched exact bytes; all members independently verified locally",
+  "archive": {
+    "path": "evidence/dispatch-attempt-3/RAW.zip",
+    "bytes": 430796,
+    "sha256": "dee386e151bfc956c6b63a7bd6e210cd5e4bba5797aafd62c530be6694e443d7"
+  },
+  "manifest_rows": 149,
+  "zip_members": 150,
+  "member_count_note": "The unchanged controller prints raw_members=len(manifest)=149; the ZIP additionally includes RAW_MANIFEST.json, so physical membership is 150.",
+  "all_member_bytes_sha256_checked": true,
+  "all_transported_inputs_equal_local_frozen_inputs": true,
+  "independently_read_result_files_equal_archive": true,
+  "result_sha256": "7c22bf9bb0b4cbc92b6b88db57376ff6a398a7b5c2afa9b7d10df18ad5a4228b",
+  "member_bytes": 2086309,
+  "source_or_remote_mutation_by_readback": false
+}

@@ -693,6 +693,13 @@ extension iOSAnnotationViewController {
         if let owner { previous?.detach(controller: self, owner: owner) }
     }
 
+    /// Passive prepublication for the ORIGINAL UIKit tag sheet. The caller
+    /// always performs its original present operation, even without a binding.
+    func nativeRoutingOriginalModalWillPresent() {
+        guard let binding = nativeRoutingBinding, let owner = nativeRoutingOwner else { return }
+        binding.originalUIKitPresentationWillChange(controller: self, owner: owner)
+    }
+
     /// Metadata is derived from the ORIGINAL diffable snapshot, including its
     /// section path. One annotation appearing under two tags is two distinct
     /// original rows and is never collapsed to its numeric database ID.

@@ -71,6 +71,8 @@ struct MaktabahNativeSceneProjection {
                  historyRecord: MaktabahNativeHistoryRecordBinding? = nil,
                  annotationSelection: MaktabahNativeAnnotationSelectionBinding? = nil,
                  annotationRequestID: UUID? = nil,
+                 annotationOpening: MaktabahNativeAnnotationEditorOpening? = nil,
+                 annotationOpeningRequestID: UUID? = nil,
                  annotationEditor: MaktabahNativeAnnotationEditorControls? = nil,
                  annotationEditorRequestID: UUID? = nil,
                  savedResults: MaktabahNativeSavedResultsBinding? = nil,
@@ -79,6 +81,15 @@ struct MaktabahNativeSceneProjection {
             profileID: stable(workspace?.selection?.profileID), selectedItemID: nil)
         switch surface {
         case .annotationEditor:
+            if let original = annotationOpening {
+                guard !settingsPresented, selectedTab.canonical == .annotations, manager.currentMode == .annotations,
+                      let requestID = annotationOpeningRequestID,
+                      original.hasVisibleSurface(requestID: requestID),
+                      let selected = original.observedItem(requestID: requestID) else { return nil }
+                return .init(destination: MaktabahNativeAnnotationEditorOpening.destination,
+                    presentation: .init(kind: .sheet), content: nil,
+                    state: .init(workspaceID: state.workspaceID, profileID: state.profileID, selectedItemID: selected), focus: nil)
+            }
             guard !settingsPresented, selectedTab.canonical == .annotations, manager.currentMode == .annotations,
                   let original = annotationEditor, let requestID = annotationEditorRequestID,
                   original.isAvailable(), (try? original.validateVisible(requestID: requestID)) != nil else { return nil }
